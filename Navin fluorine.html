@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAVINFLUOR | Q4 & FY26 Institutional Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Mono:wght@300;400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep:       #080c10;
+    --bg-card:       #0d1318;
+    --bg-elevated:   #121a22;
+    --border:        #1e2d3d;
+    --border-light:  #253545;
+    --amber:         #f5a623;
+    --amber-dim:     #c07c10;
+    --amber-glow:    rgba(245,166,35,0.12);
+    --teal:          #2dd4bf;
+    --teal-dim:      rgba(45,212,191,0.15);
+    --red:           #ff4d6d;
+    --red-dim:       rgba(255,77,109,0.12);
+    --green:         #4ade80;
+    --green-dim:     rgba(74,222,128,0.12);
+    --blue:          #60a5fa;
+    --blue-dim:      rgba(96,165,250,0.12);
+    --text-primary:  #e8edf2;
+    --text-secondary:#8fa3b8;
+    --text-muted:    #4d6478;
+    --serif:         'Playfair Display', Georgia, serif;
+    --mono:          'DM Mono', 'Courier New', monospace;
+    --body:          'Libre Baskerville', Georgia, serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: var(--body);
+    font-size: 14px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NOISE TEXTURE ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.6;
+  }
+
+  /* ─── SIDEBAR NAV ─── */
+  .sidenav {
+    position: fixed; left: 0; top: 0; bottom: 0;
+    width: 220px;
+    background: var(--bg-card);
+    border-right: 1px solid var(--border);
+    z-index: 100;
+    display: flex; flex-direction: column;
+    padding: 32px 0 24px;
+    overflow-y: auto;
+  }
+  .sidenav-logo {
+    padding: 0 24px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidenav-logo .ticker {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .sidenav-logo .co-name {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--text-primary);
+    margin-top: 4px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .sidenav-logo .report-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    letter-spacing: 0.1em;
+  }
+  .sidenav-nav { padding: 20px 0; flex: 1; }
+  .sidenav-nav a {
+    display: block;
+    padding: 8px 24px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+    line-height: 1.4;
+  }
+  .sidenav-nav a:hover, .sidenav-nav a.active {
+    color: var(--amber);
+    border-left-color: var(--amber);
+    background: var(--amber-glow);
+  }
+  .sidenav-nav .step-num {
+    display: inline-block;
+    width: 18px;
+    color: var(--text-muted);
+    font-size: 9px;
+    vertical-align: middle;
+  }
+  .sidenav-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .verdict-badge {
+    display: inline-block;
+    background: var(--green-dim);
+    color: var(--green);
+    border: 1px solid rgba(74,222,128,0.3);
+    border-radius: 3px;
+    padding: 2px 8px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+
+  /* ─── MAIN CONTENT ─── */
+  .main {
+    margin-left: 220px;
+    min-height: 100vh;
+    position: relative; z-index: 1;
+  }
+
+  /* ─── HERO HEADER ─── */
+  .hero {
+    background: linear-gradient(135deg, #0a1520 0%, #0d1e2e 50%, #081218 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 56px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; right: -80px; top: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245,166,35,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--amber);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: 42px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .hero h1 span { color: var(--amber); }
+  .hero-sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 36px;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    max-width: 900px;
+  }
+  .hero-stat {
+    background: var(--bg-elevated);
+    padding: 16px 18px;
+    position: relative;
+  }
+  .hero-stat .label {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .hero-stat .value {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+  .hero-stat .delta {
+    font-family: var(--mono);
+    font-size: 10px;
+    margin-top: 4px;
+  }
+  .delta.up { color: var(--green); }
+  .delta.down { color: var(--red); }
+  .delta.neutral { color: var(--text-muted); }
+
+  /* ─── SCORE DASHBOARD ─── */
+  .scores-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 24px;
+    max-width: 900px;
+  }
+  .score-cell {
+    background: var(--bg-card);
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .score-cell .s-label {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .score-num {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .score-bar {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .score-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--amber);
+    transition: width 1s ease;
+  }
+
+  /* ─── SECTION ─── */
+  .section {
+    padding: 52px 56px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.5s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .step-pill {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--amber);
+    background: var(--amber-glow);
+    border: 1px solid rgba(245,166,35,0.25);
+    border-radius: 20px;
+    padding: 3px 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .section h2 {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  /* ─── PROSE ─── */
+  .prose {
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    line-height: 1.85;
+    max-width: 820px;
+  }
+  .prose p { margin-bottom: 16px; }
+  .prose strong { color: var(--text-primary); font-weight: 700; }
+  .prose em { color: var(--amber); font-style: normal; }
+
+  /* ─── DATA GRID ─── */
+  .data-grid {
+    display: grid;
+    gap: 16px;
+  }
+  .data-grid-2 { grid-template-columns: 1fr 1fr; }
+  .data-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .data-grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+  /* ─── CARD ─── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 22px 24px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: var(--border-light); }
+  .card-title {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .card-value {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .card-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+  .card-delta {
+    font-family: var(--mono);
+    font-size: 11px;
+    margin-top: 8px;
+    padding: 4px 8px;
+    display: inline-block;
+    border-radius: 3px;
+  }
+  .delta-bg-up   { background: var(--green-dim);  color: var(--green); }
+  .delta-bg-down { background: var(--red-dim);    color: var(--red);   }
+  .delta-bg-neu  { background: var(--blue-dim);   color: var(--blue);  }
+
+  /* ─── TABLE ─── */
+  .data-table { width: 100%; border-collapse: collapse; }
+  .data-table th {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table th:not(:first-child) { text-align: right; }
+  .data-table td {
+    padding: 11px 14px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td:not(:first-child) { text-align: right; }
+  .data-table td:first-child { color: var(--text-primary); }
+  .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .data-table td.pos { color: var(--green); }
+  .data-table td.neg { color: var(--red); }
+  .data-table td.hl  { color: var(--amber); font-weight: 500; }
+  .data-table tr.subtotal td {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  /* ─── SEGMENT BARS ─── */
+  .seg-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .seg-row:last-child { border-bottom: none; }
+  .seg-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-primary);
+    width: 130px;
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+  }
+  .seg-bar-wrap { flex: 1; background: var(--border); border-radius: 2px; height: 6px; }
+  .seg-bar { height: 100%; border-radius: 2px; }
+  .seg-val {
+    font-family: var(--mono);
+    font-size: 11px;
+    width: 70px;
+    text-align: right;
+    color: var(--text-primary);
+  }
+  .seg-delta {
+    font-family: var(--mono);
+    font-size: 10px;
+    width: 55px;
+    text-align: right;
+  }
+
+  /* ─── FLAG / CALLOUT ─── */
+  .flag {
+    display: flex;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    border-left: 3px solid;
+  }
+  .flag-severe { background: rgba(255,77,109,0.08);   border-color: var(--red);   }
+  .flag-moderate{ background: rgba(245,166,35,0.08);  border-color: var(--amber); }
+  .flag-minor  { background: rgba(96,165,250,0.08);   border-color: var(--blue);  }
+  .flag-positive{ background: rgba(74,222,128,0.08);  border-color: var(--green); }
+  .flag-icon { font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+  .flag-body {}
+  .flag-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .flag-severe   .flag-title { color: var(--red);   }
+  .flag-moderate .flag-title { color: var(--amber); }
+  .flag-minor    .flag-title { color: var(--blue);  }
+  .flag-positive .flag-title { color: var(--green); }
+  .flag-text {
+    font-family: var(--body);
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ─── SCENARIO CARDS ─── */
+  .scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .scenario-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scenario-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .scenario-bull::before { background: var(--green); }
+  .scenario-base::before { background: var(--amber); }
+  .scenario-bear::before { background: var(--red); }
+  .scenario-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .scenario-bull .scenario-label { color: var(--green); }
+  .scenario-base .scenario-label { color: var(--amber); }
+  .scenario-bear .scenario-label { color: var(--red);   }
+  .scenario-title {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+  }
+  .scenario-items { list-style: none; }
+  .scenario-items li {
+    font-family: var(--body);
+    font-size: 12px;
+    color: var(--text-secondary);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.55;
+  }
+  .scenario-items li:last-child { border-bottom: none; }
+  .scenario-items li::before {
+    content: '→ ';
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  /* ─── VERDICT ─── */
+  .verdict-section {
+    background: linear-gradient(135deg, rgba(74,222,128,0.05) 0%, rgba(0,0,0,0) 60%);
+    border: 1px solid rgba(74,222,128,0.2);
+    border-radius: 10px;
+    padding: 36px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .verdict-section::before {
+    content: '';
+    position: absolute; right: -60px; top: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,222,128,0.05) 0%, transparent 70%);
+  }
+  .verdict-rating {
+    font-family: var(--serif);
+    font-size: 56px;
+    font-weight: 900;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .verdict-desc {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  /* ─── MGMT METER ─── */
+  .mgmt-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .mgmt-row:last-child { border-bottom: none; }
+  .mgmt-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-secondary);
+    width: 180px;
+    flex-shrink: 0;
+  }
+  .mgmt-dots { display: flex; gap: 4px; flex: 1; }
+  .mgmt-dot {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+    transition: background 0.3s;
+  }
+  .mgmt-dot.filled { background: var(--amber); }
+  .mgmt-score {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-primary);
+    width: 30px;
+    text-align: right;
+  }
+
+  /* ─── CHECKLIST ─── */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--body);
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-icon {
+    flex-shrink: 0;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    margin-top: 2px;
+  }
+  .check-pos { background: var(--green-dim); color: var(--green); }
+  .check-neg { background: var(--red-dim);   color: var(--red);   }
+  .check-neu { background: var(--blue-dim);  color: var(--blue);  }
+  .check-warn{ background: var(--amber-glow);color: var(--amber); }
+
+  /* ─── MINI BAR CHART ─── */
+  .mini-chart { display: flex; align-items: flex-end; gap: 6px; height: 80px; }
+  .mini-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
+  .mini-bar {
+    width: 100%;
+    border-radius: 3px 3px 0 0;
+    background: var(--border-light);
+    position: relative;
+    transition: height 0.5s ease;
+    cursor: default;
+  }
+  .mini-bar.highlight { background: var(--amber); }
+  .mini-bar-label {
+    font-family: var(--mono);
+    font-size: 8px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── QUOTE / DECODE BOX ─── */
+  .decode-box {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 6px 6px 0;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .decode-q {
+    font-family: var(--body);
+    font-style: italic;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+  .decode-a {
+    font-family: var(--body);
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+  .decode-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 8px;
+    display: block;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider { height: 1px; background: var(--border); margin: 28px 0; }
+  .spacer-sm { height: 20px; }
+  .spacer-lg { height: 36px; }
+
+  /* ─── INLINE HIGHLIGHT ─── */
+  .hl-amber  { color: var(--amber); }
+  .hl-green  { color: var(--green); }
+  .hl-red    { color: var(--red);   }
+  .hl-blue   { color: var(--blue);  }
+  .hl-teal   { color: var(--teal);  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg-deep); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1100px) {
+    .sidenav { display: none; }
+    .main { margin-left: 0; }
+    .hero, .section { padding: 36px 28px; }
+    .data-grid-4 { grid-template-columns: 1fr 1fr; }
+    .scenario-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: repeat(3, 1fr); }
+    .scores-row { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     SIDEBAR NAVIGATION
+══════════════════════════════════════════ -->
+<nav class="sidenav">
+  <div class="sidenav-logo">
+    <div class="ticker">NSE: NAVINFLUOR</div>
+    <div class="co-name">Navin Fluorine<br>International Ltd.</div>
+    <div class="report-label">Q4 &amp; FY26 · Institutional Analysis</div>
+    <div class="verdict-badge">▲ Accumulate</div>
+  </div>
+  <div class="sidenav-nav">
+    <a href="#s1"><span class="step-num">01</span> Executive Snapshot</a>
+    <a href="#s2"><span class="step-num">02</span> Result Quality</a>
+    <a href="#s3"><span class="step-num">03</span> Financial Architecture</a>
+    <a href="#s4"><span class="step-num">04</span> Management Decode</a>
+    <a href="#s5"><span class="step-num">05</span> Segment Analysis</a>
+    <a href="#s6"><span class="step-num">06</span> Industry &amp; Positioning</a>
+    <a href="#s7"><span class="step-num">07</span> Capital Allocation</a>
+    <a href="#s8"><span class="step-num">08</span> Red Flags &amp; Forensics</a>
+    <a href="#s9"><span class="step-num">09</span> Positive Inflections</a>
+    <a href="#s10"><span class="step-num">10</span> Valuation Analysis</a>
+    <a href="#s11"><span class="step-num">11</span> Future Trajectory</a>
+    <a href="#s12"><span class="step-num">12</span> Investment Verdict</a>
+  </div>
+  <div class="sidenav-footer">
+    Report Date: April 29, 2026<br>
+    Data: Q4 &amp; FY26 Investor Presentation, Q3 Investor Presentation &amp; Earnings Call Transcript<br><br>
+    For institutional use only. Not investment advice.
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════ -->
+<main class="main">
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <div class="hero-eyebrow">Institutional Equity Research · Fluorochemicals &amp; Specialty Chemicals</div>
+  <h1>Navin <span>Fluorine</span> International</h1>
+  <div class="hero-sub">NSE: NAVINFLUOR · BSE: 532504 · Q4 FY26 EARNINGS CONFERENCE CALL — APRIL 29, 2026</div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="label">Q4 Revenue</div>
+      <div class="value">₹937.7 Cr</div>
+      <div class="delta up">▲ +34% YoY · +5% QoQ</div>
+    </div>
+    <div class="hero-stat">
+      <div class="label">Q4 EBITDA</div>
+      <div class="value">₹321.2 Cr</div>
+      <div class="delta up">▲ +80% YoY · 34.2% Margin</div>
+    </div>
+    <div class="hero-stat">
+      <div class="label">FY26 Revenue</div>
+      <div class="value">₹3,314 Cr</div>
+      <div class="delta up">▲ +41% YoY</div>
+    </div>
+    <div class="hero-stat">
+      <div class="label">FY26 PAT</div>
+      <div class="value">₹663.6 Cr</div>
+      <div class="delta up">▲ +130% YoY</div>
+    </div>
+    <div class="hero-stat">
+      <div class="label">FY26 ROCE</div>
+      <div class="value">21.0%</div>
+      <div class="delta up">▲ from 11.5% in FY25</div>
+    </div>
+  </div>
+
+  <div class="scores-row">
+    <div class="score-cell">
+      <div class="s-label">Business Health</div>
+      <div class="score-num hl-green">8.5</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:85%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="s-label">Earnings Quality</div>
+      <div class="score-num hl-amber">7.5</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:75%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="s-label">Balance Sheet</div>
+      <div class="score-num hl-green">8.0</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="s-label">Capital Alloc.</div>
+      <div class="score-num hl-green">8.0</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="s-label">Mgmt Credibility</div>
+      <div class="score-num hl-amber">7.5</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:75%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="s-label">Future Visibility</div>
+      <div class="score-num hl-green">8.5</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:85%"></div></div>
+    </div>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════════════════
+     STEP 1 — EXECUTIVE SNAPSHOT
+══════════════════════════════════════════ -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <span class="step-pill">Step 01</span>
+    <h2>Executive Snapshot</h2>
+  </div>
+
+  <div class="prose">
+    <p><strong>What actually happened this quarter?</strong> FY26 represents a watershed year for Navin Fluorine — a genuine operating inflection, not an optical one. The company has moved decisively from a "story" phase to a "delivery" phase, with six consecutive quarters of revenue and profit growth. Q4 FY26 consolidated revenue of ₹937.7 Cr (+34% YoY) and EBITDA of ₹321.2 Cr (+80% YoY) are not base-effect miracles — they reflect three structural forces arriving simultaneously: HFC cycle re-rating, Specialty Chemicals molecule scale-up, and CDMO commercial ramp-up.</p>
+    <p><strong>Fundamentally Strong.</strong> The quarter is a genuine beat on all operating parameters. EBITDA margins expanded 875 bps YoY to 34.2%, Operating PBT more than doubled to ₹251 Cr, and PAT grew 124% to ₹213 Cr. Importantly, the CFO guided net working capital improvement to 74 days (from 90 days prior guidance), reflecting real operational tightening — not accounting legerdemain. ROE and ROCE both crossed 20% for the first time, a threshold that historically triggers institutional re-rating.</p>
+  </div>
+
+  <div class="spacer-sm"></div>
+  <div class="data-grid data-grid-4">
+    <div class="card">
+      <div class="card-title">Top Development #1</div>
+      <div style="font-family:var(--serif);font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">AHF Plant Commissioned</div>
+      <p style="font-family:var(--body);font-size:12px;color:var(--text-secondary);line-height:1.6;">Anhydrous Hydrofluoric Acid plant commissioned in Q4. Backward integration now complete, structurally lowering raw material costs for HFC business.</p>
+      <div class="card-delta delta-bg-up">Structurally Positive</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Top Development #2</div>
+      <div style="font-family:var(--serif);font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">CDMO cGMP4 Commissioned</div>
+      <p style="font-family:var(--body);font-size:12px;color:var(--text-secondary);line-height:1.6;">European CDMO MSA commercial supplies commenced from dedicated cGMP4 block. Fermion volumes now moving into dedicated capacity.</p>
+      <div class="card-delta delta-bg-up">+61% YoY CDMO Revenue</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Top Development #3</div>
+      <div style="font-family:var(--serif);font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">Margin Re-rating Achieved</div>
+      <p style="font-family:var(--body);font-size:12px;color:var(--text-secondary);line-height:1.6;">FY26 EBITDA margin of 32.6% (+992 bps YoY). CFO confirmed 70% from volume/capacity leverage, 30% from affirmative pricing actions.</p>
+      <div class="card-delta delta-bg-up">New structural floor emerging</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Top Development #4</div>
+      <div style="font-family:var(--serif);font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">FY27 Capital Pipeline Locked</div>
+      <p style="font-family:var(--body);font-size:12px;color:var(--text-secondary);line-height:1.6;">Three simultaneous commissioned projects in FY27: R32 HFC expansion, MPP debottlenecking, and Chemours Advanced Materials plant.</p>
+      <div class="card-delta delta-bg-up">₹431.5 Cr aggregate capex</div>
+    </div>
+  </div>
+
+  <div class="spacer-sm"></div>
+  <div class="flag flag-positive">
+    <div class="flag-icon">💡</div>
+    <div class="flag-body">
+      <div class="flag-title">What the Market May Be Missing</div>
+      <div class="flag-text">The Chemours advanced liquid cooling product (for AI data centre thermal management) is under strict confidentiality — revenue potential undisclosed. Given AI infrastructure spending trajectory and NFIL being the sole global manufacturing site, this could represent a multi-hundred crore per-annum opportunity materializing from Q1 FY27. The Advanced Materials segment is embryonic but could be a 3–5 year re-rating catalyst that the market is currently not pricing at all.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     STEP 2 — RESULT QUALITY ANALYSIS
+══════════════════════════════════════════ -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <span class="step-pill">Step 02</span>
+    <h2>Result Quality Analysis</h2>
+  </div>
+
+  <div class="prose">
+    <p><strong>Revenue quality is high — broad-based, organic, and volume-led.</strong> All three segments contributed to growth in Q4 FY26: HPP +20%, Specialty Chemicals +39%, CDMO +61%. There is no single-segment distortion or timing-driven spike. Full-year FY26 growth of 41% is supported by 13 new molecules launched in Specialty alone, plus continuous scale-up of commercial CDMO molecules. No inorganic contribution, no related-party revenue amplification, no seasonal distortion beyond normal HPP Q4 planned shutdown.</p>
+    <p><strong>Margin expansion is real, not optical.</strong> The 992 bps YoY expansion in FY26 EBITDA margins to 32.6% decomposes as: roughly 70% operating leverage from capacity utilization ramp (volumes), and 30% from affirmative pricing actions. Currency tailwind (INR depreciation vs USD) is acknowledged but management explicitly states it is largely neutralized by input cost inflation — a credible and technically accurate position. The "wash" between forex gain and cost inflation means the underlying earnings quality is cleaner than the headline numbers suggest.</p>
+  </div>
+
+  <div class="spacer-sm"></div>
+  <div style="overflow-x:auto;">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Particulars (₹ Cr)</th>
+          <th>Q4 FY26</th>
+          <th>Q4 FY25</th>
+          <th>YoY %</th>
+          <th>Q3 FY26</th>
+          <th>QoQ %</th>
+          <th>FY26</th>
+          <th>FY25</th>
+          <th>YoY %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Net Revenue from Operations</td>
+          <td>937.7</td>
+          <td>700.9</td>
+          <td class="pos">+34%</td>
+          <td>892.4</td>
+          <td class="pos">+5%</td>
+          <td>3,313.9</td>
+          <td>2,349.4</td>
+          <td class="pos">+41%</td>
+        </tr>
+        <tr>
+          <td>Raw Material Cost</td>
+          <td>388.1</td>
+          <td>321.1</td>
+          <td class="neg">+21%</td>
+          <td>367.7</td>
+          <td>—</td>
+          <td>1,376.4</td>
+          <td>1,038.6</td>
+          <td class="neg">+33%</td>
+        </tr>
+        <tr>
+          <td>Raw Material % of Sales</td>
+          <td>41.4%</td>
+          <td>45.8%</td>
+          <td class="pos">−440 bps</td>
+          <td>41.2%</td>
+          <td class="neutral">−22 bps</td>
+          <td>41.5%</td>
+          <td>44.2%</td>
+          <td class="pos">−270 bps</td>
+        </tr>
+        <tr class="subtotal">
+          <td>Operating EBITDA</td>
+          <td>321.2</td>
+          <td>178.7</td>
+          <td class="pos">+80%</td>
+          <td>307.6</td>
+          <td class="pos">+4%</td>
+          <td>1,081.7</td>
+          <td>533.7</td>
+          <td class="pos">+103%</td>
+        </tr>
+        <tr class="subtotal">
+          <td>EBITDA Margin</td>
+          <td>34.2%</td>
+          <td>25.5%</td>
+          <td class="pos">+875 bps</td>
+          <td>34.5%</td>
+          <td class="neg">−22 bps</td>
+          <td>32.6%</td>
+          <td>22.7%</td>
+          <td class="pos">+992 bps</td>
+        </tr>
+        <tr>
+          <td>Interest Expenses</td>
+          <td>28.9</td>
+          <td>28.3</td>
+          <td>+2%</td>
+          <td>28.3</td>
+          <td>—</td>
+          <td>117.9</td>
+          <td>77.9</td>
+          <td class="neg">+51%</td>
+        </tr>
+        <tr>
+          <td>Depreciation</td>
+          <td>41.2</td>
+          <td>35.3</td>
+          <td>+17%</td>
+          <td>36.2</td>
+          <td>—</td>
+          <td>149.2</td>
+          <td>119.4</td>
+          <td>+25%</td>
+        </tr>
+        <tr class="subtotal">
+          <td>Operating PBT</td>
+          <td>251.0</td>
+          <td>115.2</td>
+          <td class="pos">+118%</td>
+          <td>243.2</td>
+          <td class="pos">+3%</td>
+          <td>814.6</td>
+          <td>336.4</td>
+          <td class="pos">+142%</td>
+        </tr>
+        <tr>
+          <td>Other Income</td>
+          <td>17.6</td>
+          <td>11.8</td>
+          <td>+49%</td>
+          <td>15.6</td>
+          <td>—</td>
+          <td>65.3</td>
+          <td>43.7</td>
+          <td>+49%</td>
+        </tr>
+        <tr>
+          <td>Exceptional Item</td>
+          <td>13.7</td>
+          <td>0.0</td>
+          <td class="hl">GAIN</td>
+          <td>(20.5)</td>
+          <td>—</td>
+          <td>(6.8)</td>
+          <td>0.0</td>
+          <td class="hl">NET LOSS</td>
+        </tr>
+        <tr class="subtotal">
+          <td>Profit After Tax</td>
+          <td>212.6</td>
+          <td>95.0</td>
+          <td class="pos">+124%</td>
+          <td>185.4</td>
+          <td class="pos">+15%</td>
+          <td>663.6</td>
+          <td>288.6</td>
+          <td class="pos">+130%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="spacer-sm"></div>
+  <div class="flag flag-moderate">
+    <div class="flag-icon">⚠</div>
+    <div class="flag-body">
+      <div class="flag-title">Exceptional Items — Monitor Closely</div>
+      <div class="flag-text">Q4 FY26 shows a positive exceptional item of ₹13.72 Cr (vs. negative ₹20.47 Cr in Q3 FY26). The Q3 item was a write-off related to the Nectar project molecule change. The Q4 gain likely relates to contract liability recognition or asset disposal. These items are not large enough to distort the picture, but their appearance in back-to-back quarters warrants disclosure scrutiny. Underlying Operating PBT is the right lens — which grew 118% YoY.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     STEP 3 — HIDDEN FINANCIAL ARCHITECTURE
+══════════════════════════════════════════ -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <span class="step-pill">Step 03</span>
+    <h2>Hidden Financial Architecture</h2>
+  </div>
+
+  <div class="data-grid data-grid-2">
+    <div>
+      <h3 style="font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Cash Flow Truth Analysis</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Metric (₹ Cr)</th><th>FY26</th><th>FY25</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>PBT</td><td>873.2</td><td>380.1</td></tr>
+          <tr><td>+ Non-Cash Adjustments</td><td>217.6</td><td>175.5</td></tr>
+          <tr><td>Operating Profit (pre-WC)</td><td>1,090.8</td><td>555.6</td></tr>
+          <tr><td>Working Capital Changes</td><td class="neg">(38.2)</td><td class="pos">+93.2</td></tr>
+          <tr><td>Cash from Operations (pre-tax)</td><td>1,052.6</td><td>648.8</td></tr>
+          <tr><td>Taxes Paid</td><td class="neg">(159.1)</td><td class="neg">(78.0)</td></tr>
+          <tr class="subtotal"><td>Net CFO</td><td class="pos">893.6</td><td class="pos">570.8</td></tr>
+          <tr><td>Net Investing Activities</td><td class="neg">(1,234.9)</td><td class="neg">(511.1)</td></tr>
+          <tr><td>Net Financing Activities</td><td class="pos">+344.2</td><td class="neg">(46.7)</td></tr>
+          <tr class="subtotal"><td>Net Cash Change</td><td>2.9</td><td>13.0</td></tr>
+        </tbody>
+      </table>
+      <div class="spacer-sm"></div>
+      <div class="prose">
+        <p><strong>CFO quality is solid.</strong> Operating CFO of ₹893.6 Cr against PBT of ₹873.2 Cr represents a CFO/PBT conversion ratio of 1.02x — excellent quality. The working capital drag of ₹38.2 Cr is modest given the 41% revenue scale-up. For context, FY25 had a WC benefit of ₹93.2 Cr. The swing from benefit to drain is entirely expected as the business scales rapidly. Critically, management guided NWC days improvement to 74 days from the prior 90-day guidance — a meaningful operational efficiency signal, not just narrative.</p>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Balance Sheet Stress Mapping</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Item (₹ Cr)</th><th>Mar'26</th><th>Mar'25</th><th>Signal</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Total Equity</td><td>3,974.6</td><td>2,626.2</td><td class="pos">+51%</td></tr>
+          <tr><td>NC Borrowings</td><td>940.0</td><td>1,053.4</td><td class="pos">Falling</td></tr>
+          <tr><td>Current Borrowings</td><td>286.3</td><td>387.3</td><td class="pos">Falling</td></tr>
+          <tr><td>Total Debt</td><td>1,226.3</td><td>1,440.7</td><td class="pos">Reducing</td></tr>
+          <tr><td>Current Investments</td><td>1,223.7</td><td>471.8</td><td class="pos">↑ 2.6x</td></tr>
+          <tr><td><strong>Net Debt</strong></td><td class="pos"><strong>~2.6</strong></td><td>969</td><td class="pos"><strong>Near Zero</strong></td></tr>
+          <tr><td>Net Debt/Equity</td><td class="pos">0.01x</td><td>0.37x</td><td class="pos">Negligible</td></tr>
+          <tr><td>Trade Receivables</td><td>751.8</td><td>582.4</td><td class="neg">+29%</td></tr>
+          <tr><td>Inventories</td><td>445.6</td><td>322.4</td><td class="neg">+38%</td></tr>
+          <tr><td>Contract Liabilities</td><td>211.5</td><td>139.8</td><td class="hl">+51%</td></tr>
+          <tr><td>CWIP</td><td>143.3</td><td>349.8</td><td class="pos">Sharply Down</td></tr>
+        </tbody>
+      </table>
+      <div class="spacer-sm"></div>
+      <div class="prose">
+        <p><strong>Balance sheet strength is genuine.</strong> The company is practically debt-free on a net basis (₹1,226 Cr gross debt against ₹1,224 Cr in liquid current investments). CWIP falling sharply from ₹350 Cr to ₹143 Cr confirms capex is converting to productive assets — not stuck in pre-commissioning limbo. The rise in contract liabilities (₹212 Cr) is actually a positive signal: it reflects customer advance contributions for the Chemours and marquee molecule projects, meaning customers are co-funding NFIL's growth capex.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer-sm"></div>
+  <div class="flag flag-minor">
+    <div class="flag-icon">🔍</div>
+    <div class="flag-body">
+      <div class="flag-title">Working Capital Forensics — Receivables Watch</div>
+      <div class="flag-text">Trade receivables grew 29% YoY to ₹751.8 Cr against revenue growth of 41%. On a DSO basis, receivables are approximately 83 days (₹751.8 Cr ÷ ₹3,314 Cr × 365), which aligns with management's improved guidance of 74–80 NWC days. This is not a red flag — the receivable build is proportionate to scale. However, with geopolitical uncertainty affecting Middle East and other export markets, collections in H1 FY27 warrant close tracking. Inventory build-up of 38% similarly warrants monitoring against CDMO and HPP dispatch cadence in Q1 FY27.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     STEP 4 — MANAGEMENT COMMENTARY DECODE
+══════════════════════════════════════════ -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <span class="step-pill">Step 04</span>
+    <h2>Management Commentary Decode</h2>
+  </div>
+
+  <div class="prose" style="margin-bottom:24px;">
+    <p><strong>Classification: Financially Disciplined with Long-term Allocator instincts.</strong> CFO Anish Ganatra dominates the concall with clinical precision. The tone is confident, data-anchored, and selectively transparent. Chairman Vishad Mafatlal provides institutional framing. MD Nitin Kulkarni handles operational credibility. What's notable is what management does NOT say: there is no guidance on specific FY27 revenue or margin numbers — by design. They provide building blocks and let analysts model, which is a mark of sophistication rather than evasion.</p>
+  </div>
+
+  <div class="decode-box">
+    <div class="decode-q">"70% of the 990 bps EBITDA expansion is coming from our capacities coming on the ground, our volumes going up and 30% is coming from affirmative actions on pricing."</div>
+    <div class="decode-a"><strong>Read:</strong> Management is explicitly de-crediting currency tailwinds and pricing euphoria. This is unusual candour from management — they're front-running analyst skepticism. The 70/30 split between operating leverage and pricing is consistent with true EBITDA quality. It also implies that if pricing softens (refrigerant cycle risk), 30% of the margin delta is at risk — but the volume/capacity 70% is durable.</div>
+    <span class="decode-tag">💡 Signal: Earnings quality higher than the headline suggests</span>
+  </div>
+
+  <div class="decode-box">
+    <div class="decode-q">"The Chemours project is our only manufacturing site given the nature of the product... it should be a reasonable one." (on future capex).</div>
+    <div class="decode-a"><strong>Read:</strong> This is a carefully worded confidence signal. "Only manufacturing site" = strategic monopoly. "Reasonable capex" = Chemours is backing significant next-phase investment. The product (liquid cooling fluid for AI data centres) is confidential but publicly inferable from Chemours' own investor disclosures. NFIL's sole-source status is a powerful structural moat that management is signalling without violating NDA.</div>
+    <span class="decode-tag">💡 Hidden Signal: Chemours optionality is the most undervalued element in the stock</span>
+  </div>
+
+  <div class="decode-box">
+    <div class="decode-q">"I would be surprised if it's not double-digit [growth in FY27], but I'm happy to clarify if it is not separately." (on FY27 outlook)</div>
+    <div class="decode-a"><strong>Read:</strong> This is an unusually direct FY27 growth commitment, even if hedged. For a CFO who typically avoids explicit guidance, this statement is meaningful. It implies mid-to-high teens growth at minimum, supported by the visible capex ramp — HFC R32 plant (Q3 FY27), MPP debottlenecking (Q3 FY27), Chemours (Q1 FY27), and cGMP4 ramp-up for Fermion.</div>
+    <span class="decode-tag">💡 Hidden Signal: Implicit FY27 guidance of 15–25% revenue growth embedded in this statement</span>
+  </div>
+
+  <div class="decode-box">
+    <div class="decode-q">On the Nectar project utilization: "We think it is slower than what we would have liked it to be... 75% by FY28."</div>
+    <div class="decode-a"><strong>Read:</strong> This is the most transparent admission of underperformance in the call. Nectar (the large fluorochemical plant) originally targeted full utilization within 2 years, but the molecule change from a marquee customer slowed qualification cycles. Management is being candid — 75%–80% by FY28 instead of 100% by FY27. The downgrade is modest in absolute terms (the contracted 50% is fully covered) but signals the agro-chemical end market is still in price reset mode.</div>
+    <span class="decode-tag">⚠ Watch: Nectar utilization is the key FY27 upside/downside swing variable for Specialty margin</span>
+  </div>
+
+  <div class="spacer-sm"></div>
+  <h3 style="font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Management Quality Assessment</h3>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px 24px;">
+    <div class="mgmt-row">
+      <div class="mgmt-label">Capital Allocation Discipline</div>
+      <div class="mgmt-dots">
+        <div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot"></div>
+      </div>
+      <div class="mgmt-score">8/10</div>
+    </div>
+    <div class="mgmt-row">
+      <div class="mgmt-label">Guidance Accuracy / Track Record</div>
+      <div class="mgmt-dots">
+        <div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot"></div>
+      </div>
+      <div class="mgmt-score">7/10</div>
+    </div>
+    <div class="mgmt-row">
+      <div class="mgmt-label">Transparency &amp; Disclosure</div>
+      <div class="mgmt-dots">
+        <div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot"></div>
+      </div>
+      <div class="mgmt-score">8/10</div>
+    </div>
+    <div class="mgmt-row">
+      <div class="mgmt-label">Long-term Orientation</div>
+      <div class="mgmt-dots">
+        <div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div>
+      </div>
+      <div class="mgmt-score">9/10</div>
+    </div>
+    <div class="mgmt-row">
+      <div class="mgmt-label">Execution Consistency</div>
+      <div class="mgmt-dots">
+        <div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot"></div>
+      </div>
+      <div class="mgmt-score">8/10</div>
+    </div>
+    <div class="mgmt-row">
+      <div class="mgmt-label">Shareholder Value Mindset</div>
+      <div class="mgmt-dots">
+        <div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot filled"></div><div class="mgmt-dot"></div>
+      </div>
+      <div class="mgmt-score">8/10</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     STEP 5 — SEGMENT ANALYSIS
+══════════════════════════════════════════ -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <span class="step-pill">Step 05</span>
+    <h2>Segment &amp; Business Engine Analysis</h2>
+  </div>
+
+  <div class="data-grid data-grid-3">
+
+    <!-- HPP -->
+    <div class="card">
+      <div class="card-title">HPP — High Performance Products</div>
+      <div class="card-value">₹393 Cr</div>
+      <div class="card-sub">Q4 FY26 Revenue · India 55% / International 45%</div>
+      <div class="card-delta delta-bg-up">+20% YoY · +34% for FY26</div>
+      <div class="divider"></div>
+      <div class="flag flag-positive" style="margin-bottom:8px;">
+        <div class="flag-body">
+          <div class="flag-title">Growth Drivers</div>
+          <div class="flag-text">Improved realization (pricing constructive) + volume growth from AHF backward integration. HFC R32 export positioning strengthening as China prices rise to ~$9/kg. Kigali quota protection = structural moat for NFIL's R32 play. Honeywell HFO contract running at 80% capacity utilization with room for incremental 20%.</div>
+        </div>
+      </div>
+      <div class="flag flag-minor">
+        <div class="flag-body">
+          <div class="flag-title">Risks</div>
+          <div class="flag-text">Q4 HPP was sequentially flat (planned shutdown + catalyst recharge + no Middle East shipments ~₹15–16 Cr impact). Indian government allowing new HFC capacity registrations until 2027 — watch if new entrants secure Kigali quotas (management confident they cannot without historical R22 base).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPECIALTY -->
+    <div class="card">
+      <div class="card-title">Specialty Chemicals</div>
+      <div class="card-value">₹360 Cr</div>
+      <div class="card-sub">Q4 FY26 Revenue · India 27% / International 73%</div>
+      <div class="card-delta delta-bg-up">+39% YoY · +44% for FY26</div>
+      <div class="divider"></div>
+      <div class="flag flag-positive" style="margin-bottom:8px;">
+        <div class="flag-body">
+          <div class="flag-title">Growth Drivers</div>
+          <div class="flag-text">13 new molecules launched in FY26 (3 in Q4). Dahej MPP debottlenecking on track for Q3 FY27 (+₹140–160 Cr peak revenue potential). Chemours liquid cooling project commissioning Q1 FY27. 80% capacity utilization visibility for FY27. Strong order book with contract visibility providing forward earnings confidence.</div>
+        </div>
+      </div>
+      <div class="flag flag-moderate">
+        <div class="flag-body">
+          <div class="flag-title">Watch: Nectar Utilization</div>
+          <div class="flag-text">Nectar plant targeting 75–80% utilization by FY28 (slower than original target of full utilization in 2 years). Global agri-chemical pricing remains subdued. Price recovery expected to lag volume recovery.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CDMO -->
+    <div class="card">
+      <div class="card-title">CDMO</div>
+      <div class="card-value">₹186 Cr</div>
+      <div class="card-sub">Q4 FY26 Revenue · 98% India-billed · All exported</div>
+      <div class="card-delta delta-bg-up">+61% YoY · FY26 Total: ₹541 Cr</div>
+      <div class="divider"></div>
+      <div class="flag flag-positive" style="margin-bottom:8px;">
+        <div class="flag-body">
+          <div class="flag-title">Structural Moat &amp; Growth</div>
+          <div class="flag-text">~50–55 molecules active (50% late-stage/commercial, 50% early-stage). Fermion/Orion/Bayer drug approaching $5B peak sales by '28–'29. cGMP4 dedicated block commissioned — Fermion volumes migrating to dedicated capacity, freeing Dewas capacity for new molecules. FY27 $100M (~₹850 Cr) target being closed in. 32 customer audits completed with major EU/US pharma in FY25.</div>
+        </div>
+      </div>
+      <div class="flag flag-minor">
+        <div class="flag-body">
+          <div class="flag-title">Concentration Risk Moderate</div>
+          <div class="flag-text">Fermion contribution, while undisclosed, is likely 30–40% of CDMO segment. Phase 2 capex (cGMP5/6) depends on volume confirmation — execution risk is manageable given existing space at Dewas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer-sm"></div>
+  <h3 style="font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px;">Segment Revenue Scale — Q4 FY26 vs Q4 FY25</h3>
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:20px 24px;">
+    <div class="seg-row">
+      <div class="seg-label">HPP</div>
+      <div class="seg-bar-wrap"><div class="seg-bar" style="width:78%;background:var(--blue);"></div></div>
+      <div class="seg-val">₹393 Cr</div>
+      <div class="seg-delta hl-green">+20%</div>
+    </div>
+    <div class="seg-row">
+      <div class="seg-label">Specialty Chemicals</div>
+      <div class="seg-bar-wrap"><div class="seg-bar" style="width:72%;background:var(--amber);"></div></div>
+      <div class="seg-val">₹360 Cr</div>
+      <div class="seg-delta hl-green">+39%</div>
+    </div>
+    <div class="seg-row">
+      <div class="seg-label">CDMO</div>
+      <div class="seg-bar-wrap"><div class="seg-bar" style="width:37%;background:var(--teal);"></div></div>
+      <div class="seg-val">₹186 Cr</div>
+      <div class="seg-delta hl-green">+61%</div>
+    </div>
+    <div class="seg-row" style="opacity:0.5">
+      <div class="seg-label" style="font-style:italic;color:var(--text-muted)">Prior Year HPP</div>
+      <div class="seg-bar-wrap"><div class="seg-bar" style="width:65%;background:var(--border-light);"></div></div>
+      <div class="seg-val" style="color:var(--text-muted)">₹326 Cr</div>
+      <div class="seg-delta" style="color:var(--text-muted)">Q4 FY25</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     STEP 6 — INDUSTRY & COMPETITIVE POSITIONING
+══════════════════════════════════════════ -->
+<section class="section" id="s6">
+  <div class="section-header">
+    <span class="step-pill">Step 06</span>
+    <h2>Industry &amp; Competitive Positioning</h2>
+  </div>
+
+  <div class="data-grid data-grid-2">
+    <div>
+      <div class="prose">
+        <p><strong>HFC/Refrigerant Cycle:</strong> NFIL is positioned in a structurally favourable phase of the HFC transition cycle. The global shift from high-GWP gases (R22, R410A) to low-GWP alternatives (R32, HFOs) under the Kigali Amendment is a decade-long structural tailwind. China R32 prices at ~$9/kg signal supply tightness globally. NFIL's Kigali quota-linked competitive moat is critical — competitors cannot bring new HFC capacity without historically-derived R22 production quotas. This regulatory moat is exceptionally durable.</p>
+        <p><strong>Specialty Chemicals / Agrochemicals:</strong> Global agro-chemical sector is in a slow price recovery post the 2023–24 inventory correction. NFIL's strategy of launching 13 new molecules in FY26 and securing 80% capacity utilization visibility for FY27 indicates they are moving faster than the broader market recovery — a share-gain dynamic, not just cyclical recovery.</p>
+        <p><strong>CDMO / Pharma:</strong> Global innovative pharma spending on fluorinated APIs is growing 10–12% annually, driven by the disproportionate prevalence of fluorine in FDA-approved drugs (~20% of marketed drugs contain fluorine). NFIL, as a pure fluorine-chemistry CDMO with 32 major audit completions in FY25, is well-positioned in the China+1 de-risking wave favoring Indian CDMOs.</p>
+      </div>
+    </div>
+    <div>
+      <div class="flag flag-positive" style="margin-bottom:10px;">
+        <div class="flag-body">
+          <div class="flag-title">Structural Winner — China+1 Tailwind</div>
+          <div class="flag-text">NFIL explicitly markets itself as a "China-free alternative with minimal import dependency." Backward integration through AHF, CaF2 recovery from sludge (2,387 MT in FY25), and strategic feedstock positioning reduces vulnerability to China export restrictions on fluorite and HF. In a world increasingly concerned about supply chain security for critical chemicals, NFIL's integrated model commands a significant premium.</div>
+        </div>
+      </div>
+      <div class="flag flag-moderate">
+        <div class="flag-body">
+          <div class="flag-title">Competitive Threat — Indian HFC Capacity</div>
+          <div class="flag-text">Government notification allows new HFC plant registrations until 2027. Management's position is that Kigali quota is the binding constraint, not plant capacity — companies without historical R22 quotas cannot commercially sell even if they build plants. This thesis must be verified against regulatory clarity. If the quota framework is diluted, it would be a significant negative for HPP segment margins.</div>
+        </div>
+      </div>
+      <div class="flag flag-positive">
+        <div class="flag-body">
+          <div class="flag-title">Advanced Materials — AI Infrastructure Play</div>
+          <div class="flag-text">The Chemours partnership for an "innovative liquid cooling product" is almost certainly a fluorinated immersion or direct liquid cooling fluid for AI data centres (consistent with Chemours' Opteon portfolio strategy). As AI infrastructure buildout accelerates globally, demand for specialty dielectric coolants will grow exponentially. NFIL being the sole manufacturing site for this product globally is a category-defining position.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     STEP 7 — CAPITAL ALLOCATION ANALYSIS
+══════════════════════════════════════════ -->
+<section class="section" id="s7">
+  <div class="section-header">
+    <span class="step-pill">Step 07</span>
+    <h2>Capital Allocation Analysis</h2>
+  </div>
+
+  <div class="prose" style="margin-bottom:24px;">
+    <p><strong>Capital allocation quality is high and improving.</strong> ROCE has vaulted from 10.4% (FY24) to 11.5% (FY25) to 21.0% (FY26) — a near-doubling in one year as the capex cycle of FY23–25 transitions into revenue generation. Total capex for FY26 (estimated from investing activities of ₹1,234.9 Cr net, largely offset by current investment deployments of ~₹750 Cr) is approximately ₹450–480 Cr on productive assets — all internally funded. The dividend payout trend (755% of face value in FY26, payout ratio ~16%) is deliberately conservative to preserve internal accruals for growth capex — an appropriate capital prioritization for a growth phase company.</p>
+  </div>
+
+  <div style="overflow-x:auto; margin-bottom:20px;">
+    <table class="data-table">
+      <thead>
+        <tr><th>Capex Program</th><th>Amount (₹ Cr)</th><th>Customer Co-funding</th><th>Timeline</th><th>Peak Revenue Potential</th><th>ROCE Signal</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>HFC R32 Expansion (15,000 MTPA)</td>
+          <td>236.5</td>
+          <td>Internal Accruals</td>
+          <td>Q3 FY27</td>
+          <td class="pos">₹600–825 Cr/year</td>
+          <td class="pos">25–35%</td>
+        </tr>
+        <tr>
+          <td>MPP Debottlenecking (Dahej)</td>
+          <td>75.0</td>
+          <td>Internal Accruals</td>
+          <td>Q3 FY27</td>
+          <td class="pos">₹140–160 Cr/year</td>
+          <td class="pos">30–40%</td>
+        </tr>
+        <tr>
+          <td>Advanced Materials (Chemours)</td>
+          <td>120.0</td>
+          <td>35% by Chemours</td>
+          <td>Q1 FY27</td>
+          <td class="hl">Confidential</td>
+          <td class="hl">Unknown</td>
+        </tr>
+        <tr>
+          <td>AHF Plant (Backward Integration)</td>
+          <td>~80–100</td>
+          <td>Internal Accruals</td>
+          <td>Commissioned Q4 FY26</td>
+          <td class="pos">Cost savings + HFC enablement</td>
+          <td class="pos">High</td>
+        </tr>
+        <tr>
+          <td>cGMP4 (CDMO Fermion Dedicated)</td>
+          <td>~120–150</td>
+          <td>Partial (contract structure)</td>
+          <td>Commissioned Q4 FY26</td>
+          <td class="pos">₹200–300 Cr incremental</td>
+          <td class="pos">25–35%</td>
+        </tr>
+        <tr class="subtotal">
+          <td>Total Active Capex Pipeline</td>
+          <td>~631–681 Cr</td>
+          <td>~35–40% externally funded</td>
+          <td>FY27 completion</td>
+          <td class="pos">₹940–1,285 Cr+ incremental</td>
+          <td class="pos">Strong ROCE Profile</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flag flag-positive">
+    <div class="flag-icon">✦</div>
+    <div class="flag-body">
+      <div class="flag-title">Capital Allocation Quality — Verdict: Value-Creating</div>
+      <div class="flag-text">Management creates value through three specific capital allocation principles: (1) Customer co-funding as a risk-sharing mechanism — Chemours funds 35% of the Advanced Materials capex, with NFIL bearing only ₹78 Cr net; (2) Internal accruals funding — zero equity dilution in FY26, capital raising activity appears to have been for refinancing/optimization; and (3) Selective dividend progression — total FY26 dividend of 755% on face value (₹15.1/share) maintains discipline while signaling confidence in cash generation sustainability. The declining payout % (16% vs. 32% in FY24) is rational capital reinvestment, not stinginess.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     STEP 8 — RED FLAGS & FORENSICS
+══════════════════════════════════════════ -->
+<section class="section" id="s8">
+  <div class="section-header">
+    <span class="step-pill">Step 08</span>
+    <h2>Red Flags &amp; Forensic Detection</h2>
+  </div>
+
+  <div class="flag flag-positive" style="margin-bottom:12px;">
+    <div class="flag-icon">✓</div>
+    <div class="flag-body">
+      <div class="flag-title">Clean Governance Signal — Reported NO on All Four Major Risk Items</div>
+      <div class="flag-text">The company explicitly discloses: No auditor qualifications, No restatements of financials, No allegations of financial imprudence, No defaults on repayments/creditors/dividends. Independent internal audit firm reports directly to Audit Committee. 60% board independence. Zero promoter pledging visible in disclosures.</div>
+    </div>
+  </div>
+
+  <div class="flag flag-minor" style="margin-bottom:12px;">
+    <div class="flag-icon">⚑</div>
+    <div class="flag-body">
+      <div class="flag-title">Minor — Exceptional Items in Back-to-Back Quarters</div>
+      <div class="flag-text">Q3 FY26: Exceptional charge of ₹20.47 Cr (Nectar molecule change write-off). Q4 FY26: Exceptional gain of ₹13.72 Cr. While individually explainable, the recurrence of exceptional items warrants disclosure scrutiny. Net FY26 exceptional = loss of ₹6.75 Cr. Classification: Minor.</div>
+    </div>
+  </div>
+
+  <div class="flag flag-minor" style="margin-bottom:12px;">
+    <div class="flag-icon">⚑</div>
+    <div class="flag-body">
+      <div class="flag-title">Minor — Other Income Dependence Growing</div>
+      <div class="flag-text">Other income grew 49% YoY to ₹65.3 Cr in FY26. As a % of PBT, other income represents ~7.5% — elevated but not alarming given the large liquid investment portfolio (₹1,224 Cr) earning treasury returns. This is not a red flag in isolation, but if operational PBT growth slows, other income could mask weakness. Classification: Minor.</div>
+    </div>
+  </div>
+
+  <div class="flag flag-moderate" style="margin-bottom:12px;">
+    <div class="flag-icon">⚠</div>
+    <div class="flag-body">
+      <div class="flag-title">Moderate — Customer Concentration in CDMO Segment</div>
+      <div class="flag-text">CDMO revenues of ₹541 Cr in FY26 are concentrated around a small number of global innovators, with Fermion (Orion/Bayer) likely representing a disproportionate share. Management declined to quantify Fermion contribution, citing commercial confidentiality. While the $5B Fermion peak sales trajectory supports multi-year growth, any clinical setback, regulatory delay, or competitor qualification for the molecule would have outsized impact. The 50 early-stage molecules provide pipeline insurance but limited immediate revenue cover. Classification: Moderate.</div>
+    </div>
+  </div>
+
+  <div class="flag flag-minor" style="margin-bottom:12px;">
+    <div class="flag-icon">⚑</div>
+    <div class="flag-body">
+      <div class="flag-title">Minor — Interest Cost Rising Despite Near-Zero Net Debt</div>
+      <div class="flag-text">Full-year interest expense grew 51% YoY to ₹117.9 Cr despite the company being effectively net debt-free at year-end. This suggests the year-end snapshot (post-financing activities bringing in ₹344 Cr) may not represent the average balance-sheet position throughout the year. Working capital borrowings are likely cycling through during the year. Classification: Minor — to monitor if interest remains elevated in FY27 despite stated net-debt-zero position.</div>
+    </div>
+  </div>
+
+  <div class="flag flag-moderate">
+    <div class="flag-icon">⚠</div>
+    <div class="flag-body">
+      <div class="flag-title">Moderate — Geopolitical Risk: Middle East Raw Material &amp; Export Exposure</div>
+      <div class="flag-text">CFO acknowledged the current environment "feels like COVID days" in terms of vigilance required. Sulfur and methanol (key raw materials) have Middle East price exposure. R22 export shipments to Middle East were delayed in Q4 (₹15–16 Cr missed). Management is confident of passing through inflation to customers, but CDMO service contracts have pass-through mechanisms that may have a lag of 1–2 quarters. If disruption escalates to logistics disruptions rather than just pricing, impact could be more severe. Classification: Moderate — actively monitored by management.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     STEP 9 — POSITIVE INFLECTIONS
+══════════════════════════════════════════ -->
+<section class="section" id="s9">
+  <div class="section-header">
+    <span class="step-pill">Step 09</span>
+    <h2>Positive Inflection Detection</h2>
+  </div>
+
+  <div class="data-grid data-grid-2">
+    <div>
+      <ul class="checklist">
+        <li>
+          <div class="check-icon check-pos">✓</div>
+          <div><strong>ROCE Crossing 20% Threshold</strong> — from 11.5% (FY25) to 21.0% (FY26). Institutional funds typically re-enter when ROCE crosses 20%. This is a leading institutional trigger event, not yet fully priced in given share price consolidation.</div>
+        </li>
+        <li>
+          <div class="check-icon check-pos">✓</div>
+          <div><strong>AHF Plant Commissioning</strong> — backward integration now complete. NFIL controls AHF supply chain from fluorspar → AHF → HFCs. Cost advantages compound over time and improve margin resilience against raw material cycles.</div>
+        </li>
+        <li>
+          <div class="check-icon check-pos">✓</div>
+          <div><strong>Specialty Chemicals Operating Leverage Inflecting</strong> — 13 new molecules in FY26 represents the highest new molecule launch rate in company history. Molecule launches have a compounding effect: each successful scale-up feeds the next partnership conversation with global innovators.</div>
+        </li>
+        <li>
+          <div class="check-icon check-pos">✓</div>
+          <div><strong>cGMP4 Commercial Supplies Commenced</strong> — dedicated Fermion block now operational. This frees general CDMO capacity at Dewas for new molecule work. Infrastructure is now in place for cGMP5–7 at low incremental capex.</div>
+        </li>
+        <li>
+          <div class="check-icon check-pos">✓</div>
+          <div><strong>Net Working Capital Days Improvement</strong> — guidance lowered from 90 days to 75–80 days. At ₹3,314 Cr revenue, this represents ₹60–75 Cr of cash freed up. At ₹4,000+ Cr FY27 revenue, the cash release compounds further.</div>
+        </li>
+        <li>
+          <div class="check-icon check-pos">✓</div>
+          <div><strong>Chemours Advanced Materials Q1 FY27 Commissioning</strong> — sole global manufacturing site for a product addressing AI data centre cooling. Revenue under confidentiality but potential is meaningfully large. Customer co-funds 35% of capex — a strong quality signal of customer commitment.</div>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul class="checklist">
+        <li>
+          <div class="check-icon check-pos">✓</div>
+          <div><strong>Employee Cost Optimization Completed</strong> — management confirmed optimization phase is done. Employee cost at ~8–9% of sales (down from 12–13%) is now a permanent efficiency gain, not a one-time reduction. Future employee cost will grow with business, not faster.</div>
+        </li>
+        <li>
+          <div class="check-icon check-pos">✓</div>
+          <div><strong>Dividend Track Record 16 Consecutive Years of Growth</strong> — 755% face value in FY26 (vs. 750% in FY25). Progressive dividend is a governance quality signal and attracts dividend-focused institutional investors.</div>
+        </li>
+        <li>
+          <div class="check-icon check-warn">→</div>
+          <div><strong>Agro-Chemical Volume Recovery Beginning</strong> — global inventories normalized; volume recovery underway. Price recovery to follow with lag. NFIL's new molecule focus means they participate in the higher-margin emerging segments rather than the commoditized old molecules.</div>
+        </li>
+        <li>
+          <div class="check-icon check-warn">→</div>
+          <div><strong>R32 Expansion Commissioning Q3 FY27</strong> — 15,000 MTPA equivalent of R32 coming online adds peak revenue potential of ₹600–825 Cr/annum. This single project alone has the potential to grow HPP revenue by 40–60% over FY27 exit run-rate.</div>
+        </li>
+        <li>
+          <div class="check-icon check-warn">→</div>
+          <div><strong>Customer Advance / Contract Liability Build-up (₹211 Cr)</strong> — represents real customer commitments and pre-payments, which is a leading indicator of secured future revenue. This is economically equivalent to a forward order book confirmation.</div>
+        </li>
+        <li>
+          <div class="check-icon check-warn">→</div>
+          <div><strong>Board Governance Enhancement</strong> — 60% independent board with Fund Raising Committee dissolved (Feb 2026) signals the company no longer needs emergency fundraising mechanisms. A signal of self-sufficiency.</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     STEP 10 — VALUATION & MARKET EXPECTATIONS
+══════════════════════════════════════════ -->
+<section class="section" id="s10">
+  <div class="section-header">
+    <span class="step-pill">Step 10</span>
+    <h2>Valuation &amp; Market Expectation Analysis</h2>
+  </div>
+
+  <div class="prose" style="margin-bottom:24px;">
+    <p><strong>Key metrics at FY26 actuals.</strong> EPS of ₹130.5 (fully diluted) against FY26 PAT of ₹663.6 Cr and ~50.8 million fully diluted shares. ROE at 20.1%, ROCE at 21.0%, and the company is now generating ~₹900 Cr of operating cash flow annually — a structural cash engine. Given the capex pipeline converts in FY27, the real earnings power is still ahead of reported numbers, not behind them.</p>
+  </div>
+
+  <div style="overflow-x:auto; margin-bottom:20px;">
+    <table class="data-table">
+      <thead>
+        <tr><th>Valuation Metric</th><th>FY26A</th><th>FY27E (Base)</th><th>FY28E (Base)</th><th>Commentary</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Revenue (₹ Cr)</td><td>3,314</td><td class="hl">~4,100–4,400</td><td class="hl">~5,000–5,500</td><td>HFC R32 + Chemours + CDMO ramp</td></tr>
+        <tr><td>EBITDA (₹ Cr)</td><td>1,082</td><td class="hl">~1,350–1,500</td><td class="hl">~1,700–2,000</td><td>Margin stable to expanding at 30–34%</td></tr>
+        <tr><td>EBITDA Margin</td><td>32.6%</td><td class="hl">~32–34%</td><td class="hl">~33–36%</td><td>Mix shift to CDMO/Specialty supports expansion</td></tr>
+        <tr><td>PAT (₹ Cr)</td><td>663.6</td><td class="hl">~900–1,050</td><td class="hl">~1,200–1,500</td><td>D&amp;A and interest normalizing as capex cycle ends</td></tr>
+        <tr><td>EPS (₹, Diluted)</td><td>130.5</td><td class="hl">~175–205</td><td class="hl">~235–295</td><td>No equity dilution expected</td></tr>
+        <tr><td>P/E at Current Price</td><td colspan="4" style="color:var(--text-muted);font-style:italic;">Requires current market price; at ₹4,500 stock price, FY26 P/E ~34x, FY27E P/E ~22–26x — reasonable for quality compounder</td></tr>
+        <tr><td>EV/EBITDA (FY26A)</td><td>~18–20x</td><td class="hl">~13–15x</td><td class="hl">~10–11x</td><td>De-rates rapidly on forward numbers</td></tr>
+        <tr><td>ROCE</td><td>21.0%</td><td class="hl">~24–26%</td><td class="hl">~28–32%</td><td>As capex converts to revenue without equity dilution</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <p><strong>Rerating triggers:</strong> The stock is not expensive at FY27E earnings — it is inexpensive. The market appears to be pricing FY26 actuals rather than the FY27/FY28 earnings step-up from three simultaneous capacity additions. <em>The R32 expansion alone adds ₹600–825 Cr of peak annual revenue at ~35% EBITDA margins — this is a standalone business worth a significant multiple that is not yet in consensus estimates.</em> The Chemours Advanced Materials optionality is entirely unpriced. A 12-month forward EV/EBITDA compression from ~18x to ~12–13x is the base case with no multiple expansion assumed.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     STEP 11 — FUTURE TRAJECTORY
+══════════════════════════════════════════ -->
+<section class="section" id="s11">
+  <div class="section-header">
+    <span class="step-pill">Step 11</span>
+    <h2>Future Trajectory Modeling</h2>
+  </div>
+
+  <div class="scenario-grid">
+    <div class="scenario-card scenario-bull">
+      <div class="scenario-label">▲ Bull Case</div>
+      <div class="scenario-title">Simultaneous Capacity Execution</div>
+      <ul class="scenario-items">
+        <li>R32 expansion commissions Q3 FY27 on schedule; HFC pricing holds at $8–10/kg globally</li>
+        <li>Chemours product achieves rapid market adoption in AI data centre cooling; Phase 2 capex triggered in FY28</li>
+        <li>CDMO crosses $100M (₹850 Cr) in FY27; Fermion Phase 2 (cGMP5) sanctioned</li>
+        <li>Specialty Chemicals 90%+ capacity utilization by FY28 driven by agro recovery + new molecules</li>
+        <li>FY27 Revenue: ₹4,400 Cr | EBITDA: ₹1,500 Cr | PAT: ₹1,050 Cr | EPS: ₹205+</li>
+        <li>ROCE crosses 28%; Re-rating to 30–35x P/E justified on quality and growth</li>
+      </ul>
+    </div>
+    <div class="scenario-card scenario-base">
+      <div class="scenario-label">● Base Case</div>
+      <div class="scenario-title">Disciplined Execution, Moderate Tailwinds</div>
+      <ul class="scenario-items">
+        <li>R32 commissions Q3 FY27 but achieves 60–70% utilization in first full year</li>
+        <li>Chemours Phase 1 contribution modest in FY27; Phase 2 visibility in FY28</li>
+        <li>CDMO reaches ₹700–750 Cr in FY27 with Fermion growing steadily</li>
+        <li>Specialty Chemicals 80% utilization, new molecules contributing meaningfully</li>
+        <li>FY27 Revenue: ₹4,100 Cr | EBITDA: ₹1,380 Cr | PAT: ₹930 Cr | EPS: ₹183</li>
+        <li>30%+ ROCE sustained; justified FY27 P/E of 22–25x at reasonable valuations</li>
+      </ul>
+    </div>
+    <div class="scenario-card scenario-bear">
+      <div class="scenario-label">▼ Bear Case</div>
+      <div class="scenario-title">Execution Delays + External Shocks</div>
+      <ul class="scenario-items">
+        <li>R32 expansion delayed to Q1 FY28; HFC pricing declines on new Indian capacity</li>
+        <li>Middle East conflict escalates → raw material supply disruption + customer deferrals</li>
+        <li>Nectar utilization remains below 60%; agro pricing stays depressed into FY28</li>
+        <li>Fermion volumes face unexpected regulatory delay; CDMO flat-to-modest growth</li>
+        <li>FY27 Revenue: ₹3,700 Cr | EBITDA: ₹1,100 Cr | PAT: ₹720 Cr | EPS: ₹142</li>
+        <li>EBITDA margins compress to 29–30%; de-rating risk but strong balance sheet provides floor</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="spacer-sm"></div>
+  <div class="prose">
+    <p><strong>Key monitoring variables for future quarters:</strong> (1) R32 HFC expansion commissioning timeline vs. Q3 FY27 guidance; (2) Chemours Advanced Materials revenue recognition — first disclosure in Q1/Q2 FY27; (3) CDMO quarterly run-rate — watch for evidence of ₹185–220 Cr per quarter sustained; (4) Net working capital days trending to 74–80 days or reverting toward 90; (5) Nectar plant capacity utilization milestone tracking; (6) India HFC quota policy clarity from government (Kigali framework enforcement); (7) Middle East geopolitical de-escalation timeline affecting raw material costs and export flows.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     STEP 12 — FINAL INVESTMENT VERDICT
+══════════════════════════════════════════ -->
+<section class="section" id="s12">
+  <div class="section-header">
+    <span class="step-pill">Step 12</span>
+    <h2>Final Investment Verdict</h2>
+  </div>
+
+  <div class="verdict-section">
+    <div class="verdict-rating">ACCUMULATE</div>
+    <div class="verdict-desc">Strong long-term compounder entering earnings acceleration phase · Re-rating ahead</div>
+    <div class="prose" style="max-width:700px;">
+      <p>Navin Fluorine International is a rare Indian specialty chemicals company where the earnings inflection, the balance sheet strength, and the competitive moat are all converging simultaneously. FY26 delivered on every promise: 2x EBITDA growth, ROCE crossing 20%, near-zero net debt, and all three business verticals in structural growth mode. The FY27 capex harvest — R32 expansion, Chemours, MPP debottlenecking, Fermion dedicated capacity — is the most visible and high-quality growth pipeline in Indian specialty chemicals. <em>Accumulate on any meaningful correction; add aggressively if the R32 HFC or Chemours commissioning timelines are confirmed in Q1 FY27.</em></p>
+    </div>
+  </div>
+
+  <div class="spacer-sm"></div>
+  <div class="data-grid data-grid-2">
+    <div>
+      <h3 style="font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px;">Key Positives</h3>
+      <ul class="checklist">
+        <li><div class="check-icon check-pos">+</div><div>EBITDA more than doubled in FY26 (+103%); PAT +130% with zero equity dilution — pure operating leverage story</div></li>
+        <li><div class="check-icon check-pos">+</div><div>Balance sheet is fortress-grade: net debt of ~₹3 Cr on ₹3,975 Cr equity; ₹1,224 Cr liquid investments</div></li>
+        <li><div class="check-icon check-pos">+</div><div>Three simultaneous capacity additions commissioning in FY27 — highest density of revenue-generating events in NFIL history</div></li>
+        <li><div class="check-icon check-pos">+</div><div>CDMO on trajectory to $100M target with balanced 50/50 early/late stage pipeline; cGMP4 commissioning de-risks FY27</div></li>
+        <li><div class="check-icon check-pos">+</div><div>Kigali quota moat + backward integrated AHF creates irreplicable competitive position in Indian HFC market</div></li>
+        <li><div class="check-icon check-pos">+</div><div>Chemours sole-source manufacturing status for AI data centre cooling product — multi-year asymmetric upside not priced by market</div></li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px;">Key Risks &amp; Negatives</h3>
+      <ul class="checklist">
+        <li><div class="check-icon check-neg">−</div><div>Fermion/CDMO concentration — undisclosed % of CDMO from one molecule; clinical risk, though $5B peak sales provides long runway</div></li>
+        <li><div class="check-icon check-neg">−</div><div>Nectar plant utilization slower than guided — 75–80% by FY28 vs. originally targeted full utilization; agro pricing still subdued</div></li>
+        <li><div class="check-icon check-neg">−</div><div>Middle East geopolitical risk — raw material inflation (sulfur, methanol), logistics disruption, and export deferrals possible in near-term</div></li>
+        <li><div class="check-icon check-neg">−</div><div>HFC competitive risk — government allowing new capacity registrations through 2027; Kigali quota framework must hold against lobbying pressure</div></li>
+        <li><div class="check-icon check-neg">−</div><div>High-base effect from FY26 — absolute growth rates will moderate in FY27 as base normalizes, even with capacity additions</div></li>
+        <li><div class="check-icon check-neg">−</div><div>Interest cost growing despite near-zero net debt — working capital borrowing cycle may keep financing costs elevated in FY27</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="spacer-sm"></div>
+  <h3 style="font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px;">Quarterly Monitoring Checklist — FY27</h3>
+  <div class="data-grid data-grid-2">
+    <ul class="checklist">
+      <li><div class="check-icon check-warn">Q</div><div>Chemours Advanced Materials: First revenue recognition and segment disclosure in Q1/Q2 FY27</div></li>
+      <li><div class="check-icon check-warn">Q</div><div>R32 Expansion: Commissioning confirmation and first commercial dispatch (target Q3 FY27)</div></li>
+      <li><div class="check-icon check-warn">Q</div><div>CDMO quarterly run-rate: Sustaining ₹185–220 Cr/quarter confirms $100M FY27 trajectory</div></li>
+      <li><div class="check-icon check-warn">Q</div><div>Net Working Capital Days: Actual NWC days vs. 74–80 day guidance in Q1 FY27</div></li>
+    </ul>
+    <ul class="checklist">
+      <li><div class="check-icon check-warn">Q</div><div>Nectar Utilization: Qualification progress with 2–3 new customers beyond marquee; target 75% by FY28</div></li>
+      <li><div class="check-icon check-warn">Q</div><div>EBITDA Margin Sustainability: 30%+ for full year FY27 (management guidance ±1–2%)</div></li>
+      <li><div class="check-icon check-warn">Q</div><div>India HFC Quota Policy: Any government notification on Kigali quota redistribution or dilution</div></li>
+      <li><div class="check-icon check-warn">Q</div><div>Employee Cost Normalization: Model at 7.5–9% of sales; watch for operational headcount ramp for new capacities</div></li>
+    </ul>
+  </div>
+
+  <div class="spacer-sm"></div>
+  <div class="data-grid data-grid-3">
+    <div class="card">
+      <div class="card-title">Earnings Quality Assessment</div>
+      <div class="card-value" style="font-size:20px;color:var(--green);">High Quality</div>
+      <p style="font-family:var(--body);font-size:12px;color:var(--text-secondary);margin-top:8px;line-height:1.6;">CFO/PBT conversion ~1.02x. Operating leverage-driven margin expansion (not price/forex dependent). Clean balance sheet. No auditor concerns.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Long-term Compounding Potential</div>
+      <div class="card-value" style="font-size:20px;color:var(--amber);">Very High</div>
+      <p style="font-family:var(--body);font-size:12px;color:var(--text-secondary);margin-top:8px;line-height:1.6;">15–20% revenue CAGR over 3 years with ROCE sustaining above 20%. Three structural growth engines (HFC, Specialty, CDMO) diversify compounding risk.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Final Management Assessment</div>
+      <div class="card-value" style="font-size:20px;color:var(--green);">Disciplined</div>
+      <p style="font-family:var(--body);font-size:12px;color:var(--text-secondary);margin-top:8px;line-height:1.6;">Conservative capital allocators with long-term orientation. Track record of delivery. Transparent about failures (Nectar). No empire-building. Progressive dividend discipline.</p>
+    </div>
+  </div>
+
+  <div class="spacer-lg"></div>
+  <div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);padding:16px;border:1px solid var(--border);border-radius:6px;line-height:1.8;">
+    <strong style="color:var(--text-secondary);">DISCLAIMER</strong><br>
+    This report is prepared solely for institutional research purposes based on publicly available disclosures including the Q4 &amp; FY26 Investor Presentation (April 29, 2026), Q3 &amp; 9M FY26 Investor Presentation (February 2026), and Q4 FY26 Earnings Conference Call Transcript (April 29, 2026). This does not constitute investment advice, a solicitation, or a recommendation to buy or sell any security. Investors should conduct their own due diligence. Past performance is not indicative of future results. All financial projections are estimates and subject to material uncertainty. Report date: May 15, 2026.
+  </div>
+  <div class="spacer-lg"></div>
+</section>
+
+</main>
+
+<script>
+  // Active nav highlighting on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.sidenav-nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        const active = document.querySelector(`.sidenav-nav a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(section => observer.observe(section));
+
+  // Animate score bars on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.score-bar-fill').forEach(bar => {
+      const w = bar.style.width;
+      bar.style.width = '0%';
+      setTimeout(() => { bar.style.width = w; }, 300);
+    });
+  });
+</script>
+</body>
+</html>

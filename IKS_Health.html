@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IKS Health — Institutional Equity Analysis | Q4 FY26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --ink: #1a1208;
+    --ink-mid: #3d3220;
+    --ink-light: #6b5c40;
+    --parchment: #faf6ee;
+    --parchment-mid: #f0e9d6;
+    --parchment-dark: #e0d4b8;
+    --amber: #b8730a;
+    --amber-light: #f5c842;
+    --amber-pale: #fdf0cc;
+    --forest: #1e4a2e;
+    --forest-light: #2e7a47;
+    --forest-pale: #e8f4ec;
+    --crimson: #8b1a1a;
+    --crimson-pale: #fde8e8;
+    --slate: #2c3e50;
+    --slate-light: #4a6278;
+    --divider: #d4c9a8;
+    --rule: #c4b690;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--parchment);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  .masthead {
+    background: var(--ink);
+    color: var(--parchment);
+    padding: 3rem 4rem 2.5rem;
+    border-bottom: 3px solid var(--amber);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .masthead::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 300px; height: 100%;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(184,115,10,0.08) 2px,
+      rgba(184,115,10,0.08) 4px
+    );
+    pointer-events: none;
+  }
+
+  .masthead-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--amber-light);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .masthead h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.6rem;
+    font-weight: 600;
+    color: var(--parchment);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .masthead h1 span {
+    color: var(--amber-light);
+    font-style: italic;
+  }
+
+  .masthead-meta {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .meta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--amber-light);
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  .meta-value {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--parchment);
+  }
+
+  .meta-value.positive { color: #6fd48a; }
+  .meta-value.amber-val { color: var(--amber-light); }
+
+  .verdict-banner {
+    background: var(--forest);
+    color: var(--parchment);
+    padding: 0.9rem 4rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    border-bottom: 2px solid var(--forest-light);
+  }
+
+  .verdict-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .verdict-label {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #6fd48a;
+  }
+
+  .verdict-rationale {
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(250,246,238,0.8);
+    border-left: 2px solid var(--amber);
+    padding-left: 1rem;
+  }
+
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--divider);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .section-title em {
+    color: var(--amber);
+    font-style: italic;
+  }
+
+  .scores-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--divider);
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+
+  .score-card {
+    background: var(--parchment);
+    padding: 1.25rem 1rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .score-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .score-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .score-denom {
+    font-size: 1rem;
+    color: var(--ink-light);
+    font-weight: 400;
+  }
+
+  .score-bar {
+    height: 3px;
+    background: var(--parchment-dark);
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+  }
+
+  .score-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.8s ease;
+  }
+
+  .score-fill.high { background: var(--forest-light); }
+  .score-fill.mid { background: var(--amber); }
+  .score-fill.low { background: var(--crimson); }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .kpi-card {
+    background: var(--parchment-mid);
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    padding: 1.1rem 1.25rem;
+    position: relative;
+  }
+
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    border-radius: 4px 0 0 4px;
+  }
+
+  .kpi-card.bull::before { background: var(--forest-light); }
+  .kpi-card.neutral::before { background: var(--amber); }
+  .kpi-card.bear::before { background: var(--crimson); }
+
+  .kpi-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.3rem;
+  }
+
+  .kpi-value {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .kpi-change {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-light);
+    margin-top: 0.2rem;
+  }
+
+  .kpi-change.up { color: var(--forest-light); }
+  .kpi-change.down { color: var(--crimson); }
+
+  .chart-wrap {
+    background: var(--parchment);
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .chart-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1rem;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    color: var(--ink-mid);
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  .highlight-box {
+    background: var(--amber-pale);
+    border: 1px solid var(--amber);
+    border-left: 4px solid var(--amber);
+    border-radius: 0 4px 4px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .highlight-box strong {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--amber);
+  }
+
+  .alert-box {
+    border-left: 4px solid;
+    padding: 1rem 1.25rem;
+    margin: 1rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .alert-box.warn {
+    background: var(--amber-pale);
+    border-color: var(--amber);
+    color: var(--ink-mid);
+  }
+
+  .alert-box.danger {
+    background: var(--crimson-pale);
+    border-color: var(--crimson);
+    color: var(--crimson);
+  }
+
+  .alert-box.success {
+    background: var(--forest-pale);
+    border-color: var(--forest-light);
+    color: var(--forest);
+  }
+
+  .alert-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.3rem;
+    opacity: 0.7;
+  }
+
+  .alert-text {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .flag-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+    margin: 1rem 0;
+  }
+
+  .flag-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--parchment-mid);
+  }
+
+  .flag-table td {
+    padding: 0.7rem 0.75rem;
+    border-bottom: 1px solid var(--divider);
+    vertical-align: top;
+    color: var(--ink-mid);
+    line-height: 1.4;
+  }
+
+  .flag-table tr:last-child td { border-bottom: none; }
+
+  .severity {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .severity.minor { background: var(--parchment-dark); color: var(--ink-light); }
+  .severity.moderate { background: var(--amber-pale); color: var(--amber); }
+  .severity.severe { background: var(--crimson-pale); color: var(--crimson); }
+
+  .case-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .case-card {
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .case-header {
+    padding: 0.75rem 1rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .case-header.bull { background: var(--forest-light); color: white; }
+  .case-header.base { background: var(--amber); color: white; }
+  .case-header.bear { background: var(--crimson); color: white; }
+
+  .case-body {
+    background: var(--parchment);
+    padding: 1rem;
+  }
+
+  .case-stat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    margin-bottom: 0.25rem;
+    color: var(--ink-light);
+  }
+
+  .case-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-mid);
+    margin-top: 0.5rem;
+  }
+
+  .footnote {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink-light);
+    border-top: 1px solid var(--divider);
+    padding-top: 0.75rem;
+    margin-top: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .mgmt-decode {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .decode-block {
+    background: var(--parchment-mid);
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    padding: 1.25rem;
+  }
+
+  .decode-block h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+    border-bottom: 1px solid var(--divider);
+    padding-bottom: 0.5rem;
+  }
+
+  .decode-item {
+    font-size: 14px;
+    color: var(--ink-mid);
+    padding: 0.3rem 0;
+    border-bottom: 1px dashed var(--divider);
+    line-height: 1.4;
+  }
+
+  .decode-item:last-child { border-bottom: none; }
+
+  .decode-item::before {
+    content: '→ ';
+    color: var(--amber);
+    font-weight: 600;
+  }
+
+  .acq-visual {
+    background: var(--ink);
+    color: var(--parchment);
+    border-radius: 4px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  .acq-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--amber-light);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .acq-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    justify-content: center;
+  }
+
+  .acq-box {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(184,115,10,0.3);
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    text-align: center;
+    flex: 1;
+  }
+
+  .acq-arrow {
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    color: var(--amber);
+    font-size: 1.2rem;
+  }
+
+  .acq-box-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber-light);
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+  }
+
+  .acq-box-value {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--parchment);
+  }
+
+  .acq-box-sub {
+    font-size: 12px;
+    color: rgba(250,246,238,0.6);
+    margin-top: 0.25rem;
+    font-style: italic;
+  }
+
+  .proforma-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 1rem 0;
+  }
+
+  .proforma-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber-light);
+    text-align: right;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid rgba(184,115,10,0.3);
+  }
+
+  .proforma-table th:first-child { text-align: left; }
+
+  .proforma-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    text-align: right;
+    color: rgba(250,246,238,0.85);
+  }
+
+  .proforma-table td:first-child { text-align: left; color: rgba(250,246,238,0.65); }
+  .proforma-table tr.total td {
+    font-weight: 600;
+    color: var(--parchment);
+    border-top: 1px solid rgba(184,115,10,0.5);
+    border-bottom: 1px solid rgba(184,115,10,0.5);
+  }
+
+  .proforma-table tr.positive td { color: #6fd48a; }
+
+  .inflection-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .inflection-item {
+    background: var(--forest-pale);
+    border: 1px solid rgba(46,122,71,0.2);
+    border-left: 3px solid var(--forest-light);
+    border-radius: 0 4px 4px 0;
+    padding: 1rem;
+  }
+
+  .inflection-item h5 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 0.4rem;
+  }
+
+  .inflection-item p {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--forest);
+    margin: 0;
+  }
+
+  .trigger-list {
+    list-style: none;
+    margin: 1rem 0;
+  }
+
+  .trigger-list li {
+    padding: 0.6rem 0;
+    border-bottom: 1px dashed var(--divider);
+    font-size: 15px;
+    color: var(--ink-mid);
+    display: flex;
+    gap: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .trigger-list li:last-child { border-bottom: none; }
+
+  .trigger-list .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    background: var(--amber-pale);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .final-box {
+    background: var(--ink);
+    color: var(--parchment);
+    border-radius: 4px;
+    padding: 2.5rem 3rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-box::before {
+    content: 'ACCUMULATE / WATCHLIST';
+    position: absolute;
+    top: 50%;
+    right: -3rem;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(184,115,10,0.2);
+    white-space: nowrap;
+  }
+
+  .final-verdict-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .final-verdict-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #6fd48a;
+    margin-bottom: 1.5rem;
+  }
+
+  .final-verdict-body {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(250,246,238,0.8);
+    border-top: 1px solid rgba(184,115,10,0.3);
+    padding-top: 1.25rem;
+    font-style: italic;
+  }
+
+  .footer {
+    background: var(--ink-mid);
+    color: rgba(250,246,238,0.5);
+    text-align: center;
+    padding: 1.5rem 4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    line-height: 1.8;
+  }
+
+  .inline-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    background: var(--parchment-dark);
+    padding: 1px 5px;
+    border-radius: 2px;
+    color: var(--ink);
+  }
+
+  @media (max-width: 900px) {
+    .masthead { padding: 2rem 1.5rem; }
+    .container { padding: 0 1.5rem; }
+    .scores-grid { grid-template-columns: repeat(3, 1fr); }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col, .three-col, .case-grid, .inflection-grid, .mgmt-decode { grid-template-columns: 1fr; }
+    .acq-flow { flex-direction: column; gap: 0.5rem; }
+    .acq-arrow { transform: rotate(90deg); justify-content: center; }
+    .verdict-banner { padding: 0.9rem 1.5rem; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-eyebrow">Institutional Equity Research &nbsp;·&nbsp; Healthcare IT &nbsp;·&nbsp; Q4 FY26 & TruBridge Acquisition Analysis</div>
+  <h1>Inventurus Knowledge Solutions <span>Limited</span></h1>
+  <p style="font-family: 'Crimson Pro', serif; font-size: 1.1rem; color: rgba(250,246,238,0.65); margin-top: 0.4rem; font-style: italic;">Reconstructing the True Operating Reality Behind a Transformative Quarter</p>
+  <div class="masthead-meta">
+    <div class="meta-item">
+      <span class="meta-label">NSE Symbol</span>
+      <span class="meta-value">IKS</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Market Cap</span>
+      <span class="meta-value">₹27,354 Cr</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">CMP</span>
+      <span class="meta-value">₹1,595</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">P/E (Reported)</span>
+      <span class="meta-value">37.1x</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">FY26 ROCE</span>
+      <span class="meta-value positive">36.9%</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">FY26 ROE</span>
+      <span class="meta-value positive">40.3%</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Analysis Date</span>
+      <span class="meta-value amber-val">May 2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- VERDICT BANNER -->
+<div class="verdict-banner">
+  <span class="verdict-tag">Verdict</span>
+  <span class="verdict-label">Watchlist → Accumulate on Dips</span>
+  <span class="verdict-rationale">Organic engine is exceptional. TruBridge is a strategically sound but financially leveraged bet. Entry valuation and integration execution are the swing factors.</span>
+</div>
+
+<!-- BODY -->
+<div class="container">
+
+  <!-- STEP 1: EXECUTIVE SNAPSHOT -->
+  <div class="section">
+    <div class="section-label">Step 1 &nbsp;·&nbsp; 01</div>
+    <h2 class="section-title">Executive Snapshot — <em>What Actually Happened</em></h2>
+
+    <p>Q4 FY26 was a fundamentally strong quarter for IKS Health on the organic business. Revenue grew 18.5% in INR and 13% in USD terms year-on-year, EBITDA margins expanded sequentially for the third consecutive quarter to 35%, and PAT grew 39.4% — a high-quality result by any measure. Free cash flow doubled year-on-year, net debt collapsed to ₹251 crore from ₹851 crore twelve months prior, and ROE held at a robust 31.3%. The organic thesis is intact and outperforming.</p>
+
+    <p>However, the dominant event of the quarter — and the most consequential development in the company's history — is the definitive agreement signed on April 23, 2026 to acquire TruBridge, Inc. for an enterprise value of $557 million. This transforms IKS from a capital-light, debt-free compounder into a leveraged strategic acquirer overnight, taking net debt from ₹251 crore to approximately ₹5,000 crore post-closing. The acquisition reshapes the risk profile, the financial architecture, and the long-term narrative entirely.</p>
+
+    <div class="highlight-box">
+      <strong>The central question for investors is not whether Q4 was good (it was), but whether IKS can execute a complex international integration — against a backdrop of 3x leverage — while sustaining double-digit organic growth.</strong> AQuity's successful integration provides qualified optimism; TruBridge's own troubled attempts at globalization provide a counterweight.
+    </div>
+
+    <!-- SCORECARD -->
+    <div class="scores-grid">
+      <div class="score-card">
+        <div class="score-label">Overall Business Health</div>
+        <div class="score-number">8<span class="score-denom">/10</span></div>
+        <div class="score-bar"><div class="score-fill high" style="width:80%"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="score-label">Earnings Quality</div>
+        <div class="score-number">7<span class="score-denom">/10</span></div>
+        <div class="score-bar"><div class="score-fill mid" style="width:70%"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="score-label">Balance Sheet Strength</div>
+        <div class="score-number">6<span class="score-denom">/10</span></div>
+        <div class="score-bar"><div class="score-fill mid" style="width:60%"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="score-label">Capital Allocation Quality</div>
+        <div class="score-number">7<span class="score-denom">/10</span></div>
+        <div class="score-bar"><div class="score-fill mid" style="width:70%"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="score-label">Management Credibility</div>
+        <div class="score-number">8<span class="score-denom">/10</span></div>
+        <div class="score-bar"><div class="score-fill high" style="width:80%"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="score-label">Future Visibility</div>
+        <div class="score-number">7<span class="score-denom">/10</span></div>
+        <div class="score-bar"><div class="score-fill mid" style="width:70%"></div></div>
+      </div>
+    </div>
+
+    <!-- KPI GRID -->
+    <div class="kpi-grid">
+      <div class="kpi-card bull">
+        <div class="kpi-label">Q4 Revenue (INR mn)</div>
+        <div class="kpi-value">8,577</div>
+        <div class="kpi-change up">↑ 18.5% YoY &nbsp;·&nbsp; ↑ 5.2% QoQ</div>
+      </div>
+      <div class="kpi-card bull">
+        <div class="kpi-label">Q4 EBITDA Margin</div>
+        <div class="kpi-value">35.0%</div>
+        <div class="kpi-change up">↑ 380bps YoY &nbsp;·&nbsp; ↑ 40bps QoQ</div>
+      </div>
+      <div class="kpi-card bull">
+        <div class="kpi-label">Q4 PAT (INR mn)</div>
+        <div class="kpi-value">2,060</div>
+        <div class="kpi-change up">↑ 39.4% YoY &nbsp;·&nbsp; ↑ 12.3% QoQ</div>
+      </div>
+      <div class="kpi-card neutral">
+        <div class="kpi-label">FY26 Net Debt (INR mn)</div>
+        <div class="kpi-value">2,510</div>
+        <div class="kpi-change up">↓ 55% from Mar 25 — Pre-acquisition</div>
+      </div>
+      <div class="kpi-card bull">
+        <div class="kpi-label">FY26 FCF (INR mn)</div>
+        <div class="kpi-value">6,129</div>
+        <div class="kpi-change up">↑ 122.5% YoY — exceptional conversion</div>
+      </div>
+      <div class="kpi-card bull">
+        <div class="kpi-label">FY26 EPS (₹)</div>
+        <div class="kpi-value">₹43</div>
+        <div class="kpi-change up">↑ 47.7% YoY</div>
+      </div>
+      <div class="kpi-card neutral">
+        <div class="kpi-label">TruBridge EV ($mn)</div>
+        <div class="kpi-value">$557</div>
+        <div class="kpi-change">Post-close leverage ~3x combined EBITDA</div>
+      </div>
+      <div class="kpi-card neutral">
+        <div class="kpi-label">FY30 EBITDA Target (₹ Cr)</div>
+        <div class="kpi-value">~3,000</div>
+        <div class="kpi-change">3x current; 31% CAGR — aspirational true north</div>
+      </div>
+    </div>
+
+    <div class="alert-box success">
+      <span class="alert-tag">What The Market May Be Missing</span>
+      <div class="alert-text">The organic FCF yield of 84.9% against PAT — extraordinary for a services business of this scale — means IKS generates far more real cash than the headline PAT suggests. Post-TruBridge, the combined entity's ability to service $600 mn of debt entirely through internal accruals within 3–4 years is financially plausible, assuming no execution missteps.</div>
+    </div>
+  </div>
+
+  <!-- STEP 2: RESULT QUALITY ANALYSIS -->
+  <div class="section">
+    <div class="section-label">Step 2 &nbsp;·&nbsp; 02</div>
+    <h2 class="section-title">Result Quality Analysis — <em>Separating Signal from Optics</em></h2>
+
+    <div class="two-col">
+      <div>
+        <p>Revenue growth of 15% in USD for FY26 versus the industry growing at 12% CAGR confirms IKS is capturing market share. The INR growth premium (20% vs. 15% USD) reflects rupee depreciation benefit — not an inflation of underlying performance, but investors should monitor both metrics.</p>
+
+        <p>The more important question is what is driving EBITDA margin expansion from 29.7% (FY25) to 34.2% (FY26) — a 450 basis point improvement. Three factors are at work: operating leverage on fixed cost base, continued AQuity integration synergies (management claims 30%+ EBITDA achieved within four quarters), and a significant forex gain. The Q4 forex gain of ₹352 million is critical to flag: compared to a loss of ₹24 million in Q4 FY25, this represents a ₹376 million swing, adding approximately 440 basis points of apparent EBITDA margin in Q4. Stripping forex, the underlying Q4 EBITDA margin would be closer to 31% — still expanding, but more modestly.</p>
+      </div>
+      <div>
+        <div class="alert-box warn">
+          <span class="alert-tag">Forensic Flag — Other Expenses</span>
+          <div class="alert-text">Other expenses rose 60.1% year-on-year in Q4 (₹1,743 mn vs. ₹1,089 mn) and 28% quarter-on-quarter. This is the fastest-growing cost line in the P&L and management has not provided granular disclosure. Possible drivers include TruBridge deal-related advisory fees, ARAI acqui-hire costs, and technology investments — but the absence of an explicit explanation is a minor credibility flag.</div>
+        </div>
+        <div class="alert-box warn">
+          <span class="alert-tag">Clients Above $1mn Threshold</span>
+          <div class="alert-text">The number of clients generating more than $1 million annually declined from 69 (FY25) to 66 (FY26). Three clients either churned or fell below this threshold. In the context of a business with 90%+ repeat revenue, this merits monitoring — it could reflect the deliberate rationalization of smaller AQuity clients, or genuine attrition.</div>
+        </div>
+        <div class="alert-box warn">
+          <span class="alert-tag">Associates Losses — New Line</span>
+          <div class="alert-text">Share of loss from associates was ₹92 mn for FY26, with ₹54 mn in Q4 alone. This is a new and growing item, likely reflecting early-stage AI investments including ARAI. Small in absolute terms but accelerating.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Revenue & EBITDA Charts -->
+    <div class="two-col">
+      <div class="chart-wrap">
+        <div class="chart-title">Revenue & EBITDA — Quarterly Trend (INR mn)</div>
+        <div style="position:relative;height:240px;">
+          <canvas id="revChart" role="img" aria-label="Bar and line chart showing quarterly revenue and EBITDA trend from Q4 FY25 to Q4 FY26. Revenue grew from 7240 to 8577. EBITDA margin expanded from 31.2% to 35%.">Revenue Q4FY25: 7240, Q1FY26: 7506, Q2FY26: 8465, Q3FY26: 8150, Q4FY26: 8577. EBITDA margin: 31.2%, 32%, 34%, 34.6%, 35%.</canvas>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart-title">PAT & Adjusted PAT Margin — Quarterly (INR mn)</div>
+        <div style="position:relative;height:240px;">
+          <canvas id="patChart" role="img" aria-label="Bar chart showing quarterly PAT and adjusted PAT from Q4 FY25 through Q4 FY26, growing consistently.">Q4FY25 PAT 1478, Q3FY26 PAT 1833, Q4FY26 PAT 2060. Adj PAT Q4FY25 1646, Q3 2154, Q4 2269.</canvas>
+        </div>
+      </div>
+    </div>
+
+    <p>PAT quality is moderately good. Finance costs fell sharply — partly genuine (loan refinancing at better rates) and partly non-cash (₹127 mn one-time write-off of unamortised debt issuance costs, which management correctly excludes from Adjusted PAT). The effective tax rate for Q4 was approximately 18% (₹470 mn tax on ₹2,584 mn pre-tax profit), which appears normal given the company's geographic mix and SEZ-related benefits.</p>
+  </div>
+
+  <!-- STEP 3: HIDDEN FINANCIAL ARCHITECTURE -->
+  <div class="section">
+    <div class="section-label">Step 3 &nbsp;·&nbsp; 03</div>
+    <h2 class="section-title">Hidden Financial Architecture — <em>Cash is King, Leverage is Coming</em></h2>
+
+    <div class="two-col">
+      <div>
+        <p>The pre-TruBridge balance sheet is among the cleanest in Indian IT services. Net debt declined from ₹851 crore (March 2024) to ₹563 crore (March 2025) to ₹251 crore (March 2026) — a 70% reduction in two years driven entirely by strong free cash flow generation. The operating cash flow of ₹864 crore in FY26 against EBITDA of ₹1,091 crore represents an OCF/EBITDA conversion of approximately 79%, which is strong for a services business with meaningful working capital requirements.</p>
+
+        <p>The FCF yield of 84.9% against reported PAT is notable. In most services companies, FCF lags PAT due to working capital consumption; here it is running materially ahead, suggesting receivable collections are well-managed and capex is disciplined. Maintenance capex appears to be a small fraction of EBITDA — the bulk of investment is in technology and human capital, which flows through the P&L.</p>
+      </div>
+      <div>
+        <div class="chart-wrap">
+          <div class="chart-title">Net Debt Trajectory (INR mn)</div>
+          <div style="position:relative;height:200px;">
+            <canvas id="debtChart" role="img" aria-label="Bar chart showing net debt declining from 8507 in March 2024 to 5627 in March 2025 to 2510 in March 2026.">Net debt: Mar 24 = 8507, Mar 25 = 5627, Mar 26 = 2510.</canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <strong>Post-TruBridge Balance Sheet Shock:</strong> At current USD/INR rates (~86), the $600 million debt facility translates to approximately ₹5,160 crore of additional net debt. The combined entity's net debt post-acquisition will be approximately ₹5,400 crore against combined EBITDA of roughly ₹1,600 crore (assuming full-year combined at management's proforma ₹186 mn × 86) — implying 3.4× leverage. This is not distress territory given the 5× interest coverage, but it materially constrains future acquisition capacity and requires disciplined execution for 3+ years.
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card bull">
+        <div class="kpi-label">FY26 OCF (INR mn)</div>
+        <div class="kpi-value">8,637</div>
+        <div class="kpi-change up">↑ 99% YoY — near-doubles in one year</div>
+      </div>
+      <div class="kpi-card bull">
+        <div class="kpi-label">FY26 FCF (INR mn)</div>
+        <div class="kpi-value">6,129</div>
+        <div class="kpi-change up">FCF yield 84.9% vs. PAT</div>
+      </div>
+      <div class="kpi-card neutral">
+        <div class="kpi-label">Post-Acq. Net Debt Est. (₹ Cr)</div>
+        <div class="kpi-value">~5,400</div>
+        <div class="kpi-change">From ₹251 Cr — fundamental change</div>
+      </div>
+      <div class="kpi-card bull">
+        <div class="kpi-label">Interest Coverage (Pre-Synergy)</div>
+        <div class="kpi-value">~5×</div>
+        <div class="kpi-change up">Adequate at combined EBITDA level</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: MANAGEMENT COMMENTARY DECODE -->
+  <div class="section">
+    <div class="section-label">Step 4 &nbsp;·&nbsp; 04</div>
+    <h2 class="section-title">Management Commentary Decode — <em>Reading Between the Lines</em></h2>
+
+    <p>Sachin Gupta's communication style on the April 24 acquisition call is that of a genuine strategist — articulate, intellectually deep, and willing to acknowledge uncertainty. The four-hour explanation of the system-of-record versus system-of-action thesis is coherent and internally consistent, not marketing jargon. Several specific observations merit attention.</p>
+
+    <div class="mgmt-decode">
+      <div class="decode-block">
+        <h4>Signals of Confidence</h4>
+        <div class="decode-item">Acknowledged AQuity cross-sell took longer than expected, then explicitly explained the structural difference that makes TruBridge cross-sell faster (same buyer — CFO/CEO vs. different departments)</div>
+        <div class="decode-item">Admitted leverage was "a bit more than I'd genuinely like" — rare candour in an acquisition call</div>
+        <div class="decode-item">Positioned FY30 EBITDA target (₹3,000 Cr) explicitly as "true north, not guidance" — disciplined framing</div>
+        <div class="decode-item">Track record: AQuity EBITDA taken from 24% proforma to 30%+ in four quarters — delivered what was promised</div>
+        <div class="decode-item">MEDITECH revelation: was in active dialogue with IKS for RCM partnership before TruBridge deal — validates IKS's competitive standing</div>
+      </div>
+      <div class="decode-block">
+        <h4>Signals to Watch</h4>
+        <div class="decode-item">Declined to quantify synergies — framed as prudent, but creates analyst difficulty in stress-testing the thesis</div>
+        <div class="decode-item">TruBridge growth trajectory (6% revenue CAGR, 1.3% last year) — management addressed this by blaming failed globalization, but customer retention concerns raised by analysts were not directly resolved</div>
+        <div class="decode-item">$5 mn proforma PAT accretion is very thin — management did not address the risk that any integration friction eliminates accretion entirely in Year 1</div>
+        <div class="decode-item">Organic growth guidance withheld for TruBridge segment — "two to three quarters to understand" — creates near-term uncertainty on revenue guidance</div>
+        <div class="decode-item">Other expenses spike in Q4 not addressed — deal costs, ARAI costs, or structural?</div>
+      </div>
+    </div>
+
+    <p>Management classification: <strong>Visionary with financial discipline</strong>. The CEO demonstrates genuine strategic thinking rather than empire-building — the TruBridge thesis is well-reasoned and the AQuity precedent shows execution ability. The CFO's additional commentary on RCM cost economics (rural hospitals spend 7–10% of revenue on RCM vs. 4–5% for large systems) adds concrete financial evidence to the strategic case.</p>
+  </div>
+
+  <!-- STEP 5: SEGMENT ANALYSIS -->
+  <div class="section">
+    <div class="section-label">Step 5 &nbsp;·&nbsp; 05</div>
+    <h2 class="section-title">Segment & Business Engine Analysis</h2>
+
+    <p>IKS currently operates as an effectively single-segment business (healthcare enablement) with meaningful product/service differentiation within it. Post-TruBridge, the business will have two clearly distinguishable revenue streams.</p>
+
+    <div class="three-col">
+      <div class="chart-wrap">
+        <div class="chart-title">Revenue Cycle Management (RCM)</div>
+        <p style="font-size:14px;color:var(--ink-mid);margin-bottom:0.75rem;">Core profit engine, estimated 55–60% of IKS revenue. Highly recurring, outcome-linked contracts emerging. AI coding at 89% automation, 88%+ accuracy. <strong>KLAS top performer.</strong></p>
+        <div class="alert-box success" style="margin:0;padding:0.6rem 0.8rem;">
+          <div class="alert-text" style="font-size:13px;">Moat: EHR-embedded denial prediction — structurally reduces cost of care delivery</div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart-title">Clinical Documentation (Scribble)</div>
+        <p style="font-size:14px;color:var(--ink-mid);margin-bottom:0.75rem;">Fastest-growing segment. KLAS #1 and Blackbook #1 2026. Scribble Now launching real-time co-pilot mode (vs. post-visit only). Epic Connection Hub integration is distribution gold.</p>
+        <div class="alert-box success" style="margin:0;padding:0.6rem 0.8rem;">
+          <div class="alert-text" style="font-size:13px;">Transition from documentation tool to live clinical co-pilot is a step-change in value capture</div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart-title">Patient Engagement / VBC</div>
+        <p style="font-size:14px;color:var(--ink-mid);margin-bottom:0.75rem;">MyCareHub launched — agentic AI patient engagement. Patent-pending technology. VBC growing (Palomar: $3 mn NEVA earned in Year 1). Phreesia is struggling in the market — IKS is winning.</p>
+        <div class="alert-box success" style="margin:0;padding:0.6rem 0.8rem;">
+          <div class="alert-text" style="font-size:13px;">Outcome-based contracts create compounding revenue without proportional headcount growth</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 6: TRUBRIDGE ACQUISITION — DEEP DIVE -->
+  <div class="section">
+    <div class="section-label">Step 6 &nbsp;·&nbsp; 06</div>
+    <h2 class="section-title">TruBridge Acquisition — <em>The True North or True Risk?</em></h2>
+
+    <p>The TruBridge acquisition is simultaneously the most strategically coherent and the most operationally complex move IKS has made. Understanding it requires separating the intellectual thesis from the execution risk.</p>
+
+    <div class="acq-visual">
+      <div class="acq-title">Transaction Architecture — Proforma Combined Entity</div>
+      <div class="acq-flow">
+        <div class="acq-box">
+          <div class="acq-box-label">IKS Standalone (LTM Dec 25)</div>
+          <div class="acq-box-value">$351 mn</div>
+          <div class="acq-box-sub">Revenue</div>
+          <div style="margin-top:0.75rem;border-top:1px solid rgba(184,115,10,0.3);padding-top:0.75rem;">
+            <div class="acq-box-value" style="font-size:1.1rem;">$117 mn</div>
+            <div class="acq-box-sub">Adj. EBITDA (33%)</div>
+          </div>
+        </div>
+        <div class="acq-arrow">+</div>
+        <div class="acq-box">
+          <div class="acq-box-label">TruBridge (CY2025)</div>
+          <div class="acq-box-value">$347 mn</div>
+          <div class="acq-box-sub">Revenue</div>
+          <div style="margin-top:0.75rem;border-top:1px solid rgba(184,115,10,0.3);padding-top:0.75rem;">
+            <div class="acq-box-value" style="font-size:1.1rem;">$69 mn</div>
+            <div class="acq-box-sub">Adj. EBITDA (20%)</div>
+          </div>
+        </div>
+        <div class="acq-arrow">=</div>
+        <div class="acq-box" style="background:rgba(184,115,10,0.15);border-color:rgba(184,115,10,0.6);">
+          <div class="acq-box-label">Combined Entity</div>
+          <div class="acq-box-value">$698 mn</div>
+          <div class="acq-box-sub">Revenue</div>
+          <div style="margin-top:0.75rem;border-top:1px solid rgba(184,115,10,0.3);padding-top:0.75rem;">
+            <div class="acq-box-value" style="font-size:1.1rem;">$186 mn</div>
+            <div class="acq-box-sub">Adj. EBITDA (26%)</div>
+          </div>
+        </div>
+      </div>
+
+      <table class="proforma-table" style="margin-top:1.5rem;">
+        <thead>
+          <tr>
+            <th style="text-align:left;">TruBridge Incremental P&L (pre-synergy)</th>
+            <th>$mn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Adj. EBITDA</td><td>69</td></tr>
+          <tr><td>Interest cost on acquisition debt (SOFR+275 on $565mn)</td><td>(36)</td></tr>
+          <tr><td>Depreciation & Amortisation — recurring</td><td>(14)</td></tr>
+          <tr><td>Amortisation of acquisition intangibles (est.)</td><td>(12)</td></tr>
+          <tr class="total"><td>PBT contribution</td><td>7</td></tr>
+          <tr><td>Tax</td><td>(2)</td></tr>
+          <tr class="positive total"><td>PAT accretion (pre-synergy)</td><td>5</td></tr>
+        </tbody>
+      </table>
+
+      <div style="background:rgba(255,255,255,0.06);border-radius:4px;padding:1rem;margin-top:1rem;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber-light);margin-bottom:0.5rem;">Key Risk: Thinness of Proforma Accretion</div>
+        <div style="font-size:14px;color:rgba(250,246,238,0.75);line-height:1.6;font-style:italic;">The $5 mn PAT accretion rests on several assumptions: TruBridge maintaining its current $69 mn adjusted EBITDA (which itself requires excluding $9.4 mn ESOP and other non-recurring costs), interest rates not rising above SOFR+275, and no one-time integration charges. Any slippage — a customer churn, a higher-than-expected integration cost, or SOFR moving adversely — eliminates accretion in FY27. The margin for error is thin.</div>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:1.5rem;">
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;margin-bottom:0.75rem;color:var(--ink);">Strategic Logic — The Thesis</h3>
+        <p style="font-size:15px;">The EHR (system of record) integration rationale is genuinely differentiated. Currently, IKS accesses patient data via APIs to TruBridge's EHR customers — introducing latency, potential data errors, and limits on agentic workflow automation. Owning the EHR allows IKS to: (1) orchestrate RCM workflows directly within the native EHR interface, eliminating middleware; (2) create a proprietary, labeled, longitudinal clinical data corpus — the true AI training moat; and (3) deploy denial prediction algorithms at the point of care, not after the fact.</p>
+        <p style="font-size:15px;">The rural hospital market is also genuinely complementary — zero customer overlap with IKS's physician group market, similar healthcare economics (chronic disease burden, labor shortage), and 60–70% of rural hospital care is outpatient, which IKS's system of action is already built for. TruBridge's 30% EHR market share in the 0–50 bed rural segment (40%+ in the smallest hospitals) is a durable, sticky franchise.</p>
+      </div>
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;margin-bottom:0.75rem;color:var(--ink);">Execution Risks — The Counterweight</h3>
+        <div class="alert-box warn">
+          <span class="alert-tag">Risk 1 — TruBridge's Track Record</span>
+          <div class="alert-text" style="font-size:14px;">TruBridge tried to globalize its RCM delivery model twice and failed both times. The very weakness IKS is acquiring the company to fix is one TruBridge has failed to fix itself. IKS's India delivery model is genuine, but rural hospital RCM has nuances (CAH billing, rural health clinic billing, Medicare Advantage for rural) that may require longer learning curves.</div>
+        </div>
+        <div class="alert-box warn">
+          <span class="alert-tag">Risk 2 — EHR Modernization Complexity</span>
+          <div class="alert-text" style="font-size:14px;">Moving TruBridge's 40-year-old EHR (originally built in 1979) to a cloud-native AI-first architecture "in 18 months" is an aggressive timeline. Healthcare EHR migrations routinely take longer and cost more than projected — customer churn during migration is a known risk.</div>
+        </div>
+        <div class="alert-box warn">
+          <span class="alert-tag">Risk 3 — Customer Retention Priority</span>
+          <div class="alert-text" style="font-size:14px;">Management correctly identified customer retention as "the gold mine." Rural hospitals have sticky EHR relationships, but they are also financially fragile — a delivery disruption during integration could trigger contract cancellations that would be difficult to reverse.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kpi-grid" style="margin-top:1.5rem;">
+      <div class="kpi-card bull">
+        <div class="kpi-label">Cross-sell Whitespace (RCM only)</div>
+        <div class="kpi-value">$440–575M</div>
+        <div class="kpi-change up">In TruBridge's existing EHR client base</div>
+      </div>
+      <div class="kpi-card bull">
+        <div class="kpi-label">TruCode Market Opportunity</div>
+        <div class="kpi-value">$650M+</div>
+        <div class="kpi-change up">TAM — IKS itself is a TruCode customer</div>
+      </div>
+      <div class="kpi-card neutral">
+        <div class="kpi-label">Rural Hospital RCM Market</div>
+        <div class="kpi-value">$3.5–4B</div>
+        <div class="kpi-change">Only 25–30% outsourcing penetration today</div>
+      </div>
+      <div class="kpi-card neutral">
+        <div class="kpi-label">Full Platform TAM (TruBridge base)</div>
+        <div class="kpi-value">~$1.5B</div>
+        <div class="kpi-change">If all 16 IKS services deployed at 5% revenue take</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 7: RED FLAGS -->
+  <div class="section">
+    <div class="section-label">Step 8 &nbsp;·&nbsp; 08</div>
+    <h2 class="section-title">Red Flags & Forensic Detection</h2>
+
+    <table class="flag-table">
+      <thead>
+        <tr>
+          <th style="width:35%">Observation</th>
+          <th style="width:45%">Forensic Read</th>
+          <th style="width:20%">Severity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Forex gain of ₹352 mn in Q4 vs. ₹24 mn loss last year (₹627 mn full-year FY26)</td>
+          <td>Material contributor to EBITDA. Forex gains on USD receivables/contracts are real but volatile — FY26 benefited from INR depreciation. If INR strengthens, this tailwind reverses.</td>
+          <td><span class="severity moderate">Moderate</span></td>
+        </tr>
+        <tr>
+          <td>Other expenses +60% YoY Q4, +28% QoQ — no granular disclosure</td>
+          <td>Likely includes TruBridge deal advisory fees, ARAI acqui-hire, AI infrastructure costs. Without breakdown, cannot assess structural vs. one-time nature.</td>
+          <td><span class="severity moderate">Moderate</span></td>
+        </tr>
+        <tr>
+          <td>Clients with revenue >$1mn declined from 69 to 66</td>
+          <td>Could be rational pruning of sub-scale AQuity legacy clients, or genuine attrition. Context from AQuity integration suggests the former, but bears monitoring.</td>
+          <td><span class="severity minor">Minor</span></td>
+        </tr>
+        <tr>
+          <td>Post-acquisition net debt ~₹5,400 Cr at 3× combined EBITDA</td>
+          <td>Not distress-level, but eliminates IKS's balance sheet optionality for 3+ years. Any macro shock (US healthcare policy, SOFR spike) reduces debt-service headroom.</td>
+          <td><span class="severity moderate">Moderate</span></td>
+        </tr>
+        <tr>
+          <td>TruBridge's $5 mn proforma PAT accretion rests on adjusted EBITDA</td>
+          <td>Adjusted EBITDA excludes ESOP ($9.4 mn) — valid as options will vest/be paid at closing. But non-recurring "public company costs" exclusion (~$10–15 mn estimated) may recur partially as standalone division costs.</td>
+          <td><span class="severity moderate">Moderate</span></td>
+        </tr>
+        <tr>
+          <td>TruBridge EHR: 40-year-old legacy system, two failed globalization attempts</td>
+          <td>The very problem IKS acquires TruBridge to solve is one TruBridge could not solve itself. If IKS fails at globalization too, the earnings uplift disappears and the EHR business stagnates at 20% EBITDA margins.</td>
+          <td><span class="severity moderate">Moderate</span></td>
+        </tr>
+        <tr>
+          <td>ESOP costs rising 69% YoY — ₹470 mn FY26 vs. ₹277 mn FY25</td>
+          <td>Dilution is accelerating. ESOPs are a real economic cost despite being excluded from adjusted metrics. As the company scales, managing dilution without creating retention problems is a governance challenge.</td>
+          <td><span class="severity minor">Minor</span></td>
+        </tr>
+        <tr>
+          <td>Share of loss from associates ₹92 mn FY26 (growing)</td>
+          <td>New and growing item. Likely reflects ARAI and other AI accelerator investments. Small currently but signals capital deployment into early-stage bets that may not monetize for years.</td>
+          <td><span class="severity minor">Minor</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- STEP 9: POSITIVE INFLECTIONS -->
+  <div class="section">
+    <div class="section-label">Step 9 &nbsp;·&nbsp; 09</div>
+    <h2 class="section-title">Positive Inflection Points — <em>Leading Indicators of Future Upside</em></h2>
+
+    <div class="inflection-grid">
+      <div class="inflection-item">
+        <h5>EBITDA Margin Trajectory — Structural, Not Cyclical</h5>
+        <p>Margins expanded 450 basis points in one year (29.7% → 34.2%). Even stripping the forex tailwind, the operating leverage on a fixed-cost technology base means incremental revenue at 50–60% gross margin drives compounding margin expansion. The management team has demonstrated this is not a one-year phenomenon.</p>
+      </div>
+      <div class="inflection-item">
+        <h5>FCF Doubling — Validates Earnings Quality</h5>
+        <p>OCF of ₹864 crore in FY26, up 99% year-on-year, is the clearest evidence that IKS's reported EBITDA is translating into real cash. A business generating ₹612 crore of free cash flow on ₹722 crore of reported PAT is genuinely exceptional — not manufactured through accounting.</p>
+      </div>
+      <div class="inflection-item">
+        <h5>Epic Connection Hub — Distribution Flywheel</h5>
+        <p>IKS Scribble and Autonomous Coding Engine are both live in the Epic Connection Hub — the marketplace used by thousands of large US hospital systems. This is institutional distribution that cannot be easily replicated. A single discovery by a large health system through Epic creates a multi-year revenue opportunity.</p>
+      </div>
+      <div class="inflection-item">
+        <h5>Outcome-Based Contracts Emerging</h5>
+        <p>The Palomar health system deal generated $3 million in NEVA (net economic value added) in the first year — despite staggered implementation. As IKS builds the capability to price on outcomes rather than FTEs or seats, the revenue ceiling lifts dramatically and churn risk falls as customer ROI is demonstrably positive.</p>
+      </div>
+      <div class="inflection-item">
+        <h5>AQuity Cross-Sell Activated</h5>
+        <p>Management confirmed a full platform deal closed at Holyoke Medical Center — a legacy AQuity customer — in Q4. This is the cross-sell flywheel beginning to turn after two years of integration. Several more cross-sells are in pipeline. The AQuity TAM is increasingly being monetized.</p>
+      </div>
+      <div class="inflection-item">
+        <h5>TruCode — Standalone Growth Vector</h5>
+        <p>IKS itself is a customer of TruCode. IKS now owns this SaaS coding tool with a $650 mn addressable market, and can distribute it through its existing large-physician-group and health-system relationships — a customer base TruBridge never had access to. This is an organic revenue opportunity with virtually no incremental cost.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 10: VALUATION -->
+  <div class="section">
+    <div class="section-label">Step 10 &nbsp;·&nbsp; 10</div>
+    <h2 class="section-title">Valuation & Market Expectation Analysis</h2>
+
+    <p>At ₹1,595 per share, IKS trades at approximately 37× reported FY26 PAT and 26× FY26 EBITDA on a standalone basis. For an Indian IT services company growing revenue at 20% and PAT at 48% with 36.9% ROCE and 85% FCF conversion, this is not obviously expensive — the PEG ratio (P/E divided by earnings growth) of approximately 0.8 is attractive.</p>
+
+    <div class="two-col">
+      <div class="chart-wrap">
+        <div class="chart-title">Valuation Framework — Standalone IKS</div>
+        <table class="flag-table">
+          <thead><tr><th>Metric</th><th>Value</th><th>Context</th></tr></thead>
+          <tbody>
+            <tr><td>Market Cap</td><td style="text-align:right;">₹27,354 Cr</td><td style="text-align:right;font-style:italic;color:var(--ink-light);">~$3.2 bn</td></tr>
+            <tr><td>FY26 EV/EBITDA</td><td style="text-align:right;">~26×</td><td style="text-align:right;font-style:italic;color:var(--forest-light);">Fair for growth profile</td></tr>
+            <tr><td>FY26 P/E (reported)</td><td style="text-align:right;">37.1×</td><td style="text-align:right;font-style:italic;color:var(--amber);">Elevated but not stretched</td></tr>
+            <tr><td>FY26 P/FCF</td><td style="text-align:right;">~44×</td><td style="text-align:right;font-style:italic;color:var(--amber);">Reflects growth premium</td></tr>
+            <tr><td>PEG Ratio</td><td style="text-align:right;">~0.8×</td><td style="text-align:right;font-style:italic;color:var(--forest-light);">Attractive on growth-adj basis</td></tr>
+            <tr><td>FY30 EBITDA Target</td><td style="text-align:right;">₹3,000 Cr</td><td style="text-align:right;font-style:italic;color:var(--ink-light);">At 20× = ₹60,000 Cr EV</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <p>The critical complexity is that post-TruBridge, the valuation framework changes entirely. The market is pricing IKS on its organic standalone trajectory — but the company being built is a ₹700 crore revenue-equivalent USD business with 3× leverage and a 4-year integration runway. The correct valuation lens shifts from a clean Indian IT compounder to a US healthcare IT platform company with offshore cost advantages.</p>
+        <p>At ₹1,595, the stock implicitly prices in successful integration and some synergy realization. Any material integration setback — customer churn at TruBridge, SOFR staying elevated longer, EHR modernization delays — would likely reprice the stock toward ₹1,100–1,200 (15–17× FY27 adjusted earnings). The upside scenario where the FY30 true north is delivered suggests a path to ₹3,000+ per share over a 4-year horizon, a return profile that warrants patient accumulation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 11: FUTURE TRAJECTORY -->
+  <div class="section">
+    <div class="section-label">Step 11 &nbsp;·&nbsp; 11</div>
+    <h2 class="section-title">Future Trajectory — <em>Three Scenarios</em></h2>
+
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-header bull">Bull Case — Integrated Compounder</div>
+        <div class="case-body">
+          <div class="case-stat">FY30E EBITDA: ₹3,000+ Cr</div>
+          <div class="case-stat">FY30E Implied Stock: ₹3,200–3,800</div>
+          <div class="case-stat">Probability: 30%</div>
+          <div class="case-desc">TruBridge RCM cross-sell hits 50%+ penetration in existing EHR base by FY29. Delivery globalization reduces TruBridge EBITDA cost structure from 20% to 30%+ margins. EHR modernization enables Scribble and autonomous coding deployment in rural hospitals. TruCode becomes a standalone SaaS growth engine. Combined entity reaches FY30 EBITDA true north with net debt back to FY26 standalone levels.</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-header base">Base Case — Measured Integration</div>
+        <div class="case-body">
+          <div class="case-stat">FY30E EBITDA: ₹2,000–2,400 Cr</div>
+          <div class="case-stat">FY30E Implied Stock: ₹2,000–2,600</div>
+          <div class="case-stat">Probability: 50%</div>
+          <div class="case-desc">TruBridge integration takes 6–8 quarters. Cross-sell slower than planned (as with AQuity). Delivery globalization partially successful, EBITDA margins reach 25–27%. Organic IKS business continues 15% USD CAGR. FY30 EBITDA target missed by 20–30% but still represents strong compounding. Debt reduced to 1.5× EBITDA by FY30.</div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-header bear">Bear Case — Integration Friction</div>
+        <div class="case-body">
+          <div class="case-stat">FY30E EBITDA: ₹1,200–1,600 Cr</div>
+          <div class="case-stat">FY30E Implied Stock: ₹1,100–1,400</div>
+          <div class="case-stat">Probability: 20%</div>
+          <div class="case-desc">TruBridge customer churn during EHR migration exceeds management expectations. Third globalization attempt fails as rural hospital clients resist offshore delivery. US macro deterioration (Medicaid cuts, hospital consolidation) reduces TruBridge's installed base revenue. Leverage stays elevated; interest costs consume integration synergies. Organic IKS growth slows due to management bandwidth consumption.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:1.5rem;">
+      <strong>Key Monitoring Variables for FY27 Quarters:</strong> TruBridge revenue growth (watch for stabilization above 6% CAGR); RCM cross-sell penetration rate in existing EHR base (target: 30% → 50%+); combined EBITDA margin trajectory (watch for ≥30% by Q4 FY27); net debt level quarterly (watch for consistent reduction); number of cross-sell deals closed (AQuity base + TruBridge base).
+    </div>
+  </div>
+
+  <!-- STEP 12: FINAL VERDICT -->
+  <div class="section">
+    <div class="section-label">Step 12 &nbsp;·&nbsp; 12</div>
+    <h2 class="section-title">Final Investment Verdict</h2>
+
+    <div class="two-col">
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;margin-bottom:0.75rem;color:var(--forest);">Key Positives</h3>
+        <ul class="trigger-list">
+          <li><div class="num">+</div><div>Organic business is genuinely excellent — 15% USD revenue growth, 34% EBITDA margins, 85% FCF conversion. The standalone IKS story is one of the best in Indian healthcare IT.</div></li>
+          <li><div class="num">+</div><div>AQuity precedent validates execution capability: 24% → 30%+ EBITDA in four quarters, integration complete in three quarters.</div></li>
+          <li><div class="num">+</div><div>TruBridge strategic thesis is intellectually rigorous — the system-of-record + system-of-action integrated model is a genuinely defensible long-term moat if built well.</div></li>
+          <li><div class="num">+</div><div>$440+ million cross-sell whitespace in TruBridge's existing captive EHR base is low-hanging fruit with the same buyer (CFO/CEO), making it faster than AQuity cross-sells.</div></li>
+          <li><div class="num">+</div><div>Epic Connection Hub distribution creates institutional brand recognition that cannot be replicated quickly.</div></li>
+          <li><div class="num">+</div><div>Balance sheet was pristine going into this deal — the company enters leverage from a position of demonstrated cash generation strength.</div></li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;margin-bottom:0.75rem;color:var(--crimson);">Key Negatives</h3>
+        <ul class="trigger-list">
+          <li><div class="num">–</div><div>Net debt rises ~20× from ₹251 crore to ~₹5,400 crore post-acquisition — fundamental balance sheet transformation that eliminates optionality for 3+ years.</div></li>
+          <li><div class="num">–</div><div>TruBridge's $5 mn proforma PAT accretion is too thin — any integration headwind makes Year 1 dilutive rather than accretive.</div></li>
+          <li><div class="num">–</div><div>TruBridge has failed at globalization twice. IKS is betting it can succeed where TruBridge could not.</div></li>
+          <li><div class="num">–</div><div>Forex gains of ₹627 crore in FY26 are material but volatile — a significant tailwind that may not persist.</div></li>
+          <li><div class="num">–</div><div>No quarterly revenue guidance for the TruBridge segment creates near-term earnings uncertainty.</div></li>
+          <li><div class="num">–</div><div>EHR modernization from a 40-year-old legacy system is a multi-year, high-risk technology project with customer churn exposure.</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;margin:1.5rem 0 0.75rem;color:var(--ink);">Quarterly Monitoring Checklist</h3>
+    <ul class="trigger-list">
+      <li><div class="num">1</div><div>TruBridge revenue YoY growth — any acceleration above 6% CAGR signals cross-sell traction; any deceleration signals customer churn concern.</div></li>
+      <li><div class="num">2</div><div>Combined EBITDA margin trajectory — milestone of 30%+ by Q4 FY27 would validate integration synergy timeline.</div></li>
+      <li><div class="num">3</div><div>RCM cross-sell deals announced in TruBridge EHR base — quantify penetration rate quarterly.</div></li>
+      <li><div class="num">4</div><div>Net debt absolute and leverage ratio — watch for consistent quarterly reduction from ₹5,400 crore baseline.</div></li>
+      <li><div class="num">5</div><div>Other expenses — seek breakdown; watch for normalization or disclosure of deal-related vs. structural costs.</div></li>
+      <li><div class="num">6</div><div>Clients above $1mn revenue count — should stabilize and then grow as TruBridge clients become part of denominator.</div></li>
+      <li><div class="num">7</div><div>USD revenue growth (organic IKS only) — should remain at 15%+ to validate market share capture in physician segment.</div></li>
+    </ul>
+
+    <div class="final-box">
+      <div class="final-verdict-label">Final Investment Verdict</div>
+      <div class="final-verdict-text">Watchlist → Accumulate on Dips</div>
+      <div class="final-verdict-body">
+        IKS Health is a genuinely exceptional business — perhaps the best-run Indian healthcare IT company with demonstrable AI capability, strong management execution, and a structural moat in ambulatory care. The organic thesis warrants a premium valuation and long-term conviction.
+        <br><br>
+        The TruBridge acquisition is strategically well-reasoned but introduces material execution risk and leverage that the market has not fully priced in. At ₹1,595, the stock is pricing optimism on both the organic trajectory and a benign integration outcome. Investors with a 4-year time horizon and tolerance for near-term uncertainty — from leverage, integration friction, and TruBridge's thin proforma accretion — have a compelling risk-reward proposition.
+        <br><br>
+        The recommended posture is to establish a core position and build on any correction below ₹1,350 (approximately 30× FY27E adjusted PAT), which would represent excessive pessimism discounting a business generating 37% adjusted EBITDA margins with proven management. Full conviction requires watching the first two post-closing quarters for evidence of: TruBridge revenue stability, RCM cross-sell initiation, and margin trajectory above 30% on the combined entity.
+      </div>
+    </div>
+
+    <div class="footnote">
+      This analysis is based on publicly available disclosures including the Q4 FY26 investor presentation (May 13, 2026), the TruBridge acquisition presentation (April 23, 2026), and the conference call transcript (April 24, 2026). All financial figures in INR millions unless stated otherwise. USD/INR assumed at ~86 for conversion purposes. This is not investment advice; all projections involve material uncertainty.
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>IKS Health (NSE: IKS) &nbsp;·&nbsp; Institutional Equity Research &nbsp;·&nbsp; Q4 FY26 &amp; TruBridge Acquisition Analysis</div>
+  <div>Market Cap ₹27,354 Cr &nbsp;·&nbsp; CMP ₹1,595 &nbsp;·&nbsp; P/E 37.1× &nbsp;·&nbsp; ROCE 36.9% &nbsp;·&nbsp; ROE 40.3%</div>
+  <div style="margin-top:0.5rem;opacity:0.6;">Analysis based on publicly available disclosures only &nbsp;·&nbsp; Not investment advice &nbsp;·&nbsp; Past performance does not guarantee future results</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const amber = '#b8730a';
+const amberLight = '#e8a020';
+const forest = '#2e7a47';
+const slate = '#4a6278';
+const crimson = '#8b1a1a';
+const parchment = '#faf6ee';
+const ink = '#1a1208';
+
+const gridColor = 'rgba(100,80,50,0.15)';
+const tickColor = 'rgba(60,50,30,0.6)';
+
+const baseFont = { family: "'JetBrains Mono', monospace", size: 10 };
+
+const quarters = ['Q4 FY25', 'Q1 FY26', 'Q2 FY26', 'Q3 FY26', 'Q4 FY26'];
+const revenues = [7240, 7506, 8465, 8150, 8577];
+const ebitdaMargins = [31.2, 32.0, 34.8, 34.6, 35.0];
+
+const revCtx = document.getElementById('revChart');
+new Chart(revCtx, {
+  data: {
+    labels: quarters,
+    datasets: [
+      {
+        type: 'bar',
+        label: 'Revenue (INR mn)',
+        data: revenues,
+        backgroundColor: 'rgba(184,115,10,0.25)',
+        borderColor: amber,
+        borderWidth: 1.5,
+        yAxisID: 'y',
+        borderRadius: 2
+      },
+      {
+        type: 'line',
+        label: 'EBITDA Margin %',
+        data: ebitdaMargins,
+        borderColor: forest,
+        backgroundColor: 'rgba(46,122,71,0.1)',
+        borderWidth: 2,
+        pointRadius: 4,
+        pointBackgroundColor: forest,
+        tension: 0.3,
+        yAxisID: 'y2',
+        borderDash: []
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: ink,
+        titleFont: baseFont,
+        bodyFont: { family: "'JetBrains Mono', monospace", size: 10 },
+        callbacks: {
+          label: (ctx) => ctx.dataset.label === 'Revenue (INR mn)'
+            ? 'Revenue: ' + ctx.parsed.y.toLocaleString() + ' mn'
+            : 'EBITDA Margin: ' + ctx.parsed.y.toFixed(1) + '%'
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: false,
+        min: 5000,
+        grid: { color: gridColor },
+        ticks: { color: tickColor, font: baseFont, callback: v => (v/1000).toFixed(1)+'K' }
+      },
+      y2: {
+        position: 'right',
+        min: 25,
+        max: 40,
+        grid: { display: false },
+        ticks: { color: '#2e7a47', font: baseFont, callback: v => v+'%' }
+      },
+      x: {
+        grid: { display: false },
+        ticks: { color: tickColor, font: baseFont }
+      }
+    }
+  }
+});
+
+const patCtx = document.getElementById('patChart');
+new Chart(patCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Q4 FY25', 'Q3 FY26', 'Q4 FY26'],
+    datasets: [
+      {
+        label: 'Reported PAT',
+        data: [1478, 1833, 2060],
+        backgroundColor: 'rgba(184,115,10,0.3)',
+        borderColor: amber,
+        borderWidth: 1.5,
+        borderRadius: 2
+      },
+      {
+        label: 'Adjusted PAT',
+        data: [1646, 2154, 2269],
+        backgroundColor: 'rgba(46,122,71,0.3)',
+        borderColor: forest,
+        borderWidth: 1.5,
+        borderRadius: 2
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: ink,
+        titleFont: baseFont,
+        bodyFont: { family: "'JetBrains Mono', monospace", size: 10 }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: false,
+        min: 1200,
+        grid: { color: gridColor },
+        ticks: { color: tickColor, font: baseFont, callback: v => (v/1000).toFixed(1)+'K' }
+      },
+      x: { grid: { display: false }, ticks: { color: tickColor, font: baseFont } }
+    }
+  }
+});
+
+const debtCtx = document.getElementById('debtChart');
+new Chart(debtCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Mar 2024', 'Mar 2025', 'Mar 2026 (Pre-Acq.)'],
+    datasets: [{
+      label: 'Net Debt (INR mn)',
+      data: [8507, 5627, 2510],
+      backgroundColor: ['rgba(139,26,26,0.3)', 'rgba(184,115,10,0.3)', 'rgba(46,122,71,0.3)'],
+      borderColor: [crimson, amber, forest],
+      borderWidth: 1.5,
+      borderRadius: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: ink,
+        titleFont: baseFont,
+        bodyFont: { family: "'JetBrains Mono', monospace", size: 10 },
+        callbacks: { label: ctx => 'Net Debt: ₹' + ctx.parsed.y.toLocaleString() + ' mn' }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: { color: gridColor },
+        ticks: { color: tickColor, font: baseFont, callback: v => (v/1000)+'K' }
+      },
+      x: { grid: { display: false }, ticks: { color: tickColor, font: baseFont } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>

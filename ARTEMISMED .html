@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artemis Medicare Services — Institutional Equity Analysis | Q4 FY26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E2C97E;
+    --gold-dim: #8B7035;
+    --ink: #0D0F14;
+    --ink-2: #161A22;
+    --ink-3: #1E2430;
+    --ink-4: #252C38;
+    --rule: rgba(201,168,76,0.18);
+    --rule-soft: rgba(255,255,255,0.06);
+    --text: #E8E6DF;
+    --text-dim: #9A9589;
+    --text-muted: #5E5A53;
+    --green: #4CAF8A;
+    --green-dim: rgba(76,175,138,0.15);
+    --red: #D96B6B;
+    --red-dim: rgba(217,107,107,0.15);
+    --amber: #E0A030;
+    --amber-dim: rgba(224,160,48,0.15);
+    --blue: #5B8ED9;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --mono: 'DM Mono', monospace;
+    --sans: 'Instrument Sans', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── SIDEBAR NAV ── */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 220px;
+    height: 100vh;
+    background: var(--ink-2);
+    border-right: 1px solid var(--rule);
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 0 20px;
+  }
+  .sidebar-brand {
+    padding: 0 20px 24px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 16px;
+  }
+  .sidebar-brand .ticker {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .sidebar-brand .co-name {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .sidebar-brand .report-date {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    font-family: var(--mono);
+  }
+  .nav-section-label {
+    padding: 6px 20px 3px;
+    font-size: 9px;
+    font-family: var(--mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .nav-item {
+    display: block;
+    padding: 6px 20px;
+    font-size: 12px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+  }
+  .nav-item:hover { color: var(--gold-light); background: rgba(201,168,76,0.04); border-left-color: var(--gold-dim); }
+  .nav-item.active { color: var(--gold); border-left-color: var(--gold); background: rgba(201,168,76,0.06); }
+  .sidebar-verdict {
+    margin: auto 16px 0;
+    padding: 12px 14px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-align: center;
+  }
+  .sidebar-verdict .verdict-label { color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .sidebar-verdict .verdict-val { color: var(--gold); font-size: 13px; font-weight: 500; letter-spacing: 0.05em; }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    margin-left: 220px;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--ink-2) 0%, var(--ink-3) 50%, #12161E 100%);
+    border-bottom: 1px solid var(--rule);
+    padding: 56px 60px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 1.15;
+    color: #F0EDE6;
+    margin-bottom: 6px;
+  }
+  .hero-sub {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 36px;
+  }
+  .hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .hero-metric {
+    background: var(--ink-2);
+    padding: 14px 16px;
+  }
+  .hero-metric .hm-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .hero-metric .hm-val {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .hero-metric .hm-sub {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 3px;
+  }
+  .hero-metric .hm-chg {
+    font-family: var(--mono);
+    font-size: 10px;
+    margin-top: 4px;
+  }
+  .up { color: var(--green); }
+  .dn { color: var(--red); }
+  .neu { color: var(--amber); }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 52px 60px;
+    border-bottom: 1px solid var(--rule-soft);
+    animation: fadeUp 0.5s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--gold-dim);
+    letter-spacing: 0.12em;
+    flex-shrink: 0;
+  }
+  .section h2 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 600;
+    color: #F0EDE6;
+    line-height: 1.2;
+  }
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+  .sub-h {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    margin-top: 28px;
+  }
+  .sub-h:first-child { margin-top: 0; }
+
+  /* ── SCORE CARDS ── */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .score-card {
+    background: var(--ink-3);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .score-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .score-card.high::after { background: var(--green); opacity: 0.8; }
+  .score-card.med::after  { background: var(--amber); opacity: 0.8; }
+  .score-card.low::after  { background: var(--red);   opacity: 0.8; }
+  .sc-label {
+    font-size: 10px;
+    font-family: var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .sc-val {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--gold-light);
+    margin-bottom: 6px;
+  }
+  .sc-val.high { color: var(--green); }
+  .sc-val.med  { color: var(--amber); }
+  .sc-val.low  { color: var(--red); }
+  .sc-desc { font-size: 11px; color: var(--text-dim); line-height: 1.5; }
+
+  /* ── INSIGHT BOXES ── */
+  .insight-box {
+    background: var(--ink-3);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .insight-box.green  { border-left-color: var(--green); background: var(--green-dim); }
+  .insight-box.red    { border-left-color: var(--red);   background: var(--red-dim);   }
+  .insight-box.amber  { border-left-color: var(--amber); background: var(--amber-dim); }
+
+  /* ── TABLES ── */
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  thead th {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--rule);
+    background: var(--ink-3);
+    white-space: nowrap;
+  }
+  tbody tr {
+    border-bottom: 1px solid var(--rule-soft);
+    transition: background 0.12s;
+  }
+  tbody tr:hover { background: rgba(201,168,76,0.03); }
+  td {
+    padding: 10px 14px;
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  td.num { font-family: var(--mono); font-size: 12px; text-align: right; white-space: nowrap; }
+  td.label { color: var(--text-dim); font-size: 12px; }
+  td.strong { font-weight: 600; color: #F0EDE6; }
+  td.achieved { color: var(--green); font-family: var(--mono); font-size: 11px; }
+  td.delayed  { color: var(--amber); font-family: var(--mono); font-size: 11px; }
+  td.missed   { color: var(--red);   font-family: var(--mono); font-size: 11px; }
+  td.tracking { color: var(--blue);  font-family: var(--mono); font-size: 11px; }
+  .tfoot td {
+    font-weight: 600;
+    border-top: 1px solid var(--rule);
+    background: var(--ink-3);
+    color: var(--gold-light);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  /* ── PILLS ── */
+  .pill {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-family: var(--mono);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .pill-green  { background: var(--green-dim);  color: var(--green);  border: 1px solid rgba(76,175,138,0.3);  }
+  .pill-red    { background: var(--red-dim);    color: var(--red);    border: 1px solid rgba(217,107,107,0.3); }
+  .pill-amber  { background: var(--amber-dim);  color: var(--amber);  border: 1px solid rgba(224,160,48,0.3);  }
+  .pill-blue   { background: rgba(91,142,217,0.12); color: var(--blue); border: 1px solid rgba(91,142,217,0.3); }
+  .pill-gold   { background: rgba(201,168,76,0.12);  color: var(--gold); border: 1px solid var(--rule); }
+
+  /* ── TWO COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 16px 0; }
+
+  /* ── METRIC CARD ── */
+  .metric-card {
+    background: var(--ink-3);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .metric-card .mc-label { font-size: 10px; font-family: var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+  .metric-card .mc-val { font-family: var(--serif); font-size: 24px; font-weight: 600; color: var(--gold-light); line-height: 1; margin-bottom: 4px; }
+  .metric-card .mc-sub { font-size: 11px; color: var(--text-dim); }
+  .metric-card .mc-chg { font-family: var(--mono); font-size: 11px; margin-top: 6px; }
+
+  /* ── FLAG LIST ── */
+  .flag-list { list-style: none; }
+  .flag-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+    align-items: flex-start;
+  }
+  .flag-list li:last-child { border-bottom: none; }
+  .flag-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    margin-top: 1px;
+  }
+  .flag-icon.red    { background: var(--red-dim);   color: var(--red); }
+  .flag-icon.amber  { background: var(--amber-dim); color: var(--amber); }
+  .flag-icon.green  { background: var(--green-dim); color: var(--green); }
+
+  /* ── VERDICT BLOCK ── */
+  .verdict-block {
+    background: linear-gradient(135deg, var(--ink-3), var(--ink-4));
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    padding: 32px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  .verdict-block::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 200px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.08), transparent 70%);
+  }
+  .verdict-label-sm { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 12px; }
+  .verdict-rating {
+    font-family: var(--serif);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .verdict-sub { font-size: 13px; color: var(--text-dim); max-width: 560px; margin: 0 auto; }
+
+  /* ── CASE BLOCK ── */
+  .case-block {
+    background: var(--ink-3);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 20px 22px;
+  }
+  .case-block h4 {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .case-block h4.bull { color: var(--green); }
+  .case-block h4.base { color: var(--gold); }
+  .case-block h4.bear { color: var(--red); }
+  .case-block p { font-size: 12.5px; color: var(--text-dim); line-height: 1.7; }
+
+  /* ── PROGRESS BAR ── */
+  .prog-bar-wrap { margin: 8px 0; }
+  .prog-bar-label { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px; color: var(--text-dim); font-family: var(--mono); }
+  .prog-bar { height: 5px; background: var(--ink-4); border-radius: 3px; overflow: hidden; }
+  .prog-bar-fill { height: 100%; border-radius: 3px; background: var(--gold); transition: width 1s ease; }
+  .prog-bar-fill.green { background: var(--green); }
+  .prog-bar-fill.amber { background: var(--amber); }
+  .prog-bar-fill.red   { background: var(--red); }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 20px; }
+  .timeline::before { content:''; position:absolute; left:5px; top:8px; bottom:8px; width:1px; background: var(--rule); }
+  .tl-item { position: relative; padding: 0 0 20px 16px; }
+  .tl-item::before {
+    content:''; position:absolute; left:-9px; top:6px;
+    width:8px; height:8px; border-radius:50%;
+    background: var(--gold); border: 2px solid var(--ink-2);
+  }
+  .tl-item.done::before  { background: var(--green); }
+  .tl-item.amber::before { background: var(--amber); }
+  .tl-item.future::before{ background: var(--ink-4); border-color: var(--gold-dim); }
+  .tl-date { font-family: var(--mono); font-size: 10px; color: var(--text-muted); margin-bottom: 3px; }
+  .tl-text { font-size: 12.5px; color: var(--text); }
+
+  /* ── QUOTE ── */
+  .mgmt-quote {
+    border-left: 3px solid var(--gold-dim);
+    padding: 12px 18px;
+    margin: 16px 0;
+    background: rgba(201,168,76,0.03);
+    border-radius: 0 6px 6px 0;
+  }
+  .mgmt-quote p { font-family: var(--serif); font-size: 15px; font-style: italic; color: var(--text-dim); line-height: 1.7; }
+  .mgmt-quote cite { font-family: var(--mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.06em; margin-top: 6px; display: block; font-style: normal; }
+
+  /* ── TEXT BODY ── */
+  .body-text { font-size: 13.5px; color: var(--text); line-height: 1.75; max-width: 820px; }
+  .body-text + .body-text { margin-top: 14px; }
+  .emph { color: var(--gold-light); font-weight: 600; }
+  .dim { color: var(--text-dim); }
+
+  /* ── SCROLL NAV ACTIVE ── */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    .hero { padding: 36px 24px 28px; }
+    .hero-metrics { grid-template-columns: repeat(3,1fr); }
+    .section { padding: 36px 24px; }
+    .score-grid { grid-template-columns: 1fr 1fr; }
+    .two-col, .three-col { grid-template-columns: 1fr; }
+  }
+
+  /* ── SEPARATOR ── */
+  .sep { border: none; border-top: 1px solid var(--rule); margin: 24px 0; }
+
+  /* Table row highlight */
+  .row-gold td { background: rgba(201,168,76,0.05); }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-brand">
+    <div class="ticker">NSE: ARTEMISMED</div>
+    <div class="co-name">Artemis Medicare Services Ltd.</div>
+    <div class="report-date">Q4 &amp; FY26 Analysis · May 2026</div>
+  </div>
+
+  <span class="nav-section-label">Sections</span>
+  <a class="nav-item active" href="#s1">01 · Executive Snapshot</a>
+  <a class="nav-item" href="#s2">02 · Result Quality</a>
+  <a class="nav-item" href="#s3">03 · Guidance Tracker</a>
+  <a class="nav-item" href="#s4">04 · Financial Architecture</a>
+  <a class="nav-item" href="#s5">05 · Management Decode</a>
+  <a class="nav-item" href="#s6">06 · Business Engine</a>
+  <a class="nav-item" href="#s7">07 · Industry Position</a>
+  <a class="nav-item" href="#s8">08 · Capital Allocation</a>
+  <a class="nav-item" href="#s9">09 · Red Flags</a>
+  <a class="nav-item" href="#s10">10 · Positive Inflections</a>
+  <a class="nav-item" href="#s11">11 · Valuation Comfort</a>
+  <a class="nav-item" href="#s12">12 · Future Trajectory</a>
+  <a class="nav-item" href="#s13">13 · Final Verdict</a>
+
+  <div class="sidebar-verdict">
+    <div class="verdict-label">Recommendation</div>
+    <div class="verdict-val">ACCUMULATE</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Institutional Equity Research · Q4 &amp; FY26 Deep Analysis · May 17, 2026</div>
+  <h1>Artemis Medicare<br>Services Limited</h1>
+  <div class="hero-sub">NSE: ARTEMISMED · BSE: 542919 · Market Cap ₹4,429 Cr · CMP ₹280</div>
+  <div class="hero-metrics">
+    <div class="hero-metric">
+      <div class="hm-label">Revenue FY26</div>
+      <div class="hm-val">₹1,081 Cr</div>
+      <div class="hm-chg up">+15.4% YoY</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hm-label">EBITDA FY26</div>
+      <div class="hm-val">₹218 Cr</div>
+      <div class="hm-chg up">+18.0% YoY</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hm-label">EBITDA Margin</div>
+      <div class="hm-val">20.2%</div>
+      <div class="hm-chg up">+44 bps YoY</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hm-label">PAT FY26</div>
+      <div class="hm-val">₹104 Cr</div>
+      <div class="hm-chg up">+26.2% YoY</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hm-label">Diluted EPS</div>
+      <div class="hm-val">₹6.56</div>
+      <div class="hm-chg up">+23.5% YoY</div>
+    </div>
+    <div class="hero-metric">
+      <div class="hm-label">ARPOB (Gurgaon)</div>
+      <div class="hm-val">₹82,435</div>
+      <div class="hm-chg up">+7.8% YoY</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     STEP 1: EXECUTIVE SNAPSHOT
+═══════════════════════════════════════════ -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Executive Snapshot</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="insight-box green">
+    <strong>Verdict in one line:</strong> FY26 was Artemis's strongest year on record — volume growth, ARPOB expansion, and operating leverage converged into the best quarterly margin (21.3% in Q4) in company history, with the business now structurally above the 20% EBITDA threshold. The financial architecture is clean, debt is declining, and free cash flow turned meaningfully positive. The critical question is not whether the Gurgaon engine fires — it does — but whether the Raipur ramp-up and South Delhi execution will be handled without balance sheet stress.
+  </div>
+
+  <p class="sub-h">What actually happened this quarter</p>
+  <p class="body-text">Q4 FY26 delivered across every metric that matters. Consolidated revenue grew 16.4% YoY to ₹279 Cr, EBITDA grew 23.1% to ₹59 Cr, and PAT grew 32.1% to ₹30 Cr. Critically, EBITDA margins expanded 116 bps YoY to 21.3% — the highest-ever quarterly print. Volume growth at Gurgaon was 9.2%, ARPOB was ₹84,571 (+7.3%), and occupancy hit 64.6%. The quarter was fundamentally strong, not optically inflated. Finance costs declined 18.6% YoY as IFC loan repayments progressed, creating a double tailwind of revenue expansion and cost compression at the interest line.</p>
+
+  <p class="body-text" style="margin-top:12px;">One nuance investors should note: Q3 FY26 had a ₹3.07 Cr one-time exceptional item (gratuity and leave encashment provision) that makes the QoQ PAT jump (36.2%) look larger than the underlying trend. Adjusting for this, the organic sequential improvement is still impressive at ~20–25% QoQ — confirmation that Q4 was genuinely the strongest quarter operationally.</p>
+
+  <p class="sub-h">Top 5 developments</p>
+  <ul class="flag-list">
+    <li><div class="flag-icon green">✓</div><span><strong>Margin breakthrough:</strong> EBITDA margin surpassed 21% for the first time on a quarterly basis, validating the operating leverage thesis as the third tower beds mature. At this scale, incremental revenue flows at ~30% to EBITDA.</span></li>
+    <li><div class="flag-icon green">✓</div><span><strong>International resilience:</strong> International patient revenue grew 26.9% in FY26 despite the West Asia conflict. Artemis proved its geopolitical diversification strategy works — Middle East is only 30% of international, with Africa and CIS making up the balance.</span></li>
+    <li><div class="flag-icon green">✓</div><span><strong>IFC as anchor shareholder:</strong> Between Q2 FY26 (Sept 2025) and FY26 year-end (March 2026), promoter holding dropped from 66.5% to 58.4% while IFC entered at 12.0%. This is not dilution anxiety — it is institutional validation from one of the world's premier development finance institutions.</span></li>
+    <li><div class="flag-icon amber">◐</div><span><strong>Raipur commissioning delay:</strong> The Raipur 300-bed hospital, originally targeted for March 2026, was pushed to Q1 FY27 (expected June 2026). Doctors join in June, interiors are complete. This is a 2–3 month slip, not a structural problem, but it reduces FY27's earnings cushion slightly.</span></li>
+    <li><div class="flag-icon green">✓</div><span><strong>South Delhi MSA signed:</strong> A binding 30-year Management and Services Agreement was executed for a 650-bed facility in South Delhi — an asset-light model where the trust owns land and building. Capex of ~₹500 Cr is Artemis's responsibility (interiors + equipment), spread over FY28–FY29.</span></li>
+  </ul>
+
+  <p class="sub-h">What the market is likely missing</p>
+  <div class="insight-box">
+    Three things the market underweights: (1) The <span class="emph">corporate cost allocation effect</span> — today, all corporate overhead sits entirely on Gurgaon. As Raipur and South Delhi come online, this cost gets distributed, mechanically boosting Gurgaon's standalone margin by 150–200 bps without any operational improvement. (2) The <span class="emph">IFC relationship</span> — IFC does not take 12% stakes in marginal businesses. Their entry signals institutional confidence in the expansion plan and likely comes with governance improvements and international patient referral network access. (3) <span class="emph">ARPOB trajectory</span> — management targets 7–8% annual ARPOB growth primarily through case mix shift, not pricing. At current volumes, each 100-bps of ARPOB growth translates to ~₹10–12 Cr incremental EBITDA annually.
+  </div>
+
+  <p class="sub-h">Scorecard</p>
+  <div class="score-grid">
+    <div class="score-card high">
+      <div class="sc-label">Overall Business Health</div>
+      <div class="sc-val high">8.0 <span style="font-size:18px;color:var(--text-muted)">/10</span></div>
+      <div class="sc-desc">Single flagship with proven quaternary capability; strong brand in NCR. Structural moat intact.</div>
+    </div>
+    <div class="score-card high">
+      <div class="sc-label">Earnings Quality</div>
+      <div class="sc-val high">7.5 <span style="font-size:18px;color:var(--text-muted)">/10</span></div>
+      <div class="sc-desc">Revenue is operationally driven; volume + ARPOB growth both organic. CFO/EBITDA conversion at 60% — adequate but warrants monitoring.</div>
+    </div>
+    <div class="score-card high">
+      <div class="sc-label">Balance Sheet Strength</div>
+      <div class="sc-val high">7.0 <span style="font-size:18px;color:var(--text-muted)">/10</span></div>
+      <div class="sc-desc">Net debt ~₹20 Cr (post cash), declining. But large non-current asset jump signals project advances outpacing disclosure.</div>
+    </div>
+    <div class="score-card med">
+      <div class="sc-label">Capital Allocation Quality</div>
+      <div class="sc-val med">7.0 <span style="font-size:18px;color:var(--text-muted)">/10</span></div>
+      <div class="sc-desc">Asset-light expansion model is genuinely clever. Raipur capex of ₹38–40 Lacs/bed is well below industry. Pending equity raise is dilutive but necessary.</div>
+    </div>
+    <div class="score-card high">
+      <div class="sc-label">Management Credibility</div>
+      <div class="sc-val high">7.5 <span style="font-size:18px;color:var(--text-muted)">/10</span></div>
+      <div class="sc-desc">Dr. Chakravarty is candid about losses and timelines. Minor timeline slippage on Raipur. Tone is measured, not promotional. No blame externalisation on the West Asia situation.</div>
+    </div>
+    <div class="score-card med">
+      <div class="sc-label">Future Visibility</div>
+      <div class="sc-val med">6.5 <span style="font-size:18px;color:var(--text-muted)">/10</span></div>
+      <div class="sc-desc">Gurgaon growth clear. Raipur ramp-up is modelled conservatively. South Delhi is still 3 years away. ₹700 Cr equity raise execution risk.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STEP 2: RESULT QUALITY ANALYSIS
+═══════════════════════════════════════════ -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Result Quality Analysis</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <p class="sub-h">Revenue Growth Dissection</p>
+  <div class="two-col">
+    <div>
+      <p class="body-text">Revenue growth of 15.4% YoY for FY26 is <span class="emph">entirely organic</span> — no acquisitions, no inorganic additions. The growth decomposes neatly into two layers: volume (IP volumes +9.6% YoY at Gurgaon) and realisation (ARPOB +7.8%). This is the ideal growth composition for a hospital — it means both the hospital is filling beds faster and getting paid more per bed. The Gurgaon standalone grew faster (17.8% revenue, 17.2% EBITDA) than the consolidated entity, confirming the subsidiary drag is diminishing.</p>
+    </div>
+    <div>
+      <p class="body-text">The payor mix evolution is structurally positive. International revenue has risen from ~29% in H1 FY25 to 31–32% in FY26. Insured (TPA) has been held broadly stable at 30–31%. Government business (at lower realisation rates) has been managed down from 19–20% toward 16–18%. This payor mix improvement is the primary driver of ARPOB expansion — international patients realise at 1.3x domestic ARPOB.</p>
+    </div>
+  </div>
+
+  <p class="sub-h">Quarterly P&amp;L Quality (Consolidated)</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Metric (₹ Lacs)</th>
+          <th>Q4 FY26</th>
+          <th>Q4 FY25</th>
+          <th>YoY %</th>
+          <th>Q3 FY26</th>
+          <th>QoQ %</th>
+          <th>Assessment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-gold">
+          <td class="strong">Revenue from Ops</td>
+          <td class="num">27,923</td>
+          <td class="num">23,990</td>
+          <td class="num up">+16.4%</td>
+          <td class="num">27,235</td>
+          <td class="num up">+2.5%</td>
+          <td><span class="pill pill-green">High Quality</span></td>
+        </tr>
+        <tr>
+          <td class="label">Other Income</td>
+          <td class="num">779</td>
+          <td class="num">1,235</td>
+          <td class="num dn">-36.9%</td>
+          <td class="num">746</td>
+          <td class="num up">+4.4%</td>
+          <td><span class="pill pill-amber">Declining — IFC utilised</span></td>
+        </tr>
+        <tr>
+          <td class="label">Operative Expenses</td>
+          <td class="num">16,277</td>
+          <td class="num">14,591</td>
+          <td class="num">+11.6%</td>
+          <td class="num">16,612</td>
+          <td class="num dn">-2.0%</td>
+          <td><span class="pill pill-green">Growing slower than revenue</span></td>
+        </tr>
+        <tr>
+          <td class="label">Employee Costs</td>
+          <td class="num">4,497</td>
+          <td class="num">3,914</td>
+          <td class="num">+14.9%</td>
+          <td class="num">4,342</td>
+          <td class="num">+3.6%</td>
+          <td><span class="pill pill-amber">In line — capacity hiring</span></td>
+        </tr>
+        <tr class="row-gold">
+          <td class="strong">EBITDA</td>
+          <td class="num">5,938</td>
+          <td class="num">4,824</td>
+          <td class="num up">+23.1%</td>
+          <td class="num">5,203</td>
+          <td class="num up">+14.1%</td>
+          <td><span class="pill pill-green">Highest quarterly — real</span></td>
+        </tr>
+        <tr>
+          <td class="label">EBITDA Margin</td>
+          <td class="num up">21.3%</td>
+          <td class="num">20.1%</td>
+          <td class="num up">+116 bps</td>
+          <td class="num">19.1%</td>
+          <td class="num up">+220 bps</td>
+          <td><span class="pill pill-green">Structural expansion</span></td>
+        </tr>
+        <tr>
+          <td class="label">D&amp;A</td>
+          <td class="num">1,276</td>
+          <td class="num">1,174</td>
+          <td class="num">+8.6%</td>
+          <td class="num">1,244</td>
+          <td class="num">+2.5%</td>
+          <td><span class="pill pill-blue">Normalised</span></td>
+        </tr>
+        <tr>
+          <td class="label">Finance Cost</td>
+          <td class="num">637</td>
+          <td class="num">783</td>
+          <td class="num up">-18.6%</td>
+          <td class="num">675</td>
+          <td class="num up">-5.5%</td>
+          <td><span class="pill pill-green">Deleveraging in action</span></td>
+        </tr>
+        <tr class="row-gold">
+          <td class="strong">PAT (adj.)</td>
+          <td class="num">3,028</td>
+          <td class="num">2,292</td>
+          <td class="num up">+32.1%</td>
+          <td class="num">2,223</td>
+          <td class="num up">+36.2%</td>
+          <td><span class="pill pill-green">Operating leverage clear</span></td>
+        </tr>
+        <tr>
+          <td class="label">PAT Margin</td>
+          <td class="num up">10.8%</td>
+          <td class="num">9.6%</td>
+          <td class="num up">+120 bps</td>
+          <td class="num">8.2%</td>
+          <td class="num up">+260 bps</td>
+          <td><span class="pill pill-green">Multi-year high</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="sub-h">Margin Analysis — Why Margins Expanded</p>
+  <div class="three-col">
+    <div class="metric-card">
+      <div class="mc-label">Operative Expense Ratio</div>
+      <div class="mc-val">58.3%</div>
+      <div class="mc-sub">of Revenue (Q4 FY26)</div>
+      <div class="mc-chg up">vs. 60.8% in Q4 FY25 — 250 bps improvement</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Employee Cost Ratio</div>
+      <div class="mc-val">16.1%</div>
+      <div class="mc-sub">of Revenue (Q4 FY26)</div>
+      <div class="mc-chg dn">vs. 16.3% in Q4 FY25 — broadly stable</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Finance Cost</div>
+      <div class="mc-val">₹2,769 L</div>
+      <div class="mc-sub">FY26 full year</div>
+      <div class="mc-chg up">vs. ₹3,194 L in FY25 — -13.3% YoY</div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    The margin expansion story has three distinct drivers. First, <strong>revenue operating leverage</strong> — the hotel-like cost structure of hospitals means fixed costs (building depreciation, senior clinical staff, corporate overhead) are absorbed faster as occupancy rises from 60% to 65%+. Second, <strong>consumption efficiency</strong> — management explicitly targets 1.5–2% consumption cost reduction annually, which has been delivered. Third, <strong>declining finance cost</strong> — IFC debt repayment has reduced interest burden by ₹425 Lacs YoY in FY26, which flows entirely to PBT. At the PAT level, the leverage is even more pronounced because base PAT was low.
+  </div>
+
+  <p class="sub-h">Tax Anomaly — Watch Item</p>
+  <p class="body-text">Total tax in Q4 FY26 grew 73.7% YoY vs PAT growth of only 32.1%. The effective tax rate appears to be rising. This could reflect deferred tax liability build-up (accelerated depreciation unwind) or MAT credit exhaustion. The CFO confirmed no specific one-offs in tax — this warrants deeper investigation in the annual report. A rising effective tax rate in future quarters would compress PAT margins even if EBITDA remains healthy.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STEP 3: GUIDANCE TRACKER
+═══════════════════════════════════════════ -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Guidance Tracker &amp; Execution Scorecard</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="insight-box amber">
+    <strong>Verdict:</strong> Management has a track record of delivering on financial metrics but experiencing moderate timeline slippage on physical infrastructure milestones. Financial guidance (ARPOB growth, margin direction, EBITDA trajectory) has been met or exceeded. Physical milestones (Raipur commissioning) have slipped by 2–3 months. The overall credibility picture is <strong>Strong</strong>, not Exceptional.
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Historical Guidance / Claim</th>
+          <th>Timeline Given</th>
+          <th>Source</th>
+          <th>Current Status</th>
+          <th>Outcome</th>
+          <th>Commentary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="strong">ARPOB growth 6–8% annually</td>
+          <td>Ongoing</td>
+          <td>Q2 FY26 call</td>
+          <td>FY26 ARPOB +7.8% YoY</td>
+          <td class="achieved">✓ ACHIEVED</td>
+          <td>Delivered in the guided band. Driven by case mix, not pricing.</td>
+        </tr>
+        <tr>
+          <td class="strong">Revenue/EBITDA target "15% growth"</td>
+          <td>FY26</td>
+          <td>Q2 FY26 call</td>
+          <td>Revenue +15.4%; EBITDA +18%</td>
+          <td class="achieved">✓ EXCEEDED</td>
+          <td>Both metrics met/exceeded. EBITDA overdelivered by 300 bps.</td>
+        </tr>
+        <tr>
+          <td class="strong">EBITDA margins "maintain and improve"</td>
+          <td>FY26</td>
+          <td>Q2 FY26 call</td>
+          <td>FY26 margin 20.2% vs 19.7% in FY25</td>
+          <td class="achieved">✓ ACHIEVED</td>
+          <td>Q4 at 21.3% — well above stated target.</td>
+        </tr>
+        <tr>
+          <td class="strong">Raipur 300-bed hospital commissioning</td>
+          <td>March 2026</td>
+          <td>Q2 FY26 call</td>
+          <td>Commissioning moved to Q1 FY27 (~June 2026)</td>
+          <td class="delayed">⊘ DELAYED ~2 MO</td>
+          <td>Interiors completed; doctors joining June 2026. Minor execution slip.</td>
+        </tr>
+        <tr>
+          <td class="strong">Occupancy target "70%+ by Q2 FY27"</td>
+          <td>Q2 FY27</td>
+          <td>Q4 FY26 call</td>
+          <td>Q4 FY26 at 64.6%; tracking toward target</td>
+          <td class="tracking">● ON TRACK</td>
+          <td>Will open 50 beds when 70% hit for one quarter — disciplined approach.</td>
+        </tr>
+        <tr>
+          <td class="strong">South Delhi binding MoU → contract by Dec 2025</td>
+          <td>Dec 2025</td>
+          <td>Q2 FY26 call</td>
+          <td>MSA executed (presented in Q4 FY26 deck)</td>
+          <td class="delayed">⊘ DELAYED ~4 MO</td>
+          <td>Conditions Precedent took longer. Ultimately signed — project is real.</td>
+        </tr>
+        <tr>
+          <td class="strong">2,000 beds by 2028</td>
+          <td>FY2028</td>
+          <td>Q2 FY26 presentation</td>
+          <td>Target revised to 2029 in Q4 FY26</td>
+          <td class="delayed">⊘ TARGET REVISED</td>
+          <td>Expansion ambition intact; timeline pushed back by ~1 year as project details firmed up.</td>
+        </tr>
+        <tr>
+          <td class="strong">Raipur expected EBITDA loss of ₹15–18 Cr</td>
+          <td>FY27</td>
+          <td>Q2 FY26 call</td>
+          <td>Q4 FY26 call confirmed ₹18–20 Cr</td>
+          <td class="tracking">● TRACKING</td>
+          <td>Loss range nudged up slightly (₹18 Cr → ₹18–20 Cr). Immaterial change.</td>
+        </tr>
+        <tr>
+          <td class="strong">Peak debt cap of ₹350 Cr</td>
+          <td>Medium-term</td>
+          <td>Q2 FY26 call</td>
+          <td>FY26 debt at ₹227 Cr; peak remains ₹350 Cr</td>
+          <td class="tracking">● TRACKING</td>
+          <td>Financial discipline maintained. Room to borrow ~₹120 Cr more before ceiling.</td>
+        </tr>
+        <tr>
+          <td class="strong">International revenue ~30–31% of total</td>
+          <td>Ongoing</td>
+          <td>Multiple calls</td>
+          <td>Q4 FY26 international = 31% of Gurgaon revenue</td>
+          <td class="achieved">✓ ACHIEVED</td>
+          <td>Maintained despite West Asia disruption. Diversification strategy working.</td>
+        </tr>
+        <tr>
+          <td class="strong">Free cash flow improvement YoY</td>
+          <td>FY26</td>
+          <td>Q4 FY26 call</td>
+          <td>FCF ₹88 Cr vs ₹69 Cr in FY25</td>
+          <td class="achieved">✓ ACHIEVED</td>
+          <td>+27% improvement; confirms real cash generation of the business.</td>
+        </tr>
+        <tr>
+          <td class="strong">Mauritius hospital #1 breakeven</td>
+          <td>FY26–27</td>
+          <td>Q4 FY26 call</td>
+          <td>Hospital #1 "broken even and making profit"</td>
+          <td class="achieved">✓ ACHIEVED</td>
+          <td>Faster than expected. Hospital #2 (Cascavelle) started April 2026.</td>
+        </tr>
+        <tr>
+          <td class="strong">Small centre losses elimination by Dec 2025</td>
+          <td>Dec 2025 / Q3 FY26</td>
+          <td>Q2 FY26 call</td>
+          <td>Daffodils &amp; cardiac "EBITDA positive, making small profits" (Q4 FY26)</td>
+          <td class="achieved">✓ ACHIEVED</td>
+          <td>Non-Gurgaon drag has been substantially resolved.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col" style="margin-top:20px">
+    <div>
+      <p class="sub-h">Management Consistency Analysis</p>
+      <p class="body-text">Management has been consistent on financial parameters and candid about physical execution timelines slipping. There is no instance of a guidance being silently abandoned — every revision has come with explicit explanation. The Raipur slip was disclosed proactively. The 2029 target revision came with an updated capex breakdown. This is consistent with a management team that is <em>operationally honest but architecturally optimistic</em> on timelines — a common and tolerable pattern in greenfield hospital development.</p>
+    </div>
+    <div>
+      <p class="sub-h">Execution Credibility Rating</p>
+      <div class="insight-box green">
+        <strong>Rating: STRONG</strong><br>Financial delivery is consistent and on-target. Physical timeline management has 2-to-4 month slippage patterns. No guidance has been abandoned. Management communicates openly about headwinds. Capital discipline is demonstrated. This is a <em>credible, competent management team</em> — not promotional, not exceptional.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STEP 4: HIDDEN FINANCIAL ARCHITECTURE
+═══════════════════════════════════════════ -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Hidden Financial Architecture</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <p class="sub-h">Working Capital &amp; Cash Flow Truth</p>
+  <div class="three-col">
+    <div class="metric-card">
+      <div class="mc-label">CFO / EBITDA Ratio</div>
+      <div class="mc-val">~60%</div>
+      <div class="mc-sub">FY26 (per CFO's statement)</div>
+      <div class="mc-chg neu">Industry-standard; hospitals collect upfront from TPA/cash patients</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Free Cash Flow FY26</div>
+      <div class="mc-val">₹88 Cr</div>
+      <div class="mc-sub">vs ₹69 Cr in FY25</div>
+      <div class="mc-chg up">+27% YoY; FCF/PAT ~85% — strong conversion</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Net Current Assets</div>
+      <div class="mc-val">-₹13 Cr</div>
+      <div class="mc-sub">FY26 Consolidated</div>
+      <div class="mc-chg up">Negative NCA = suppliers/patients fund working capital — structurally excellent</div>
+    </div>
+  </div>
+
+  <p class="body-text" style="margin-top:16px;">The working capital structure of Artemis is intrinsically favorable. Hospitals in India collect from cash patients upfront and from insurance companies within 30–60 days on average. Government patients create receivables (30–45 days), but Artemis keeps government mix capped at 16–18%. The result is negative net current assets — the business funds itself from customer advances, not bank lines. This is a structural moat that many analysts overlook.</p>
+
+  <p class="sub-h">Balance Sheet Stress Mapping — The ₹22,885 Lacs Anomaly</p>
+  <div class="insight-box amber">
+    <strong>The most important hidden item in FY26 results:</strong> "Other Non-Current Assets" jumped from ₹3,345 Lacs in FY25 to ₹22,885 Lacs in FY26 — a ₹19,540 Lac (195 Cr) surge. Simultaneously, cash and bank balances fell from ₹39,554 Lacs to ₹20,614 Lacs — a ₹18,940 Lac decline. This is not a coincidence. The company has deployed IFC funds into project-related advances and deposits for the South Delhi and Raipur projects. This is capital committed ahead of revenue generation — economically sound but creates a "cash consumed" optic that can confuse P&amp;L-focused investors. The real balance sheet is not stressed; the cash is not lost — it is deposited as security against long-term operating leases.
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Balance Sheet Item (₹ Lacs)</th>
+          <th>FY26</th>
+          <th>H1 FY26</th>
+          <th>FY25</th>
+          <th>Change FY25→FY26</th>
+          <th>Assessment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="strong">Shareholders' Funds</td>
+          <td class="num">94,068</td>
+          <td class="num">88,848</td>
+          <td class="num">84,355</td>
+          <td class="num up">+11.5%</td>
+          <td>Healthy equity accretion from retained earnings</td>
+        </tr>
+        <tr>
+          <td class="label">Total Loans</td>
+          <td class="num">22,686</td>
+          <td class="num">23,568</td>
+          <td class="num">24,582</td>
+          <td class="num up">-7.9%</td>
+          <td><span class="pill pill-green">Deleveraging on track</span></td>
+        </tr>
+        <tr class="row-gold">
+          <td class="strong">Cash &amp; Bank</td>
+          <td class="num">20,614</td>
+          <td class="num">34,809</td>
+          <td class="num">39,554</td>
+          <td class="num dn">-47.9%</td>
+          <td><span class="pill pill-amber">Deployed into project advances</span></td>
+        </tr>
+        <tr class="row-gold">
+          <td class="strong">Other Non-Current Assets</td>
+          <td class="num">22,885</td>
+          <td class="num">7,613</td>
+          <td class="num">3,345</td>
+          <td class="num dn">+584%</td>
+          <td><span class="pill pill-amber">Project deposits &amp; advances — watch</span></td>
+        </tr>
+        <tr>
+          <td class="label">Net Fixed Assets</td>
+          <td class="num">83,295</td>
+          <td class="num">82,890</td>
+          <td class="num">78,510</td>
+          <td class="num">+6.1%</td>
+          <td>Modest addition — Gurgaon mature, Raipur not yet</td>
+        </tr>
+        <tr>
+          <td class="label">Net Current Assets</td>
+          <td class="num dn">(1,319)</td>
+          <td class="num dn">(3,928)</td>
+          <td class="num dn">(3,646)</td>
+          <td class="num up">Improving</td>
+          <td><span class="pill pill-green">Structurally negative — good</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="sub-h">Debt Maturity &amp; Liquidity</p>
+  <p class="body-text">Total consolidated debt of ₹226 Cr against cash of ₹206 Cr implies near-zero net debt. The IFC loan (originally at attractive development finance rates) has been systematically repaid — finance cost fell 13.3% YoY in FY26 despite broadly stable debt levels in H1. The debt-to-equity ratio of 1.16 at H1 FY26 (as confirmed by management) is comfortable. Peak debt forecast of ₹350 Cr implies debt-to-equity of ~0.35x on projected FY27 equity — entirely manageable. No promoter pledging is disclosed.</p>
+
+  <p class="sub-h">Off-Balance-Sheet Items</p>
+  <p class="body-text">The South Delhi lease is a significant off-balance-sheet commitment — a 30-year lease on ~3.5 acres in South Delhi with ~7,00,000 sqft built-up area, monetised over 30 years. This will come on-balance-sheet as a right-of-use asset under Ind AS 116 once operationalised. The advance payments against building milestones will be adjusted against rent over 8–10 years post-commissioning. The Raipur arrangement similarly involves a 30-year lease with the land and building owned by partners — the P&L stays with Artemis, but so does the lease obligation. These are not sinister structures; they are sensible capital-light models.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STEP 5: MANAGEMENT COMMENTARY DECODE
+═══════════════════════════════════════════ -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2>Management Commentary Decode</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <p class="sub-h">Tone &amp; Communication Style</p>
+  <p class="body-text">Dr. Devlina Chakravarty communicates with notable directness for a listed company MD. She volunteered the Raipur delay without being asked. She provided specific loss estimates for Raipur. She gave a frank competitor comparison (parity with Medanta, below Fortis/Max on pricing). She disclosed that the oncology mix dip was due to a TPA fight over immunotherapy and government circular pressure — not a demand problem. This calibre of unprompted disclosure is rare among Indian listed hospital managements and elevates her credibility score meaningfully.</p>
+
+  <div class="mgmt-quote">
+    <p>"We are moderately priced, lower than many in our region. We are probably as much as Medanta but cheaper than a Fortis or a Max. And we don't use pricing to drive our business — we work on case mix and efficiency."</p>
+    <cite>— Dr. Devlina Chakravarty, Q4 FY26 Concall</cite>
+  </div>
+
+  <div class="mgmt-quote">
+    <p>"The EBITDA growth will continue in the coming financial year despite losses in Raipur. Daffodils and cardiac care are all EBITDA breakeven and making small profits."</p>
+    <cite>— Dr. Devlina Chakravarty, Q4 FY26 Concall</cite>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <p class="sub-h">What Management Emphasised</p>
+      <ul class="flag-list">
+        <li><div class="flag-icon green">↑</div><span>International patient growth and geographic diversification (26.9% growth in FY26)</span></li>
+        <li><div class="flag-icon green">↑</div><span>Operating leverage and margin expansion trajectory</span></li>
+        <li><div class="flag-icon green">↑</div><span>First-mover advantage in Raipur — PWC market survey, established doctor partners</span></li>
+        <li><div class="flag-icon green">↑</div><span>Asset-light expansion philosophy — cost per bed discipline</span></li>
+        <li><div class="flag-icon green">↑</div><span>AI triage systems, digital transformation, clinical excellence (ICPO certification)</span></li>
+      </ul>
+    </div>
+    <div>
+      <p class="sub-h">What Management Avoided / Was Vague On</p>
+      <ul class="flag-list">
+        <li><div class="flag-icon amber">?</div><span>Specific cash flow breakdown (CFO/EBITDA ratio given verbally but not in deck)</span></li>
+        <li><div class="flag-icon amber">?</div><span>Receivables aging schedule — particularly government receivables</span></li>
+        <li><div class="flag-icon amber">?</div><span>Exact composition of the ₹22,885 Cr non-current assets jump</span></li>
+        <li><div class="flag-icon amber">?</div><span>South Delhi project: capex breakdown deferred to "end of December" (then revised again)</span></li>
+        <li><div class="flag-icon amber">?</div><span>ESOP dilution details — not mentioned in any concall</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="sub-h">Management Classification</p>
+  <div class="insight-box green">
+    <strong>Classification: Financially Disciplined + Long-Term Allocator</strong><br>
+    The management team exhibits characteristics of long-term capital allocators — they resist pricing temptation, they stage expansion to protect the P&L, they use asset-light models to keep capex per bed below industry averages, and they set measurable hurdles (ROCE 16–18%, payback 5–6 years) for new projects. Dr. Chakravarty's dual role in industry bodies (CII, FICCI, GIC Council) suggests deep ecosystem connectivity that may provide regulatory and commercial advantages not visible in the numbers today. The Apollo Tyres Group parentage brings financial discipline — Onkar Kanwar's track record in capital markets is strong.
+  </div>
+
+  <p class="sub-h">Psychological Markers in Q4 vs Q2 Concall</p>
+  <p class="body-text">Comparing the two concalls (Q2 in November 2025 vs Q4 in May 2026), the tone has shifted from cautiously confident to quietly assured. In Q2, management was still framing the South Delhi project cautiously ("MOU becoming binding by end of December"). By Q4, the MSA was executed and the financial modelling was specific (₹500 Cr capex, ₹75–80 Lacs/bed). This evolution — from aspiration to specificity — is a positive psychological marker. Confidence is earned, not performed.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STEP 6: BUSINESS ENGINE ANALYSIS
+═══════════════════════════════════════════ -->
+<section class="section" id="s6">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2>Segment &amp; Business Engine Analysis</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <p class="sub-h">Segment 1: Gurgaon Flagship — Core Profit Engine (95%+ of P&amp;L)</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>KPI</th>
+          <th>Q4 FY26</th>
+          <th>Q4 FY25</th>
+          <th>FY26</th>
+          <th>FY25</th>
+          <th>Trend</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">IP Volume</td>
+          <td class="num">8,712</td>
+          <td class="num">7,979</td>
+          <td class="num">34,428</td>
+          <td class="num">31,417</td>
+          <td class="up">+9.2% / +9.6%</td>
+        </tr>
+        <tr>
+          <td class="label">ARPOB (₹)</td>
+          <td class="num">84,571</td>
+          <td class="num">78,835</td>
+          <td class="num">82,435</td>
+          <td class="num">76,447</td>
+          <td class="up">+7.3% / +7.8%</td>
+        </tr>
+        <tr>
+          <td class="label">ARPP (₹)</td>
+          <td class="num">3,06,993</td>
+          <td class="num">2,82,229</td>
+          <td class="num">2,99,239</td>
+          <td class="num">2,78,267</td>
+          <td class="up">+8.8% / +7.5%</td>
+        </tr>
+        <tr>
+          <td class="label">Occupancy %</td>
+          <td class="num">64.6%</td>
+          <td class="num">60.8%</td>
+          <td class="num">63.0%</td>
+          <td class="num">64.1%</td>
+          <td class="neu">Q4 YoY +380 bps; FY26 -110 bps (bed expansion effect)</td>
+        </tr>
+        <tr>
+          <td class="label">Avg Operational Beds</td>
+          <td class="num">544</td>
+          <td class="num">522</td>
+          <td class="num">544</td>
+          <td class="num">489</td>
+          <td class="up">+11.3% YoY (tower addition)</td>
+        </tr>
+        <tr>
+          <td class="label">ALOS (Days)</td>
+          <td class="num">3.63</td>
+          <td class="num">3.58</td>
+          <td class="num">3.63</td>
+          <td class="num">3.64</td>
+          <td class="neu">Stable — good case mix signal</td>
+        </tr>
+        <tr class="row-gold">
+          <td class="strong">Revenue (₹ Lacs)</td>
+          <td class="num">26,746</td>
+          <td class="num">22,520</td>
+          <td class="num">1,03,022</td>
+          <td class="num">87,424</td>
+          <td class="up">+18.8% / +17.8%</td>
+        </tr>
+        <tr class="row-gold">
+          <td class="strong">EBITDA Margin</td>
+          <td class="num up">21.7%</td>
+          <td class="num">21.4%</td>
+          <td class="num up">21.1%</td>
+          <td class="num">21.3%</td>
+          <td class="neu">Essentially stable at 21%+ — room to expand</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="sub-h">Revenue by Specialty — Mix Evolution</p>
+  <div class="body-text">
+    The specialty mix reveals a deliberate high-complexity pivot. Oncology (18%) + Neuro (15%) + Orthopaedics (13%) = 46% of revenue from the three highest-acuity, highest-margin specialties. Notably, Orthopaedics has declined from 14% in FY25 to 13% in FY26 — this likely reflects the robotics-assisted joint replacement ramp still in early stages. Cardiology holds at 9% consistently. The "other specialties" bucket (19%) is the catch-all for newer and growing verticals. One structural concern: the oncology dip (from 20% in Q4 FY25 to 18% in Q4 FY26) reflects the TPA-immunotherapy dispute — this should normalise in FY27 as agreements are reached.
+  </div>
+
+  <p class="sub-h">Segment 2: Raipur — Emerging Growth Engine (FY27 onwards)</p>
+  <p class="body-text">The Raipur investment thesis rests on three pillars: (1) First-mover positioning in a 60%-outmigration market — 60% of Chhattisgarh patients travel to Mumbai or Delhi for tertiary care; (2) Partner network — the two partner doctors (Dr. Agarwal and Dr. Gupta) are the most prominent clinicians in Raipur, providing instant referral credibility and political TPA empanelment access; (3) Unit economics — at ₹33,000–35,000 ARPOB and lower operating costs, Raipur tier-2 hospitals typically achieve 20–25% EBITDA post-maturity, comparable to tier-1 facilities.</p>
+
+  <div class="three-col">
+    <div class="metric-card">
+      <div class="mc-label">Total Capex (Raipur)</div>
+      <div class="mc-val">₹110–120 Cr</div>
+      <div class="mc-sub">300 beds; ~₹38–40 L/bed</div>
+      <div class="mc-chg up">60% already spent as of Q4 FY26</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Expected FY27 Revenue</div>
+      <div class="mc-val">₹80–85 Cr</div>
+      <div class="mc-sub">Conservative; 40–50% occupancy</div>
+      <div class="mc-chg neu">ARPOB ₹33,000–35,000</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Expected FY27 EBITDA Loss</div>
+      <div class="mc-val">₹18–20 Cr</div>
+      <div class="mc-sub">~1.0–1.5% drag on consolidated margins</div>
+      <div class="mc-chg neu">Breakeven: 18 months from launch</div>
+    </div>
+  </div>
+
+  <p class="sub-h">Segment 3: Mauritius O&amp;M Contracts — Emerging International Platform</p>
+  <p class="body-text">Artemis operates Curepipe Hospital (80 beds, started FY24) on a management fee model — no capital deployed, pure fee income flowing to top and bottom line. The Curepipe facility has broken even and is making a profit. A second facility (Cascavelle, 110 beds) was announced for FY27 and operations started April 2026. O&amp;M contract revenue currently represents approximately 1% of consolidated revenue — immaterial today but a test bed for the international management services model. The implicit optionality of scaling this platform (to Africa, CIS countries where patient flows originate) is significant and unvalued.</p>
+
+  <p class="sub-h">Segment 4: Cardiac Care &amp; Daffodils (Delhi) — Now Breakeven</p>
+  <p class="body-text">These smaller Delhi-based facilities (where Artemis holds 65% and Philips 35% in the cardiac centres) previously dragged consolidated margins by ₹8–12 Cr annually. As of Q4 FY26, management confirmed all are "EBITDA breakeven and making small profits." The drag is effectively eliminated. A potential 100% acquisition of the Philips stake is under evaluation, which would consolidate full economics of these centres. This is a hidden earnings improvement that has already occurred but was masked by Gurgaon's strong growth headline.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STEP 7: INDUSTRY & COMPETITIVE POSITIONING
+═══════════════════════════════════════════ -->
+<section class="section" id="s7">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2>Industry &amp; Competitive Positioning</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <p class="sub-h">Industry Cycle Position</p>
+  <p class="body-text">The Indian private hospital sector is in a structural, multi-year upcycle driven by four convergent forces: rising health insurance penetration (CGHS revision improving private hospital viability), growing domestic affluence and willingness to pay for premium care, medical value travel from 100+ countries (India's ARPOB is 3–5x cheaper than Southeast Asia for equivalent quality), and an aging population driving chronic disease management volumes. The sector is experiencing simultaneous price improvement (case mix shift) and volume growth — a rare combination that typically occurs only in early-to-mid cycle expansion phases. Artemis is a pure-play beneficiary of all four forces.</p>
+
+  <p class="sub-h">Competitive Positioning in NCR</p>
+  <div class="insight-box">
+    Artemis occupies a distinctive positioning in Delhi-NCR: it claims the <strong>highest ARPOB in Gurgaon, exceeding even South Delhi hospitals</strong>, achieved not through aggressive pricing (it is priced at or below Medanta, below Fortis/Max) but through case complexity, international patient mix, and bed turnaround efficiency. This is a clinically-earned premium — a moat that is more durable than brand-alone premiums. The 1st JCI-accredited hospital in Gurgaon distinction, combined with 14 Centres of Excellence, creates a referral network effect that compounds over time.
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Competitive Parameter</th>
+          <th>Artemis</th>
+          <th>Medanta</th>
+          <th>Max (Gurgaon)</th>
+          <th>Fortis (Gurgaon)</th>
+          <th>Artemis Edge</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">ARPOB (approx)</td>
+          <td class="strong up">₹82,000–85,000</td>
+          <td>₹80,000–85,000</td>
+          <td>₹75,000–80,000</td>
+          <td>₹70,000–75,000</td>
+          <td><span class="pill pill-green">Leads or matches top tier</span></td>
+        </tr>
+        <tr>
+          <td class="label">International Mix</td>
+          <td class="strong up">30–32%</td>
+          <td>25–30%</td>
+          <td>15–20%</td>
+          <td>10–15%</td>
+          <td><span class="pill pill-green">Highest in Gurgaon</span></td>
+        </tr>
+        <tr>
+          <td class="label">EBITDA Margin</td>
+          <td class="strong">21%+</td>
+          <td>22–24%</td>
+          <td>20–22%</td>
+          <td>16–18%</td>
+          <td><span class="pill pill-amber">Closing gap with leaders</span></td>
+        </tr>
+        <tr>
+          <td class="label">JCI Accreditation</td>
+          <td class="strong up">First in Gurgaon</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td><span class="pill pill-gold">First-mover credibility</span></td>
+        </tr>
+        <tr>
+          <td class="label">Quaternary Capabilities</td>
+          <td class="strong">Full (transplants, robotics, CyberKnife)</td>
+          <td>Full</td>
+          <td>Full</td>
+          <td>Full</td>
+          <td><span class="pill pill-blue">Parity</span></td>
+        </tr>
+        <tr>
+          <td class="label">Current Beds (operational)</td>
+          <td class="strong">544</td>
+          <td>1,500+</td>
+          <td>300+</td>
+          <td>500+</td>
+          <td><span class="pill pill-amber">Smaller — but growing fast</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="sub-h">Regulatory Environment — GIC Council (Key Structural Tailwind)</p>
+  <div class="insight-box green">
+    Dr. Chakravarty is <em>personally heading the working group</em> within CII on hospital categorization and pricing reform, working directly with IRDAI's Ajay Seth. Five working groups are addressing: (1) transparent hospital categorization; (2) ethical insurer-hospital practices; (3) rate rationalization for TPAs; (4) timely renewal of TPA contracts; (5) fraud prevention frameworks. Management explicitly stated this will be "a new dawn" for hospitals — if implemented, private hospital pricing power will structurally improve because insurer bullying on rate renewals (which currently cap Artemis's realizable pricing growth at 3%) will be curtailed. Artemis is positioned to be a net beneficiary, not a victim, of insurance regulation.
+  </div>
+
+  <p class="sub-h">Medical Value Travel — Geopolitical Risk Assessment</p>
+  <p class="body-text">Middle East represents only 30% of Artemis's international revenue, which itself is 31% of total revenue — meaning Middle East is only ~9% of consolidated revenue. A repeat of the March 2026 war disruption (15–18% dip) would reduce consolidated revenue by approximately 1.5% on a sustained basis. Management confirmed 90% recovery by May 2026. The diversification strategy (Africa, CIS, SAARC, Canada, Nordic countries) is deliberately constructed to neutralise single-region risks. This is good risk architecture.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STEP 8: CAPITAL ALLOCATION ANALYSIS
+═══════════════════════════════════════════ -->
+<section class="section" id="s8">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2>Capital Allocation Analysis</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <p class="sub-h">Capital Allocation Philosophy</p>
+  <p class="body-text">Artemis's capital allocation philosophy is its most underappreciated competitive advantage. Rather than acquiring real estate (the traditional Indian hospital model), management consistently seeks arrangements where land and building are supplied by local partners or trusts, reducing capex per bed dramatically:</p>
+
+  <div class="three-col">
+    <div class="metric-card">
+      <div class="mc-label">Raipur Cost/Bed</div>
+      <div class="mc-val">~₹38L</div>
+      <div class="mc-sub">vs industry avg ₹75–100L/bed</div>
+      <div class="mc-chg up">50–60% below peer cost</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">South Delhi Cost/Bed</div>
+      <div class="mc-val">~₹77L</div>
+      <div class="mc-sub">₹500 Cr / 650 beds (interiors + equip only)</div>
+      <div class="mc-chg up">Land/building = trust's cost</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Gurgaon Expansion/Bed</div>
+      <div class="mc-val">~₹70L</div>
+      <div class="mc-sub">100-bed addition on existing plinth</div>
+      <div class="mc-chg up">Incremental floor construction only</div>
+    </div>
+  </div>
+
+  <p class="sub-h">ROCE Trajectory</p>
+  <div class="prog-bar-wrap" style="margin-top:16px">
+    <div class="prog-bar-label"><span>Current ROCE</span><span>14.5%</span></div>
+    <div class="prog-bar"><div class="prog-bar-fill amber" style="width:58%"></div></div>
+  </div>
+  <div class="prog-bar-wrap">
+    <div class="prog-bar-label"><span>FY27–28 Target (management)</span><span>16–18%</span></div>
+    <div class="prog-bar"><div class="prog-bar-fill green" style="width:72%"></div></div>
+  </div>
+  <div class="prog-bar-wrap">
+    <div class="prog-bar-label"><span>Theoretical Max (Gurgaon only, 70%+ occupancy)</span><span>~22–24%</span></div>
+    <div class="prog-bar"><div class="prog-bar-fill green" style="width:90%"></div></div>
+  </div>
+
+  <p class="body-text" style="margin-top:16px;">The ROCE improvement path is clear: Gurgaon ROCE improves naturally as occupancy reaches 70%, capital is efficiently deployed in expansion projects at below-industry cost, and the corporate cost base gets distributed across more facilities. The payback period discipline (5–6 years) at 16–18% ROCE hurdle is rigorous by Indian hospital standards.</p>
+
+  <p class="sub-h">Equity Raise — INR 700 Cr Concern?</p>
+  <div class="insight-box amber">
+    The Board has approved a fundraise of up to ₹700 Cr, subject to shareholders' approval. Management clarified this is <em>not</em> for currently-announced projects (Raipur + South Delhi can be funded through internal accruals + debt up to ₹350 Cr peak). The ₹700 Cr raise is earmarked for <strong>additional brownfield or greenfield projects</strong> currently in the pipeline. The key risks are: (1) dilution quantum — at ₹280/share, ₹700 Cr = ~25 Cr new shares = ~15% dilution to current float; (2) deployment risk — capital raised before assets are finalized could compress ROE temporarily. Management's stated intent to finalize at least one new project before raising capital is the right sequencing. Watch for the shareholder approval vote carefully.
+  </div>
+
+  <p class="sub-h">Dividend &amp; Shareholder Returns</p>
+  <p class="body-text">Dividend yield is 0.16% — nominal. Artemis is in an aggressive reinvestment phase; dividends will remain token. Buybacks are not on the agenda. The value creation mechanism is pure earnings compounding. Given the growth runway, this is the appropriate capital allocation choice — the hurdle rate for internal investment (16–18% ROCE) far exceeds any realistic cost of equity return to investors via dividends.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STEP 9: RED FLAGS & FORENSIC DETECTION
+═══════════════════════════════════════════ -->
+<section class="section" id="s9">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2>Red Flags &amp; Forensic Detection</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <ul class="flag-list">
+    <li>
+      <div class="flag-icon amber">!</div>
+      <div>
+        <strong>Non-current asset surge (₹3,345 L → ₹22,885 L).</strong>
+        <span class="pill pill-amber" style="margin-left:6px">MODERATE</span>
+        <p style="margin-top:4px;font-size:12.5px;color:var(--text-dim)">A nearly 6x jump in other non-current assets between FY25 and FY26 needs explicit footnote disclosure. Management contextualised this as project-related advances and deposits, but no itemised breakdown has been published. We assess this as likely legitimate (consistent with the cash decline and project announcements) but needs annual report verification. Risk: If any portion represents amounts trapped in non-performing subsidiaries or vendor advances against undelivered projects, this would be a concern.</p>
+      </div>
+    </li>
+    <li>
+      <div class="flag-icon amber">!</div>
+      <div>
+        <strong>CFO/EBITDA at 60% — below global benchmarks.</strong>
+        <span class="pill pill-amber" style="margin-left:6px">MODERATE</span>
+        <p style="margin-top:4px;font-size:12.5px;color:var(--text-dim)">Best-in-class hospital chains globally convert 70–80% of EBITDA to operating cash flow. Artemis at 60% raises questions: Are receivables building? Are payables being stretched? Is there capitalisation of routine expenses? The CFO confirmed no one-offs, but the FY26 FCF of ₹88 Cr against EBITDA of ₹218 Cr implies significant cash costs below EBITDA (taxes: ₹35 Cr, interest: ₹28 Cr, working capital changes). This analysis is not alarming but requires annual report granularity.</p>
+      </div>
+    </li>
+    <li>
+      <div class="flag-icon amber">!</div>
+      <div>
+        <strong>Tax rate spike in Q4 FY26.</strong>
+        <span class="pill pill-amber" style="margin-left:6px">MODERATE</span>
+        <p style="margin-top:4px;font-size:12.5px;color:var(--text-dim)">Tax expense in Q4 FY26 grew 73.7% YoY vs PAT growth of 32.1% — the effective tax rate has structurally risen. This could reflect exhaustion of MAT credits, deferred tax liability crystallisation, or higher non-deductible expenses. If the effective tax rate normalises upward, PAT margins could face 100–150 bps compression even as EBITDA margins expand.</p>
+      </div>
+    </li>
+    <li>
+      <div class="flag-icon red">!!</div>
+      <div>
+        <strong>Equity raise dilution risk — ₹700 Cr pending shareholder approval.</strong>
+        <span class="pill pill-red" style="margin-left:6px">MODERATE-HIGH</span>
+        <p style="margin-top:4px;font-size:12.5px;color:var(--text-dim)">At the current market price of ₹280, a ₹700 Cr raise would create approximately 25 Cr new shares — roughly 15% dilution to the current ~158 Cr share base. If this raise happens at a discount to market (QIP/rights typically price at 5–10% discount), EPS dilution could be 15–20% in the near term before projects come online. Management's intent to finalize assets before raising mitigates but does not eliminate this risk.</p>
+      </div>
+    </li>
+    <li>
+      <div class="flag-icon amber">!</div>
+      <div>
+        <strong>Raipur first-mover risk — competitive market entry accelerating.</strong>
+        <span class="pill pill-amber" style="margin-left:6px">MODERATE</span>
+        <p style="margin-top:4px;font-size:12.5px;color:var(--text-dim)">Management acknowledged Manipal, Lilavati, and AIIMS Raipur are all active in the Raipur market. The "first-mover" window may be shorter than anticipated. Raipur also has Apollo Hospital. If Artemis loses the empanelment race in the first 6 months (TPAs typically take 3 months, government schemes 6 months), the ₹18–20 Cr loss estimate could prove optimistic and stretch the breakeven timeline beyond 18 months.</p>
+      </div>
+    </li>
+    <li>
+      <div class="flag-icon amber">!</div>
+      <div>
+        <strong>Promoter shareholding decline (66.5% → 58.4%).</strong>
+        <span class="pill pill-amber" style="margin-left:6px">MINOR</span>
+        <p style="margin-top:4px;font-size:12.5px;color:var(--text-dim)">The promoter stake dropped significantly between Q2 FY26 and FY26 year-end, coinciding with IFC's entry at 12%. This is not a distress signal — IFC is likely a positive catalyst. However, if the promoter continues to monetise via equity raises, the alignment of interests with minority shareholders could weaken. No promoter pledging is disclosed, which is positive.</p>
+      </div>
+    </li>
+    <li>
+      <div class="flag-icon green">✓</div>
+      <div>
+        <strong>No related party transaction concerns detected.</strong>
+        <span class="pill pill-green" style="margin-left:6px">MINOR / CLEAR</span>
+        <p style="margin-top:4px;font-size:12.5px;color:var(--text-dim)">The investor presentation does not flag any unusual related party transactions. Apollo Tyres Group affiliation is clearly disclosed. No circular transactions or unexplained inter-company payables noted in the available disclosures.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STEP 10: POSITIVE INFLECTION DETECTION
+═══════════════════════════════════════════ -->
+<section class="section" id="s10">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2>Positive Inflection Detection</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <p class="sub-h">Already in the Numbers</p>
+      <ul class="flag-list">
+        <li><div class="flag-icon green">↑</div><span><strong>Operating leverage inflection:</strong> EBITDA growing faster than revenue for 6+ consecutive quarters. Incremental revenue-to-EBITDA flow-through is confirmed at ~30%.</span></li>
+        <li><div class="flag-icon green">↑</div><span><strong>Finance cost structural decline:</strong> IFC loan repayment reducing interest burden. Full year benefit of this deleveraging compounds through FY27.</span></li>
+        <li><div class="flag-icon green">↑</div><span><strong>International patient re-acceleration:</strong> Post-March 2026 dip, management confirmed 90% recovery by May 2026. New geographies (West Africa, Canada, Nordic) being added annually.</span></li>
+        <li><div class="flag-icon green">↑</div><span><strong>Small centre drag eliminated:</strong> Cardiac care and Daffodils are EBITDA positive. The historical subsidiary drag (~₹10–15 Cr annually) has been resolved.</span></li>
+      </ul>
+    </div>
+    <div>
+      <p class="sub-h">Ahead of Consensus — Not Yet in Numbers</p>
+      <ul class="flag-list">
+        <li><div class="flag-icon green">↑</div><span><strong>Corporate cost redistribution:</strong> When Raipur and South Delhi become operational, corporate overhead currently sitting 100% on Gurgaon gets distributed — mechanically lifting Gurgaon EBITDA by 150–200 bps without any operational effort.</span></li>
+        <li><div class="flag-icon green">↑</div><span><strong>GIC Council insurance reform:</strong> If TPA locking periods are broken and hospitals can reprice more frequently than the current 3-year cycles, Artemis's ARPOB growth could accelerate from 7–8% to 10%+ annually.</span></li>
+        <li><div class="flag-icon green">↑</div><span><strong>Occupancy jump trigger:</strong> At 70% occupancy (guided for Q2 FY27), management will open 50 more beds — locking in the next leg of volume growth without adding clinical overhead.</span></li>
+        <li><div class="flag-icon green">↑</div><span><strong>Platinum Green FAR + Additional FAR purchase:</strong> 100 beds (free from FAR increase) + 200 beds (FAR purchase) = 300 incremental beds at Gurgaon at ~₹65–70 L/bed — well below replacements cost and creating intrinsic value not in book value.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="insight-box green">
+    <strong>The invisible earnings multiplier:</strong> Artemis currently has ~158 Cr total shares outstanding. If the ₹700 Cr raise happens at ₹280/share, it adds ~25 Cr shares (15.8% dilution). But if it happens at a premium valuation — say ₹320/share post-reassessment — dilution drops to 13.8% while capital raised remains the same. The <em>timing of the capital raise relative to the stock price</em> is potentially the single largest value-creation or value-destruction decision management will make in the next 12 months. Investors should watch for the shareholder vote resolution carefully.
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STEP 11: VALUATION COMFORT
+═══════════════════════════════════════════ -->
+<section class="section" id="s11">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2>Valuation Comfort Analysis</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Value</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Market Cap</td>
+          <td class="num strong">₹4,429 Cr</td>
+          <td>At ₹280/share</td>
+        </tr>
+        <tr>
+          <td class="label">Enterprise Value (approx.)</td>
+          <td class="num">~₹4,450 Cr</td>
+          <td>Market cap + net debt (~₹20 Cr)</td>
+        </tr>
+        <tr>
+          <td class="label">EV / FY26 EBITDA</td>
+          <td class="num strong">~20.4x</td>
+          <td>vs Apollo ~35x, Max ~28x, Narayana ~22x</td>
+        </tr>
+        <tr>
+          <td class="label">P/E (trailing)</td>
+          <td class="num">41.9x</td>
+          <td>Based on FY26 PAT of ₹104 Cr; in line with mid-tier peers</td>
+        </tr>
+        <tr>
+          <td class="label">P/E (FY27E)</td>
+          <td class="num strong">~35x</td>
+          <td>Based on estimated FY27E PAT of ₹123–130 Cr (pre-dilution)</td>
+        </tr>
+        <tr>
+          <td class="label">Price / Book</td>
+          <td class="num">~4.7x</td>
+          <td>BV ₹59.3/share; justified for an asset-heavy hospital with growing ROCE</td>
+        </tr>
+        <tr>
+          <td class="label">ROCE</td>
+          <td class="num">14.5%</td>
+          <td>Rising; management targets 16–18% in 3–4 years</td>
+        </tr>
+        <tr>
+          <td class="label">ROE</td>
+          <td class="num">11.9%</td>
+          <td>Low relative to peers (Apollo ~20%+) — will expand as leverage declines</td>
+        </tr>
+        <tr>
+          <td class="label">FCF Yield</td>
+          <td class="num">~2.0%</td>
+          <td>₹88 Cr FCF / ₹4,429 Cr Mkt Cap; limited, but growing</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="sub-h">Peer Valuation Comparison</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>EV/EBITDA (FY26)</th>
+          <th>EBITDA Margin</th>
+          <th>Revenue CAGR (3yr)</th>
+          <th>International Mix</th>
+          <th>Relative Assessment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Apollo Hospitals</td>
+          <td class="num">~35x</td>
+          <td>~12–14% (diversified)</td>
+          <td>~18%</td>
+          <td>~7–8%</td>
+          <td>Quality premium; much larger scale</td>
+        </tr>
+        <tr>
+          <td class="label">Max Healthcare</td>
+          <td class="num">~28–30x</td>
+          <td>~20–22%</td>
+          <td>~20%</td>
+          <td>~12%</td>
+          <td>Comparable quality; North India focus</td>
+        </tr>
+        <tr>
+          <td class="label">Narayana Hrudayalaya</td>
+          <td class="num">~22x</td>
+          <td>~16–18%</td>
+          <td>~18%</td>
+          <td>~5%</td>
+          <td>Lower ARPOB but Cayman optionality</td>
+        </tr>
+        <tr class="row-gold">
+          <td class="strong">Artemis Medicare</td>
+          <td class="num up">~20x</td>
+          <td class="up">~21%</td>
+          <td class="up">~16–18%</td>
+          <td class="up">~31%</td>
+          <td><span class="pill pill-green">Mispriced relative to quality</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight-box green">
+    <strong>Valuation Thesis:</strong> Artemis trades at ~20x FY26 EV/EBITDA while operating at margins comparable to Max Healthcare (20–22% EV/EBITDA territory) and carrying a superior international patient mix (31% vs Max's ~12%). The discount primarily reflects: (1) single-asset concentration (Gurgaon = 95%+ of P&L); (2) execution risk on Raipur/South Delhi; (3) smaller market cap reducing institutional liquidity. As the multi-hospital narrative becomes real (Raipur FY27, South Delhi FY29), this discount should compress. A re-rating toward 24–26x EV/EBITDA on FY27E numbers implies a target range of ₹320–360/share — 15–30% upside from current levels, with meaningful EPS growth tailwinds reducing the P/E every year.
+  </div>
+
+  <p class="sub-h">Valuation Comfort Classification</p>
+  <div class="verdict-block" style="margin-top:16px">
+    <div class="verdict-label-sm">Valuation Comfort Assessment</div>
+    <div class="verdict-rating" style="font-size:28px">Reasonable — Tilting Toward Deep Comfort</div>
+    <div class="verdict-sub">Artemis is a high-quality business at a reasonable-to-fair valuation, carrying a discount to peers that is partially justified by size and partially unjustified by quality. The business deserves a meaningful re-rating as Raipur operationalises and the multi-facility story becomes tangible. The key downside scenario — equity raise at a steep discount — is the primary risk to near-term returns. Long-term quality is not in question.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STEP 12: FUTURE TRAJECTORY
+═══════════════════════════════════════════ -->
+<section class="section" id="s12">
+  <div class="section-header">
+    <span class="section-num">12</span>
+    <h2>Future Trajectory Modelling</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <p class="sub-h">Financial Projections (Estimates — Not Management Guidance)</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Metric (₹ Cr)</th>
+          <th>FY25 Actual</th>
+          <th>FY26 Actual</th>
+          <th>FY27E</th>
+          <th>FY28E</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Consolidated Revenue</td>
+          <td class="num">937</td>
+          <td class="num">1,081</td>
+          <td class="num strong">~1,280–1,320</td>
+          <td class="num strong">~1,480–1,540</td>
+          <td>15–17% growth; includes Raipur ramp</td>
+        </tr>
+        <tr>
+          <td class="label">EBITDA</td>
+          <td class="num">185</td>
+          <td class="num">218</td>
+          <td class="num strong">~240–250</td>
+          <td class="num strong">~300–320</td>
+          <td>Raipur drags ~1–1.5% in FY27; Gurgaon expanding</td>
+        </tr>
+        <tr>
+          <td class="label">EBITDA Margin</td>
+          <td class="num">19.7%</td>
+          <td class="num">20.2%</td>
+          <td class="num strong">~19.5–19.8%</td>
+          <td class="num strong">~20.5–21.5%</td>
+          <td>FY27 dip from Raipur; recovers in FY28</td>
+        </tr>
+        <tr>
+          <td class="label">PAT (adj.)</td>
+          <td class="num">82</td>
+          <td class="num">104</td>
+          <td class="num strong">~118–130</td>
+          <td class="num strong">~155–175</td>
+          <td>Pre equity raise dilution</td>
+        </tr>
+        <tr>
+          <td class="label">Diluted EPS (pre-dilution)</td>
+          <td class="num">₹5.31</td>
+          <td class="num">₹6.56</td>
+          <td class="num strong">₹7.5–8.2</td>
+          <td class="num strong">₹9.8–11.0</td>
+          <td>~15–17% EPS CAGR assuming no major dilution</td>
+        </tr>
+        <tr>
+          <td class="label">Gurgaon ARPOB</td>
+          <td class="num">₹76,447</td>
+          <td class="num">₹82,435</td>
+          <td class="num strong">₹88,000–90,000</td>
+          <td class="num strong">₹95,000–97,000</td>
+          <td>7–8% guided annual growth maintained</td>
+        </tr>
+        <tr>
+          <td class="label">Gurgaon Occupancy</td>
+          <td class="num">64.1%</td>
+          <td class="num">63.0%</td>
+          <td class="num strong">68–72%</td>
+          <td class="num strong">70–75%</td>
+          <td>Management targets 70% in Q2 FY27; 50 beds added then</td>
+        </tr>
+        <tr>
+          <td class="label">Total Operational Beds</td>
+          <td class="num">544</td>
+          <td class="num">544</td>
+          <td class="num strong">~780–800</td>
+          <td class="num strong">~900–950</td>
+          <td>Raipur 200 beds + 50 more Gurgaon in FY27</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="sub-h">Scenario Analysis</p>
+  <div class="three-col">
+    <div class="case-block">
+      <h4 class="bull">◆ Bull Case</h4>
+      <p>Raipur breakeven in 12 months (not 18). Gurgaon hits 70% occupancy in Q1 FY27. Equity raise at ₹320+ (limited dilution). Insurance reform accelerates ARPOB growth to 10%+. South Delhi permit timelines compress. FY28 consolidated EBITDA reaches ₹330 Cr. At 26x EV/EBITDA, implied market cap: ₹7,500–8,000 Cr. Price: ₹470–500/share (+68–78% upside).</p>
+    </div>
+    <div class="case-block">
+      <h4 class="base">◆ Base Case</h4>
+      <p>Raipur breakeven in 18 months. Gurgaon occupancy reaches 68–70% by Q3 FY27. Equity raise at ₹280–300. Insurance reform benefits from FY28 onwards. FY28 consolidated EBITDA of ₹305–315 Cr. At 23x EV/EBITDA, implied market cap: ₹6,200–6,500 Cr (post-dilution). Price: ₹370–390/share (post dilution, +32–39% upside in 18–24 months).</p>
+    </div>
+    <div class="case-block">
+      <h4 class="bear">◆ Bear Case</h4>
+      <p>Raipur loses hit ₹25 Cr+ (market more competitive than expected). Equity raise at steep discount (₹240–250/share). International patients hit 20%+ dip due to geopolitical escalation. Tax rate normalises to 30%. FY27 EPS growth flat. Market derates to 18x EV/EBITDA. Implied price: ₹220–240 (-14–21% downside). Key bear triggers: large equity raise discount + Raipur operational issues.</p>
+    </div>
+  </div>
+
+  <p class="sub-h">Key Monitoring Variables — Quarterly Checklist</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Variable</th>
+          <th>Threshold</th>
+          <th>Bull Signal</th>
+          <th>Bear Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Gurgaon Occupancy</td>
+          <td class="num">70% target</td>
+          <td class="up">≥70% → beds added</td>
+          <td class="dn">&lt;65% for 2 quarters</td>
+        </tr>
+        <tr>
+          <td class="label">ARPOB growth</td>
+          <td class="num">7–8% annually</td>
+          <td class="up">Sustained or improving</td>
+          <td class="dn">&lt;5% for 2 quarters</td>
+        </tr>
+        <tr>
+          <td class="label">Raipur ramp-up pace</td>
+          <td class="num">40%+ occupancy in 2 quarters</td>
+          <td class="up">TPA empanelments fast, occupancy rising</td>
+          <td class="dn">Losses exceed ₹25 Cr in FY27</td>
+        </tr>
+        <tr>
+          <td class="label">Equity raise terms</td>
+          <td class="num">Price vs CMP</td>
+          <td class="up">At or above ₹300/share</td>
+          <td class="dn">Below ₹260/share (significant dilution)</td>
+        </tr>
+        <tr>
+          <td class="label">International patient share</td>
+          <td class="num">≥30% of Gurgaon revenue</td>
+          <td class="up">≥33% signals mix improvement</td>
+          <td class="dn">&lt;28% for 2 quarters</td>
+        </tr>
+        <tr>
+          <td class="label">EBITDA margin (Gurgaon)</td>
+          <td class="num">21%+</td>
+          <td class="up">≥22% in any quarter</td>
+          <td class="dn">&lt;20% — cost structure breaking</td>
+        </tr>
+        <tr>
+          <td class="label">Finance cost trajectory</td>
+          <td class="num">Declining</td>
+          <td class="up">Continues YoY decline</td>
+          <td class="dn">Rises sharply on new borrowings</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STEP 13: FINAL VERDICT
+═══════════════════════════════════════════ -->
+<section class="section" id="s13">
+  <div class="section-header">
+    <span class="section-num">13</span>
+    <h2>Final Investment Verdict</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <p class="sub-h">Key Positives</p>
+      <ul class="flag-list">
+        <li><div class="flag-icon green">+</div><span>Highest-ever EBITDA margin (21.3% in Q4 FY26); structural, not seasonal</span></li>
+        <li><div class="flag-icon green">+</div><span>Operating leverage confirmed — 30% incremental flow-through to EBITDA at current volumes</span></li>
+        <li><div class="flag-icon green">+</div><span>International patient moat is durable; 31% mix even through a geopolitical disruption</span></li>
+        <li><div class="flag-icon green">+</div><span>IFC's 12% stake is institutional validation and likely governance enhancer</span></li>
+        <li><div class="flag-icon green">+</div><span>Finance cost declining; near-zero net debt balance sheet entering an expansion phase</span></li>
+        <li><div class="flag-icon green">+</div><span>Asset-light expansion model — capex/bed is 50–60% below peers</span></li>
+        <li><div class="flag-icon green">+</div><span>FCF improvement (+27% YoY) confirms real cash generation</span></li>
+        <li><div class="flag-icon green">+</div><span>Small subsidiary drag eliminated; hidden earnings improvement achieved</span></li>
+        <li><div class="flag-icon green">+</div><span>Trades at 20x EV/EBITDA vs Max Healthcare at 28–30x despite comparable margins</span></li>
+      </ul>
+    </div>
+    <div>
+      <p class="sub-h">Key Negatives</p>
+      <ul class="flag-list">
+        <li><div class="flag-icon red">−</div><span>Equity raise of ₹700 Cr pending — execution price is the critical variable</span></li>
+        <li><div class="flag-icon red">−</div><span>Raipur execution risk — competitive market, 18-month breakeven, no prior greenfield track record</span></li>
+        <li><div class="flag-icon amber">−</div><span>South Delhi still 3+ years away; FY27–28 is a growth-without-flagship-asset year</span></li>
+        <li><div class="flag-icon amber">−</div><span>Non-current asset surge (₹19,540 Lac YoY) requires annual report itemization</span></li>
+        <li><div class="flag-icon amber">−</div><span>Rising effective tax rate could compress PAT margins despite EBITDA expansion</span></li>
+        <li><div class="flag-icon amber">−</div><span>CFO/EBITDA at 60% — below best-in-class benchmarks</span></li>
+        <li><div class="flag-icon amber">−</div><span>Single asset concentration (95%+ in Gurgaon) — any clinical incident creates outsized risk</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <div class="two-col">
+    <div>
+      <p class="sub-h">Hidden Insights (Market May Miss)</p>
+      <ul class="flag-list">
+        <li><div class="flag-icon blue">→</div><span>Corporate cost redistribution across 3 hospitals will mechanically lift Gurgaon margins by 150–200 bps — a free earnings improvement no one is modelling</span></li>
+        <li><div class="flag-icon blue">→</div><span>GIC Council insurance reform, where Dr. Chakravarty heads the working group, could structurally improve hospital pricing power from FY28 — this is an industry-level tailwind Artemis is uniquely positioned to influence</span></li>
+        <li><div class="flag-icon blue">→</div><span>Mauritius O&amp;M platform could become a template for Africa and CIS — the ₹10–15 Cr annual management fee income (high-margin, zero capital) is currently invisible in most models</span></li>
+      </ul>
+    </div>
+    <div>
+      <p class="sub-h">Major Risks (Ranked)</p>
+      <ul class="flag-list">
+        <li><div class="flag-icon red">1</div><span><strong>Equity raise at steep discount</strong> — 15%+ dilution at sub-₹260 price would materially compress near-term returns</span></li>
+        <li><div class="flag-icon amber">2</div><span><strong>Raipur breakeven delay beyond 24 months</strong> — competition from Manipal, Apollo could elongate empanelment timelines</span></li>
+        <li><div class="flag-icon amber">3</div><span><strong>Geopolitical escalation in Middle East</strong> — a sustained conflict (not the Q1 brief dip) reducing 30% of international revenue for 2+ quarters</span></li>
+        <li><div class="flag-icon amber">4</div><span><strong>Insurance regulatory reversal</strong> — if GIC Council reforms stall, pricing growth remains capped at 3% pa</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <p class="sub-h">Assessment Summary</p>
+  <div class="three-col">
+    <div class="metric-card">
+      <div class="mc-label">Execution Scorecard</div>
+      <div class="mc-val" style="font-size:18px;color:var(--green)">STRONG</div>
+      <div class="mc-sub">Financial delivery consistent; 2–3 month infrastructure slippage is tolerable for hospital development</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Earnings Quality</div>
+      <div class="mc-val" style="font-size:18px;color:var(--green)">HIGH</div>
+      <div class="mc-sub">Volume + ARPOB both organic; operating leverage real; no accounting gimmicks identified</div>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Long-Term Compounding</div>
+      <div class="mc-val" style="font-size:18px;color:var(--gold)">STRONG</div>
+      <div class="mc-sub">15–17% revenue CAGR, 30% incremental EBITDA flow-through, rising ROCE — the math compounds well</div>
+    </div>
+  </div>
+
+  <div class="verdict-block">
+    <div class="verdict-label-sm">Final Recommendation · NSE: ARTEMISMED · ₹280 · Market Cap ₹4,429 Cr</div>
+    <div class="verdict-rating">ACCUMULATE</div>
+    <div class="verdict-sub">
+      Artemis Medicare is a <strong>high-quality regional hospital champion</strong> undergoing a proven-but-concentrated earnings engine (Gurgaon) expanding into a multi-city network — a transition that historically re-rates hospital valuations. The current discount to peers (20x vs 28–30x EV/EBITDA for Max/Apollo quality assets) is partially justified by single-asset concentration and partially an opportunity. The Raipur launch (June 2026), South Delhi MSA execution, and improving insurance regulatory environment are the three catalysts that will compress this discount over the next 18–24 months.<br><br>
+      <strong>Accumulate on weakness; maximum comfort below ₹255 (20% margin of safety).</strong> The equity raise execution risk is the key near-term swing factor — wait for clarity on price and quantum before adding aggressively.
+    </div>
+    <div style="margin-top:20px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <span class="pill pill-green" style="font-size:12px;padding:5px 14px">Business Quality: HIGH</span>
+      <span class="pill pill-amber" style="font-size:12px;padding:5px 14px">Valuation: REASONABLE</span>
+      <span class="pill pill-amber" style="font-size:12px;padding:5px 14px">Risk: MODERATE</span>
+      <span class="pill pill-green" style="font-size:12px;padding:5px 14px">Verdict: ACCUMULATE</span>
+    </div>
+  </div>
+
+  <div class="insight-box" style="margin-top:28px">
+    <strong>Final Synthesis:</strong> "Artemis is not a mediocre business at a premium valuation. It is a high-quality, earnings-compounding business at a reasonable valuation, with a well-understood but manageable set of risks tied to a clearly articulated geographic expansion strategy. The management team has demonstrated financial discipline, institutional humility, and a willingness to be candid about execution realities. The IFC's entry validates the thesis. The occupancy ramp, ARPOB trajectory, and operating leverage profile all point to a business entering its most productive phase. Accumulate with patience — the re-rating will come as Raipur proves itself and South Delhi financing is clarified."
+  </div>
+
+  <p style="margin-top:28px;font-size:10px;font-family:var(--mono);color:var(--text-muted);line-height:1.6">
+    DISCLAIMER: This analysis is for informational and educational purposes only. It is not investment advice. All estimates and projections are the analyst's own and not management guidance. Past performance does not guarantee future results. Verify all figures against official exchange filings before making investment decisions. Analysis date: May 17, 2026.
+  </p>
+</section>
+
+</div><!-- /main -->
+
+<script>
+  // Sidebar active link tracking
+  const navItems = document.querySelectorAll('.nav-item');
+  const sections = document.querySelectorAll('.section');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navItems.forEach(item => {
+          item.classList.toggle('active', item.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { threshold: 0.25 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

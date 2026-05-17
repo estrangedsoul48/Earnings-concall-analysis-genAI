@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalyan Jewellers — Institutional Equity Analysis | Q4 FY26</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0d0e0f;
+    --surface:   #141618;
+    --surface2:  #1c1f22;
+    --border:    #272b30;
+    --gold:      #c9a84c;
+    --gold-dim:  #9a7c33;
+    --gold-pale: rgba(201,168,76,0.08);
+    --text:      #e8e2d9;
+    --text-dim:  #8a8580;
+    --text-muted:#5a5650;
+    --red:       #e05252;
+    --green:     #52c47c;
+    --amber:     #e0a052;
+    --blue:      #5294e0;
+    --accent-red:rgba(224,82,82,0.12);
+    --accent-grn:rgba(82,196,124,0.12);
+    --accent-amb:rgba(224,160,82,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ─────────────────────────────────────── */
+  .masthead {
+    background: linear-gradient(135deg, #0a0b0c 0%, #131510 60%, #1a180e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 56px 60px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 85% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+  .masthead-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    opacity: 0.8;
+  }
+  .masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .masthead h1 span { color: var(--gold); }
+  .masthead-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--text-dim);
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+  .masthead-meta {
+    display: flex; flex-wrap: wrap; gap: 32px;
+    border-top: 1px solid var(--border);
+    padding-top: 28px;
+  }
+  .meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .meta-key {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .meta-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .meta-val.up   { color: var(--green); }
+  .meta-val.down { color: var(--red); }
+  .meta-val.gold { color: var(--gold); }
+
+  /* ── NAVIGATION ─────────────────────────────────── */
+  .nav-strip {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 60px;
+    display: flex; gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-strip::-webkit-scrollbar { display: none; }
+  .nav-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 14px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-item:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* ── LAYOUT ─────────────────────────────────────── */
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
+  .section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 16px;
+    margin-bottom: 40px;
+  }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 18px;
+  }
+
+  /* ── SCORE CARDS ─────────────────────────────────── */
+  .scores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .score-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .score-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(var(--fill, 0.5));
+    transform-origin: left;
+  }
+  .score-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .score-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .score-denom {
+    font-size: 14px;
+    color: var(--text-dim);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+  }
+  .score-desc {
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  /* ── KPI STRIP ───────────────────────────────────── */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .kpi-cell {
+    background: var(--surface);
+    padding: 20px 18px;
+  }
+  .kpi-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .kpi-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .kpi-chg {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  .kpi-chg.pos { color: var(--green); }
+  .kpi-chg.neg { color: var(--red); }
+
+  /* ── TABLES ──────────────────────────────────────── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 32px;
+    font-size: 13px;
+  }
+  .data-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    white-space: nowrap;
+  }
+  .data-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid rgba(39,43,48,0.5);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .data-table tr:hover td { background: rgba(201,168,76,0.03); }
+  .data-table td.mono {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+  }
+  .data-table td.pos  { color: var(--green); font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+  .data-table td.neg  { color: var(--red);   font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+  .data-table td.warn { color: var(--amber);  font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+  .data-table td.gold-text { color: var(--gold); font-weight: 600; }
+
+  /* ── BADGE SYSTEM ────────────────────────────────── */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+  .badge-green { background: var(--accent-grn); color: var(--green); border: 1px solid rgba(82,196,124,0.25); }
+  .badge-red   { background: var(--accent-red);  color: var(--red);   border: 1px solid rgba(224,82,82,0.25); }
+  .badge-amber { background: var(--accent-amb); color: var(--amber);  border: 1px solid rgba(224,160,82,0.25); }
+  .badge-gold  { background: var(--gold-pale);  color: var(--gold);   border: 1px solid rgba(201,168,76,0.25); }
+
+  /* ── CALLOUT BLOCKS ──────────────────────────────── */
+  .callout {
+    border-left: 3px solid var(--gold);
+    background: var(--gold-pale);
+    padding: 18px 22px;
+    margin-bottom: 24px;
+    font-size: 13.5px;
+    line-height: 1.75;
+  }
+  .callout-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .callout.warn  { border-color: var(--amber); background: var(--accent-amb); }
+  .callout.warn .callout-title { color: var(--amber); }
+  .callout.danger { border-color: var(--red); background: var(--accent-red); }
+  .callout.danger .callout-title { color: var(--red); }
+  .callout.good  { border-color: var(--green); background: var(--accent-grn); }
+  .callout.good .callout-title { color: var(--green); }
+
+  /* ── TWO COLUMN ──────────────────────────────────── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  @media (max-width: 900px) {
+    .two-col, .three-col { grid-template-columns: 1fr; }
+    .container { padding: 0 24px; }
+    .masthead { padding: 40px 24px 32px; }
+    .nav-strip { padding: 0 24px; }
+  }
+
+  /* ── SEGMENT CARD ────────────────────────────────── */
+  .seg-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+  }
+  .seg-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .seg-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'IBM Plex Mono', monospace;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .seg-stat { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid rgba(39,43,48,0.5); }
+  .seg-stat:last-child { border: none; }
+  .seg-stat-label { font-size: 12px; color: var(--text-dim); }
+  .seg-stat-val { font-family: 'IBM Plex Mono', monospace; font-size: 13px; }
+
+  /* ── VERDICT BLOCK ───────────────────────────────── */
+  .verdict-wrap {
+    background: linear-gradient(135deg, #111309 0%, #131510 100%);
+    border: 1px solid var(--gold-dim);
+    padding: 48px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .verdict-wrap::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+  .verdict-rating {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+  }
+  .verdict-rating small {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+  .verdict-tagline {
+    font-size: 14px;
+    color: var(--text-dim);
+    max-width: 600px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .verdict-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .verdict-bullets li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 13px; color: var(--text-dim);
+  }
+  .verdict-bullets li::before {
+    content: '—';
+    color: var(--gold);
+    font-family: 'IBM Plex Mono', monospace;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── TIMELINE / GUIDANCE ─────────────────────────── */
+  .guidance-row td:first-child { font-weight: 500; color: var(--text); }
+
+  /* ── RISK TABLE SEVERITY ─────────────────────────── */
+  .sev-minor  { color: var(--amber); }
+  .sev-mod    { color: #e07832; }
+  .sev-sev    { color: var(--red); }
+  .sev-ok     { color: var(--green); }
+
+  /* ── BULL/BEAR CASES ─────────────────────────────── */
+  .case-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+  }
+  .case-block h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .case-block ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .case-block li { font-size: 13px; color: var(--text-dim); padding-left: 14px; position: relative; }
+  .case-block li::before { content: '›'; position: absolute; left: 0; color: var(--text-muted); }
+
+  /* ── DIVIDER ─────────────────────────────────────── */
+  .rule { height: 1px; background: var(--border); margin: 32px 0; }
+  .rule-gold { height: 1px; background: var(--gold-dim); margin: 32px 0; opacity: 0.3; }
+
+  /* ── FOOTNOTE ────────────────────────────────────── */
+  .footnote {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  /* ── PROSE ───────────────────────────────────────── */
+  p { color: var(--text-dim); font-size: 13.5px; line-height: 1.8; margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--text); font-weight: 600; }
+
+  /* ── MONITORING CHECKLIST ────────────────────────── */
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 10px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .checklist li span.ck {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--gold);
+    background: var(--gold-pale);
+    padding: 2px 6px;
+    white-space: nowrap;
+    margin-top: 1px;
+  }
+
+  /* ── MGMT DECODE ─────────────────────────────────── */
+  .decode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .decode-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+  }
+  .decode-block h5 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+  .decode-block ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .decode-block li { font-size: 12.5px; color: var(--text-dim); padding-left: 12px; position: relative; }
+  .decode-block li::before { content: '·'; position: absolute; left: 0; color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  MASTHEAD                                         ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div class="masthead">
+  <div class="container">
+    <div class="masthead-label">Institutional Equity Research · Q4 & FY26 Full Year</div>
+    <h1>Kalyan Jewellers <span>India Limited</span></h1>
+    <div class="masthead-sub">NSE: KALYANKJIL · BSE: 543278 &nbsp;|&nbsp; Sector: Retail — Organised Jewellery &nbsp;|&nbsp; Report Date: May 17, 2026</div>
+    <div class="masthead-meta">
+      <div class="meta-item"><span class="meta-key">CMP</span><span class="meta-val">₹353</span></div>
+      <div class="meta-item"><span class="meta-key">Market Cap</span><span class="meta-val">₹36,461 Cr</span></div>
+      <div class="meta-item"><span class="meta-key">P/E (Trailing)</span><span class="meta-val">26.5×</span></div>
+      <div class="meta-item"><span class="meta-key">52W High / Low</span><span class="meta-val down">₹618 / ₹340</span></div>
+      <div class="meta-item"><span class="meta-key">ROCE FY26</span><span class="meta-val up">28.8%</span></div>
+      <div class="meta-item"><span class="meta-key">ROE FY26</span><span class="meta-val up">24.3%</span></div>
+      <div class="meta-item"><span class="meta-key">Verdict</span><span class="meta-val gold">ACCUMULATE</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  NAVIGATION                                       ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div class="nav-strip">
+  <a class="nav-item" href="#s1">Snapshot</a>
+  <a class="nav-item" href="#s2">Results Quality</a>
+  <a class="nav-item" href="#s3">Guidance Tracker</a>
+  <a class="nav-item" href="#s4">Financial Architecture</a>
+  <a class="nav-item" href="#s5">Mgmt Decode</a>
+  <a class="nav-item" href="#s6">Segments</a>
+  <a class="nav-item" href="#s7">Industry Position</a>
+  <a class="nav-item" href="#s8">Capital Allocation</a>
+  <a class="nav-item" href="#s9">Red Flags</a>
+  <a class="nav-item" href="#s10">Inflection Signals</a>
+  <a class="nav-item" href="#s11">Valuation</a>
+  <a class="nav-item" href="#s12">Future Trajectory</a>
+  <a class="nav-item" href="#s13">Verdict</a>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  STEP 1 — EXECUTIVE SNAPSHOT                      ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div id="s1" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Executive Snapshot <em>— What Really Happened This Quarter</em></h2>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Core Assessment</div>
+      Q4 FY26 was <strong>genuinely strong but not optically clean.</strong> Revenue growth of 66% and PAT growth of 118% are eye-catching, but approximately 60–70% of revenue growth is attributable to gold price appreciation over the prior year — real volume growth was far more modest. The quarter's EBITDA margin at 7.2% (India standalone) marks improvement, though the full-year consolidated margin of 7.0% is helped by non-recurring silver/platinum price tailwinds and procurement restructuring benefits that management explicitly flagged will not repeat in FY27. The structural story — FOCO-led capital-light expansion, debt elimination, ROCE accretion, Candere turning PAT-positive — remains entirely intact and compelling.
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-cell">
+        <div class="kpi-label">Consol Revenue Q4</div>
+        <div class="kpi-val">₹10,275 Cr</div>
+        <div class="kpi-chg pos">+66% YoY</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">Consol PAT Q4</div>
+        <div class="kpi-val">₹410 Cr</div>
+        <div class="kpi-chg pos">+118% YoY</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">FY26 Revenue</div>
+        <div class="kpi-val">₹35,740 Cr</div>
+        <div class="kpi-chg pos">+43% YoY</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">FY26 PAT</div>
+        <div class="kpi-val">₹1,350 Cr</div>
+        <div class="kpi-chg pos">+89% YoY</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">India SSSG Q4</div>
+        <div class="kpi-val">47%</div>
+        <div class="kpi-chg pos">South 29% / Non-South 62%</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">EBITDA Margin FY26</div>
+        <div class="kpi-val">7.0%</div>
+        <div class="kpi-chg pos">+90 bps YoY</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">ROCE FY26</div>
+        <div class="kpi-val">28.8%</div>
+        <div class="kpi-chg pos">+900 bps YoY</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">Non-GML Debt (India)</div>
+        <div class="kpi-val">₹317 Cr</div>
+        <div class="kpi-chg pos">Down from ₹1,300 Cr in FY23</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <p><strong>Top 5 Developments This Quarter:</strong></p>
+        <p>1. <strong>ROCE inflection:</strong> The jump from 19.8% (FY25) to 28.8% (FY26) is the most significant financial development — driven by the FOCO model reducing capital employed while profits scale. This is structural, not cyclical.</p>
+        <p>2. <strong>Candere profitability:</strong> Candere turned PAT-positive in H2 FY26 with revenues growing 160% for the full year, reaching ₹4,253 Mn. This removes a loss-making drag and creates a new growth vector. The ~70% studded mix in Candere implies mid-30s gross margins — far superior to the core business.</p>
+        <p>3. <strong>Near-elimination of non-GML debt:</strong> With only ₹317 crores of non-GML debt remaining (targeted to reach zero in FY27), interest costs should fall by ₹50 crores in FY27 (₹30 crores from debt payoff + ₹20 crores one-off adjustment reversal). This directly flows to PAT.</p>
+        <p>4. <strong>Non-South market acceleration:</strong> Non-South SSSG of 62% vs. South's 29% in Q4 represents a meaningful gap. The strategic pivot toward non-South FOCO expansion is paying off — non-South now contributes ~60% of India revenue. This geography mix shift is structurally margin-accretive as FOCO penetration in non-South is far higher.</p>
+        <p>5. <strong>Credit rating upgrade:</strong> AA- (Stable) from A+ (Positive) opens up lower-cost borrowing avenues for Gold Metal Loans, reducing the all-in cost of the ₹35,878 Mn GML on the consolidated balance sheet.</p>
+      </div>
+      <div>
+        <p><strong>What the Market is Likely Missing:</strong></p>
+        <p><strong>The FOCO flywheel is underappreciated.</strong> At the current pace, Kalyan's India network will have ~306 FOCO stores by March 2027 (vs. 222 now), meaning the majority of incremental revenue generates near-zero capital requirement from Kalyan's side. As these stores mature (SSSG compounds on a growing base), Kalyan captures ~54% of revenue as its take from franchisee operations without the working capital burden. The implication: free cash flow generation will be dramatically higher relative to reported PAT than historical patterns suggest.</p>
+        <p><strong>Candere's margin profile is misunderstood.</strong> At mid-30s gross margins (vs. 12–13% for the core business) and with 124 stores and growing, Candere's increasing contribution to consolidated revenue is a structural margin tailwind that is not yet visible in consolidated numbers at meaningful scale.</p>
+        <p><strong>The Middle East FOCO optionality is a free call option.</strong> Management is in discussions with Arab investors to convert up to 38 stores to FOCO. If this materialises, ₹800–1,000 crores of capital could be released from the Middle East operation — a potential 30%+ return of capital to shareholders.</p>
+        <p><strong>What Has Changed vs. Previous Quarters:</strong> In Q3 FY26, momentum was skewed by a Diwali tailwind. Q4's performance is cleaner — driven by Akshaya Tritiya (in line) and wedding demand — confirming the underlying demand trajectory is durable, not event-driven. The gross margin reversal in Q4 (12.3% vs. 13.3% in Q4FY25 on a standalone basis) initially appears concerning but reflects seasonal product mix (Q3 Diwali always has better studded mix), the FOCO revenue share mechanics, and the lapping of the vendor payment cycle benefit introduced in Q4 FY25.</p>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+    <div class="scores-grid">
+      <div class="score-card" style="--fill:0.82">
+        <div class="score-label">Overall Business Health</div>
+        <div class="score-value">8.2<span class="score-denom">/10</span></div>
+        <div class="score-desc">Structural compounding story fully intact; debt elimination in progress</div>
+      </div>
+      <div class="score-card" style="--fill:0.70">
+        <div class="score-label">Earnings Quality</div>
+        <div class="score-value">7.0<span class="score-denom">/10</span></div>
+        <div class="score-desc">Some non-recurring tailwinds; PAT growth inflated by gold price; FOCO model adds quality</div>
+      </div>
+      <div class="score-card" style="--fill:0.80">
+        <div class="score-label">Balance Sheet Strength</div>
+        <div class="score-value">8.0<span class="score-denom">/10</span></div>
+        <div class="score-desc">Net cash ex-GML; GML is low-cost operational debt; AA- credit rating</div>
+      </div>
+      <div class="score-card" style="--fill:0.85">
+        <div class="score-label">Capital Allocation Quality</div>
+        <div class="score-value">8.5<span class="score-denom">/10</span></div>
+        <div class="score-desc">FOCO model is exemplary capital allocation; 20% dividend payout; non-GML elimination</div>
+      </div>
+      <div class="score-card" style="--fill:0.72">
+        <div class="score-label">Management Credibility</div>
+        <div class="score-value">7.2<span class="score-denom">/10</span></div>
+        <div class="score-desc">Strong on FOCO execution; third brand repeatedly delayed; promoter pledge opacity</div>
+      </div>
+      <div class="score-card" style="--fill:0.78">
+        <div class="score-label">Future Visibility</div>
+        <div class="score-value">7.8<span class="score-denom">/10</span></div>
+        <div class="score-desc">FOCO pipeline clear; gold price sensitivity limits near-term precision; Adhik-Maas Q1 uncertainty</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  STEP 2 — RESULT QUALITY ANALYSIS                 ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div id="s2" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Result Quality Analysis <em>— Separating Price from Volume</em></h2>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">Critical Analytical Lens</div>
+      Gold prices rose approximately 60–70% in FY26 year-over-year. This means a meaningful portion of Kalyan's 43% revenue growth and 47% SSSG in Q4 is price-driven inflation, not real demand expansion. Investors conflating the two risk overpaying for cyclical price tailwinds they expect to continue. Management explicitly noted customers operate on INR budgets — as gold prices rise, volume (grams) sold falls. Real volume growth in FY26 was likely in the high single digits.
+    </div>
+
+    <div class="two-col">
+      <div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Income Statement (₹ Mn)</th>
+              <th>Q4 FY26</th>
+              <th>Q4 FY25</th>
+              <th>YoY</th>
+              <th>Q3 FY26</th>
+              <th>QoQ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="gold-text">Revenue (India)</td><td class="mono">89,943</td><td class="mono">53,504</td><td class="pos">+68%</td><td class="mono">90,477</td><td class="neg">-1%</td></tr>
+            <tr><td>Gross Profit</td><td class="mono">11,074</td><td class="mono">7,126</td><td class="pos">+55%</td><td class="mono">11,467</td><td class="neg">-3%</td></tr>
+            <tr><td>Gross Margin %</td><td class="mono">12.3%</td><td class="mono">13.3%</td><td class="neg">-100 bps</td><td class="mono">12.7%</td><td class="neg">-40 bps</td></tr>
+            <tr><td>Total Opex</td><td class="mono">5,032</td><td class="mono">3,691</td><td class="neg">+36%</td><td class="mono">4,929</td><td class="neg">+2%</td></tr>
+            <tr><td class="gold-text">EBITDA</td><td class="mono">6,042</td><td class="mono">3,435</td><td class="pos">+76%</td><td class="mono">6,538</td><td class="neg">-8%</td></tr>
+            <tr><td>EBITDA Margin %</td><td class="mono">6.7%</td><td class="mono">6.4%</td><td class="pos">+30 bps</td><td class="mono">7.2%</td><td class="neg">-50 bps</td></tr>
+            <tr><td>Finance Cost</td><td class="mono">834</td><td class="mono">686</td><td class="warn">+22%</td><td class="mono">686</td><td class="warn">+22%</td></tr>
+            <tr><td>Other Income</td><td class="mono">521</td><td class="mono">424</td><td class="pos">+23%</td><td class="mono">744</td><td class="neg">-30%</td></tr>
+            <tr><td class="gold-text">PBT (India)</td><td class="mono">4,953</td><td class="mono">2,494</td><td class="pos">+99%</td><td class="mono">5,411</td><td class="neg">-8%</td></tr>
+            <tr><td>PBT Margin %</td><td class="mono">5.5%</td><td class="mono">4.7%</td><td class="pos">+80 bps</td><td class="mono">6.0%</td><td class="neg">-50 bps</td></tr>
+            <tr><td class="gold-text">PAT (India)</td><td class="mono">3,656</td><td class="mono">1,854</td><td class="pos">+97%</td><td class="mono">4,008</td><td class="neg">-9%</td></tr>
+          </tbody>
+        </table>
+
+        <table class="data-table">
+          <thead>
+            <tr><th>Full Year (₹ Mn)</th><th>FY26</th><th>FY25</th><th>YoY</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Consol Revenue</td><td class="mono">357,429</td><td class="mono">250,451</td><td class="pos">+43%</td></tr>
+            <tr><td>Gross Profit Margin</td><td class="mono">13.2%</td><td class="mono">13.1%</td><td class="pos">+10 bps</td></tr>
+            <tr><td>EBITDA Margin</td><td class="mono">7.0%</td><td class="mono">6.1%</td><td class="pos">+90 bps</td></tr>
+            <tr><td>PAT Margin</td><td class="mono">3.8%</td><td class="mono">2.9%</td><td class="pos">+90 bps</td></tr>
+            <tr><td>ROCE</td><td class="mono">28.8%</td><td class="mono">19.8%</td><td class="pos">+900 bps</td></tr>
+            <tr><td>Inventory Turn (India)</td><td class="mono">3.4×</td><td class="mono">3.0×</td><td class="pos">+0.4×</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div class="callout">
+          <div class="callout-title">Revenue Growth Decomposition</div>
+          <p><strong>Price contribution (~60–65% of growth):</strong> Gold rose approximately 60–70% YoY. However, Kalyan does not benefit from inventory revaluation in the traditional sense — GML-backed inventory is marked at current prices. The revenue uplift comes from selling the same or fewer grams at higher prices. This drives both higher revenue AND compresses gross margins on a % basis (as the gold cost component rises proportionately).</p>
+          <p style="margin-top:12px"><strong>Volume contribution (~10–15%):</strong> Real volume growth — new stores, SSSG in gram terms, new customer additions — is far more modest. Kalyan confirmed customers come with fixed INR budgets; as prices rise, gram volumes fall. Management mitigates this via 18-karat push and lightweight jewellery.</p>
+          <p style="margin-top:12px"><strong>Network contribution (~20–25%):</strong> 129 new showrooms opened in FY26 drove incremental revenue, with mature-store effects building over 12–24 months.</p>
+        </div>
+
+        <div class="callout warn">
+          <div class="callout-title">Gross Margin Quality</div>
+          <p>The FY26 consolidated gross margin of 13.2% (India standalone: 12.7%) holds flat year-on-year when adjusted for product mix seasonality. However, management flagged two non-recurring tailwinds embedded in FY26 margins: <strong>(1) silver and platinum price surge</strong> (management estimates ~₹20 crores impact, not large but present), and <strong>(2) vendor payment cycle restructuring</strong> that was fully lapped by Q4 FY26, meaning the benefit will not flow into FY27 comparisons. Structural improvement drivers — FOCO mix shift (franchisee revenue carries lower working capital cost), studded mix increase, and operating leverage — are durable.</p>
+        </div>
+
+        <div class="callout good">
+          <div class="callout-title">EBITDA Quality Assessment</div>
+          <p>EBITDA margin expansion from 6.1% to 7.0% is real. Key drivers: opex grew 25% against revenue growth of 43%, meaning A&P (14% growth) and employee costs grew far slower than revenue — pure operating leverage. Finance costs of ₹4,329 Mn for the full year include a ~₹200 crore one-time advanced tax interest charge. Adjusting this out, normalised finance cost was closer to ₹4,129 Mn. This will structurally improve in FY27 by ~₹500 Mn (₹300 Cr non-GML elimination at ~9% + ₹200 Cr one-time reversal).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  STEP 3 — GUIDANCE TRACKER                        ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div id="s3" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Guidance Tracker <em>— Management Promise vs. Reality</em></h2>
+    </div>
+
+    <table class="data-table guidance-row">
+      <thead>
+        <tr>
+          <th>Historical Guidance / Claim</th>
+          <th>Timeline Given</th>
+          <th>Status</th>
+          <th>Verdict</th>
+          <th>Commentary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>India PBT margin of 5.5%</td>
+          <td class="mono">FY26</td>
+          <td class="mono">5.5–5.6%</td>
+          <td><span class="badge badge-green">Achieved</span></td>
+          <td>India standalone PBT hit 5.5–5.6% for the full year — squarely in line. Management guiding 5.5–5.6% to be sustainable in FY27 with possible upside from operating leverage.</td>
+        </tr>
+        <tr>
+          <td>Non-GML debt elimination in India</td>
+          <td class="mono">FY27</td>
+          <td class="mono">₹317 Cr remaining</td>
+          <td><span class="badge badge-green">On Track</span></td>
+          <td>Reduced from ₹1,300 Cr (FY23) to ₹317 Cr (March 2026). On track for complete elimination in FY27; management suggested H1 FY27 if cash flows stay strong. Strong execution over 3 years.</td>
+        </tr>
+        <tr>
+          <td>FOCO stores: 84 India openings in FY27</td>
+          <td class="mono">FY27 Plan</td>
+          <td class="mono">Guided</td>
+          <td><span class="badge badge-gold">Pending</span></td>
+          <td>FY26 saw 129 total showrooms opened. FY27 target is 150 showrooms (84 Kalyan India FOCO + 50 Candere + 6 International + 5 Regional brand). Pipeline appears robust.</td>
+        </tr>
+        <tr>
+          <td>Third regional brand launch (South India)</td>
+          <td class="mono">Q4 FY26 → FY27</td>
+          <td class="mono">Delayed</td>
+          <td><span class="badge badge-amber">Delayed</span></td>
+          <td>Was targeted for Q4 FY26, then "running quarter" in Q3 call, now pushed to FY27. Reason: post-election political uncertainty in the targeted state. Five stores planned in FY27. Minor credibility dent — execution likely just calendar timing.</td>
+        </tr>
+        <tr>
+          <td>SSSG target: 10% for long-term modeling</td>
+          <td class="mono">Ongoing</td>
+          <td class="mono">20–47% delivered</td>
+          <td><span class="badge badge-green">Exceeded</span></td>
+          <td>Management conservatively guides 10% SSSG for 3–5 year modeling; has delivered 20–30%+ consistently over 2–3 years, with Q4 FY26 India at 47%. The conservative guidance reflects gold price sensitivity risk — this is prudent underpromising.</td>
+        </tr>
+        <tr>
+          <td>Dividend payout of ~20% of PAT</td>
+          <td class="mono">FY26</td>
+          <td class="mono">₹257 Cr declared</td>
+          <td><span class="badge badge-green">Achieved</span></td>
+          <td>₹257 Cr dividend declared for FY26 (~20% of ₹1,350 Cr PAT) — exactly in line with stated policy. FY26 dividend yield at current price: ~0.42%. Shareholder-friendly.</td>
+        </tr>
+        <tr>
+          <td>Non-core asset divestiture (₹380 Cr total)</td>
+          <td class="mono">H1 FY27</td>
+          <td class="mono">₹180 Cr collateral released</td>
+          <td><span class="badge badge-amber">In Progress</span></td>
+          <td>First set (~₹180 Cr) collateral released; sale process targeting completion before September 2026. Second set (~₹200 Cr) collateral release underway. Both sets expected to be divested in FY27, providing incremental debt reduction beyond non-GML payoff.</td>
+        </tr>
+        <tr>
+          <td>Promoter pledge reduction</td>
+          <td class="mono">H2 FY26</td>
+          <td class="mono">Unchanged 15+ months</td>
+          <td><span class="badge badge-red">Missed</span></td>
+          <td>Pledge was taken for Kalyan share buyback. Management stated plans to reduce in "next six months" (Q3 call, Feb 2026) — no visible progress. This is a lingering overhang that management deflects from discussing.</td>
+        </tr>
+        <tr>
+          <td>Middle East FOCO conversion (Arab investors)</td>
+          <td class="mono">FY26 → FY27</td>
+          <td class="mono">Discussions ongoing</td>
+          <td><span class="badge badge-amber">Delayed</span></td>
+          <td>Management says "going in the right direction" but nothing materialised. 4 FOCO stores were temporarily converted to COCO to facilitate investor discussions — unusual step. If conversion happens, ₹800–1,000 Cr of capital release is possible.</td>
+        </tr>
+        <tr>
+          <td>Candere profitability</td>
+          <td class="mono">H2 FY26</td>
+          <td class="mono">PAT positive H2 FY26</td>
+          <td><span class="badge badge-green">Achieved</span></td>
+          <td>Candere turned PAT positive from H2 FY26 ahead of or exactly on schedule. Revenue grew 160% in FY26 to ₹4,253 Mn. This is a clean execution win.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="two-col">
+      <div class="callout good">
+        <div class="callout-title">Execution Credibility Rating</div>
+        <p><strong>STRONG</strong> — Management has consistently delivered on structural commitments (debt reduction, FOCO expansion, Candere profitability, margin improvement) while conservative guidance on SSSG has allowed consistent beats. The single meaningful miss is the promoter pledge situation, which receives evasive answers. The third brand delay is immaterial operationally.</p>
+      </div>
+      <div class="callout warn">
+        <div class="callout-title">Narrative Watch</div>
+        <p>Management is progressively shifting from "debt reduction" as the primary narrative (largely complete) to "capital allocation post-debt freedom." The 50/50 split (dividends/capex vs. Candere/regional brand/growth) was articulated but vaguely. Investors should watch for more precise capital return commitments in FY27, particularly given the balance sheet will be effectively debt-free (ex-GML) by mid-FY27.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  STEP 4 — HIDDEN FINANCIAL ARCHITECTURE           ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div id="s4" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Hidden Financial Architecture <em>— Cash, Working Capital, Balance Sheet</em></h2>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin-bottom:16px">Working Capital Forensics</p>
+
+        <table class="data-table">
+          <thead><tr><th>Balance Sheet Item (₹ Mn)</th><th>Mar-26</th><th>Mar-25</th><th>Change</th></tr></thead>
+          <tbody>
+            <tr><td>Inventories (Standalone)</td><td class="mono">106,872</td><td class="mono">75,678</td><td class="warn">+41%</td></tr>
+            <tr><td>Trade Receivables (Standalone)</td><td class="mono">7,246</td><td class="mono">3,313</td><td class="warn">+119%</td></tr>
+            <tr><td>Trade Payables (Standalone)</td><td class="mono">30,196</td><td class="mono">18,686</td><td class="pos">+62%</td></tr>
+            <tr><td>Other Current Liabilities</td><td class="mono">42,296</td><td class="mono">25,997</td><td class="warn">+63%</td></tr>
+            <tr><td>Cash & Equivalents</td><td class="mono">2,030</td><td class="mono">2,676</td><td class="neg">-24%</td></tr>
+            <tr><td>Non-GML Borrowings</td><td class="mono">3,168</td><td class="mono">8,808</td><td class="pos">-64%</td></tr>
+            <tr><td>Gold Metal Loan (India)</td><td class="mono">12,833</td><td class="mono">10,173</td><td class="warn">+26%</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout warn">
+          <div class="callout-title">Trade Receivable Spike — Needs Monitoring</div>
+          <p>Trade receivables on the standalone balance sheet nearly doubled from ₹3,313 Mn to ₹7,246 Mn (+119% YoY) despite revenue growing only 43%. This is a significant divergence. Management has not specifically addressed this. Possible explanations: higher B2B/corporate gifting sales billed at quarter-end, Candere's online marketplace receivables flowing through, or extended credit terms to select channel partners. This warrants close monitoring in Q1 FY27.</p>
+        </div>
+
+        <div class="callout good">
+          <div class="callout-title">Inventory — Quality Holding</div>
+          <p>Standalone inventory grew 41% against revenue growth of 43% — broadly proportionate. More importantly, inventory turn improved from 3.0× to 3.4× (India), suggesting management is not over-stocking relative to the business pace. GML financing of ~₹12,833 Mn (India standalone) partially backs this inventory at lower interest rates than conventional borrowing. The gold hedging policy ensures no mark-to-market inventory risk.</p>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin-bottom:16px">Balance Sheet Stress Mapping</p>
+
+        <table class="data-table">
+          <thead><tr><th>Consolidated Leverage</th><th>FY24</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Net Debt/EBITDA (with GML)</td><td class="mono">1.8×</td><td class="mono">1.5×</td><td class="mono">1.3×</td></tr>
+            <tr><td>Net Debt/EBITDA (ex-GML)</td><td class="mono">0.1×</td><td class="mono">(0.1)×</td><td class="pos">(0.1)×</td></tr>
+            <tr><td>Net Debt/Equity (with GML)</td><td class="mono">0.6×</td><td class="mono">0.5×</td><td class="mono">0.5×</td></tr>
+            <tr><td>Net Debt/Equity (ex-GML)</td><td class="mono">0.02×</td><td class="mono">(0.02)×</td><td class="pos">(0.05)×</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout">
+          <div class="callout-title">The GML Distinction is Critical</div>
+          <p>The ₹35,878 Mn Gold Metal Loan on the consolidated balance sheet (India + Middle East) looks alarming at face value but must be understood correctly. GML is not conventional debt — it is <strong>inventory financing in gold</strong>: Kalyan borrows gold from banks, converts it to jewellery, sells it, and repays in gold (or cash equivalent). It carries embedded hedging, very low interest rates, and scales with the business. It is operationally necessary and prudent. The true financial leverage metric is Net Debt excluding GML — which is <strong>effectively negative</strong> (net cash position) as of FY26. Kalyan is functionally a net-cash company.</p>
+        </div>
+
+        <div class="callout good">
+          <div class="callout-title">Free Cash Flow Reality</div>
+          <p>Management confirmed FY26 FCF was deployed as: ~₹350 Cr for debt reduction + ~₹150 Cr for dividends (plus Candere/international capex of ~₹300 Cr separately). Maintenance capex for India is guided at ₹175 Cr for FY26. Given FY26 PAT of ₹1,350 Cr and the predominantly franchise-led expansion model, <strong>effective FCF conversion is extremely high</strong> — new store capex is borne by franchisees. Sustaining capex + working capital absorption is the primary cash use, suggesting FY27 FCF available for shareholders (dividends + buybacks) could exceed ₹800–900 Cr once non-GML debt is zeroed.</p>
+        </div>
+
+        <div class="callout warn">
+          <div class="callout-title">Other Current Liabilities — Watch Item</div>
+          <p>Other current liabilities surged from ₹25,997 Mn to ₹42,296 Mn standalone — a 63% jump. These likely include customer advance/gold savings scheme deposits (structurally healthy — prepaid revenue) and vendor payables. This line requires detailed note disclosure, which is not fully available from the investor presentation. At these levels, the gold savings scheme float is effectively a form of cheap, interest-free customer financing — a genuine competitive advantage that funds same-store inventory requirements.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  STEP 5 — MANAGEMENT COMMENTARY DECODE            ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div id="s5" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Management Commentary Decode <em>— Language, Tone, Signals</em></h2>
+    </div>
+
+    <div class="decode-grid">
+      <div class="decode-block">
+        <h5>What Management Emphasised</h5>
+        <ul>
+          <li>FOCO expansion pace and franchisee quality — repeated multiple times</li>
+          <li>Candere profitability milestone — correctly highlighted as inflection</li>
+          <li>Non-GML debt near-elimination — justified pride, on track</li>
+          <li>April/Akshaya Tritiya demand continuation — forward confidence</li>
+          <li>Credit rating upgrade to AA- — valid signal of balance sheet quality</li>
+          <li>ROCE at 28.8% — structural vs. cyclical improvement implied</li>
+          <li>Operating leverage on A&P and employee cost lines</li>
+        </ul>
+      </div>
+
+      <div class="decode-block">
+        <h5>What Management Avoided / Deflected</h5>
+        <ul>
+          <li>Promoter pledge: "not the right platform" — evasive; unchanged 15+ months</li>
+          <li>Trade receivable spike — not addressed in call despite material change</li>
+          <li>Middle East FOCO conversion timeline — repeatedly vague ("right direction")</li>
+          <li>Gross margin decomposition (silver/platinum benefit quantum) — vague</li>
+          <li>FY27 SSSG guidance — deflected with "can't predict" despite strong start</li>
+          <li>Cash flow from operations (CFO) vs. EBITDA reconciliation — not discussed</li>
+          <li>Regional brand state not named — understood as political sensitivity, but unusual</li>
+        </ul>
+      </div>
+
+      <div class="decode-block">
+        <h5>Psychological Markers — Confidence Signals</h5>
+        <ul>
+          <li>"Q4 has been fantastic" — emotionally positive, not guarded</li>
+          <li>"More than on track" on Q1 FY27 trends — unusual directness for management</li>
+          <li>Admitting coin sales were "lower than estimated" — intellectually honest</li>
+          <li>Stating clearly that H2 base is high and they've still grown — confident</li>
+          <li>Responding to stock underperformance question without defensiveness</li>
+          <li>Saying "it can happen by H1 FY27" on debt repayment — cautious optimism</li>
+        </ul>
+      </div>
+
+      <div class="decode-block">
+        <h5>Excuse Patterns / Narrative Inconsistencies</h5>
+        <ul>
+          <li>Third brand: "election dust" — valid but this is the 3rd consecutive quarter of delay</li>
+          <li>Middle East FOCO: "going in right direction" — used for 2+ quarters without progress</li>
+          <li>Interest cost increase: buried in "processing charges + advanced tax" — partially valid</li>
+          <li>Gross margin Q4 reversal: explained but confusingly with seasonal and structural factors mixed</li>
+          <li>Pledge: deflection without timeline or commitment is the weakest moment of the call</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="two-col">
+      <div>
+        <p><strong>Management Classification:</strong> <span class="badge badge-green">Financially Disciplined</span> <span class="badge badge-gold">Conservative</span></p>
+        <p style="margin-top:16px">Ramesh Kalyanaraman's communication style is measured, operationally grounded, and avoids promotional hyperbole on numbers. He is notably more candid about risks than typical promoter-executives — acknowledging when guidance won't hold, admitting seasonal factors clearly, and stating stock price is not their concern. This reflects a management team focused on execution quality over investor optics.</p>
+        <p>The key concern is not management integrity but rather <strong>governance opacity</strong> on the promoter pledge and the Middle East FOCO timeline. These are the two areas where directness is conspicuously absent.</p>
+      </div>
+      <div>
+        <p><strong>Tone Change from Q3 FY26:</strong></p>
+        <p>Q3 FY26 call was more cautious — management was flagging gold price volatility, franchise inventory challenges, and was still in "wait and see" mode on Q4. The Q4 call is noticeably more confident — management used the phrase "more than on track" for Q1 FY27, which is among the strongest forward statements they have made. This is a meaningful tone upgrade and suggests ground-level momentum is genuinely strong in April-May 2026.</p>
+        <p>The Adhik-Maas (inauspicious month) caveat for Q1 FY27 is prudent rather than defensive — management refused to give a binary answer on revenue impact, which is intellectually honest given wedding purchases can prepon or postpone.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  STEP 6 — SEGMENT ANALYSIS                        ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div id="s6" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Segment & Business Engine Analysis</h2>
+    </div>
+
+    <div class="three-col">
+      <div class="seg-card">
+        <div class="seg-title">India (Kalyan Core)</div>
+        <div class="seg-sub">Core Profit Engine · 87% of Q4 Revenue</div>
+        <div class="seg-stat"><span class="seg-stat-label">Q4 Revenue</span><span class="seg-stat-val" style="color:var(--gold)">₹8,990 Cr</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">Revenue Growth YoY</span><span class="seg-stat-val" style="color:var(--green)">+68%</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">PBT Margin</span><span class="seg-stat-val">5.5%</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">SSSG (South)</span><span class="seg-stat-val" style="color:var(--green)">29%</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">SSSG (Non-South)</span><span class="seg-stat-val" style="color:var(--green)">62%</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">FOCO Share of Revenue</span><span class="seg-stat-val">~54%</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">Studded Share</span><span class="seg-stat-val">31.2%</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">New Customer Share</span><span class="seg-stat-val">&gt;37%</span></div>
+        <div style="margin-top:16px">
+          <p style="font-size:12px">The core engine is firing well. The South/Non-South SSSG divergence (29% vs. 62%) reflects base effects (South is more mature, higher-base) and the FOCO penetration difference. Non-South FOCO stores in their first 2–3 years naturally exhibit higher SSSG as gold savings scheme maturation converts to purchase revenue. This is a structural tailwind for 3+ more years as the 2022–2024 cohort of FOCO stores ages.</p>
+        </div>
+      </div>
+
+      <div class="seg-card">
+        <div class="seg-title">Middle East</div>
+        <div class="seg-sub">Steady Contributor · FOCO Optionality Pending</div>
+        <div class="seg-stat"><span class="seg-stat-label">Q4 Revenue</span><span class="seg-stat-val" style="color:var(--gold)">₹1,074 Cr</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">Revenue Growth YoY</span><span class="seg-stat-val" style="color:var(--green)">+37%</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">Q4 PAT</span><span class="seg-stat-val" style="color:var(--green)">₹21 Cr</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">EBITDA Margin</span><span class="seg-stat-val">7.3%</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">SSSG Q4</span><span class="seg-stat-val" style="color:var(--green)">~34%</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">No. of Showrooms</span><span class="seg-stat-val">38</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">FOCO Stores</span><span class="seg-stat-val">4 (converted to COCO)</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">GML (Consol)</span><span class="seg-stat-val" style="color:var(--amber)">₹35,878 Mn</span></div>
+        <div style="margin-top:16px">
+          <p style="font-size:12px">Middle East is a steady, modest-margin contributor. The EBITDA margin of 7.3% is acceptable but not exceptional. The key watch item is the FOCO conversion with Arab investors — if materialised, it releases significant capital. Finance cost in Middle East jumped 53% QoQ, driven by GML pricing on a higher gold price — this is pass-through, not structural deterioration.</p>
+        </div>
+      </div>
+
+      <div class="seg-card">
+        <div class="seg-title">Candere</div>
+        <div class="seg-sub">Emerging Growth Engine · High-Margin Optionality</div>
+        <div class="seg-stat"><span class="seg-stat-label">Q4 Revenue</span><span class="seg-stat-val" style="color:var(--gold)">₹131 Cr</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">Revenue Growth YoY</span><span class="seg-stat-val" style="color:var(--green)">+368%</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">Q4 PAT</span><span class="seg-stat-val" style="color:var(--green)">₹3 Cr (vs -₹12 Cr)</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">FY26 Revenue</span><span class="seg-stat-val">₹4,253 Mn</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">Gross Margin</span><span class="seg-stat-val" style="color:var(--green)">Mid-30s%</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">Studded Mix</span><span class="seg-stat-val">&gt;70%</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">Showrooms</span><span class="seg-stat-val">124 (70 FOCO)</span></div>
+        <div class="seg-stat"><span class="seg-stat-label">FY27 Target</span><span class="seg-stat-val">174 Showrooms</span></div>
+        <div style="margin-top:16px">
+          <p style="font-size:12px">Candere is the hidden gem. Mid-30s gross margins vs. 12–13% for the core business. As Candere scales — and management is targeting 174 stores by FY27 end — its contribution to consolidated gross profit will disproportionately increase. This is a premium-brand, high-studded-share, omni-channel platform that represents Kalyan's answer to the BlueStone/digital jewellery trend. The profitability turn is a genuine inflection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  STEP 7 — INDUSTRY & COMPETITIVE POSITIONING      ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div id="s7" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Industry & Competitive Positioning</h2>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <p><strong>Industry Cycle Position:</strong> The Indian organised jewellery market is in a sustained mid-cycle expansion. The unorganised-to-organised shift — driven by GST compliance, mandatory hallmarking, and consumer preference for trusted brands — remains firmly intact. Organised retailers' share rose from 32% in 2020 to ~40% in 2025, with further gains anticipated. At ~7% organised market share, Kalyan is in the sweet spot: large enough to benefit from scale economics, yet small enough to still gain market share meaningfully.</p>
+        <p><strong>Demand Environment:</strong> Wedding jewellery (60% of market) provides structural demand insulation — social necessity compresses price sensitivity. The Adhik-Maas period in Q1 FY27 will create temporal lumpiness but not revenue loss (purchases shift quarters, not cancel). Gold price at historically elevated levels (₹90,000+/10 gm range) is creating headwinds to volume growth but supporting revenue and is structurally positive for working capital turns.</p>
+        <p><strong>Competitive Dynamics:</strong> Tanishq (Titan Company) remains the gold standard for brand trust and studded jewellery share. Kalyan's per-store revenue of ₹50–52 Cr for FOCO vs. Tanishq's higher productivity reflects store size differences, not brand weakness. BlueStone (digital-first) is a credible competitive threat in the lightweight/studded urban segment — Candere is Kalyan's direct counter.</p>
+      </div>
+      <div>
+        <p><strong>Where Kalyan Wins:</strong> The hyperlocal model — localised products, localised staff, localised brand ambassadors — creates genuine entry barriers that national or digital-only competitors cannot easily replicate. The "My Kalyan" network (1,139 centres, 4,375 personnel, 10 Mn customer connects/year, ~20% revenue contribution) is a unique grassroots distribution moat that has no equivalent in the listed organised jewellery space.</p>
+        <p><strong>Structural Tailwinds:</strong> (1) Rural gold demand rising with income levels; (2) Continued unorganised-to-organised shift; (3) 18-karat acceptance growing, enabling lighter price points and potentially broader consumer base; (4) Digital-native younger consumers increasingly buying studded jewellery online/omnichannel — Candere is well-positioned; (5) International Indian diaspora — the UK showroom is a pioneering move in a high-value segment.</p>
+        <p><strong>Disruption Risks:</strong> Lab-grown diamonds (LGD) could compress the studded margin advantage over time if consumers substitute natural diamond-studded jewellery with LGD equivalents. Management is watching but has no current plans — appropriate given LGD adoption curves in India remain nascent. The more immediate risk is gold price reversal, which would compress revenue growth rates materially and test franchise partner returns.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  STEP 8 — CAPITAL ALLOCATION                       ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div id="s8" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Capital Allocation Analysis</h2>
+    </div>
+
+    <div class="callout good">
+      <div class="callout-title">Overall Assessment — Exemplary for a Retail Business</div>
+      The FOCO model represents one of the highest-quality capital allocation decisions in Indian retail over the last decade. By shifting inventory and capex obligations to franchisees (while retaining brand, operations, and gross margin), Kalyan has structurally improved its ROCE from 11.7% (FY20) to 28.8% (FY26) — nearly tripling return on capital over six years while simultaneously growing revenue 3.5× and eliminating most of its debt. This is textbook value creation.
+    </div>
+
+    <div class="two-col">
+      <div>
+        <table class="data-table">
+          <thead><tr><th>Capital Allocation Framework (FY26)</th><th>Amount / Status</th></tr></thead>
+          <tbody>
+            <tr><td>Non-GML debt reduction (India)</td><td class="pos">₹564 Cr in FY26; ₹1,007 Cr over 3 years</td></tr>
+            <tr><td>Dividend payout (FY26)</td><td class="mono">₹257 Cr (~20% of PAT)</td></tr>
+            <tr><td>Maintenance capex (India)</td><td class="mono">~₹175 Cr</td></tr>
+            <tr><td>Candere + International expansion</td><td class="mono">~₹300 Cr (from FCF)</td></tr>
+            <tr><td>Regional brand (FY27)</td><td class="mono">~₹20–25 Cr (5 stores @ ₹4–5 Cr each)</td></tr>
+            <tr><td>New FOCO stores (investor capex)</td><td class="pos">₹0 from Kalyan — franchisee bears</td></tr>
+            <tr><td>COCO to FOCO conversions (ongoing)</td><td class="pos">Releases capital, improves ROCE</td></tr>
+            <tr><td>Non-core asset sales (pipeline)</td><td class="amber">₹380 Cr target; ₹180 Cr in process</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <p><strong>ROCE Trajectory — The FOCO Effect:</strong> ROCE jumped from 19.8% to 28.8% in a single year — this is not entirely organic. The denominator (capital employed = equity + net debt ex-GML + lease liabilities) declined in real terms as non-GML debt was paid down, while the numerator (EBIT) grew 76%. The mathematical effect will moderate in FY27 as the debt payoff completes (no further denominator reduction from this source), but operating leverage on a growing store base should sustain high-20s ROCE.</p>
+        <p><strong>Management's Post-Debt Capital Plan:</strong> Management guided ~50% of cash generated toward dividends/debt/capex and ~50% toward growth (Candere, regional brand, inventory build). This is vague for a company that will generate ₹1,500–1,700 Cr in PAT in FY27. A more specific capital return policy — buyback program, dividend growth commitment — would be a meaningful positive catalyst and is notably absent.</p>
+        <p><strong>No Value Destruction Risk:</strong> The FOCO model means Kalyan is not making dilutive equity-funded acquisitions, not entering capital-intensive unrelated businesses, and not pledging its future cash flows for speculative expansion. The regional brand, even if it fails, is a ₹25 Cr experiment. This is admirable capital discipline.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  STEP 9 — RED FLAGS                               ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div id="s9" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Red Flags & Forensic Detection</h2>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>Red Flag</th><th>Severity</th><th>Evidence</th><th>Assessment</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Promoter Pledge — Unchanged 15+ Months</strong></td>
+          <td><span class="sev-mod">◆ Moderate</span></td>
+          <td>Pledge taken for share buyback; management deflected all questions; "reduced loans meaningfully" in Q3 but no FY26 resolution</td>
+          <td>This is the single largest governance concern. No clarity on quantum of pledge, lender, or resolution timeline. Until resolved, creates a latent overhang on the stock — forced selling risk if stock declines sharply. Not a fundamental threat to the business, but a governance gap.</td>
+        </tr>
+        <tr>
+          <td><strong>Trade Receivables Spike (+119% YoY)</strong></td>
+          <td><span class="sev-mod">◆ Moderate</span></td>
+          <td>Standalone trade receivables from ₹3,313 Mn to ₹7,246 Mn — nearly double, while revenue grew 43%</td>
+          <td>Management did not address this. Possible explanations are benign (gold savings scheme receivables, channel timing). But without explanation, it warrants monitoring. A second consecutive increase would escalate concern to Severe.</td>
+        </tr>
+        <tr>
+          <td><strong>Finance Cost Rising Despite Debt Falling</strong></td>
+          <td><span class="sev-minor">◇ Minor</span></td>
+          <td>Finance cost +22% QoQ in Q4 despite H1-level debt remaining flat; ₹200 Cr one-off advanced tax interest + processing charges</td>
+          <td>Adequately explained with specific quantum (₹30 Cr savings in FY27 from debt paydown + ₹20 Cr one-off reversal = ₹50 Cr improvement). Largely resolved by balance sheet context.</td>
+        </tr>
+        <tr>
+          <td><strong>Other Current Liabilities Surge (+63% YoY)</strong></td>
+          <td><span class="sev-minor">◇ Minor</span></td>
+          <td>₹42,296 Mn vs. ₹25,997 Mn — includes gold savings scheme deposits</td>
+          <td>The gold savings scheme float is a genuine asset — it is prepaid revenue from customers who have committed to purchase. The surge actually reflects growing customer engagement. Not a red flag per se, but warrants note-level disclosure verification.</td>
+        </tr>
+        <tr>
+          <td><strong>Non-Recurring Margin Tailwinds in FY26</strong></td>
+          <td><span class="sev-minor">◇ Minor</span></td>
+          <td>Silver/platinum price surge (~₹20 Cr), vendor payment restructuring (already embedded in base)</td>
+          <td>Management proactively flagged these cannot repeat in FY27. The quantum is manageable (combined ~40–60 bps of gross margin) and is offset by durable operating leverage drivers. Honest disclosure reduces severity.</td>
+        </tr>
+        <tr>
+          <td><strong>Middle East FOCO Conversion — 4 COCO Revertals</strong></td>
+          <td><span class="sev-minor">◇ Minor</span></td>
+          <td>4 FOCO stores temporarily converted to COCO to facilitate Arab investor discussions; timeline unclear</td>
+          <td>This is unusual but explained. If the Arab investor partnership materialises, it is a net positive. If it doesn't within 2 quarters, it raises questions about franchise demand quality in the Middle East and operational intent.</td>
+        </tr>
+        <tr>
+          <td><strong>Revenue Growth Optically Inflated by Gold Prices</strong></td>
+          <td><span class="sev-minor">◇ Minor</span></td>
+          <td>~60% of 43% FY26 revenue growth is gold price appreciation; real volume growth in high single digits</td>
+          <td>Not a red flag in the traditional forensic sense — it is structural to any jewellery retailer. But investors need to model forward revenue growth on volume + new stores, not on gold price extrapolation. A gold price correction of 20–25% would mechanically reduce revenue by 15–18% even with unchanged volumes.</td>
+        </tr>
+        <tr>
+          <td><strong>Auditor Change (Deloitte → Walker Chandiok)</strong></td>
+          <td><span class="sev-ok">✓ Resolved / Low</span></td>
+          <td>Deloitte completed 10-year tenure in 2024; Walker Chandiok appointed August 2024</td>
+          <td>Regulatory rotation, not a red flag. Walker Chandiok is a reputable firm (Grant Thornton affiliate). No governance or going-concern qualifications noted. Clean signal.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  STEP 10 — POSITIVE INFLECTION DETECTION          ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div id="s10" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <h2 class="section-title">Positive Inflection Detection <em>— Early Signals of Future Upside</em></h2>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="callout good">
+          <div class="callout-title">1. Candere — The Margin Inflection Story</div>
+          <p>Candere at mid-30s gross margin is 2.3–2.5× the core business's gross margin. As Candere scales from ~₹4,253 Mn revenue in FY26 toward ₹8,000–10,000 Mn in FY28, it will mechanically lift consolidated gross margins. Currently &lt;2% of revenue, but the trajectory is exponential (160% revenue growth in FY26, targeting 174 stores in FY27 vs. 124). This is an early signal that the market has not priced in.</p>
+        </div>
+        <div class="callout good">
+          <div class="callout-title">2. FOCO Maturity Curve — Gold Savings → Revenue Conversion</div>
+          <p>FOCO stores opened in FY22–FY23 are now entering their third and fourth year of operation — the period when gold savings scheme enrollments from year one convert to purchases. Management noted this organic SSSG kicker in passing. The 2022–2024 cohort of ~130 stores will be the primary SSSG driver for FY27–FY28, independent of gold price or macro factors.</p>
+        </div>
+        <div class="callout good">
+          <div class="callout-title">3. Interest Cost Inflection — FY27 Structural Savings</div>
+          <p>~₹500 Mn of interest cost savings are locked in for FY27 (₹300 Cr non-GML paydown at ~9% + ₹200 Cr one-off reversal). This is a known, structural, near-certain earnings upgrade of approximately ₹375 Mn post-tax — a 3% PAT uplift before any revenue or operating leverage benefit.</p>
+        </div>
+        <div class="callout good">
+          <div class="callout-title">4. Non-South Geography Mix Shift</div>
+          <p>Non-South India, now ~60% of revenue, carries a higher FOCO mix which structurally reduces Kalyan's capital requirement per rupee of revenue. As non-South matures and revenue per FOCO store climbs, consolidated margins will expand without additional capital deployment. This is an early-stage operating leverage story still in its first inning.</p>
+        </div>
+      </div>
+      <div>
+        <div class="callout good">
+          <div class="callout-title">5. Middle East FOCO Conversion — Free Call Option</div>
+          <p>If Arab investor FOCO discussions materialise (management: "nothing has materialised, but going in right direction"), the release of ₹800–1,000 Cr from the Middle East operation would be extraordinary. This capital could fund dividends, buybacks, or Candere acceleration. The market assigns zero probability to this today — it is a true asymmetric optionality.</p>
+        </div>
+        <div class="callout good">
+          <div class="callout-title">6. Studded Mix Expansion — Organic and Structural</div>
+          <p>Studded mix held at 31.2% in Q4 — stable despite a high-gold-price quarter where consumers often shift to plain gold for value. Management is driving 18-karat, 14-karat, and lab-grown diamond sub-categories through Candere and sub-brands (Ziah, Tejasvi, Hera, Laya). Studded carries 3–4× the gross margin of plain gold — every 100 bps mix shift adds ~15–20 bps to consolidated gross margin.</p>
+        </div>
+        <div class="callout good">
+          <div class="callout-title">7. Credit Rating Upgrade — Lower GML Costs Ahead</div>
+          <p>AA- (Stable) opens negotiating power with banks for GML pricing. With ₹35,878 Mn in consolidated GML, a 25 bps rate improvement on GML rates would save ~₹90 Mn annually post-tax. Not large, but an incremental structural tailwind.</p>
+        </div>
+        <div class="callout good">
+          <div class="callout-title">8. New Regional Brand — Untested but Low-Risk Optionality</div>
+          <p>The regional brand (5 stores in FY27, South India state) is structured as an experiment with minimal capex (₹4–5 Cr/store FOCO model). If successful in penetrating hyper-local markets where the Kalyan brand may feel pan-national, it opens a new expansion avenue that is completely additive to the existing store count. If unsuccessful, the loss is immaterial.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  STEP 11 — VALUATION COMFORT                       ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div id="s11" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <h2 class="section-title">Valuation Comfort vs. Earnings Quality</h2>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi-cell">
+        <div class="kpi-label">Market Cap</div>
+        <div class="kpi-val">₹36,461 Cr</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">CMP</div>
+        <div class="kpi-val">₹353</div>
+        <div class="kpi-chg neg">vs 52W High ₹618</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">P/E (FY26 Trailing)</div>
+        <div class="kpi-val">26.5×</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">P/E (FY27E)</div>
+        <div class="kpi-val">~21–23×</div>
+        <div class="kpi-chg pos">Assuming 15–20% PAT growth</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">Price / Book</div>
+        <div class="kpi-val">5.8×</div>
+        <div class="kpi-chg pos">ROE 24.3% justifies premium</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">EV / EBITDA</div>
+        <div class="kpi-val">~16×</div>
+        <div class="kpi-chg pos">FY26 EBITDA ₹2,491 Cr</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">Dividend Yield</div>
+        <div class="kpi-val">0.42%</div>
+        <div class="kpi-chg">₹257 Cr FY26 dividend</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <p><strong>Is the Valuation Justified?</strong></p>
+        <p>At 26.5× trailing P/E, the stock is <strong>not cheap</strong> but is <strong>not egregiously expensive</strong> given the quality of the earnings transformation. The ROCE expansion from 19.8% to 28.8% is the most important justification for a premium multiple — businesses that earn 28%+ ROCE sustainably deserve to trade at 25–30× earnings.</p>
+        <p>The stock has corrected 43% from its 52-week high of ₹618. This correction has compressed valuations to a more reasonable entry point. The question is whether FY26's earnings quality is sustainable or partially inflated.</p>
+        <p><strong>Adjusting for Non-Recurring Tailwinds (FY26):</strong></p>
+        <ul style="list-style:none; margin-top:8px;">
+          <li style="padding:6px 0; border-bottom:1px solid var(--border); font-size:13px; color:var(--text-dim)">Reported FY26 PAT: ₹1,350 Cr</li>
+          <li style="padding:6px 0; border-bottom:1px solid var(--border); font-size:13px; color:var(--text-dim)">Less: Silver/platinum tailwind (post-tax): ~-₹15 Cr</li>
+          <li style="padding:6px 0; border-bottom:1px solid var(--border); font-size:13px; color:var(--text-dim)">Less: Interest one-off reversal (post-tax): ~-₹15 Cr</li>
+          <li style="padding:6px 0; font-size:13px; color:var(--text-dim)">Normalised FY26 PAT: ~₹1,320 Cr</li>
+        </ul>
+        <p style="margin-top:16px"><strong>Normalised P/E: ~27.6×</strong> — only marginally higher than reported. The adjustment is immaterial, confirming the earnings quality is largely genuine.</p>
+      </div>
+      <div>
+        <p><strong>FY27 Earnings Bridge:</strong></p>
+        <table class="data-table">
+          <thead><tr><th>Driver</th><th>PAT Impact</th></tr></thead>
+          <tbody>
+            <tr><td>FY26 Reported PAT</td><td class="mono">₹1,350 Cr</td></tr>
+            <tr><td>Interest savings (non-GML paydown + one-off reversal)</td><td class="pos">+₹37 Cr</td></tr>
+            <tr><td>Operating leverage (revenue growth ~15% base case)</td><td class="pos">+₹100–120 Cr</td></tr>
+            <tr><td>Candere scale-up (loss to breakeven to profit)</td><td class="pos">+₹20–30 Cr</td></tr>
+            <tr><td>Silver/platinum tailwind reversal</td><td class="neg">-₹15 Cr</td></tr>
+            <tr><td>Vendor payment cycle benefit lapping</td><td class="neg">-₹25 Cr</td></tr>
+            <tr><td>Regional brand startup costs</td><td class="neg">-₹10 Cr</td></tr>
+            <tr><td><strong>FY27E PAT (Base Case)</strong></td><td class="pos mono" style="font-weight:700">~₹1,455–1,510 Cr</td></tr>
+          </tbody>
+        </table>
+        <p><strong>FY27E Forward P/E: ~24×</strong></p>
+        <p>For a business with 28%+ ROCE, 24% ROE, near-zero leverage, a genuinely capital-light expansion model, and 10–15% structural PAT growth runway for 3+ years, 24× forward earnings represents <strong>Reasonable valuation with moderate upside</strong> rather than a screaming buy.</p>
+
+        <div class="callout">
+          <div class="callout-title">Valuation Comfort Classification</div>
+          <p><span class="badge badge-gold">Reasonable / Modestly Attractive</span></p>
+          <p style="margin-top:12px">The ~43% correction from the 52-week high has brought Kalyan from "Expensive but Justified" to "Reasonable" territory. The business quality is genuinely high — this is a capital-light compounder in the right sector at the right time in India's consumption story. The valuation does not leave wide margin for error, but does not assume unrealistic growth or margins either.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule-gold"></div>
+    <div class="callout" style="background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, rgba(201,168,76,0.02) 100%)">
+      <div class="callout-title">Final Valuation Judgement</div>
+      <p><strong>Kalyan is a high-quality business at a fair-to-reasonable valuation.</strong> It is not a mediocre business trading at a premium, nor is it an unambiguous deep-value opportunity. The FOCO model, debt elimination, ROCE trajectory, Candere inflection, and sectoral tailwinds make this a durable compounder. At ₹353 (vs. ₹618 peak), with FY27E forward P/E of ~24×, the risk-reward is favourable for investors with a 24–36 month horizon. The catalysts — non-GML debt zeroed, Middle East FOCO materialising, Candere crossing ₹8,000 Mn revenue — are visible, sequenced, and management-controlled. This is not a story requiring macro tailwinds; it is an execution story with proven management capability.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  STEP 12 — FUTURE TRAJECTORY                       ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div id="s12" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">12</span>
+      <h2 class="section-title">Future Trajectory Modeling <em>— Bull, Base & Bear Cases</em></h2>
+    </div>
+
+    <div class="three-col">
+      <div class="case-block" style="border-color: var(--green);">
+        <h4 style="color:var(--green)">▲ Bull Case <span style="font-size:13px; font-family:'IBM Plex Mono'; font-weight:400">₹550–600 Target (18–24M)</span></h4>
+        <ul>
+          <li>Gold prices sustain or rise modestly — SSSG stays 20–25%</li>
+          <li>Middle East FOCO conversion materialises — ₹800–1,000 Cr capital release, partially returned to shareholders</li>
+          <li>Candere scales to ₹1,000+ Cr revenue in FY28 with PAT of ₹80–100 Cr</li>
+          <li>Non-South FOCO maturity drives structural SSSG of 15%+ for FY27 cohort</li>
+          <li>Management announces a clear capital return policy (buyback or higher dividend)</li>
+          <li>Promoter pledge resolved, governance discount eliminated</li>
+          <li>FY28E PAT: ₹1,850–2,000 Cr → Stock re-rates to 28–30× → ₹550–600</li>
+          <li>Probability: 25–30%</li>
+        </ul>
+      </div>
+
+      <div class="case-block" style="border-color: var(--gold-dim);">
+        <h4 style="color:var(--gold)">● Base Case <span style="font-size:13px; font-family:'IBM Plex Mono'; font-weight:400">₹420–480 Target (18–24M)</span></h4>
+        <ul>
+          <li>Gold prices stable at current levels; SSSG normalises to 12–15%</li>
+          <li>84 Kalyan India FOCO + 50 Candere stores added in FY27 as guided</li>
+          <li>Non-GML debt zeroed by H1 FY27; interest savings flow to PAT</li>
+          <li>Candere reaches ₹700–800 Cr revenue in FY27; PAT contribution small but positive</li>
+          <li>Middle East FOCO discussions continue without materialising</li>
+          <li>FY27E PAT: ₹1,455–1,510 Cr; FY28E PAT: ₹1,700 Cr</li>
+          <li>Stock re-rates modestly to 25–27× on higher earnings → ₹420–480</li>
+          <li>Probability: 50–55%</li>
+        </ul>
+      </div>
+
+      <div class="case-block" style="border-color: var(--red);">
+        <h4 style="color:var(--red)">▼ Bear Case <span style="font-size:13px; font-family:'IBM Plex Mono'; font-weight:400">₹280–320 Target (18–24M)</span></h4>
+        <ul>
+          <li>Gold prices correct 20–25% — revenue falls mechanically, SSSG turns sharply negative</li>
+          <li>Franchise demand weakens as franchisee ROI compresses with lower gold prices</li>
+          <li>Promoter pledge crystallises — forced selling creates a share price overhang</li>
+          <li>Adhik-Maas Q1 + gold price volatility creates a weak Q1 print, sentiment deteriorates</li>
+          <li>Middle East business adversely impacted by geopolitical escalation in the region</li>
+          <li>FY27E PAT: ₹1,100–1,200 Cr</li>
+          <li>Stock de-rates to 22–24× on weaker sentiment → ₹280–320</li>
+          <li>Probability: 20–25%</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+    <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin-bottom:16px">Key Monitoring Variables (Quarterly Checklist)</p>
+    <ul class="checklist">
+      <li><span class="ck">Q1 FY27</span>India SSSG — test of post-Akshaya Tritiya demand sustainability; whether Adhik-Maas caused meaningful revenue deferral</li>
+      <li><span class="ck">Q1 FY27</span>Trade receivables — normalisation or further expansion vs. Q4 FY26's elevated ₹7,246 Mn</li>
+      <li><span class="ck">FY27</span>Non-GML debt balance — confirmation of zero by H1 FY27 as guided; watch interest cost trajectory</li>
+      <li><span class="ck">FY27</span>Middle East FOCO conversion — any announcement or further COCO reversions; key capital allocation event</li>
+      <li><span class="ck">ONGOING</span>Promoter pledge status — any regulatory filing showing pledge change; critical governance watch item</li>
+      <li><span class="ck">Q2 FY27</span>Non-core asset sale — ₹180 Cr set to be sold before September 2026; watch for announcement and cash receipt</li>
+      <li><span class="ck">FY27</span>Candere revenue run-rate — trajectory toward ₹700–800 Cr; any profitability guidance formalisation</li>
+      <li><span class="ck">FY27</span>Regional brand launch and first 5-store performance data — unit economics and concept viability signal</li>
+      <li><span class="ck">ONGOING</span>Gold price — critical exogenous variable; every 10% move in gold price impacts revenue by 7–8% and margins by 30–40 bps</li>
+      <li><span class="ck">FY27</span>Capital allocation post-debt freedom — dividend policy articulation, buyback program, or clear framework for deployment of ₹1,500+ Cr PAT</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════╗ -->
+<!-- ║  STEP 13 — FINAL VERDICT                          ║ -->
+<!-- ╚══════════════════════════════════════════════════╝ -->
+<div id="s13" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num">13</span>
+      <h2 class="section-title">Final Investment Verdict</h2>
+    </div>
+
+    <div class="two-col" style="margin-bottom:40px">
+      <div>
+        <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin-bottom:16px">Key Positives</p>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:8px;">
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--green);">✓</span> ROCE jumped to 28.8% — highest ever, and structurally sustainable via FOCO model</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--green);">✓</span> Non-GML debt elimination on track; company will be net-cash ex-GML in FY27</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--green);">✓</span> Candere profitability inflection — high-margin segment now contributing to, not detracting from, PAT</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--green);">✓</span> India credit rating at AA- (Stable) — lower cost of capital and institutional confidence signal</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--green);">✓</span> Strong dividend policy (20% payout) with FY27 likely upside as FCF accelerates</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--green);">✓</span> Non-South market penetration gives 3–5 year SSSG tailwind from FOCO store maturity</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--green);">✓</span> Management credibility on structural commitments is high; conservative guidance culture</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--green);">✓</span> 43% correction from 52-week high presents more favourable entry vs. prior year</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--red); letter-spacing:2px; text-transform:uppercase; margin-bottom:16px">Key Negatives / Risks</p>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:8px;">
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--red);">✗</span> Promoter pledge — unresolved 15+ months, governance opacity, forced-selling risk if stock falls</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--red);">✗</span> Trade receivable spike (+119% YoY) unexplained — needs disclosure and monitoring</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--red);">✗</span> Gold price sensitivity — a 20–25% gold price correction would mechanically reverse much of the SSSG narrative</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--red);">✗</span> Non-recurring FY26 tailwinds (silver/platinum, vendor cycle) not repeatable in FY27</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--red);">✗</span> Middle East FOCO conversion — repeatedly promised, not materialised; adds execution uncertainty</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--red);">✗</span> Third brand delayed three consecutive quarters; minor but credibility-testing</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--red);">✗</span> No clear capital return framework post-debt elimination — ₹1,500 Cr PAT without a policy is ambiguous</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-bottom:40px">
+      <div>
+        <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; margin-bottom:16px">Hidden Insights the Market May Miss</p>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:8px;">
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--gold);">◆</span> FOCO store SSSG in years 3–5 is mechanically higher due to gold savings scheme maturity — a built-in earnings accelerant for FY27–FY28 from the 2022–2023 cohort</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--gold);">◆</span> Candere's mid-30s gross margin vs. 12–13% core will lift consolidated margins as it scales — this effect is not yet visible in numbers but is mathematically inevitable</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--gold);">◆</span> The "My Kalyan" grassroots network (1,139 centres, 10 Mn connects/year, 31% advance scheme enrollment) is a distribution moat with zero equivalence in listed peers — deeply underappreciated by DCF models</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--gold);">◆</span> "Other current liabilities" surge likely reflects gold savings scheme float — this is cheap, pre-committed customer capital that funds inventory and reduces working capital burden structurally</li>
+          <li style="font-size:13px; color:var(--text-dim); padding-left:14px; position:relative;"><span style="position:absolute; left:0; color:var(--gold);">◆</span> The hybrid store model (Kalyan contributes existing inventory; franchisee contributes incremental capex + new inventory) means even the COCO-to-FOCO conversion generates incremental capital efficiency without store closures</li>
+        </ul>
+      </div>
+      <div>
+        <table class="data-table">
+          <thead><tr><th>Management Execution Scorecard</th><th>Rating</th></tr></thead>
+          <tbody>
+            <tr><td>FOCO Expansion Execution</td><td><span class="badge badge-green">Exceptional</span></td></tr>
+            <tr><td>Debt Reduction Commitment</td><td><span class="badge badge-green">Strong</span></td></tr>
+            <tr><td>Margin Improvement</td><td><span class="badge badge-green">Strong</span></td></tr>
+            <tr><td>Candere Transformation</td><td><span class="badge badge-green">Achieved</span></td></tr>
+            <tr><td>Third Brand Launch</td><td><span class="badge badge-amber">Delayed ×3</span></td></tr>
+            <tr><td>Promoter Pledge Resolution</td><td><span class="badge badge-red">Missed</span></td></tr>
+            <tr><td>Middle East FOCO</td><td><span class="badge badge-amber">Delayed</span></td></tr>
+            <tr><td>Capital Return Clarity</td><td><span class="badge badge-amber">Needs Improvement</span></td></tr>
+            <tr><td><strong>Overall Execution Rating</strong></td><td><span class="badge badge-green">Strong</span></td></tr>
+          </tbody>
+        </table>
+
+        <table class="data-table" style="margin-top:16px">
+          <thead><tr><th>Long-Term Compounding Potential</th><th>Assessment</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue CAGR (FY26–FY29E, base)</td><td class="mono">12–15%</td></tr>
+            <tr><td>PAT CAGR (FY26–FY29E, base)</td><td class="pos mono">18–22%</td></tr>
+            <tr><td>ROCE Target (FY28–FY29E)</td><td class="pos mono">30–35%</td></tr>
+            <tr><td>Capital Light Score</td><td class="pos">Exceptional — FOCO model</td></tr>
+            <tr><td>Moat Durability</td><td class="pos">Strong — brand + network + hyperlocal</td></tr>
+            <tr><td>Reinvestment Runway</td><td class="pos">Significant — 23 states, under-penetrated</td></tr>
+            <tr><td>Risk of Permanent Capital Loss</td><td class="mono">Low — sector, balance sheet, model</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="verdict-wrap">
+      <div class="verdict-rating">ACCUMULATE <small>— Staggered Entry Recommended</small></div>
+      <div class="verdict-tagline">
+        Kalyan Jewellers is a genuinely high-quality business in a structural growth sector, executing a capital-light model that is improving returns while eliminating leverage. At ₹353 and 24× forward earnings, the stock is <strong>fair-to-reasonably priced</strong> — not a compelling deep-value opportunity, but a superior compounder offering 20–35% upside in the base case over 18–24 months. The promoter pledge remains the single most important risk to monitor. Staggered accumulation on weakness (at or below ₹320–330) offers a more favourable risk-reward. The thesis can be upgraded to <em>Aggressive Accumulate</em> on two catalysts: promoter pledge resolution and Middle East FOCO materialisation.
+      </div>
+      <ul class="verdict-bullets">
+        <li>FOCO-led ROCE of 28.8% is structural, not cyclical — this is a genuinely capital-efficient compounder</li>
+        <li>Non-GML debt elimination in FY27 adds ₹375 Mn post-tax (locked-in earnings uplift)</li>
+        <li>Candere's mid-30s gross margin profile is a hidden margin expansion engine entering its compound phase</li>
+        <li>At 24× FY27E P/E, valuation is reasonable — buy-and-hold horizon should be 24–36 months minimum</li>
+        <li>Key risk: gold price correction of 20%+ would be the most significant negative catalyst; hedge awareness advised</li>
+        <li>Promoter pledge — non-negotiable to monitor; escalate to Avoid if pledge crystallises or is extended further</li>
+      </ul>
+    </div>
+
+    <div class="footnote" style="margin-top:32px">
+      Disclaimer: This analysis is based exclusively on publicly available disclosures — Q4 & FY26 earnings concall transcript (May 8, 2026), Q3 FY26 earnings concall transcript (February 6, 2026), and the May 2026 investor presentation — as provided. Financial data cited is as per management disclosures. Market data (CMP ₹353, Market Cap ₹36,461 Cr, P/E 26.5×) reflects figures provided at time of analysis. This is an analytical framework and does not constitute investment advice. Investors should conduct their own due diligence.
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
