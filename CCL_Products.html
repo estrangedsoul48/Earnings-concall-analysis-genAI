@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCL Products (India) Ltd — Institutional Analysis | FY26</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
+  :root {
+    --ink: #1a1108;
+    --ink-mid: #3d2f1f;
+    --ink-light: #7a6552;
+    --parchment: #faf6f0;
+    --parchment-dark: #f0e8db;
+    --amber: #c8832a;
+    --amber-light: #e8a84a;
+    --amber-pale: #fdf3e3;
+    --coffee: #5c3317;
+    --coffee-dark: #2e1a0d;
+    --espresso: #1a0d05;
+    --positive: #2d6a4f;
+    --positive-bg: #d8f3dc;
+    --negative: #9b2226;
+    --negative-bg: #ffe5e5;
+    --caution: #7d5a0c;
+    --caution-bg: #fff3cd;
+    --border: rgba(200,131,42,0.2);
+    --shadow: 0 2px 24px rgba(26,13,5,0.08);
+    --shadow-lg: 0 8px 48px rgba(26,13,5,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--parchment);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .report-header {
+    background: var(--espresso);
+    color: var(--parchment);
+    padding: 64px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .report-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(200,131,42,0.15) 0%, transparent 70%),
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 60px,
+        rgba(200,131,42,0.03) 60px,
+        rgba(200,131,42,0.03) 61px
+      );
+    pointer-events: none;
+  }
+
+  .header-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    align-items: start;
+  }
+
+  .report-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber-light);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .report-label::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--amber);
+  }
+
+  .company-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+
+  .report-subtitle {
+    font-size: 14px;
+    color: rgba(250,246,240,0.55);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    margin-bottom: 32px;
+  }
+
+  .header-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    background: rgba(200,131,42,0.15);
+    border: 1px solid rgba(200,131,42,0.3);
+    color: var(--amber-light);
+    padding: 4px 14px;
+    border-radius: 2px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .header-scorecard {
+    background: rgba(250,246,240,0.05);
+    border: 1px solid rgba(200,131,42,0.2);
+    border-radius: 4px;
+    padding: 24px;
+    min-width: 200px;
+  }
+
+  .header-scorecard h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 16px;
+  }
+
+  .score-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(200,131,42,0.1);
+    font-size: 12px;
+  }
+  .score-item:last-child { border-bottom: none; }
+  .score-item .label { color: rgba(250,246,240,0.55); font-weight: 300; }
+  .score-item .val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--amber-light);
+  }
+  .score-bar {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    margin-left: 12px;
+  }
+  .score-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(200,131,42,0.25);
+  }
+  .score-dot.filled { background: var(--amber); }
+
+  /* ── NAV ── */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--espresso);
+    border-bottom: 1px solid rgba(200,131,42,0.25);
+    padding: 0 48px;
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(250,246,240,0.45);
+    text-decoration: none;
+    padding: 14px 18px;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .nav-link:hover { color: var(--amber-light); border-bottom-color: var(--amber); }
+
+  /* ── MAIN ── */
+  .main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 56px 0 24px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeIn 0.4s ease both;
+  }
+  .section:last-child { border-bottom: none; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .section-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--coffee-dark);
+    line-height: 1.2;
+  }
+
+  /* ── METRIC CARDS ── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .metric-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .metric-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+  .metric-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 8px;
+  }
+
+  .metric-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .metric-change {
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+  .metric-change.up { background: var(--positive-bg); color: var(--positive); }
+  .metric-change.down { background: var(--negative-bg); color: var(--negative); }
+  .metric-change.flat { background: var(--caution-bg); color: var(--caution); }
+
+  .metric-sub {
+    font-size: 11px;
+    color: var(--ink-light);
+    margin-top: 4px;
+  }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    margin-bottom: 32px;
+  }
+
+  .compare-table thead th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    border-bottom: 2px solid var(--amber);
+    padding: 12px 16px;
+    text-align: left;
+    background: var(--parchment-dark);
+  }
+
+  .compare-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .compare-table tbody tr:hover { background: var(--amber-pale); }
+
+  .compare-table td {
+    padding: 11px 16px;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .compare-table td:first-child {
+    font-weight: 600;
+    color: var(--ink-mid);
+    width: 30%;
+  }
+
+  .num-cell {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    text-align: right;
+  }
+
+  /* ── GUIDANCE TRACKER ── */
+  .guidance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 32px;
+  }
+
+  .guidance-table thead th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--parchment);
+    background: var(--coffee-dark);
+    padding: 10px 14px;
+    text-align: left;
+  }
+
+  .guidance-table tbody tr { border-bottom: 1px solid var(--border); }
+  .guidance-table tbody tr:nth-child(even) { background: rgba(200,131,42,0.04); }
+  .guidance-table td { padding: 10px 14px; vertical-align: top; line-height: 1.5; }
+  .guidance-table td:first-child { font-weight: 500; color: var(--ink-mid); }
+
+  .status-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .status-achieved { background: var(--positive-bg); color: var(--positive); }
+  .status-exceeded { background: #d4edda; color: #155724; }
+  .status-partial { background: var(--caution-bg); color: var(--caution); }
+  .status-missed { background: var(--negative-bg); color: var(--negative); }
+  .status-pending { background: #e2e8f0; color: #475569; }
+
+  /* ── PROSE ── */
+  .prose-block {
+    color: var(--ink-mid);
+    font-size: 14.5px;
+    line-height: 1.75;
+    margin-bottom: 24px;
+  }
+  .prose-block p { margin-bottom: 16px; }
+  .prose-block p:last-child { margin-bottom: 0; }
+  .prose-block strong { color: var(--ink); font-weight: 600; }
+  .prose-block em { font-style: italic; color: var(--coffee); }
+
+  /* ── INFO BOXES ── */
+  .info-box {
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .info-box.positive { background: var(--positive-bg); border-color: var(--positive); color: #1b4332; }
+  .info-box.negative { background: var(--negative-bg); border-color: var(--negative); color: #6b1b1b; }
+  .info-box.caution  { background: var(--caution-bg);  border-color: var(--caution);  color: #5c3a0a; }
+  .info-box.neutral  { background: var(--parchment-dark); border-color: var(--amber); color: var(--ink-mid); }
+
+  .info-box-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+    opacity: 0.7;
+  }
+
+  /* ── TWO COLUMN ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* ── SCORE PANEL ── */
+  .score-panel {
+    background: var(--coffee-dark);
+    border-radius: 4px;
+    padding: 28px;
+    color: var(--parchment);
+    margin-bottom: 32px;
+  }
+
+  .score-panel h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 20px;
+  }
+
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 600px) { .score-grid { grid-template-columns: 1fr 1fr; } }
+
+  .score-cell {
+    text-align: center;
+    padding: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200,131,42,0.15);
+    border-radius: 4px;
+  }
+
+  .score-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--amber-light);
+    line-height: 1;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .score-name {
+    font-size: 11px;
+    color: rgba(250,246,240,0.5);
+    font-weight: 300;
+  }
+
+  /* ── VERDICT PANEL ── */
+  .verdict-panel {
+    background: linear-gradient(135deg, var(--coffee-dark) 0%, var(--espresso) 100%);
+    border: 1px solid rgba(200,131,42,0.3);
+    border-radius: 4px;
+    padding: 40px;
+    margin-top: 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .verdict-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(200,131,42,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .verdict-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 16px;
+  }
+
+  .verdict-call {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  .verdict-sub {
+    font-size: 15px;
+    color: rgba(250,246,240,0.6);
+    max-width: 600px;
+    margin: 0 auto 28px;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .verdict-reason {
+    display: inline-block;
+    background: rgba(200,131,42,0.15);
+    border: 1px solid rgba(200,131,42,0.3);
+    color: var(--amber-light);
+    padding: 8px 24px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── FLAG ITEMS ── */
+  .flag-list { list-style: none; margin-bottom: 24px; }
+  .flag-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .flag-item:last-child { border-bottom: none; }
+
+  .flag-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  .flag-icon.red    { background: var(--negative-bg); color: var(--negative); }
+  .flag-icon.orange { background: var(--caution-bg); color: var(--caution); }
+  .flag-icon.green  { background: var(--positive-bg); color: var(--positive); }
+
+  .flag-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.6; }
+  .flag-text strong { color: var(--ink); }
+
+  .severity-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+    align-self: start;
+    margin-top: 3px;
+  }
+  .sev-minor    { background: var(--positive-bg); color: var(--positive); }
+  .sev-moderate { background: var(--caution-bg); color: var(--caution); }
+  .sev-strong   { background: var(--positive-bg); color: var(--positive); }
+
+  /* ── BULL/BASE/BEAR ── */
+  .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+  @media (max-width: 700px) { .scenario-grid { grid-template-columns: 1fr; } }
+
+  .scenario-card {
+    border-radius: 4px;
+    padding: 24px;
+    border: 1px solid;
+  }
+  .scenario-card.bull { border-color: var(--positive); background: linear-gradient(160deg, #d8f3dc 0%, #f0fdf4 100%); }
+  .scenario-card.base { border-color: var(--amber); background: linear-gradient(160deg, var(--amber-pale) 0%, #fdfaf5 100%); }
+  .scenario-card.bear { border-color: var(--negative); background: linear-gradient(160deg, var(--negative-bg) 0%, #fff5f5 100%); }
+
+  .scenario-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .bull .scenario-label { color: var(--positive); }
+  .base .scenario-label { color: var(--amber); }
+  .bear .scenario-label { color: var(--negative); }
+
+  .scenario-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+
+  .scenario-body {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--ink-mid);
+  }
+
+  .scenario-target {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+  }
+
+  /* ── MONITORING CHECKLIST ── */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+    color: var(--ink-mid);
+    align-items: flex-start;
+  }
+  .checklist li::before {
+    content: '□';
+    color: var(--amber);
+    font-size: 16px;
+    flex-shrink: 0;
+    line-height: 1.3;
+  }
+  .checklist li strong { color: var(--ink); }
+
+  /* ── VALUATION ── */
+  .val-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 700px) { .val-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .val-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px;
+    text-align: center;
+  }
+  .val-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 6px; }
+  .val-num { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--coffee-dark); }
+  .val-sub { font-size: 10.5px; color: var(--ink-light); margin-top: 2px; }
+
+  /* ── FOOTNOTE ── */
+  .report-footer {
+    background: var(--parchment-dark);
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    margin-top: 0;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-text {
+    font-size: 11px;
+    color: var(--ink-light);
+    line-height: 1.6;
+    max-width: 600px;
+  }
+  .footer-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  /* ── DIVIDER ── */
+  .amber-divider {
+    width: 48px;
+    height: 2px;
+    background: var(--amber);
+    margin: 24px 0;
+  }
+
+  /* ── PULSE DOT ── */
+  .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--positive);
+    text-transform: uppercase;
+  }
+  .pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--positive);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--espresso);
+    color: var(--parchment);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin: 24px 0;
+    font-size: 14.5px;
+    font-style: italic;
+    line-height: 1.65;
+    position: relative;
+  }
+  .callout::before {
+    content: '"';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: var(--amber);
+    line-height: 1;
+    opacity: 0.5;
+  }
+  .callout-attr {
+    display: block;
+    margin-top: 12px;
+    font-style: normal;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--amber-light);
+    letter-spacing: 0.08em;
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HEADER ══════════════ -->
+<header class="report-header">
+  <div class="header-grid">
+    <div>
+      <div class="report-label">Institutional Equity Research · Coffee &amp; Beverages</div>
+      <h1 class="company-name">CCL Products (India) Limited</h1>
+      <p class="report-subtitle">NSE: CCL · BSE: 519600 · FY26 Full-Year &amp; Q4 FY26 Deep-Dive Analysis</p>
+      <div class="header-tags">
+        <span class="tag">B2B Instant Coffee</span>
+        <span class="tag">Export-Led</span>
+        <span class="tag">B2C Emerging</span>
+        <span class="tag">Mid Cap</span>
+        <span class="live-indicator"><span class="pulse-dot"></span>May 2026</span>
+      </div>
+    </div>
+    <div class="header-scorecard">
+      <h4>Scorecard /10</h4>
+      <div class="score-item">
+        <span class="label">Business Health</span>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span class="val">8.0</span>
+          <div class="score-bar">
+            <div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot"></div><div class="score-dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="score-item">
+        <span class="label">Earnings Quality</span>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span class="val">8.5</span>
+          <div class="score-bar">
+            <div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot" style="background:rgba(200,131,42,0.5)"></div><div class="score-dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="score-item">
+        <span class="label">Balance Sheet</span>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span class="val">8.0</span>
+          <div class="score-bar">
+            <div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot"></div><div class="score-dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="score-item">
+        <span class="label">Capital Allocation</span>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span class="val">7.5</span>
+          <div class="score-bar">
+            <div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot" style="background:rgba(200,131,42,0.5)"></div><div class="score-dot"></div><div class="score-dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="score-item">
+        <span class="label">Mgmt Credibility</span>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span class="val">8.5</span>
+          <div class="score-bar">
+            <div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot" style="background:rgba(200,131,42,0.5)"></div><div class="score-dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="score-item">
+        <span class="label">Future Visibility</span>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span class="val">7.5</span>
+          <div class="score-bar">
+            <div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot filled"></div><div class="score-dot" style="background:rgba(200,131,42,0.5)"></div><div class="score-dot"></div><div class="score-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <a href="#executive" class="nav-link">Executive Snapshot</a>
+    <a href="#results" class="nav-link">Result Quality</a>
+    <a href="#guidance" class="nav-link">Guidance Tracker</a>
+    <a href="#financial" class="nav-link">Financial Architecture</a>
+    <a href="#management" class="nav-link">Management Decode</a>
+    <a href="#segments" class="nav-link">Segments</a>
+    <a href="#redflags" class="nav-link">Red Flags</a>
+    <a href="#inflection" class="nav-link">Inflection Points</a>
+    <a href="#valuation" class="nav-link">Valuation</a>
+    <a href="#trajectory" class="nav-link">Trajectory</a>
+    <a href="#verdict" class="nav-link">Verdict</a>
+  </div>
+</nav>
+
+<!-- ══════════════ MAIN ══════════════ -->
+<main class="main-content">
+
+<!-- ── SECTION 1: EXECUTIVE SNAPSHOT ── -->
+<section class="section" id="executive">
+  <div class="section-header">
+    <span class="section-number">01 /</span>
+    <h2 class="section-title">Executive Snapshot</h2>
+  </div>
+
+  <!-- KPI Grid FY26 -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">FY26 Revenue (Consol.)</div>
+      <div class="metric-value">₹4,466Cr</div>
+      <span class="metric-change up">▲ 43% YoY</span>
+      <div class="metric-sub">vs. ₹3,114 Cr in FY25</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">FY26 EBITDA</div>
+      <div class="metric-value">₹741Cr</div>
+      <span class="metric-change up">▲ 32% YoY</span>
+      <div class="metric-sub">Margin: 16.6% on revenue</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">FY26 PAT (Consol.)</div>
+      <div class="metric-value">₹388Cr</div>
+      <span class="metric-change up">▲ 25% YoY</span>
+      <div class="metric-sub">vs. ₹310 Cr in FY25</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Net Debt (Mar 2026)</div>
+      <div class="metric-value">₹1,073Cr</div>
+      <span class="metric-change up">↓ ₹750Cr</span>
+      <div class="metric-sub">From ~₹1,823 Cr a year ago</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Volume Growth FY26</div>
+      <div class="metric-value">18–20%</div>
+      <span class="metric-change up">Above Guidance</span>
+      <div class="metric-sub">Total vol. ~50,000 MT est.</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">EBITDA / kg</div>
+      <div class="metric-value">₹135–140</div>
+      <span class="metric-change up">▲ YoY Improved</span>
+      <div class="metric-sub">FD mix &amp; small packs uplift</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Consol. CFO FY26</div>
+      <div class="metric-value">₹858Cr</div>
+      <span class="metric-change up">116% EBITDA Conv.</span>
+      <div class="metric-sub">Outstanding cash quality</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Net Debt / EBITDA</div>
+      <div class="metric-value">1.45×</div>
+      <span class="metric-change up">From 3.1× (FY25)</span>
+      <div class="metric-sub">Rapid deleveraging story</div>
+    </div>
+  </div>
+
+  <div class="prose-block">
+    <p><strong>What actually happened in FY26?</strong> CCL Products delivered its strongest absolute year in terms of earnings quality and balance sheet transformation. Revenue growth of 43% was a combination of approximately 18–20% real volume growth and the remainder from elevated green coffee prices flowing through the cost-plus model. Crucially, EBITDA per kg — the company's own north-star metric — improved year-on-year, confirming that the business engine strengthened rather than merely rode a commodity tailwind.</p>
+    <p>The single most important development, one the market may be underweighting, is the <strong>balance sheet inflection</strong>. Net debt fell by more than ₹750 crores in a single year — not through asset monetization or dilution, but through genuine free cash flow generation and working capital discipline. A company that was leveraged at 3.1× Net Debt/EBITDA a year ago is now at 1.45×, with no material capex required for the next two years.</p>
+  </div>
+
+  <div class="two-col">
+    <div class="info-box positive">
+      <div class="info-box-title">Top 5 Developments</div>
+      1. Balance sheet inflection — net debt down ₹750 Cr, D/E at 0.5×<br>
+      2. FCF generation ~₹700 Cr+ on TTM basis; CFO exceeds EBITDA<br>
+      3. Domestic branded revenue ₹440 Cr — Continental now #3 nationally<br>
+      4. Vietnam FD capacity ramping as planned; margin mix improves<br>
+      5. FY26 EBITDA growth guided at 25%+ vs. original 15–20% guidance
+    </div>
+    <div class="info-box caution">
+      <div class="info-box-title">What the Market May Be Missing</div>
+      The FCF yield story: with ~₹700 Cr annual FCF, minimal capex for 2 years, and declining debt, CCL is entering a <strong>capital return phase</strong>. The shift in character from leveraged capex compounder to FCF-generative business is material for re-rating. Equally, per-kg EBITDA at ₹135–140 has structural underpinning from freeze-dried mix and small packs — not just cycle tailwinds.
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 2: RESULT QUALITY ── -->
+<section class="section" id="results">
+  <div class="section-header">
+    <span class="section-number">02 /</span>
+    <h2 class="section-title">Result Quality Analysis</h2>
+  </div>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Q3 FY26</th>
+        <th>Q4 FY26</th>
+        <th>FY26 Full Year</th>
+        <th>FY25 Full Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Revenue (Consol.)</td>
+        <td class="num-cell">₹1,053 Cr</td>
+        <td class="num-cell">₹1,226 Cr</td>
+        <td class="num-cell">₹4,466 Cr</td>
+        <td class="num-cell">₹3,114 Cr</td>
+      </tr>
+      <tr>
+        <td>Revenue Growth YoY</td>
+        <td class="num-cell" style="color:var(--positive);font-weight:600">+38%</td>
+        <td class="num-cell" style="color:var(--positive);font-weight:600">+46%</td>
+        <td class="num-cell" style="color:var(--positive);font-weight:600">+43%</td>
+        <td class="num-cell">—</td>
+      </tr>
+      <tr>
+        <td>Volume Growth (est.)</td>
+        <td class="num-cell">~20%</td>
+        <td class="num-cell">~18–20%</td>
+        <td class="num-cell">~18–20%</td>
+        <td class="num-cell">10–15%</td>
+      </tr>
+      <tr>
+        <td>Price/Mix Growth</td>
+        <td class="num-cell">~18–20%</td>
+        <td class="num-cell">~20–25%</td>
+        <td class="num-cell">~22–25%</td>
+        <td class="num-cell">—</td>
+      </tr>
+      <tr>
+        <td>EBITDA</td>
+        <td class="num-cell">₹187.6 Cr</td>
+        <td class="num-cell">₹193.8 Cr</td>
+        <td class="num-cell">₹741 Cr</td>
+        <td class="num-cell">₹564 Cr</td>
+      </tr>
+      <tr>
+        <td>EBITDA Growth YoY</td>
+        <td class="num-cell" style="color:var(--positive);font-weight:600">+47%</td>
+        <td class="num-cell" style="color:var(--caution);font-weight:600">+16%</td>
+        <td class="num-cell" style="color:var(--positive);font-weight:600">+32%</td>
+        <td class="num-cell">—</td>
+      </tr>
+      <tr>
+        <td>PAT</td>
+        <td class="num-cell">₹100.3 Cr</td>
+        <td class="num-cell">₹114.5 Cr</td>
+        <td class="num-cell">₹388 Cr</td>
+        <td class="num-cell">₹310 Cr</td>
+      </tr>
+      <tr>
+        <td>EBITDA / kg</td>
+        <td class="num-cell">₹135–140</td>
+        <td class="num-cell">~₹130–135</td>
+        <td class="num-cell">Improved YoY</td>
+        <td class="num-cell">~₹120–125</td>
+      </tr>
+      <tr>
+        <td>Small Pack % of Mix</td>
+        <td class="num-cell">~18–20%</td>
+        <td class="num-cell">~20%</td>
+        <td class="num-cell">~20%</td>
+        <td class="num-cell">~15%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="prose-block">
+    <p><strong>Revenue Growth Quality:</strong> The 38–46% revenue print is optically inflated by elevated green coffee prices flowing through the cost-plus model. The real, economically meaningful growth is the 18–20% volume expansion — this is what management correctly directs investors to track. Volume growth accelerated from 10–15% in FY25 to 18–20% in FY26, driven by customers gaining confidence in price stability and moving to longer-term contracts.</p>
+    <p><strong>Q4 FY26 — Optical Margin Compression, Not Real Deterioration:</strong> The Q4 EBITDA growth of only 16% vs. 47% in Q3 alarmed some observers. The explanation is two-fold: first, Q4 carried higher-priced green coffee in the cost base (rising coffee prices inflate denominator); second, the product mix in Q4 skewed toward lower-margin spray-dried contracts versus the freeze-dried-heavy Q3. On an annual basis and per-kg basis, EBITDA improved. Investors should not read Q4 as a trend break.</p>
+    <p><strong>Standalone Other Income — Watch Closely:</strong> The standalone results include ₹162.84 Cr in other income received from the Vietnam subsidiary (Ngon Coffee Company) as dividend/management fees. This represents ~6.8% of standalone revenue and is central to standalone PAT. While legitimate, investors analyzing standalone financials must strip this to understand the India-only operating business. At the consolidated level this is eliminated, and consolidated metrics are the correct lens.</p>
+  </div>
+
+  <div class="amber-divider"></div>
+
+  <div class="info-box neutral">
+    <div class="info-box-title">Earnings Quality Assessment</div>
+    <strong>High Quality.</strong> Cash conversion is exceptional — consolidated CFO of ₹858 Cr versus EBITDA of ₹741 Cr implies 116% conversion, driven by working capital release (shorter DSO from renegotiated customer credit terms) and lower inventory holding from softer green coffee prices. There are no exceptional items, no aggressive capitalization flags, and audit opinion is unmodified. The cost-plus model means margins are structurally protected from commodity volatility — EBITDA per kg is the right metric, and it improved.
+  </div>
+</section>
+
+<!-- ── SECTION 3: GUIDANCE TRACKER ── -->
+<section class="section" id="guidance">
+  <div class="section-header">
+    <span class="section-number">03 /</span>
+    <h2 class="section-title">Guidance Tracker &amp; Execution Scorecard</h2>
+  </div>
+
+  <table class="guidance-table">
+    <thead>
+      <tr>
+        <th>Historical Guidance / Claim</th>
+        <th>Timeline Given</th>
+        <th>Current Status</th>
+        <th>Outcome</th>
+        <th>Commentary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>15–20% annual EBITDA growth</td>
+        <td>Ongoing multi-year</td>
+        <td>FY26: ~32% EBITDA growth</td>
+        <td><span class="status-badge status-exceeded">Exceeded</span></td>
+        <td>Mgmt revised guidance to ~25% mid-year; delivered 32%. Management then conservative.</td>
+      </tr>
+      <tr>
+        <td>10–15% volume growth</td>
+        <td>FY25–FY26 period</td>
+        <td>18–20% achieved in FY26</td>
+        <td><span class="status-badge status-exceeded">Exceeded</span></td>
+        <td>Long-term contracts returning with price stability. Acceleration confirmed.</td>
+      </tr>
+      <tr>
+        <td>Gross debt reduction to ₹1,250 Cr by March 2026</td>
+        <td>Guidance given ~Q2 FY26</td>
+        <td>Net debt ₹1,073 Cr at Mar-26; a quarter ahead</td>
+        <td><span class="status-badge status-exceeded">Exceeded</span></td>
+        <td>Working capital efficiency and FCF generation surpassed management's own expectations.</td>
+      </tr>
+      <tr>
+        <td>Vietnam FD plant utilization at 25–30% in Year 1</td>
+        <td>FY26 (first full year)</td>
+        <td>On track; 25–30% utilization confirmed</td>
+        <td><span class="status-badge status-achieved">On Track</span></td>
+        <td>Mgmt stated this is healthy for a first-year ramp. FD margin mix improving.</td>
+      </tr>
+      <tr>
+        <td>Domestic branded revenue ~₹430–440 Cr in FY26</td>
+        <td>Q3 FY26 guidance</td>
+        <td>Achieved ~₹440 Cr branded; total India ₹650 Cr</td>
+        <td><span class="status-badge status-achieved">Achieved</span></td>
+        <td>Continental Coffee now #3 nationally; #2 on key platforms including Blinkit, Amazon.</td>
+      </tr>
+      <tr>
+        <td>Small packs growing from 15% to higher proportion</td>
+        <td>FY25 aspiration</td>
+        <td>Reached ~20% of business in FY26</td>
+        <td><span class="status-badge status-achieved">Achieved</span></td>
+        <td>Margin-accretive shift. Running out of sachet/stick capacity — expansion imminent.</td>
+      </tr>
+      <tr>
+        <td>B2C domestic EBITDA margins 5–8%</td>
+        <td>FY26 guidance</td>
+        <td>~4–5% EBITDA in investment mode</td>
+        <td><span class="status-badge status-partial">Partial</span></td>
+        <td>Mgmt reinvesting aggressively; correct strategic choice. EBITDA-positive now.</td>
+      </tr>
+      <tr>
+        <td>Global capacity utilization 85–90% in 2 years</td>
+        <td>FY28 target (from Q3 call)</td>
+        <td>Currently 65%; FY27 target ~72–73%</td>
+        <td><span class="status-badge status-pending">Tracking</span></td>
+        <td>FY28 path to 80–85% appears credible given 15–20% volume CAGR guidance.</td>
+      </tr>
+      <tr>
+        <td>Plant-based meat business scale-up</td>
+        <td>FY24–FY25 ambition</td>
+        <td>Category abandoned; losses cut</td>
+        <td><span class="status-badge status-missed">Abandoned</span></td>
+        <td>Positive signal: management showed capital discipline. Category globally collapsed.</td>
+      </tr>
+      <tr>
+        <td>Percol (UK) revenue to ₹100 Cr in 2–3 years</td>
+        <td>From Q4 FY26 call</td>
+        <td>Currently ₹25–30 Cr; new aspiration set</td>
+        <td><span class="status-badge status-pending">New Target</span></td>
+        <td>Ambitious 3–4× scale from current base. Depends on brand extension across geographies.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="two-col">
+    <div class="info-box positive">
+      <div class="info-box-title">Execution Credibility Rating</div>
+      <strong style="font-size:16px;">STRONG</strong><br>
+      Management has consistently underpromised and overdelivered on volume and EBITDA growth. The debt guidance was exceeded by a full quarter. The one clean miss — plant-based meat — was swiftly cut rather than persisted. Guidance philosophy is conservative and year-on-year oriented, not quarter-to-quarter. The Chairman's message "have patience" is consistent with a long-term capital allocation mindset.
+    </div>
+    <div class="info-box neutral">
+      <div class="info-box-title">Areas of Guidance Caution</div>
+      Management regularly deflects granular questions about Vietnam capacity, segment-wise margins, and client concentration. While not alarming in isolation, the pattern of "we don't publish granular numbers" across multiple calls deserves monitoring. The Percol ₹100 Cr target and new B2C geographies (US, Vietnam) are aspirational and lack concrete milestones.
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 4: FINANCIAL ARCHITECTURE ── -->
+<section class="section" id="financial">
+  <div class="section-header">
+    <span class="section-number">04 /</span>
+    <h2 class="section-title">Hidden Financial Architecture</h2>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="score-panel">
+        <h4>Cash Flow Truth Analysis — FY26 Consolidated</h4>
+        <div class="score-grid" style="grid-template-columns: 1fr 1fr;">
+          <div class="score-cell">
+            <span class="score-num">₹858Cr</span>
+            <span class="score-name">Operating CF</span>
+          </div>
+          <div class="score-cell">
+            <span class="score-num">116%</span>
+            <span class="score-name">EBITDA Conversion</span>
+          </div>
+          <div class="score-cell">
+            <span class="score-num">₹70Cr</span>
+            <span class="score-name">Capex (FY26)</span>
+          </div>
+          <div class="score-cell">
+            <span class="score-num">~₹790Cr</span>
+            <span class="score-name">Free Cash Flow</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="score-panel">
+        <h4>Balance Sheet Stress Map — FY26 vs FY25</h4>
+        <div class="score-grid" style="grid-template-columns: 1fr 1fr;">
+          <div class="score-cell">
+            <span class="score-num">0.5×</span>
+            <span class="score-name">Debt/Equity (vs 0.92×)</span>
+          </div>
+          <div class="score-cell">
+            <span class="score-num">1.45×</span>
+            <span class="score-name">ND/EBITDA (vs 3.1×)</span>
+          </div>
+          <div class="score-cell">
+            <span class="score-num">7–7.5%</span>
+            <span class="score-name">Cost of Debt</span>
+          </div>
+          <div class="score-cell">
+            <span class="score-num">17%</span>
+            <span class="score-name">Consol. Tax Rate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose-block">
+    <p><strong>Working Capital Forensics — Genuinely Improving:</strong> The CFO explicitly described renegotiating customer credit terms to shorten DSO days. This is a structural improvement, not a one-time artifact — customers accepted shorter payment windows, freeing working capital. Simultaneously, softer green coffee prices meant the company needed to hold less raw material inventory (when prices rose, they needed to pre-buy larger buffer stocks). Both factors combined to unlock ~₹245 Cr+ in working capital during FY26.</p>
+    <p><strong>The Vietnam Subsidiary Transfer — An Important Structural Note:</strong> The standalone other income includes ₹162.84 Cr (for FY26) received from Ngon Coffee Company Limited, Vietnam — management fees or dividend repatriation. This represents a capital efficiency mechanism: profits generated in Vietnam flow back to the Indian parent, boosting standalone PAT. At the consolidated level this nets out. Investors should not mistake the standalone jump in other income as pure organic earnings quality improvement.</p>
+    <p><strong>Capitalized Interest Reversal Distorts Historical Comparison:</strong> In FY25, a significant portion of interest (~₹25–30 Cr) was being capitalized as the Vietnam plant was under construction. In FY26, that facility went live and all interest is now expensed through P&amp;L, making the year-on-year finance cost comparison appear flat despite gross debt declining by ₹750+ Cr. The true reduction in interest burden in FY27 should be visible, with CFO guiding to ~₹100 Cr interest versus ₹130 Cr in FY26.</p>
+    <p><strong>No Off-Balance-Sheet Risks or Promoter Pledging Detected:</strong> The Group structure (5 subsidiaries: CCL Food &amp; Beverages, Continental Coffee Pvt Ltd, Ngon Coffee Vietnam, Continental Coffee SA Switzerland, Jayanti Pte Singapore) is clean. No pledge disclosures, no concerning contingent liabilities flagged in the auditor's report. Audit opinion is unmodified across both standalone and consolidated.</p>
+  </div>
+
+  <div class="info-box positive">
+    <div class="info-box-title">FCF Machine Now Switched On</div>
+    With ~₹700–790 Cr in annual free cash flow, no growth capex required for two years (only ₹25–35 Cr maintenance), and debt service declining, CCL enters a compounding phase. Using conservative FY27 numbers: ₹858 Cr CFO × 1.15 growth = ~₹987 Cr projected CFO, less ₹35 Cr capex = ~₹952 Cr FCF. Even after ₹100 Cr interest and ~₹100 Cr dividend, there is ~₹750 Cr of surplus capital available annually. This fundamentally changes the shareholder return calculus.
+  </div>
+</section>
+
+<!-- ── SECTION 5: MANAGEMENT DECODE ── -->
+<section class="section" id="management">
+  <div class="section-header">
+    <span class="section-number">05 /</span>
+    <h2 class="section-title">Management Commentary Decode</h2>
+  </div>
+
+  <div class="callout">
+    "Just have patience. Everything will go as we had planned."
+    <span class="callout-attr">— Challa Rajendra Prasad, Executive Chairman, Q4 FY26 Earnings Call</span>
+  </div>
+
+  <div class="prose-block">
+    <p><strong>Tone and Psychological Markers:</strong> The management team — particularly CEO Praveen Jaipuriar — exhibits the hallmarks of a disciplined, long-term oriented operator. The consistent redirection from quarterly metrics to annual and per-kg metrics is not defensive deflection; it reflects a genuine understanding of the business model. The Chairman's rare appearances on calls carry significant signaling weight — when he says "have patience," it telegraphs confidence in trajectory without overpromising outcomes.</p>
+    <p><strong>What Management Emphasized:</strong> Working capital efficiency as a strategic priority (not just a financial outcome); the importance of product mix improvement through freeze-dried and small packs; the durability of the cost-plus model against commodity volatility; and building the domestic branded business as a long-duration, investment-mode venture — not a near-term profit center.</p>
+    <p><strong>Avoided Questions and Selective Disclosures:</strong> Management consistently resists granular disclosures on Vietnam vs. India capacity breakdowns, segment-wise margins, and specific client names. They deflect requests for per-subsidiary P&amp;L analysis. This opacity is partially structural (competitive sensitivity) but warrants monitoring. On the Q4 call, when pressed on subsidiary profit volatility, management appropriately guided toward consolidated metrics — which is the correct analytical frame.</p>
+    <p><strong>Narrative Evolution:</strong> The pivot from "we need to build volumes first" (FY24–25) to "the balance sheet is the story now" (FY26) is deliberate and credible. Management is now talking about acquisitions, strategic tie-ups, capacity expansion options, and capital return — all language of a company transitioning from high-leverage growth mode to capital-light compounding mode.</p>
+  </div>
+
+  <div class="two-col">
+    <div class="info-box positive">
+      <div class="info-box-title">Management Classification</div>
+      <strong>Conservative + Long-Term Allocator.</strong><br>
+      Underpromise/overdeliver pattern is consistent across multiple years. Capital discipline demonstrated by cutting plant-based meat losses quickly. Long-duration thinking on domestic brand (3–4 year investment horizon). No ego-driven diversification; strategic experiments are small and reversible. Promoter-driven family business with proven 30-year track record.
+    </div>
+    <div class="info-box caution">
+      <div class="info-box-title">Areas to Monitor</div>
+      FY27 volume guidance of 15% feels conservative (sandbagging likely), but coffee price softening could bring in lower-margin spot customers which impacts EBITDA/kg. The management acknowledged this risk directly. The Malgudi snacks experiment and US/Vietnam B2C seeding need watching — not for scale, but for capital discipline if they begin to consume meaningful resources.
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 6: SEGMENTS ── -->
+<section class="section" id="segments">
+  <div class="section-header">
+    <span class="section-number">06 /</span>
+    <h2 class="section-title">Segment &amp; Business Engine Analysis</h2>
+  </div>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Business Segment</th>
+        <th>FY26 Scale</th>
+        <th>Growth Rate</th>
+        <th>Margin Profile</th>
+        <th>Strategic Assessment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>B2B Instant Coffee (Export)</td>
+        <td class="num-cell">~₹3,800 Cr</td>
+        <td class="num-cell" style="color:var(--positive)">18–20% vol.</td>
+        <td class="num-cell">₹135–140/kg EBITDA</td>
+        <td>Core profit engine. Cost-plus, volume-driven, globally diversified.</td>
+      </tr>
+      <tr>
+        <td>India Branded (Continental Coffee)</td>
+        <td class="num-cell">~₹440 Cr</td>
+        <td class="num-cell" style="color:var(--positive)">40–50% this year</td>
+        <td class="num-cell">4–5% EBITDA (investment mode)</td>
+        <td>Emerging growth engine. #3 nationally, #2 on e-commerce. Distribution 1.4L outlets.</td>
+      </tr>
+      <tr>
+        <td>India Institutional/Vending</td>
+        <td class="num-cell">~₹210 Cr</td>
+        <td class="num-cell">Moderate</td>
+        <td class="num-cell">B2B margins</td>
+        <td>Steady contributor. Tea+coffee vending growing. Supplies beans to café chains.</td>
+      </tr>
+      <tr>
+        <td>UK Brands (Percol)</td>
+        <td class="num-cell">~₹25–30 Cr</td>
+        <td class="num-cell">Positive traction</td>
+        <td class="num-cell">Not disclosed</td>
+        <td>Optionality play. Target: ₹100 Cr in 2–3 years. Exploring expansion to other markets.</td>
+      </tr>
+      <tr>
+        <td>Freeze-Dried (FD) Premium</td>
+        <td class="num-cell">~20–25% of volumes</td>
+        <td class="num-cell" style="color:var(--positive)">Higher than avg.</td>
+        <td class="num-cell">Higher than spray-dried</td>
+        <td>Margin engine. Vietnam FD plant adds capacity. Freeze-dried demand growing with premiumization.</td>
+      </tr>
+      <tr>
+        <td>Small Packs (LUPs)</td>
+        <td class="num-cell">~20% of mix</td>
+        <td class="num-cell" style="color:var(--positive)">Growing fast</td>
+        <td class="num-cell">Premium to bulk</td>
+        <td>High-value-add. Africa and India driving demand. Running at sachet capacity — expansion imminent.</td>
+      </tr>
+      <tr>
+        <td>Plant-Based Meat</td>
+        <td class="num-cell">Nil</td>
+        <td class="num-cell" style="color:var(--negative)">Discontinued</td>
+        <td class="num-cell">Losses cut</td>
+        <td>Prudent exit. Category globally failed. Capital discipline rewarded.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="prose-block">
+    <p>The business engine has two gears: the export B2B flywheel (high volume, cost-plus, globally diversified) and the emerging domestic B2C brand. The B2B side is the predictable, high-quality cash generator. The B2C side is the option value — the company is building a brand that could, over 5–7 years, represent 20–25% of revenues with structurally higher margins than the current 4–5%. The key insight is that both are being built simultaneously without straining the balance sheet.</p>
+  </div>
+</section>
+
+<!-- ── SECTION 7: RED FLAGS ── -->
+<section class="section" id="redflags">
+  <div class="section-header">
+    <span class="section-number">07 /</span>
+    <h2 class="section-title">Red Flags &amp; Forensic Detection</h2>
+  </div>
+
+  <ul class="flag-list">
+    <li class="flag-item">
+      <div class="flag-icon orange">⚑</div>
+      <div class="flag-text">
+        <strong>Standalone Other Income Concentration.</strong> ₹162.84 Cr of standalone other income in FY26 represents income from the Vietnam subsidiary — management fees or dividend. This is ~57% of standalone PAT. If this transfer is restructured or taxed differently in future years, standalone earnings would look materially weaker. Consolidated picture is clean; the risk is to standalone-focused investors.
+      </div>
+      <span class="severity-tag sev-moderate">Moderate</span>
+    </li>
+    <li class="flag-item">
+      <div class="flag-icon orange">⚑</div>
+      <div class="flag-text">
+        <strong>Subsidiary Profit Volatility.</strong> Quarter-to-quarter swings in subsidiary performance create consolidated vs. standalone gaps that confuse investors. Management dismissed concerns as "phasing" — this is largely accurate for a centrally-planned business, but the lack of subsidiary-level transparency is a monitoring risk.
+      </div>
+      <span class="severity-tag sev-moderate">Moderate</span>
+    </li>
+    <li class="flag-item">
+      <div class="flag-icon orange">⚑</div>
+      <div class="flag-text">
+        <strong>CIF Contract Logistics Exposure.</strong> ~30% of exports are on CIF (cost, insurance, freight) terms. Middle East disruptions caused energy and logistics cost increases in Q4 FY26 that could not be fully passed through. Management indicated this was manageable, but it creates a blind spot vs. the "100% cost-plus" narrative management often projects.
+      </div>
+      <span class="severity-tag sev-moderate">Moderate</span>
+    </li>
+    <li class="flag-item">
+      <div class="flag-icon green">✓</div>
+      <div class="flag-text">
+        <strong>No Promoter Pledging.</strong> No pledged shares disclosed. Promoter family retains strong long-term interest alignment without financing pressure. Combined with zero dilution in FY26 and conservative ESOP issuance (₹303 Lakhs in FY26), equity base is stable.
+      </div>
+      <span class="severity-tag sev-strong">No Risk</span>
+    </li>
+    <li class="flag-item">
+      <div class="flag-icon green">✓</div>
+      <div class="flag-text">
+        <strong>Unmodified Audit Opinion — Both Standalone &amp; Consolidated.</strong> Ramanatham &amp; Rao issued clean opinions on FY26 financial results. No qualifications, emphasis of matter items, or auditor concerns flagged. The Labour Code impact (₹205 Lakhs for the Group) was appropriately disclosed and recognized.
+      </div>
+      <span class="severity-tag sev-strong">Clean</span>
+    </li>
+    <li class="flag-item">
+      <div class="flag-icon green">✓</div>
+      <div class="flag-text">
+        <strong>Coffee Price Risk — Structurally Neutralized.</strong> The cost-plus model with back-to-back green coffee buying at contract time means CCL carries essentially no commodity price risk on contracted volumes. Rising prices inflate revenue (optical); falling prices deflate revenue (optical) — but per-kg EBITDA is insulated. Speculative inventory risk exists only in short periods between contract and buying execution.
+      </div>
+      <span class="severity-tag sev-strong">Managed</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ── SECTION 8: INFLECTION POINTS ── -->
+<section class="section" id="inflection">
+  <div class="section-header">
+    <span class="section-number">08 /</span>
+    <h2 class="section-title">Positive Inflection Detection</h2>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">Operating Leverage</div>
+      <div class="metric-value" style="font-size:18px;">Kicking In</div>
+      <div class="metric-sub">Fixed cost base largely set; incremental volume falls to EBITDA line at high margin</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">FD Capacity Ramp</div>
+      <div class="metric-value" style="font-size:18px;">25→50%</div>
+      <div class="metric-sub">Vietnam FD moving from 25–30% to planned 50%+ utilization in FY27–28</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Small Pack Mix</div>
+      <div class="metric-value" style="font-size:18px;">15→20%</div>
+      <div class="metric-sub">Higher realization per kg. Capacity being added in near term</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Domestic Brand Scale</div>
+      <div class="metric-value" style="font-size:18px;">₹440Cr</div>
+      <div class="metric-sub">Targeting doubling every 3 years; non-South now accelerating</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Long-Term Contracts</div>
+      <div class="metric-value" style="font-size:18px;">Returning</div>
+      <div class="metric-sub">Stable prices unlock 2–3 year forward contracts vs. short-term in FY25</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Interest Cost Decline</div>
+      <div class="metric-value" style="font-size:18px;">₹130→₹100Cr</div>
+      <div class="metric-sub">FY27 estimated savings flowing to PAT with no revenue offset</div>
+    </div>
+  </div>
+
+  <div class="info-box positive">
+    <div class="info-box-title">The Leading Indicator Market May Be Missing</div>
+    The convergence of three independent tailwinds — (1) long-term contract visibility returning, (2) freeze-dried utilization ramping in Vietnam, and (3) small pack mix expanding — means EBITDA per kg has structural support above the ₹130 base. Each of these individually would be incremental; together they suggest the ₹135–140/kg range is a new floor, not a cyclical peak. When the next capex cycle begins (FY28–29), CCL will initiate it from a clean, low-leverage balance sheet rather than from a stretched position — a fundamentally different re-entry dynamic than FY22–24.
+  </div>
+</section>
+
+<!-- ── SECTION 9: VALUATION ── -->
+<section class="section" id="valuation">
+  <div class="section-header">
+    <span class="section-number">09 /</span>
+    <h2 class="section-title">Valuation Comfort Analysis</h2>
+  </div>
+
+  <div class="val-grid">
+    <div class="val-card">
+      <div class="val-label">Market Cap</div>
+      <div class="val-num">₹14,906Cr</div>
+      <div class="val-sub">@ ₹1,116/share</div>
+    </div>
+    <div class="val-card">
+      <div class="val-label">P/E (FY26)</div>
+      <div class="val-num">38.4×</div>
+      <div class="val-sub">On ₹388 Cr PAT</div>
+    </div>
+    <div class="val-card">
+      <div class="val-label">EV / EBITDA</div>
+      <div class="val-num">~21.6×</div>
+      <div class="val-sub">EV ~₹15,979 Cr</div>
+    </div>
+    <div class="val-card">
+      <div class="val-label">FCF Yield</div>
+      <div class="val-num">~5.3%</div>
+      <div class="val-sub">₹790 Cr / ₹14,906 Cr</div>
+    </div>
+    <div class="val-card">
+      <div class="val-label">P/B</div>
+      <div class="val-num">6.3×</div>
+      <div class="val-sub">BV ₹176/share</div>
+    </div>
+    <div class="val-card">
+      <div class="val-label">ROCE</div>
+      <div class="val-num">15.8%</div>
+      <div class="val-sub">Improving trajectory</div>
+    </div>
+    <div class="val-card">
+      <div class="val-label">ROE</div>
+      <div class="val-num">18.0%</div>
+      <div class="val-sub">Expanding with delev.</div>
+    </div>
+    <div class="val-card">
+      <div class="val-label">Dividend Yield</div>
+      <div class="val-num">0.45%</div>
+      <div class="val-sub">₹5.75/share (₹2.75 + ₹3)</div>
+    </div>
+  </div>
+
+  <div class="prose-block">
+    <p><strong>Is the valuation justified?</strong> At 38.4× trailing P/E and ~21.6× EV/EBITDA, CCL is priced as a quality compounder — not a cheap value stock. The question is whether the earnings quality, durability, and trajectory justify these multiples. The case for justification is strong: (a) the business model is structurally protected from commodity volatility via cost-plus pricing; (b) ROCE at 15.8% is improving as the Vietnam asset ramps up; (c) FCF yield of ~5.3% is genuinely attractive for a company guiding 15% growth with no near-term capex; and (d) the B2C optionality is embedded at zero explicit premium in the current multiple.</p>
+    <p><strong>The Forward Multiple is More Compelling:</strong> On FY27 estimates (15% EBITDA growth to ~₹852 Cr, interest savings of ~₹30 Cr, and moderate tax), PAT could approach ₹450–480 Cr, implying a forward P/E of 31–33×. At FY28 estimates, if 15% growth continues, forward P/E drops toward 27–28×. For a business with a 30-year operating track record, global #1 position in outsourced instant coffee, and a growing domestic brand, this begins to look Reasonable rather than Expensive.</p>
+    <p><strong>Key Valuation Risk:</strong> The market is implicitly assuming EBITDA per kg holds at ₹135–140. If coffee prices soften dramatically and bring back low-margin spot buyers (diluting the mix), per-kg EBITDA could compress toward ₹120–125, implying ~10% EBITDA miss vs. guidance. This is the primary downside scenario and should be monitored via quarterly EBITDA/kg disclosures.</p>
+  </div>
+
+  <div class="info-box caution">
+    <div class="info-box-title">Valuation Classification: Fully Priced → Expensive But Justified</div>
+    CCL Products is not cheap by any conventional metric. However, the combination of (1) industry-leading scale in outsourced instant coffee, (2) genuine EBITDA quality (cost-plus model, no commodity risk), (3) FCF yield of 5%+ with no capex drag, (4) B2C optionality still maturing, and (5) improving ROCE trajectory justifies a premium multiple. The valuation assumes approximately 15% earnings CAGR and stable per-kg margins — both achievable given current contracts and capacity. Downside is protected by FCF yield and the balance sheet's new cleanliness. The stock is not a screaming buy at current levels, but it is a high-quality business where a patient investor is unlikely to lose capital over a 3–5 year holding period.
+  </div>
+</section>
+
+<!-- ── SECTION 10: TRAJECTORY ── -->
+<section class="section" id="trajectory">
+  <div class="section-header">
+    <span class="section-number">10 /</span>
+    <h2 class="section-title">Future Trajectory &amp; Scenario Modeling</h2>
+  </div>
+
+  <div class="scenario-grid">
+    <div class="scenario-card bull">
+      <div class="scenario-label">Bull Case</div>
+      <div class="scenario-title">The Re-rating Story</div>
+      <div class="scenario-body">
+        Coffee prices remain stable, enabling long-term contracting. Volume growth accelerates to 20%+. FD and small pack mix expands to 25–30%, pushing EBITDA/kg to ₹145–150. Domestic brand hits ₹700–800 Cr by FY28. Percol scales in two new geographies. Board announces buyback or special dividend as FCF accumulates. ROCE crosses 20%. Market re-rates to 45–50× earnings.
+      </div>
+      <div class="scenario-target" style="color:var(--positive);">
+        FY28E PAT: ₹600–650 Cr | Target MCap: ₹27,000–30,000 Cr
+      </div>
+    </div>
+    <div class="scenario-card base">
+      <div class="scenario-label">Base Case</div>
+      <div class="scenario-title">Guided Compounder</div>
+      <div class="scenario-body">
+        15% annual volume and EBITDA growth delivered as guided. EBITDA/kg holds at ₹130–140 range. Domestic brand grows at 25–30% volume annually. Debt fully de-risked by FY28. Capital deployment discussions begin — capex or buyback. FCF generation continues at ₹700–900 Cr range. Multiple broadly stable to modestly expanding as ROE/ROCE improve.
+      </div>
+      <div class="scenario-target" style="color:var(--amber);">
+        FY28E PAT: ₹500–550 Cr | Target MCap: ₹18,000–22,000 Cr
+      </div>
+    </div>
+    <div class="scenario-card bear">
+      <div class="scenario-label">Bear Case</div>
+      <div class="scenario-title">Mix Compression Surprise</div>
+      <div class="scenario-body">
+        Sharp softening in green coffee prices draws back low-margin spot buyers. EBITDA/kg compresses to ₹115–120 range. Volume growth at 10–12% (lower-quality contracts). Domestic brand investment increases without commensurate revenue gains. One of the new market experiments (US/Vietnam B2C) incurs meaningful losses. Market de-rates to 30–32× on lower quality earnings.
+      </div>
+      <div class="scenario-target" style="color:var(--negative);">
+        FY28E PAT: ₹380–420 Cr | Target MCap: ₹12,000–13,500 Cr
+      </div>
+    </div>
+  </div>
+
+  <div class="amber-divider"></div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:17px;color:var(--coffee-dark);margin-bottom:20px;">Quarterly Monitoring Checklist — FY27</h3>
+  <ul class="checklist">
+    <li><strong>EBITDA per kg:</strong> Track quarterly. If it falls below ₹120/kg for two consecutive quarters, re-examine mix quality.</li>
+    <li><strong>Volume growth:</strong> Guidance is 15%. A print above 17–18% suggests guidance conservatism. Below 12% for two quarters is a warning.</li>
+    <li><strong>Net debt trajectory:</strong> Should reach ₹1,000–1,100 Cr by September 2026 and ₹800–900 Cr by March 2027 if FCF generation holds.</li>
+    <li><strong>Domestic branded revenue:</strong> Track quarterly vs. ₹550–600 Cr FY27 estimate. Distribution outlet count should cross 170,000.</li>
+    <li><strong>Vietnam FD utilization:</strong> Should move from 25–30% toward 40–45% through FY27. Watch for capacity constraint signals.</li>
+    <li><strong>Small pack mix:</strong> Should hold at or above 20%. Any regression toward 15% signals mix deterioration.</li>
+    <li><strong>Interest cost:</strong> Q1 FY27 interest should begin declining clearly toward ₹22–25 Cr/quarter from ~₹32 Cr/quarter in FY26.</li>
+    <li><strong>Capital allocation announcement:</strong> Any buyback, special dividend, or material acquisition announcement is a key trigger.</li>
+    <li><strong>Freeze-dried contract announcements:</strong> Long-term FD contracts signal both volume visibility and margin quality.</li>
+    <li><strong>New market experiments (B2C):</strong> Malgudi snacks broader launch; US/Vietnam B2C seeding — monitor for capital being committed vs. just tested.</li>
+  </ul>
+</section>
+
+<!-- ── SECTION 11: FINAL VERDICT ── -->
+<section class="section" id="verdict">
+  <div class="section-header">
+    <span class="section-number">11 /</span>
+    <h2 class="section-title">Final Investment Verdict</h2>
+  </div>
+
+  <div class="two-col">
+    <div class="info-box positive">
+      <div class="info-box-title">Key Positives</div>
+      Exceptional FCF generation of ₹790 Cr with no near-term capex drag — a structural phase shift. Balance sheet de-leveraged by ₹750+ Cr in a single year, reaching ND/EBITDA of 1.45×. Volume growth accelerating (not decelerating) as long-term contracts return. EBITDA per kg at structural high of ₹135–140, supported by FD mix and small packs. Domestic brand now at ₹440 Cr scale with #3 national positioning — embedded optionality. Vietnam FD plant ramping as planned. Management credibility high: consistent underpromotion and overdelivery.
+    </div>
+    <div class="info-box negative">
+      <div class="info-box-title">Key Negatives &amp; Risks</div>
+      Valuation at 38×+ offers limited margin of safety if EBITDA/kg compresses. Coffee price softening could invite low-margin spot buyers and dilute product mix quality. CIF contract exposure (~30% of exports) creates partial vulnerability to logistics cost spikes. Standalone other income is heavily dependent on Vietnam transfer (₹163 Cr), which is non-recurring in nature. B2C geographic and category expansion introduces execution risk in markets CCL has no track record in. Absence of granular segment disclosures limits forensic visibility.
+    </div>
+  </div>
+
+  <div class="info-box neutral">
+    <div class="info-box-title">Hidden Insights</div>
+    The market is broadly tracking revenue and PAT growth but underappreciating three embedded value drivers: (1) The FCF yield story — at ~5.3%, this is now a genuine compounding machine entering a capital-return phase, not just a growth story. (2) The EBITDA/kg inflection from ₹120 to ₹135–140 represents a structural re-rating of business quality — freeze-dried and small packs are not temporary; they are secular trends. (3) The domestic brand at ₹440 Cr generates 5% EBITDA margins by design (investment mode); when the company moves to harvest mode (3–4 years), even 12–15% EBITDA on a ₹1,000+ Cr branded business adds ₹120–150 Cr to group EBITDA — a ~20% uplift from current EBITDA.
+  </div>
+
+  <div class="verdict-panel">
+    <div class="verdict-label">Investment Verdict</div>
+    <div class="verdict-call">ACCUMULATE</div>
+    <div class="verdict-sub">CCL Products is a high-quality business transitioning from a leveraged growth compounder to an FCF-generative, balance-sheet-clean compounder. The 38× multiple is not cheap, but it is defensible for the quality and durability of earnings on offer — and the forward multiple compresses meaningfully as 15%+ earnings growth plays out without any incremental capex.</div>
+    <div class="verdict-reason">Suitable for: Patient long-horizon investors with 3–5 year view · Not a value trade · Not a momentum play</div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="report-footer">
+  <div class="footer-inner">
+    <div class="footer-text">
+      This analysis is based solely on publicly available disclosures — Q3 FY26 and Q4 FY26 earnings call transcripts, FY26 audited financial results, and balance sheet filings of CCL Products (India) Limited. This document does not constitute financial advice. All estimates and projections are the author's own and subject to material change based on future disclosures.
+    </div>
+    <div class="footer-date">ANALYSIS DATE: MAY 17, 2026 · CCL IN / BSE: 519600</div>
+  </div>
+</footer>
+
+</body>
+</html>
