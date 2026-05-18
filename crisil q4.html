@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crisil Limited — Institutional Equity Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=Fraunces:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0e;
+    --paper: #f5f3ee;
+    --cream: #ede9e1;
+    --teal: #0a5c52;
+    --teal-light: #1a8a7a;
+    --teal-muted: #d0e8e4;
+    --amber: #c47c2b;
+    --amber-light: #f5e4c8;
+    --red: #b83232;
+    --red-light: #f5d8d8;
+    --rule: #c8c2b8;
+    --ghost: rgba(13,13,14,0.06);
+    --shadow: 0 2px 24px rgba(13,13,14,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::after {
+    content: '';
+    position: absolute;
+    right: -80px; top: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(10,92,82,0.35), transparent 70%);
+    pointer-events: none;
+  }
+  .masthead-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 52px 48px 44px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: end;
+  }
+  .masthead-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 12px;
+  }
+  .masthead-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+  .masthead-title span { color: var(--teal-light); }
+  .masthead-sub {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: rgba(245,243,238,0.6);
+    margin-top: 10px;
+  }
+  .masthead-meta {
+    text-align: right;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+  }
+  .masthead-meta .ticker {
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .masthead-meta .date {
+    color: rgba(245,243,238,0.5);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+
+  /* ── SCORECARD STRIP ── */
+  .scorecard-strip {
+    background: var(--teal);
+    padding: 0;
+  }
+  .scorecard-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+  }
+  .score-cell {
+    padding: 20px 0 18px;
+    border-right: 1px solid rgba(255,255,255,0.12);
+    padding-left: 24px;
+  }
+  .score-cell:first-child { padding-left: 0; }
+  .score-cell:last-child { border-right: none; }
+  .score-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 6px;
+  }
+  .score-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+  .score-value span {
+    font-size: 13px;
+    font-weight: 400;
+    opacity: 0.6;
+    margin-left: 2px;
+  }
+  .score-bar {
+    margin-top: 8px;
+    height: 3px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+    width: 80%;
+  }
+  .score-fill { height: 100%; background: var(--teal-light); border-radius: 2px; }
+
+  /* ── MARKET DATA BAND ── */
+  .market-band {
+    background: var(--cream);
+    border-bottom: 1px solid var(--rule);
+  }
+  .market-band-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 48px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .mkt-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .mkt-key {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(13,13,14,0.45);
+  }
+  .mkt-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .mkt-val.up { color: var(--teal); }
+  .mkt-val.down { color: var(--red); }
+  .verdict-pill {
+    margin-left: auto;
+    background: var(--teal);
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    padding: 8px 20px;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 52px 48px;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 52px;
+    align-items: start;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  /* ── EXECUTIVE SNAPSHOT ── */
+  .snapshot-lead {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+  .snapshot-lead strong { font-weight: 700; }
+
+  .top5-list { list-style: none; margin-bottom: 36px; }
+  .top5-list li {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+  .top5-list li:last-child { border-bottom: none; }
+  .top5-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--teal);
+    margin-top: 3px;
+  }
+  .top5-text { font-size: 14.5px; line-height: 1.6; }
+  .top5-text strong { font-weight: 700; }
+
+  /* ── SECTIONS ── */
+  .section { margin-bottom: 52px; }
+
+  .prose { font-size: 14.5px; line-height: 1.72; margin-bottom: 18px; }
+  .prose strong { font-weight: 700; }
+
+  /* ── CALLOUT BLOCKS ── */
+  .callout {
+    border-left: 3px solid var(--teal);
+    background: var(--teal-muted);
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout.warn {
+    border-left-color: var(--amber);
+    background: var(--amber-light);
+  }
+  .callout.alert {
+    border-left-color: var(--red);
+    background: var(--red-light);
+  }
+  .callout-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+  .callout.warn .callout-label { color: var(--amber); }
+  .callout.alert .callout-label { color: var(--red); }
+  .callout p { font-size: 13.5px; line-height: 1.65; }
+
+  /* ── METRICS GRID ── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 24px 0;
+  }
+  .metric-cell {
+    background: var(--paper);
+    padding: 18px 20px;
+  }
+  .metric-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(13,13,14,0.45);
+    margin-bottom: 6px;
+  }
+  .metric-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .metric-change {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  .metric-change.pos { color: var(--teal); }
+  .metric-change.neg { color: var(--red); }
+
+  /* ── GUIDANCE TABLE ── */
+  .guidance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  .guidance-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(13,13,14,0.45);
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1.5px solid var(--ink);
+    white-space: nowrap;
+  }
+  .guidance-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .guidance-table tr:last-child td { border-bottom: none; }
+  .status-pill {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .status-achieved { background: var(--teal-muted); color: var(--teal); }
+  .status-partial { background: var(--amber-light); color: var(--amber); }
+  .status-ongoing { background: #e8e8f5; color: #4040a0; }
+  .status-miss { background: var(--red-light); color: var(--red); }
+
+  /* ── FLAG LIST ── */
+  .flag-list { list-style: none; }
+  .flag-list li {
+    display: grid;
+    grid-template-columns: 16px 80px 1fr;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  .flag-list li:last-child { border-bottom: none; }
+  .flag-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-top: 5px;
+  }
+  .flag-dot.minor { background: var(--amber); }
+  .flag-dot.moderate { background: #e07030; }
+  .flag-dot.positive { background: var(--teal); }
+  .flag-severity {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding-top: 2px;
+    color: rgba(13,13,14,0.5);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar { position: sticky; top: 32px; }
+
+  .sidebar-card {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .sidebar-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .verdict-block {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .verdict-block .v-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 10px;
+  }
+  .verdict-block .v-rating {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .verdict-block .v-text {
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(245,243,238,0.7);
+  }
+
+  .bull-bear {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    margin-bottom: 20px;
+  }
+  .bb-col {
+    background: var(--cream);
+    padding: 18px 16px;
+  }
+  .bb-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .bb-title.bull-t { color: var(--teal); }
+  .bb-title.bear-t { color: var(--red); }
+  .bb-list { list-style: none; }
+  .bb-list li {
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--rule);
+    padding-left: 12px;
+    position: relative;
+  }
+  .bb-list li:last-child { border-bottom: none; }
+  .bb-list.bull li::before { content: '↑'; position: absolute; left: 0; color: var(--teal); font-size: 10px; top: 6px; }
+  .bb-list.bear li::before { content: '↓'; position: absolute; left: 0; color: var(--red); font-size: 10px; top: 6px; }
+
+  .monitor-list { list-style: none; }
+  .monitor-list li {
+    font-size: 12.5px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 10px;
+    align-items: start;
+  }
+  .monitor-list li:last-child { border-bottom: none; }
+  .monitor-list li::before {
+    content: '○';
+    color: var(--teal);
+    font-size: 10px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .rating-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 12.5px;
+  }
+  .rating-row:last-child { border-bottom: none; }
+  .rating-row .r-label { color: rgba(13,13,14,0.6); font-size: 12px; }
+  .rating-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+  .rt-strong { background: var(--teal-muted); color: var(--teal); }
+  .rt-moderate { background: var(--amber-light); color: var(--amber); }
+  .rt-high { background: #e8e8f5; color: #4040a0; }
+
+  /* ── VALUATION ── */
+  .val-comfort {
+    background: var(--ghost);
+    border: 1px solid var(--rule);
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .val-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(13,13,14,0.45); margin-bottom: 8px; }
+  .val-rating { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--amber); }
+  .val-sub { font-size: 12.5px; color: rgba(13,13,14,0.6); margin-top: 6px; }
+
+  /* ── MANAGEMENT DECODE ── */
+  .mgmt-classify {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    background: var(--teal);
+    color: #fff;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    background: var(--ink);
+    color: rgba(245,243,238,0.4);
+    padding: 28px 48px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+  }
+  .doc-footer a { color: rgba(245,243,238,0.4); }
+
+  /* ── DIVIDER ── */
+  .rule-ornament {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 36px 0;
+  }
+  .rule-ornament::before, .rule-ornament::after {
+    content: ''; flex: 1; height: 1px; background: var(--rule);
+  }
+  .rule-ornament span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: rgba(13,13,14,0.3);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ── SEGMENT TABLE ── */
+  .seg-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 20px 0;
+  }
+  .seg-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(13,13,14,0.45);
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .seg-table td {
+    padding: 11px 12px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: middle;
+  }
+  .seg-table tr:last-child td { border-bottom: none; }
+  .seg-name { font-weight: 700; font-size: 13.5px; }
+  .seg-note { font-size: 11px; color: rgba(13,13,14,0.5); margin-top: 2px; }
+
+  @media (max-width: 900px) {
+    .masthead-inner { grid-template-columns: 1fr; }
+    .scorecard-inner { grid-template-columns: repeat(3, 1fr); }
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .market-band-inner { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ MASTHEAD ═══════════════════ -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <div class="masthead-label">Institutional Equity Research · Q1 FY2026</div>
+      <h1 class="masthead-title">Crisil <span>Limited</span></h1>
+      <p class="masthead-sub">Comprehensive Earnings & Disclosure Analysis — April 2026</p>
+    </div>
+    <div class="masthead-meta">
+      <span class="ticker">CRISIL.NS</span>
+      <span>NSE / BSE Listed</span><br>
+      <span class="date">Report Date: May 2026</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════ SCORECARD ═══════════════════ -->
+<div class="scorecard-strip">
+  <div class="scorecard-inner">
+    <div class="score-cell">
+      <div class="score-label">Business Health</div>
+      <div class="score-value">8.2<span>/10</span></div>
+      <div class="score-bar"><div class="score-fill" style="width:82%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Earnings Quality</div>
+      <div class="score-value">7.0<span>/10</span></div>
+      <div class="score-bar"><div class="score-fill" style="width:70%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Balance Sheet</div>
+      <div class="score-value">9.0<span>/10</span></div>
+      <div class="score-bar"><div class="score-fill" style="width:90%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Capital Allocation</div>
+      <div class="score-value">8.0<span>/10</span></div>
+      <div class="score-bar"><div class="score-fill" style="width:80%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Mgmt Credibility</div>
+      <div class="score-value">7.5<span>/10</span></div>
+      <div class="score-bar"><div class="score-fill" style="width:75%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Future Visibility</div>
+      <div class="score-value">7.0<span>/10</span></div>
+      <div class="score-bar"><div class="score-fill" style="width:70%"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ MARKET DATA ═══════════════════ -->
+<div class="market-band">
+  <div class="market-band-inner">
+    <div class="mkt-item">
+      <span class="mkt-key">Market Cap</span>
+      <span class="mkt-val">₹29,906 Cr</span>
+    </div>
+    <div class="mkt-item">
+      <span class="mkt-key">CMP</span>
+      <span class="mkt-val">₹4,088</span>
+    </div>
+    <div class="mkt-item">
+      <span class="mkt-key">52W High / Low</span>
+      <span class="mkt-val">₹6,330 / ₹3,686</span>
+    </div>
+    <div class="mkt-item">
+      <span class="mkt-key">P/E (TTM)</span>
+      <span class="mkt-val">35.6×</span>
+    </div>
+    <div class="mkt-item">
+      <span class="mkt-key">ROCE</span>
+      <span class="mkt-val up">32.6%</span>
+    </div>
+    <div class="mkt-item">
+      <span class="mkt-key">ROE</span>
+      <span class="mkt-val up">24.5%</span>
+    </div>
+    <div class="mkt-item">
+      <span class="mkt-key">Book Value</span>
+      <span class="mkt-val">₹415</span>
+    </div>
+    <div class="mkt-item">
+      <span class="mkt-key">Div. Yield</span>
+      <span class="mkt-val">0.61%</span>
+    </div>
+    <div class="verdict-pill">ACCUMULATE</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ BODY ═══════════════════ -->
+<div class="layout">
+<main>
+
+<!-- ──────────── STEP 1: EXECUTIVE SNAPSHOT ──────────── -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Executive Snapshot</h2>
+  </div>
+
+  <p class="snapshot-lead">
+    Q1 FY2026 was <strong>fundamentally strong but optically embellished</strong>. Revenue surged 30.1% YoY to ₹1,058 crore and PAT exploded 45.9% to ₹233 crore — numbers that require careful dissection. Two non-recurring items significantly flattered the quarter: a ₹14.4 crore forex gain (versus a ₹5.2 crore loss in Q1 FY25, a ₹19.6 crore swing) and an accelerated contract renewal in Coalition Greenwich worth approximately USD 4.5 million (~₹38 crore) that pulled forward revenues from subsequent quarters. Strip these out and underlying growth remains highly respectable — likely in the 15–18% range — but not the headline blockbuster being celebrated.
+  </p>
+
+  <div class="section-header" style="border-bottom:none; margin-bottom:12px; padding-bottom:0;">
+    <span class="section-num" style="font-size:9px;">TOP 5 DEVELOPMENTS</span>
+  </div>
+  <ul class="top5-list">
+    <li>
+      <span class="top5-num">01</span>
+      <span class="top5-text"><strong>Coalition Greenwich revenue front-loading:</strong> Management explicitly acknowledged that accelerated contract closures pulled roughly USD 4.5 million (~₹38 Cr) of multi-year contract revenue into Q1. This will normalise — meaning Q2 and Q3 will face a harder comparable and seasonality may be structurally altered for the rest of FY26.</span>
+    </li>
+    <li>
+      <span class="top5-num">02</span>
+      <span class="top5-text"><strong>Ratings segment margin surprise:</strong> The Ratings segment crossed the symbolic 50% EBITDA margin threshold (50.5% in Q1 FY26 vs. 49.7% prior year). Driven by surveillance fee tailwinds from strong prior-year new rating additions rather than current bond market volume (which actually declined 12% YoY in Q1 FY26). This lag-effect revenue is structural — surveillance fees recur annually — providing genuine earnings durability.</span>
+    </li>
+    <li>
+      <span class="top5-num">03</span>
+      <span class="top5-text"><strong>PriceMetrix acquisition integration:</strong> Q1 FY26 reflects the first full quarter consolidation of PriceMetrix (acquired Nov 7, 2025 for USD 32.9M / ₹294 Cr). The deal added goodwill of ₹213 Cr, immediately expanded the wealth management TAM for Coalition Greenwich, and adds geographic presence in Canada. RAS segment comparability is distorted — Q1 FY25 is not apples-to-apples.</span>
+    </li>
+    <li>
+      <span class="top5-num">04</span>
+      <span class="top5-text"><strong>West Asia conflict — real but manageable headwind:</strong> The conflict that erupted in Q1 FY26 is a genuine macro risk. Crisil explicitly lowered its India GDP forecast to 6.8% (base: 7.1%) if disruption prolongs through April. For the business, bond issuances declined 12% YoY in Q1 FY26 — directly compressing new rating revenue opportunities. However, management correctly notes that uncertainty increases demand for risk intelligence products (a natural hedge in their model).</span>
+    </li>
+    <li>
+      <span class="top5-num">05</span>
+      <span class="top5-text"><strong>GenAI commercialisation gaining traction:</strong> Beyond buzzwords, Crisil has deployed specific revenue-generating AI products: GenEye Credit (automated credit report generation), DeepMine (loan data extraction), ICON (AI-led credit workflow), and Crisil i360 (unified macro-to-micro intelligence platform). Twenty of their 26 independent recognitions came from Chartis Research specifically for risk-tech AI. The Myron AI orchestration layer enables rapid cross-business deployment — this is a real differentiation moat in formation.</span>
+    </li>
+  </ul>
+
+  <div class="callout warn">
+    <div class="callout-label">⚠ What the Market May Be Missing</div>
+    <p>The 45.9% PAT growth print will attract momentum buying, but the true underlying PAT growth (adjusted for forex swing of ~₹19.6 Cr and Coalition timing effect of ~₹38 Cr, net of taxes) is closer to 18–22% — still excellent, but the market should not extrapolate the Q1 rate. More importantly, the Ratings business has a structural surveillance fee flywheel building from strong FY24/25 new rating volumes — this provides a multi-year floor to earnings that is being underappreciated.</p>
+  </div>
+</section>
+
+<div class="rule-ornament"><span>Financial Analysis</span></div>
+
+<!-- ──────────── STEP 2: RESULT QUALITY ──────────── -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Result Quality Analysis</h2>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric-cell">
+      <div class="metric-label">Revenue (Q1 FY26)</div>
+      <div class="metric-value">₹1,058 Cr</div>
+      <div class="metric-change pos">▲ 30.1% YoY</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">PBT (Q1 FY26)</div>
+      <div class="metric-value">₹308 Cr</div>
+      <div class="metric-change pos">▲ 35.7% YoY</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">PAT (Q1 FY26)</div>
+      <div class="metric-value">₹233 Cr</div>
+      <div class="metric-change pos">▲ 45.9% YoY</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">Revenue FY25</div>
+      <div class="metric-value">₹3,649 Cr</div>
+      <div class="metric-change pos">▲ 11.9% YoY</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">PBT FY25</div>
+      <div class="metric-value">₹1,041 Cr</div>
+      <div class="metric-change pos">▲ 12.4% YoY</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-label">PAT FY25</div>
+      <div class="metric-value">₹766 Cr</div>
+      <div class="metric-change pos">▲ 12.0% YoY</div>
+    </div>
+  </div>
+
+  <p class="prose"><strong>Revenue Quality:</strong> The 30.1% reported growth is partially inorganic (PriceMetrix adds a full quarter vs. nothing in prior year) and partially timing-driven (Coalition Greenwich contract pull-forward). Organic, like-for-like growth excluding these two effects is estimable at roughly 16–18% — impressive in its own right. The two-segment structure (Ratings at ~30% and RAS at ~70% of revenue) shows both growing with Ratings accelerating. Geography mix is enriching: West Asia and Canada are new incremental vectors.</p>
+
+  <p class="prose"><strong>Margin Architecture:</strong> The PAT margin expanding dramatically (233/1,058 = 22% in Q1 FY26 vs. 160/813 = 19.7% in Q1 FY25) reflects genuine operating leverage on a largely fixed-cost intellectual-capital base. Depreciation and amortisation roughly doubled for the full year (₹128.5 Cr in FY25 vs. ₹70 Cr in FY24), primarily from the PriceMetrix acquisition recognising intangibles. This accounting drag on PBT should reduce as intangibles amortise. Importantly, the Ratings segment maintained 50%+ margins — a milestone reflecting true pricing power and scale efficiency in an asset-light, monopoly-adjacent business.</p>
+
+  <p class="prose"><strong>The Forex Factor:</strong> Rupee depreciation was an explicit tailwind cited by management. The ₹19.6 crore swing in forex treatment (gain vs. loss) artificially inflated PBT comparison by approximately 8.6 percentage points. Investors should strip this from Q1 analysis. Going forward, INR appreciation (a stated risk by management) could become a material headwind given ~68–70% of revenues are dollar-denominated (RAS segment is globally focused).</p>
+
+  <div class="callout">
+    <div class="callout-label">EARNINGS QUALITY VERDICT</div>
+    <p>Quality score of 7/10. The underlying business is genuinely strong — recurring surveillance fees, multi-year contracts in Coalition Greenwich, and mission-critical demand for analytics. However, the Q1 print is optically distorted by forex swings, acquisition timing, and contract pull-forward. Full-year FY26 guidance normalization will test true earnings power in Q2–Q4.</p>
+  </div>
+</section>
+
+<div class="rule-ornament"><span>Guidance & Execution</span></div>
+
+<!-- ──────────── STEP 3: GUIDANCE TRACKER ──────────── -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Guidance Tracker & Execution Scorecard</h2>
+  </div>
+
+  <p class="prose">Management explicitly states a policy of <em>no quantitative guidance on future performance</em> and declines to share order books, individual business revenue breakdowns, or forward targets. This is simultaneously a sign of conservative communication discipline and a frustration for institutional investors seeking to model the business. The guidance tracker is therefore built from qualitative commitments and directional claims made over successive quarters.</p>
+
+  <table class="guidance-table">
+    <thead>
+      <tr>
+        <th>Guidance / Claim</th>
+        <th>Timeline</th>
+        <th>Status</th>
+        <th>Commentary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Drive growth and sustain margins across all businesses</strong></td>
+        <td>FY25–26</td>
+        <td><span class="status-pill status-achieved">Delivered</span></td>
+        <td>FY25 revenue grew 11.9%, PBT 12.4%. Q1 FY26 dramatically ahead. Both Ratings and RAS margins expanded.</td>
+      </tr>
+      <tr>
+        <td><strong>Coalition Greenwich wealth expansion via PriceMetrix acquisition</strong></td>
+        <td>Q4 FY25</td>
+        <td><span class="status-pill status-achieved">Completed</span></td>
+        <td>USD 32.9M deal closed Nov 7, 2025. First full quarter consolidation in Q1 FY26. Canada geography added.</td>
+      </tr>
+      <tr>
+        <td><strong>Expand into West Asia and new geographies</strong></td>
+        <td>FY25 onwards</td>
+        <td><span class="status-pill status-achieved">In Progress</span></td>
+        <td>Client footprint growing in Middle East. Conflict is a near-term headwind, but revenue exposure described as "comparatively low."</td>
+      </tr>
+      <tr>
+        <td><strong>GenAI as a commercialisable product (not just internal use)</strong></td>
+        <td>FY25–26</td>
+        <td><span class="status-pill status-ongoing">Progressing</span></td>
+        <td>GenEye Credit, ICON, DeepMine, i360 are live. 26 Chartis recognitions validate. Revenue contribution not quantified — key watch item.</td>
+      </tr>
+      <tr>
+        <td><strong>RAS segment sustainable double-digit growth</strong></td>
+        <td>Ongoing</td>
+        <td><span class="status-pill status-partial">Partial</span></td>
+        <td>FY25 RAS grew only 9.4% (below implied targets). Q1 FY26 surged 34.9% but aided by pull-forward and PriceMetrix. True organic momentum needs monitoring.</td>
+      </tr>
+      <tr>
+        <td><strong>Diversify from top-20 CIB banks into regional banks &amp; private markets</strong></td>
+        <td>FY25–27</td>
+        <td><span class="status-pill status-ongoing">Early Stage</span></td>
+        <td>Stated clearly but not yet evidenced in numbers. Regional bank engagement mentioned in concall. Critical for reducing client concentration risk.</td>
+      </tr>
+      <tr>
+        <td><strong>Ratings segment maintain leadership &amp; grow surveillance revenue</strong></td>
+        <td>Ongoing</td>
+        <td><span class="status-pill status-achieved">Delivering</span></td>
+        <td>FY25 Ratings grew 18.4%, Q1 FY26 grew 20.2%. 50%+ margins. Surveillance fee flywheel from prior-year new ratings now clearly visible.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-label">Execution Credibility Rating</div>
+    <p><strong>STRONG</strong> — Crisil consistently delivers on its stated strategic priorities. The one area of relative underperformance is the RAS segment's organic trajectory (FY25 at 9.4% was soft), which management has now boosted with acquisitions. The no-quantitative-guidance policy limits accountability but also protects credibility — they don't set targets they can miss.</p>
+  </div>
+</section>
+
+<div class="rule-ornament"><span>Financial Architecture</span></div>
+
+<!-- ──────────── STEP 4: HIDDEN FINANCIAL ARCHITECTURE ──────────── -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Hidden Financial Architecture</h2>
+  </div>
+
+  <p class="prose"><strong>Cash Flow Quality:</strong> The FY25 cash flow statement reveals an important structure. Consolidated CFO was ₹755.6 crore against PBT of ₹1,041 crore — the gap is largely explained by taxes paid (₹283.5 Cr) and working capital build (trade receivables spiked ₹132.9 Cr, a meaningful increase). This receivable spike warrants attention — it grew from ₹549.8 Cr to ₹687.4 Cr (25% increase). As an analytics/ratings business with predominantly subscription-type revenues, large receivable buildup is unusual and should be monitored closely.</p>
+
+  <p class="prose"><strong>Balance Sheet Transformation:</strong> The PriceMetrix acquisition materially changed the balance sheet character. Goodwill nearly doubled from ₹424.6 Cr to ₹680.7 Cr (+60%), and other intangible assets tripled from ₹108.3 Cr to ₹307.8 Cr — a direct consequence of purchase price allocation. The business now carries meaningful acquisition-related intangibles that will generate ongoing amortisation drag (~₹40–50 Cr annually). Total assets grew from ₹3,946 Cr to ₹4,632 Cr, funded entirely by equity (total equity rose from ₹2,565 Cr to ₹3,033 Cr). The company remains debt-free in a conventional sense — no financial debt, only lease liabilities.</p>
+
+  <p class="prose"><strong>Capital Return Architecture:</strong> Crisil paid three interim dividends totalling ₹33/share in FY25 plus a recommended final dividend of ₹28/share, totalling ₹61/share (vs. ₹56/share in FY24). The Q1 FY26 interim of ₹9/share (vs. ₹8/share) maintains the growth cadence. At ₹766 Cr PAT and ₹61/share dividend on ~73.1 lakh shares of face value Re 1 (total equity shares ~7.31 Cr), the payout is exceptionally high — indicating management views this as a mature, cash-generative business with limited need to retain capital beyond acquisitions.</p>
+
+  <div class="callout warn">
+    <div class="callout-label">Working Capital Watch</div>
+    <p>Trade receivables rose ₹137 Cr (25%) in FY25 while revenues grew 11.9%. This mismatch (Days Sales Outstanding expanding) needs resolution in FY26 disclosures. For an information services business billing predominantly on subscription and contract basis, receivable buildup may reflect timing differences in multi-year contract billing cycles post-PriceMetrix — not necessarily a credit quality issue, but requires transparency.</p>
+  </div>
+</section>
+
+<div class="rule-ornament"><span>Management Decode</span></div>
+
+<!-- ──────────── STEP 5: MANAGEMENT COMMENTARY DECODE ──────────── -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Management Commentary Decode</h2>
+  </div>
+
+  <div class="mgmt-classify">Conservative · Disciplined Allocator · Domain-Visionary</div>
+
+  <p class="prose">Amish Mehta's communication style in the April 20, 2026 analyst call is distinctly <strong>measured and institutionally calibrated</strong>. Notably, he proactively flagged the two distorting items (forex and Coalition timing) before analysts could probe — a mark of confidence and transparency. The phrase "we don't make forward-looking statements" appeared repeatedly but not defensively — the team deflects numerical guidance consistently while providing rich qualitative context, which is a credibility-preserving posture.</p>
+
+  <p class="prose"><strong>Buzzword Analysis:</strong> "Domain-led AI," "customer-centricity," "people are our IP," and "wallet share" appeared with high frequency. However, unlike many tech companies using AI as marketing language, Crisil backed claims with named products (GenEye Credit, DeepMine, ICON, Myron AI, i360) and external validation (Chartis rankings). The substance behind the language is credible.</p>
+
+  <p class="prose"><strong>Avoided Topics:</strong> Management consistently declined to share (a) order book data, (b) individual business revenue breakdown within RAS, (c) GAC transfer pricing margins, (d) GenAI revenue contribution quantum, and (e) any explicit guidance on growth rates or margins. Some of these declines are legitimate (competitive sensitivity, fair disclosure constraints). However, the refusal to quantify AI revenue contribution is a meaningful gap — investors cannot currently value Crisil's AI products as a distinct business line.</p>
+
+  <p class="prose"><strong>Tone Shift Detection:</strong> The West Asia conflict risk was addressed with appropriate seriousness — Crisil's own GDP forecast was revised down, and the impact on bond market activity was frankly acknowledged. However, management pivoted quickly to the silver lining ("uncertainty increases demand for risk opinions") which is a genuine structural hedge, not excuse-making. The confidence around client engagement remaining robust in Q1 despite geopolitical headwinds appears authentic rather than promotional.</p>
+
+  <div class="callout">
+    <div class="callout-label">Psychological Marker</div>
+    <p>The comment "we need to keep running at a much faster pace just to be at the same level" (in response to AI competitive risk) suggests management is genuinely anxious about the pace of AI model evolution — a healthy dose of competitive paranoia from a business that has faced near-zero disruption risk for decades. This is a positive signal of strategic alertness rather than complacency.</p>
+  </div>
+</section>
+
+<div class="rule-ornament"><span>Segment Analysis</span></div>
+
+<!-- ──────────── STEP 6: SEGMENT ANALYSIS ──────────── -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Segment & Business Engine Analysis</h2>
+  </div>
+
+  <table class="seg-table">
+    <thead>
+      <tr>
+        <th>Segment / Business</th>
+        <th>Q1 FY26 Rev.</th>
+        <th>YoY Growth</th>
+        <th>Margin</th>
+        <th>Assessment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="seg-name">Ratings Services</div>
+          <div class="seg-note">Domestic Ratings + GAC</div>
+        </td>
+        <td>₹322.6 Cr</td>
+        <td style="color:var(--teal); font-family:'IBM Plex Mono',monospace;">+20.2%</td>
+        <td style="font-family:'IBM Plex Mono',monospace; font-weight:500;">50.5%</td>
+        <td>Structural flywheel. Surveillance fees from prior-year new ratings are recurring and growing. Milestone 50%+ margin. Bond market weakness is a near-term headwind to <em>new</em> rating revenue but surveillance insulates. GAC expansion into non-ratings S&P divisions is an underappreciated growth vector.</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="seg-name">Coalition Greenwich</div>
+          <div class="seg-note">CIB Benchmarking + Wealth</div>
+        </td>
+        <td>Not disclosed</td>
+        <td style="color:var(--teal); font-family:'IBM Plex Mono',monospace;">Strong</td>
+        <td style="font-family:'IBM Plex Mono',monospace; font-weight:500;">~22–24%</td>
+        <td>Q1 boosted by USD 4.5M contract pull-forward. Core CIB benchmarking benefits from bank profitability resurgence globally. PriceMetrix expands into wealth management — early stage but strategic. Regional bank diversification beyond top-20 CIBs is the key medium-term growth story.</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="seg-name">Crisil Integral IQ</div>
+          <div class="seg-note">Risk & Regulatory Solutions</div>
+        </td>
+        <td>Not disclosed</td>
+        <td style="color:var(--teal); font-family:'IBM Plex Mono',monospace;">Healthy</td>
+        <td style="font-family:'IBM Plex Mono',monospace; font-weight:500;">Est. 20–22%</td>
+        <td>Demand for risk/credit lending solutions is structural post-Basel IV and regulatory complexity expansion. GCC partnerships are a feature not a bug — they source overflow work. Private markets expansion (a stated priority) could double the addressable market if executed. AI-assisted regulatory work could compress costs and expand win rates.</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="seg-name">Crisil Intelligence</div>
+          <div class="seg-note">India Data Analytics & Consulting</div>
+        </td>
+        <td>Not disclosed</td>
+        <td style="color:var(--teal); font-family:'IBM Plex Mono',monospace;">Steady</td>
+        <td style="font-family:'IBM Plex Mono',monospace; font-weight:500;">Est. 18–22%</td>
+        <td>Domestic beneficiary of India's financial deepening — AUM growth, NPA improvement, MSME credit expansion all drive demand. The India Outlook Conclave and Investment Conclave events build brand moat in this segment. Serving 50+ banks and most top-20 AMCs gives sticky, recurring revenue character.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="prose"><strong>Core Profit Engine:</strong> Ratings remains the highest-margin business at 50%+ and is the true earnings anchor. The RAS segment at 22% margin is a volume game that scales — every additional dollar of revenue falls through to margin at an improving rate as the fixed IP base is already built. The business has two speeds: Ratings (high margin, lower growth, recurring) and RAS (lower margin, higher growth, inorganic upside).</p>
+</section>
+
+<div class="rule-ornament"><span>Risk & Opportunity</span></div>
+
+<!-- ──────────── STEP 9: RED FLAGS ──────────── -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2 class="section-title">Red Flags & Forensic Detection</h2>
+  </div>
+
+  <ul class="flag-list">
+    <li>
+      <span class="flag-dot minor"></span>
+      <span class="flag-severity">Minor</span>
+      <span><strong>Receivables spike in FY25:</strong> Trade receivables grew ₹137.6 Cr (25%) against 11.9% revenue growth. DSO appears to be expanding. May reflect multi-year contract billing timing post-PriceMetrix but needs clarification in future disclosures. Not a fraud signal — merely a quality concern.</span>
+    </li>
+    <li>
+      <span class="flag-dot minor"></span>
+      <span class="flag-severity">Minor</span>
+      <span><strong>Q1 revenue quality inflation:</strong> Coalition Greenwich contract pull-forward (USD 4.5M) and forex swing (₹19.6 Cr net benefit vs. prior year) together contributed ~₹58 Cr of "non-recurring" uplift to Q1 PBT of ₹308 Cr — approximately 19% of reported PBT. This is proactively disclosed and not manipulative, but the optics of a 45.9% PAT growth need context.</span>
+    </li>
+    <li>
+      <span class="flag-dot minor"></span>
+      <span class="flag-severity">Moderate</span>
+      <span><strong>Goodwill accumulation:</strong> Goodwill rose to ₹680.7 Cr from ₹424.6 Cr with PriceMetrix acquisition (goodwill of ₹213 Cr recognised). Total intangibles on balance sheet are now ₹307.8 Cr. Impairment risk is low (Crisil has a track record of extracting value from acquisitions) but the balance sheet is increasingly intangible-heavy, which could depress ROCE optics over time.</span>
+    </li>
+    <li>
+      <span class="flag-dot positive"></span>
+      <span class="flag-severity">Positive</span>
+      <span><strong>No debt, no pledges, strong equity base:</strong> Total equity at ₹3,033 Cr, zero financial debt. Majority S&P Global ownership provides strategic support. No related party risks of note. Clean governance structure with regular, high-payout dividends demonstrating earnings are real cash.</span>
+    </li>
+    <li>
+      <span class="flag-dot minor"></span>
+      <span class="flag-severity">Minor</span>
+      <span><strong>New Labour Code one-off impact:</strong> ₹16.8 Cr past service cost recognition in Q4 FY25 and full year due to Labour Code implementation from November 2025. This will not recur but final rules are still awaited — further adjustments possible in FY26.</span>
+    </li>
+    <li>
+      <span class="flag-dot minor"></span>
+      <span class="flag-severity">Moderate</span>
+      <span><strong>RAS segment FX dependency:</strong> Approximately 70% of revenues are dollar-denominated. Sharp INR appreciation against USD could compress reported revenues and margins materially. Management has forex hedging processes but the hedging disclosure is thin — investors do not know the hedge ratio or tenor.</span>
+    </li>
+  </ul>
+</section>
+
+<!-- ──────────── STEP 10: POSITIVE INFLECTION ──────────── -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2 class="section-title">Positive Inflection Signals</h2>
+  </div>
+
+  <p class="prose"><strong>The Surveillance Fee Flywheel is Now Fully Visible:</strong> This is perhaps the most underappreciated structural positive in Crisil's model. New rating revenues in FY24 and FY25 were particularly strong (mid-corporate momentum, investor preference for Crisil). These convert into recurring surveillance fees in subsequent years, creating a lagged but durable revenue stream. As Subodh Rai explicitly explained, the strong Q1 FY26 Ratings growth is largely a function of prior-year new ratings — the engine was built before the current bond market softness hit. This creates a multi-year buffer.</p>
+
+  <p class="prose"><strong>AI Products Moving from Cost Centre to Revenue Engine:</strong> The explicit naming of revenue-generating AI products (GenEye Credit, DeepMine, ICON, i360, Credit+) and their adoption by Indian banks for credit risk assessment marks a qualitative inflection point. Crisil's proprietary data moat (decades of credit cycle data, 7,200+ rated companies, industry-specific analytics) is the irreplaceable ingredient that makes their AI credible in regulated financial environments — a barrier that generic LLM providers cannot easily replicate.</p>
+
+  <p class="prose"><strong>Global CIB Environment Turning Favorable:</strong> Global CIB revenue pools grew 7% in FY25 to ~USD 660B with ROE expanding ~78bps. Active M&A markets, elevated fixed income volatility (a Coalition Greenwich revenue driver), and buoyant equities (again a demand driver for benchmarking services) all compound favorably. The key risk is discretionary budget freezes from geopolitical uncertainty — but Crisil's pivot toward non-discretionary and subscription products mitigates this.</p>
+</section>
+
+<div class="rule-ornament"><span>Valuation</span></div>
+
+<!-- ──────────── STEP 11: VALUATION COMFORT ──────────── -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">11</span>
+    <h2 class="section-title">Valuation Comfort Analysis</h2>
+  </div>
+
+  <div class="val-comfort">
+    <div class="val-label">Valuation Comfort Classification</div>
+    <div class="val-rating">Fully Priced · Conditionally Reasonable</div>
+    <div class="val-sub">35.6× P/E | 9.8× P/BV | ~39× EV/EBITDA (estimated)</div>
+  </div>
+
+  <p class="prose">At ₹4,088 per share and ₹29,906 Cr market cap, Crisil trades at 35.6× trailing P/E. On FY25 PAT of ₹766 Cr, this implies significant premium to the broader market. The key question is whether this premium is justified by earnings durability, ROCE quality, and reinvestment opportunity.</p>
+
+  <p class="prose"><strong>The Bear Case on Valuation:</strong> The stock has corrected 35% from its 52-week high of ₹6,330, implying the market has already re-rated from a speculative peak. At the current price, annualised FY26E PAT (using 4× Q1 of ₹233 Cr = ₹932 Cr, but adjusting for pull-forward normalisation to ~₹850–900 Cr) puts the forward P/E at approximately 33–35×. For a company growing organically at 12–16% with ROCE of 32.6%, this is not screaming cheap — it requires execution of the GenAI monetisation narrative to justify current multiples.</p>
+
+  <p class="prose"><strong>The Bull Case on Valuation:</strong> ROCE at 32.6% for a capital-light IP business is extraordinary. The entire net worth of ₹3,033 Cr is deployed productively. Free cash flow generation (CFO ₹755 Cr on FY25 revenue of ₹3,649 Cr — a 20.7% FCF margin) is exceptional. Dividend payout suggests management sees no better use of capital than returning it — yet the business still grows 12%+ organically. The S&P Global parentage provides a strategic floor, access to global best practices, and an implicit backstop against existential competitive threats. At 35× on a 30%+ ROCE compounder with AI optionality and a structural surveillance fee flywheel, the valuation is demanding but not irrational.</p>
+
+  <div class="callout">
+    <div class="callout-label">CONCLUSION</div>
+    <p><em>Crisil is a high-quality business at a demanding but defensible valuation.</em> It is neither a mediocre business at a premium multiple nor a screaming deep value. The 35% correction from highs has made the entry point meaningfully more attractive. Investors with a 2–3 year horizon who believe in the surveillance fee flywheel, GenAI monetisation, and sustained global analytics demand are buying a quality compounder at a fair price. Short-term traders should note that Q2–Q3 FY26 comparables will be harsh given the Q1 pull-forward effect.</p>
+  </div>
+</section>
+
+<!-- ──────────── STEP 12: TRAJECTORY ──────────── -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">12</span>
+    <h2 class="section-title">Future Trajectory — Base / Bull / Bear</h2>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric-cell" style="border-left:3px solid var(--teal);">
+      <div class="metric-label">Base Case FY26E PAT</div>
+      <div class="metric-value">~₹870 Cr</div>
+      <div class="metric-change pos">~14% growth</div>
+    </div>
+    <div class="metric-cell" style="border-left:3px solid var(--amber);">
+      <div class="metric-label">Bull Case FY26E PAT</div>
+      <div class="metric-value">~₹960 Cr</div>
+      <div class="metric-change pos">~25% growth</div>
+    </div>
+    <div class="metric-cell" style="border-left:3px solid var(--red);">
+      <div class="metric-label">Bear Case FY26E PAT</div>
+      <div class="metric-value">~₹760 Cr</div>
+      <div class="metric-change neg">~0% growth</div>
+    </div>
+  </div>
+
+  <p class="prose"><strong>Base Case (most likely):</strong> West Asia conflict stabilises by H2 FY26. Bond markets partially recover as yields moderate with RBI rate cuts. Surveillance fee flywheel continues. RAS organic growth normalises to 10–12%. Coalition Greenwich Q2–Q3 shows normalization effects but recovers Q4 with strong CIB activity. PriceMetrix contributes positively. Full-year revenue growth ~14–16%, PAT growth ~12–15%. Ratings margin sustains 44–46%. RAS margin improves to 22–23%.</p>
+
+  <p class="prose"><strong>Bull Case:</strong> Conflict resolves quickly; INR remains stable or depreciates further; GenAI product revenues become material contributors in H2 FY26; regional bank client wins accelerate at Coalition Greenwich; bond market recovers with yield softening. Revenue growth 20%+, PAT growth 22–25%. Potential re-rating to 40× P/E as GenAI narrative gets priced.</p>
+
+  <p class="prose"><strong>Bear Case:</strong> Prolonged West Asia conflict triggers INR appreciation + global recession fears; CIB discretionary budgets are cut; bond market remains subdued throughout FY26; FX headwinds compress margins. Revenue growth limited to 6–8%; PAT flat to marginally down. Stock tests ₹3,200–3,400 support levels.</p>
+</section>
+
+</main>
+
+<!-- ═══════════════════ SIDEBAR ═══════════════════ -->
+<aside class="sidebar">
+
+  <div class="verdict-block">
+    <div class="v-label">Final Investment Verdict</div>
+    <div class="v-rating">ACCUMULATE</div>
+    <p class="v-text">High-quality compounding machine experiencing a Q1 optical distortion. Use any Q2–Q3 weakness (from pull-forward normalization) as a buying opportunity. 2–3 year conviction holds.</p>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">Assessment Summary</div>
+    <div class="rating-row">
+      <span class="r-label">Execution Credibility</span>
+      <span class="rating-tag rt-strong">STRONG</span>
+    </div>
+    <div class="rating-row">
+      <span class="r-label">Earnings Quality</span>
+      <span class="rating-tag rt-moderate">MODERATE</span>
+    </div>
+    <div class="rating-row">
+      <span class="r-label">Balance Sheet</span>
+      <span class="rating-tag rt-strong">PRISTINE</span>
+    </div>
+    <div class="rating-row">
+      <span class="r-label">Management Classify</span>
+      <span class="rating-tag rt-strong">CONSERVATIVE</span>
+    </div>
+    <div class="rating-row">
+      <span class="r-label">Valuation Comfort</span>
+      <span class="rating-tag rt-moderate">DEMANDING</span>
+    </div>
+    <div class="rating-row">
+      <span class="r-label">Compounding Potential</span>
+      <span class="rating-tag rt-high">HIGH</span>
+    </div>
+  </div>
+
+  <div class="bull-bear">
+    <div class="bb-col">
+      <div class="bb-title bull-t">KEY POSITIVES</div>
+      <ul class="bb-list bull">
+        <li>Surveillance fee flywheel building for 2–3 year runway</li>
+        <li>50%+ Ratings margins — rare in Indian markets</li>
+        <li>Zero financial debt; 20%+ FCF margin</li>
+        <li>S&P Global parentage — strategic moat</li>
+        <li>GenAI commercialisation: named products, 26 Chartis wins</li>
+        <li>PriceMetrix: wealth management TAM expansion</li>
+        <li>35% off highs — better entry vs. 6 months ago</li>
+      </ul>
+    </div>
+    <div class="bb-col">
+      <div class="bb-title bear-t">KEY NEGATIVES</div>
+      <ul class="bb-list bear">
+        <li>Q1 PAT 45.9% growth significantly overstates organic momentum</li>
+        <li>Coalition pull-forward creates tough Q2–Q3 comps</li>
+        <li>Bond market weakness — Q1 issuances down 12% YoY</li>
+        <li>Receivables spike ₹137 Cr in FY25 — unexplained</li>
+        <li>INR appreciation risk on 70% USD revenues</li>
+        <li>GenAI revenue not quantified — valuation leap of faith</li>
+        <li>35× P/E demands flawless execution</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-title">Quarterly Monitoring Checklist</div>
+    <ul class="monitor-list">
+      <li>Coalition Greenwich quarterly revenue trajectory (normalisation from Q1 pull-forward)</li>
+      <li>Bond issuance market recovery — watch Q2 Prime Database data</li>
+      <li>Trade receivables resolution in Q2 FY26 balance sheet</li>
+      <li>GenAI revenue quantification — any disclosure of AI-product ARR</li>
+      <li>INR/USD rate trajectory and management hedging disclosures</li>
+      <li>West Asia conflict resolution and its bond market impact</li>
+      <li>GAC revenue share from non-Ratings S&P Global divisions</li>
+      <li>Regional bank client wins at Coalition Greenwich / Integral IQ</li>
+      <li>PriceMetrix organic revenue growth and integration milestones</li>
+    </ul>
+  </div>
+
+  <div class="sidebar-card" style="background:var(--ink); color:var(--paper); border:none;">
+    <div class="sidebar-card-title" style="color:rgba(245,243,238,0.5); border-bottom-color:rgba(255,255,255,0.1);">Hidden Insights</div>
+    <p style="font-size:12.5px; line-height:1.65; color:rgba(245,243,238,0.75);">
+      The surveillance fee business inside Ratings is effectively a 3-year annuity. New ratings in FY24–25 created a revenue base that now accrues as surveillance even if the bond market stalls. The market prices Crisil on top-line growth, but the real earnings quality story is the conversion of lumpy new-rating revenue into smooth, recurring surveillance revenue — a genuinely underappreciated flywheel.
+    </p>
+    <p style="font-size:12.5px; line-height:1.65; color:rgba(245,243,238,0.75); margin-top:12px;">
+      Also note: Crisil's AI governance framework and human-in-the-loop controls — which might appear as a limitation — are actually a product differentiator for regulated financial institution clients who cannot use ungovernanced AI outputs. Responsible AI is Crisil's moat, not its handicap.
+    </p>
+  </div>
+
+</aside>
+</div>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="doc-footer">
+  <span>CRISIL LIMITED · INSTITUTIONAL EQUITY ANALYSIS · Q1 FY2026 · MAY 2026</span>
+  <span>FOR INFORMATIONAL PURPOSES ONLY · NOT INVESTMENT ADVICE</span>
+</footer>
+
+</body>
+</html>

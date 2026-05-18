@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSDL — Institutional Equity Research | Q4 FY26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep:    #07090d;
+    --bg-card:    #0e1117;
+    --bg-raised:  #141820;
+    --bg-hover:   #1b2230;
+    --gold:       #c9a227;
+    --gold-light: #e8c96b;
+    --gold-dim:   #7a6115;
+    --crimson:    #8b1a1a;
+    --crimson-bright: #c0392b;
+    --teal:       #1a8b7a;
+    --text-primary: #e8e2d4;
+    --text-secondary: #9a9080;
+    --text-muted: #5a5248;
+    --border:     rgba(201,162,39,0.12);
+    --border-strong: rgba(201,162,39,0.3);
+    --positive:   #2ecc71;
+    --negative:   #e74c3c;
+    --neutral:    #f39c12;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* NOISE TEXTURE */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* WRAPPER */
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 32px 80px; position: relative; z-index: 1; }
+
+  /* ─── MASTHEAD ─────────────────────────── */
+  .masthead {
+    border-bottom: 1px solid var(--border-strong);
+    padding: 48px 0 36px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: end;
+    animation: fadeUp 0.6s ease both;
+  }
+  .masthead-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .masthead h1 span { color: var(--gold); font-style: italic; }
+  .masthead-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    font-style: italic;
+  }
+  .masthead-meta {
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 2;
+  }
+  .masthead-meta strong {
+    color: var(--gold-light);
+    font-size: 13px;
+    display: block;
+  }
+
+  /* ─── PRICE RIBBON ─────────────────────── */
+  .price-ribbon {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border-strong);
+    border-radius: 4px;
+    margin: 28px 0;
+    overflow: hidden;
+    animation: fadeUp 0.7s ease 0.1s both;
+  }
+  .pr-cell {
+    background: var(--bg-card);
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .pr-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .pr-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .pr-value.negative { color: var(--negative); }
+  .pr-value.positive { color: var(--positive); }
+  .pr-value.gold { color: var(--gold); }
+  .pr-delta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  /* ─── SECTION HEADER ───────────────────── */
+  .section {
+    margin-top: 64px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold-dim);
+    letter-spacing: 0.1em;
+    min-width: 30px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: rgba(201,162,39,0.1);
+    color: var(--gold);
+    border: 1px solid var(--border-strong);
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-left: auto;
+  }
+
+  /* ─── SCORE GRID ───────────────────────── */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border-strong);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .score-cell {
+    background: var(--bg-card);
+    padding: 20px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .score-cell::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px;
+    width: var(--score-pct);
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+    transition: width 1s ease;
+  }
+  .score-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .score-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .score-value span { font-size: 13px; color: var(--text-muted); }
+  .score-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 5px;
+    font-style: italic;
+  }
+
+  /* ─── CARDS ────────────────────────────── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .card p { font-size: 15px; color: var(--text-primary); margin-bottom: 10px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* ─── 2-COL LAYOUT ─────────────────────── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  /* ─── KPI CARDS ────────────────────────── */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border); margin-bottom: 16px; border: 1px solid var(--border-strong); border-radius: 4px; overflow: hidden; }
+  .kpi {
+    background: var(--bg-card);
+    padding: 18px 20px;
+  }
+  .kpi-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+  .kpi-val { font-family: 'DM Mono', monospace; font-size: 19px; color: var(--text-primary); font-weight: 500; }
+  .kpi-chg { font-family: 'DM Mono', monospace; font-size: 11px; margin-top: 3px; }
+  .up { color: var(--positive); }
+  .dn { color: var(--negative); }
+  .fl { color: var(--neutral); }
+
+  /* ─── REVENUE TABLE ────────────────────── */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .data-table thead tr { border-bottom: 1px solid var(--border-strong); }
+  .data-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    padding: 10px 14px;
+    text-align: right;
+    font-weight: 400;
+  }
+  .data-table th:first-child { text-align: left; }
+  .data-table td {
+    padding: 11px 14px;
+    text-align: right;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    font-family: 'DM Mono', monospace;
+    font-size: 12.5px;
+    color: var(--text-secondary);
+  }
+  .data-table td:first-child {
+    text-align: left;
+    color: var(--text-primary);
+    font-family: 'Crimson Pro', serif;
+    font-size: 14px;
+  }
+  .data-table tr:hover td { background: var(--bg-hover); }
+  .data-table .row-total td {
+    border-top: 1px solid var(--border-strong);
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  .data-table .row-sub td:first-child { padding-left: 26px; color: var(--text-secondary); font-style: italic; }
+
+  /* ─── GUIDANCE TABLE ───────────────────── */
+  .guidance-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .guidance-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-strong);
+    font-weight: 400;
+  }
+  .guidance-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    font-size: 13px;
+    color: var(--text-secondary);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .guidance-table td:first-child { color: var(--text-primary); font-family: 'Crimson Pro', serif; font-size: 14px; }
+  .guidance-table tr:hover td { background: var(--bg-hover); }
+  .badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+  .badge-achieved { background: rgba(46,204,113,0.12); color: var(--positive); border: 1px solid rgba(46,204,113,0.3); }
+  .badge-progress { background: rgba(243,156,18,0.12); color: var(--neutral); border: 1px solid rgba(243,156,18,0.3); }
+  .badge-delayed  { background: rgba(231,76,60,0.12); color: var(--negative); border: 1px solid rgba(231,76,60,0.3); }
+  .badge-na       { background: rgba(100,100,100,0.12); color: var(--text-muted); border: 1px solid rgba(100,100,100,0.2); }
+
+  /* ─── RED FLAGS ─────────────────────────── */
+  .flag-row { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .flag-row:last-child { border-bottom: none; }
+  .flag-icon { font-size: 16px; min-width: 22px; margin-top: 2px; }
+  .flag-body { flex: 1; }
+  .flag-title { font-weight: 600; color: var(--text-primary); font-size: 14.5px; margin-bottom: 3px; }
+  .flag-desc { font-size: 13.5px; color: var(--text-secondary); }
+  .flag-sev { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; }
+  .sev-minor { background: rgba(46,204,113,0.1); color: #5dade2; border: 1px solid rgba(93,173,226,0.3); }
+  .sev-moderate { background: rgba(243,156,18,0.1); color: var(--neutral); border: 1px solid rgba(243,156,18,0.3); }
+  .sev-severe { background: rgba(231,76,60,0.1); color: var(--negative); border: 1px solid rgba(231,76,60,0.3); }
+
+  /* ─── BULL BEAR TABLE ───────────────────── */
+  .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .scenario-card {
+    border-radius: 4px;
+    padding: 22px 20px;
+    border: 1px solid;
+  }
+  .scenario-card.bull { border-color: rgba(46,204,113,0.25); background: rgba(46,204,113,0.04); }
+  .scenario-card.base { border-color: rgba(201,162,39,0.25); background: rgba(201,162,39,0.04); }
+  .scenario-card.bear { border-color: rgba(231,76,60,0.25); background: rgba(231,76,60,0.04); }
+  .scenario-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; }
+  .scenario-card.bull .scenario-label { color: var(--positive); }
+  .scenario-card.base .scenario-label { color: var(--gold); }
+  .scenario-card.bear .scenario-label { color: var(--negative); }
+  .scenario-target { font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 8px; }
+  .scenario-card.bull .scenario-target { color: var(--positive); }
+  .scenario-card.base .scenario-target { color: var(--gold-light); }
+  .scenario-card.bear .scenario-target { color: var(--negative); }
+  .scenario-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
+
+  /* ─── VERDICT BLOCK ─────────────────────── */
+  .verdict-block {
+    border: 1px solid var(--border-strong);
+    border-radius: 4px;
+    padding: 36px 40px;
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(201,162,39,0.04) 100%);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .verdict-rating {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    text-align: center;
+    min-width: 180px;
+    border-left: 1px solid var(--border-strong);
+    padding-left: 32px;
+  }
+  .verdict-rating-sub { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dim); margin-top: 6px; text-align: center; }
+
+  /* ─── INSIGHT BULLETS ───────────────────── */
+  .insight-list { list-style: none; }
+  .insight-list li {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+  .insight-list li:last-child { border-bottom: none; }
+  .insight-list .bullet { color: var(--gold); font-size: 12px; margin-top: 3px; min-width: 12px; }
+
+  /* ─── MANAGEMENT PROFILE ────────────────── */
+  .mgmt-meter { display: flex; flex-direction: column; gap: 12px; }
+  .mgmt-item { display: flex; align-items: center; gap: 14px; }
+  .mgmt-item-label { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); min-width: 180px; }
+  .mgmt-bar-wrap { flex: 1; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+  .mgmt-bar { height: 100%; background: linear-gradient(90deg, var(--gold-dim), var(--gold-light)); border-radius: 2px; }
+  .mgmt-score { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold-light); min-width: 32px; text-align: right; }
+
+  /* ─── SEGMENT BARS ──────────────────────── */
+  .segment-bar-wrap { display: flex; flex-direction: column; gap: 10px; }
+  .seg-row { display: flex; align-items: center; gap: 12px; }
+  .seg-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-secondary); min-width: 160px; }
+  .seg-bar-bg { flex: 1; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; }
+  .seg-bar { height: 100%; border-radius: 3px; }
+  .seg-val { font-family: 'DM Mono', monospace; font-size: 11px; min-width: 70px; text-align: right; }
+
+  /* ─── TAGS ──────────────────────────────── */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 5px 12px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  .tag.positive { border-color: rgba(46,204,113,0.3); color: var(--positive); background: rgba(46,204,113,0.05); }
+  .tag.negative  { border-color: rgba(231,76,60,0.3); color: var(--negative); background: rgba(231,76,60,0.05); }
+  .tag.warning   { border-color: rgba(243,156,18,0.3); color: var(--neutral); background: rgba(243,156,18,0.05); }
+  .tag.gold      { border-color: var(--border-strong); color: var(--gold); background: rgba(201,162,39,0.06); }
+
+  /* ─── DIVIDER ───────────────────────────── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+    margin: 28px 0;
+  }
+
+  /* ─── PULL QUOTE ────────────────────────── */
+  .pull-quote {
+    border-left: 2px solid var(--gold);
+    padding: 16px 24px;
+    background: rgba(201,162,39,0.03);
+    margin: 20px 0;
+    font-style: italic;
+    font-size: 15.5px;
+    color: var(--text-primary);
+    line-height: 1.65;
+  }
+
+  /* ─── INLINE HIGHLIGHT ──────────────────── */
+  .hl { color: var(--gold-light); font-weight: 600; }
+  .hl-neg { color: var(--negative); }
+  .hl-pos { color: var(--positive); }
+
+  /* ─── FOOTER ────────────────────────────── */
+  .footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── ANIMATIONS ────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section:nth-child(1)  { animation-delay: 0.10s; }
+  .section:nth-child(2)  { animation-delay: 0.15s; }
+  .section:nth-child(3)  { animation-delay: 0.20s; }
+  .section:nth-child(4)  { animation-delay: 0.25s; }
+  .section:nth-child(5)  { animation-delay: 0.30s; }
+  .section:nth-child(6)  { animation-delay: 0.35s; }
+  .section:nth-child(7)  { animation-delay: 0.40s; }
+  .section:nth-child(8)  { animation-delay: 0.45s; }
+  .section:nth-child(9)  { animation-delay: 0.50s; }
+  .section:nth-child(10) { animation-delay: 0.55s; }
+  .section:nth-child(11) { animation-delay: 0.60s; }
+  .section:nth-child(12) { animation-delay: 0.65s; }
+  .section:nth-child(13) { animation-delay: 0.70s; }
+
+  /* ─── RESPONSIVE ────────────────────────── */
+  @media (max-width: 760px) {
+    .page { padding: 0 16px 60px; }
+    .score-grid { grid-template-columns: repeat(2, 1fr); }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .two-col, .three-col, .scenario-grid { grid-template-columns: 1fr; }
+    .masthead { grid-template-columns: 1fr; }
+    .verdict-block { grid-template-columns: 1fr; }
+    .verdict-rating { border-left: none; border-top: 1px solid var(--border-strong); padding: 20px 0 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ MASTHEAD ══════════════════════════ -->
+  <div class="masthead">
+    <div>
+      <div class="masthead-eyebrow">Institutional Equity Research &middot; Market Infrastructure</div>
+      <h1>National Securities<br>Depository <span>Limited</span></h1>
+      <div class="masthead-sub">India's First and Largest Depository &mdash; Q4 &amp; FY26 Full-Year Deep Forensic Analysis</div>
+    </div>
+    <div class="masthead-meta">
+      <strong>NSDL | BSE: 544467</strong>
+      Conference Call: May 2, 2026<br>
+      Analysis Date: May 19, 2026<br>
+      Sector: Market Infrastructure<br>
+      Coverage: Initiation / Update
+    </div>
+  </div>
+
+  <!-- ═══ PRICE RIBBON ══════════════════════ -->
+  <div class="price-ribbon">
+    <div class="pr-cell">
+      <div class="pr-label">CMP</div>
+      <div class="pr-value gold">₹819</div>
+      <div class="pr-delta">vs 52W High ₹1,425</div>
+    </div>
+    <div class="pr-cell">
+      <div class="pr-label">Market Cap</div>
+      <div class="pr-value">₹16,371 Cr</div>
+    </div>
+    <div class="pr-cell">
+      <div class="pr-label">P/E (TTM)</div>
+      <div class="pr-value">43.1×</div>
+      <div class="pr-delta">On ₹360.6 Cr standalone PAT</div>
+    </div>
+    <div class="pr-cell">
+      <div class="pr-label">P/Book</div>
+      <div class="pr-value">6.9×</div>
+      <div class="pr-delta">BV ₹118/share</div>
+    </div>
+    <div class="pr-cell">
+      <div class="pr-label">ROCE</div>
+      <div class="pr-value positive">23.2%</div>
+    </div>
+    <div class="pr-cell">
+      <div class="pr-label">ROE</div>
+      <div class="pr-value positive">17.4%</div>
+    </div>
+    <div class="pr-cell">
+      <div class="pr-label">Div. Yield</div>
+      <div class="pr-value">0.24%</div>
+    </div>
+    <div class="pr-cell">
+      <div class="pr-label">52W Range</div>
+      <div class="pr-value negative">₹788–₹1,425</div>
+      <div class="pr-delta">Currently near 52W low</div>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 1: EXECUTIVE SNAPSHOT ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">01</div>
+      <div class="section-title">Executive Snapshot &amp; Business Health Scorecard</div>
+      <div class="section-tag">Priority Read</div>
+    </div>
+
+    <!-- HEALTH SCORES -->
+    <div class="score-grid">
+      <div class="score-cell" style="--score-pct: 75%">
+        <div class="score-label">Overall Business Health</div>
+        <div class="score-value">7.5 <span>/ 10</span></div>
+        <div class="score-desc">Structural moat intact; near-term volume headwinds</div>
+      </div>
+      <div class="score-cell" style="--score-pct: 80%">
+        <div class="score-label">Earnings Quality</div>
+        <div class="score-value">8.0 <span>/ 10</span></div>
+        <div class="score-desc">High recurring mix; modest one-offs; strong cash generation</div>
+      </div>
+      <div class="score-cell" style="--score-pct: 88%">
+        <div class="score-label">Balance Sheet Strength</div>
+        <div class="score-value">8.8 <span>/ 10</span></div>
+        <div class="score-desc">Effectively debt-free; net cash entity; robust net worth</div>
+      </div>
+      <div class="score-cell" style="--score-pct: 70%">
+        <div class="score-label">Capital Allocation Quality</div>
+        <div class="score-value">7.0 <span>/ 10</span></div>
+        <div class="score-desc">Prudent tech capex; Payments Bank remains a capital drag</div>
+      </div>
+      <div class="score-cell" style="--score-pct: 72%">
+        <div class="score-label">Management Credibility</div>
+        <div class="score-value">7.2 <span>/ 10</span></div>
+        <div class="score-desc">Conservative tone; guidance mostly delivered; transparency improving</div>
+      </div>
+      <div class="score-cell" style="--score-pct: 65%">
+        <div class="score-label">Future Visibility</div>
+        <div class="score-value">6.5 <span>/ 10</span></div>
+        <div class="score-desc">Operating leverage thesis intact; fintech DP ramp timing uncertain</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">What Actually Happened This Quarter</div>
+      <p>Q4 FY26 was a <span class="hl">mixed-to-weak quarter</span> driven entirely by a brutally hostile macro backdrop — Nifty declined 11.3% in the quarter, FPI outflows hit a monthly record of USD 12.7 billion in March, and new demat account additions for the industry fell to their lowest monthly pace in nearly a year. Within this context, NSDL's standalone revenue grew a modest 2.4% YoY to <span class="hl">₹170.6 crores</span>, and PAT expanded 5.2% YoY to <span class="hl">₹79.7 crores</span> — demonstrating the structural stability of the depository model under significant stress.</p>
+      <p>The full-year FY26 picture is considerably better: standalone revenue grew <span class="hl">13.9%</span> and PAT grew <span class="hl">12.1%</span>, underpinned by explosive annual custody fee growth (+36.1% to ₹355.5 crores). This single line item — now comprising 50% of operating revenue — has become NSDL's dominant profit engine and reflects two structural tailwinds: a growing demat account base generating recurring custody income, and an earlier surge in unlisted company dematerialisation that is now normalising.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Top 5 Developments This Quarter</div>
+        <ul class="insight-list">
+          <li><span class="bullet">▸</span>Annual custody fee crossed <span class="hl">₹97.6 crores in a single quarter</span>, now 57% of Q4 revenue mix — a structural shift from a transaction-heavy to annuity-heavy model</li>
+          <li><span class="bullet">▸</span>Record DP additions in FY26 — <span class="hl">21 new DPs in the full year</span>, including a critical Pune-based fintech switchover from CDSL with a 10x account scale-up (70K → 700K)</li>
+          <li><span class="bullet">▸</span>NSDL Payments Bank crossed <span class="hl">₹521 crores in deposits</span> with 4.35 million customers; UPI acquiring volumes surged 6x to ₹51,832 crores — inflection point in subsidiary profitability</li>
+          <li><span class="bullet">▸</span>Management explicitly confirmed that <span class="hl">FY26 and FY27 together represent peak tech capex years</span> (~₹106 crores capitalized in FY26); FY28 capex decline is guided</li>
+          <li><span class="bullet">▸</span>CA/IPO revenue collapsed <span class="hl">52% YoY</span> to ₹16.2 crores in Q4, partly due to absence of a Jio-demerger scale event from last year — this line remains highly volatile and should not be extrapolated</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">What the Market Is Likely Missing</div>
+        <ul class="insight-list">
+          <li><span class="bullet">▸</span><strong>Operating leverage inflection is 12–18 months away.</strong> Peak investment years (FY26-27) are suppressing margins. When capex tapers and automation yields materialize in FY28, EBITDA margin could expand 300–500 bps</li>
+          <li><span class="bullet">▸</span><strong>Fintech DP pipeline is underappreciated.</strong> Multiple large fintech account-providers are in integration (not yet generating revenue). One started only in the final days of Q4. The full-year FY27 contribution from these is not yet priced in</li>
+          <li><span class="bullet">▸</span><strong>Annuity revenue durability is very high.</strong> Custody fee does not go to zero when markets fall — it resets each year at a higher base as the account pool grows. The 50% recurring revenue mix in FY26 structurally floors earnings</li>
+          <li><span class="bullet">▸</span><strong>The stock has corrected 43% from its highs</strong> to near 52W lows of ₹788, pricing in a significant portion of near-term headwinds while the structural franchise remains completely intact</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 2: RESULT QUALITY ANALYSIS ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">02</div>
+      <div class="section-title">Result Quality Analysis &amp; Revenue Dissection</div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-label">Standalone Revenue (FY26)</div>
+        <div class="kpi-val">₹704.7 Cr</div>
+        <div class="kpi-chg up">+13.9% YoY</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Standalone PAT (FY26)</div>
+        <div class="kpi-val">₹360.6 Cr</div>
+        <div class="kpi-chg up">+12.1% YoY</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">EBITDA Margin (FY26)</div>
+        <div class="kpi-val">60.8%</div>
+        <div class="kpi-chg up">+20 bps vs FY25</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">PAT Margin (FY26)</div>
+        <div class="kpi-val">43.2%</div>
+        <div class="kpi-chg dn">−80 bps vs FY25</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Operating Revenue Breakdown (Standalone)</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Revenue Line</th>
+            <th>Q4 FY25</th>
+            <th>Q3 FY26</th>
+            <th>Q4 FY26</th>
+            <th>YoY %</th>
+            <th>FY25</th>
+            <th>FY26</th>
+            <th>FY YoY %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-sub"><td>Annual Custody Fee</td><td>71.4</td><td>91.7</td><td>97.6</td><td class="up">+36.7%</td><td>261.2</td><td>355.5</td><td class="up">+36.1%</td></tr>
+          <tr class="row-sub"><td>Settlement Fee</td><td>12.9</td><td>14.2</td><td>13.1</td><td class="fl">+2.0%</td><td>67.7</td><td>56.0</td><td class="dn">−17.3%</td></tr>
+          <tr class="row-sub"><td>Pledge Fee</td><td>12.9</td><td>13.4</td><td>14.6</td><td class="up">+13.5%</td><td>52.3</td><td>56.0</td><td class="up">+7.0%</td></tr>
+          <tr class="row-sub"><td>e-Voting</td><td>5.9</td><td>5.3</td><td>5.4</td><td class="dn">−9.1%</td><td>44.4</td><td>46.4</td><td class="up">+4.6%</td></tr>
+          <tr class="row-sub"><td>CA / IPO</td><td>33.7</td><td>25.7</td><td>16.2</td><td class="dn">−52.0%</td><td>106.8</td><td>87.0</td><td class="dn">−18.5%</td></tr>
+          <tr class="row-sub"><td>Other Transaction Charges</td><td>29.8</td><td>18.7</td><td>23.7</td><td class="dn">−20.4%</td><td>86.1</td><td>103.8</td><td class="up">+20.4%</td></tr>
+          <tr class="row-total"><td>Total Operating Revenue</td><td>166.6</td><td>169.0</td><td>170.6</td><td class="up">+2.4%</td><td>618.6</td><td>704.7</td><td class="up">+13.9%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Revenue Quality Assessment</div>
+        <p>The most important structural shift in FY26 is the pivot from <span class="hl-neg">transaction-volatile to annuity-anchored</span> revenue. Recurring fee (custody) grew from 42% to <span class="hl">50% of revenue mix</span>, providing meaningful downside protection in quarters like Q4 where market activity was subdued.</p>
+        <p>The CA/IPO line's 52% YoY decline in Q4 is alarming optically but should be read carefully — the Q4 FY25 base included an abnormally large corporate action event (likely Jio demerger-related bonus issuances). This line is inherently episodic and shouldn't be extrapolated negatively.</p>
+        <p>Settlement fee's full-year decline of 17.3% reflects the structural shift toward fewer but higher-value transactions — NSDL's revenue model here is transaction count-based, not ad-valorem, meaning rising MTF book values do not directly accrue to NSDL.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Margin &amp; Expense Analysis</div>
+        <div class="segment-bar-wrap" style="margin-bottom:14px">
+          <div class="seg-row"><div class="seg-label">Employee Cost Growth</div><div class="seg-bar-bg"><div class="seg-bar" style="width:78%; background: #e74c3c;"></div></div><div class="seg-val" style="color:var(--negative)">+33% YoY</div></div>
+          <div class="seg-row"><div class="seg-label">Technology Opex Growth</div><div class="seg-bar-bg"><div class="seg-bar" style="width:80%; background: #e74c3c;"></div></div><div class="seg-val" style="color:var(--negative)">+34% YoY</div></div>
+          <div class="seg-row"><div class="seg-label">D&amp;A Growth</div><div class="seg-bar-bg"><div class="seg-bar" style="width:70%; background: var(--neutral);"></div></div><div class="seg-val" style="color:var(--neutral)">+40% YoY</div></div>
+          <div class="seg-row"><div class="seg-label">Other Expenses</div><div class="seg-bar-bg"><div class="seg-bar" style="width:24%; background: var(--positive);"></div></div><div class="seg-val" style="color:var(--positive)">−13.8% YoY</div></div>
+          <div class="seg-row"><div class="seg-label">EBITDA Margin FY26</div><div class="seg-bar-bg"><div class="seg-bar" style="width:75%; background: var(--gold);"></div></div><div class="seg-val" style="color:var(--gold)">60.8%</div></div>
+        </div>
+        <p>The 40% D&amp;A increase is a direct consequence of capitalised tech spends (₹106 crores in FY26). This is investment, not consumption, and will peak in FY27 before reversing sharply in FY28, generating meaningful margin tailwind.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 3: GUIDANCE TRACKER ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">03</div>
+      <div class="section-title">Management Promise vs. Reality — Guidance Tracker</div>
+      <div class="section-tag">Critical Section</div>
+    </div>
+
+    <div class="card">
+      <table class="guidance-table">
+        <thead>
+          <tr>
+            <th style="width:26%">Historical Guidance / Claim</th>
+            <th style="width:13%">Timeline</th>
+            <th style="width:18%">Current Status</th>
+            <th style="width:12%">Verdict</th>
+            <th>Commentary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Technology investment cycle to last 2–2.5 years; FY26 would be a peak year for tech capex and people addition</td>
+            <td>Q1 FY26 concall</td>
+            <td>Confirmed in Q4 call: FY26+FY27 = peak years; FY28 capex decline guided</td>
+            <td><span class="badge badge-achieved">On Track</span></td>
+            <td>Strong delivery. Management has been consistent and specific. The "2.5-year journey" framework is now entering its second of three phases, with clear light at the end.</td>
+          </tr>
+          <tr>
+            <td>Incremental demat market share improvement; target of gaining fintech DP clients who had been with competition</td>
+            <td>Post-listing FY26</td>
+            <td>Market share jumped from 9% (FY25) to 15.4% net / ~17% gross (FY26). Pune-based fintech switchover confirmed</td>
+            <td><span class="badge badge-achieved">Delivered</span></td>
+            <td>Material outperformance vs. prior year. NSDL added 49.4 lakh net demat accounts vs. 36.8 lakh in FY25, growing 34.1% while industry declined 21.9%.</td>
+          </tr>
+          <tr>
+            <td>Fintech DP onboarding pipeline to yield visible account additions "over next few quarters"</td>
+            <td>Q3 FY26 concall</td>
+            <td>One large DP scale-up visible (10x from 70K→700K). Several others in integration stages, not yet generating accounts</td>
+            <td><span class="badge badge-progress">In Progress</span></td>
+            <td>Partial delivery. The existing fintech converting is scaling well but management acknowledged other large integrations will only become visible in FY27. Timing ambiguity is a modest credibility risk.</td>
+          </tr>
+          <tr>
+            <td>Operating leverage to "increasingly kick in" as technology and headcount investments plateau</td>
+            <td>Q2–Q3 FY26 concalls</td>
+            <td>Not yet visible — FY26 PAT margin (43.2%) actually declined from FY25 (44.0%). D&amp;A up 40%, tech opex up 34%</td>
+            <td><span class="badge badge-delayed">Not Yet</span></td>
+            <td>Credible explanation exists — peak investment year. However, investors are being asked to wait 12–18 more months. If FY27 margins also disappoint, this guidance begins to look promotional.</td>
+          </tr>
+          <tr>
+            <td>Payments Bank to achieve sustained profitability improvement; focus on quality CASA growth</td>
+            <td>FY25–FY26 multiple concalls</td>
+            <td>Segment contribution margin improved from 0.5% → 2.4% → ~5% over three sequential quarters. Deposits crossed ₹521 crores</td>
+            <td><span class="badge badge-achieved">Delivered</span></td>
+            <td>Strong trajectory. UPI acquiring volumes grew 6x; deposit base scaled 4.4x over two years. Management correctly identified and executed on quality CASA accumulation over volume metrics.</td>
+          </tr>
+          <tr>
+            <td>Annual issuer fee revision (pending with SEBI for ~11 years)</td>
+            <td>Ongoing (> FY20)</td>
+            <td>No update. Management explicitly stated "conversations with regulator tend to be bilateral" — essentially no public progress</td>
+            <td><span class="badge badge-na">Pending Regulator</span></td>
+            <td>This is a genuine optionality. If SEBI grants even a modest fee revision, the P&amp;L impact would be significant given NSDL's 1.1 lakh+ issuer base. Outside management's control; not being factored into base case.</td>
+          </tr>
+          <tr>
+            <td>Women Demat Plan and Yuva Plan to drive incremental account acquisition</td>
+            <td>FY26</td>
+            <td>Yuva plan now contributes 21% of incremental demat sourcing — ahead of what management originally guided</td>
+            <td><span class="badge badge-achieved">Exceeded</span></td>
+            <td>Excellent execution. The demographic-targeted approach to account acquisition (youth, women) is unique in the depository space and suggests management is thinking in multi-year arcs.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pull-quote">
+      Execution Credibility Rating: <strong>Strong.</strong> Management has consistently delivered on the items within their control (tech investment cycle, DP addition, Payments Bank profitability trajectory). The one pending item — operating leverage materialisation — has a plausible and explicitly communicated timeline. No evidence of targets being silently abandoned or narratives being reverse-engineered.
+    </div>
+  </div>
+
+  <!-- ═══ STEP 4: HIDDEN FINANCIAL ARCHITECTURE ═ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">04</div>
+      <div class="section-title">Hidden Financial Architecture &amp; Cash Flow Truth</div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Balance Sheet Forensics</div>
+        <p>NSDL's standalone balance sheet is exceptionally clean. The company carries <span class="hl">zero debt</span>, and net worth stood at approximately ₹2,130 crores (FY26, inferred from ₹106/share × 200M shares). There is no promoter pledging, no off-balance sheet liabilities, and no history of related-party revenue inflation.</p>
+        <p>The primary balance sheet question raised during the concall — the doubling of intangible assets and intangible assets under development — has a clean answer: ₹106 crores of technology capitalisation in FY26 split across infrastructure resilience, DP-facing application development, and cybersecurity (SEBI-mandated DC-DR air gap). This is productive capital deployment, not accounting gymnastics.</p>
+        <p>The ₹20 crore bad debt write-off (already provisioned) and ₹50 crore general provision on receivables are routine prudential actions. Net bad debt impact for FY26 was only ₹5 crores. Receivable quality appears benign.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Cash Flow Quality Assessment</div>
+        <p>NSDL's business model is inherently cash-generative. With <span class="hl">60.8% EBITDA margins</span> on a primarily receivables-light model (annual custody fees are collected from issuers, not on credit terms), working capital requirements are minimal.</p>
+        <p>The divergence between EBITDA (₹508 crores) and PAT (₹360 crores) is explained by the Investor Protection Fund contribution (₹18.4 crores), D&amp;A (₹29.5 crores), and tax (₹117.7 crores) — all transparent, non-manipulative items.</p>
+        <p>Other income of ₹130.4 crores in FY26 represents approximately <span class="hl">15.6% of total income</span> — primarily investment income from the substantial cash corpus on NSDL's balance sheet. This is real income from a real asset base, not other-income masking operational weakness.</p>
+        <p>One mild concern: maintenance capex is likely understated within the ₹106 crore figure, as infrastructure resilience spending has elements of both maintenance and growth. FCF is likely 80–85% of reported PAT in steady state.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 5: MANAGEMENT COMMENTARY DECODE ═ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">05</div>
+      <div class="section-title">Management Commentary Decode &amp; Psychology</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Vijay Chandok Communication Style — Q4 vs Q3 Analysis</div>
+      <p>CEO Vijay Chandok's Q4 commentary maintained the same <span class="hl">constructively honest</span> tone seen in Q3 — acknowledging market headwinds explicitly (Nifty -11.3%, FPI outflows a record, demat additions slowing) before pivoting to structural positives. This is not defensiveness; it is mature investor communication from someone who has been consistent across six quarters.</p>
+      <p>Key psychological signals from Q4 concall: <span class="hl">Management said "episodic" three times</span> in the context of Q4 market share dip — this is a legitimate explanation supported by data (bank-based DPs closing dormant accounts at year-end, a large IPO benefiting competition). When management uses the same word repeatedly for a specific issue, it is either genuine or rehearsed. The data supports the genuine interpretation here.</p>
+      <p>The technology cost question was handled with notable directness: "Under-investments in the past is something that we needed to correct." This candour about prior strategic failure — rare among Indian managements — suggests self-awareness and a long-term orientation. The explicit "this is operating leverage business" refrain has been stated in every concall since listing, suggesting genuine institutional conviction rather than promotional framing.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">What Management Emphasised</div>
+        <ul class="insight-list">
+          <li><span class="bullet">▸</span>India equity market resilience through DII/SIP inflows offsetting FPI outflows</li>
+          <li><span class="bullet">▸</span>Demat market share improvement: 15.4% net, ~17% gross in FY26 vs. 9% in FY25</li>
+          <li><span class="bullet">▸</span>Fintech DP switchovers and pipeline — framed as a strategic inflection</li>
+          <li><span class="bullet">▸</span>Payments Bank deposit milestone (₹521 crores) and UPI acquiring volume (6x growth)</li>
+          <li><span class="bullet">▸</span>Peak capex timing — explicitly "next year (FY28) capex will decline"</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">What Management Avoided / Deflected</div>
+        <ul class="insight-list">
+          <li><span class="bullet">▸</span>No specific guidance on revenue CAGR or PAT growth for FY27 — deliberate vagueness here</li>
+          <li><span class="bullet">▸</span>Issuer fee revision: "conversations with regulator are bilateral" — coded language for "no update"</li>
+          <li><span class="bullet">▸</span>Did not name fintech DP partners or share precise scale-up projections — understandable but frustrating</li>
+          <li><span class="bullet">▸</span>Yuva account revenue impact analysis — "we don't measure it like that" suggests limited granularity in internal modelling</li>
+          <li><span class="bullet">▸</span>Payments Bank future contribution — CEO explicitly said "I don't want to double guess this"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Management Classification</div>
+      <div class="mgmt-meter" style="margin-top:8px">
+        <div class="mgmt-item"><div class="mgmt-item-label">Conservative</div><div class="mgmt-bar-wrap"><div class="mgmt-bar" style="width:78%"></div></div><div class="mgmt-score">7.8</div></div>
+        <div class="mgmt-item"><div class="mgmt-item-label">Financially Disciplined</div><div class="mgmt-bar-wrap"><div class="mgmt-bar" style="width:75%"></div></div><div class="mgmt-score">7.5</div></div>
+        <div class="mgmt-item"><div class="mgmt-item-label">Long-Term Allocator</div><div class="mgmt-bar-wrap"><div class="mgmt-bar" style="width:72%"></div></div><div class="mgmt-score">7.2</div></div>
+        <div class="mgmt-item"><div class="mgmt-item-label">Visionary</div><div class="mgmt-bar-wrap"><div class="mgmt-bar" style="width:60%"></div></div><div class="mgmt-score">6.0</div></div>
+        <div class="mgmt-item"><div class="mgmt-item-label">Promotional</div><div class="mgmt-bar-wrap"><div class="mgmt-bar" style="width:22%"></div></div><div class="mgmt-score">2.2</div></div>
+        <div class="mgmt-item"><div class="mgmt-item-label">Empire Building</div><div class="mgmt-bar-wrap"><div class="mgmt-bar" style="width:15%"></div></div><div class="mgmt-score">1.5</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 6: SEGMENT ANALYSIS ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">06</div>
+      <div class="section-title">Segment &amp; Business Engine Analysis</div>
+    </div>
+
+    <div class="three-col">
+      <div class="card">
+        <div class="card-title">Core Engine — Depository (Standalone)</div>
+        <p><strong>Status:</strong> <span class="hl">Structural Compounder</span></p>
+        <p>The custody fee engine is accelerating structurally. At ₹355.5 crores in FY26 (+36%), it now comprises 50% of revenue. Every demat account added generates an annuity stream — NSDL's 4.44 crore base growing at 12.5% YoY is a powerful secular tailwind.</p>
+        <p>Settlement fee contraction (-17%) is the core risk to monitor. The shift to fewer, larger transactions structurally disadvantages NSDL's per-transaction revenue model. This is not recoverable through market share gains alone.</p>
+        <div class="tag-row">
+          <span class="tag positive">High Moat</span>
+          <span class="tag positive">Annuity Revenue</span>
+          <span class="tag warning">Settlement Pressure</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Growth Engine — NSDL Payments Bank</div>
+        <p><strong>Status:</strong> <span class="hl">Inflection Approaching</span></p>
+        <p>After years of being a capital absorber, NPBL is showing genuine operating leverage. Contribution margin expanded from 0.5% (Q3 FY25) to ~5% (Q3 FY26). Total income grew 3.5% to ₹743 crores in FY26, but crucially, the quality of that revenue has shifted — CASA deposits (₹532 crores, +3.7x) and UPI acquiring volumes (₹51,832 crores, +6.3x) are building durable income streams.</p>
+        <p>The Scheduled Bank status (July 2025) unlocks RBI repo access — a meaningful structural upgrade.</p>
+        <div class="tag-row">
+          <span class="tag warning">Regulatory Risk</span>
+          <span class="tag positive">UPI Momentum</span>
+          <span class="tag gold">Long-term Option</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Optionality — NDML (Database Mgmt)</div>
+        <p><strong>Status:</strong> <span class="hl">Diversified Steady State</span></p>
+        <p>NDML operates across seven distinct lines — Insurance Repository (15.4mn policies, 36% market share), KRA (19.8mn records), RTA, SEZ Online, SurePay, National Skill Registry, and Instigo. SEZ pricing was revised in February 2026, providing FY27 tailwind.</p>
+        <p>The IRDAI-mandated demerger of the Insurance Repository business into a separate entity introduces near-term structural complexity but could unlock value through an eventual separate listing or partnership. Insurance repository revenue was only ₹5.5 crores top-line in FY26 — currently immaterial but growing.</p>
+        <div class="tag-row">
+          <span class="tag positive">Diversified</span>
+          <span class="tag warning">Demerger Uncertainty</span>
+          <span class="tag positive">Pricing Power</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 7: INDUSTRY POSITIONING ══════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">07</div>
+      <div class="section-title">Industry &amp; Competitive Positioning</div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Industry Cycle Assessment</div>
+        <p>The Indian depository industry is operating at an <span class="hl">early-mid cycle maturation stage</span>. India's total registered investor base is approaching 13 crores (NSE unique investors), against SEBI's stated goal of adding 10 crore more over five years. Only 9.5% of Indian households (~3.21 crore) are actively participating in equity markets — the structural runway is vast.</p>
+        <p>However, the FY26 reality was a cyclical correction: industry net demat account additions fell from 410.6 lakh in FY25 to 320.8 lakh in FY26, a 21.9% decline. FPI outflows dominated headlines. In this context, NSDL's 34.1% growth in net additions stands as genuine market share gain against a contracting tide.</p>
+        <p>The structural case remains intact: India's financialisation of savings, the SIP culture (₹32,000 crores monthly run rate in March 2026), and the expanding penetration into Tier 3–5 cities all point to secular growth for depositories over a 5–10 year horizon.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">NSDL vs. CDSL Competitive Dynamics</div>
+        <p>NSDL holds <span class="hl">86.1% market share by custody value</span> and 99.9% of FPI demat holdings — positions that are essentially impossible for CDSL to displace. These reflect NSDL's institutional heritage and are permanently sticky.</p>
+        <p>However, NSDL's <span class="hl-neg">retail account market share (~30% of total accounts)</span> remains structurally disadvantaged vs. its custody value leadership, because CDSL-affiliated discount brokers (Zerodha, Groww) dominate retail account origination. The NSDL strategy — evidenced by DP additions, API superiority (40+ APIs vs. competition), and fintech switchovers — is precisely targeted at this structural deficit.</p>
+        <p>The competitive moat in the institutional segment (FPI, custody value, debt) is essentially impregnable. The growth battle is solely in the retail/fintech channel, which is the right strategic priority.</p>
+        <div class="tag-row">
+          <span class="tag positive">Institutional Moat</span>
+          <span class="tag warning">Retail Market Share Deficit</span>
+          <span class="tag positive">API Leadership (40+ APIs)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 8: CAPITAL ALLOCATION ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">08</div>
+      <div class="section-title">Capital Allocation Quality</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Capital Deployment Framework</div>
+      <p>NSDL's capital allocation presents a tale of two narratives. On the <span class="hl-pos">positive side</span>: the technology investment cycle is disciplined and time-bounded (management has explicitly committed to 2.5 years total), employee cost rationalisation has already begun in April 2026, and there is no evidence of empire-building or vanity acquisitions. The Protean eGov stake sale in NPBL (₹30.2 crores for 4.95%) was done at a reasonable ₹580 crore valuation, strengthening the bank's capital without excessive dilution.</p>
+      <p>On the <span class="hl-neg">less positive side</span>: the Payments Bank has been a long-standing capital absorber — listed since August 2025 but with limited independent capital return track record. The ROCE on incremental investments in NPBL is difficult to assess given opaque subsidiary disclosures. Management declined to provide revenue guidance for the segment, citing regulatory uncertainty, which is a reasonable but investor-unsatisfying position.</p>
+      <p>NSDL's dividend yield of <span class="hl">0.24%</span> is minimal for a company with ₹360+ crores of standalone PAT, suggesting capital is being retained for the technology investment cycle and Payments Bank funding. Post-FY28, when capex normalises, a meaningful dividend step-up or buyback would be the logical shareholder-return action.</p>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 9: RED FLAGS ══════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">09</div>
+      <div class="section-title">Red Flags &amp; Forensic Risk Detection</div>
+    </div>
+
+    <div class="card">
+      <div class="flag-row">
+        <div class="flag-icon">⚠</div>
+        <div class="flag-body">
+          <div class="flag-title">Settlement Fee Structural Decline</div>
+          <div class="flag-desc">Settlement fee declined 17.3% YoY in FY26. This is not a market-related blip — it reflects the industry shift to fewer, larger transactions (MTF book growing by ticket size, not transaction count). NSDL's per-transaction revenue model in settlement is structurally disadvantaged relative to ad-valorem models.</div>
+        </div>
+        <span class="flag-sev sev-moderate">Moderate</span>
+      </div>
+      <div class="flag-row">
+        <div class="flag-icon">⚠</div>
+        <div class="flag-body">
+          <div class="flag-title">CA/IPO Revenue Volatility</div>
+          <div class="flag-desc">CA/IPO collapsed 52% YoY in Q4 and 18.5% for the full year. This line (₹87 crores in FY26) is episodic and opaque — driven by specific large corporate actions. The absence of a Jio-scale event in FY27 means this line could remain suppressed. Do not model mean-reversion without specific pipeline visibility.</div>
+        </div>
+        <span class="flag-sev sev-moderate">Moderate</span>
+      </div>
+      <div class="flag-row">
+        <div class="flag-icon">⚠</div>
+        <div class="flag-body">
+          <div class="flag-title">Unlisted Company Dematerialisation Normalisation</div>
+          <div class="flag-desc">The unlisted custody fee tailwind that drove custody fee growth in H1 FY26 has materially moderated following the December 2025 MCA regulatory revision raising the small company threshold. Q3 FY26 unlisted additions fell from 11,000+ to ~4,400 companies. Q4 FY26 further to ~4,059. This one-time regulatory tailwind is effectively exhausted.</div>
+        </div>
+        <span class="flag-sev sev-moderate">Moderate</span>
+      </div>
+      <div class="flag-row">
+        <div class="flag-icon">⚠</div>
+        <div class="flag-body">
+          <div class="flag-title">Payments Bank Regulatory Exposure</div>
+          <div class="flag-desc">Management explicitly flagged that "the payment banking industry has been fraught with several regulations" — directly referencing past course corrections. The Payments Bank business model has been restructured multiple times in response to RBI directions. This regulatory overhang on the subsidiary is real, recurring, and difficult to price.</div>
+        </div>
+        <span class="flag-sev sev-moderate">Moderate</span>
+      </div>
+      <div class="flag-row">
+        <div class="flag-icon">ℹ</div>
+        <div class="flag-body">
+          <div class="flag-title">Operating Leverage Promise Timeline Extension</div>
+          <div class="flag-desc">The operating leverage theme has been consistently discussed since listing but is being repeatedly pushed forward by one year. If FY27 also fails to show margin expansion, this will become a credibility issue rather than a timing issue. Currently considered a timing risk, not a structural one.</div>
+        </div>
+        <span class="flag-sev sev-minor">Minor</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 10: POSITIVE INFLECTION ══════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">10</div>
+      <div class="section-title">Positive Inflection Signals</div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Early Signals of Major Future Upside</div>
+        <ul class="insight-list">
+          <li><span class="bullet">▸</span><strong>Fintech DP pipeline is real and not yet in numbers.</strong> Multiple large fintech brokers are in integration — one started generating accounts only in the last days of Q4. The FY27 step-up could be significant. One existing DP went 10x (70K → 700K accounts) — if 2–3 more DPs achieve similar ramps, incremental market share could approach 20%+</li>
+          <li><span class="bullet">▸</span><strong>Payments Bank contribution margin trajectory is remarkable.</strong> Going from 0.5% → 2.5% → 5% over three quarters is not a noise pattern — it is genuine business model validation. If this doubles again in FY27, subsidiary contribution moves from ₹38 crores (current) to potentially ₹80+ crores</li>
+          <li><span class="bullet">▸</span><strong>API leadership creating a network effect moat.</strong> At 40+ APIs (management's claim of "ahead of everyone"), NSDL is building an integration infrastructure that lowers switching costs for DPs already using it. This is a classic platform network effect that compounds over time</li>
+          <li><span class="bullet">▸</span><strong>Issuer fee hike is an unrecognised optionality.</strong> Unchanged for 11 years. If granted even a 20% hike on the current ₹355 crore custody fee base, it adds ~₹70 crores directly to EBITDA — equivalent to 19% PAT accretion at current tax rates</li>
+          <li><span class="bullet">▸</span><strong>Women Demat Plan launching exactly as Yuva achieved momentum.</strong> Yuva now drives 21% of incremental accounts. If Women Plan achieves half that penetration over 2 years, NSDL gains a structural acquisition advantage in a completely untapped demographic</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Leading Indicators to Monitor</div>
+        <ul class="insight-list">
+          <li><span class="bullet">▸</span>Quarterly incremental market share (target: sustained 15%+ net, 17%+ gross)</li>
+          <li><span class="bullet">▸</span>Annual custody fee trajectory — Q1 FY27 reset will establish the new base folio count (~14 crores at exit FY26)</li>
+          <li><span class="bullet">▸</span>Payments Bank segment contribution margin — watch for first full quarter with all new DP contributions</li>
+          <li><span class="bullet">▸</span>Technology capex in FY27 vs. FY26 (₹106 crores) — management guidance is "broadly similar"</li>
+          <li><span class="bullet">▸</span>D&amp;A as % of revenue — should peak in FY27 and decline in FY28 as tech capex stops</li>
+          <li><span class="bullet">▸</span>SIP monthly run rate (currently ₹32,000 crores) — leading indicator for settlement fee recovery</li>
+          <li><span class="bullet">▸</span>Any SEBI communication on issuer fee revision — this is pure upside optionality</li>
+          <li><span class="bullet">▸</span>NDML insurance repository demerger timeline — regulatory/valuation implications</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 11: VALUATION COMFORT ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">11</div>
+      <div class="section-title">Valuation Comfort Analysis</div>
+      <div class="section-tag">Critical Section</div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-label">P/E (Current)</div>
+        <div class="kpi-val">43.1×</div>
+        <div class="kpi-chg dn">vs. 52W high implied ~85×</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">P/B (Current)</div>
+        <div class="kpi-val">6.9×</div>
+        <div class="kpi-chg">BV ₹118 | Growing</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Earnings Yield</div>
+        <div class="kpi-val">2.3%</div>
+        <div class="kpi-chg">Standalone basis</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Mkt Cap / EBITDA</div>
+        <div class="kpi-val">32.2×</div>
+        <div class="kpi-chg">On ₹508 Cr standalone</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Is the Valuation Justified?</div>
+        <p>At 43x earnings, NSDL is priced as a high-quality franchise, not a cheap value opportunity. The question is whether the quality justifies the premium. The case for premium deserving is <span class="hl">moderately strong:</span></p>
+        <p>NSDL holds a <span class="hl">regulated near-duopoly position</span> in critical financial infrastructure that cannot be replicated. Its custody value market share (86%) is essentially permanent. The annuity-like custody fee stream (50% of revenue and growing) deserves a franchise multiple premium over transaction-revenue peers.</p>
+        <p>Against this, <span class="hl-neg">the current valuation assumes a recovery that has not yet materialised.</span> Operating leverage benefits are FY28+ events. The near-term EPS growth (FY26: +12%, FY27 likely similar) does not justify 43x on its own. The bull case requires believing in the operating leverage inflection story over a 12–24 month horizon.</p>
+        <p>The stock's 43% correction from highs to near 52W lows has meaningfully improved the risk/reward. At ₹788–819, NSDL is pricing in little to no recovery in demat activity or operating leverage benefit.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Valuation Comfort Classification</div>
+        <div class="pull-quote" style="margin-top:0">
+          At ₹819, NSDL represents a <strong>Reasonable-to-Cheap</strong> entry point for a long-duration investor with 18–24 month patience. The business quality is high, the balance sheet is pristine, and the stock is near 52W lows with the structural thesis entirely intact. For a shorter time horizon, the valuation remains "Fully Priced" given near-term earnings growth of 10–12%.
+        </div>
+        <p><strong>What growth is already priced in:</strong> At 43x, the market is implicitly pricing ~15% PAT CAGR over 3 years — achievable but requiring operating leverage materialisation in FY28. If PAT grows only 10–12% (base case without operating leverage), fair value is closer to ₹900–950 (using 38–40x). Current price is at or below that range.</p>
+        <p><strong>Issuer fee optionality:</strong> Not priced in at all. If realised, adds 15–20% to intrinsic value instantaneously.</p>
+        <div class="tag-row">
+          <span class="tag positive">Reasonable Valuation at CMP</span>
+          <span class="tag gold">Optionality Unpriced (Issuer Fee)</span>
+          <span class="tag warning">Patient Capital Required</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 12: FUTURE TRAJECTORY ════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">12</div>
+      <div class="section-title">Future Trajectory Modelling — Bull / Base / Bear</div>
+    </div>
+
+    <div class="scenario-grid">
+      <div class="scenario-card bull">
+        <div class="scenario-label">🐂 Bull Case (FY28)</div>
+        <div class="scenario-target">₹1,400–₹1,600</div>
+        <div class="scenario-desc">
+          Operating leverage materialises in FY28 as tech capex declines; EBITDA margin expands to 65%+. Three new fintech DPs scale to 500K+ accounts each. Issuer fee revised upward by SEBI (20–30% hike). Payments Bank contribution margin reaches 8–10%. PAT CAGR of 20%+ achieved. Market re-rates to 50×.
+        </div>
+      </div>
+      <div class="scenario-card base">
+        <div class="scenario-label">📊 Base Case (FY28)</div>
+        <div class="scenario-target">₹1,050–₹1,200</div>
+        <div class="scenario-desc">
+          PAT grows at 12–15% CAGR. Operating leverage partially materialises; margins expand 150–200 bps. One large fintech DP scales meaningfully. Payments Bank reaches break-even territory. Market conditions normalise post-FY26 correction. Stock re-rates to 42–45×. No issuer fee revision assumed.
+        </div>
+      </div>
+      <div class="scenario-card bear">
+        <div class="scenario-label">🐻 Bear Case (FY28)</div>
+        <div class="scenario-target">₹600–₹700</div>
+        <div class="scenario-desc">
+          Markets remain weak; demat addition industry contraction continues. Fintech DP integrations fail to scale. Operating leverage delayed again (FY29+). Payments Bank faces further regulatory intervention, requiring capital. SEBI imposes pricing constraints on custody fees. PAT growth stalls at 5–7%. Stock de-rates to 35×.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 13: FINAL VERDICT ═════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">13</div>
+      <div class="section-title">Final Investment Verdict</div>
+      <div class="section-tag">Institutional Summary</div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Key Positives</div>
+        <ul class="insight-list">
+          <li><span class="bullet" style="color:var(--positive)">+</span>Structurally unassailable position in institutional custody (86% value share, 99.9% FPI demat) — permanent moat</li>
+          <li><span class="bullet" style="color:var(--positive)">+</span>Revenue mix shift to 50% recurring (custody fee) providing earnings floor regardless of market conditions</li>
+          <li><span class="bullet" style="color:var(--positive)">+</span>Record DP onboarding (21 in FY26) and confirmed fintech switchovers creating a multi-year account acquisition tailwind</li>
+          <li><span class="bullet" style="color:var(--positive)">+</span>Payments Bank at genuine inflection — contribution margin tripled in three quarters</li>
+          <li><span class="bullet" style="color:var(--positive)">+</span>Pristine balance sheet: zero debt, strong net worth, high cash generation; no fraud, pledging, or related-party risks</li>
+          <li><span class="bullet" style="color:var(--positive)">+</span>Stock at 52W lows despite structural thesis fully intact — asymmetric risk/reward</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">Key Negatives</div>
+        <ul class="insight-list">
+          <li><span class="bullet" style="color:var(--negative)">−</span>Operating leverage thesis delayed — FY26 PAT margins contracted 80 bps despite headline growth</li>
+          <li><span class="bullet" style="color:var(--negative)">−</span>Settlement fee secular decline (-17% FY26) — structural revenue headwind from industry transaction patterns</li>
+          <li><span class="bullet" style="color:var(--negative)">−</span>CA/IPO revenue highly volatile and base effects unfavourable in near term</li>
+          <li><span class="bullet" style="color:var(--negative)">−</span>Retail demat market share (~30%) remains structurally below custody value dominance (86%)</li>
+          <li><span class="bullet" style="color:var(--negative)">−</span>Payments Bank regulatory risk — historically subject to frequent course corrections from RBI</li>
+          <li><span class="bullet" style="color:var(--negative)">−</span>Minimum dividend yield (0.24%) — returns capital to shareholders slowly given scale of FCF generation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-title">Hidden Insights (Market May Miss)</div>
+      <ul class="insight-list">
+        <li><span class="bullet">▸</span><strong>The "revenue per demat account" dilution is temporary.</strong> New accounts (especially Yuva) transact less initially but age into full revenue-generating accounts over 3–5 years. The cohort model suggests meaningful ARPU expansion is structurally embedded in the existing base — just not visible in current-year P&amp;L</li>
+        <li><span class="bullet">▸</span><strong>NDML demerger of insurance repository could be an unexpected value unlock.</strong> A separately listed Insurance Repository with 15.4 million policies and 36% market share could attract fintech or insurance sector valuations far above current NDML implied value within consolidated NSDL</li>
+        <li><span class="bullet">▸</span><strong>Women Demat Plan is a 3-year option on free settlement revenue.</strong> Yuva Plan (launched earlier) already contributes 21% of incremental accounts and will convert to fee-paying in FY27–28. The Women Plan will follow the same curve. Settlement fee revenues are therefore partially deferred, not lost</li>
+        <li><span class="bullet">▸</span><strong>FPI portal dominance (99.9% market share) is strategically underappreciated.</strong> Every FPI that enters or exits India processes through NSDL. As India's weight in global EM indices increases, this line creates significant revenue leverage to global passive flows without any incremental infrastructure investment</li>
+      </ul>
+    </div>
+
+    <!-- FINAL RATING BLOCK -->
+    <div class="verdict-block">
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dim); margin-bottom:12px">Final Investment Conclusion</div>
+        <div style="font-family:'Playfair Display',serif; font-size:18px; color:var(--text-primary); margin-bottom:14px; line-height:1.5">NSDL is a <strong>high-quality franchise business at a fair-to-cheap valuation</strong> — not a mediocre business at a premium, nor an immediate value trap. The structural moat (regulated duopoly, 86% custody value share, institutional dominance) is completely intact. The near-term earnings headwinds (peak investment cycle, weak market activity) are temporary and well-understood. The operating leverage inflection story is real, documented, and on a defined timeline.</div>
+        <div style="font-size:14px; color:var(--text-secondary); line-height:1.6">At ₹819 (43% off 52W highs), the stock is pricing in continuation of current macro headwinds with no recovery credit. Long-term investors who can tolerate 12–18 months of patience are being offered an exceptional compounding machine at a reasonable multiple. Key triggers: fintech DP scale-up visibility, Q1 FY27 custody fee base reset, and any signal on issuer fee revision.</div>
+        <div class="tag-row" style="margin-top:16px">
+          <span class="tag positive">Earnings Quality: High</span>
+          <span class="tag gold">Capital Allocation: Disciplined</span>
+          <span class="tag positive">Balance Sheet: Fortress</span>
+          <span class="tag positive">Compounding Potential: High</span>
+        </div>
+      </div>
+      <div>
+        <div class="verdict-rating">Accumulate</div>
+        <div class="verdict-rating-sub">Long-term conviction buy<br>on weakness near ₹800</div>
+      </div>
+    </div>
+
+  </div><!-- /section -->
+
+  <!-- ═══ FOOTER ═════════════════════════════ -->
+  <div class="footer">
+    <p>NSDL Q4 &amp; FY26 Institutional Equity Research &mdash; Analysis based on Q4 FY26 Earnings Conference Call (May 2, 2026), Q3 FY26 Earnings Conference Call (January 29, 2026), and Q4 &amp; FY26 Investor Presentation (May 1, 2026) filed with BSE Limited under Regulation 30 of SEBI LODR, 2015.</p>
+    <p style="margin-top:8px">This document is prepared for informational purposes only and does not constitute investment advice. All figures in Indian Rupees (₹) unless stated. Market data as of May 19, 2026. Past performance is not indicative of future results. Investors should conduct their own due diligence before making investment decisions.</p>
+  </div>
+
+</div><!-- /page -->
+</body>
+</html>

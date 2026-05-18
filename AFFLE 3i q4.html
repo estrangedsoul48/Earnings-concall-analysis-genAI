@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Affle 3i — Institutional Equity Analysis | FY2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1117;
+    --ink2: #2d3142;
+    --ink3: #5a6278;
+    --ink4: #9099b0;
+    --surface: #f7f6f3;
+    --surface2: #eeecea;
+    --rule: #d8d5cf;
+    --accent: #1a3a5c;
+    --accent2: #2e6da4;
+    --gold: #b8813a;
+    --gold2: #f0c87a;
+    --green: #1d6b42;
+    --green2: #2ea26a;
+    --red: #a02828;
+    --red2: #e04545;
+    --amber: #7a4f00;
+    --amber2: #e89a20;
+    --teal: #0f5c55;
+    --teal2: #1b9b8e;
+    --score-bg: #1a3a5c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 15px; }
+  body {
+    font-family: 'Syne', 'Helvetica Neue', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    line-height: 1.65;
+  }
+  .serif { font-family: 'DM Serif Display', Georgia, serif; }
+  .mono { font-family: 'DM Mono', monospace; }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 1020px; margin: 0 auto; padding: 0 28px 80px; }
+
+  /* ── HEADER ── */
+  .masthead {
+    border-bottom: 2.5px solid var(--ink);
+    padding: 36px 0 20px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: end;
+  }
+  .masthead-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 6px;
+  }
+  .masthead-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 40px;
+    line-height: 1.1;
+    color: var(--accent);
+  }
+  .masthead-sub {
+    font-size: 13px;
+    color: var(--ink3);
+    margin-top: 6px;
+  }
+  .verdict-badge {
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 2px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .verdict-badge .verdict-main { font-size: 18px; letter-spacing: 0.04em; display: block; font-weight: 700; margin-bottom: 2px; }
+
+  /* ── MARKET STRIP ── */
+  .market-strip {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    background: var(--surface2);
+    margin: 0 -28px;
+    padding: 0 28px;
+    overflow-x: auto;
+  }
+  .mitem {
+    padding: 10px 20px 10px 0;
+    border-right: 1px solid var(--rule);
+    margin-right: 20px;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+  .mitem:last-child { border-right: none; }
+  .mitem-label { color: var(--ink4); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .mitem-val { font-size: 14px; font-weight: 500; color: var(--ink); margin-top: 1px; }
+  .mitem-val.up { color: var(--green2); }
+  .mitem-val.down { color: var(--red2); }
+  .mitem-val.neutral { color: var(--amber2); }
+
+  /* ── SCORES ── */
+  .scores-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin: 28px 0 0;
+  }
+  .score-card {
+    background: var(--accent);
+    border-radius: 3px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .score-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); line-height: 1.3; }
+  .score-num { font-family: 'DM Serif Display', serif; font-size: 28px; color: #fff; line-height: 1; margin: 6px 0 3px; }
+  .score-sub { font-size: 9px; color: rgba(255,255,255,0.5); }
+  .score-bar { height: 2px; background: rgba(255,255,255,0.15); border-radius: 1px; margin-top: 8px; }
+  .score-fill { height: 100%; background: var(--gold2); border-radius: 1px; }
+
+  /* ── SECTION ── */
+  .section {
+    margin-top: 52px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink4);
+    margin-bottom: 5px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  /* ── PROSE ── */
+  .prose p { margin-bottom: 14px; color: var(--ink2); font-size: 14px; line-height: 1.75; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { font-weight: 600; color: var(--ink); }
+
+  /* ── 2-COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+  /* ── KPI CARDS ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .kpi {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 16px 14px;
+  }
+  .kpi-name { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink4); margin-bottom: 6px; }
+  .kpi-val { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--accent); line-height: 1; }
+  .kpi-delta { font-size: 11px; margin-top: 4px; }
+  .kpi-delta.pos { color: var(--green2); }
+  .kpi-delta.neg { color: var(--red2); }
+  .kpi-delta.neu { color: var(--ink4); }
+
+  /* ── TABLES ── */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-bottom: 8px; }
+  .data-table thead th {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink4);
+    border-bottom: 1px solid var(--rule);
+    padding: 6px 10px;
+    text-align: right;
+    font-weight: 500;
+  }
+  .data-table thead th:first-child { text-align: left; }
+  .data-table tbody tr { border-bottom: 0.5px solid var(--surface2); }
+  .data-table tbody tr:hover { background: var(--surface2); }
+  .data-table tbody td { padding: 7px 10px; color: var(--ink2); text-align: right; }
+  .data-table tbody td:first-child { text-align: left; color: var(--ink); font-weight: 500; }
+  .data-table .row-total td { background: var(--surface2); font-weight: 600; border-top: 1px solid var(--rule); }
+  .pos-num { color: var(--green2); font-weight: 500; }
+  .neg-num { color: var(--red2); font-weight: 500; }
+  .neutral-num { color: var(--amber2); font-weight: 500; }
+
+  /* ── GUIDANCE TABLE ── */
+  .gtable { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .gtable th {
+    background: var(--surface2);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--rule);
+    font-weight: 500;
+  }
+  .gtable td { padding: 9px 12px; border-bottom: 0.5px solid var(--surface2); color: var(--ink2); vertical-align: top; font-size: 12px; }
+  .gtable tr:hover td { background: var(--surface2); }
+  .tag {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .tag-achieved { background: #d4edda; color: #155724; }
+  .tag-missed { background: #f8d7da; color: #721c24; }
+  .tag-pending { background: #fff3cd; color: #856404; }
+  .tag-partial { background: #d1ecf1; color: #0c5460; }
+  .tag-watch { background: #e2d9f3; color: #432874; }
+
+  /* ── FLAGS ── */
+  .flag-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 0.5px solid var(--surface2);
+  }
+  .flag-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+  .flag-dot.minor { background: var(--amber2); }
+  .flag-dot.moderate { background: #e07020; }
+  .flag-dot.severe { background: var(--red2); }
+  .flag-dot.positive { background: var(--green2); }
+  .flag-text { font-size: 13px; color: var(--ink2); }
+  .flag-text strong { color: var(--ink); font-weight: 600; }
+
+  /* ── SCENARIO TABLE ── */
+  .scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .scenario-card {
+    border-radius: 3px;
+    padding: 18px 16px;
+    border: 1px solid var(--rule);
+  }
+  .scenario-card.bull { border-top: 3px solid var(--green2); }
+  .scenario-card.base { border-top: 3px solid var(--accent2); }
+  .scenario-card.bear { border-top: 3px solid var(--red2); }
+  .scenario-head { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px; font-weight: 600; }
+  .scenario-head.bull { color: var(--green); }
+  .scenario-head.base { color: var(--accent2); }
+  .scenario-head.bear { color: var(--red); }
+  .scenario-item { display: flex; justify-content: space-between; font-size: 12px; padding: 4px 0; border-bottom: 0.5px solid var(--surface2); }
+  .scenario-item-label { color: var(--ink3); }
+  .scenario-item-val { font-weight: 500; color: var(--ink); }
+
+  /* ── BAR CHART ── */
+  .bar-group { margin-bottom: 10px; }
+  .bar-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--ink3); margin-bottom: 3px; }
+  .bar-track { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; transition: width 0.4s ease; }
+
+  /* ── TREND CHART ── */
+  .trend-strip { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; align-items: end; height: 80px; margin: 16px 0 4px; }
+  .trend-bar { background: var(--surface2); border-radius: 2px 2px 0 0; position: relative; cursor: default; }
+  .trend-bar.active { background: var(--accent2); }
+  .trend-bar.highlight { background: var(--accent); }
+  .trend-labels { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; }
+  .trend-lbl { font-size: 9px; color: var(--ink4); text-align: center; }
+
+  /* ── INLINE METRICS ── */
+  .inline-metrics { display: flex; gap: 24px; flex-wrap: wrap; margin: 16px 0; }
+  .inline-m { }
+  .inline-m-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink4); }
+  .inline-m-val { font-size: 16px; font-weight: 500; color: var(--accent); }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: #fff;
+    border-left: 3px solid var(--accent2);
+    padding: 14px 18px;
+    margin: 20px 0;
+    border-radius: 0 3px 3px 0;
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.7;
+  }
+  .callout.warn { border-left-color: var(--amber2); }
+  .callout.danger { border-left-color: var(--red2); }
+  .callout.success { border-left-color: var(--green2); }
+  .callout strong { color: var(--ink); font-weight: 600; }
+
+  /* ── VALUATION COMFORT ── */
+  .valuation-meter {
+    background: linear-gradient(to right, #1d6b42, #2ea26a 20%, #f0c87a 45%, #e89a20 65%, #e04545 85%, #a02828);
+    height: 8px;
+    border-radius: 4px;
+    margin: 12px 0 4px;
+    position: relative;
+  }
+  .val-pointer {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 2px solid #fff;
+    top: -3px;
+    transform: translateX(-50%);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+  .valuation-labels { display: flex; justify-content: space-between; font-size: 9px; color: var(--ink4); letter-spacing: 0.05em; margin-top: 4px; }
+
+  /* ── MANAGEMENT DECODE ── */
+  .mgmt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .mgmt-box {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 16px;
+  }
+  .mgmt-box-title { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink3); margin-bottom: 10px; font-weight: 600; }
+  .mgmt-item { font-size: 12.5px; color: var(--ink2); padding: 5px 0; border-bottom: 0.5px solid var(--surface2); }
+  .mgmt-item:last-child { border-bottom: none; }
+
+  /* ── FINAL VERDICT ── */
+  .verdict-section {
+    background: var(--accent);
+    border-radius: 4px;
+    padding: 36px 32px;
+    margin-top: 40px;
+    color: #fff;
+  }
+  .verdict-title { font-family: 'DM Serif Display', serif; font-size: 28px; color: #fff; margin-bottom: 6px; }
+  .verdict-subtitle { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
+  .verdict-conclusion {
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.8;
+    margin-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 16px;
+  }
+  .verdict-bullets { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+  .vb { background: rgba(255,255,255,0.07); border-radius: 3px; padding: 14px; }
+  .vb-head { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+  .vb-item { font-size: 12px; color: rgba(255,255,255,0.75); padding: 3px 0; display: flex; gap: 8px; }
+  .vb-dot { flex-shrink: 0; margin-top: 6px; width: 4px; height: 4px; border-radius: 50%; background: var(--gold2); }
+  .rating-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 28px;
+    border-radius: 2px;
+    margin-top: 8px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--rule);
+    margin-top: 60px;
+    padding-top: 20px;
+    font-size: 11px;
+    color: var(--ink4);
+    line-height: 1.6;
+  }
+
+  /* print */
+  @media print { body { background: #fff; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ══ MASTHEAD ══ -->
+<div class="masthead">
+  <div>
+    <div class="masthead-label">Institutional Equity Research — Forensic Analysis</div>
+    <div class="masthead-title">Affle 3i Limited</div>
+    <div class="masthead-sub">BSE: 542752 &nbsp;|&nbsp; NSE: AFFLE &nbsp;|&nbsp; AdTech / Consumer Intelligence Platform &nbsp;|&nbsp; India + Global Emerging Markets &nbsp;|&nbsp; FY2026 Full-Year & Q4 Review</div>
+    <div class="masthead-sub" style="margin-top:4px; font-size:11px;">Analysis date: May 2026 &nbsp;|&nbsp; Based on Q3 FY2026 concall (Feb 2, 2026) · Q4 FY2026 concall (May 11, 2026) · Q4 Earnings Presentation</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="verdict-badge">
+      <span class="verdict-main">ACCUMULATE</span>
+      <span>with conditions</span>
+    </div>
+    <div style="margin-top:10px; font-size:11px; color:var(--ink3);">CMP ₹1,456 &nbsp;|&nbsp; Mkt Cap ₹20,501 Cr</div>
+  </div>
+</div>
+
+<!-- ══ MARKET STRIP ══ -->
+<div class="market-strip">
+  <div class="mitem">
+    <div class="mitem-label">CMP</div>
+    <div class="mitem-val">₹1,456</div>
+  </div>
+  <div class="mitem">
+    <div class="mitem-label">52W H/L</div>
+    <div class="mitem-val">₹2,187 / ₹1,251</div>
+  </div>
+  <div class="mitem">
+    <div class="mitem-label">Market Cap</div>
+    <div class="mitem-val">₹20,501 Cr</div>
+  </div>
+  <div class="mitem">
+    <div class="mitem-label">P/E (Trailing)</div>
+    <div class="mitem-val neutral">45.1x</div>
+  </div>
+  <div class="mitem">
+    <div class="mitem-label">P/B</div>
+    <div class="mitem-val neutral">5.6x</div>
+  </div>
+  <div class="mitem">
+    <div class="mitem-label">ROCE</div>
+    <div class="mitem-val up">16.8%</div>
+  </div>
+  <div class="mitem">
+    <div class="mitem-label">ROE</div>
+    <div class="mitem-val up">13.8%</div>
+  </div>
+  <div class="mitem">
+    <div class="mitem-label">FY26 Rev CAGR (5yr)</div>
+    <div class="mitem-val up">25.8%</div>
+  </div>
+  <div class="mitem">
+    <div class="mitem-label">Dividend Yield</div>
+    <div class="mitem-val neutral">0.0%</div>
+  </div>
+</div>
+
+<!-- ══ STEP 1: EXECUTIVE SNAPSHOT ══ -->
+<div class="scores-row">
+  <div class="score-card">
+    <div class="score-label">Business Health</div>
+    <div class="score-num">8.0</div>
+    <div class="score-sub">out of 10</div>
+    <div class="score-bar"><div class="score-fill" style="width:80%"></div></div>
+  </div>
+  <div class="score-card">
+    <div class="score-label">Earnings Quality</div>
+    <div class="score-num">7.0</div>
+    <div class="score-sub">out of 10</div>
+    <div class="score-bar"><div class="score-fill" style="width:70%"></div></div>
+  </div>
+  <div class="score-card">
+    <div class="score-label">Balance Sheet</div>
+    <div class="score-num">8.5</div>
+    <div class="score-sub">out of 10</div>
+    <div class="score-bar"><div class="score-fill" style="width:85%"></div></div>
+  </div>
+  <div class="score-card">
+    <div class="score-label">Capital Allocation</div>
+    <div class="score-num">7.5</div>
+    <div class="score-sub">out of 10</div>
+    <div class="score-bar"><div class="score-fill" style="width:75%"></div></div>
+  </div>
+  <div class="score-card">
+    <div class="score-label">Mgmt Credibility</div>
+    <div class="score-num">7.5</div>
+    <div class="score-sub">out of 10</div>
+    <div class="score-bar"><div class="score-fill" style="width:75%"></div></div>
+  </div>
+  <div class="score-card">
+    <div class="score-label">Future Visibility</div>
+    <div class="score-num">7.0</div>
+    <div class="score-sub">out of 10</div>
+    <div class="score-bar"><div class="score-fill" style="width:70%"></div></div>
+  </div>
+</div>
+
+<div class="callout success" style="margin-top:28px;">
+  <strong>Executive summary.</strong> FY2026 was a strong foundational year for Affle 3i, delivering 19.5% revenue growth and 26.3% EBITDA growth — precisely in line with its publicly stated internal KPI of combined revenue + EBITDA growth of ~45%. The business is genuinely compounding: 13 consecutive quarters of sequential topline growth, a near-pristine balance sheet with ₹1,792 Cr of net cash, and operating cash flows growing at 25% CAGR over five years. The critical analytical question is whether elevated inventory and data costs (now 62–63% of revenue vs. a historical 60–61%) represent a temporary, value-creating investment or a structural gross-margin reset. Management's answer is internally consistent and partially verifiable — but requires monitoring. The promoter warrant issuance of ₹11 billion for potential M&A introduces both an exciting strategic catalyst and a meaningful governance question.
+</div>
+
+<!-- ══ STEP 2: RESULT QUALITY ══ -->
+<div class="section">
+  <div class="section-label">Step 2</div>
+  <div class="section-title">Result quality analysis — FY2026 & Q4 FY2026</div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-name">FY26 Revenue</div>
+      <div class="kpi-val">₹2,709 Cr</div>
+      <div class="kpi-delta pos">▲ 19.5% YoY</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-name">FY26 EBITDA</div>
+      <div class="kpi-val">₹610 Cr</div>
+      <div class="kpi-delta pos">▲ 26.3% YoY &nbsp;|&nbsp; 22.5% margin</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-name">FY26 PAT</div>
+      <div class="kpi-val">₹455 Cr</div>
+      <div class="kpi-delta pos">▲ 19.1% YoY &nbsp;|&nbsp; 16.3% margin</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-name">FY26 Op. Cash Flow</div>
+      <div class="kpi-val">₹502 Cr</div>
+      <div class="kpi-delta pos">OCF/PAT: ~110%</div>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-name">Q4 FY26 Revenue</div>
+      <div class="kpi-val">₹724 Cr</div>
+      <div class="kpi-delta pos">▲ 20.3% YoY &nbsp;|&nbsp; ▲ 1.0% QoQ</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-name">Q4 EBITDA Margin</div>
+      <div class="kpi-val">22.3%</div>
+      <div class="kpi-delta neutral">Flat YoY &nbsp;|&nbsp; ▼ 40 bps QoQ</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-name">CPCU Rate Q4</div>
+      <div class="kpi-val">₹60.0</div>
+      <div class="kpi-delta pos">▲ 3.8% YoY from ₹57.8</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-name">Q4 Conversions</div>
+      <div class="kpi-val">120.3 mn</div>
+      <div class="kpi-delta pos">▲ 15.7% YoY from 104.0 mn</div>
+    </div>
+  </div>
+
+  <!-- P&L Table -->
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>P&L Item (₹ mn)</th>
+        <th>Q4 FY26</th>
+        <th>Q4 FY25</th>
+        <th>YoY %</th>
+        <th>Q3 FY26</th>
+        <th>QoQ %</th>
+        <th>FY26</th>
+        <th>FY25</th>
+        <th>YoY %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Revenue</td>
+        <td>7,244</td><td>6,023</td><td class="pos-num">+20.3%</td>
+        <td>7,175</td><td class="pos-num">+1.0%</td>
+        <td>27,093</td><td>22,663</td><td class="pos-num">+19.5%</td>
+      </tr>
+      <tr>
+        <td>Inventory & Data Cost</td>
+        <td>4,583</td><td>3,648</td><td class="neg-num">+25.6%</td>
+        <td>4,474</td><td class="neg-num">+2.4%</td>
+        <td>16,798</td><td>13,793</td><td class="neg-num">+21.8%</td>
+      </tr>
+      <tr>
+        <td>% of Revenue</td>
+        <td>63.3%</td><td>60.6%</td><td class="neg-num">+270 bps</td>
+        <td>62.4%</td><td class="neg-num">+90 bps</td>
+        <td>62.0%</td><td>60.9%</td><td class="neg-num">+110 bps</td>
+      </tr>
+      <tr>
+        <td>Employee Expenses</td>
+        <td>635</td><td>583</td><td class="neutral-num">+8.8%</td>
+        <td>637</td><td class="pos-num">−0.4%</td>
+        <td>2,512</td><td>2,313</td><td class="neutral-num">+8.6%</td>
+      </tr>
+      <tr>
+        <td>Other Expenses</td>
+        <td>415</td><td>452</td><td class="pos-num">−8.2%</td>
+        <td>433</td><td class="pos-num">−4.3%</td>
+        <td>1,682</td><td>1,726</td><td class="pos-num">−2.5%</td>
+      </tr>
+      <tr class="row-total">
+        <td>EBITDA</td>
+        <td>1,612</td><td>1,340</td><td class="pos-num">+20.3%</td>
+        <td>1,630</td><td class="neg-num">−1.1%</td>
+        <td>6,101</td><td>4,832</td><td class="pos-num">+26.3%</td>
+      </tr>
+      <tr>
+        <td>EBITDA Margin</td>
+        <td>22.3%</td><td>22.2%</td><td class="pos-num">+10 bps</td>
+        <td>22.7%</td><td class="neg-num">−40 bps</td>
+        <td>22.5%</td><td>21.3%</td><td class="pos-num">+120 bps</td>
+      </tr>
+      <tr>
+        <td>Depreciation & Amort.</td>
+        <td>334</td><td>266</td><td class="neg-num">+25.8%</td>
+        <td>332</td><td>+0.7%</td>
+        <td>1,244</td><td>967</td><td class="neg-num">+28.6%</td>
+      </tr>
+      <tr>
+        <td>Other Income</td>
+        <td>213</td><td>189</td><td class="pos-num">+12.5%</td>
+        <td>175</td><td class="pos-num">+21.3%</td>
+        <td>782</td><td>938</td><td class="neg-num">−16.5%</td>
+      </tr>
+      <tr class="row-total">
+        <td>PAT</td>
+        <td>1,195</td><td>1,031</td><td class="pos-num">+16.0%</td>
+        <td>1,193</td><td class="pos-num">+0.2%</td>
+        <td>4,549</td><td>3,819</td><td class="pos-num">+19.1%</td>
+      </tr>
+      <tr>
+        <td>PAT Margin</td>
+        <td>16.0%</td><td>16.6%</td><td class="neg-num">−60 bps</td>
+        <td>16.2%</td><td class="neg-num">−20 bps</td>
+        <td>16.3%</td><td>16.2%</td><td class="pos-num">+10 bps</td>
+      </tr>
+      <tr>
+        <td>Effective Tax Rate</td>
+        <td>19.3%</td><td>16.8%</td><td class="neg-num">+250 bps</td>
+        <td>18.3%</td><td>—</td>
+        <td>18.6%</td><td>18.3%</td><td class="neg-num">+30 bps</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="prose" style="margin-top:20px;">
+    <p><strong>Revenue quality is genuine.</strong> Growth is fully organic — no acquisitions since FY2023. Both volume (CPCU conversions up 16% YoY in Q4) and pricing (CPCU rate ₹57.8 → ₹60.0) are contributing, and geographic growth is broad-based with India + Emerging Markets at +21.2% and Developed Markets at +18.0%. There is no evidence of channel stuffing, related-party inflation, or inventory-led revenue booking — the CPCU model is inherently performance-tied and self-disciplining.</p>
+    <p><strong>The gross margin compression is the central analytical puzzle.</strong> Inventory and data costs rose 270 bps YoY in Q4 (to 63.3% of revenue), expanding further from the already-elevated levels seen across the last six quarters. Management characterises roughly 10% of this cost line as an investment in verticalization intelligence for international markets — expensed immediately under accounting standards but economically akin to R&D capitalisation. If management's framing is correct, the "true" gross margin is approximately 250–300 bps higher than reported, which would place EBITDA margins closer to 24.5–25%. The thesis is plausible — Affle has 21 years of disciplined execution — but independently unverifiable.</p>
+    <p><strong>PAT growth (16%) lagging EBITDA growth (20.3%) in Q4</strong> is explained by a base-period tax rate anomaly (Q4 FY25 benefited from a lower effective tax rate of 16.8% vs 19.3% this quarter). On a full-year basis, tax rates are comparable (18.6% vs 18.3%), and the PAT margin expanded marginally to 16.3%. Depreciation growing at 25.8% YoY in Q4 — faster than revenue — reflects amortisation of intangibles from the 2020–23 acquisition wave, which will taper as those intangibles age.</p>
+  </div>
+</div>
+
+<!-- ══ STEP 3: GUIDANCE TRACKER ══ -->
+<div class="section">
+  <div class="section-label">Step 3</div>
+  <div class="section-title">Guidance tracker — management promise vs. reality</div>
+
+  <table class="gtable" style="width:100%;">
+    <thead>
+      <tr>
+        <th style="width:30%">Guidance / Commitment</th>
+        <th style="width:14%">Given</th>
+        <th style="width:14%">Timeline</th>
+        <th style="width:12%">Status</th>
+        <th style="width:30%">Verdict</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>20% revenue CAGR medium-term</strong></td>
+        <td>FY2024 onwards; reaffirmed every quarter</td>
+        <td>Ongoing</td>
+        <td><span class="tag tag-partial">Near-Miss</span></td>
+        <td>FY2026 delivered 19.5% — fractionally below the 20% bar but management frames this as within the acceptable range. 5-year CAGR is 25.8%, suggesting the medium-term target is well within reach.</td>
+      </tr>
+      <tr>
+        <td><strong>EBITDA growth outpacing revenue growth</strong></td>
+        <td>Repeated as internal KPI on every call</td>
+        <td>Each FY</td>
+        <td><span class="tag tag-achieved">Achieved</span></td>
+        <td>FY2026: EBITDA +26.3% vs revenue +19.5% — delivered cleanly. The 7th consecutive quarter of EBITDA margin expansion through Q3 FY26 (Q4 was flat QoQ, up YoY). Full-year margin rose 120 bps to 22.5%.</td>
+      </tr>
+      <tr>
+        <td><strong>Combined Rev+EBITDA growth ~45%</strong></td>
+        <td>Q3 FY26 call — internal KPI revealed</td>
+        <td>Each FY</td>
+        <td><span class="tag tag-achieved">Achieved</span></td>
+        <td>Q3: 19.2% + 24.1% = 43.3% (≈45%). Full year: 19.5% + 26.3% = 45.8% — perfectly on target. This is a well-designed internal metric that balances growth and profitability simultaneously.</td>
+      </tr>
+      <tr>
+        <td><strong>OCF/PAT ≥ 80% annually</strong></td>
+        <td>Stated target; historical range 90–100%</td>
+        <td>Each FY</td>
+        <td><span class="tag tag-achieved">Achieved</span></td>
+        <td>9M FY26 OCF/PAT was 75.8% — below target — attributed to agency payment cycle delays. Q4 fully normalised: full-year FY26 OCF ₹502 Cr vs PAT ₹455 Cr = OCF/PAT ~110%. Management's explanation validated.</td>
+      </tr>
+      <tr>
+        <td><strong>Q4 FY26 "slightly lower than Q3"</strong></td>
+        <td>Q3 FY26 concall — Anuj's closing guidance</td>
+        <td>Q4 FY26</td>
+        <td><span class="tag tag-achieved">Beat</span></td>
+        <td>Q4 revenue ₹724 Cr vs Q3 ₹718 Cr — delivered above guidance. This is a classic Affle under-promise pattern. Management guided conservatively and outperformed. +1 credibility point.</td>
+      </tr>
+      <tr>
+        <td><strong>Inorganic acquisition in 2026</strong></td>
+        <td>Q3 FY26 call — "firmly in 2026", shortlisted to 4 targets</td>
+        <td>CY2026</td>
+        <td><span class="tag tag-pending">Pending</span></td>
+        <td>As of Q4 FY26 call (May 2026), deal not yet announced. Board approved ₹11 bn promoter warrant issuance to "show readiness." Management says "realistic chance within this calendar year." Risk: high-stakes uncertainty.</td>
+      </tr>
+      <tr>
+        <td><strong>Gross margin "normalisation" in ~1 year</strong></td>
+        <td>Q4 FY26 call — explicit guidance on compression reversal</td>
+        <td>FY27–FY28</td>
+        <td><span class="tag tag-watch">Watch</span></td>
+        <td>Management guided that in "about a year" verticalization investment will taper, and margins should begin recovering toward 37–38% gross margin over the following year. This is a key FY27 monitoring variable.</td>
+      </tr>
+      <tr>
+        <td><strong>EBITDA margin target 23–25% medium-term</strong></td>
+        <td>Repeatedly stated; current level 22.5%</td>
+        <td>FY27–FY28</td>
+        <td><span class="tag tag-pending">In Progress</span></td>
+        <td>Currently 22.5%. Management has consistently signalled EBITDA margin expansion will continue but opex will not grow in line with revenue. AI-driven productivity gains and centralisation of lower-cost functions are enabling this.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout success" style="margin-top:20px;">
+    <strong>Execution credibility rating: Strong.</strong> Management has consistently delivered or modestly exceeded its stated KPIs over the last 3+ years. The "under-promise, over-deliver" pattern is genuine — Q4 guidance was beaten, OCF concerns were temporary and resolved, and the internal 45% growth formula has been met with mathematical precision. The only open question mark is the pending M&A execution, which management has flagged for six months without closure. If FY27 passes without a transaction, credibility on the inorganic front will need reassessment.
+  </div>
+</div>
+
+<!-- ══ STEP 4: HIDDEN FINANCIAL ARCHITECTURE ══ -->
+<div class="section">
+  <div class="section-label">Step 4</div>
+  <div class="section-title">Hidden financial architecture</div>
+
+  <div class="two-col">
+    <div>
+      <div style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink4); margin-bottom:10px;">Balance Sheet Snapshot (Mar 31, 2026)</div>
+      <table class="data-table">
+        <thead><tr><th>Asset</th><th>₹ mn</th><th>% Total</th></tr></thead>
+        <tbody>
+          <tr><td>Cash & Liquid Investments</td><td>17,921</td><td class="pos-num">40.5%</td></tr>
+          <tr><td>Goodwill & Intangibles</td><td>15,175</td><td class="neutral-num">34.3%</td></tr>
+          <tr><td>Trade Receivables + Contract Assets</td><td>7,097</td><td>16.0%</td></tr>
+          <tr><td>Other Assets</td><td>4,022</td><td>9.1%</td></tr>
+          <tr class="row-total"><td>Total Assets</td><td>44,215</td><td>100%</td></tr>
+        </tbody>
+      </table>
+      <table class="data-table" style="margin-top:12px;">
+        <thead><tr><th>Liability</th><th>₹ mn</th></tr></thead>
+        <tbody>
+          <tr><td>Total Equity</td><td>36,522</td></tr>
+          <tr><td>Total Borrowings</td><td><span class="pos-num">119</span></td></tr>
+          <tr><td>Contract Liabilities & Trade Payables</td><td>5,968</td></tr>
+          <tr><td>Other Liabilities</td><td>1,606</td></tr>
+          <tr class="row-total"><td>Total</td><td>44,215</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <div style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink4); margin-bottom:10px;">Cash Flow Quality (₹ mn)</div>
+      <div class="bar-group">
+        <div class="bar-label"><span>FY2022 OCF</span><span>₹2,060 mn</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:41%; background:var(--accent2)"></div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-label"><span>FY2023 OCF</span><span>₹2,603 mn</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:52%; background:var(--accent2)"></div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-label"><span>FY2024 OCF</span><span>₹2,623 mn</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:52%; background:var(--accent2)"></div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-label"><span>FY2025 OCF</span><span>₹4,260 mn</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:85%; background:var(--accent2)"></div></div>
+      </div>
+      <div class="bar-group">
+        <div class="bar-label"><span>FY2026 OCF</span><span>₹5,023 mn</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%; background:var(--accent)"></div></div>
+      </div>
+      <div style="font-size:11px; color:var(--ink4); margin-top:8px;">5-year OCF CAGR: 25.0% — matching revenue CAGR, confirming earnings quality. Not a cash trap.</div>
+
+      <div style="margin-top:20px; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink4); margin-bottom:10px;">EBITDA vs OCF Bridge</div>
+      <table class="data-table">
+        <thead><tr><th>Metric</th><th>FY26</th><th>FY25</th></tr></thead>
+        <tbody>
+          <tr><td>EBITDA (₹ mn)</td><td>6,101</td><td>4,832</td></tr>
+          <tr><td>PAT (₹ mn)</td><td>4,549</td><td>3,819</td></tr>
+          <tr><td>OCF (₹ mn)</td><td>5,023</td><td>4,260</td></tr>
+          <tr><td>OCF / EBITDA</td><td class="pos-num">82.3%</td><td class="pos-num">88.2%</td></tr>
+          <tr><td>OCF / PAT</td><td class="pos-num">~110%</td><td class="pos-num">~111%</td></tr>
+          <tr><td>D&A (non-cash add-back)</td><td>1,244</td><td>967</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top:20px;">
+    <p><strong>Balance sheet is fortress-grade.</strong> Net cash (cash minus borrowings) stands at approximately ₹1,780 Cr (₹17,802 mn) — representing 87% of market cap at the current ₹20,501 Cr valuation. Borrowings of just ₹119 mn are negligible. There are no pledged promoter shares, no off-balance-sheet entities, no guarantees flagged, and no covenant risk. The balance sheet could absorb a meaningful acquisition entirely from internal resources without any equity dilution — making the promoter warrant issuance a strategic choice rather than a necessity.</p>
+    <p><strong>Goodwill and intangibles at ₹15,175 mn (34.3% of total assets)</strong> are a structural feature from the 2020–23 acquisition phase. This is the primary non-cash risk: if acquired entities underperform, impairments become possible. However, management explicitly states all acquired entities have been converted to the CPCU business model and are cash-generative — an assertion consistent with the strong OCF trajectory. No impairment charges have been flagged.</p>
+    <p><strong>Working capital appears clean.</strong> The Q3 FY26 OCF/PAT compression to 75.8% (9 months) was attributed to extended collection cycles from advertising agencies undergoing periodic client audits. The Q4 normalisation — bringing full-year OCF/PAT to ~110% — validates this explanation. There is no evidence of receivable inflation, aggressive revenue recognition, or hidden stress in collections across the core business verticals.</p>
+  </div>
+</div>
+
+<!-- ══ STEP 5: MANAGEMENT COMMENTARY DECODE ══ -->
+<div class="section">
+  <div class="section-label">Step 5</div>
+  <div class="section-title">Management commentary decode</div>
+
+  <div class="mgmt-grid">
+    <div class="mgmt-box">
+      <div class="mgmt-box-title">What management emphasised</div>
+      <div class="mgmt-item">13 consecutive quarters of sequential topline growth</div>
+      <div class="mgmt-item">AI integration — Niko, OpticksAI, agentic automation — as genuine competitive differentiator</div>
+      <div class="mgmt-item">Human vs. non-human traffic filtration as a forward moat (patent-protected)</div>
+      <div class="mgmt-item">Premium iOS and CTV expansion driving CPCU rate upside</div>
+      <div class="mgmt-item">Verticalization across EFGH categories in developed markets as a multi-year investment</div>
+      <div class="mgmt-item">₹11 billion warrant issuance to signal M&A readiness to target boards</div>
+      <div class="mgmt-item">CPCU model's resilience during economic downturns — ROI-linked spend is last to be cut</div>
+    </div>
+    <div class="mgmt-box">
+      <div class="mgmt-box-title">What management avoided or skirted</div>
+      <div class="mgmt-item">Precise breakup of "investment" vs. "operational" data costs — declined to quantify the split beyond "~10%"</div>
+      <div class="mgmt-item">Identity of acquisition targets — appropriate given active negotiations</div>
+      <div class="mgmt-item">Cap structure of Affle Holdings (the entity exercising the warrants) — deflected on the Q4 call</div>
+      <div class="mgmt-item">Specific customer concentration data — no disclosure of top-10 customer revenue share</div>
+      <div class="mgmt-item">Healthcare vertical underperformance — mentioned briefly then moved on</div>
+      <div class="mgmt-item">Source of funding for Affle Holdings' warrant subscription — "will disclose if notified"</div>
+    </div>
+    <div class="mgmt-box">
+      <div class="mgmt-box-title">Language signals and tone</div>
+      <div class="mgmt-item">Tone: confident, visionary, consistently optimistic — no defensiveness detected</div>
+      <div class="mgmt-item">Buzzwords: "verticalization," "premium," "CPCU," "agentic AI," "first-party data" — high frequency, but substantiated by case studies and metrics</div>
+      <div class="mgmt-item">Anuj Sohum's "let us surprise you" on Q4 guidance = consistent under-promise signal</div>
+      <div class="mgmt-item">CFO Kapil Bhutani is precise and numerically anchored — complementary to Anuj's narrative style</div>
+      <div class="mgmt-item">No excuse patterns detected — macro headwinds acknowledged but not used to explain misses</div>
+    </div>
+    <div class="mgmt-box">
+      <div class="mgmt-box-title">Management classification</div>
+      <div class="mgmt-item" style="font-size:14px; color:var(--accent); font-weight:600; padding:8px 0;">Long-term allocator with visionary overlay</div>
+      <div class="mgmt-item">Disciplined on capital returns — no dilutive equity raises (until now), no ill-timed acquisitions</div>
+      <div class="mgmt-item">Transparent on the KPI framework (45% combined growth metric is unusually honest disclosure)</div>
+      <div class="mgmt-item">Promoter-driven company with high skin in the game (54.9% promoter holding)</div>
+      <div class="mgmt-item">One concern: Anuj's effusive use of "honorable," "sensible," "prudent" when discussing the acquisition — the adjective density increases when certainty is lower</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CPCU ENGINE ══ -->
+<div class="section">
+  <div class="section-label">Step 6</div>
+  <div class="section-title">CPCU engine analysis — the core profit machine</div>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-name">FY26 Total Conversions</div>
+      <div class="kpi-val">456 mn</div>
+      <div class="kpi-delta pos">▲ 16.1% from 393 mn in FY25</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-name">FY26 Avg CPCU Rate</div>
+      <div class="kpi-val">₹58.9</div>
+      <div class="kpi-delta pos">▲ from ₹57.5 in FY25</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-name">FY26 CPCU Revenue</div>
+      <div class="kpi-val">₹2,687 Cr</div>
+      <div class="kpi-delta pos">99.2% of total revenue</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-name">CPCU Revenue Q4 CAGR</div>
+      <div class="kpi-val">16.7%</div>
+      <div class="kpi-delta pos">Conversions 3yr CAGR (Q4)</div>
+    </div>
+  </div>
+
+  <div style="margin: 16px 0 6px; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink4);">Quarterly CPCU conversions (mn) — last 12 quarters</div>
+  <div class="trend-strip">
+    <div class="trend-bar" style="height:58%"></div>
+    <div class="trend-bar" style="height:62%"></div>
+    <div class="trend-bar" style="height:72%"></div>
+    <div class="trend-bar" style="height:76%"></div>
+    <div class="trend-bar" style="height:78%"></div>
+    <div class="trend-bar" style="height:81%"></div>
+    <div class="trend-bar highlight" style="height:86%"></div>
+    <div class="trend-bar highlight" style="height:87%"></div>
+    <div class="trend-bar highlight" style="height:89%"></div>
+    <div class="trend-bar highlight" style="height:91%"></div>
+    <div class="trend-bar active" style="height:100%"></div>
+    <div class="trend-bar active" style="height:100%"></div>
+  </div>
+  <div class="trend-labels">
+    <div class="trend-lbl">Q1FY24</div><div class="trend-lbl">Q2FY24</div><div class="trend-lbl">Q3FY24</div><div class="trend-lbl">Q4FY24</div>
+    <div class="trend-lbl">Q1FY25</div><div class="trend-lbl">Q2FY25</div><div class="trend-lbl">Q3FY25</div><div class="trend-lbl">Q4FY25</div>
+    <div class="trend-lbl">Q1FY26</div><div class="trend-lbl">Q2FY26</div><div class="trend-lbl">Q3FY26</div><div class="trend-lbl">Q4FY26</div>
+  </div>
+
+  <div class="prose" style="margin-top:20px;">
+    <p><strong>The CPCU model is Affle's moat.</strong> 99.2% of revenue is earned only when a consumer converts — install, register, transact, subscribe. This outcome-linked model creates a self-reinforcing flywheel: advertisers only pay for results, which incentivises Affle to continually improve targeting quality, which improves ROI, which expands wallet share. No competitor listed on Indian exchanges operates at this scale on a pure CPCU model.</p>
+    <p><strong>CPCU rate growth despite an increasing share of emerging-market revenue</strong> is the most analytically interesting development. Emerging markets (India + GEM) grew to 73.9% of revenue in Q3 FY26 (vs. 71.6% in Q4 FY26), and yet CPCU rates have continued rising. This is explained by three drivers: (1) iOS premium user targeting, where advertisers pay significantly more for high-LTV users; (2) deep vertical specialisation that allows Affle to charge a premium for sector-specific intelligence (healthcare patient personas, gaming high-value users); and (3) CTV inventory commanding higher rates than standard mobile display. The structural drift of the CPCU rate toward ₹60+ is a durable signal, not a blip.</p>
+    <p><strong>Non-CPCU revenue is deliberately minimal.</strong> Management frames non-CPCU as a "top-of-funnel entry point" for customers who eventually migrate to CPCU. This is strategically honest — and confirms Affle is not chasing gross revenue at the expense of quality. The 0.8% non-CPCU share is a feature, not a bug.</p>
+  </div>
+</div>
+
+<!-- ══ STEP 7: INDUSTRY POSITIONING ══ -->
+<div class="section">
+  <div class="section-label">Step 7</div>
+  <div class="section-title">Industry & competitive positioning</div>
+
+  <div class="prose">
+    <p><strong>Digital advertising tailwinds are structural and accelerating.</strong> Global digital ad spend continues to grow, with AI dramatically improving the measurability of returns — which shifts budget allocation away from brand/impression-based spend toward performance/ROI-linked models. Affle is structurally positioned at this intersection. The management's observation that "when budgets get tighter, CPCU models benefit" is counterintuitive but historically validated: performance advertising share increases during downturns as CFOs demand accountability.</p>
+    <p><strong>The agentic AI opportunity is real and Affle is early.</strong> Management identifies two forward opportunities: (1) AI-powered apps needing user acquisition (spend on CPCU with Affle to grow) and (2) AI-powered apps needing monetisation (Affle helps them generate ad revenue). The "human vs. non-human distillation" capability — protecting advertisers from fraud in an agentic AI world — is a genuine moat that competitors like Trade Desk or DV360 have not explicitly addressed. Affle's pre-IPO patents on this problem (filed 2017) give it a multi-year head start.</p>
+    <p><strong>Developed markets remain the key growth frontier.</strong> North America and Europe contribute ~27–28% of revenue despite Affle having negligible legacy penetration. The hire of Sameer Sondhi as North America CEO (25+ years in US ad tech) and the active M&A evaluation of 4 targets is the right strategy to solve this — organic scaling in developed markets is slow (as Affle's own experience shows). A well-executed acquisition that gives Affle an existing US sales team and customer relationships could accelerate the developed markets trajectory materially.</p>
+  </div>
+
+  <div class="callout warn" style="margin-top:10px;">
+    <strong>Key risk to monitor:</strong> Walled garden aggression. Meta, Google, and Apple's SKAdNetwork have historically compressed independent ad-tech intermediaries. Affle's defence is its CPCU model (which integrates directly with advertisers' first-party app data, bypassing the traditional auction entirely) and its focus on emerging markets where walled-garden reach is less dominant. But in developed markets, walled gardens have stronger positions — validating the need for Affle's differentiated premium/vertical approach rather than head-on volume competition.
+  </div>
+</div>
+
+<!-- ══ STEP 8: CAPITAL ALLOCATION ══ -->
+<div class="section">
+  <div class="section-label">Step 8</div>
+  <div class="section-title">Capital allocation analysis</div>
+
+  <div class="two-col">
+    <div class="prose">
+      <p><strong>Historic track record on M&A is strong.</strong> Five acquisitions between 2020–2023 (Appnext, RevX, YouAppi, mediasmart, Jampp) were all below revenue multiples typical for the sector, all converted to the CPCU model, and all are cash-generative today. Management deliberately paused M&A for three years (FY2024–FY2026) to prove integration capability — a rare display of restraint that builds credibility.</p>
+      <p><strong>The ₹11 billion warrant issuance is the key near-term capital allocation event.</strong> Affle Holdings (promoter) will acquire ~7.4 million warrants at ₹1,487 per share — fractionally above the current market price of ₹1,456. At full conversion, this injects ₹11 billion of fresh equity capital into Affle 3i's balance sheet, taking total firepower (existing cash + warrant proceeds) to approximately ₹2,900 Cr. This is the war chest being built for the announced "meaningfully sized" acquisition.</p>
+      <p><strong>The governance concern is real but contextualised.</strong> Why warrants to the promoter rather than a QIP to institutional investors? Management's explanation — to "show seriousness" to selling boards and to maintain pricing flexibility as negotiations continue — is plausible. However, the promoter enriches itself if the stock rises above ₹1,487 before conversion, and the 25% upfront payment (₹275 Cr) is modest relative to the eventual dilution commitment. Institutional investors asked this question on the call and received a deflected answer. This warrants monitoring through shareholder vote approval.</p>
+    </div>
+    <div>
+      <div style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink4); margin-bottom:14px;">Capital allocation scorecard</div>
+      <div class="flag-item">
+        <div class="flag-dot positive"></div>
+        <div class="flag-text"><strong>Capex discipline:</strong> Asset-light model. Capex is minimal — almost all investment is in human capital and data. No large physical infrastructure commitments.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot positive"></div>
+        <div class="flag-text"><strong>Debt management:</strong> Borrowings reduced from ₹126 mn (FY25) to ₹119 mn (FY26). Balance sheet is effectively debt-free.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot positive"></div>
+        <div class="flag-text"><strong>M&A playbook:</strong> Track record of buying at revenue multiples, not EBITDA multiples — conservative valuation anchoring. Committed to same discipline for next deal.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot minor"></div>
+        <div class="flag-text"><strong>Dividend policy:</strong> Zero dividend despite ₹1,792 Cr net cash. Accumulating for M&A. Acceptable for a growth-phase company but zero yield with a 45x P/E is a high-trust requirement.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot minor"></div>
+        <div class="flag-text"><strong>ESOP dilution:</strong> 155,757 shares held in ESOP trust. Minimal at current scale — not a material concern.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot moderate"></div>
+        <div class="flag-text"><strong>Warrant structure:</strong> Promoter acquires warrants at ₹1,487 with 25% upfront. If the stock falls materially, promoter may not convert — leaving Affle without anticipated M&A capital. Conditional firepower is less reliable than a completed QIP.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STEP 9: RED FLAGS ══ -->
+<div class="section">
+  <div class="section-label">Step 9</div>
+  <div class="section-title">Red flags & forensic detection</div>
+
+  <div style="font-size:12px; color:var(--ink4); margin-bottom:14px; display:flex; gap:20px;">
+    <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--amber2);margin-right:5px;"></span>Minor</span>
+    <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e07020;margin-right:5px;"></span>Moderate</span>
+    <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red2);margin-right:5px;"></span>Severe</span>
+  </div>
+
+  <div class="flag-item">
+    <div class="flag-dot moderate"></div>
+    <div class="flag-text"><strong>Gross margin compression (moderate):</strong> Inventory and data costs have risen structurally from ~60% to 62–63% of revenue over 7–8 quarters. Management attributes ~10% of the cost line to "investment" — but this cannot be independently audited or disaggregated from reported financials. If this investment does not translate into CPCU rate improvement or conversion volume gains in FY27, the compression becomes structural, not cyclical. Monitor Q1–Q2 FY27 gross margins closely.</div>
+  </div>
+  <div class="flag-item">
+    <div class="flag-dot moderate"></div>
+    <div class="flag-text"><strong>Promoter warrant structure (moderate):</strong> ₹11 billion warrants to be issued to Affle Holdings at ₹1,487. The source of funds for Affle Holdings was explicitly deflected on the Q4 call — "we will disclose if notified." This is a governance gap. If Affle Holdings is leveraged to fund the warrant subscription, the promoter's effective risk profile changes materially. Requires shareholder vote and subsequent disclosure.</div>
+  </div>
+  <div class="flag-item">
+    <div class="flag-dot moderate"></div>
+    <div class="flag-text"><strong>Goodwill and intangibles concentration (moderate):</strong> ₹15,175 mn (34.3% of assets) from prior acquisitions. While no impairments have been flagged and management asserts all entities are cash-generative, a large future acquisition could add further goodwill. If the M&A cycle resumes at scale, this risk grows. D&A is already growing at 25.8% YoY — faster than revenue — pressuring PAT growth relative to EBITDA growth.</div>
+  </div>
+  <div class="flag-item">
+    <div class="flag-dot minor"></div>
+    <div class="flag-text"><strong>Other income decline (minor):</strong> FY2026 other income fell 16.5% to ₹782 mn from ₹938 mn in FY2025. Management attributes this to FX losses and lower interest income as some cash was deployed. At ₹1,792 Cr of net cash, this income line should partially recover as rates stabilise, but any significant deployment for M&A will further reduce it — moderately impacting PAT growth optics.</div>
+  </div>
+  <div class="flag-item">
+    <div class="flag-dot minor"></div>
+    <div class="flag-text"><strong>M&A execution risk (minor/elevated pending):</strong> Affle has been evaluating acquisitions for 6+ months (10 targets → 4 shortlisted). The longer this takes, the higher the risk of overpaying under competitive pressure or promotional board pressure. Management's "we will not rush" framing is reassuring, but the warrant issuance creates an implicit 18-month clock before options expire.</div>
+  </div>
+  <div class="flag-item">
+    <div class="flag-dot minor"></div>
+    <div class="flag-text"><strong>Real Money Gaming regulatory overhang (minor):</strong> The India RMG ban cost Affle ~₹10–12 Cr of quarterly revenue in the base period (modest at ~0.5% of quarterly revenue). This has been fully absorbed and replaced. However, Indian regulatory unpredictability in select verticals (Government category also saw pullback in Q3) remains a structural feature. Affle's vertical diversification is its primary hedge.</div>
+  </div>
+
+  <div class="callout" style="margin-top:12px; background:#fff;">
+    <strong>Forensic assessment:</strong> No signs of accounting manipulation, aggressive revenue recognition, inventory-led bookings, or cash flow manipulation. The 9M FY26 OCF concern was temporary and resolved. No auditor qualifications or sudden policy changes detected. The two meaningful risks — gross margin pressure and M&A governance — are well understood by the market, disclosed openly, and manageable. This is not a forensic red-flag situation; it is a company in a deliberate investment cycle.
+  </div>
+</div>
+
+<!-- ══ STEP 10: POSITIVE INFLECTION ══ -->
+<div class="section">
+  <div class="section-label">Step 10</div>
+  <div class="section-title">Positive inflection signals</div>
+
+  <div class="three-col">
+    <div>
+      <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--green2); font-weight:600; margin-bottom:10px;">Near-term (FY27)</div>
+      <div class="flag-item">
+        <div class="flag-dot positive"></div>
+        <div class="flag-text"><strong>Gross margin recovery:</strong> Management guided gross margin improvement beginning in ~1 year as verticalization investments mature. If data/inventory costs drop even 150 bps, EBITDA margin could reach 23.5–24%.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot positive"></div>
+        <div class="flag-text"><strong>OCF normalisation:</strong> Full-year FY26 OCF/PAT ~110% — confirms the 9M weakness was temporary. FY27 should show clean 90%+ OCF/PAT from the start.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot positive"></div>
+        <div class="flag-text"><strong>iOS premium scaling:</strong> CTV + iOS premium targeting is still in early phases. Rising CPCU rates signal advertisers are seeing ROI — the reinforcement loop will continue driving rate expansion.</div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent2); font-weight:600; margin-bottom:10px;">Medium-term (FY27–FY29)</div>
+      <div class="flag-item">
+        <div class="flag-dot positive"></div>
+        <div class="flag-text"><strong>M&A acceleration:</strong> A well-priced developed-market acquisition with an existing US sales team could shift the organic/inorganic growth mix and accelerate the 28% developed markets contribution toward 35%+.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot positive"></div>
+        <div class="flag-text"><strong>Agentic AI opportunity:</strong> New GenAI apps need UA (user acquisition) AND monetisation — both served by Affle's CPCU model. Management identifies this as a new vertical ("Category G GenAI apps"). Early mover advantage.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot positive"></div>
+        <div class="flag-text"><strong>DPDP Act tailwind:</strong> India's Digital Personal Data Protection Act favours established, certified platforms. Affle's ISO 27001:2022 and DPTM certifications position it as the compliance-safe default for international agencies entering India.</div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:10px;">Long-term (FY29+)</div>
+      <div class="flag-item">
+        <div class="flag-dot positive"></div>
+        <div class="flag-text"><strong>Human vs. non-human IP:</strong> The most underappreciated moat. As agentic AI proliferates, every advertiser will need to verify human engagement. Affle's 2017-vintage patents in this space are becoming more valuable each year.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot positive"></div>
+        <div class="flag-text"><strong>10x vision optionality:</strong> FY2026 revenue = ₹2,709 Cr. 10x would require ₹27,090 Cr — a 37x from here. Clearly aspirational, but the 5-year CAGR of 25.8% compounded over another decade would reach 9–10x organically. Not insane.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot positive"></div>
+        <div class="flag-text"><strong>CTV as a structural budget shift:</strong> The transition of linear TV advertising budgets to digital CTV on a CPCU model is a decades-long tailwind. Affle's CTV integration (mobile + CTV household loop) positions it ahead of the curve.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STEP 11: VALUATION COMFORT ══ -->
+<div class="section">
+  <div class="section-label">Step 11</div>
+  <div class="section-title">Valuation comfort analysis</div>
+
+  <div class="two-col">
+    <div>
+      <table class="data-table">
+        <thead><tr><th>Valuation Metric</th><th>FY26 Actual</th><th>FY27 Estimate</th></tr></thead>
+        <tbody>
+          <tr><td>Revenue (₹ mn)</td><td>27,093</td><td>~32,400</td></tr>
+          <tr><td>EBITDA (₹ mn)</td><td>6,101</td><td>~7,700</td></tr>
+          <tr><td>PAT (₹ mn)</td><td>4,549</td><td>~5,500</td></tr>
+          <tr><td>P/E (trailing)</td><td>45.1x</td><td>~37x (forward)</td></tr>
+          <tr><td>EV/EBITDA</td><td>~30.7x</td><td>~24.3x (forward)</td></tr>
+          <tr><td>P/Sales</td><td>7.6x</td><td>~6.3x</td></tr>
+          <tr><td>Net Cash (₹ mn)</td><td>17,802</td><td>~6,800*</td></tr>
+          <tr><td>Cash as % of Market Cap</td><td>8.7%</td><td>~3.3%*</td></tr>
+        </tbody>
+      </table>
+      <div style="font-size:10px; color:var(--ink4); margin-top:6px;">*Assumes ~₹1,100 Cr deployed for M&A from warrants + existing cash</div>
+    </div>
+    <div class="prose">
+      <p><strong>The valuation is "Fully Priced" for the organic scenario but "Reasonable" if M&A delivers.</strong> At 45x trailing P/E and ~30x EV/EBITDA, the market is paying for consistent 20%+ growth, margin expansion, and a quality CPCU business model — and it is getting all three. However, at these multiples, execution cannot falter. A single quarter of revenue miss or gross margin deterioration would reprice the stock sharply — the 52-week low of ₹1,251 (33% below the 52-week high of ₹2,187) demonstrates this volatility.</p>
+      <p><strong>The cash-adjusted valuation is more attractive than headline multiples suggest.</strong> Net cash of ₹1,780 Cr against a market cap of ₹20,501 Cr means the operating business is valued at ~₹18,720 Cr. On FY27E EBITDA of ~₹770 Cr, that's ~24x forward EV/EBITDA — acceptable for a 20%+ growth, cash-generative, debt-free technology platform with a defensible moat.</p>
+    </div>
+  </div>
+
+  <div style="margin: 28px 0 8px; font-size:11px; color:var(--ink3);">Valuation comfort spectrum</div>
+  <div class="valuation-meter">
+    <div class="val-pointer" style="left:55%"></div>
+  </div>
+  <div class="valuation-labels">
+    <span>Deep Comfort</span>
+    <span>Reasonable</span>
+    <span>Fully Priced</span>
+    <span>Expensive / Justified</span>
+    <span>Speculative</span>
+  </div>
+
+  <div class="callout" style="margin-top:20px; background:#fff;">
+    <strong>Valuation verdict: Fully Priced, but Justified.</strong> Affle is not cheap — it never has been — but the quality of the franchise, the cash generation, and the structural growth drivers justify premium multiples. The key risk is the market's forward assumptions: ~37x forward P/E requires FY27 PAT of ~₹555 Cr (+22% YoY), which is achievable under the base case. A successful M&A execution could provide a material rerating catalyst. A botched acquisition or structural gross margin erosion would be derating triggers.
+  </div>
+</div>
+
+<!-- ══ STEP 12: FUTURE TRAJECTORY ══ -->
+<div class="section">
+  <div class="section-label">Step 12</div>
+  <div class="section-title">Future trajectory modeling</div>
+
+  <div class="scenario-grid">
+    <div class="scenario-card bull">
+      <div class="scenario-head bull">Bull case — 30% probability</div>
+      <div class="scenario-item"><span class="scenario-item-label">FY27 Revenue CAGR</span><span class="scenario-item-val">24–26%</span></div>
+      <div class="scenario-item"><span class="scenario-item-label">EBITDA Margin FY27</span><span class="scenario-item-val">24–25%</span></div>
+      <div class="scenario-item"><span class="scenario-item-label">FY27 PAT (₹ Cr)</span><span class="scenario-item-val">~620–650</span></div>
+      <div class="scenario-item"><span class="scenario-item-label">Warranted P/E</span><span class="scenario-item-val">50–55x</span></div>
+      <div style="font-size:11px; color:var(--ink3); margin-top:10px; line-height:1.5;">Triggers: Acquisition closes H1 FY27 with strong synergies. Gross margins recover 200+ bps as verticalization matures. Developed markets accelerate to 30%+ of revenue. GenAI app vertical takes off.</div>
+    </div>
+    <div class="scenario-card base">
+      <div class="scenario-head base">Base case — 55% probability</div>
+      <div class="scenario-item"><span class="scenario-item-label">FY27 Revenue CAGR</span><span class="scenario-item-val">19–22%</span></div>
+      <div class="scenario-item"><span class="scenario-item-label">EBITDA Margin FY27</span><span class="scenario-item-val">22.5–23.5%</span></div>
+      <div class="scenario-item"><span class="scenario-item-label">FY27 PAT (₹ Cr)</span><span class="scenario-item-val">~540–580</span></div>
+      <div class="scenario-item"><span class="scenario-item-label">Warranted P/E</span><span class="scenario-item-val">40–45x</span></div>
+      <div style="font-size:11px; color:var(--ink3); margin-top:10px; line-height:1.5;">Triggers: Organic growth sustains ~20%. Acquisition either does not close or closes in H2 FY27 with integration in progress. Gross margins stable to slight recovery. CTV and iOS continue driving CPCU rate up 3–5% annually.</div>
+    </div>
+    <div class="scenario-card bear">
+      <div class="scenario-head bear">Bear case — 15% probability</div>
+      <div class="scenario-item"><span class="scenario-item-label">FY27 Revenue CAGR</span><span class="scenario-item-val">14–17%</span></div>
+      <div class="scenario-item"><span class="scenario-item-label">EBITDA Margin FY27</span><span class="scenario-item-val">21–22%</span></div>
+      <div class="scenario-item"><span class="scenario-item-label">FY27 PAT (₹ Cr)</span><span class="scenario-item-val">~440–500</span></div>
+      <div class="scenario-item"><span class="scenario-item-label">Warranted P/E</span><span class="scenario-item-val">28–35x</span></div>
+      <div style="font-size:11px; color:var(--ink3); margin-top:10px; line-height:1.5;">Triggers: Global macro deterioration suppresses ad spend. M&A closes at an inflated price and dilutes ROCE. Gross margins continue rising to 64–65%. Developed market penetration remains sluggish. Walled garden aggression intensifies.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:20px; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink4); margin-bottom:12px;">Key monitoring variables — quarterly checklist</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+    <div class="callout" style="margin:0; background:#fff;">
+      <strong>Watch #1 — Inventory & data cost %:</strong> Target: should trend toward 61–62% as verticalization investments taper. Any further increase above 63.5% would be a concern signal.
+    </div>
+    <div class="callout" style="margin:0; background:#fff;">
+      <strong>Watch #2 — CPCU rate trajectory:</strong> Must continue trending above ₹60/conversion. Flat or declining CPCU rate with growing volumes would signal pricing power erosion.
+    </div>
+    <div class="callout" style="margin:0; background:#fff;">
+      <strong>Watch #3 — M&A announcement:</strong> Timing, deal size, target geography, valuation multiple, and whether Affle pays with cash or issues stock. Cash deal at &lt;1x revenue is acceptable. Any equity swap at these multiples would be dilutive.
+    </div>
+    <div class="callout" style="margin:0; background:#fff;">
+      <strong>Watch #4 — Developed markets share:</strong> Should trend from 28% toward 32%+ over the next 4 quarters as investments in sales force and verticalization yield results.
+    </div>
+    <div class="callout" style="margin:0; background:#fff;">
+      <strong>Watch #5 — OCF/PAT ratio:</strong> Must stay above 85%. Any quarter below 80% should trigger inquiry — the FY26 9M episode was forgivable but a second consecutive year of weakness would not be.
+    </div>
+    <div class="callout" style="margin:0; background:#fff;">
+      <strong>Watch #6 — Warrant conversion:</strong> If Affle Holdings does not exercise the 25% upfront payment upon shareholder approval, or if stock falls materially below ₹1,487, the M&A thesis is at risk of capital constraint.
+    </div>
+  </div>
+</div>
+
+<!-- ══ STEP 13: FINAL VERDICT ══ -->
+<div class="verdict-section">
+  <div class="verdict-subtitle">Step 13 — Final investment verdict</div>
+  <div class="verdict-title">Accumulate — with conditions</div>
+
+  <div class="verdict-bullets">
+    <div class="vb">
+      <div class="vb-head">Key positives</div>
+      <div class="vb-item"><div class="vb-dot"></div><div>13 consecutive quarters of sequential revenue growth — highest quality growth streak in Indian ad tech</div></div>
+      <div class="vb-item"><div class="vb-dot"></div><div>Fortress balance sheet: ₹1,792 Cr net cash, negligible debt, zero pledging</div></div>
+      <div class="vb-item"><div class="vb-dot"></div><div>OCF/PAT of ~110% for full FY26 — earnings quality is real, not accounting-inflated</div></div>
+      <div class="vb-item"><div class="vb-dot"></div><div>CPCU rate rising to ₹60+ despite emerging market mix shift — structural pricing power</div></div>
+      <div class="vb-item"><div class="vb-dot"></div><div>Human vs. non-human AI patent portfolio becoming a forward moat in the agentic era</div></div>
+      <div class="vb-item"><div class="vb-dot"></div><div>Management has a clean track record: 5 acquisitions, all integrated, all CPCU-converted</div></div>
+    </div>
+    <div class="vb">
+      <div class="vb-head">Key risks</div>
+      <div class="vb-item"><div class="vb-dot"></div><div>Gross margin compression (62–63% data costs) — structural or investment? Must resolve in FY27</div></div>
+      <div class="vb-item"><div class="vb-dot"></div><div>Promoter warrant governance — source of Affle Holdings' funds undisclosed; conditional capital</div></div>
+      <div class="vb-item"><div class="vb-dot"></div><div>M&A execution uncertainty — 6 months of evaluation without closure; clock is running</div></div>
+      <div class="vb-item"><div class="vb-dot"></div><div>Goodwill at 34% of assets — impairment risk if acquired entities underperform</div></div>
+      <div class="vb-item"><div class="vb-dot"></div><div>Valuation leaves no room for execution misses — 45x P/E requires consistent delivery</div></div>
+      <div class="vb-item"><div class="vb-dot"></div><div>Developed market penetration remains the strategic test Affle has not yet definitively passed</div></div>
+    </div>
+  </div>
+
+  <div class="verdict-conclusion">
+    Affle 3i is the highest-quality ad tech franchise listed on Indian exchanges — a rare combination of consistent 20%+ organic growth, strong cash generation, a balance sheet that is effectively a listed private equity vehicle, and a business model (CPCU) that is structurally defensible against both macro downturns and competitive disruption. The management team is credible, transparent about its KPI framework, and has a disciplined track record on capital allocation.
+
+    The current valuation at ₹1,456 per share and 45x trailing P/E is not cheap, but it is not egregiously expensive for the quality on offer — particularly when adjusted for the ₹127/share of net cash. The path to value creation from here runs through two variables: (1) gross margin recovery as verticalization investments mature in FY27, and (2) a value-accretive M&A announcement that expands the developed markets footprint. Either one alone would re-rate the stock. Both together could drive a significant rerating.
+
+    The appropriate posture for long-term institutional investors is to <strong style="color:var(--gold2);">accumulate on dips toward ₹1,300–1,350</strong>, where the forward P/E compresses to ~33–35x and the margin of safety becomes more comfortable. At the current price, the stock is fully priced but not overpriced — the entry is conditional rather than urgent. Size positions proportionate to comfort with the M&A uncertainty, and use Q1 FY27 results as the first material checkpoint on gross margin trajectory.
+  </div>
+
+  <div style="margin-top:20px; text-align:center;">
+    <span class="rating-badge">ACCUMULATE &nbsp;|&nbsp; CMP ₹1,456 &nbsp;|&nbsp; Preferred Entry ₹1,300–1,350</span>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<div class="footer">
+  <p>This analysis is prepared for informational purposes based on publicly disclosed documents: Affle 3i Limited Q3 FY2026 Earnings Conference Call transcript (Feb 2, 2026), Q4 FY2026 Earnings Conference Call transcript (May 11, 2026), and Q4 FY2026 Earnings Presentation (May 9, 2026). All financial figures are sourced from company disclosures. Forward estimates are analytical projections and not investment advice. This document does not constitute a solicitation or offer to buy or sell securities. Past performance is not indicative of future results. Investors should conduct independent due diligence before making investment decisions. &nbsp;|&nbsp; Analysis date: May 2026.</p>
+</div>
+
+</div>
+</body>
+</html>
