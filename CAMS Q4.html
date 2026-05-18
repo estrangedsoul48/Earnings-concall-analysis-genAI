@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMS — Institutional Equity Analysis | Q4 FY26</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-base:        #09090C;
+    --bg-surface:     #111217;
+    --bg-elevated:    #18191F;
+    --bg-card:        #1D1E26;
+    --border:         #2A2B35;
+    --border-light:   #32333F;
+    --gold:           #C9A84C;
+    --gold-light:     #E2C07A;
+    --gold-dim:       rgba(201,168,76,0.15);
+    --gold-rim:       rgba(201,168,76,0.35);
+    --red:            #D95C5C;
+    --red-dim:        rgba(217,92,92,0.12);
+    --green:          #5DBD87;
+    --green-dim:      rgba(93,189,135,0.12);
+    --amber:          #D4874A;
+    --amber-dim:      rgba(212,135,74,0.12);
+    --blue:           #5E9EDB;
+    --blue-dim:       rgba(94,158,219,0.12);
+    --text-primary:   #E8E8EE;
+    --text-secondary: #9394A5;
+    --text-muted:     #5C5D6E;
+    --text-gold:      #C9A84C;
+    --font-display:   'Cormorant Garamond', Georgia, serif;
+    --font-mono:      'DM Mono', 'Courier New', monospace;
+    --font-body:      'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.65;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ─── TOP NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(9,9,12,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+  }
+
+  .nav-brand {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .nav-brand span.ticker {
+    color: var(--gold);
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── HERO / MASTHEAD ─── */
+  .masthead {
+    position: relative;
+    padding: 72px 48px 56px;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .masthead::before {
+    content: 'CAMS';
+    position: absolute;
+    right: -20px;
+    top: -30px;
+    font-family: var(--font-display);
+    font-size: 280px;
+    font-weight: 700;
+    color: rgba(201,168,76,0.03);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .masthead-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .masthead-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1.masthead-title {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 5vw, 60px);
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--text-primary);
+    max-width: 700px;
+    margin-bottom: 12px;
+  }
+
+  h1.masthead-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .masthead-sub {
+    color: var(--text-secondary);
+    font-size: 14px;
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 36px;
+  }
+
+  .masthead-metrics {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .m-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .m-metric .label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .m-metric .value {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .m-metric .value.gold { color: var(--gold); }
+  .m-metric .value.green { color: var(--green); }
+
+  .m-metric .change {
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+
+  .change.up { color: var(--green); }
+  .change.down { color: var(--red); }
+
+  /* ─── VERDICT BANNER ─── */
+  .verdict-banner {
+    margin: 0 48px;
+    margin-top: -1px;
+    border: 1px solid var(--gold-rim);
+    background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, rgba(201,168,76,0.02) 100%);
+    border-radius: 2px;
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .verdict-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .verdict-call {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .verdict-reasoning {
+    font-size: 13px;
+    color: var(--text-secondary);
+    max-width: 520px;
+    line-height: 1.6;
+  }
+
+  .verdict-scores {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .score-item {
+    text-align: center;
+  }
+
+  .score-item .score-val {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .score-item .score-val.excellent { color: var(--green); }
+  .score-item .score-val.strong    { color: var(--gold); }
+  .score-item .score-val.moderate  { color: var(--amber); }
+  .score-item .score-val.weak      { color: var(--red); }
+
+  .score-item .score-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+
+  /* ─── MAIN LAYOUT ─── */
+  .page-body {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+  }
+
+  /* ─── SECTION ─── */
+  .section {
+    padding-top: 64px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  h2.section-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  h2.section-title em { color: var(--gold); font-style: italic; }
+
+  h3.sub-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    margin-top: 28px;
+  }
+
+  /* ─── GRID HELPERS ─── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+  .col-span-2 { grid-column: span 2; }
+
+  /* ─── CARDS ─── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 24px;
+  }
+
+  .card.gold-border { border-color: var(--gold-rim); }
+  .card.red-border  { border-color: rgba(217,92,92,0.3); }
+  .card.green-border{ border-color: rgba(93,189,135,0.3); }
+
+  .card-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+
+  .card-value {
+    font-family: var(--font-mono);
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .card-value.gold { color: var(--gold); }
+  .card-value.green { color: var(--green); }
+  .card-value.red { color: var(--red); }
+
+  .card-sub {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+  }
+
+  .tag.positive { background: var(--green-dim); color: var(--green); border: 1px solid rgba(93,189,135,0.2); }
+  .tag.negative { background: var(--red-dim); color: var(--red); border: 1px solid rgba(217,92,92,0.2); }
+  .tag.neutral  { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(212,135,74,0.2); }
+  .tag.info     { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(94,158,219,0.2); }
+  .tag.gold     { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-rim); }
+
+  /* ─── PROSE ─── */
+  .prose {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    max-width: 900px;
+  }
+
+  .prose p { margin-bottom: 14px; }
+  .prose strong { color: var(--text-primary); font-weight: 500; }
+  .prose em { color: var(--gold); font-style: normal; }
+
+  /* ─── DATA TABLE ─── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .data-table thead tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table th {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 400;
+  }
+
+  .data-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    vertical-align: top;
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .data-table td.mono {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-primary);
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+  }
+
+  .badge.achieved  { background: var(--green-dim); color: var(--green); }
+  .badge.on-track  { background: var(--blue-dim); color: var(--blue); }
+  .badge.partial   { background: var(--amber-dim); color: var(--amber); }
+  .badge.missed    { background: var(--red-dim); color: var(--red); }
+  .badge.new       { background: var(--gold-dim); color: var(--gold); }
+
+  /* ─── INLINE METRIC ROWS ─── */
+  .metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .metric-row:last-child { border-bottom: none; }
+
+  .metric-row .key {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .metric-row .val {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-primary);
+  }
+
+  .metric-row .val.up   { color: var(--green); }
+  .metric-row .val.down { color: var(--red); }
+  .metric-row .val.gold { color: var(--gold); }
+
+  /* ─── PROGRESS BAR ─── */
+  .progress-wrap { margin-top: 6px; }
+  .progress-bar-bg {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+
+  .fill-green  { background: var(--green); }
+  .fill-gold   { background: var(--gold); }
+  .fill-amber  { background: var(--amber); }
+  .fill-red    { background: var(--red); }
+
+  /* ─── INSIGHT BLOCK ─── */
+  .insight-block {
+    border-left: 2px solid var(--gold);
+    padding: 12px 18px;
+    background: var(--gold-dim);
+    border-radius: 0 2px 2px 0;
+    margin: 20px 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .insight-block strong { color: var(--gold); }
+
+  .risk-block {
+    border-left: 2px solid var(--red);
+    padding: 12px 18px;
+    background: var(--red-dim);
+    border-radius: 0 2px 2px 0;
+    margin: 12px 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .risk-block .risk-level {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+
+  /* ─── SEGMENT CARD ─── */
+  .seg-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .seg-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+  }
+
+  .seg-card.mf::before    { background: var(--gold); }
+  .seg-card.pay::before   { background: var(--blue); }
+  .seg-card.alt::before   { background: var(--green); }
+  .seg-card.kra::before   { background: var(--amber); }
+  .seg-card.rep::before   { background: #9B7DE8; }
+  .seg-card.nps::before   { background: #5DBDC4; }
+
+  .seg-name {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .seg-growth {
+    font-family: var(--font-mono);
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  /* ─── BULL/BEAR/BASE CASES ─── */
+  .scenario-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 24px;
+  }
+
+  .scenario-card.bull { border-top: 2px solid var(--green); }
+  .scenario-card.base { border-top: 2px solid var(--gold); }
+  .scenario-card.bear { border-top: 2px solid var(--red); }
+
+  .scenario-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .scenario-name {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .bull .scenario-name { color: var(--green); }
+  .base .scenario-name { color: var(--gold); }
+  .bear .scenario-name { color: var(--red); }
+
+  .scenario-prob {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .scenario-body { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  footer p {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    line-height: 1.6;
+  }
+
+  /* ─── DIVIDER ─── */
+  hr.section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* ─── CHECKER PATTERN CHIP ─── */
+  .chip-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+  }
+
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    background: var(--bg-elevated);
+  }
+
+  .chip.active {
+    border-color: var(--gold-rim);
+    color: var(--gold);
+    background: var(--gold-dim);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate { animation: fadeUp 0.5s ease forwards; }
+
+  .d1 { animation-delay: 0.05s; }
+  .d2 { animation-delay: 0.10s; }
+  .d3 { animation-delay: 0.15s; }
+  .d4 { animation-delay: 0.20s; }
+
+  .kv-row {
+    display: flex;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+
+  .kv-row:last-child { border-bottom: none; }
+  .kv-row .k { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); width: 180px; flex-shrink: 0; padding-top: 1px; }
+  .kv-row .v { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+  .kv-row .v strong { color: var(--text-primary); }
+
+  .two-col-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 28px;
+  }
+
+  .list-item {
+    display: flex;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-secondary);
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .list-item:last-child { border-bottom: none; }
+
+  .list-item .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .dot.green { background: var(--green); }
+  .dot.red   { background: var(--red); }
+  .dot.gold  { background: var(--gold); }
+  .dot.amber { background: var(--amber); }
+  .dot.blue  { background: var(--blue); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+<nav>
+  <div class="nav-brand">
+    <span class="ticker">CAMS</span>
+    <span>Computer Age Management Services</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#snapshot">Snapshot</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#guidance">Guidance</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#segments">Segments</a></li>
+    <li><a href="#management">Management</a></li>
+    <li><a href="#risks">Risks</a></li>
+    <li><a href="#valuation">Valuation</a></li>
+    <li><a href="#verdict">Verdict</a></li>
+  </ul>
+  <span class="nav-badge">Q4 FY26 · May 05, 2026</span>
+</nav>
+
+<!-- ═══════════════════════════════ MASTHEAD ═══════════════════════════════ -->
+<section class="masthead">
+  <div class="masthead-eyebrow">Institutional Equity Research — Deep Dive</div>
+  <h1 class="masthead-title">
+    CAMS: India's <em>Financial Infrastructure</em> Compounder
+  </h1>
+  <p class="masthead-sub">
+    A forensic reconstruction of Q4 &amp; FY26 operating reality across the MF‑RTA core, the non‑MF diversification stack, the cloud re‑architecture program, and the durability of its 46.5 % EBITDA franchise at current multiples.
+  </p>
+  <div class="masthead-metrics">
+    <div class="m-metric animate d1">
+      <span class="label">Market Cap</span>
+      <span class="value">₹19,263 Cr</span>
+    </div>
+    <div class="m-metric animate d2">
+      <span class="label">CMP</span>
+      <span class="value">₹777</span>
+    </div>
+    <div class="m-metric animate d3">
+      <span class="label">P/E (TTM)</span>
+      <span class="value gold">40.5×</span>
+    </div>
+    <div class="m-metric animate d4">
+      <span class="label">ROCE</span>
+      <span class="value green">49 %</span>
+    </div>
+    <div class="m-metric animate d1">
+      <span class="label">ROE</span>
+      <span class="value green">39 %</span>
+    </div>
+    <div class="m-metric animate d2">
+      <span class="label">52W Range</span>
+      <span class="value">611 – 875</span>
+    </div>
+    <div class="m-metric animate d3">
+      <span class="label">Dividend Yield</span>
+      <span class="value">1.58 %</span>
+    </div>
+    <div class="m-metric animate d4">
+      <span class="label">Book Value</span>
+      <span class="value">₹53.3</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ VERDICT BANNER ═══════════════════════════════ -->
+<div class="verdict-banner">
+  <div>
+    <div class="verdict-label">Investment Call · FY26 Q4 Analysis</div>
+    <div class="verdict-call">ACCUMULATE</div>
+  </div>
+  <div class="verdict-reasoning">
+    CAMS is a structurally dominant financial infrastructure monopoly with deepening competitive moats. Q4 FY26 delivered record revenue and absolute EBITDA, margin recovery to 46.5 %, and accelerating non-MF diversification. The platform re-architecture underpins a multi-year productivity cycle. At 40.5× earnings, valuation is full but justified by ROCE, FCF quality, market position, and the long runway ahead — not cheap, but not irrational.
+  </div>
+  <div class="verdict-scores">
+    <div class="score-item">
+      <div class="score-val excellent">8.5</div>
+      <div class="score-label">Business<br>Health</div>
+    </div>
+    <div class="score-item">
+      <div class="score-val strong">8.0</div>
+      <div class="score-label">Earnings<br>Quality</div>
+    </div>
+    <div class="score-item">
+      <div class="score-val excellent">9.0</div>
+      <div class="score-label">Balance<br>Sheet</div>
+    </div>
+    <div class="score-item">
+      <div class="score-val strong">8.0</div>
+      <div class="score-label">Capital<br>Alloc.</div>
+    </div>
+    <div class="score-item">
+      <div class="score-val strong">7.5</div>
+      <div class="score-label">Mgmt<br>Credibility</div>
+    </div>
+    <div class="score-item">
+      <div class="score-val strong">7.5</div>
+      <div class="score-label">Future<br>Visibility</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PAGE BODY ═══════════════════════════════ -->
+<div class="page-body">
+
+<!-- ───────────── STEP 1: EXECUTIVE SNAPSHOT ───────────── -->
+<section class="section" id="snapshot">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Executive <em>Snapshot</em></h2>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:24px;">
+    <div class="card gold-border">
+      <div class="card-label">Q4 FY26 Revenue</div>
+      <div class="card-value gold">₹395 Cr</div>
+      <div class="card-sub">Highest-ever quarterly. +11 % YoY · +1.3 % QoQ</div>
+    </div>
+    <div class="card green-border">
+      <div class="card-label">Absolute EBITDA</div>
+      <div class="card-value green">₹183.7 Cr</div>
+      <div class="card-sub">Record quarter. Margin 46.5 % — back near historic peaks</div>
+    </div>
+    <div class="card">
+      <div class="card-label">PAT (Q4 FY26)</div>
+      <div class="card-value">₹126.4 Cr</div>
+      <div class="card-sub">+10.9 % YoY · PAT margin 31 %</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Full-Year Revenue FY26</div>
+      <div class="card-value">₹1,516 Cr</div>
+      <div class="card-sub">+6.6 % YoY — year weighed by H1 price reset hangover</div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p><strong>What actually happened this quarter?</strong> Q4 FY26 was CAMS's best quarter on record across headline financial metrics, yet the MF revenue line grew a barely-perceptible 0.5 %. The real story is the non-MF portfolio — growing 24.5 % YoY and for the first time commanding 15.3 % of enterprise revenue — combined with relentless automation-driven cost discipline that allowed margins to fully recover from the painful pricing reset of Q4 FY25–Q1 FY26.</p>
+    <p><strong>Was the quarter fundamentally strong or optically manipulated?</strong> Fundamentally strong. No one-off gains, no aggressive revenue recognition, and the EBITDA recovery was operational rather than cost-squeeze-driven. The 46.5 % EBITDA margin was achieved despite absorbing the gratuity provision from the new labour code (~₹2.8 Cr) and with only 1.3 % revenue growth QoQ — powerful operating leverage evidence.</p>
+    <p><strong>What changed versus prior quarters?</strong> (1) MF yield depletion stabilized — asset fee growth now broadly tracks AUM growth for the first time in three quarters. (2) Non-MF margin expanded from 13 % (Q3) to 16.5 % (FY26 run-rate), validating the platform-economics thesis. (3) Equity net sales market share jumped from 71 % to 76.3 % — the highest on record. (4) New SIP registrations grew 46 % YoY against industry 27 %, a decisive indicator of structural share gains.</p>
+  </div>
+
+  <div class="insight-block" style="margin-top:20px;">
+    <strong>Market's Key Blind Spot:</strong> The market fixates on MF yield compression risk while ignoring that CAMS now operates a <em>portfolio of five distinct platform businesses</em>, each with independently compounding economics. The non-MF segment has crossed ₹250 Cr annualized revenue, growing at ~20 %, with improving profitability. Valuing CAMS solely as an AUM-linked pass-through misses this structural evolution.
+  </div>
+
+  <h3 class="sub-title">Top 5 Material Developments</h3>
+  <div class="two-col-list">
+    <div class="list-item"><span class="dot gold"></span><span><strong>Record metrics across the board:</strong> Highest-ever quarterly revenue, EBITDA, SIP collections, equity AUM share (67 %), and equity net sales share (76.3 %) — all simultaneously.</span></div>
+    <div class="list-item"><span class="dot green"></span><span><strong>Non-MF acceleration genuinely broad-based:</strong> CAMSPay (+22.8 %), Alternatives (+25.4 %), KRA (+28 %), Finserv (+45.9 %) all delivered 20 %+ growth in the same quarter — not one outlier.</span></div>
+    <div class="list-item"><span class="dot blue"></span><span><strong>AI-led productivity inflection visible in numbers:</strong> Revenue grew 11 % on effectively flat headcount (8,420 vs 8,324). Transactions grew 23 % YoY on 0 net headcount additions in MF operations.</span></div>
+    <div class="list-item"><span class="dot amber"></span><span><strong>KRA 20 % price cut absorbed:</strong> Industry-wide KRA fee reduction effective April 1, 2026. CAMS guided for flat KRA revenue in FY27 — an ₹8 Cr hit offset by NSE KRA revenue (+₹3 Cr) and volume growth.</span></div>
+    <div class="list-item"><span class="dot gold"></span><span><strong>ConsenPro launch opens new TAM:</strong> DPDP compliance product targeting 40,000–50,000 Indian enterprises, monetizing CAMS's unique data processor/fiduciary position across KRA, RTA, and insurance repository.</span></div>
+  </div>
+</section>
+
+<!-- ───────────── STEP 2: RESULT QUALITY ANALYSIS ───────────── -->
+<section class="section" id="results">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Result Quality <em>Dissection</em></h2>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <h3 class="sub-title">Revenue Anatomy</h3>
+      <div class="card">
+        <div class="metric-row">
+          <span class="key">Asset-Based MF Revenue</span>
+          <span class="val up">+11.6 % YoY · +0.5 % QoQ</span>
+        </div>
+        <div class="metric-row">
+          <span class="key">Non-Asset MF Revenue</span>
+          <span class="val down">−5.7 % YoY · −0.5 % QoQ</span>
+        </div>
+        <div class="metric-row">
+          <span class="key">Total MF Revenue</span>
+          <span class="val up">+8.8 % YoY · +0.4 % QoQ</span>
+        </div>
+        <div class="metric-row">
+          <span class="key">Non-MF Revenue</span>
+          <span class="val up">+24.5 % YoY · +6.7 % QoQ</span>
+        </div>
+        <div class="metric-row">
+          <span class="key">Non-MF Revenue Share</span>
+          <span class="val gold">15.3 % (vs 13.7 % YoY)</span>
+        </div>
+        <div class="metric-row">
+          <span class="key">Other Income</span>
+          <span class="val">₹12.9 Cr (3.2 % of total) — Stable</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 class="sub-title">Margin Architecture</h3>
+      <div class="card">
+        <div class="metric-row">
+          <span class="key">EBITDA Margin Q4 FY26</span>
+          <span class="val up">46.5 % (+150 bps YoY)</span>
+        </div>
+        <div class="metric-row">
+          <span class="key">EBITDA Margin FY26</span>
+          <span class="val">45.2 % (+130 bps YoY)</span>
+        </div>
+        <div class="metric-row">
+          <span class="key">Employee Cost Growth YoY</span>
+          <span class="val up">5 % (vs 11 % target) ✓</span>
+        </div>
+        <div class="metric-row">
+          <span class="key">Total Cost Growth YoY</span>
+          <span class="val up">9 % (excl. depn: 7.8 %)</span>
+        </div>
+        <div class="metric-row">
+          <span class="key">Non-MF EBITDA Margin</span>
+          <span class="val">16.5 % FY26 (13 % in Q3)</span>
+        </div>
+        <div class="metric-row">
+          <span class="key">Return on Net Worth</span>
+          <span class="val gold">39.1 % (industry-leading)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub-title">Earnings Quality Assessment</h3>
+  <div class="prose">
+    <p><strong>Asset-based revenue:</strong> Clean, structurally driven. CAMS's revenue tracks AUM growth; with 21 % YoY AUM growth yielding ~11.6 % asset revenue growth, the only drag is gradual mix shift toward passives (which carry lower yields, though individual-class yields remain stable). This is a passive growth headwind, not a pricing deterioration — a critical distinction.</p>
+    <p><strong>Non-asset MF revenue:</strong> Declined 5.7 % YoY, driven by lower NFO activity and reduced out-of-pocket reimbursements. This is a <em>pass-through</em> line (zero margin impact) and therefore cosmetically distorts headline revenue growth without affecting earnings quality.</p>
+    <p><strong>PAT quality:</strong> ₹126.4 Cr in Q4, growing 10.9 % YoY with no exceptional items. Deferred tax benefit of ₹2.9 Cr and prior-period tax credit of ₹2.2 Cr are modest and routine. No other income dependency — treasury income ₹12.9 Cr on ₹854 Cr cash pile is unremarkable. No signs of aggressive revenue recognition, related party inflation, or inventory games (not applicable to a services firm).</p>
+    <p><strong>Depreciation surge:</strong> Depreciation grew 22.7 % YoY (₹9,877 Cr full-year vs ₹7,772 Cr). This reflects real and productive capital deployment into the cloud re-architecture program. It is accretive to long-term economic value even if it mechanically suppresses near-term PAT multiples.</p>
+  </div>
+
+  <div class="insight-block">
+    <strong>Hidden Signal — Opex Quality:</strong> The FY26 cost-increase of 9 % was the lowest in five years, and management delivered it while simultaneously absorbing 100+ re-arch engineers and taking 6 new AMC clients live. The structural automation investment is now producing measurable cost efficiency. This is not a one-off discretionary squeeze — it is <em>compounding productivity</em>.
+  </div>
+</section>
+
+<!-- ───────────── STEP 3: GUIDANCE TRACKER ───────────── -->
+<section class="section" id="guidance">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Guidance Tracker &amp; <em>Execution Scorecard</em></h2>
+  </div>
+
+  <div class="card" style="overflow-x:auto; margin-bottom:24px;">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width:260px;">Guidance / Promise</th>
+          <th>Timeline</th>
+          <th>Target</th>
+          <th>Actuals</th>
+          <th>Status</th>
+          <th>Commentary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Non-MF revenue growth</strong></td>
+          <td class="mono">FY26</td>
+          <td class="mono">20 %+ YoY</td>
+          <td class="mono">17.3 % FY26<br>24.5 % Q4</td>
+          <td><span class="badge partial">Partial</span></td>
+          <td>Weak Q1 dragged the full-year below 20 %; Q2–Q4 averaged 23 %+. Run-rate basis: achieved.</td>
+        </tr>
+        <tr>
+          <td><strong>EBITDA margin floor</strong></td>
+          <td class="mono">FY26</td>
+          <td class="mono">45 %+</td>
+          <td class="mono">45.2 % FY26<br>46.5 % Q4</td>
+          <td><span class="badge achieved">Achieved</span></td>
+          <td>Margin recovery from 42 % trough (Q4 FY25 post-reset) to 46.5 % over 4 quarters — precisely as guided.</td>
+        </tr>
+        <tr>
+          <td><strong>Cost growth ceiling</strong></td>
+          <td class="mono">FY26</td>
+          <td class="mono">&lt;11 % YoY</td>
+          <td class="mono">9 % YoY<br>(7.8 % ex-depn)</td>
+          <td><span class="badge achieved">Exceeded</span></td>
+          <td>Best-in-5-years cost discipline. Structural automation driving this, not discretionary cuts.</td>
+        </tr>
+        <tr>
+          <td><strong>MF market share retention</strong></td>
+          <td class="mono">Ongoing</td>
+          <td class="mono">~68 % AAUM</td>
+          <td class="mono">~68 % AAUM<br>67 % eq. AUM</td>
+          <td><span class="badge achieved">Achieved</span></td>
+          <td>Equity share gained 90 bps YoY to 67 %. Equity net sales share hit 76.3 %. Structural not coincidental.</td>
+        </tr>
+        <tr>
+          <td><strong>Non-MF margin improvement</strong></td>
+          <td class="mono">3-year target</td>
+          <td class="mono">20 % EBITDA<br>by FY27 end</td>
+          <td class="mono">13 % (Q3 FY26)<br>16.5 % (FY26)</td>
+          <td><span class="badge on-track">On Track</span></td>
+          <td>~350 bps expansion in one year. Platform leverage visible. 20 % by FY27 exit quarter plausible.</td>
+        </tr>
+        <tr>
+          <td><strong>New AMC go-lives</strong></td>
+          <td class="mono">FY26</td>
+          <td class="mono">5–6 AMCs</td>
+          <td class="mono">Neo + Oaklane<br>(FY26 adds); 31 total</td>
+          <td><span class="badge achieved">Achieved</span></td>
+          <td>6 AMC go-lives in CY2025 (record). Strategy of value-selling over price-cutting remains intact.</td>
+        </tr>
+        <tr>
+          <td><strong>KRA revenue stability</strong></td>
+          <td class="mono">FY27</td>
+          <td class="mono">Flat vs FY26<br>(post 20% cut)</td>
+          <td class="mono">—</td>
+          <td><span class="badge new">Guidance FY27</span></td>
+          <td>₹8 Cr hit from price cut, ₹3 Cr NSE KRA uplift, ₹5 Cr from share gains. Credible math.</td>
+        </tr>
+        <tr>
+          <td><strong>Yield decline rate</strong></td>
+          <td class="mono">Structural</td>
+          <td class="mono">&lt;3 % pa<br>(historical: 3–3.5%)</td>
+          <td class="mono">&lt;1 % QoQ in Q4;<br>0.9 % compression</td>
+          <td><span class="badge achieved">Beating Guide</span></td>
+          <td>Passives-mix shift, not repricing. Individual asset-class yields held flat. Yield stability emerging.</td>
+        </tr>
+        <tr>
+          <td><strong>ReArch program timeline</strong></td>
+          <td class="mono">5-year program</td>
+          <td class="mono">Modular go-lives:<br>TxOrigin + Data Lake</td>
+          <td class="mono">Txn origination live;<br>Data lake Q1 FY27</td>
+          <td><span class="badge partial">3–4 % delayed</span></td>
+          <td>Management acknowledges minor delay, frames as "normal for IT projects of this nature." First module live; benefits beginning.</td>
+        </tr>
+        <tr>
+          <td><strong>Headcount management</strong></td>
+          <td class="mono">FY27</td>
+          <td class="mono">Net reduction<br>in headcount</td>
+          <td class="mono">FY26: flat (8,420 vs 8,324<br>excl. re-arch hiring)</td>
+          <td><span class="badge on-track">On Track</span></td>
+          <td>MF ops headcount actually declined 70; re-arch + compliance hiring offset. FY27 target: net reduction.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-label">Execution Credibility Rating</div>
+      <div class="card-value gold" style="font-size:22px; margin-bottom:12px;">STRONG</div>
+      <div class="prose" style="font-size:13px;">
+        <p>Management has a demonstrated track record of precise guidance over 22+ public quarters. They consistently under-promise on margins and over-deliver on cost control. The one structural tendency toward over-optimism is on non-MF growth timelines (weak Q1 FY26 broke the 20 % annual target), but the run-rate is credible. No silent guidance abandonment detected. Narrative consistent across Q3 and Q4 concalls.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Pattern Analysis</div>
+      <div class="kv-row">
+        <span class="k">Promise style</span>
+        <span class="v"><strong>Conservative</strong> on margins, range-bound guidance</span>
+      </div>
+      <div class="kv-row">
+        <span class="k">Abandoned targets</span>
+        <span class="v"><strong>None detected</strong> across 2+ years of filings</span>
+      </div>
+      <div class="kv-row">
+        <span class="k">Narrative shifts</span>
+        <span class="v"><strong>KRA pricing</strong> acknowledged proactively, not hidden</span>
+      </div>
+      <div class="kv-row">
+        <span class="k">Credibility trend</span>
+        <span class="v"><strong>Improving</strong> — margin recovery precisely as guided</span>
+      </div>
+      <div class="kv-row">
+        <span class="k">Overpromise risk</span>
+        <span class="v"><strong>Low</strong> — ReArch timeline mildly optimistic historically</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── STEP 4: FINANCIAL ARCHITECTURE ───────────── -->
+<section class="section" id="architecture">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Hidden Financial <em>Architecture</em></h2>
+  </div>
+
+  <div class="grid-3" style="margin-bottom:24px;">
+    <div class="card green-border">
+      <div class="card-label">Cash &amp; Equivalents</div>
+      <div class="card-value green">₹854 Cr</div>
+      <div class="card-sub">As of March 31, 2026. Zero net debt. Balance sheet is fortress-grade. Cash includes bank deposits, G-Secs, and MF investments.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Annual Dividend Outflow FY26</div>
+      <div class="card-value">₹305 Cr</div>
+      <div class="card-sub">65 % dividend payout policy. Final dividend ₹4/share declared. Return of capital highly consistent.</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Book Value / Share</div>
+      <div class="card-value">₹53.3</div>
+      <div class="card-sub">Price-to-book 14.6× — justified by asset-light platform economics generating 49 % ROCE on thin book capital.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-title">Cash Flow Quality &amp; Forensic Review</h3>
+  <div class="prose">
+    <p>CAMS's business model produces inherently high-quality cash flows — no receivables risk (AMCs pay promptly), no inventory, no working capital cycle. Revenue is recognized as services are rendered. There is no channel stuffing risk, no customer advance manipulation, and no aggressive capitalization of development costs visible.</p>
+    <p><strong>Depreciation surge — good or bad?</strong> The 22.7 % jump in depreciation YoY represents investment in the cloud migration and technology infrastructure. Critically, this is funded from existing cash flows without any debt. The ROCE of 49 % confirms that capital is being deployed productively. Investors should view rising depreciation as an investment in the moat, not a cost spiral.</p>
+    <p><strong>Subsidiary risk:</strong> The JV with KFin Technologies (MF Central — 50 %) is loss-making and recognized via equity accounting (₹76 Cr share of loss in FY26). This is immaterial relative to consolidated PAT of ₹476 Cr. No off-balance-sheet liabilities, guarantees, or pledged promoter shares noted.</p>
+    <p><strong>Related party transactions:</strong> No material or unusual related-party transactions flagged. Shareholding pattern dominated by institutional investors (FPIs 44.4 %, MFs 14.3 %, Insurance 6.4 %) — marquee, long-term holders with no promoter family overhang.</p>
+  </div>
+
+  <div class="grid-2" style="margin-top:20px;">
+    <div class="card">
+      <div class="card-label">Balance Sheet Stress Indicators</div>
+      <div class="metric-row"><span class="key">Gross Debt</span><span class="val">Zero</span></div>
+      <div class="metric-row"><span class="key">Finance Costs</span><span class="val">₹6.98 Cr (lease liabilities only)</span></div>
+      <div class="metric-row"><span class="key">Contingent Liabilities</span><span class="val">Not flagged as material</span></div>
+      <div class="metric-row"><span class="key">Auditor Concerns</span><span class="val">None disclosed</span></div>
+      <div class="metric-row"><span class="key">Policy Changes</span><span class="val">None unusual</span></div>
+      <div class="metric-row"><span class="key">Promoter Pledging</span><span class="val">N/A — no identifiable promoter group</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Capital Allocation Quality</div>
+      <div class="metric-row"><span class="key">ROCE (FY26)</span><span class="val up">49 %</span></div>
+      <div class="metric-row"><span class="key">Dividend payout</span><span class="val">65 % of profits</span></div>
+      <div class="metric-row"><span class="key">Capex orientation</span><span class="val">Technology-first; no empire-building</span></div>
+      <div class="metric-row"><span class="key">Acquisitions (NSE KRA)</span><span class="val gold">Strategically accretive; integrated cleanly</span></div>
+      <div class="metric-row"><span class="key">Equity dilution</span><span class="val">Minimal; ESOP ₹13.2 Cr FY26 (non-cash)</span></div>
+      <div class="metric-row"><span class="key">Cash hoarding risk</span><span class="val">Low — ₹854 Cr returned vs business needs</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── STEP 5: MANAGEMENT DECODE ───────────── -->
+<section class="section" id="management">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Management Commentary <em>Decode</em></h2>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:24px;">
+    <div class="card">
+      <div class="card-label">MD / CEO — Anuj Kumar</div>
+      <div style="margin-top:12px;" class="prose" style="font-size:13px;">
+        <p>Kumar's communication style is notably different from sector peers: highly specific, data-forward, and unusually candid about limitations. In Q4 FY26, he was the first to call out non-MF performance <em>ahead</em> of MF metrics — a subtle but meaningful signal about where the company's growth conviction lies. He pre-emptively addressed market concerns on margins, re-arch delays, KRA pricing, and CKYC risk without being prompted — a sign of confidence, not defensiveness.</p>
+        <p>Key language patterns: "foundational" (appears 4× in Q4 call) — used deliberately to describe share gains as structural, not cyclical. "I don't want to jump into conjecturing" on TER impact — appropriate epistemic restraint, not evasion. "You will see it in the P&L" on re-arch benefits — tangible promise, not buzzword-dropping.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">What Was Emphasized vs Avoided</div>
+      <div class="kv-row">
+        <span class="k">Emphasized</span>
+        <span class="v"><strong>Operational metrics over financial:</strong> SIP share gains, equity AUM share, transaction volumes — leading indicators, not lagging ones</span>
+      </div>
+      <div class="kv-row">
+        <span class="k">Avoided</span>
+        <span class="v"><strong>Specific FY27 revenue guidance</strong> — rational given AUM market uncertainty post-March volatility</span>
+      </div>
+      <div class="kv-row">
+        <span class="k">Tone shift</span>
+        <span class="v"><strong>Markedly more confident</strong> than Q4 FY25 (post-price-reset) and Q1 FY26 (trough quarter)</span>
+      </div>
+      <div class="kv-row">
+        <span class="k">New narrative</span>
+        <span class="v"><strong>AI productivity proof-points</strong> framed around observable metrics — headcount/revenue ratio — not vague claims</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-label">Management Classification</div>
+    <div class="chip-row">
+      <span class="chip active">Financially Disciplined</span>
+      <span class="chip active">Long-Term Allocator</span>
+      <span class="chip active">Conservative Communicator</span>
+      <span class="chip">Empire-Building</span>
+      <span class="chip">Promotional</span>
+      <span class="chip">Short-Term Focused</span>
+    </div>
+    <div class="prose" style="font-size:13px;">
+      <p>The consistent rejection of acquisition targets in payments ("unlikely to jump in unless 30 %+ EBITDA aligned"), the refusal to diversify beyond identified competency boundaries ("we don't want to be an overdiversified company"), and the sustained 65 % dividend payout even during the price-reset trough year collectively mark management as a genuine long-term capital allocator — a rarity in Indian mid-cap.</p>
+    </div>
+  </div>
+
+  <div class="insight-block">
+    <strong>Credibility-Evolving Signal:</strong> Management has now delivered on every stated financial milestone across the post-price-reset recovery (margins, non-MF growth trajectory, cost discipline, headcount stability). The one area to watch is whether the "falling headcount" commitment in FY27 materializes — it would be a powerful proof of the re-arch's productivity benefits and would structurally re-rate earnings quality expectations.
+  </div>
+</section>
+
+<!-- ───────────── STEP 6: SEGMENT ANALYSIS ───────────── -->
+<section class="section" id="segments">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Segment &amp; Business <em>Engine Analysis</em></h2>
+  </div>
+
+  <div class="grid-3" style="margin-bottom:20px;">
+    <div class="seg-card mf">
+      <div class="seg-name">MF-RTA Core</div>
+      <div class="seg-growth gold">+8.8 %<span style="font-size:13px; color:var(--text-muted);"> YoY Q4</span></div>
+      <div class="metric-row"><span class="key">Revenue Share</span><span class="val">84.7 %</span></div>
+      <div class="metric-row"><span class="key">AAUM Market Share</span><span class="val gold">~68 %</span></div>
+      <div class="metric-row"><span class="key">Equity AUM Share</span><span class="val up">67 % (+90 bps)</span></div>
+      <div class="metric-row"><span class="key">EBITDA Margin</span><span class="val up">~48–50 %+ estimated</span></div>
+      <div class="metric-row"><span class="key">Pricing Power</span><span class="val">Moderate — yield erosion ~3 % pa but stabilizing</span></div>
+      <div class="metric-row"><span class="key">Moat Durability</span><span class="val gold">Very High — switching cost is existential for AMC</span></div>
+    </div>
+    <div class="seg-card pay">
+      <div class="seg-name">CAMSPay</div>
+      <div class="seg-growth" style="color:var(--blue);">+22.8 %<span style="font-size:13px; color:var(--text-muted);"> YoY Q4</span></div>
+      <div class="metric-row"><span class="key">Revenue Share</span><span class="val">5.0 % (Q4)</span></div>
+      <div class="metric-row"><span class="key">Cards Biz Growth</span><span class="val up">12.9× in FY26</span></div>
+      <div class="metric-row"><span class="key">Non-MF Mix</span><span class="val">&gt;50 % (insurance, NBFCs)</span></div>
+      <div class="metric-row"><span class="key">Annualized Revenue</span><span class="val">~₹70 Cr; target ₹100 Cr FY27</span></div>
+      <div class="metric-row"><span class="key">EBITDA Margin</span><span class="val">Growing; platform-economics</span></div>
+      <div class="metric-row"><span class="key">Risk</span><span class="val">UPI non-monetization; competitive intensity</span></div>
+    </div>
+    <div class="seg-card alt">
+      <div class="seg-name">Alternatives (AIF)</div>
+      <div class="seg-growth" style="color:var(--green);">+25.4 %<span style="font-size:13px; color:var(--text-muted);"> YoY Q4</span></div>
+      <div class="metric-row"><span class="key">Revenue Share</span><span class="val">3.1 % (Q4)</span></div>
+      <div class="metric-row"><span class="key">AUM Under Service</span><span class="val up">₹3.1 Lakh Cr</span></div>
+      <div class="metric-row"><span class="key">Outsourced Mkt Share</span><span class="val gold">50 %+</span></div>
+      <div class="metric-row"><span class="key">New Mandates Q4</span><span class="val">44 (incl. 14 new logos)</span></div>
+      <div class="metric-row"><span class="key">EBITDA Profile</span><span class="val">Service-intensive; 20–25 % est.</span></div>
+      <div class="metric-row"><span class="key">Moat</span><span class="val">WealthServ digital stack + GIFT City first-mover</span></div>
+    </div>
+    <div class="seg-card kra">
+      <div class="seg-name">CAMS KRA</div>
+      <div class="seg-growth" style="color:var(--amber);">+28 %<span style="font-size:13px; color:var(--text-muted);"> YoY Q4 (pre-cut)</span></div>
+      <div class="metric-row"><span class="key">Revenue Share</span><span class="val">2.6 % (Q4)</span></div>
+      <div class="metric-row"><span class="key">Market Rank</span><span class="val gold">#2 KRA (was #3 in FY25)</span></div>
+      <div class="metric-row"><span class="key">Market Share</span><span class="val">~20 % (after NSE KRA acqn.)</span></div>
+      <div class="metric-row"><span class="key">FY27 Revenue</span><span class="val">Guided flat post 20 % price cut</span></div>
+      <div class="metric-row"><span class="key">EBITDA Margin</span><span class="val gold">30–40 % (platform business)</span></div>
+      <div class="metric-row"><span class="key">Key Risk</span><span class="val">CKYC potential substitution (long-term)</span></div>
+    </div>
+    <div class="seg-card rep">
+      <div class="seg-name">CAMSRep (Insurance)</div>
+      <div class="seg-growth" style="color:#9B7DE8;">+6 %<span style="font-size:13px; color:var(--text-muted);"> YoY Q4</span></div>
+      <div class="metric-row"><span class="key">Revenue Share</span><span class="val">1.7 % (Q4)</span></div>
+      <div class="metric-row"><span class="key">IR Market Share</span><span class="val gold">40 %</span></div>
+      <div class="metric-row"><span class="key">eIA Accounts</span><span class="val">10.5 Mn</span></div>
+      <div class="metric-row"><span class="key">Bima Central Users</span><span class="val up">Doubled YoY (1.9 Mn active)</span></div>
+      <div class="metric-row"><span class="key">Margin</span><span class="val">Near breakeven → improving</span></div>
+      <div class="metric-row"><span class="key">Catalyst</span><span class="val">LIC demat issuance scale-up in FY27</span></div>
+    </div>
+    <div class="seg-card nps">
+      <div class="seg-name">CAMS NPS / Other</div>
+      <div class="seg-growth" style="color:#5DBDC4;">+54.4 %<span style="font-size:13px; color:var(--text-muted);"> Revenue YoY</span></div>
+      <div class="metric-row"><span class="key">NPS Market Share</span><span class="val">6.5 % Non-Govt</span></div>
+      <div class="metric-row"><span class="key">eNPS Rank</span><span class="val">#2</span></div>
+      <div class="metric-row"><span class="key">CAMS Finserv (AA)</span><span class="val">45.9 % revenue growth</span></div>
+      <div class="metric-row"><span class="key">Margin profile</span><span class="val">Currently loss-making</span></div>
+      <div class="metric-row"><span class="key">Breakeven path</span><span class="val">~₹14–15 Cr annual revenue needed</span></div>
+      <div class="metric-row"><span class="key">Optionality</span><span class="val">Think360 + ConsenPro = DPDP TAM</span></div>
+    </div>
+  </div>
+
+  <div class="insight-block">
+    <strong>Portfolio Assessment:</strong> CAMS operates a carefully curated "hub and spoke" diversification. The MF-RTA hub (85 % revenue, 50 %+ margins) funds investment in five emerging spokes, each targeting licensed, regulated markets where CAMS has pre-existing infrastructure advantages. This is a structurally superior model — unlike conglomerates that diversify into unrelated domains, every CAMS adjacency leverages shared data, compliance, and client relationships from the core.
+  </div>
+</section>
+
+<!-- ───────────── STEP 7: INDUSTRY POSITIONING ───────────── -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Industry &amp; Competitive <em>Positioning</em></h2>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <h3 class="sub-title">MF Industry Cycle Position</h3>
+      <div class="prose">
+        <p>India's MF industry is in a structural penetration cycle, not a cyclical one. SIP inflows surpassed ₹20,000 Cr/month in March 2026 despite global volatility from the Middle East conflict. The unique investor base grew 18 % YoY (CAMS) vs 13 % (industry), reflecting CAMS's superior franchise quality. The industry's equity AUM reached ₹45.5 Lakh Cr with net inflows of ₹3.47 Lakh Cr in FY26 — positive even in a volatile year.</p>
+        <p>The supply side is also expanding — 31 licensed AMCs now, new licenses being granted. This is <em>net positive</em> for CAMS as long as new entrants join the CAMS platform (Oaklane, Neo). The risk of a client moving to KFin is low given 23+ year average relationship with top-10 clients.</p>
+      </div>
+    </div>
+    <div>
+      <h3 class="sub-title">Competitive Dynamics</h3>
+      <div class="card">
+        <div class="kv-row">
+          <span class="k">Primary Competitor</span>
+          <span class="v"><strong>KFin Technologies</strong> (~32 % market share). Competition primarily on new AMC acquisition; zero CAMS-to-KFin client migrations in the data.</span>
+        </div>
+        <div class="kv-row">
+          <span class="k">Pricing war risk</span>
+          <span class="v"><strong>Low</strong> — CAMS explicitly walks away from price-driven bids. KFin forced to accept lower-value logos.</span>
+        </div>
+        <div class="kv-row">
+          <span class="k">Passive fund threat</span>
+          <span class="v"><strong>Manageable</strong> — passives &lt;10 % of AAUM; yield floor at ETF rates already priced in.</span>
+        </div>
+        <div class="kv-row">
+          <span class="k">Technology disruption</span>
+          <span class="v"><strong>Moderate long-term</strong> — ReArch program is the pre-emptive response. No credible disintermediation threat in 3-year horizon.</span>
+        </div>
+        <div class="kv-row">
+          <span class="k">SIF + GIFT City</span>
+          <span class="v"><strong>First-mover advantage</strong> — 6 live SIFs, 8 more pipeline; GIFT City retail funds growing.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── STEP 9: RED FLAGS ───────────── -->
+<section class="section" id="risks">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title">Red Flags &amp; <em>Forensic Detection</em></h2>
+  </div>
+
+  <div class="risk-block">
+    <div class="risk-level">⚠ Moderate Risk</div>
+    <strong>MF Yield Compression — AMC TER Negotiation Risk:</strong> With AMCs facing 3–5 bps TER compression from SEBI's exit load removal, some may attempt to pass pressure downstream to RTAs. CAMS management holds firm on pricing, but the negotiation risk from mid-tier AMCs is real. Impact bounded at ₹20–25 Cr revenue (per analyst math), but management has not formally quantified.
+  </div>
+
+  <div class="risk-block">
+    <div class="risk-level">⚠ Moderate Risk</div>
+    <strong>Passive AUM Mix Shift — Structural Yield Headwind:</strong> Passive AUM as % of total growing, carrying lower RTA yield. Individual asset-class yields are stable, but mix shift causes aggregate yield erosion (~0.9 % this quarter). If passive penetration accelerates beyond current trajectory (~10 % of AAUM), yield compression could exceed management's &lt;3 % guidance.
+  </div>
+
+  <div class="risk-block">
+    <div class="risk-level">⚠ Minor Risk</div>
+    <strong>KRA 20 % Price Cut (April 2026):</strong> Industrywide voluntary reduction. Impact: ~₹8 Cr revenue headwind vs ₹3 Cr NSE KRA offset. Math is manageable. Bigger question is whether this represents the beginning of a regulatory price compression cycle in KYC infra. The CKYC vs KRA structural debate (authenticity layer advantage) bears monitoring.
+  </div>
+
+  <div class="risk-block">
+    <div class="risk-level">⚠ Minor Risk</div>
+    <strong>Non-Asset MF Revenue Decline:</strong> Down 5.7 % YoY and 0.5 % QoQ. While this is a zero-margin pass-through (out-of-pocket expenses + NFO fees), it inflates apparent growth optically in bad periods. Investors building MF revenue CAGR models should strip this out.
+  </div>
+
+  <div class="risk-block">
+    <div class="risk-level">⚠ Minor Risk</div>
+    <strong>Re-Architecture Timeline and Cost Overrun:</strong> Management acknowledges 3–4 % delay on the 5-year ReArch curve. With 200 engineers deployed and rising depreciation, execution risk is real — though no financial stress is visible. If delivery slows, the productivity thesis on FY27–FY28 headcount reduction weakens.
+  </div>
+
+  <div style="margin-top:20px;" class="card">
+    <div class="card-label">Forensic Scorecard — Red Flags Detected</div>
+    <div class="metric-row"><span class="key">Auditor concerns</span><span class="val up">None</span></div>
+    <div class="metric-row"><span class="key">Accounting policy changes</span><span class="val up">None unusual</span></div>
+    <div class="metric-row"><span class="key">Receivable / inventory manipulation</span><span class="val up">N/A — services firm</span></div>
+    <div class="metric-row"><span class="key">Related party transactions</span><span class="val up">None flagged as material</span></div>
+    <div class="metric-row"><span class="key">Frequent exceptional items</span><span class="val up">None detected</span></div>
+    <div class="metric-row"><span class="key">Other income dependency</span><span class="val up">Low — 3.2 % of revenue</span></div>
+    <div class="metric-row"><span class="key">Promoter pledging</span><span class="val up">N/A — no identifiable promoter</span></div>
+    <div class="metric-row"><span class="key">Low tax vs high profits</span><span class="val up">Effective tax rate 24.9 % — normal</span></div>
+  </div>
+</section>
+
+<!-- ───────────── STEP 10: POSITIVE INFLECTION ───────────── -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2 class="section-title">Positive Inflection <em>Detection</em></h2>
+  </div>
+
+  <div class="two-col-list">
+    <div class="list-item"><span class="dot green"></span><span><strong>Headcount reduction in FY27:</strong> If management achieves net headcount decline while growing revenue 10 %+, the operating leverage proof-point will be irrefutable and trigger re-rating of earnings quality.</span></div>
+    <div class="list-item"><span class="dot green"></span><span><strong>Non-MF margin crossing 20 %:</strong> Each 100 bps improvement on ₹250 Cr+ non-MF revenue base adds ~₹2.5 Cr to EBITDA. Crossing 20 % is the inflection from "investment" to "profit engine" narrative for this segment.</span></div>
+    <div class="list-item"><span class="dot gold"></span><span><strong>Data Lake + Txn Platform go-live (H1 FY27):</strong> AMC clients accessing proprietary analytics via Google BigQuery creates a new data-monetization revenue stream currently not in any model.</span></div>
+    <div class="list-item"><span class="dot gold"></span><span><strong>LIC demat issuance scale-up:</strong> LIC becoming the first large insurer to issue demat policies could catalyze the entire insurance demat market. CAMS Rep holds 40 % IR market share — a direct beneficiary.</span></div>
+    <div class="list-item"><span class="dot blue"></span><span><strong>SIF AUM ramp:</strong> 6 live SIFs, 8 in pipeline for May–August 2026. This new product category brings a risk-tolerant investor cohort into AMC platforms — incremental AUM for CAMS.</span></div>
+    <div class="list-item"><span class="dot blue"></span><span><strong>ConsenPro / DPDP opportunity:</strong> 40,000–50,000 Indian companies need DPDP compliance by May 2027. CAMS is uniquely positioned as both a licensed data fiduciary and technology provider — rare combination.</span></div>
+    <div class="list-item"><span class="dot amber"></span><span><strong>Market recovery:</strong> India market AUM was tracking ₹58.5 lakh Cr before the March 2026 Middle East impact. A market recovery adds AUM without proportional cost. Each 1 % AUM growth adds ~₹5–6 Cr to quarterly revenue.</span></div>
+    <div class="list-item"><span class="dot amber"></span><span><strong>CAMSPay insurance mandate expansion:</strong> Insurance mandate registrations +36 % QoQ in Q4. Cards business scaled 12.9× in FY26. The cross-sell of insurance payments through CAMS's RTA client base is structurally protected from competition.</span></div>
+  </div>
+</section>
+
+<!-- ───────────── STEP 11: VALUATION ───────────── -->
+<section class="section" id="valuation">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2 class="section-title">Valuation Comfort <em>Architecture</em></h2>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:24px;">
+    <div class="card">
+      <div class="card-label">P/E (TTM)</div>
+      <div class="card-value">40.5×</div>
+      <div class="card-sub">On PAT ₹476 Cr FY26</div>
+    </div>
+    <div class="card">
+      <div class="card-label">P/E (FY27E est.)</div>
+      <div class="card-value gold">34–36×</div>
+      <div class="card-sub">Assuming 12–15 % PAT growth</div>
+    </div>
+    <div class="card">
+      <div class="card-label">EV/EBITDA (FY26)</div>
+      <div class="card-value">~27×</div>
+      <div class="card-sub">EBITDA ₹686 Cr; EV ~₹18,400 Cr</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Price/Book</div>
+      <div class="card-value">14.6×</div>
+      <div class="card-sub">Justified by 49 % ROCE on thin book</div>
+    </div>
+  </div>
+
+  <h3 class="sub-title">What Is the Market Pricing In?</h3>
+  <div class="prose">
+    <p>At ₹777 / 40.5× earnings, the market is pricing CAMS as a high-quality compounder with: <strong>10–13 % revenue CAGR</strong> over 3–5 years, <strong>stable margins at 45–47 %</strong>, and <strong>moderate non-MF revenue scaling</strong>. These assumptions are not heroic — they are broadly consistent with CAMS's own guidance and its demonstrated performance trajectory. The embedded growth assumption is essentially what management has already delivered.</p>
+    <p>The risk scenario for the valuation is a combination of: (1) sustained equity market weakness compressing AUM below trend, (2) meaningful RTA yield concession from AMC negotiations, and (3) ReArch delivery failure. All three occurring simultaneously is a low-probability scenario given the structural tailwinds in India's mutual fund penetration story.</p>
+  </div>
+
+  <div class="grid-2" style="margin-top:20px; margin-bottom:20px;">
+    <div class="card">
+      <div class="card-label">Valuation Support Checklist</div>
+      <div class="metric-row"><span class="key">ROCE quality</span><span class="val up">49 % — industry-leading ✓</span></div>
+      <div class="metric-row"><span class="key">FCF generation</span><span class="val up">High — near zero capex requirement ✓</span></div>
+      <div class="metric-row"><span class="key">Moat strength</span><span class="val up">68 % market share, switching cost is existential ✓</span></div>
+      <div class="metric-row"><span class="key">Management credibility</span><span class="val up">Strong — 22 + quarters of delivery ✓</span></div>
+      <div class="metric-row"><span class="key">Reinvestment runway</span><span class="val up">5-year re-arch; non-MF diversification ✓</span></div>
+      <div class="metric-row"><span class="key">Balance sheet quality</span><span class="val up">Zero debt; ₹854 Cr cash ✓</span></div>
+      <div class="metric-row"><span class="key">Cyclical vs structural</span><span class="val up">Structural India fintech penetration ✓</span></div>
+      <div class="metric-row"><span class="key">Execution mistakes room</span><span class="val">Moderate — 40× leaves limited cushion for misses</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Valuation Comfort Classification</div>
+      <div style="display:flex; flex-direction:column; gap:10px; margin-top:12px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:10px; height:10px; background:var(--green); border-radius:50%; flex-shrink:0;"></div>
+          <div style="font-size:12px; color:var(--text-muted);">Deep Comfort</div>
+          <div style="flex:1; height:3px; background:var(--border); border-radius:2px; overflow:hidden;"><div style="height:100%; width:0%; background:var(--green);"></div></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:10px; height:10px; background:var(--gold); border-radius:50%; flex-shrink:0;"></div>
+          <div style="font-size:12px; color:var(--gold);">✓ Reasonable</div>
+          <div style="flex:1; height:3px; background:var(--border); border-radius:2px; overflow:hidden;"><div style="height:100%; width:72%; background:var(--gold);"></div></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:10px; height:10px; background:var(--amber); border-radius:50%; flex-shrink:0;"></div>
+          <div style="font-size:12px; color:var(--text-muted);">Fully Priced</div>
+          <div style="flex:1; height:3px; background:var(--border); border-radius:2px; overflow:hidden;"><div style="height:100%; width:0%; background:var(--amber);"></div></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:10px; height:10px; background:var(--red); border-radius:50%; flex-shrink:0;"></div>
+          <div style="font-size:12px; color:var(--text-muted);">Dangerous Overvaluation</div>
+          <div style="flex:1; height:3px; background:var(--border); border-radius:2px; overflow:hidden;"><div style="height:100%; width:0%; background:var(--red);"></div></div>
+        </div>
+      </div>
+      <div style="margin-top:18px;" class="prose" style="font-size:13px;">
+        <p>At 40.5× earnings, CAMS sits in the "<strong>Reasonable to Fully Priced</strong>" zone — not cheap, but the quality and durability of earnings justify a structural premium over the Nifty and sector peers. The question is not whether CAMS is "cheap" but whether the 40× multiple reflects a fair discount rate for a near-monopoly infrastructure compounder with improving earnings quality.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-block">
+    <strong>Institutional Verdict on Valuation:</strong> CAMS is an <em>exceptional compounding machine deserving premium multiples</em> — but it is not at a bargain multiple. The investment case rests not on valuation expansion but on earnings growth compounding at 12–15 % over 3–5 years, with the productivity cycle from the re-arch program providing upside optionality. Buy on market-weakness dips (sub-₹700) with conviction; hold above ₹800 awaiting FY27 Q1 results confirming headcount decline and non-MF margin trajectory.
+  </div>
+</section>
+
+<!-- ───────────── STEP 12: FUTURE TRAJECTORY ───────────── -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-num">11</span>
+    <h2 class="section-title">Future Trajectory <em>Modeling</em></h2>
+  </div>
+
+  <div class="grid-3">
+    <div class="scenario-card bull">
+      <div class="scenario-header">
+        <span class="scenario-name">Bull Case</span>
+        <span class="scenario-prob">Probability: 25 %</span>
+      </div>
+      <div class="scenario-body">
+        <p style="margin-bottom:10px;"><strong>AUM recovery to ₹65+ Lakh Cr by FY27E</strong> driven by market rebound and continued SIP momentum. Non-MF crosses 20 % revenue share. Headcount declines 3–5 % while revenue grows 15 %+ — delivering 47–48 % EBITDA margins. ConsenPro/DPDP contributes ₹20–30 Cr revenue.</p>
+        <p><strong>FY27E PAT: ₹560–580 Cr. Implied P/E at ₹777: 29–30×.</strong> Stock re-rates to ₹950–1,050 range.</p>
+      </div>
+    </div>
+    <div class="scenario-card base">
+      <div class="scenario-header">
+        <span class="scenario-name">Base Case</span>
+        <span class="scenario-prob">Probability: 55 %</span>
+      </div>
+      <div class="scenario-body">
+        <p style="margin-bottom:10px;"><strong>AUM grows 15–18 % YoY to ₹62–65 Lakh Cr.</strong> Non-MF maintains 20–22 % growth. Yield decline contained to 2–2.5 %. Margins stable at 45–46 %. ReArch delivers initial productivity benefits. Headcount broadly flat.</p>
+        <p><strong>FY27E PAT: ₹520–545 Cr. Implied P/E at ₹777: 33–35×.</strong> Fair value ₹850–900. Moderate upside with quality compounding.</p>
+      </div>
+    </div>
+    <div class="scenario-card bear">
+      <div class="scenario-header">
+        <span class="scenario-name">Bear Case</span>
+        <span class="scenario-prob">Probability: 20 %</span>
+      </div>
+      <div class="scenario-body">
+        <p style="margin-bottom:10px;"><strong>Sustained equity market weakness keeps AUM around ₹55–58 Lakh Cr.</strong> AMC negotiations extract 5–10 bps yield concession. KRA revenue declines despite offsetting measures. Non-MF growth slows to 12–15 %. Margins compress to 43–44 %.</p>
+        <p><strong>FY27E PAT: ₹450–470 Cr. P/E re-rates to 35×. Stock risk: ₹650–700 range.</strong> Business quality remains intact; this is a valuation risk, not a business risk.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub-title">Key Monitoring Variables — Quarterly Checklist</h3>
+  <div class="two-col-list" style="margin-top:8px;">
+    <div class="list-item"><span class="dot gold"></span><span><strong>CAMS AAUM market share:</strong> Watch for any decline below 67.5 % — would indicate accelerating client attrition at the margin.</span></div>
+    <div class="list-item"><span class="dot blue"></span><span><strong>Non-MF revenue share:</strong> Crossing 17 % in FY27 signals structural transition is accelerating ahead of expectations.</span></div>
+    <div class="list-item"><span class="dot green"></span><span><strong>Net headcount direction:</strong> FY27 Q1 disclosure — any actual reduction is a major confirmation of the AI productivity thesis.</span></div>
+    <div class="list-item"><span class="dot green"></span><span><strong>Non-MF EBITDA margin:</strong> Monthly read through quarterly disclosure — crossing 18–19 % shows FY27 20 % target is within grasp.</span></div>
+    <div class="list-item"><span class="dot amber"></span><span><strong>MF yield decline QoQ:</strong> Stay alert if yield depletion exceeds 2 % QoQ — would signal competitive or regulatory pricing pressure beyond the mix story.</span></div>
+    <div class="list-item"><span class="dot amber"></span><span><strong>KRA revenue:</strong> Quarterly compare vs ₹42–43 Cr base — tests whether the "flat revenue" guided outcome holds post the 20 % fee cut.</span></div>
+    <div class="list-item"><span class="dot red"></span><span><strong>New AMC defections:</strong> Any mid-tier AMC publicly announcing a switch to KFin — would be the first in years and a sentiment shock.</span></div>
+    <div class="list-item"><span class="dot blue"></span><span><strong>ConsenPro / DPDP revenue recognition:</strong> Any revenue booking from this new line in H2 FY27 would validate the new TAM thesis ahead of expectations.</span></div>
+  </div>
+</section>
+
+<!-- ───────────── STEP 13: FINAL VERDICT ───────────── -->
+<section class="section" id="verdict">
+  <div class="section-header">
+    <span class="section-num">12</span>
+    <h2 class="section-title">Final Investment <em>Verdict</em></h2>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:24px;">
+    <div>
+      <h3 class="sub-title">Key Positives</h3>
+      <div class="list-item"><span class="dot green"></span><span>68 % MF-RTA market share — near-unassailable competitive position with 23+ year avg. client relationships</span></div>
+      <div class="list-item"><span class="dot green"></span><span>Record EBITDA margin (46.5 %) delivered through operational excellence, not expense suppression</span></div>
+      <div class="list-item"><span class="dot green"></span><span>Non-MF broad-based 24.5 % growth — validates the diversification strategy is working across all segments simultaneously</span></div>
+      <div class="list-item"><span class="dot green"></span><span>Zero debt, ₹854 Cr cash, 49 % ROCE, 39 % ROE — balance sheet and capital returns exceptional</span></div>
+      <div class="list-item"><span class="dot green"></span><span>Equity net sales market share at 76.3 % — commanding position in the highest-value, fastest-growing AUM segment</span></div>
+      <div class="list-item"><span class="dot green"></span><span>AI-driven platform re-arch beginning to deliver measurable productivity — flat headcount on +23 % transaction volumes</span></div>
+    </div>
+    <div>
+      <h3 class="sub-title">Key Negatives &amp; Risks</h3>
+      <div class="list-item"><span class="dot red"></span><span>KRA 20 % industry price cut effective April 2026 — ₹5 Cr net revenue headwind after offsets; sets a precedent for regulatory pricing intervention</span></div>
+      <div class="list-item"><span class="dot red"></span><span>AMC TER negotiations latent risk — potential ₹20–25 Cr revenue at risk, though management holds firm</span></div>
+      <div class="list-item"><span class="dot red"></span><span>Non-asset MF revenue declining (−5.7 % YoY) — structurally lower NFO activity and out-of-pocket reimbursements</span></div>
+      <div class="list-item"><span class="dot amber"></span><span>P/E of 40.5× leaves limited room for earnings disappointment — execution risk from ReArch or market weakness would re-rate quickly</span></div>
+      <div class="list-item"><span class="dot amber"></span><span>March 2026 AUM ₹55.1 Lakh Cr vs ₹58.5 Lakh Cr mid-quarter peak — geopolitical volatility created a ₹3+ Lakh Cr AUM hole entering FY27</span></div>
+      <div class="list-item"><span class="dot amber"></span><span>Long-term CKYC substitution risk for KRA — management's two-leg authentication advantage is real but regulatory trajectory uncertain</span></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-label">Hidden Insights — What the Market Misses</div>
+    <div class="insight-block" style="margin:14px 0 10px;">
+      <strong>The Productivity Flywheel:</strong> In the last 10 years, CAMS grew assets 5×, transactions 5×, and storage requirements proportionally — on nearly constant headcount. This is the foundation. The ReArch program now ports this embedded efficiency onto a modern cloud-native architecture, dramatically compressing marginal costs for additional transaction volume. The productivity gains are not yet in any consensus model.
+    </div>
+    <div class="insight-block" style="margin:10px 0 10px;">
+      <strong>The Data Moat:</strong> CAMS processes financial data for 47.6 Mn unique investors — the single richest financial behavior dataset in India. The data lake (going live H1 FY27) monetizes this asset. ConsenPro/DPDP, AAmaze (analytics on AA data, 60 %+ QoQ growth), Think360's credit scoring — these are early manifestations. This is the next compounding vector that existing CAMS P/E frameworks do not capture.
+    </div>
+    <div class="insight-block" style="margin:10px 0;">
+      <strong>The SIP Multiplier:</strong> CAMS registers 46 % more SIPs YoY than the industry's 27 %. Each SIP creates a long-duration annuity stream of transaction revenue. The "SIP book" now at 67 Mn growing 17 % YoY is effectively a guaranteed minimum revenue floor that grows independently of market performance.
+    </div>
+  </div>
+
+  <div class="grid-4" style="margin-bottom:32px;">
+    <div class="card">
+      <div class="card-label">Mgmt Execution</div>
+      <div class="card-value gold" style="font-size:18px; margin-bottom:4px;">STRONG</div>
+      <div class="card-sub">22 quarters consistent delivery; conservative guidance; transparent on risks</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Earnings Quality</div>
+      <div class="card-value gold" style="font-size:18px; margin-bottom:4px;">HIGH</div>
+      <div class="card-sub">No exceptional items, no accounting distortions; cash-backed profits</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Valuation Comfort</div>
+      <div class="card-value" style="font-size:18px; margin-bottom:4px; color:var(--amber);">REASONABLE</div>
+      <div class="card-sub">40× justified but not cheap. Buy on dips below ₹720–730</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Compounding Potential</div>
+      <div class="card-value green" style="font-size:18px; margin-bottom:4px;">HIGH</div>
+      <div class="card-sub">12–15 % earnings CAGR over 3–5 years; optionality from data monetization</div>
+    </div>
+  </div>
+
+  <div class="verdict-banner" style="margin:0; margin-bottom:24px;">
+    <div>
+      <div class="verdict-label">Final Call</div>
+      <div class="verdict-call">ACCUMULATE</div>
+      <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted); margin-top:6px;">Target horizon: 18–24 months · Entry zone: ₹700–760 for enhanced comfort</div>
+    </div>
+    <div class="verdict-reasoning">
+      CAMS is not a trading stock. It is an institutional-grade financial infrastructure monopoly compounding at 12–15 % earnings growth with structural protection from competitive disruption, zero leverage, and exceptional management stewardship. At current prices, the reward-to-risk is positive but not exceptional. Accumulate in tranches, size up materially on any market-induced dips below ₹720, and hold through the FY27 productivity cycle where the re-architecture benefits will begin appearing explicitly in the P&L as falling headcount and rising revenue-per-employee metrics.
+    </div>
+  </div>
+
+</section>
+
+</div><!-- end page-body -->
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer>
+  <div>
+    <p>COMPUTER AGE MANAGEMENT SERVICES LTD (CAMS) · BSE: 543232 · NSE: CAMS</p>
+    <p>Analysis based on Q4 FY26 Earnings Call (May 05, 2026), Q3 FY26 Earnings Call (Jan 23, 2026), Investor Presentation Q4 FY26</p>
+  </div>
+  <div>
+    <p>This document is for informational purposes only. Not investment advice.</p>
+    <p>All financial data sourced from company disclosures. Market data as of analysis date.</p>
+  </div>
+</footer>
+
+<script>
+  // Progress bar animation on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.progress-bar-fill').forEach(bar => {
+      const w = bar.style.width;
+      bar.style.width = '0%';
+      setTimeout(() => { bar.style.width = w; }, 300);
+    });
+  });
+
+  // Smooth appear on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.card, .seg-card, .scenario-card, .insight-block, .risk-block').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(12px)';
+    el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

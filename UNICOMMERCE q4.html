@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unicommerce eSolutions — Institutional Equity Analysis | FY26 & Q4 FY26</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #0f1424;
+    --bg-card: #131829;
+    --bg-card-hover: #171e30;
+    --border: #1e2a44;
+    --border-light: #243050;
+    --gold: #c9a84c;
+    --gold-light: #e8c96d;
+    --gold-dim: rgba(201,168,76,0.15);
+    --gold-glow: rgba(201,168,76,0.08);
+    --teal: #2dd4bf;
+    --teal-dim: rgba(45,212,191,0.12);
+    --red: #f87171;
+    --red-dim: rgba(248,113,113,0.12);
+    --green: #4ade80;
+    --green-dim: rgba(74,222,128,0.12);
+    --orange: #fb923c;
+    --orange-dim: rgba(251,146,60,0.12);
+    --text-primary: #e8eaf0;
+    --text-secondary: #8b92a8;
+    --text-dim: #5a6280;
+    --text-gold: #c9a84c;
+    --accent-line: #c9a84c;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --serif: 'Playfair Display', serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── COVER BANNER ── */
+  .cover {
+    position: relative;
+    background: linear-gradient(135deg, #070b15 0%, #0d1428 40%, #091220 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 60px 50px;
+    overflow: hidden;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -60px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+
+  .cover-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+
+  .cover-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .cover-divider {
+    width: 1px;
+    height: 14px;
+    background: var(--border-light);
+  }
+
+  .cover-rating {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--gold-light);
+    text-transform: uppercase;
+  }
+
+  .cover h1 {
+    font-family: var(--serif);
+    font-size: 42px;
+    font-weight: 600;
+    color: #f0f2f8;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+
+  .cover h1 span {
+    color: var(--gold);
+  }
+
+  .cover-subtitle {
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    margin-bottom: 40px;
+    max-width: 620px;
+  }
+
+  /* ── TICKER STRIP ── */
+  .ticker-strip {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    padding-top: 28px;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .ticker-item {
+    padding: 0 28px 0 0;
+    margin-right: 28px;
+    border-right: 1px solid var(--border);
+  }
+
+  .ticker-item:last-child { border-right: none; }
+
+  .ticker-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .ticker-value {
+    font-family: var(--mono);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .ticker-value.up { color: var(--green); }
+  .ticker-value.down { color: var(--red); }
+  .ticker-value.gold { color: var(--gold-light); }
+
+  .ticker-sub {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 1px;
+  }
+
+  /* ── NAVIGATION ── */
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,14,26,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .nav-bar a {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 14px 18px;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .nav-bar a:hover {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section {
+    margin-top: 64px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: #dde0ea;
+    letter-spacing: -0.01em;
+  }
+
+  .section-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-left: auto;
+  }
+
+  /* ── SCORE GRID ── */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+
+  .score-cell {
+    background: var(--bg-card);
+    padding: 20px 16px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+
+  .score-cell:hover { background: var(--bg-card-hover); }
+
+  .score-cell-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .score-cell-value {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .score-cell-bar {
+    height: 2px;
+    background: var(--border);
+    border-radius: 1px;
+    margin: 8px auto 0;
+    width: 60%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .score-cell-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: var(--gold);
+    border-radius: 1px;
+    animation: fillBar 1s ease forwards;
+  }
+
+  @keyframes fillBar { from { width: 0; } }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 24px 28px;
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .card-body {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  .card-body p { margin-bottom: 10px; }
+  .card-body p:last-child { margin-bottom: 0; }
+
+  .card-body strong { color: var(--text-primary); font-weight: 500; }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    border-left: 3px solid var(--gold);
+    background: var(--gold-glow);
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .callout.red {
+    border-left-color: var(--red);
+    background: var(--red-dim);
+  }
+
+  .callout.green {
+    border-left-color: var(--green);
+    background: var(--green-dim);
+  }
+
+  .callout.teal {
+    border-left-color: var(--teal);
+    background: var(--teal-dim);
+  }
+
+  /* ── KPI GRID ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+
+  .kpi-cell {
+    background: var(--bg-card);
+    padding: 20px 18px;
+  }
+
+  .kpi-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  .kpi-value {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .kpi-delta {
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+
+  .kpi-delta.up { color: var(--green); }
+  .kpi-delta.down { color: var(--red); }
+  .kpi-delta.neutral { color: var(--text-dim); }
+
+  /* ── TABLE ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+
+  .data-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+  }
+
+  .data-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .data-table td:first-child { color: var(--text-primary); font-weight: 400; }
+
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .data-table tr:hover td { background: rgba(255,255,255,0.015); }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  .badge-achieved { background: var(--green-dim); color: var(--green); }
+  .badge-partial { background: var(--orange-dim); color: var(--orange); }
+  .badge-missed { background: var(--red-dim); color: var(--red); }
+  .badge-pending { background: rgba(139,146,168,0.1); color: var(--text-dim); }
+  .badge-exceeded { background: var(--teal-dim); color: var(--teal); }
+
+  /* ── TWO COLUMN ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  /* ── SEGMENT CARD ── */
+  .segment-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 22px 24px;
+  }
+
+  .segment-name {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .segment-desc {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+
+  .segment-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+
+  .segment-stat:last-child { border-bottom: none; }
+  .segment-stat-label { color: var(--text-dim); font-family: var(--mono); font-size: 10px; }
+  .segment-stat-value { color: var(--text-primary); font-family: var(--mono); font-size: 11px; }
+  .segment-stat-value.up { color: var(--green); }
+  .segment-stat-value.down { color: var(--red); }
+
+  /* ── FLAG ITEMS ── */
+  .flag-list { list-style: none; }
+
+  .flag-item {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+
+  .flag-item:last-child { border-bottom: none; }
+
+  .flag-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .flag-dot.severe { background: var(--red); box-shadow: 0 0 6px rgba(248,113,113,0.5); }
+  .flag-dot.moderate { background: var(--orange); }
+  .flag-dot.minor { background: var(--gold); }
+  .flag-dot.positive { background: var(--green); box-shadow: 0 0 6px rgba(74,222,128,0.3); }
+
+  .flag-content { flex: 1; }
+
+  .flag-title {
+    font-size: 13px;
+    color: var(--text-primary);
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+
+  .flag-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .flag-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── VERDICT BOX ── */
+  .verdict-box {
+    background: linear-gradient(135deg, #0f1424 0%, #111827 100%);
+    border: 1px solid var(--gold);
+    padding: 36px 40px;
+    margin-top: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .verdict-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .verdict-box::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .verdict-rating {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .verdict-call {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .verdict-body {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    max-width: 800px;
+    margin-bottom: 28px;
+  }
+
+  .verdict-body strong { color: var(--text-primary); }
+
+  .verdict-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .verdict-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 5px 12px;
+    border: 1px solid var(--border-light);
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  /* ── SCENARIO TABLE ── */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+
+  .scenario-cell {
+    background: var(--bg-card);
+    padding: 24px 20px;
+  }
+
+  .scenario-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .scenario-label.bull { color: var(--green); }
+  .scenario-label.base { color: var(--gold); }
+  .scenario-label.bear { color: var(--red); }
+
+  .scenario-title {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .scenario-body {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ── MONITORING CHECKLIST ── */
+  .checklist { list-style: none; }
+
+  .checklist-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12.5px;
+    color: var(--text-secondary);
+  }
+
+  .checklist-item:last-child { border-bottom: none; }
+
+  .checklist-icon {
+    font-family: var(--mono);
+    color: var(--gold);
+    font-size: 10px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  .report-footer {
+    border-top: 1px solid var(--border);
+    margin-top: 64px;
+    padding: 28px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .footer-brand {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .footer-disclaimer {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--text-dim);
+    max-width: 600px;
+    line-height: 1.6;
+    text-align: right;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    border-left: 2px solid var(--teal);
+    padding: 4px 0 4px 18px;
+    margin: 16px 0;
+    font-size: 12.5px;
+    color: var(--text-dim);
+    font-style: italic;
+    line-height: 1.65;
+  }
+
+  /* ── ANIMATE IN ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .cover { animation: fadeUp 0.6s ease forwards; }
+  .score-grid { animation: fadeUp 0.7s 0.1s ease both; }
+
+  /* ── INLINE HIGHLIGHT ── */
+  .hl { color: var(--gold-light); font-weight: 500; }
+  .hl-green { color: var(--green); font-weight: 500; }
+  .hl-red { color: var(--red); font-weight: 500; }
+  .hl-teal { color: var(--teal); font-weight: 500; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .score-grid { grid-template-columns: repeat(3, 1fr); }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col, .three-col { grid-template-columns: 1fr; }
+    .scenario-grid { grid-template-columns: 1fr; }
+    .cover, .main, .nav-bar, .report-footer { padding-left: 24px; padding-right: 24px; }
+    .ticker-strip { gap: 16px; }
+    .ticker-item { padding-right: 16px; margin-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     COVER
+══════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-meta">
+    <span class="cover-badge">Institutional Equity Research</span>
+    <span class="cover-divider"></span>
+    <span class="cover-date">May 2026 · Based on FY26 Annual & Q4 FY26 Results</span>
+    <span class="cover-divider"></span>
+    <span class="cover-rating">Investment Grade Analysis</span>
+  </div>
+
+  <h1>Unicommerce <span>eSolutions</span> Ltd.</h1>
+  <p class="cover-subtitle">India's eCommerce Operating System — From Growth Story to Earnings Quality Reality</p>
+
+  <div class="ticker-strip">
+    <div class="ticker-item">
+      <div class="ticker-label">NSE Symbol</div>
+      <div class="ticker-value gold">UNIECOM</div>
+      <div class="ticker-sub">Listed · NSE / BSE</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-label">CMP</div>
+      <div class="ticker-value">₹85.7</div>
+      <div class="ticker-sub">52W Range: ₹78.5 – ₹156</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-label">Market Cap</div>
+      <div class="ticker-value">₹963 Cr</div>
+      <div class="ticker-sub">Small-Cap SaaS</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-label">Stock P/E</div>
+      <div class="ticker-value">47.1×</div>
+      <div class="ticker-sub">On Reported PAT</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-label">FY26 Revenue</div>
+      <div class="ticker-value up">₹204.3 Cr</div>
+      <div class="ticker-sub">+51.6% YoY (Consolidated)</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-label">ROCE / ROE</div>
+      <div class="ticker-value">21.1% / 15.6%</div>
+      <div class="ticker-sub">Improving Trajectory</div>
+    </div>
+    <div class="ticker-item">
+      <div class="ticker-label">Cash & Bank</div>
+      <div class="ticker-value up">₹81.3 Cr</div>
+      <div class="ticker-sub">Debt-Free; Pre-Acquisition Level</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════════════════════════ -->
+<nav class="nav-bar">
+  <a href="#s1">Executive Snap</a>
+  <a href="#s2">Result Quality</a>
+  <a href="#s3">Guidance Tracker</a>
+  <a href="#s4">Financial Arch.</a>
+  <a href="#s5">Mgmt Decode</a>
+  <a href="#s6">Segments</a>
+  <a href="#s7">Industry</a>
+  <a href="#s8">Capital Alloc.</a>
+  <a href="#s9">Red Flags</a>
+  <a href="#s10">Inflection</a>
+  <a href="#s11">Valuation</a>
+  <a href="#s12">Trajectory</a>
+  <a href="#s13">Verdict</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- ──────────────────────────────────────────────
+     STEP 1: EXECUTIVE SNAPSHOT
+─────────────────────────────────────────────── -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Executive Snapshot</h2>
+    <span class="section-tag">FY26 & Q4 FY26</span>
+  </div>
+
+  <!-- Score Grid -->
+  <div class="score-grid">
+    <div class="score-cell">
+      <div class="score-cell-label">Business Health</div>
+      <div class="score-cell-value">7.5</div>
+      <div class="score-cell-bar"><div class="score-cell-fill" style="width:75%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-cell-label">Earnings Quality</div>
+      <div class="score-cell-value">7.0</div>
+      <div class="score-cell-bar"><div class="score-cell-fill" style="width:70%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-cell-label">Balance Sheet</div>
+      <div class="score-cell-value">8.5</div>
+      <div class="score-cell-bar"><div class="score-cell-fill" style="width:85%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-cell-label">Capital Alloc.</div>
+      <div class="score-cell-value">7.0</div>
+      <div class="score-cell-bar"><div class="score-cell-fill" style="width:70%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-cell-label">Mgmt Credibility</div>
+      <div class="score-cell-value">7.5</div>
+      <div class="score-cell-bar"><div class="score-cell-fill" style="width:75%"></div></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-cell-label">Future Visibility</div>
+      <div class="score-cell-value">7.0</div>
+      <div class="score-cell-bar"><div class="score-cell-fill" style="width:70%"></div></div>
+    </div>
+  </div>
+
+  <!-- What actually happened -->
+  <div class="card">
+    <div class="card-title">What Actually Happened This Year</div>
+    <div class="card-body">
+      <p>FY26 was genuinely strong at the <strong>full-year consolidated level</strong>, though the composition of that strength warrants close inspection. Revenue crossed ₹204 Cr driven in large part by the <strong>first full-year consolidation of Shipway Technology</strong> (acquired mid-FY25), which means roughly 30-35% of reported revenue growth is inorganic in origin — a distinction management underemphasises in headlines. Stripping back the Shipway contribution, the standalone Uniware business grew approximately <span class="hl">5.5% for the full year</span> — a marked deceleration from the 40-50% growth seen during FY22-23. The recovery to <span class="hl-green">11.7% growth in Q4 FY26</span> on Uniware standalone is the genuine good news and marks the first double-digit quarter in roughly five quarters.</p>
+      <p>The profitability picture is optically dragged down by non-cash amortisation of intangibles from the Shipway acquisition (~₹5.1 Cr annually over 8 years), causing PAT to grow only 16% versus Adjusted EBITDA growth of 54.5%. Cash generation is the cleanest proof of business quality: <strong>₹47 Cr of operating cash flow</strong> against ₹43.9 Cr of Adjusted EBITDA signals high conversion, characteristic of mission-critical SaaS.</p>
+    </div>
+  </div>
+
+  <!-- Top 5 Developments -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">5 Most Important Developments</div>
+      <div class="card-body">
+        <p><strong>1. Uniware returns to double-digit growth</strong> in Q4 FY26 (+11.7% YoY standalone), validating the thesis that FY24-25 slowdown was cyclical, not structural. Driven by 450+ enterprise client additions in FY26 — the highest annual intake in company history.</p>
+        <p><strong>2. Shipway reaches ₹83.9 Cr annualised revenue run-rate</strong> in Q4 FY26 (+17.7% YoY), crossing what management describes as a large underpenetrated market. Shipway achieved profitability within two quarters of acquisition before management deliberately stepped on the investment accelerator in Q4.</p>
+        <p><strong>3. Standalone Unicommerce Adjusted EBITDA margins surged from 25% to 37.5%</strong> — a 1,250 bps expansion, demonstrating the true operating leverage latent in a high-gross-margin SaaS model. This is the single most important number market participants are underweighting.</p>
+        <p><strong>4. AI is no longer aspirational — it is live.</strong> UniBot AI, ShipSense AI, and Catalyst Voice AI are in production. The voice bot is handling ~1 lakh calls/month. This positions the company structurally ahead of fragmented competitors.</p>
+        <p><strong>5. Merger evaluation of Unicommerce and Shipway</strong> announced — a clear signal of long-term integration intent, which, if executed efficiently, will reduce compliance friction, unlock cross-sell, and simplify the P&L narrative for investors.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">What the Market is Missing</div>
+      <div class="card-body">
+        <p><strong>Standalone Margin Expansion:</strong> The headline 21.5% Adjusted EBITDA margin is a Shipway-blended figure. The underlying Uniware business at 37.5% margin tells a very different story of operating leverage. At current mix, as Shipway scales and reaches its own margin maturity, consolidated margins will structurally re-rate higher over a 2-3 year period.</p>
+        <p><strong>Client Cohort Compounding:</strong> 450+ new enterprise clients were added in FY26 at minimum-guarantee pricing. These clients typically mature revenue contribution over 12-18 months. The revenue from FY26 client additions has not yet fully accrued to the income statement. FY27 will harvest FY26 seeding.</p>
+        <p><strong>Quick Commerce as Option:</strong> From 20 million order items in Q4 FY25 to 70 million+ in Q3 FY26 — a 3.5× surge in nine months. Still a small fraction of the transaction mix, but the trajectory suggests it will be a meaningful revenue contributor within 18-24 months, particularly as margin profiles of QC clients differ from legacy marketplace clients.</p>
+        <p><strong>International Profitability Inflection:</strong> The international business turned profitable in FY26 and is growing faster than domestic. At 6-7% of revenue and accelerating, this is an underappreciated diversification option.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout teal">
+    <strong>Assessment:</strong> FY26 was a <em>fundamentally strong year</em> at the business quality level — genuine operating leverage, cash generation exceeding EBITDA, record enterprise acquisition, and recovery of growth momentum. Q4 FY26 independently is mixed: revenue growth of 14% is real, but profitability was deliberately compressed by front-loaded investments in Shipway, making the quarter not optically manipulated but investment-distorted. The Shipway merger process and FY27 investment cycle are the key near-term variables to track.
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     STEP 2: RESULT QUALITY ANALYSIS
+─────────────────────────────────────────────── -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Result Quality Analysis</h2>
+    <span class="section-tag">Revenue · Margin · Cash · Earnings</span>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-cell">
+      <div class="kpi-label">FY26 Revenue</div>
+      <div class="kpi-value">₹204.3 Cr</div>
+      <div class="kpi-delta up">▲ 51.6% YoY (consolidated)</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">FY26 Adj. EBITDA</div>
+      <div class="kpi-value">₹43.9 Cr</div>
+      <div class="kpi-delta up">▲ 54.5% YoY · 21.5% margin</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">FY26 PAT</div>
+      <div class="kpi-value">₹20.5 Cr</div>
+      <div class="kpi-delta up">▲ 16.1% YoY · 10.0% margin</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">FY26 CFO</div>
+      <div class="kpi-value">₹47.0 Cr</div>
+      <div class="kpi-delta up">▲ 68.1% YoY · CFO/EBITDA: 107%</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">Q4 FY26 Revenue</div>
+      <div class="kpi-value">₹51.6 Cr</div>
+      <div class="kpi-delta up">▲ 14.0% YoY · ▼ 8.5% QoQ (seasonal)</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">Q4 Adj. EBITDA</div>
+      <div class="kpi-value">₹9.6 Cr</div>
+      <div class="kpi-delta up">▲ 7.8% YoY · 18.5% margin</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">Standalone UW Margin</div>
+      <div class="kpi-value">37.5%</div>
+      <div class="kpi-delta up">▲ from 25.0% in FY25 (+1,250 bps)</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">ARR (Q4 FY26 × 4)</div>
+      <div class="kpi-value">₹206.5 Cr</div>
+      <div class="kpi-delta neutral">▲ 14.0% YoY</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Revenue Quality Dissection</div>
+      <div class="card-body">
+        <p><strong>Organic vs. Inorganic:</strong> The headline 51.6% revenue growth is significantly inflated by the first full consolidation of Shipway (acquired July 2024 — only 105 days in FY25). True organic Univare growth was approximately 5.5% for FY26, recovering to 11.7% in Q4. Shipway contributed roughly ₹69 Cr of the incremental ₹69.5 Cr revenue addition year-on-year.</p>
+        <p><strong>Revenue Mix Shift:</strong> Gross margin compressed 1,616 bps at the consolidated level — from 69.4% to 53.3% — entirely attributable to Shipway's lower-margin logistics aggregation model (~20% gross margin). Univare standalone gross margins remain structural at ~80%.</p>
+        <p><strong>Pricing Dynamics:</strong> Price escalation clauses were introduced in new client contracts from FY25 onwards. Legacy top-10 clients do not yet have this clause. Revenue growth in top-10 clients was only ~3.5% YoY, confirming growth is pure volume-driven, with pricing uplift to flow from FY27 as new-generation contracts mature.</p>
+        <p><strong>Client Concentration:</strong> Top-10 client revenue share fell from 19% in FY25 to 11.8-12% in Q4 FY26 — a healthy structural improvement. Revenue base is now genuinely diversified across 1,126 enterprise clients.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Margin & Earnings Forensics</div>
+      <div class="card-body">
+        <p><strong>Why PAT grew only 16% vs. 54% EBITDA:</strong> Non-cash amortisation of Shipway intangibles (₹39 Cr capitalised at acquisition, amortised over 8 years) adds ~₹5 Cr annually to the cost base. Adjusted PAT excluding amortisation grew 23.6% YoY (₹20.4 Cr to ₹25.3 Cr) — a materially more representative number.</p>
+        <p><strong>Share-Based Expenses:</strong> ESOP expense surged to ₹8.44 Cr in FY26 from ₹1.91 Cr in FY25 — a 4.4× increase. This reflects aggressive talent acquisition at senior and mid levels. While Adjusted EBITDA adds this back, the dilution impact on EPS merits monitoring.</p>
+        <p><strong>Tax Quality:</strong> Effective tax rate is broadly normal. No anomalous deferred tax movements. The FY26 deferred tax credit of ₹1 Cr is modest and consistent with prior periods.</p>
+        <p><strong>Other Income Dependency:</strong> Other income was ₹4.08 Cr (FY26) vs. ₹5.40 Cr (FY25) — largely interest on bank deposits. At ₹81.3 Cr cash, this will continue to provide a meaningful cushion to reported PBT. Not a red flag, but bears noting that PBT includes ~₹2-3 Cr of interest income annually.</p>
+        <p><strong>CFO/EBITDA Ratio:</strong> At 107%, operating cash flows exceeded EBITDA — a very positive earnings quality signal confirming the SaaS revenue model's upfront subscription collection characteristics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     STEP 3: GUIDANCE TRACKER
+─────────────────────────────────────────────── -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Guidance Tracker & Execution Scorecard</h2>
+    <span class="section-tag">Management Promise vs. Reality</span>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Historical Guidance / Claim</th>
+        <th>Timeline Given</th>
+        <th>Current Status</th>
+        <th>Verdict</th>
+        <th>Commentary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Delivery double-digit Univare growth from Q4 FY26 onwards</td>
+        <td>Q3 FY26 Concall (Feb 2026)</td>
+        <td>Univare Q4 FY26: +11.7% YoY</td>
+        <td><span class="badge badge-achieved">Achieved</span></td>
+        <td>Delivered precisely as guided. First double-digit Univare quarter in ~5 quarters. High credibility signal.</td>
+      </tr>
+      <tr>
+        <td>Rule of 40 compliance (Revenue growth % + Adj. EBITDA margin % ≥ 40)</td>
+        <td>Ongoing annual benchmark</td>
+        <td>FY26: 51.6% + 21.5% = 73.1% — well above threshold</td>
+        <td><span class="badge badge-exceeded">Exceeded</span></td>
+        <td>Met in every year since FY21. Reflects genuine discipline; however Shipway revenue growth flatters the growth component.</td>
+      </tr>
+      <tr>
+        <td>Shipway to become profitable within a few quarters of acquisition</td>
+        <td>Post-acquisition (July 2024)</td>
+        <td>Shipway achieved PAT positivity within 2 quarters; then management reinvested → Q4 FY26 EBITDA negative</td>
+        <td><span class="badge badge-partial">Partial</span></td>
+        <td>Initial profitability achieved as promised; deliberate investment pivot in Q4 is a change of direction, albeit communicated proactively.</td>
+      </tr>
+      <tr>
+        <td>Enterprise client addition acceleration (100–120/quarter)</td>
+        <td>Post-listing guidance</td>
+        <td>Q4 FY26: 149 additions; FY26 total: 465 — highest annual intake</td>
+        <td><span class="badge badge-exceeded">Exceeded</span></td>
+        <td>Consistently delivered and actually improving each quarter. The most credible KPI in the disclosure framework.</td>
+      </tr>
+      <tr>
+        <td>Top-10 client revenue concentration to continue declining</td>
+        <td>Ongoing (FY24: 27% → FY25: 19% → FY26: 12%)</td>
+        <td>Q4 FY26: 11.8% — on track</td>
+        <td><span class="badge badge-achieved">Achieved</span></td>
+        <td>Structural diversification is real and accelerating. Validates client base quality improvement.</td>
+      </tr>
+      <tr>
+        <td>International business to turn profitable</td>
+        <td>Prior guidance — aspirational</td>
+        <td>Profitable in FY26; growing faster than domestic; revenue share improved to 6-7%</td>
+        <td><span class="badge badge-achieved">Achieved</span></td>
+        <td>Ahead of implicit timeline. Positive surprise for an often-underappreciated segment.</td>
+      </tr>
+      <tr>
+        <td>Full-year FY27 profitability higher than FY26 despite investment ramp</td>
+        <td>Q4 FY26 Concall (Apr 2026)</td>
+        <td>Pending — H1 FY27 expected to be investment-heavy; H2 to rebound</td>
+        <td><span class="badge badge-pending">Pending</span></td>
+        <td>A specific, verifiable commitment. Management has earned benefit of doubt given Q4 delivery, but bears monitoring.</td>
+      </tr>
+      <tr>
+        <td>Transaction rate metric to remain representative of business health</td>
+        <td>Pre-FY26 implicit guidance</td>
+        <td>Management discontinued reporting transaction metrics in Q3 FY26</td>
+        <td><span class="badge badge-missed">Discontinued</span></td>
+        <td>Justified by genuine product mix diversification, but timing — during a period of Univare growth deceleration — is a minor credibility note. Management acknowledged this transparently.</td>
+      </tr>
+      <tr>
+        <td>Gross margin disclosure to remain stable and meaningful</td>
+        <td>Prior periods</td>
+        <td>Management indicated they may discontinue blended gross margin disclosure given Shipway mix distortion</td>
+        <td><span class="badge badge-partial">Under Review</span></td>
+        <td>Removing a metric during a period of compression is a yellow flag — even if the rationale is legitimate, investors should request standalone-level margin disclosures going forward.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card">
+    <div class="card-title">Execution Credibility Rating</div>
+    <div class="card-body">
+      <p>Management's execution track record is <span class="hl">Strong</span> with selective caveats. The Q4 Univare double-digit growth delivery against its own specific guidance is the clearest credibility marker. The team has been proactively transparent about the one large top-10 client churn (business model change) and communicated Q4 investment headwinds before the quarter closed. The metric discontinuation (transaction rate, potential gross margin) is a watchpoint — not a red flag — but investors should interpret any future metric changes cautiously, particularly if they coincide with deteriorating underlying indicators.</p>
+      <p>The single most important test for management credibility in FY27 will be whether full-year consolidated profitability actually exceeds FY26's ₹43.9 Cr Adjusted EBITDA. They have explicitly committed to this. Failure to deliver would materially reset the credibility baseline.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     STEP 4: HIDDEN FINANCIAL ARCHITECTURE
+─────────────────────────────────────────────── -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Hidden Financial Architecture</h2>
+    <span class="section-tag">Working Capital · Cash Flow · Balance Sheet</span>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Cash Flow Truth Analysis</div>
+      <div class="card-body">
+        <p><strong>EBITDA vs. CFO:</strong> FY26 EBITDA was ₹35.4 Cr against CFO of ₹47 Cr — the CFO exceeds EBITDA by ₹11.6 Cr. This is the inverse of a typical company with working capital or capex burn. The excess is driven by upfront SaaS subscription collections (customer advances/deferred revenue) and the asset-light nature of the model. This is genuinely high-quality earnings, not accounting manipulation.</p>
+        <p><strong>Maintenance vs. Growth Capex:</strong> Property, plant, and equipment additions were only ₹0.63 Cr in FY26 — negligibly small. Intangible additions of ₹1.5 Cr represent internal product development capitalisation. Total capex burden is approximately ₹2.1 Cr against ₹47 Cr CFO — a free cash flow yield of nearly 100% relative to EBITDA. This is the defining characteristic of an asset-light SaaS compounding machine.</p>
+        <p><strong>Share-Based Payment Adjustment:</strong> Adjusted EBITDA adds back ₹8.44 Cr of ESOP expense. This is a legitimate add-back for operational comparison but represents real economic dilution. Investors should mentally apply a 30-40% discount to this add-back when evaluating true economic earnings.</p>
+        <p><strong>Working Capital:</strong> Trade receivables fell from ₹13.64 Cr to ₹10.99 Cr YoY — a positive ₹2.38 Cr working capital release. No receivable inflation; collections are clean. Other liabilities and financial liabilities declined sharply from ₹104.77 Cr to ₹12.74 Cr — this dramatic fall reflects settlement of acquisition-related deferred consideration for Shipway, not an operational deterioration.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Balance Sheet Stress Map</div>
+      <div class="card-body">
+        <p><strong>Debt Status:</strong> Zero external financial debt. Borrowings went from ₹0.45 Cr (FY25) to nil (FY26). Lease liabilities total ₹9.47 Cr — modest, consistent with office space commitments. No hidden leverage anywhere on the balance sheet.</p>
+        <p><strong>Goodwill & Intangibles:</strong> Goodwill stands at ₹117.21 Cr (unchanged from FY25) — entirely from the Shipway acquisition. Intangible assets of ₹36.36 Cr represent the fair-valued customer relationships and technology from Shipway, being amortised over 8 years. Combined goodwill + intangibles represent 57% of total assets. This is the single largest balance sheet concentration risk — not a concern in isolation but critical to monitor in the event of Shipway underperforming.</p>
+        <p><strong>Cash Position Recovery:</strong> Cash and bank balances (including deposits and investments) recovered to ₹81.3 Cr from ₹35.3 Cr in FY25 — pre-Shipway acquisition levels. This was achieved through organic cash generation of ₹47 Cr in FY26 alone. An extraordinary testament to the cash-generative quality of the core business.</p>
+        <p><strong>Equity Jump:</strong> Total equity rose from ₹70.15 Cr to ₹192.97 Cr — a ₹122.8 Cr jump driven by the significant ESOP expense recognition in Other Equity. This looks disproportionate to ₹20.5 Cr PAT and deserves attention; the equity is being inflated by ESOP accounting, not retained earnings alone.</p>
+        <p><strong>Contingent Liabilities:</strong> No material contingent liabilities or promoter pledging disclosed. Off-balance-sheet risks appear minimal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     STEP 5: MANAGEMENT COMMENTARY DECODE
+─────────────────────────────────────────────── -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Management Commentary Decode</h2>
+    <span class="section-tag">Psychological Analysis · Language Patterns · Credibility</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tone & Confidence Assessment (Q4 FY26 Concall)</div>
+    <div class="card-body">
+      <p>CEO Kapil Makhija opened the Q4 concall with an unusually <strong>expansive narrative framing</strong> — a 5-year retrospective on eCommerce infrastructure evolution rather than a direct quarterly result walkthrough. This is a deliberate rhetorical choice: when results are mixed quarter-on-quarter (PAT grew only 1.6%), management leads with the structural story to anchor investors at the right altitude. It is not deceptive — the structural story is genuine — but it is a calibrated communication choice that sophisticated investors should recognise.</p>
+      <p><strong>Repeated Buzzwords:</strong> "AI-first" appears approximately 18 times across the two concall transcripts. "System of record" appears 7 times. "Operating system for eCommerce" and "Rule of 40" are repeated anchors. While the underlying substance exists, the density of AI-first language — particularly at a time when Shipway EBITDA dipped negative — suggests management is consciously building a narrative premium ahead of demonstrated AI revenue contribution.</p>
+      <p><strong>Avoided Questions:</strong> Management declined to give specific FY27 growth guidance, repeatedly deflecting to "double-digit" without specifying whether that means 11% or 25%. On Shipway's standalone EBITDA margin and profitability path, the CFO stated "we are not EBITDA positive in Shipway" without providing a timeline for return. The exact incremental investment quantum was not disclosed — management described investment buckets qualitatively rather than quantitatively.</p>
+      <p><strong>Metric Discontinuation Pattern:</strong> Two metrics were discontinued or flagged for discontinuation in the same year — transaction rate (Q3) and blended gross margin (Q3, flagged as "under review"). Both discontinuations happened during a period when those metrics were reflecting weaker underlying performance. While the rationale is largely legitimate, the pattern warrants attention.</p>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">What Management Emphasised</div>
+      <div class="card-body">
+        <p>The 5× revenue growth in 5 years narrative. Standalone Univare margin expansion to 37.5%. Record enterprise client acquisition of 450+ in FY26. Cash recovery to pre-Shipway levels. AI product launches (UniBot, ShipSense, Catalyst). The Rule of 40 achievement. The quality of new client logos (Himalaya, Lacoste, Allen, Rupa). International business profitability. Cross-sell traction (10%+ Shipway adoption from Univare base). FY27 full-year profitability commitment.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">What Management Sidestepped</div>
+      <div class="card-body">
+        <p>Absolute ARPA decline of ~11% in FY26 standalone Univare. Actual Shipway EBITDA margin or profitability trajectory. Specific FY27 revenue guidance. The exact magnitude of Q4 investment spend. Revenue contribution from individual new products (UniReco, UniCapture). Shipway's customer count or revenue breakdown. Cohort data for new module adoption. The war's impact on Middle East sales cycles (acknowledged only briefly).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Classification:</strong> Management style is best described as <em>Financially Disciplined + Visionary</em> — they genuinely run the business with capital discipline (debt-free, cash generative, no reckless dilution), while painting a credible long-term vision backed by structural tailwinds. The AI narrative is ahead of demonstrated monetisation but not hollow. The communication style leans promotional at times, particularly on metric framing, but does not cross into misleading territory. Credibility is above average for a small-cap Indian SaaS company.
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     STEP 6: SEGMENT ANALYSIS
+─────────────────────────────────────────────── -->
+<section class="section" id="s6">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Segment & Business Engine Analysis</h2>
+    <span class="section-tag">Univare · Shipway · ConvertWay · International</span>
+  </div>
+
+  <div class="three-col">
+    <div class="segment-card">
+      <div class="segment-name">Univare (OMS/WMS)</div>
+      <div class="segment-desc">Core Profit Engine · Operations SaaS</div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Q4 FY26 Growth</span>
+        <span class="segment-stat-value up">+11.7% YoY</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Standalone Adj. EBITDA Margin</span>
+        <span class="segment-stat-value up">37.5% (FY26)</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Gross Margin</span>
+        <span class="segment-stat-value">~80%</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Enterprise Clients</span>
+        <span class="segment-stat-value">1,126 (Q4 FY26)</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">B2B/QC Module Adoption</span>
+        <span class="segment-stat-value">40–45% of enterprise base</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Market Share (Dropship)</span>
+        <span class="segment-stat-value">25–30% of India volumes</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Structural Assessment</span>
+        <span class="segment-stat-value up">Mission-Critical Moat</span>
+      </div>
+    </div>
+
+    <div class="segment-card">
+      <div class="segment-name">Shipway (Logistics SaaS)</div>
+      <div class="segment-desc">Emerging Growth Engine · Courier Aggregation</div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Q4 FY26 Growth</span>
+        <span class="segment-stat-value up">+17.7% YoY</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Annualised ARR (Q4 FY26)</span>
+        <span class="segment-stat-value">₹83.9 Cr</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Gross Margin</span>
+        <span class="segment-stat-value">~20% (aggregation model)</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">EBITDA Status (Q4)</span>
+        <span class="segment-stat-value down">Negative (Deliberate Invest.)</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Cross-Sell (from Univare)</span>
+        <span class="segment-stat-value">10%+ of Univare base</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Market Position</span>
+        <span class="segment-stat-value">Challenger in large TAM</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Key Risk</span>
+        <span class="segment-stat-value down">Profitability timeline unclear</span>
+      </div>
+    </div>
+
+    <div class="segment-card">
+      <div class="segment-name">ConvertWay (MarTech)</div>
+      <div class="segment-desc">Emerging Platform · Pre-Purchase Automation</div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">ARR Trajectory</span>
+        <span class="segment-stat-value">Bundled within Shipway PLtd ARR</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Key AI Product</span>
+        <span class="segment-stat-value">Catalyst Voice Bot (live)</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Voice Bot Scale</span>
+        <span class="segment-stat-value">~1 lakh calls/month</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Channels Supported</span>
+        <span class="segment-stat-value">WhatsApp, RCS, SMS, Email, Voice</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Revenue Visibility</span>
+        <span class="segment-stat-value down">Limited disclosure; nascent</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Strategic Role</span>
+        <span class="segment-stat-value">Full-funnel eCommerce lock-in</span>
+      </div>
+      <div class="segment-stat">
+        <span class="segment-stat-label">Competitive Moat</span>
+        <span class="segment-stat-value">Early; building via integration</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">New Module Optionality (Within Univare)</div>
+    <div class="card-body">
+      <p><strong>UniReco (Payment Reconciliation):</strong> 5–6% enterprise client adoption within 9 months of launch. This trajectory closely mirrors the B2B/QC module adoption path (started in single digits, now 40-45%). If history repeats, UniReco could achieve 20-25% adoption within 2-3 years, creating a meaningful incremental revenue stream without acquisition cost.</p>
+      <p><strong>UniCapture (Video Proof for Returns):</strong> 1–2% adoption after just one quarter of launch. Marketplace mandates for video-based return proof are an external regulatory tailwind — management noted some marketplaces have already mandated this. Regulatory enforcement could accelerate adoption from pull to push.</p>
+      <p><strong>Data Analytics Product:</strong> In early-stage development. Management confirmed a separate analytics product line is being built leveraging 1+ billion annual transaction data. Revenue model undisclosed. This represents the most asymmetric long-term upside — potentially transforming Unicommerce from a SaaS operations tool into a commerce intelligence layer. Still highly speculative.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     STEP 7: INDUSTRY & COMPETITIVE POSITIONING
+─────────────────────────────────────────────── -->
+<section class="section" id="s7">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Industry & Competitive Positioning</h2>
+    <span class="section-tag">Market Structure · Tailwinds · Moat Durability</span>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Industry Structure & Cycle Position</div>
+      <div class="card-body">
+        <p><strong>Structural tailwind intact:</strong> India's eCommerce market remains significantly underpenetrated. Dropship as a model is growing from ~50% to an expected 65% of eCommerce volumes — a structural shift that directly benefits Univare's use case. The number of channels a brand manages has grown from 3-4 to 8-12 in five years, making fragmented tooling increasingly untenable. This complexity expansion is a durable tailwind for mission-critical middleware like Unicommerce.</p>
+        <p><strong>Market share dominance in core:</strong> Processing 25-30% of all India dropship volumes is effectively an oligopolistic position. No competitor operates at comparable scale. The ERP analogy is apt — once embedded as a system of record, switching costs are prohibitively high (100% of a brand's eCommerce dropship volumes flow through Univare; splitting is operationally impossible).</p>
+        <p><strong>Quick Commerce as secular shift:</strong> QC platforms (Blinkit, Instamart, Zepto, BigBasket) are driving brands to manage real-time inventory across a new complex channel. Univare's Q4 FY25 QC module reached 20 million order items; by Q3 FY26 this was 70 million+. This is a structurally new revenue stream enabled by industry evolution rather than Unicommerce-specific execution.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Competitive Moat Assessment</div>
+      <div class="card-body">
+        <p><strong>Integration depth as moat:</strong> 290+ integrations across marketplaces, logistics providers, ERPs, POS systems, and quick commerce platforms. Building and maintaining this integration stack requires consistent investment and deep ecosystem relationships — neither of which can be replicated quickly or cheaply. Marketplaces co-develop product roadmaps with Unicommerce rather than managing thousands of individual brand relationships directly.</p>
+        <p><strong>AI disruption risk:</strong> The "vibe-coding" risk — that AI enables brands to build their own OMS — is theoretically real but practically remote. The integration maintenance burden (keeping up with API changes across 290+ partners), data integrity requirements for mission-critical operations, and the institutional relationships cannot be AI-generated. Unicommerce's moat actually <em>strengthens</em> in an AI era because the data richness of a system of record becomes the raw material for AI decision-making.</p>
+        <p><strong>Competitor landscape:</strong> No credible at-scale competitor in the core OMS/WMS dropship space. Increff operates in the broader fulfilment management space but at different market positioning. Shipway operates in a more competitive logistics aggregation market (competing with Shiprocket, Pickrr) — Shipway's moat is less durable than Univare's.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     STEP 8: CAPITAL ALLOCATION
+─────────────────────────────────────────────── -->
+<section class="section" id="s8">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title">Capital Allocation Analysis</h2>
+    <span class="section-tag">ROCE · Capex · Acquisitions · ESOP</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Capital Allocation Quality Assessment</div>
+    <div class="card-body">
+      <p><strong>Shipway Acquisition (July 2024):</strong> Acquired at a consideration that depleted cash from ~₹90 Cr to ~₹23 Cr. The company has recovered to ₹81.3 Cr in just five quarters — a testament to strong organic cash generation. Shipway was acquired at a time when it was growing well (ARR moved from ₹71 Cr in Q4 FY25 to ₹83.9 Cr in Q4 FY26, a 18% improvement) and has delivered against stated growth objectives. Return on acquisition capital will take 3-4 years to fully evaluate, particularly given the deliberate investment ramp now underway.</p>
+      <p><strong>ROCE at 21.1%:</strong> Healthy for a SaaS business. Given the near-zero physical capex requirement, ROCE is primarily constrained by goodwill on the balance sheet from Shipway. Excluding goodwill and acquired intangibles, the core business ROCE would be significantly higher — likely above 40-50%. This distinction is important: the reported ROCE is acquisition-distorted, not operationally reflective.</p>
+      <p><strong>ESOP Dilution:</strong> FY26 ESOP expense of ₹8.44 Cr (vs. ₹1.91 Cr in FY25) and new ESOPs issued to incoming senior talent represents a meaningful dilution vector going forward. Management's preference for cash (not equity) in M&A is positive; however, talent acquisition dilution should be monitored quarterly. EPS dilution from ESOP issuance was modest (₹1.58 → ₹1.78 on an underlying basis) but stock count should be tracked.</p>
+      <p><strong>FY27 Investment Cycle:</strong> Management has committed to investing across four buckets — AI for R&D, sales and marketing expansion, mid-to-senior talent, and AI tooling — across both Univare and Shipway. This is growth investment, not maintenance cost, and history shows prior investment cycles (FY23-24 new module development) have delivered revenue returns. The credibility of this cycle rests on whether H2 FY27 sees the promised operating leverage recovery.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     STEP 9: RED FLAGS
+─────────────────────────────────────────────── -->
+<section class="section" id="s9">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2 class="section-title">Red Flags & Forensic Detection</h2>
+    <span class="section-tag">Risk Classification</span>
+  </div>
+
+  <ul class="flag-list card" style="padding: 24px 28px;">
+    <li class="flag-item">
+      <div class="flag-dot moderate"></div>
+      <div class="flag-content">
+        <div class="flag-title">Goodwill + Intangibles = 57% of Total Assets</div>
+        <div class="flag-desc">₹153.57 Cr of intangible-nature assets against ₹270.55 Cr total assets. Any Shipway underperformance or strategic misalignment could trigger impairment risk. Goodwill at ₹117.21 Cr is not being amortised — it sits on the balance sheet subject to annual impairment tests. Given Shipway is currently EBITDA-negative on deliberate investment, this warrants monitoring every quarter.</div>
+      </div>
+      <div class="flag-tag">Moderate</div>
+    </li>
+    <li class="flag-item">
+      <div class="flag-dot moderate"></div>
+      <div class="flag-content">
+        <div class="flag-title">ARPA Decline (~11% in FY26 Standalone Univare)</div>
+        <div class="flag-desc">Average Revenue Per Account fell in FY26 despite enterprise additions. Management attributes this to a mix effect from new client onboarding at minimum-guarantee levels. However, if market growth remains subdued and pricing power on existing contracts is weak (price escalation clauses not yet in legacy contracts), ARPA recovery may be slower than anticipated. This is the core bear case for Univare revenue trajectory.</div>
+      </div>
+      <div class="flag-tag">Moderate</div>
+    </li>
+    <li class="flag-item">
+      <div class="flag-dot minor"></div>
+      <div class="flag-content">
+        <div class="flag-title">Progressive Metric Discontinuation</div>
+        <div class="flag-desc">Two metrics discontinued within one year — transaction rate (Q3 FY26) and blended gross margin flagged for review (Q3 FY26). While the underlying rationale is defensible, the pattern of removing visibility precisely when those metrics are under pressure is a yellow flag. Investors should specifically request standalone Univare and Shipway revenue breakdowns going forward.</div>
+      </div>
+      <div class="flag-tag">Minor</div>
+    </li>
+    <li class="flag-item">
+      <div class="flag-dot minor"></div>
+      <div class="flag-content">
+        <div class="flag-title">ESOP Expense Surge (4.4× YoY)</div>
+        <div class="flag-desc">₹8.44 Cr ESOP expense in FY26 vs. ₹1.91 Cr in FY25. The Adjusted EBITDA measure adds this back, but the economic dilution to existing shareholders is real. As the company continues aggressive talent acquisition at senior levels for FY27, this expense line will grow further. The equity inflation from ESOP accounting (Other Equity jumped significantly) distorts book value.</div>
+      </div>
+      <div class="flag-tag">Minor</div>
+    </li>
+    <li class="flag-item">
+      <div class="flag-dot minor"></div>
+      <div class="flag-content">
+        <div class="flag-title">Shipway Profitability Timeline Absence</div>
+        <div class="flag-desc">Management did not provide any specific timeline for when Shipway will return to EBITDA positivity. Given that Shipway goodwill at ₹117.21 Cr requires ongoing business justification, a prolonged period of EBITDA negativity in Shipway would eventually trigger impairment discussions. The investment horizon language — "next few quarters" — has been used multiple times without a firm endpoint.</div>
+      </div>
+      <div class="flag-tag">Minor</div>
+    </li>
+    <li class="flag-item">
+      <div class="flag-dot positive"></div>
+      <div class="flag-content">
+        <div class="flag-title">No Auditor Concerns, No Promoter Pledging, No Related Party Issues</div>
+        <div class="flag-desc">The balance sheet is clean. No promoter pledging detected, no significant related party transactions disclosed, no auditor qualifications in any recent filings. The company is debt-free with strong cash generation. These are critical absence-of-risk signals that are often underappreciated in small-cap screening.</div>
+      </div>
+      <div class="flag-tag">Positive</div>
+    </li>
+  </ul>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     STEP 10: POSITIVE INFLECTION DETECTION
+─────────────────────────────────────────────── -->
+<section class="section" id="s10">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2 class="section-title">Positive Inflection Detection</h2>
+    <span class="section-tag">Leading Indicators · Before Numbers Fully Reflect Them</span>
+  </div>
+
+  <ul class="flag-list card" style="padding: 24px 28px;">
+    <li class="flag-item">
+      <div class="flag-dot positive"></div>
+      <div class="flag-content">
+        <div class="flag-title">Standalone Margin Expansion — The Most Underappreciated Signal</div>
+        <div class="flag-desc">Univare standalone Adjusted EBITDA margin expanded from 25.0% to 37.5% in FY26 — a 1,250 bps improvement. This reflects the true operating leverage of a high-gross-margin SaaS model as it scales. As Shipway reaches scale and margins improve, the consolidated margin will structurally re-rate toward the Univare standalone level over a 3-5 year horizon. The blended consolidated figure of 21.5% significantly understates the long-term margin potential of the business.</div>
+      </div>
+      <div class="flag-tag">Inflection</div>
+    </li>
+    <li class="flag-item">
+      <div class="flag-dot positive"></div>
+      <div class="flag-content">
+        <div class="flag-title">FY26 Client Cohort → FY27 Revenue Harvest</div>
+        <div class="flag-desc">450+ enterprise clients onboarded in FY26 at minimum-guarantee pricing. SaaS client maturation takes 12-18 months. As these clients grow their eCommerce operations, transaction overages and cross-sell adoption will begin contributing meaningfully from Q1 FY27 onwards. The revenue lag between client onboarding and full revenue realisation means FY27 is structurally positioned to benefit from FY26 seeding without proportional cost scaling.</div>
+      </div>
+      <div class="flag-tag">Inflection</div>
+    </li>
+    <li class="flag-item">
+      <div class="flag-dot positive"></div>
+      <div class="flag-content">
+        <div class="flag-title">Price Escalation Clauses Now Being Extended to Legacy Contracts</div>
+        <div class="flag-desc">Price escalation was introduced in new contracts from FY25. In the Q4 concall, management confirmed they will now extend this to existing contracts. This is a significant pricing power lever that has not yet impacted the revenue base. If legacy contracts are renegotiated with even modest 5-10% annual escalations, the NRR improvement over FY27-28 will be material without any incremental sales cost.</div>
+      </div>
+      <div class="flag-tag">Inflection</div>
+    </li>
+    <li class="flag-item">
+      <div class="flag-dot positive"></div>
+      <div class="flag-content">
+        <div class="flag-title">Regulatory Tailwind for UniCapture Adoption</div>
+        <div class="flag-desc">Marketplace mandates for video-based proof in return claims are moving from voluntary to mandatory. With some major marketplaces already requiring it and others considering the mandate, UniCapture adoption could shift from a pull (brand-driven) to a push (marketplace-mandated) model. The only comparable precedent — the B2B/QC module — went from negligible to 40-45% penetration in 2-3 years under similar demand conditions.</div>
+      </div>
+      <div class="flag-tag">Inflection</div>
+    </li>
+    <li class="flag-item">
+      <div class="flag-dot positive"></div>
+      <div class="flag-content">
+        <div class="flag-title">International Business — Profitable and Outpacing Domestic</div>
+        <div class="flag-desc">International turned profitable in FY26 and grew faster than domestic — from 4-5% to 6-7% of revenue. With 7 active geographies in Middle East and Southeast Asia, and a Naqel Express partnership in Saudi Arabia, this segment is quietly compounding at rates that will make it a meaningful contributor within 2-3 years. The unit economics at international level appear superior (lower competition, less price sensitivity).</div>
+      </div>
+      <div class="flag-tag">Inflection</div>
+    </li>
+  </ul>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     STEP 11: VALUATION COMFORT
+─────────────────────────────────────────────── -->
+<section class="section" id="s11">
+  <div class="section-header">
+    <span class="section-num">11</span>
+    <h2 class="section-title">Valuation Comfort vs. Earnings Quality</h2>
+    <span class="section-tag">Multiples · Earnings Quality · Market Expectations</span>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-cell">
+      <div class="kpi-label">Market Cap</div>
+      <div class="kpi-value">₹963 Cr</div>
+      <div class="kpi-delta neutral">At ₹85.7/share</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">P/E (Reported)</div>
+      <div class="kpi-value">47.1×</div>
+      <div class="kpi-delta neutral">On PAT of ₹20.5 Cr</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">P/E (Adj. for Amort.)</div>
+      <div class="kpi-value">38.1×</div>
+      <div class="kpi-delta up">On PAT ex-Shipway amort: ₹25.3 Cr</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">EV/Adj. EBITDA</div>
+      <div class="kpi-value">~21×</div>
+      <div class="kpi-delta neutral">EV ≈ ₹963 Cr – ₹81 Cr cash = ₹882 Cr</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">EV/Revenue</div>
+      <div class="kpi-value">4.3×</div>
+      <div class="kpi-delta neutral">On FY26 Revenue of ₹204 Cr</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">FCF Yield</div>
+      <div class="kpi-value">~4.9%</div>
+      <div class="kpi-delta up">CFO ₹47 Cr / Mkt Cap ₹963 Cr</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">P/CFO</div>
+      <div class="kpi-value">20.5×</div>
+      <div class="kpi-delta up">Most honest cash-based multiple</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">Price/ARR</div>
+      <div class="kpi-value">4.7×</div>
+      <div class="kpi-delta neutral">On ARR of ₹206.5 Cr</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Is the Valuation Justified by Earnings Quality?</div>
+      <div class="card-body">
+        <p>The 47× reported P/E looks demanding at first pass. However, the <strong>economic P/E of 38×</strong> (adjusted for non-cash Shipway amortisation) and especially the <strong>P/CFO of ~20×</strong> — which strips out all non-cash noise and accounting adjustments — paints a substantially more reasonable picture for a high-quality SaaS business in a structural growth market.</p>
+        <p>The EV/EBITDA of ~21× on FY26 earnings is not cheap, but <span class="hl">it is not expensive</span> when placed in the context of: (a) mission-critical, hard-to-displace SaaS with 25-30% market share in its core; (b) ~80% gross margins on the dominant segment; (c) a balance sheet with ₹81 Cr cash and zero debt; (d) a clear operating leverage path as Univare standalone margins demonstrate 37.5%; and (e) an addressable market that remains vastly underpenetrated.</p>
+        <p>The stock is down approximately 45% from its 52-week high of ₹156 — this compresses the valuation to a level where the <strong>margin of safety is becoming meaningful</strong>, particularly for a buyer with a 3-year horizon who can absorb H1 FY27 investment headwinds.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">What Growth is Priced In?</div>
+      <div class="card-body">
+        <p>At 47× P/E and 21× EV/EBITDA, the market is implicitly pricing approximately 20-25% CAGR in Adjusted EBITDA over 3-4 years to normalise multiples to 12-15×. Given Univare's demonstrated operating leverage (profits historically grow faster than revenue) and the pending Shipway margin recovery cycle, this is an achievable but not trivial expectation.</p>
+        <p><strong>If management delivers:</strong> FY27 full-year Adjusted EBITDA of ₹48-52 Cr (10-18% growth, despite H1 investment headwinds), followed by a sharper recovery in H2 FY27, the current valuation looks reasonable to attractive. The key unlock would be Shipway returning to EBITDA positive and contributing meaningfully to consolidated margins.</p>
+        <p><strong>If management disappoints:</strong> A failure to deliver the promised FY27 full-year profitability improvement would signal that Shipway's investment cycle is deeper than disclosed, potentially triggering a further de-rating toward 15-18× EV/EBITDA, implying 20-30% downside from current levels.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout green">
+    <strong>Valuation Verdict:</strong> <em>Reasonable — Not Cheap, Not Expensive for the Quality.</em> Unicommerce is a high-quality business at a fair-to-modestly-attractive valuation after the 45% correction from highs. The P/CFO of ~20× is the most credible valuation anchor for a SaaS company with genuine operating cash flow. This is not a cigar-butt or a speculative bet — it is a quality compounder that requires a 2-3 year investment horizon and tolerance for near-term H1 FY27 earnings pressure. For long-term investors, current prices represent an accumulation opportunity rather than a momentum trade.
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     STEP 12: FUTURE TRAJECTORY
+─────────────────────────────────────────────── -->
+<section class="section" id="s12">
+  <div class="section-header">
+    <span class="section-num">12</span>
+    <h2 class="section-title">Future Trajectory Modelling</h2>
+    <span class="section-tag">Bull · Base · Bear · FY27-FY28</span>
+  </div>
+
+  <div class="scenario-grid">
+    <div class="scenario-cell">
+      <div class="scenario-label bull">● Bull Case</div>
+      <div class="scenario-title">AI-Led Monetisation + Shipway Recovery</div>
+      <div class="scenario-body">
+        Univare sustains 15-18% YoY growth through price escalation rollout, new module adoption (UniReco reaching 15-20%), and QC volume compounding. Shipway returns to EBITDA positive by Q3 FY27 and exits FY27 at 20%+ adjusted margins. AI products begin contributing incremental revenue streams (UniBot, ShipSense premium tiers). Consolidated Adjusted EBITDA reaches ₹65-70 Cr in FY27 on ₹240-250 Cr revenue. FY28 EV/EBITDA compresses to 12-14×. Stock re-rates toward ₹130-150.
+      </div>
+    </div>
+    <div class="scenario-cell">
+      <div class="scenario-label base">● Base Case</div>
+      <div class="scenario-title">Steady Compounding, Measured Recovery</div>
+      <div class="scenario-body">
+        Univare delivers 12-14% growth driven by client cohort maturation and moderate new module adoption. Shipway continues to grow at 18-20% but remains EBITDA-negative for H1 FY27, recovering in H2. Consolidated FY27 Adjusted EBITDA reaches ₹50-55 Cr (15-25% growth) on ₹230-240 Cr revenue. Management delivers on FY27 full-year profitability commitment. Price escalation on legacy contracts begins contributing from H2 FY27. Stock gradually re-rates to ₹100-115 range over 18 months as execution consistency is demonstrated.
+      </div>
+    </div>
+    <div class="scenario-cell">
+      <div class="scenario-label bear">● Bear Case</div>
+      <div class="scenario-title">Shipway Investment Overhang + eCommerce Softness</div>
+      <div class="scenario-body">
+        Shipway investment cycle extends beyond H1 FY27, with EBITDA negativity persisting through FY27. Indian eCommerce demand environment remains soft, pressuring Univare ARPA recovery. New module adoption (UniReco, UniCapture) disappoints. FY27 Adjusted EBITDA of ₹40-44 Cr fails to exceed FY26, breaking the management's explicit commitment. NRR deteriorates below 100% if existing client volumes stagnate. Stock de-rates to 15-16× EV/EBITDA, implying ₹60-70 range. Goodwill impairment risk on Shipway begins to emerge as a concern.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Key Monitoring Variables — Quarterly Checklist</div>
+    <ul class="checklist">
+      <li class="checklist-item"><span class="checklist-icon">→</span> Univare YoY revenue growth rate (target: sustaining 12%+ in each of the next 3 quarters)</li>
+      <li class="checklist-item"><span class="checklist-icon">→</span> Shipway EBITDA trajectory and timeline to breakeven (the single most critical FY27 variable)</li>
+      <li class="checklist-item"><span class="checklist-icon">→</span> Net Revenue Retention (NRR) disclosed annually — watch for any disclosure below 100%</li>
+      <li class="checklist-item"><span class="checklist-icon">→</span> Enterprise client additions per quarter — 110-150 per quarter is the reference range; below 100 is a concern</li>
+      <li class="checklist-item"><span class="checklist-icon">→</span> UniReco adoption percentage — should cross 10% within 2-3 quarters if on the B2B/QC trajectory</li>
+      <li class="checklist-item"><span class="checklist-icon">→</span> Q4 FY26 Adj. EBITDA vs. Q1/Q2 FY27 trend — to verify investment cycle is H1-concentrated as guided</li>
+      <li class="checklist-item"><span class="checklist-icon">→</span> Any metric discontinuation or reporting format change — red flag if timed with deteriorating metrics</li>
+      <li class="checklist-item"><span class="checklist-icon">→</span> Merger progress (Unicommerce + Shipway Technology) — timeline and accounting implications</li>
+      <li class="checklist-item"><span class="checklist-icon">→</span> ESOP expense quantum — watch for any surge beyond ₹10-12 Cr in FY27 (dilution alarm)</li>
+      <li class="checklist-item"><span class="checklist-icon">→</span> M&A announcements — assess against stated criteria (profitable/path-to-profit, AI-relevant, reasonable valuation)</li>
+      <li class="checklist-item"><span class="checklist-icon">→</span> Cash balance trajectory — should remain above ₹60 Cr absent an acquisition</li>
+      <li class="checklist-item"><span class="checklist-icon">→</span> Goodwill impairment test disclosures (annual) — Shipway performance versus acquisition assumptions</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     STEP 13: FINAL VERDICT
+─────────────────────────────────────────────── -->
+<section class="section" id="s13">
+  <div class="section-header">
+    <span class="section-num">13</span>
+    <h2 class="section-title">Final Investment Verdict</h2>
+    <span class="section-tag">Institutional Summary</span>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Key Positives</div>
+      <div class="card-body">
+        <p>• <strong>Mission-critical moat</strong> with 25-30% of India's dropship volumes locked in — zero credible full-scale competitor. Switching cost effectively prohibitive.</p>
+        <p>• <strong>Standalone margin proof</strong>: Univare Adjusted EBITDA at 37.5% demonstrates the full operating leverage potential once Shipway matures.</p>
+        <p>• <strong>Cash machine</strong>: CFO/EBITDA >100%, debt-free, ₹81.3 Cr cash — rebuilt to pre-acquisition levels in 5 quarters. Extraordinary capital efficiency.</p>
+        <p>• <strong>Record enterprise acquisition</strong>: 450+ in FY26, 149 in Q4 alone — a leading indicator for revenue acceleration over the next 4-6 quarters.</p>
+        <p>• <strong>Structural tailwinds</strong>: Indian eCommerce underpenetrated, dropship share rising, QC channel creating a new revenue module, AI as a moat-deepener rather than disruptor.</p>
+        <p>• <strong>International inflection</strong>: Turned profitable, growing faster than domestic, 7 geographies with deepening presence.</p>
+        <p>• <strong>Price escalation rollout</strong> to legacy contracts — a dormant pricing lever now being activated.</p>
+        <p>• <strong>Valuation reset</strong>: 45% off highs creates meaningful margin of safety for quality investors.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Key Negatives</div>
+      <div class="card-body">
+        <p>• <strong>Univare organic growth deceleration</strong>: Full-year FY26 standalone growth of only 5.5% — though Q4 recovery to 11.7% is encouraging, the trend requires confirmation over 2-3 more quarters.</p>
+        <p>• <strong>Shipway EBITDA negative</strong>: A deliberate choice, but with no clear timeline for breakeven — creates ongoing earnings quality uncertainty and goodwill impairment overhang.</p>
+        <p>• <strong>ARPA declining</strong>: New client pricing at minimum-guarantee floors compresses near-term ARPA. Recovery dependent on client cohort maturation and pricing leverage — both of which have 12-24 month lag.</p>
+        <p>• <strong>Metric discontinuation pattern</strong>: Removing visibility into transaction rates and blended gross margins, even if justified, creates analytical friction and slight credibility concerns.</p>
+        <p>• <strong>ESOP dilution accelerating</strong>: ₹8.44 Cr in FY26 and likely to grow further in FY27 with senior talent additions. Economic dilution understated by Adjusted EBITDA framing.</p>
+        <p>• <strong>AI monetisation unproven</strong>: AI is live in products but revenue contribution from AI-specific features is not disclosed. The narrative premium is running ahead of demonstrated incremental revenue.</p>
+        <p>• <strong>Goodwill concentration</strong>: 43% of assets in goodwill creates binary risk if Shipway materially underperforms acquisition assumptions.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="verdict-box">
+    <div class="verdict-rating">Investment Verdict · May 2026</div>
+    <div class="verdict-call">ACCUMULATE</div>
+    <div class="verdict-body">
+      Unicommerce is <strong>a genuinely high-quality SaaS business at a fair-to-attractive valuation</strong> after a 45% correction from its 52-week high. It is emphatically not a mediocre business at a premium — the core Univare platform commands a 37.5% standalone adjusted EBITDA margin, processes 25-30% of India's dropship eCommerce volumes as a mission-critical system of record, generates cash flows exceeding EBITDA, and operates in a structurally underpenetrated market with multiple expansion levers ahead.
+      <br><br>
+      The near-term investment thesis is centred on three convergences: <strong>(1)</strong> the FY26 client cohort beginning to harvest its revenue contribution in FY27, driving Univare back toward 15%+ organic growth; <strong>(2)</strong> Shipway returning to EBITDA positive in H2 FY27 as the investment cycle peaks, releasing consolidated margin upside; and <strong>(3)</strong> price escalation reaching legacy contracts, creating a pricing tailwind with no incremental cost. The risk is a prolonged Shipway investment cycle or a sharper-than-expected Indian eCommerce demand slowdown.
+      <br><br>
+      This is a <strong>quality compounder at a reset price</strong>, suitable for patient investors with a 2-3 year horizon. It is not a trading position — H1 FY27 earnings will likely be uninspiring as investments front-load. The H2 FY27 and FY28 earnings picture is where the thesis plays out. Accumulate at current levels with a 20-25% position sizing cap given the Shipway-related binary risks. Revisit aggressively if the stock trades below ₹75 (below 18× EV/EBITDA on FY26 base).
+    </div>
+    <div class="verdict-tags">
+      <span class="verdict-tag">Quality Compounder</span>
+      <span class="verdict-tag">2-3 Year Horizon</span>
+      <span class="verdict-tag">Accumulate on Weakness</span>
+      <span class="verdict-tag">Execution Risk: Moderate</span>
+      <span class="verdict-tag">Mgmt: Financially Disciplined</span>
+      <span class="verdict-tag">Moat: High (Univare)</span>
+      <span class="verdict-tag">Valuation: Reasonable</span>
+    </div>
+  </div>
+</section>
+
+</div><!-- /main -->
+
+<!-- FOOTER -->
+<footer class="report-footer">
+  <div class="footer-brand">
+    Unicommerce eSolutions — Institutional Analysis<br>
+    <span style="font-family: var(--mono); font-size: 10px; color: var(--text-dim);">
+      Sources: FY26 Investor Presentation · Q3 FY26 Concall Transcript · Q4 FY26 Concall Transcript · Exchange Filings
+    </span>
+  </div>
+  <div class="footer-disclaimer">
+    This analysis is for informational purposes only and does not constitute investment advice. All financial data sourced from company disclosures. Past performance is not indicative of future results. The author may or may not hold positions in the securities discussed. Independent verification recommended before any investment decision.
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IndiaMART — Institutional Equity Analysis | FY2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0f14;
+    --bg2: #111520;
+    --bg3: #161b26;
+    --border: #1e2535;
+    --border2: #252d40;
+    --gold: #c9a227;
+    --gold2: #e8c04a;
+    --gold-dim: rgba(201,162,39,0.12);
+    --red: #e05252;
+    --green: #4caf82;
+    --blue: #4a8fe8;
+    --amber: #e8924a;
+    --text: #d8dde8;
+    --text-dim: #7a8299;
+    --text-bright: #f0f4ff;
+    --accent: #2a3a5a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HEADER */
+  .report-header {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 64px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .report-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold2), var(--gold));
+  }
+  .report-header::after {
+    content: 'INDIAMART';
+    position: absolute;
+    right: 64px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 96px;
+    font-weight: 700;
+    color: rgba(201,162,39,0.04);
+    letter-spacing: 8px;
+    pointer-events: none;
+  }
+  .header-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .badge-gold { background: var(--gold-dim); border: 1px solid rgba(201,162,39,0.3); color: var(--gold); }
+  .badge-blue { background: rgba(74,143,232,0.1); border: 1px solid rgba(74,143,232,0.3); color: var(--blue); }
+  .badge-red { background: rgba(224,82,82,0.1); border: 1px solid rgba(224,82,82,0.3); color: var(--red); }
+  .badge-green { background: rgba(76,175,130,0.1); border: 1px solid rgba(76,175,130,0.3); color: var(--green); }
+  .badge-amber { background: rgba(232,146,74,0.1); border: 1px solid rgba(232,146,74,0.3); color: var(--amber); }
+
+  .report-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-bright);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .report-subtitle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .header-stats {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .hstat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hstat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .hstat-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    color: var(--text-bright);
+    font-weight: 500;
+  }
+  .hstat-value.gold { color: var(--gold2); }
+  .hstat-value.red { color: var(--red); }
+  .hstat-value.green { color: var(--green); }
+
+  /* LAYOUT */
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 64px; }
+  .section {
+    padding: 48px 64px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-bright);
+  }
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* SCORE CARDS */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .score-card {
+    background: var(--bg2);
+    padding: 24px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .score-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .score-card.s8::after { background: var(--green); }
+  .score-card.s7::after { background: var(--gold); }
+  .score-card.s6::after { background: var(--amber); }
+  .score-card.s5::after { background: var(--red); }
+  .score-card.s9::after { background: var(--green); }
+
+  .score-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .score-card.s9 .score-num { color: var(--green); }
+  .score-card.s8 .score-num { color: var(--green); }
+  .score-card.s7 .score-num { color: var(--gold2); }
+  .score-card.s6 .score-num { color: var(--amber); }
+  .score-card.s5 .score-num { color: var(--red); }
+  .score-denom {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .score-label {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+    line-height: 1.3;
+  }
+
+  /* VERDICT BOX */
+  .verdict-box {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--amber);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .verdict-box.green-accent { border-left-color: var(--green); }
+  .verdict-box.red-accent { border-left-color: var(--red); }
+  .verdict-box.gold-accent { border-left-color: var(--gold); }
+  .verdict-box.blue-accent { border-left-color: var(--blue); }
+
+  /* DATA TABLES */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+  .data-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border2);
+    text-align: left;
+    background: var(--bg3);
+    font-weight: 500;
+  }
+  .data-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: rgba(255,255,255,0.015); }
+  .data-table .num { font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+  .data-table .achieved { color: var(--green); }
+  .data-table .delayed { color: var(--amber); }
+  .data-table .missed { color: var(--red); }
+  .data-table .tracking { color: var(--blue); }
+  .data-table .dim { color: var(--text-dim); font-size: 12px; }
+
+  /* METRICS GRID */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .metric-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 20px;
+    position: relative;
+  }
+  .metric-card:hover { border-color: var(--border2); }
+  .metric-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .metric-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text-bright);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .metric-delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+  }
+  .delta-up { color: var(--green); }
+  .delta-down { color: var(--red); }
+  .delta-flat { color: var(--text-dim); }
+  .metric-sub { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+
+  /* TWO COLUMN */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+
+  /* INSIGHT BLOCKS */
+  .insight-block {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 20px;
+  }
+  .insight-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .insight-block p { font-size: 13px; line-height: 1.75; color: var(--text); }
+  .insight-block p + p { margin-top: 10px; }
+
+  /* RED FLAGS / POSITIVES */
+  .flag-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .flag-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .flag-icon {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+  .icon-sev { background: rgba(224,82,82,0.15); color: var(--red); border: 1px solid rgba(224,82,82,0.3); }
+  .icon-mod { background: rgba(232,146,74,0.15); color: var(--amber); border: 1px solid rgba(232,146,74,0.3); }
+  .icon-min { background: rgba(74,143,232,0.1); color: var(--blue); border: 1px solid rgba(74,143,232,0.3); }
+  .icon-pos { background: rgba(76,175,130,0.1); color: var(--green); border: 1px solid rgba(76,175,130,0.3); }
+  .icon-watch { background: rgba(201,162,39,0.1); color: var(--gold); border: 1px solid rgba(201,162,39,0.3); }
+
+  /* SCENARIO BOXES */
+  .scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .scenario-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 24px;
+  }
+  .scenario-card.bull { border-top: 2px solid var(--green); }
+  .scenario-card.base { border-top: 2px solid var(--gold); }
+  .scenario-card.bear { border-top: 2px solid var(--red); }
+  .scenario-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .scenario-card.bull .scenario-title { color: var(--green); }
+  .scenario-card.base .scenario-title { color: var(--gold); }
+  .scenario-card.bear .scenario-title { color: var(--red); }
+  .scenario-prob {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .scenario-card.bull .scenario-prob { color: var(--green); }
+  .scenario-card.base .scenario-prob { color: var(--gold2); }
+  .scenario-card.bear .scenario-prob { color: var(--red); }
+  .scenario-card ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .scenario-card ul li { font-size: 12px; color: var(--text-dim); padding-left: 12px; position: relative; line-height: 1.5; }
+  .scenario-card ul li::before { content: '—'; position: absolute; left: 0; color: var(--border2); }
+
+  /* FINAL VERDICT */
+  .verdict-final {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    padding: 40px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .verdict-final::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  }
+  .verdict-rating {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    display: inline-block;
+    text-transform: uppercase;
+  }
+  .verdict-sub { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; }
+  .verdict-rationale { max-width: 680px; margin: 0 auto; font-size: 14px; color: var(--text); line-height: 1.8; }
+
+  /* TYPOGRAPHY */
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 12px;
+  }
+  p { font-size: 13.5px; line-height: 1.8; color: var(--text); margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--text-bright); font-weight: 600; }
+  em { color: var(--gold2); font-style: normal; }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+  /* MINI CHART (CSS bar) */
+  .bar-chart { display: flex; flex-direction: column; gap: 8px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; font-size: 12px; }
+  .bar-label { width: 120px; color: var(--text-dim); font-family: 'IBM Plex Mono', monospace; font-size: 10px; text-align: right; }
+  .bar-track { flex: 1; height: 6px; background: var(--border); border-radius: 1px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 1px; transition: width 1s ease; }
+  .bar-val { width: 60px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-bright); }
+
+  /* QUOTE CALLOUT */
+  .mgmt-quote {
+    border-left: 2px solid var(--border2);
+    padding: 12px 20px;
+    margin: 16px 0;
+    background: var(--bg3);
+  }
+  .mgmt-quote p { font-size: 12.5px; color: var(--text-dim); font-style: italic; margin-bottom: 4px; }
+  .mgmt-quote .attribution { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; font-style: normal; }
+
+  /* INLINE TAG */
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 2px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+  .tag-warn { background: rgba(232,146,74,0.12); color: var(--amber); border: 1px solid rgba(232,146,74,0.25); }
+  .tag-ok { background: rgba(76,175,130,0.1); color: var(--green); border: 1px solid rgba(76,175,130,0.2); }
+  .tag-watch { background: rgba(201,162,39,0.1); color: var(--gold); border: 1px solid rgba(201,162,39,0.2); }
+
+  /* MONITORING TABLE */
+  .monitor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .monitor-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+  }
+  .monitor-card .metric-label { margin-bottom: 6px; }
+  .monitor-card p { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+
+  /* PROGRESS BARS */
+  .churn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 20px; }
+  .churn-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 20px;
+  }
+  .churn-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px; }
+  .churn-rate { font-family: 'IBM Plex Mono', monospace; font-size: 24px; color: var(--text-bright); margin-bottom: 4px; }
+  .churn-context { font-size: 11px; color: var(--text-dim); }
+
+  /* FOOTER */
+  .report-footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 24px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .report-footer .left { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 1px; }
+  .report-footer .right { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-dim); }
+
+  /* ANIMATIONS */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .section { animation: fadeIn 0.6s ease both; }
+  .section:nth-child(2) { animation-delay: 0.05s; }
+  .section:nth-child(3) { animation-delay: 0.1s; }
+  .section:nth-child(4) { animation-delay: 0.15s; }
+  .section:nth-child(5) { animation-delay: 0.2s; }
+
+  /* TOC */
+  .toc { display: flex; gap: 0; flex-wrap: wrap; background: var(--bg3); border-bottom: 1px solid var(--border); }
+  .toc-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 10px 16px;
+    border-right: 1px solid var(--border);
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .toc-item:hover { color: var(--gold); }
+
+  .highlight { background: rgba(201,162,39,0.08); border: 1px solid rgba(201,162,39,0.15); padding: 16px 20px; margin-bottom: 20px; }
+  .highlight p { font-size: 13px; margin: 0; }
+
+  @media (max-width: 1024px) {
+    .score-grid { grid-template-columns: repeat(3,1fr); }
+    .metrics-grid { grid-template-columns: repeat(2,1fr); }
+    .two-col, .three-col, .scenario-grid, .churn-grid, .monitor-grid { grid-template-columns: 1fr; }
+    .section, .report-header, .report-footer { padding-left: 24px; padding-right: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="report-header">
+  <div class="header-meta">
+    <span class="badge badge-gold">NSE: INDIAMART</span>
+    <span class="badge badge-blue">B2B MARKETPLACE</span>
+    <span class="badge badge-red">WATCHLIST</span>
+    <span class="badge badge-blue">FY2026 FULL YEAR</span>
+  </div>
+  <div class="report-title">IndiaMART InterMESH Limited</div>
+  <div class="report-subtitle">Institutional Equity Analysis · Q3 & Q4 FY2026 Earnings Deep Dive · Concall Transcripts</div>
+  <div class="header-stats">
+    <div class="hstat"><span class="hstat-label">Market Cap</span><span class="hstat-value">₹11,644 Cr</span></div>
+    <div class="hstat"><span class="hstat-label">Current Price</span><span class="hstat-value">₹1,936</span></div>
+    <div class="hstat"><span class="hstat-label">52W High / Low</span><span class="hstat-value">₹2,799 / ₹1,912</span></div>
+    <div class="hstat"><span class="hstat-label">P/E</span><span class="hstat-value gold">24.6×</span></div>
+    <div class="hstat"><span class="hstat-label">FY26 Revenue</span><span class="hstat-value">₹1,569 Cr</span></div>
+    <div class="hstat"><span class="hstat-label">EBITDA Margin</span><span class="hstat-value green">34%</span></div>
+    <div class="hstat"><span class="hstat-label">ROCE</span><span class="hstat-value gold">28.0%</span></div>
+    <div class="hstat"><span class="hstat-label">Treasury</span><span class="hstat-value gold">₹3,280 Cr</span></div>
+    <div class="hstat"><span class="hstat-label">Dividend Yield</span><span class="hstat-value">1.54%</span></div>
+    <div class="hstat"><span class="hstat-label">Analysis Date</span><span class="hstat-value">May 2026</span></div>
+  </div>
+</div>
+
+<!-- TOC -->
+<nav class="toc">
+  <a class="toc-item" href="#s1">01 Executive</a>
+  <a class="toc-item" href="#s2">02 Earnings Quality</a>
+  <a class="toc-item" href="#s3">03 Guidance Tracker</a>
+  <a class="toc-item" href="#s4">04 Financial Architecture</a>
+  <a class="toc-item" href="#s5">05 Mgmt Decode</a>
+  <a class="toc-item" href="#s6">06 Segments</a>
+  <a class="toc-item" href="#s7">07 Industry Position</a>
+  <a class="toc-item" href="#s8">08 Capital Allocation</a>
+  <a class="toc-item" href="#s9">09 Red Flags</a>
+  <a class="toc-item" href="#s10">10 Inflection Signals</a>
+  <a class="toc-item" href="#s11">11 Valuation</a>
+  <a class="toc-item" href="#s12">12 Trajectory</a>
+  <a class="toc-item" href="#s13">13 Verdict</a>
+</nav>
+
+
+<!-- ═══════════════════════════════ STEP 1: EXECUTIVE SNAPSHOT ═══════════════════════════════ -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <span class="section-title">Executive Snapshot</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <!-- SCORES -->
+  <div class="score-grid">
+    <div class="score-card s6">
+      <div class="score-num">6<span style="font-size:18px">.0</span></div>
+      <div class="score-denom">/ 10</div>
+      <div class="score-label">Overall Business Health</div>
+    </div>
+    <div class="score-card s6">
+      <div class="score-num">6<span style="font-size:18px">.5</span></div>
+      <div class="score-denom">/ 10</div>
+      <div class="score-label">Earnings Quality</div>
+    </div>
+    <div class="score-card s9">
+      <div class="score-num">9<span style="font-size:18px">.0</span></div>
+      <div class="score-denom">/ 10</div>
+      <div class="score-label">Balance Sheet Strength</div>
+    </div>
+    <div class="score-card s7">
+      <div class="score-num">6<span style="font-size:18px">.5</span></div>
+      <div class="score-denom">/ 10</div>
+      <div class="score-label">Capital Allocation Quality</div>
+    </div>
+    <div class="score-card s6">
+      <div class="score-num">5<span style="font-size:18px">.5</span></div>
+      <div class="score-denom">/ 10</div>
+      <div class="score-label">Management Credibility</div>
+    </div>
+    <div class="score-card s6">
+      <div class="score-num">5<span style="font-size:18px">.5</span></div>
+      <div class="score-denom">/ 10</div>
+      <div class="score-label">Future Visibility</div>
+    </div>
+  </div>
+
+  <div class="verdict-box">
+    <strong>What actually happened in FY2026?</strong> IndiaMART delivered a year of structural deceleration masked by optically acceptable headline numbers. Revenue grew 13% to ₹1,569 crores and EBITDA margins held at a healthy 34%, but beneath the surface, paying supplier count effectively stagnated — a net addition of just 3,200 for the full year against a peak trajectory of 15,000–20,000+ annual adds. Q4 was the most telling quarter: standalone collections grew only 8% YoY, active buyers fell 3% YoY, unique business enquiries declined sequentially, and Q4 PAT collapsed to ₹50 crores due to ₹34 crores of mark-to-market treasury losses — rendering the net profit line unusable as a quality indicator for either Q3 (inflated by ₹82 crore Baldor revaluation gain) or Q4. The business is experiencing what management itself acknowledged as a potential vicious cycle risk: suppliers not growing → buyers engaging less → suppliers churning more.
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>Top 5 Developments</h3>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-icon icon-sev">CRITICAL</span>Paying supplier count net flat/declining for 5+ consecutive quarters; Silver tier churn elevated at 7%/month vs historical 5–6%. The foundation for any meaningful growth recovery requires fixing this before ARPU leverage can compensate.</li>
+        <li class="flag-item"><span class="flag-icon icon-sev">CRITICAL</span>Active buyers down 3% YoY in Q4 while registered buyers up 9% — the first confirmed divergence signal. Management acknowledged the vicious loop risk explicitly on the call.</li>
+        <li class="flag-item"><span class="flag-icon icon-mod">NOTABLE</span>Silver price hike (₹3,000→₹4,000/month, ~33%) implemented in Q2 is suppressing gross additions longer than the 2-quarter recovery window originally guided. War impact compounded in March 2026.</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">POSITIVE</span>Deferred revenue grew 17% YoY to ₹1,965 crores — a structural revenue visibility cushion of ~5 quarters of forward revenue locked in. This decouples near-term revenue from operational turbulence.</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">POSITIVE</span>Busy Infotech achieving normalised billing growth of 43% FY26, with deferred revenue at ₹124 crores and expanding to the accounting SaaS segment meaningfully.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>What the Market is Missing</h3>
+      <div class="insight-block">
+        <div class="insight-title">Hidden Signal #1</div>
+        <p>The 17% deferred revenue growth to ₹1,965 crores means IndiaMART has already collected more than a full year of future revenue. At current revenue recognition rates, the company has ~4.8 quarters of revenue already in the bank regardless of what happens to new collections. This structural safety net is routinely underappreciated.</p>
+      </div>
+      <div class="insight-block" style="margin-top:12px">
+        <div class="insight-title">Hidden Signal #2</div>
+        <p>Treasury at ₹3,280 crores represents 28% of market cap. If investments in 13 portfolio companies (₹750 crores deployed, 6 crossing ₹100 crores revenue) result in even 2–3 IPOs over 24–36 months, treasury value could re-rate materially. This embedded optionality receives zero valuation credit currently.</p>
+      </div>
+      <div class="insight-block" style="margin-top:12px">
+        <div class="insight-title">Hidden Signal #3</div>
+        <p>The "S-curve plateau" framing by Dinesh Agarwal is honest but also signals the next inflection lever will be product-led (AI/trust stack, multilingual, chatbot interface). IndiaMART has ₹30 years of proprietary B2B data — an LLM-era moat that cannot be replicated. The monetisation of this is likely 12–24 months away.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ STEP 2: RESULT QUALITY ANALYSIS ═══════════════════════════════ -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <span class="section-title">Earnings Quality & Result Dissection</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">FY26 Revenue</div>
+      <div class="metric-value">₹1,569 Cr</div>
+      <div class="metric-delta delta-up">▲ 13% YoY</div>
+      <div class="metric-sub">Revenue lags collections by ~3 qtrs</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">FY26 Collections</div>
+      <div class="metric-value">₹1,857 Cr</div>
+      <div class="metric-delta delta-up">▲ 14% YoY</div>
+      <div class="metric-sub">True leading economic indicator</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Deferred Revenue</div>
+      <div class="metric-value">₹1,965 Cr</div>
+      <div class="metric-delta delta-up">▲ 17% YoY</div>
+      <div class="metric-sub">~4.8 qtrs revenue visibility locked</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">FY26 EBITDA</div>
+      <div class="metric-value">₹530 Cr</div>
+      <div class="metric-delta delta-up">34% margin</div>
+      <div class="metric-sub">Structurally stable; slight contraction risk</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">FY26 PAT</div>
+      <div class="metric-value">₹475 Cr</div>
+      <div class="metric-delta delta-flat">Heavily distorted</div>
+      <div class="metric-sub">Q3 +₹82Cr gain / Q4 −₹34Cr MTM loss</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">FY26 Cash from Ops</div>
+      <div class="metric-value">₹694 Cr</div>
+      <div class="metric-delta delta-up">Strong conversion</div>
+      <div class="metric-sub">EBITDA to CFO conversion ~131%</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Q4 SA Collections</div>
+      <div class="metric-value">₹546 Cr</div>
+      <div class="metric-delta delta-down">▲ 8% YoY</div>
+      <div class="metric-sub">Deceleration from 14% in Q3 — key concern</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Paying Suppliers</div>
+      <div class="metric-value">2,20,000</div>
+      <div class="metric-delta delta-down">▲ 3,200 FY26 / Q4 −1,200</div>
+      <div class="metric-sub">Stagnant for 5+ quarters</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>Revenue Quality Assessment</h3>
+      <p>IndiaMART's revenue recognition model — deferred subscriptions amortised over the subscription period — creates a structural lag where reported revenue is effectively a trailing 15–18 month moving average of collections. This means <strong>reported 13% revenue growth understates the operational momentum of collections (14%) but also means any slowdown in collections will take 3–4 quarters to fully flow through to reported revenue.</strong></p>
+      <p>Importantly, <strong>all revenue is 100% organic, subscription-driven, and highly recurring</strong> with no channel stuffing risk, no inventory or receivable manipulation, and no related party revenue distortions. The business model is structurally clean from a revenue quality standpoint.</p>
+      <p>The revenue growth composition in FY26 was almost entirely ARPU-driven (~8–9% ARPU growth × ~1–2% customer growth = 10–11% core collection growth). This is a yellow flag — the customer addition engine is effectively stalled.</p>
+    </div>
+    <div>
+      <h3>PAT Quality — Significant Distortions</h3>
+      <div class="verdict-box red-accent">
+        <strong>Q3 PAT of ₹188 crores is not representative.</strong> It includes a one-time fair valuation gain of ₹82 crores on Baldor Technologies (strategic investment revaluation). Adjusting for this, normalised Q3 PAT is approximately ₹106 crores — operationally clean but notably lower than headline.
+      </div>
+      <div class="verdict-box red-accent" style="margin-top:12px">
+        <strong>Q4 PAT of ₹50 crores is severely impaired</strong> by ₹34 crores of MTM losses on the treasury portfolio due to a sharp spike in bond yields. Management characterised these as notional and expected to reverse. Also note the Q3 labour code one-time charge of ₹8.5 crores (ICAI-mandated liability creation). Core EBITDA-level business remains unchanged; PAT volatility is entirely treasury/accounting driven.
+      </div>
+      <p>The underlying EBITDA trajectory at 33–34% margin is the correct metric for operational assessment. At ~₹530 crores FY26 EBITDA on ₹1,569 crores revenue, IndiaMART generates extraordinary operating economics for a classified marketplace.</p>
+    </div>
+  </div>
+
+  <h3>Margin Structure Analysis</h3>
+  <div class="bar-chart" style="margin-bottom: 20px;">
+    <div class="bar-row">
+      <div class="bar-label">Revenue Growth</div>
+      <div class="bar-track"><div class="bar-fill" style="width:65%; background: var(--blue);"></div></div>
+      <div class="bar-val">13% YoY</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Collections Growth</div>
+      <div class="bar-track"><div class="bar-fill" style="width:70%; background: var(--green);"></div></div>
+      <div class="bar-val">14% YoY</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Deferred Rev Growth</div>
+      <div class="bar-track"><div class="bar-fill" style="width:85%; background: var(--gold);"></div></div>
+      <div class="bar-val">17% YoY</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">EBITDA Margin</div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%; background: var(--green);"></div></div>
+      <div class="bar-val">34% FY26</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Q4 SA Collections</div>
+      <div class="bar-track"><div class="bar-fill" style="width:40%; background: var(--red);"></div></div>
+      <div class="bar-val">8% YoY</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Unique Enquiries Q4</div>
+      <div class="bar-track"><div class="bar-fill" style="width:10%; background: var(--red);"></div></div>
+      <div class="bar-val">−1% YoY</div>
+    </div>
+  </div>
+
+  <div class="verdict-box gold-accent">
+    <strong>Earnings Quality Summary:</strong> The underlying subscription revenue is high quality — no manipulation risks, full cash collection upfront, deferred recognition. However, PAT is not a usable metric due to large treasury mark-to-market swings (both positive and negative). EBITDA is the anchor metric. The more concerning quality issue is not accounting but operational: the plateauing of unique enquiries (flat at 27–28 million for 6+ quarters) and active buyer decline represent a potential network effect deterioration that no accounting treatment can mask.
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ STEP 3: GUIDANCE TRACKER ═══════════════════════════════ -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <span class="section-title">Guidance Tracker & Execution Scorecard</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Historical Guidance / Claim</th>
+        <th>Timeline Given</th>
+        <th>Status</th>
+        <th>Verdict</th>
+        <th>Commentary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Churn improvement visible in Q4 FY26</strong> — supplier product changes initiated Nov–Mar expected to show churn benefit in Apr–Jun window</td>
+        <td class="num">Q3 call (Jan 2026)</td>
+        <td class="num missed">MISSED</td>
+        <td><span class="badge badge-red">Missed</span></td>
+        <td class="dim">Q4 showed no churn improvement. Silver monthly churn still at 7% (vs historical 5–6%). War impact compounded in March. Management extended timeline indefinitely.</td>
+      </tr>
+      <tr>
+        <td><strong>Gross addition normalisation in 2 quarters</strong> after Q2 price hike (Sep 2025)</td>
+        <td class="num">Q2 call (Oct 2025)</td>
+        <td class="num missed">MISSED</td>
+        <td><span class="badge badge-red">Missed</span></td>
+        <td class="dim">Q4 still saw net decline of 1,200. Management cited war and pricing pressure. Recovery pushed to FY27 with no specific timeline.</td>
+      </tr>
+      <tr>
+        <td><strong>Collections growth to continue at 13–14%</strong> — JFM quarter targeted similar to Dec quarter</td>
+        <td class="num">Q3 call (Jan 2026)</td>
+        <td class="num missed">MISSED</td>
+        <td><span class="badge badge-red">Missed</span></td>
+        <td class="dim">Standalone Q4 collections came in at 8% — a material deceleration. Consolidated Q4 was 10%, partially supported by Busy's strong growth.</td>
+      </tr>
+      <tr>
+        <td><strong>ARPU guidance of 6–8%</strong> at blended level; top 10% at 9–11%</td>
+        <td class="num">Ongoing multi-quarter</td>
+        <td class="num achieved">TRACKING</td>
+        <td><span class="badge badge-blue">On Track</span></td>
+        <td class="dim">ARPU growing in-line with historical guidance range. Management correctly noted ARPU is an 18-month moving average — lagging indicator of collections.</td>
+      </tr>
+      <tr>
+        <td><strong>EBITDA margins at 33–34%</strong></td>
+        <td class="num">Multi-quarter guidance</td>
+        <td class="num achieved">ACHIEVED</td>
+        <td><span class="badge badge-green">Achieved</span></td>
+        <td class="dim">FY26 EBITDA at 34% margin. Management has consistently delivered on cost discipline. No margin deterioration despite growth slowdown.</td>
+      </tr>
+      <tr>
+        <td><strong>Digital marketing spend scaling to ₹10 crores/quarter</strong></td>
+        <td class="num">FY26 aspiration</td>
+        <td class="num delayed">DELAYED</td>
+        <td><span class="badge badge-amber">Delayed</span></td>
+        <td class="dim">Still at ₹5.5–6 crores/quarter. Management unable to identify sufficient high-ROI keywords to justify full ₹10 crore deployment. Holiday season further reduced Q3 spend.</td>
+      </tr>
+      <tr>
+        <td><strong>Unique enquiries to grow back to double-digit YoY</strong> with digital marketing investment</td>
+        <td class="num">H1 FY26 guidance tone</td>
+        <td class="num missed">MISSED</td>
+        <td><span class="badge badge-red">Missed</span></td>
+        <td class="dim">Q3 grew only 4% and Q4 declined 1%. Platform is at a structural plateau of 27–28 million despite marketing investments. Buyer verification friction adding headwind.</td>
+      </tr>
+      <tr>
+        <td><strong>Busy normalised growth at 40%+</strong></td>
+        <td class="num">FY26 internal target</td>
+        <td class="num achieved">ACHIEVED</td>
+        <td><span class="badge badge-green">Achieved</span></td>
+        <td class="dim">FY26 normalised billing growth 43%, revenue growth 44% normalised. Deferred revenue growing 44% YoY. Bright spot in the portfolio.</td>
+      </tr>
+      <tr>
+        <td><strong>Silver churn improvement to 2–2.5% annual</strong> (historical best)</td>
+        <td class="num">Aspirational (pre-FY26)</td>
+        <td class="num missed">NOT ACHIEVED</td>
+        <td><span class="badge badge-red">Not Achieved</span></td>
+        <td class="dim">Silver annual churn at ~4% and Silver monthly at 7%. Currently 10–15% worse than pre-COVID retention numbers. No recovery timeline given.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="two-col">
+    <div>
+      <h3>Execution Pattern Analysis</h3>
+      <p>Management's guidance pattern over the past 6–8 quarters reveals a persistent optimism bias on churn recovery timelines. The core narrative — "churn will improve in the next 1–2 quarters" — has been stated and missed at least three times. Each miss is attributed to a new explanatory variable: product issues (addressed), quality of inquiries (addressed), price hike impact (ongoing), and now war impact (new).</p>
+      <p>This is not evidence of dishonesty but of a <strong>systematic difficulty in forecasting customer behaviour in an SME market with genuine macro sensitivity.</strong> The CEO's willingness to personally visit 100+ customers and acknowledge product blind spots reflects intellectual honesty. However, the inability to provide actionable timelines on the most critical metric (net supplier additions) reduces forward-looking credibility.</p>
+      <div class="mgmt-quote">
+        <p>"We reversed from sub-10% collection growth over the last 4–5 quarters to about 13–14%. But has that resulted dramatically into any kind of churn parameters? And until the churn parameters become better, I'm not in a position to even invest dramatically on the gross addition."</p>
+        <span class="attribution">— Dinesh Agarwal, Q3 FY2026 Call (Jan 2026)</span>
+      </div>
+      <p>This statement is intellectually honest but also reflects a reactive rather than proactive stance — waiting for churn data before accelerating growth investment, rather than driving structural change.</p>
+    </div>
+    <div>
+      <h3>Execution Credibility Rating</h3>
+      <div class="verdict-box" style="margin-bottom:16px;">
+        <div style="font-family: 'Playfair Display', serif; font-size: 24px; color: var(--amber); margin-bottom: 8px;">Moderate</div>
+        <p style="font-size: 13px;">Management consistently executes on financial metrics (margins, cash generation, dividend) but has repeatedly missed on operational recovery timelines. The guidance pattern is not promotional but shows structural difficulty forecasting the SME market response to product/price changes.</p>
+      </div>
+      <div class="insight-block">
+        <div class="insight-title">Guidance Quality by Category</div>
+        <div class="bar-chart">
+          <div class="bar-row"><div class="bar-label">Margin Guidance</div><div class="bar-track"><div class="bar-fill" style="width:90%; background:var(--green);"></div></div><div class="bar-val">High ✓</div></div>
+          <div class="bar-row"><div class="bar-label">Revenue Growth</div><div class="bar-track"><div class="bar-fill" style="width:75%; background:var(--gold);"></div></div><div class="bar-val">Medium</div></div>
+          <div class="bar-row"><div class="bar-label">ARPU Guidance</div><div class="bar-track"><div class="bar-fill" style="width:85%; background:var(--green);"></div></div><div class="bar-val">High ✓</div></div>
+          <div class="bar-row"><div class="bar-label">Churn Timelines</div><div class="bar-track"><div class="bar-fill" style="width:20%; background:var(--red);"></div></div><div class="bar-val">Low ✗</div></div>
+          <div class="bar-row"><div class="bar-label">Supplier Net Adds</div><div class="bar-track"><div class="bar-fill" style="width:15%; background:var(--red);"></div></div><div class="bar-val">Low ✗</div></div>
+          <div class="bar-row"><div class="bar-label">Busy Performance</div><div class="bar-track"><div class="bar-fill" style="width:90%; background:var(--green);"></div></div><div class="bar-val">High ✓</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ STEP 4: FINANCIAL ARCHITECTURE ═══════════════════════════════ -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <span class="section-title">Hidden Financial Architecture</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="three-col">
+    <div class="insight-block">
+      <div class="insight-title">Cash Flow Truth Analysis</div>
+      <p>IndiaMART's deferred revenue model creates a unique cash dynamics: <strong>collections precede revenue recognition by 3–5 quarters.</strong> FY26 consolidated cash from operations was ₹694 crores against EBITDA of ₹530 crores — a 131% conversion ratio. This is unusual and reflects the advance-collection nature of subscriptions.</p>
+      <p>CFO > EBITDA is the most important quality signal for this business model, confirming no receivables build-up, no fake accrual income, and real cash creation. Treasury grew from ₹3,051 crores (Dec 2025) to ₹3,280 crores (Mar 2026) despite paying ₹60/share dividend, confirming cash generation quality.</p>
+    </div>
+    <div class="insight-block">
+      <div class="insight-title">Working Capital Architecture</div>
+      <p>IndiaMART operates with structurally <strong>negative working capital</strong> — a highly favorable characteristic. Suppliers pay upfront (annual/multi-year), creating the deferred revenue liability of ₹1,965 crores, which is essentially interest-free customer financing of the business.</p>
+      <p>There are <strong>no receivables risk, no inventory, no commodity exposure, and no channel stuffing mechanisms</strong> possible in this business model. The working capital cycle is pristine. The only "WC risk" is if the deferred revenue balance were to shrink — which would precede revenue decline by 3–4 quarters, giving early warning.</p>
+    </div>
+    <div class="insight-block">
+      <div class="insight-title">Balance Sheet Stress Map</div>
+      <p><strong>No financial stress whatsoever.</strong> ₹3,280 crores in cash and treasury (28% of market cap), zero net debt, no pledging, no significant contingent liabilities, no leveraged subsidiaries. The balance sheet is among the strongest in the Indian internet sector.</p>
+      <p>The ₹34 crore MTM loss on treasury in Q4 reflects the risk in holding long-duration bonds in a rising yield environment — not a credit risk but an interest rate risk. Management's characterisation as "notional" is correct but deserves monitoring.</p>
+      <p>Investments in 13 companies at ₹750 crores book value are illiquid but strategically sound. Carried at cost/fair value, potential IPOs in 2–3 years could crystallise significant gains.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3>EBITDA → CFO → FCF Bridge (FY2026)</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Line Item</th><th>FY26 Amount</th><th>Quality Assessment</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Consolidated EBITDA</strong></td>
+        <td class="num">₹530 Cr</td>
+        <td class="achieved">High quality — pure subscription economics, 34% margin</td>
+      </tr>
+      <tr>
+        <td>Deferred Revenue Increase (Working Capital benefit)</td>
+        <td class="num">+₹ ~230 Cr (est.)</td>
+        <td class="achieved">Structural positive — advance collections exceed revenue recognition</td>
+      </tr>
+      <tr>
+        <td>Tax & Other adjustments</td>
+        <td class="num dim">Variable</td>
+        <td class="dim">Normal operating taxes; no aggressive deferral</td>
+      </tr>
+      <tr>
+        <td><strong>Cash from Operations</strong></td>
+        <td class="num">₹694 Cr</td>
+        <td class="achieved">131% EBITDA conversion — exceptional</td>
+      </tr>
+      <tr>
+        <td>Capex (maintenance + technology)</td>
+        <td class="num dim">~₹30–50 Cr (est.)</td>
+        <td class="achieved">Asset-light model; minimal physical capex</td>
+      </tr>
+      <tr>
+        <td><strong>Estimated Free Cash Flow</strong></td>
+        <td class="num">~₹640–660 Cr</td>
+        <td class="achieved">FCF yield ~5.6% on market cap — attractive for quality business</td>
+      </tr>
+      <tr>
+        <td>Dividend Paid (FY26)</td>
+        <td class="num">₹60/share (~₹360 Cr)</td>
+        <td class="achieved">~55% FCF payout — responsible distribution</td>
+      </tr>
+      <tr>
+        <td><strong>Net Treasury Accretion</strong></td>
+        <td class="num">₹229 Cr</td>
+        <td class="achieved">Treasury grew from ₹3,051 Cr to ₹3,280 Cr net of dividends</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- ═══════════════════════════════ STEP 5: MANAGEMENT DECODE ═══════════════════════════════ -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <span class="section-title">Management Commentary Decode</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>Language Patterns & Psychology</h3>
+      <p>Dinesh Agarwal's communication style is notably <strong>candid and technically precise</strong> — an unusual trait for Indian internet company CEOs. He volunteers unflattering data (churn numbers, the vicious loop concern, S-curve plateau acknowledgment) without being pushed by analysts. This builds credibility even as it amplifies investor concern.</p>
+
+      <div class="mgmt-quote">
+        <p>"Yes, there is definitely a worry of falling into the vicious loop because that virtuous cycle where the suppliers were increasing and buyers were increasing... I think that's where we have hit a little bit of a saturation point."</p>
+        <span class="attribution">— Dinesh Agarwal, Q4 FY2026 Call (Apr 2026)</span>
+      </div>
+
+      <p>This is remarkable candour. Most platform CEOs would frame this as "quality over quantity" or "strategic optimisation." Agarwal's willingness to use the phrase "vicious loop" on an analyst call signals high integrity but also genuine operational uncertainty.</p>
+
+      <div class="mgmt-quote">
+        <p>"Until 4–5 quarters, we were actually thinking it is purely and purely sales and service execution problem. However, I myself went to the customer meetings and now I have met almost 100 customers myself. There were small and small things that customers were worried about."</p>
+        <span class="attribution">— Dinesh Agarwal, Q3 FY2026 Call (Jan 2026)</span>
+      </div>
+
+      <p>A CEO personally conducting 100 customer discovery interviews is an extremely positive organisational signal. This ground-up feedback loop — which led to product fixes improving buylead-sold ratio and irrelevancy feedback — suggests a problem-solving culture rather than blame externalisation.</p>
+    </div>
+    <div>
+      <h3>What Management Avoided & Tone Shifts</h3>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-icon icon-watch">WATCH</span><strong>No net supplier addition guidance provided.</strong> This is the most important operational metric and management explicitly refused to guide on it "until we have multiple quarters of continual success." This is honest but concerning — it suggests internal conviction is low on when recovery will materialise.</li>
+        <li class="flag-item"><span class="flag-icon icon-watch">WATCH</span><strong>Q4 standalone collections deceleration not prominently disclosed in opening remarks.</strong> Management opened with consolidated numbers (10% collection growth) without flagging that standalone was only 8%. This is selective disclosure, though technically accurate.</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">SIGNAL</span><strong>Explicitly cited 1688.com as aspirational benchmark.</strong> The reference to 1688 reaching 1 million sellers at $2B revenue confirms management is thinking in 5–10 year horizons and believes IndiaMART can reach 400,000–500,000 paying suppliers — 2× current base.</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">SIGNAL</span><strong>AI adoption is real, not marketing language.</strong> 80% of buyer interactions migrated to Voice AI bots performing better than human agents. This represents genuine operational efficiency, not aspirational narrative.</li>
+        <li class="flag-item"><span class="flag-icon icon-mod">NOTABLE</span><strong>Tone shifted on war impact.</strong> March 2026 geopolitical events introduced a new external variable. Management attributed ~1,000–1,500 of Q4 supplier shortfall to war impact — plausible but also a convenient new excuse in a pattern of missed recovery timelines.</li>
+      </ul>
+
+      <div style="margin-top: 16px;">
+        <h3>Management Classification</h3>
+        <div class="verdict-box green-accent">
+          <strong>Classified as: Financially Disciplined + Long-Term Allocator, with elements of Conservative Communicator.</strong> Management is not promotional, not empire-building (clearly refused fulfilment model), and not short-term focused. The decision to hold on pricing despite churn pressure ("we are not going back on pricing") reflects long-term value extraction discipline. Capital allocation through dividends + strategic investments rather than M&A spree is shareholder-friendly.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ STEP 6: SEGMENT ANALYSIS ═══════════════════════════════ -->
+<section class="section" id="s6">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <span class="section-title">Segment & Business Engine Analysis</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="three-col">
+    <div class="insight-block">
+      <div class="insight-title" style="color: var(--blue);">Core Engine: IndiaMART Marketplace</div>
+      <p><strong>Revenue: ~₹1,450 Cr (FY26 est.)</strong> | EBITDA margin ~35%+</p>
+      <p>The dominant profit engine. Standalone collections of ₹1,674 crores represent the core B2B marketplace. Revenue grows via two levers: paying supplier count (currently +1–2% YoY) and ARPU (8–9% YoY). Structural moat from 30 years of proprietary B2B data, unmatched catalogue depth (80%+ buyer needs fulfilled), and brand recall among Indian MSMEs.</p>
+      <p>The concentration risk is significant: Platinum/Gold customers (~50% of base) generate 75%+ of revenue with <1% monthly churn. This cohort is structurally stable. The Silver tier (50% of base, 25% of revenue) is where the volatility resides.</p>
+    </div>
+    <div class="insight-block">
+      <div class="insight-title" style="color: var(--green);">Growth Engine: Busy Infotech (Accounting SaaS)</div>
+      <p><strong>Q4 Billing: ₹45 Cr | FY26: ₹170 Cr</strong> | Deferred Revenue: ₹124 Cr</p>
+      <p>The most exciting growth story within the group. Normalised billing growth of 43% FY26, with deferred revenue growing 44% — indicating strong future revenue visibility. 11,000 new licenses in Q4 alone; 4,42,000 total licenses sold.</p>
+      <p>Busy targets SMBs with inventory + GST requirements; Vyapar serves micro businesses (mobile-first billing); Livekeeping is a Tally adjacency play for browser/mobile access. Three-segment strategy covering the full SME accounting TAM. AI features being added to the core product, which could accelerate stickiness and ARPU expansion.</p>
+    </div>
+    <div class="insight-block">
+      <div class="insight-title" style="color: var(--amber);">Emerging: Export Marketplace & VAS</div>
+      <p><strong>Export Collections: ~₹60–70 Cr</strong> | Pilot stage: Logistics, Credit</p>
+      <p>Export business (export.indiamart.com) scaled from ₹20–25 crores to ₹60–70 crores — a 3× growth but still small relative to core. This is an underdiscussed optionality with real TAM as Indian manufacturing exports grow.</p>
+      <p>Lead Manager Pro (CRM + WhatsApp integration), credit facilitation, and logistics remain experimental and pilot-stage. Management is sensibly not forcing premature scaling. The pattern mirrors how Alibaba/1688 built their service stack over 15 years.</p>
+    </div>
+  </div>
+
+  <h3>Tier-Level Churn Analysis</h3>
+  <div class="churn-grid">
+    <div class="churn-card">
+      <div class="churn-label">Platinum — Monthly Churn</div>
+      <div class="churn-rate" style="color: var(--green);">&lt;1.0%</div>
+      <div class="churn-context">Best in class. Annual equivalent ~11%. Stable, unchanged. Top 10% customers (₹11L avg ARPU) essentially permanent.</div>
+    </div>
+    <div class="churn-card">
+      <div class="churn-label">Gold — Monthly Churn</div>
+      <div class="churn-rate" style="color: var(--gold2);">1.0–1.5%</div>
+      <div class="churn-context">Healthy. Annual equivalent ~12–18%. Slight increase but within acceptable range. Upsell from Silver reduced to 8-9% vs historical 15–20%.</div>
+    </div>
+    <div class="churn-card">
+      <div class="churn-label">Silver Annual — Monthly Churn</div>
+      <div class="churn-rate" style="color: var(--amber);">~4.0%</div>
+      <div class="churn-context">Annual equivalent ~40%. Historical best was 2–2.5%. Currently 10–15% worse than pre-COVID retention. Price hike impact rolling through over FY27.</div>
+    </div>
+    <div class="churn-card">
+      <div class="churn-label">Silver Monthly — Monthly Churn</div>
+      <div class="churn-rate" style="color: var(--red);">7.0%</div>
+      <div class="churn-context">Annual equivalent ~58%. Historically 5–6%. 2pp deterioration represents the most problematic segment. Affordability-driven buyers with high price sensitivity.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ STEP 7: INDUSTRY POSITION ═══════════════════════════════ -->
+<section class="section" id="s7">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <span class="section-title">Industry & Competitive Positioning</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>Market Structure</h3>
+      <p>IndiaMART operates in a de facto monopoly position in India's B2B discovery marketplace. Management disclosed that <strong>50 lakh GST-identified businesses are registered on IndiaMART</strong> — approximately 31% of the 1.6 crore GST-registered business universe. From a free-platform penetration standpoint, management estimates ~50% of serviceable obtainable market (TOM) has been covered, implying limited incremental supply-side growth from simple headcount addition.</p>
+      <p>Competitive threats from JustDial (500,000 paying sellers), TradeIndia, and Alibaba/global B2B platforms have not materially eroded IndiaMART's position. The data network effect (30 years of intent signals, buyer-seller matching history) is effectively impossible to replicate.</p>
+
+      <div class="highlight">
+        <p><strong>Key Competitive Moat:</strong> IndiaMART's buyer-side loyalty (58–59% repeat inquiries at all-time high) is the most durable competitive advantage. A buyer who consistently gets quote responses from IndiaMART suppliers has zero reason to try an alternative platform — and this stickiness flows back to suppliers.</p>
+      </div>
+
+      <h3>AI Disruption Risk</h3>
+      <p>The most intellectually honest risk discussion in both concalls was about Google/AI search disruption. Management's analysis was nuanced: AI expands the total TAM of people seeking B2B information, IndiaMART surfaces well in AI-generated answers (cited in Gemini/Grok references), and B2B transactional queries remain search-engine behaviour (not yet AI-conversational). The discontinuation of traffic reporting is a legitimate response to the impossibility of distinguishing LLM crawlers from human traffic — not an attempt to hide declining traffic.</p>
+    </div>
+    <div>
+      <h3>Peer Benchmarking</h3>
+      <table class="data-table">
+        <thead><tr><th>Metric</th><th>IndiaMART</th><th>1688.com</th><th>JustDial</th></tr></thead>
+        <tbody>
+          <tr><td>Paying Sellers</td><td class="num">2,20,000</td><td class="num">~1,000,000</td><td class="num">~500,000</td></tr>
+          <tr><td>ARPU (est. annual)</td><td class="num">₹~75K</td><td class="num">~$2,000</td><td class="num">Lower</td></tr>
+          <tr><td>Revenue Model</td><td class="dim">Subscription + VAS</td><td class="dim">Sub + Transaction</td><td class="dim">Sub</td></tr>
+          <tr><td>EBITDA Margin</td><td class="num achieved">34%</td><td class="num achieved">~25–30%</td><td class="num dim">~15%</td></tr>
+          <tr><td>Paying Seller Growth</td><td class="num missed">+1.5% FY26</td><td class="num dim">Stagnant→ARPU</td><td class="num dim">Growing</td></tr>
+          <tr><td>Penetration of TAM</td><td class="num">~14% (paying)</td><td class="num dim">~6% (China)</td><td class="num dim">~3%</td></tr>
+        </tbody>
+      </table>
+
+      <div class="insight-block" style="margin-top: 16px;">
+        <div class="insight-title">1688 as the Roadmap</div>
+        <p>Management's repeated 1688.com reference is strategic signalling, not casual benchmarking. The Chinese B2B marketplace operates at 1 million paying sellers with $2B revenue — at IndiaMART's current 220,000 sellers, the addressable upside is a 4–5× revenue expansion over a 7–10 year horizon if product-market fit improves. The differential is India's lower MSME formalisation, lower average willingness to pay, and services-vs-manufacturing mix. Management targets at least 400,000–500,000 as the intermediate milestone before shifting to full ARPU-led growth mode.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ STEP 8: CAPITAL ALLOCATION ═══════════════════════════════ -->
+<section class="section" id="s8">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <span class="section-title">Capital Allocation Analysis</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>Capital Return Track Record</h3>
+      <p>IndiaMART's capital allocation is among the most disciplined in the Indian internet sector. ₹694 crores of FY26 operating cash flow was deployed as follows: approximately ₹360 crores in dividends (₹60/share), incremental treasury accumulation of ~₹229 crores, and continued investment in strategic portfolio companies (~₹750 crores total over 5 years).</p>
+      <p>The <strong>40–60% cash distribution ratio</strong> (maintained consistently over 3–4 years per CFO) reflects a mature company that has consciously decided against aggressive diversification or empire-building. The rejection of the fulfilment model ("categories are enormous, not feasible") shows disciplined constraint on capital deployment scope.</p>
+      <p>The ₹60/share FY26 dividend (₹30 final + ₹30 special) at 1.54% yield is not a compelling income story, but the special dividend signals that the Board recognises excess cash accumulation and is willing to distribute rather than deploy at sub-hurdle-rate returns.</p>
+    </div>
+    <div>
+      <h3>Strategic Investment Portfolio</h3>
+      <p>₹750 crores deployed across 13 investments in business software, logistics, and fintech. 6 of 13 companies have crossed ₹100 crores in revenue — a 46% success rate at scale. Management expects 2–3 IPOs in the next 2–3 years, which could generate significant treasury gains.</p>
+      <div class="verdict-box gold-accent">
+        <strong>Hidden Balance Sheet Value:</strong> If invested at ₹750 crores 5 years ago and 6 companies are now at ₹100+ crores revenue with fintech/SaaS multiples, the market value of the portfolio likely significantly exceeds book value. This embedded optionality is entirely unaccounted for in the ₹24.6x P/E.
+      </div>
+      <p>Buyback vs. dividend: Management evaluated buybacks post-tax policy changes but concluded dividends are the appropriate return vehicle for FY26. This will be re-evaluated annually — if share price stays near 52-week lows, buyback becomes increasingly attractive on capital efficiency grounds.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ STEP 9: RED FLAGS ═══════════════════════════════ -->
+<section class="section" id="s9">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <span class="section-title">Red Flags & Forensic Detection</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <ul class="flag-list">
+    <li class="flag-item">
+      <span class="flag-icon icon-sev">SEVERE</span>
+      <div><strong>Active Buyers Down 3% YoY in Q4.</strong> This is the most structurally alarming data point in the entire FY2026 reporting. It represents the first confirmed negative signal in the buyer-side network effect. If active buyers are declining while registered buyers grow 9%, the platform's engagement quality is deteriorating — not just growing more slowly but actually shrinking in real terms. Management attributed this partly to agentic bot traffic inflating registration counts. This explanation is plausible but the metric needs close monitoring over the next 2–3 quarters.</div>
+    </li>
+    <li class="flag-item">
+      <span class="flag-icon icon-sev">SEVERE</span>
+      <div><strong>Unique Business Enquiries Plateau — 27–28 Million for 6+ Quarters Despite Marketing Investment.</strong> The company has been spending on performance marketing (targeting ₹10 crores/quarter, currently ₹5.5–6 crores) with no discernible impact on unique enquiry volume. This raises a fundamental question about whether the growth ceiling is being reached. Management's explanation (buyer verification friction causing ~1% conversion drop, seasonality, working day differences) partially explains individual quarters but not the multi-quarter plateau.</div>
+    </li>
+    <li class="flag-item">
+      <span class="flag-icon icon-mod">MODERATE</span>
+      <div><strong>PAT Volatility from Treasury Portfolio is Structural Risk.</strong> Q3 PAT inflated by ₹82 crores (Baldor fair value gain); Q4 PAT impaired by ₹34 crores (bond MTM losses). This pattern — where operating business PAT is masked by large non-cash treasury items — makes quarterly earnings highly misleading for external analysts. The ₹3,280 crore treasury, primarily in debt instruments, creates P&L volatility that will repeat in future quarters as interest rate cycles evolve.</div>
+    </li>
+    <li class="flag-item">
+      <span class="flag-icon icon-mod">MODERATE</span>
+      <div><strong>Q4 Standalone Collections Decelerated to 8% vs. 14% in Q3.</strong> This is a sharp deceleration and the most important near-term forward indicator given that collections lead revenue by 3–4 quarters. If Q4's 8% standalone collection growth is the new run rate (vs. 17% consolidating in Q3), revenue growth in FY27 will decelerate meaningfully. Management cited war impact and price normalisation as factors, but the trend requires validation in Q1 FY27.</div>
+    </li>
+    <li class="flag-item">
+      <span class="flag-icon icon-mod">MODERATE</span>
+      <div><strong>Silver Churn Recovery Repeatedly Missed.</strong> The timeline has shifted: first guided Q4 FY25, then Q1 FY26, then Q3 FY26, now pushed to FY27 or later without specific timeline. Each postponement is attributed to a new factor. The structural issue may be that the Silver segment's use-case (primarily discovery/leads for price-sensitive MSMEs) is fundamentally challenged by alternatives and that prior churn levels may not be recoverable at higher price points.</div>
+    </li>
+    <li class="flag-item">
+      <span class="flag-icon icon-min">MINOR</span>
+      <div><strong>Price Hike Timing Debatable.</strong> A 33% Silver price increase (₹3,000→₹4,000/month) during a period of already-elevated churn and stagnant enquiry growth created a compounding headwind. Management's post-hoc defence ("fence-sitters would have churned anyway") may be true in theory but ignores the impact on the gross addition pipeline from new potential customers evaluating at the higher entry price point.</div>
+    </li>
+    <li class="flag-item">
+      <span class="flag-icon icon-min">MINOR</span>
+      <div><strong>Traffic Metric Discontinuation.</strong> Stopping the reporting of total traffic citing bot/agentic traffic noise is technically justified but removes an important engagement signal from analyst toolkit. IndiaMART now reports unique business enquiries and buyer counts but no overall traffic trend — a reduction in disclosed KPIs at a time of platform stress warrants attention.</div>
+    </li>
+  </ul>
+</section>
+
+
+<!-- ═══════════════════════════════ STEP 10: POSITIVE INFLECTIONS ═══════════════════════════════ -->
+<section class="section" id="s10">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <span class="section-title">Positive Inflection Signals</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="three-col">
+    <div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-icon icon-pos">SIGNAL</span><strong>Deferred Revenue Growing 17% — Revenue Visibility is Exceptional.</strong> ₹1,965 crores of deferred revenue growing faster than revenue (17% vs 13%) means the reporting-period revenue will continue to accelerate for 3–4 more quarters even if collections plateau. Downside protection is structurally built in.</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">SIGNAL</span><strong>Repeat Inquiry Rate at All-Time High (58–59%).</strong> This is a genuine platform health metric that has not received attention. More than half of all business enquiries come from buyers who have used IndiaMART before — indicating sticky, habitual buyer behaviour that provides a floor to enquiry volume independent of marketing spend.</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">SIGNAL</span><strong>Platinum/Gold Cohort Stable.</strong> The 50% of customers generating 75%+ of revenue has sub-1% monthly churn in Platinum and 1–1.5% in Gold. This ₹1,200+ crore revenue base is structurally protected and will grow from ARPU increases alone regardless of Silver segment turbulence.</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-icon icon-pos">SIGNAL</span><strong>Voice AI Adoption: 80% of Buyer Interactions on AI Bot.</strong> This has already delivered efficiency gains (higher quality and productivity per management). AI-driven CRM copilot for sales teams, multilingual platform expansion, and chatbot-based discovery are near-term product catalysts that could meaningfully improve platform engagement metrics over FY27.</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">SIGNAL</span><strong>Three-Tier Category Pricing Architecture.</strong> The differentiated pricing approach (standard/premium/super-premium categories with 1,000 top categories at premium rates) is a structural ARPU lever that has barely begun. As this matures, ARPU growth could accelerate from 8–9% to 10–12% without any change in customer count.</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">SIGNAL</span><strong>Buyer Verification Improving Platform Trust Quality.</strong> The move to GST verification, bank account verification, and OTP-based buyer verification will reduce spam/bot enquiries and improve the signal-to-noise ratio for suppliers. In the medium term, this should improve supplier retention — the 1% short-term enquiry conversion drop is a reasonable near-term price for long-term platform health.</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-icon icon-pos">SIGNAL</span><strong>Busy's Deferred Revenue at ₹124 Cr — Accounting SaaS Stack Compounding.</strong> Busy's 44% normalised deferred revenue growth represents a second revenue stream that will contribute meaningfully to consolidated revenue in FY27-28. The three-product strategy (Busy/Vyapar/Livekeeping) covers the entire SME accounting market without overlap.</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">SIGNAL</span><strong>Strategic Portfolio: 6 Companies at ₹100Cr+ Revenue.</strong> IndiaMART's ₹750 crore investment portfolio is generating returns with 6 of 13 companies at meaningful scale. 2–3 IPOs in 24–36 months could crystallise ₹500–1,000 crore+ in treasury value gains — a 4–9% uplift to current market cap from a currently zero-valued asset.</li>
+        <li class="flag-item"><span class="flag-icon icon-watch">WATCH</span><strong>Export Business at ₹60–70 Cr Collections.</strong> If India's manufacturing exports continue to scale (China+1 tailwind), IndiaMART's export marketplace is a latent growth driver. Current size is small but trajectory from ₹20–25 Cr to ₹60–70 Cr is encouraging.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ STEP 11: VALUATION COMFORT ═══════════════════════════════ -->
+<section class="section" id="s11">
+  <div class="section-header">
+    <span class="section-num">11</span>
+    <span class="section-title">Valuation Comfort vs. Earnings Quality</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">P/E (reported FY26)</div>
+      <div class="metric-value">24.6×</div>
+      <div class="metric-sub">PAT distorted by treasury items</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">EV / EBITDA (adj.)</div>
+      <div class="metric-value">~15.8×</div>
+      <div class="metric-sub">EV = MCap − Treasury = ₹8,364 Cr</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Price / Collections</div>
+      <div class="metric-value">6.3×</div>
+      <div class="metric-sub">On FY26 consolidated collections</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">FCF Yield</div>
+      <div class="metric-value">~5.6%</div>
+      <div class="metric-sub">On market cap; attractive for quality</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">P/Revenue</div>
+      <div class="metric-value">7.4×</div>
+      <div class="metric-sub">Below historical range of 10–15×</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Treasury % of MCap</div>
+      <div class="metric-value">28.2%</div>
+      <div class="metric-sub">Significant embedded value floor</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">ROCE</div>
+      <div class="metric-value">28.0%</div>
+      <div class="metric-sub">High-quality capital efficiency</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Ex-Treasury P/E</div>
+      <div class="metric-value">~17×</div>
+      <div class="metric-sub">Adjusted for ₹3,280 Cr cash balance</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>Valuation Framework Analysis</h3>
+      <p>The cleanest way to value IndiaMART is to strip the treasury from the market cap and value the operating business on EV/EBITDA. On this basis: EV = ₹11,644 Cr − ₹3,280 Cr = ₹8,364 Cr against FY26 EBITDA of ₹530 Cr implies ~15.8× EV/EBITDA. For a business with 34% margins, 100% organic recurring revenue, zero debt, negative working capital, and structural barriers to competition, <strong>15.8× EV/EBITDA is not expensive in absolute terms.</strong></p>
+      <p>The valuation concern is not current multiples but growth trajectory. At 13% revenue growth with customer counts stagnant, the market is essentially paying for a slowing compounder. If revenue growth re-accelerates to 18–20% (requiring churn improvement + collection recovery), the stock would deserve 22–25× EV/EBITDA — implying 40–60% upside. If growth continues decelerating toward 8–10%, the current multiple is fair at best.</p>
+      <div class="verdict-box gold-accent" style="margin-top:16px;">
+        <strong>Valuation Comfort Classification: Reasonable to Cheap if Operating Recovery Materialises.</strong> At ~₹1,936/share near its 52-week low, significant pessimism is already priced in. The treasury provides a ~28% of market cap floor. This is a <em>high-quality business at a fair-to-cheap price for a patient investor willing to wait 2–4 quarters for operational recovery signals.</em>
+      </div>
+    </div>
+    <div>
+      <h3>Implied Market Assumptions</h3>
+      <p>The current price implies the market expects:</p>
+      <ul class="flag-list" style="margin-bottom: 16px;">
+        <li class="flag-item"><span class="flag-icon icon-watch">EMBEDDED</span>Revenue growth sustaining at 10–13% CAGR over 3 years, with no re-acceleration to the 18–20% range that characterised FY2022–2024.</li>
+        <li class="flag-item"><span class="flag-icon icon-watch">EMBEDDED</span>No meaningful new revenue streams from credit, logistics, or VAS for at least 24 months.</li>
+        <li class="flag-item"><span class="flag-icon icon-watch">EMBEDDED</span>EBITDA margins stable at 33–34%, with no operating leverage as the business scales.</li>
+        <li class="flag-item"><span class="flag-icon icon-watch">IGNORED</span>Zero value attributed to ₹750+ crore investment portfolio or potential IPO monetisation events.</li>
+        <li class="flag-item"><span class="flag-icon icon-watch">IGNORED</span>Zero value from AI/LLM ecosystem positioning on 30 years of proprietary B2B data.</li>
+      </ul>
+      <div class="insight-block">
+        <div class="insight-title">Final Valuation Verdict</div>
+        <p><strong>A high-quality business approaching fair valuation after a significant de-rating.</strong> This is not a mediocre business at a premium valuation. IndiaMART's moat, margins, cash generation, and market position remain exceptional. The current challenge is execution-level (churn, gross adds, enquiry plateau) rather than structural (competitive threat, margin deterioration, balance sheet stress). The risk-reward is asymmetric to the upside over a 12–24 month horizon — IF churn metrics begin recovering.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ STEP 12: FUTURE TRAJECTORY ═══════════════════════════════ -->
+<section class="section" id="s12">
+  <div class="section-header">
+    <span class="section-num">12</span>
+    <span class="section-title">Future Trajectory Modeling (FY27–FY29)</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="scenario-grid">
+    <div class="scenario-card bull">
+      <div class="scenario-title">Bull Case</div>
+      <div class="scenario-prob">30%</div>
+      <p style="font-size:12px; color:var(--text-dim); margin-bottom:12px;">Probability estimate</p>
+      <ul>
+        <li>Silver churn normalises by Q2 FY27; net adds turn meaningfully positive (8,000–12,000/year)</li>
+        <li>AI-driven platform improvements increase unique enquiries to 33–35 million</li>
+        <li>Category-based differential pricing accelerates ARPU growth to 12–14%</li>
+        <li>Busy crosses ₹300 Cr revenue by FY28; 2 portfolio company IPOs crystallise ₹800+ Cr gains</li>
+        <li>FY27 revenue: ₹1,820+ Cr (+16%); FY28: ₹2,150+ Cr (+18%)</li>
+        <li>Stock potential: ₹3,200–3,800 (65–95% upside)</li>
+      </ul>
+    </div>
+    <div class="scenario-card base">
+      <div class="scenario-title">Base Case</div>
+      <div class="scenario-prob">50%</div>
+      <p style="font-size:12px; color:var(--text-dim); margin-bottom:12px;">Probability estimate</p>
+      <ul>
+        <li>Churn stabilises but doesn't improve materially; net adds turn marginally positive (+2,000–5,000/year)</li>
+        <li>Collections growth recovers to 12–14% by H2 FY27; revenue at 13–15%</li>
+        <li>EBITDA margins hold at 33–34%; no operating leverage materialises</li>
+        <li>Busy grows to ₹200 Cr revenue FY27; 1 portfolio IPO over 24 months</li>
+        <li>FY27 revenue: ₹1,730 Cr (+10%); FY28: ₹1,960 Cr (+13%)</li>
+        <li>Stock potential: ₹2,200–2,600 (14–34% upside)</li>
+      </ul>
+    </div>
+    <div class="scenario-card bear">
+      <div class="scenario-title">Bear Case</div>
+      <div class="scenario-prob">20%</div>
+      <p style="font-size:12px; color:var(--text-dim); margin-bottom:12px;">Probability estimate</p>
+      <ul>
+        <li>Vicious cycle materialises: active buyers continue declining, triggering more Silver churn</li>
+        <li>Standalone collections growth falls to 5–7%; revenue decelerates to 7–9%</li>
+        <li>Paying supplier count declines another 5,000–8,000 cumulatively over FY27</li>
+        <li>Geopolitical/macro stress compounds SME spending cuts</li>
+        <li>FY27 revenue: ₹1,630 Cr (+4%); margin compression to 30–32%</li>
+        <li>Stock potential: ₹1,500–1,700 (13–22% downside from current)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3>Key Monitoring Variables — Quarterly Checklist</h3>
+  <div class="monitor-grid">
+    <div class="monitor-card">
+      <div class="metric-label">Silver Monthly Churn Rate</div>
+      <p>Must see return to 5–6% range (from current 7%) to confirm recovery thesis. Three consecutive quarters below 6% = strong buy signal.</p>
+    </div>
+    <div class="monitor-card">
+      <div class="metric-label">Standalone Collections Growth</div>
+      <p>Q4 at 8% is the alarm number. Recovery to 12–14% range over 2 quarters confirms base case. Sub-8% for 2 consecutive quarters triggers bear case concern.</p>
+    </div>
+    <div class="monitor-card">
+      <div class="metric-label">Unique Business Enquiries</div>
+      <p>Return to 30 million+ range (from 27–28 million plateau) would be the clearest leading indicator of platform re-acceleration. Track alongside buyer verification impact disclosure.</p>
+    </div>
+    <div class="monitor-card">
+      <div class="metric-label">Paying Supplier Net Adds</div>
+      <p>Even a return to +3,000–5,000/quarter (from near-zero) would signal recovery. Management will not guide on this until multiple quarters of positive trend.</p>
+    </div>
+    <div class="monitor-card">
+      <div class="metric-label">Active Buyer Count</div>
+      <p>Q4 showed 3% YoY decline — a new metric to watch. Must turn positive within 2 quarters or vicious cycle concern intensifies substantially.</p>
+    </div>
+    <div class="monitor-card">
+      <div class="metric-label">Busy Deferred Revenue Growth</div>
+      <p>Currently 44% normalised. Watch for deceleration below 30% as the base grows. Also watch Busy licensing + recurring subscription mix shift as a quality indicator.</p>
+    </div>
+    <div class="monitor-card">
+      <div class="metric-label">Consolidated Deferred Revenue</div>
+      <p>Currently growing 17%. Deceleration below 12% would signal that revenue slowdown is 2–3 quarters away. Acceleration above 20% would be a strong positive.</p>
+    </div>
+    <div class="monitor-card">
+      <div class="metric-label">Treasury MTM & Portfolio Events</div>
+      <p>Watch for bond yield movements impacting quarterly other income. Also track any portfolio company IPO announcements — these would be material positive catalysts.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ STEP 13: FINAL VERDICT ═══════════════════════════════ -->
+<section class="section" id="s13">
+  <div class="section-header">
+    <span class="section-num">13</span>
+    <span class="section-title">Final Investment Verdict</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="two-col" style="margin-bottom: 32px;">
+    <div>
+      <h3>Key Positives</h3>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-icon icon-pos">+</span>Structural near-monopoly in Indian B2B discovery; 30 years of proprietary data, irreplicable network effects</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">+</span>Deferred revenue of ₹1,965 crores growing at 17% — 5 quarters of locked revenue regardless of near-term collections</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">+</span>Treasury of ₹3,280 crores (28% of MCap) with zero debt; extraordinary balance sheet quality</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">+</span>34% EBITDA margins, 131% EBITDA-to-CFO conversion; a cash machine with structurally negative working capital</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">+</span>Platinum/Gold cohort (~75% of revenue) demonstrably stable with sub-1.5% monthly churn</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">+</span>Busy Infotech growing 40%+ on normalised basis; second meaningful revenue stream compounding</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">+</span>58–59% repeat inquiry rate — all-time high; indicates genuine buyer-side platform stickiness</li>
+        <li class="flag-item"><span class="flag-icon icon-pos">+</span>Trading near 52-week low with significant pessimism priced in; 15.8× ex-cash EV/EBITDA reasonable for quality</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Key Negatives</h3>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-icon icon-sev">−</span>Active buyers down 3% YoY in Q4 — first negative engagement metric; potential vicious cycle trigger</li>
+        <li class="flag-item"><span class="flag-icon icon-sev">−</span>Unique enquiries plateaued at 27–28 million for 6+ quarters despite marketing investment</li>
+        <li class="flag-item"><span class="flag-icon icon-mod">−</span>Standalone Q4 collections at 8% — sharp deceleration signals FY27 revenue risk</li>
+        <li class="flag-item"><span class="flag-icon icon-mod">−</span>Silver churn recovery timeline missed repeatedly; no credible forward guidance provided</li>
+        <li class="flag-item"><span class="flag-icon icon-mod">−</span>Paying supplier count effectively flat-to-declining for 5+ quarters; customer growth pillar absent</li>
+        <li class="flag-item"><span class="flag-icon icon-mod">−</span>Treasury MTM creates large P&L noise; FY26 reported PAT unreliable as a quality indicator</li>
+        <li class="flag-item"><span class="flag-icon icon-min">−</span>Silver price hike (33%) timing debatable; may have extended gross addition suppression unnecessarily</li>
+        <li class="flag-item"><span class="flag-icon icon-min">−</span>No meaningful VAS or new revenue stream monetisation in FY26 despite multi-year aspirations</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-bottom: 32px;">
+    <div>
+      <h3>Management Execution Scorecard</h3>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-label">Margin Management</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--green);"></div></div><div class="bar-val">Excellent</div></div>
+        <div class="bar-row"><div class="bar-label">Cash Allocation</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:var(--green);"></div></div><div class="bar-val">Strong</div></div>
+        <div class="bar-row"><div class="bar-label">Churn Recovery</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--red);"></div></div><div class="bar-val">Weak</div></div>
+        <div class="bar-row"><div class="bar-label">Guidance Accuracy</div><div class="bar-track"><div class="bar-fill" style="width:40%;background:var(--amber);"></div></div><div class="bar-val">Moderate</div></div>
+        <div class="bar-row"><div class="bar-label">Product Strategy</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:var(--gold);"></div></div><div class="bar-val">Good</div></div>
+        <div class="bar-row"><div class="bar-label">Investor Transparency</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:var(--green);"></div></div><div class="bar-val">Strong</div></div>
+        <div class="bar-row"><div class="bar-label">Busy Execution</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--green);"></div></div><div class="bar-val">Strong</div></div>
+      </div>
+    </div>
+    <div>
+      <h3>Long-Term Compounding Potential</h3>
+      <div class="verdict-box blue-accent">
+        <p>IndiaMART is a genuine long-term compounder at an S-curve inflection point. The business went from "supply name + phone" to "product + price + specification + photos + reviews" over 30 years — each evolution unlocked a new layer of value. The next evolution (AI-assisted matching, multilingual, chat-based discovery, trust scoring) could drive the next S-curve, targeting 400,000–500,000 paying suppliers and double-digit ARPU growth simultaneously. This potential is 2–4 years away but the foundation (data, brand, cash) makes it uniquely positioned among Indian internet companies. Compounding potential over 5–7 years remains high — the near-term operational issues are real but unlikely to be structural.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL RATING -->
+  <div class="verdict-final">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;">Final Investment Verdict</div>
+    <div class="verdict-rating">Watchlist</div>
+    <div class="verdict-sub">Monitor for 2 consecutive quarters of churn improvement before accumulating</div>
+    <div class="verdict-rationale">
+      <p>IndiaMART is a <strong>high-quality business at a fair valuation approaching an operational inflection point</strong> — but the direction of that inflection is not yet determined. The case for <em>Accumulate</em> is compelling on balance sheet quality, margin durability, and long-term platform potential. The case against is the active buyer decline, enquiry plateau, and repeated churn recovery timeline misses that leave the near-term thesis uncertain.</p>
+      <p style="margin-top: 12px;">The right investor action is to place it on <strong>active watchlist</strong> with a clear upgrade trigger: two consecutive quarters showing Silver monthly churn returning below 6% AND standalone collection growth re-accelerating to 12%+. On those signals, the stock deserves a re-rating toward ₹2,600–2,800 and a confident Accumulate rating. Until then, the quality of the business justifies watching closely but does not yet justify ignoring the operational headwinds.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="report-footer">
+  <div class="left">INDIAMART INTERMESH LIMITED · NSE: INDIAMART · BSE: 542726 · INSTITUTIONAL EQUITY ANALYSIS</div>
+  <div class="right">Analysis based on Q3 FY2026 (Jan 20, 2026) and Q4 FY2026 (Apr 30, 2026) Earnings Transcripts · May 2026</div>
+</div>
+
+</body>
+</html>

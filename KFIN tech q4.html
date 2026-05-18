@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KFin Technologies — Institutional Equity Analysis | Q4 & FY26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Geist+Mono:wght@300;400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #0a0c10;
+    --bg-secondary: #0f1218;
+    --bg-card: #131820;
+    --bg-card-hover: #181f2a;
+    --bg-accent: #0d1622;
+    --border: rgba(255,255,255,0.07);
+    --border-accent: rgba(196,155,80,0.3);
+    --gold: #c49b50;
+    --gold-light: #e0bc78;
+    --gold-dim: rgba(196,155,80,0.15);
+    --red: #e05555;
+    --red-dim: rgba(224,85,85,0.12);
+    --green: #4caf82;
+    --green-dim: rgba(76,175,130,0.12);
+    --amber: #e09840;
+    --amber-dim: rgba(224,152,64,0.12);
+    --blue: #5b8fe8;
+    --blue-dim: rgba(91,143,232,0.12);
+    --text-primary: #e8e4dc;
+    --text-secondary: #8a8f99;
+    --text-muted: #555c6a;
+    --text-gold: #c49b50;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 15px; }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Instrument Sans', sans-serif;
+    line-height: 1.65;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse 80% 40% at 50% -10%, rgba(196,155,80,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 30% at 90% 50%, rgba(91,143,232,0.03) 0%, transparent 60%);
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,12,16,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 52px;
+    animation: fadeDown 0.6s ease both;
+  }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 600;
+    letter-spacing: 0.04em; color: var(--gold-light);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .nav-brand span { color: var(--text-secondary); font-weight: 300; font-size: 0.9rem; }
+  .nav-links {
+    display: flex; gap: 0.2rem; list-style: none;
+    overflow-x: auto;
+  }
+  .nav-links a {
+    color: var(--text-secondary); text-decoration: none;
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 0.35rem 0.75rem;
+    border-radius: 3px; transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--gold-light); background: var(--gold-dim); }
+  .nav-verdict {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.1em;
+    color: var(--amber); background: var(--amber-dim);
+    border: 1px solid rgba(224,152,64,0.3);
+    padding: 0.25rem 0.75rem; border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  /* ─── MAIN LAYOUT ─── */
+  main { max-width: 1340px; margin: 0 auto; padding: 5.5rem 2rem 4rem; }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding: 3.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+    animation: fadeUp 0.7s ease both 0.1s;
+  }
+  .hero-meta {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.12em; color: var(--text-muted);
+    text-transform: uppercase; margin-bottom: 1rem;
+    display: flex; gap: 2rem; align-items: center;
+  }
+  .hero-meta::before {
+    content: ''; display: inline-block; width: 24px; height: 1px;
+    background: var(--gold); flex-shrink: 0;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-weight: 300; line-height: 1.1;
+    letter-spacing: -0.01em; color: var(--text-primary);
+    margin-bottom: 0.4rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; font-weight: 300; color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+  .hero-ticker-row {
+    display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;
+  }
+  .ticker-chip {
+    display: flex; flex-direction: column; gap: 0.1rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 4px; min-width: 120px;
+  }
+  .ticker-chip .label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+  }
+  .ticker-chip .value {
+    font-family: 'Geist Mono', monospace;
+    font-size: 1.05rem; font-weight: 500; color: var(--text-primary);
+  }
+  .ticker-chip .value.neg { color: var(--red); }
+  .ticker-chip .value.pos { color: var(--green); }
+  .ticker-chip .value.gold { color: var(--gold-light); }
+
+  /* ─── SCORECARD ─── */
+  .scorecard-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden; margin-bottom: 3rem;
+    animation: fadeUp 0.7s ease both 0.2s;
+  }
+  .score-cell {
+    background: var(--bg-card); padding: 1.5rem 1rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    transition: background 0.2s;
+  }
+  .score-cell:hover { background: var(--bg-card-hover); }
+  .score-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text-muted);
+    text-transform: uppercase; text-align: center;
+  }
+  .score-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem; font-weight: 600; line-height: 1;
+  }
+  .score-bar {
+    width: 100%; height: 3px; background: rgba(255,255,255,0.06);
+    border-radius: 2px; overflow: hidden;
+  }
+  .score-fill { height: 100%; border-radius: 2px; transition: width 1s ease; }
+  .s1 .score-value { color: #4caf82; }
+  .s1 .score-fill { background: #4caf82; width: 75%; }
+  .s2 .score-value { color: #e09840; }
+  .s2 .score-fill { background: #e09840; width: 65%; }
+  .s3 .score-value { color: #4caf82; }
+  .s3 .score-fill { background: #4caf82; width: 78%; }
+  .s4 .score-value { color: #4caf82; }
+  .s4 .score-fill { background: #4caf82; width: 80%; }
+  .s5 .score-value { color: #e09840; }
+  .s5 .score-fill { background: #e09840; width: 72%; }
+  .s6 .score-value { color: #4caf82; }
+  .s6 .score-fill { background: #4caf82; width: 76%; }
+
+  /* ─── SECTIONS ─── */
+  section {
+    margin-bottom: 3.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .section-header {
+    display: flex; align-items: baseline; gap: 1rem;
+    margin-bottom: 1.5rem; padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.12em;
+    color: var(--gold); opacity: 0.7;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.65rem; font-weight: 500;
+    color: var(--text-primary); letter-spacing: 0.01em;
+  }
+  .section-tag {
+    margin-left: auto;
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.2rem 0.6rem; border-radius: 2px;
+  }
+
+  /* ─── PROSE ─── */
+  .prose { color: var(--text-primary); font-size: 0.935rem; line-height: 1.75; }
+  .prose p { margin-bottom: 0.9rem; }
+  .prose strong { color: var(--text-primary); font-weight: 600; }
+  .prose em { color: var(--gold-light); font-style: normal; }
+
+  /* ─── CALLOUT BOXES ─── */
+  .callout {
+    padding: 1rem 1.25rem;
+    border-radius: 4px; margin-bottom: 1rem;
+    border-left: 3px solid;
+  }
+  .callout-gold { background: var(--gold-dim); border-color: var(--gold); }
+  .callout-red { background: var(--red-dim); border-color: var(--red); }
+  .callout-green { background: var(--green-dim); border-color: var(--green); }
+  .callout-blue { background: var(--blue-dim); border-color: var(--blue); }
+  .callout-amber { background: var(--amber-dim); border-color: var(--amber); }
+  .callout .title {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .callout-gold .title { color: var(--gold); }
+  .callout-red .title { color: var(--red); }
+  .callout-green .title { color: var(--green); }
+  .callout-blue .title { color: var(--blue); }
+  .callout-amber .title { color: var(--amber); }
+  .callout .body { font-size: 0.88rem; color: var(--text-primary); line-height: 1.6; }
+
+  /* ─── TWO / THREE COLUMN GRIDS ─── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+
+  /* ─── STAT CARDS ─── */
+  .stat-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 5px; padding: 1.25rem 1.4rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .stat-card:hover { border-color: var(--border-accent); background: var(--bg-card-hover); }
+  .stat-card .card-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+  .stat-card .card-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 500; line-height: 1.1;
+    color: var(--text-primary); margin-bottom: 0.3rem;
+  }
+  .stat-card .card-sub { font-size: 0.78rem; color: var(--text-secondary); }
+  .stat-card .card-delta {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.75rem; margin-top: 0.4rem;
+  }
+  .delta-pos { color: var(--green); }
+  .delta-neg { color: var(--red); }
+  .delta-neutral { color: var(--amber); }
+
+  /* ─── TABLES ─── */
+  .table-wrap { overflow-x: auto; margin-bottom: 1rem; }
+  table {
+    width: 100%; border-collapse: collapse;
+    font-size: 0.84rem;
+  }
+  thead th {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.1em;
+    color: var(--text-muted); text-transform: uppercase;
+    padding: 0.6rem 0.9rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-secondary);
+    white-space: nowrap;
+  }
+  tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.15s;
+  }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+  tbody td {
+    padding: 0.65rem 0.9rem; color: var(--text-primary);
+    vertical-align: middle;
+  }
+  .td-mono {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.82rem;
+  }
+  .td-achieved { color: var(--green); font-family: 'Geist Mono', monospace; font-size: 0.75rem; }
+  .td-delayed { color: var(--amber); font-family: 'Geist Mono', monospace; font-size: 0.75rem; }
+  .td-missed { color: var(--red); font-family: 'Geist Mono', monospace; font-size: 0.75rem; }
+  .td-ongoing { color: var(--blue); font-family: 'Geist Mono', monospace; font-size: 0.75rem; }
+
+  /* ─── SEGMENT BARS ─── */
+  .segment-list { display: flex; flex-direction: column; gap: 0.65rem; }
+  .segment-row {
+    display: grid; grid-template-columns: 220px 1fr 70px 80px;
+    align-items: center; gap: 0.75rem;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 4px; padding: 0.75rem 1rem;
+    transition: background 0.2s;
+  }
+  .segment-row:hover { background: var(--bg-card-hover); }
+  .seg-name { font-size: 0.85rem; font-weight: 500; color: var(--text-primary); }
+  .seg-bar-wrap { background: rgba(255,255,255,0.05); border-radius: 2px; height: 6px; overflow: hidden; }
+  .seg-bar { height: 100%; border-radius: 2px; }
+  .seg-pct {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.78rem; color: var(--text-secondary); text-align: right;
+  }
+  .seg-growth {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.78rem; text-align: right;
+  }
+
+  /* ─── FLAG BADGES ─── */
+  .flag { display: inline-flex; align-items: center; gap: 0.3rem;
+    font-family: 'Geist Mono', monospace; font-size: 0.64rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.2rem 0.55rem; border-radius: 2px; border: 1px solid;
+    white-space: nowrap;
+  }
+  .flag-minor { color: #e0bc78; background: rgba(224,188,120,0.08); border-color: rgba(224,188,120,0.3); }
+  .flag-moderate { color: var(--amber); background: var(--amber-dim); border-color: rgba(224,152,64,0.3); }
+  .flag-severe { color: var(--red); background: var(--red-dim); border-color: rgba(224,85,85,0.3); }
+  .flag-positive { color: var(--green); background: var(--green-dim); border-color: rgba(76,175,130,0.3); }
+
+  /* ─── FLAGS LIST ─── */
+  .flag-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 0.9rem 1rem; background: var(--bg-card);
+    border: 1px solid var(--border); border-radius: 4px;
+    margin-bottom: 0.5rem; transition: background 0.2s;
+  }
+  .flag-item:hover { background: var(--bg-card-hover); }
+  .flag-item-text { font-size: 0.87rem; color: var(--text-primary); line-height: 1.5; flex: 1; }
+  .flag-item-text small { display: block; color: var(--text-secondary); font-size: 0.78rem; margin-top: 0.2rem; }
+
+  /* ─── INFLECTION SIGNALS ─── */
+  .signal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+  .signal-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 5px; padding: 1rem 1.1rem;
+    transition: all 0.2s;
+  }
+  .signal-card:hover { border-color: var(--border-accent); }
+  .signal-icon { font-size: 1.1rem; margin-bottom: 0.4rem; }
+  .signal-title { font-size: 0.84rem; font-weight: 600; color: var(--gold-light); margin-bottom: 0.3rem; }
+  .signal-body { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
+
+  /* ─── VALUATION METER ─── */
+  .val-meter-wrap { margin: 1.5rem 0; }
+  .val-meter-track {
+    position: relative; height: 8px;
+    background: linear-gradient(to right, #4caf82, #e09840, #e05555);
+    border-radius: 4px; margin-bottom: 0.75rem;
+  }
+  .val-marker {
+    position: absolute; top: -4px; transform: translateX(-50%);
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--bg-primary); border: 2px solid var(--gold);
+    box-shadow: 0 0 0 3px rgba(196,155,80,0.2);
+  }
+  .val-labels {
+    display: flex; justify-content: space-between;
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.58rem; color: var(--text-muted);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  /* ─── SCENARIO CARDS ─── */
+  .scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+  .scenario-card {
+    padding: 1.4rem; border-radius: 5px;
+    border: 1px solid; position: relative; overflow: hidden;
+  }
+  .scenario-bull {
+    background: rgba(76,175,130,0.06);
+    border-color: rgba(76,175,130,0.25);
+  }
+  .scenario-base {
+    background: rgba(196,155,80,0.06);
+    border-color: rgba(196,155,80,0.25);
+  }
+  .scenario-bear {
+    background: rgba(224,85,85,0.06);
+    border-color: rgba(224,85,85,0.25);
+  }
+  .scenario-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .scenario-bull .scenario-label { color: var(--green); }
+  .scenario-base .scenario-label { color: var(--gold); }
+  .scenario-bear .scenario-label { color: var(--red); }
+  .scenario-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 500; margin-bottom: 0.75rem;
+  }
+  .scenario-bull .scenario-headline { color: var(--green); }
+  .scenario-base .scenario-headline { color: var(--gold-light); }
+  .scenario-bear .scenario-headline { color: var(--red); }
+  .scenario-body { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55; }
+  .scenario-kpi { margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.25rem; }
+  .scenario-kpi-row {
+    display: flex; justify-content: space-between;
+    font-family: 'Geist Mono', monospace; font-size: 0.72rem;
+  }
+  .scenario-kpi-row .k { color: var(--text-muted); }
+  .scenario-bull .scenario-kpi-row .v { color: var(--green); }
+  .scenario-base .scenario-kpi-row .v { color: var(--gold-light); }
+  .scenario-bear .scenario-kpi-row .v { color: var(--red); }
+
+  /* ─── VERDICT BANNER ─── */
+  .verdict-banner {
+    background: linear-gradient(135deg, rgba(196,155,80,0.08) 0%, rgba(91,143,232,0.04) 100%);
+    border: 1px solid var(--border-accent);
+    border-radius: 8px; padding: 2.5rem;
+    position: relative; overflow: hidden;
+    margin-top: 2rem;
+  }
+  .verdict-banner::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .verdict-rating {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-weight: 600;
+    color: var(--amber); letter-spacing: -0.02em;
+    line-height: 1; margin-bottom: 0.5rem;
+  }
+  .verdict-sub {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.12em;
+    color: var(--amber); text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+  .verdict-body { font-size: 0.93rem; line-height: 1.75; color: var(--text-secondary); max-width: 780px; }
+  .verdict-body strong { color: var(--text-primary); }
+  .verdict-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.75rem; }
+  .verdict-col h4 {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .verdict-col.pos h4 { color: var(--green); }
+  .verdict-col.neg h4 { color: var(--red); }
+  .verdict-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+  .verdict-list li {
+    font-size: 0.85rem; color: var(--text-secondary);
+    padding-left: 1.1rem; position: relative; line-height: 1.5;
+  }
+  .verdict-col.pos .verdict-list li::before { content: '+'; position: absolute; left: 0; color: var(--green); font-weight: 600; }
+  .verdict-col.neg .verdict-list li::before { content: '−'; position: absolute; left: 0; color: var(--red); font-weight: 600; }
+
+  /* ─── MONITORING TABLE ─── */
+  .monitoring-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+  .monitor-item {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 4px; padding: 0.75rem 1rem;
+    display: flex; gap: 0.75rem; align-items: flex-start;
+  }
+  .monitor-num {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem; color: var(--gold);
+    min-width: 20px; margin-top: 0.1rem;
+  }
+  .monitor-text { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.5; }
+  .monitor-text strong { color: var(--text-primary); }
+
+  /* ─── MANAGEMENT CLASSIFY ─── */
+  .mgmt-classify {
+    display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0;
+  }
+  .mgmt-tag {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.3rem 0.7rem; border-radius: 2px; border: 1px solid;
+  }
+  .mgmt-tag.active { color: var(--gold-light); background: var(--gold-dim); border-color: rgba(196,155,80,0.4); }
+  .mgmt-tag.inactive { color: var(--text-muted); background: rgba(255,255,255,0.02); border-color: var(--border); }
+
+  /* ─── DIVIDER ─── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+  hr.gold { border-top-color: rgba(196,155,80,0.2); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border); margin-top: 4rem;
+    padding: 2rem 0 3rem;
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem; color: var(--text-muted);
+    letter-spacing: 0.06em; line-height: 1.8;
+  }
+  footer strong { color: var(--text-secondary); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  section:nth-child(2) { animation-delay: 0.15s; }
+  section:nth-child(3) { animation-delay: 0.2s; }
+  section:nth-child(4) { animation-delay: 0.25s; }
+  section:nth-child(5) { animation-delay: 0.3s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+    .scenario-grid, .signal-grid { grid-template-columns: 1fr; }
+    .scorecard-grid { grid-template-columns: repeat(3, 1fr); }
+    .segment-row { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .verdict-grid { grid-template-columns: 1fr; }
+    .monitoring-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .grid-2, .grid-3, .grid-4, .scorecard-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ─── -->
+<nav>
+  <div class="nav-brand">
+    KFINTECH <span>/ Institutional Equity Analysis</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#snapshot">Snapshot</a></li>
+    <li><a href="#quality">Quality</a></li>
+    <li><a href="#guidance">Guidance</a></li>
+    <li><a href="#forensic">Forensic</a></li>
+    <li><a href="#management">Management</a></li>
+    <li><a href="#segments">Segments</a></li>
+    <li><a href="#industry">Industry</a></li>
+    <li><a href="#flags">Red Flags</a></li>
+    <li><a href="#inflection">Inflection</a></li>
+    <li><a href="#valuation">Valuation</a></li>
+    <li><a href="#trajectory">Trajectory</a></li>
+    <li><a href="#verdict">Verdict</a></li>
+  </ul>
+  <div class="nav-verdict">WATCHLIST / ACCUMULATE</div>
+</nav>
+
+<main>
+
+  <!-- ─── HERO ─── -->
+  <header class="hero">
+    <div class="hero-meta">
+      <span>NSE: KFINTECH &nbsp;·&nbsp; BSE: 543720</span>
+      <span>Q4 & FY26 Results</span>
+      <span>April 29–30, 2026</span>
+      <span>Institutional Equity Research</span>
+    </div>
+    <h1>KFin Technologies <em>Limited</em></h1>
+    <div class="hero-sub">India's Largest MF Registry — Navigating the Global Pivot</div>
+    <div class="hero-ticker-row">
+      <div class="ticker-chip">
+        <span class="label">CMP</span>
+        <span class="value gold">₹804</span>
+      </div>
+      <div class="ticker-chip">
+        <span class="label">Market Cap</span>
+        <span class="value">₹13,873 Cr</span>
+      </div>
+      <div class="ticker-chip">
+        <span class="label">P/E (TTM)</span>
+        <span class="value">39.3×</span>
+      </div>
+      <div class="ticker-chip">
+        <span class="label">52W H / L</span>
+        <span class="value neg">₹1,388 / ₹785</span>
+      </div>
+      <div class="ticker-chip">
+        <span class="label">ROCE</span>
+        <span class="value pos">30.5%</span>
+      </div>
+      <div class="ticker-chip">
+        <span class="label">ROE</span>
+        <span class="value pos">22.9%</span>
+      </div>
+      <div class="ticker-chip">
+        <span class="label">Book Value</span>
+        <span class="value">₹97.0</span>
+      </div>
+      <div class="ticker-chip">
+        <span class="label">Div. Yield</span>
+        <span class="value">0.93%</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─── SCORECARD ─── -->
+  <div class="scorecard-grid" id="snapshot">
+    <div class="score-cell s1">
+      <div class="score-label">Business Health</div>
+      <div class="score-value">7.5</div>
+      <div class="score-bar"><div class="score-fill"></div></div>
+    </div>
+    <div class="score-cell s2">
+      <div class="score-label">Earnings Quality</div>
+      <div class="score-value">6.5</div>
+      <div class="score-bar"><div class="score-fill"></div></div>
+    </div>
+    <div class="score-cell s3">
+      <div class="score-label">Balance Sheet</div>
+      <div class="score-value">7.8</div>
+      <div class="score-bar"><div class="score-fill"></div></div>
+    </div>
+    <div class="score-cell s4">
+      <div class="score-label">Capital Allocation</div>
+      <div class="score-value">8.0</div>
+      <div class="score-bar"><div class="score-fill"></div></div>
+    </div>
+    <div class="score-cell s5">
+      <div class="score-label">Mgmt Credibility</div>
+      <div class="score-value">7.2</div>
+      <div class="score-bar"><div class="score-fill"></div></div>
+    </div>
+    <div class="score-cell s6">
+      <div class="score-label">Future Visibility</div>
+      <div class="score-value">7.6</div>
+      <div class="score-bar"><div class="score-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 1 — EXECUTIVE SNAPSHOT
+  ════════════════════════════════════════════ -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Executive Snapshot</h2>
+      <span class="section-tag flag-moderate">Mixed Quarter</span>
+    </div>
+
+    <div class="callout callout-gold">
+      <div class="title">What Actually Happened This Quarter</div>
+      <div class="body">Q4FY26 was a tale of two realities. At the headline consolidated level, revenue grew 22.9% YoY — an impressive number driven entirely by the Ascent Fund Services acquisition completed in October 2025. Strip out Ascent, and the organic business grew a pedestrian 4.6% YoY, with sequential revenue declining 8.5%. EBITDA grew only 5.1% YoY and PAT actually fell 1% YoY on an adjusted basis. The quarter was optically enhanced by inorganic consolidation while the underlying core business faced genuine structural headwinds.</div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:1.25rem;">
+      <div class="stat-card">
+        <div class="card-label">Q4FY26 Revenue (Consolidated)</div>
+        <div class="card-value">₹3,473 Mn</div>
+        <div class="card-delta delta-pos">▲ 22.9% YoY</div>
+        <div class="card-delta delta-neg">▼ 6.3% QoQ</div>
+        <div class="card-sub">Organic growth: +4.6% YoY / −8.5% QoQ</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">Q4FY26 EBITDA Margin (Consolidated)</div>
+        <div class="card-value">37.0%</div>
+        <div class="card-delta delta-neg">▼ 625 bps YoY | ▼ 388 bps QoQ</div>
+        <div class="card-sub">Excl. Ascent: 41.9% (stable business engine)</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">FY26 Revenue (Consolidated)</div>
+        <div class="card-value">₹13,015 Mn</div>
+        <div class="card-delta delta-pos">▲ 19.3% YoY</div>
+        <div class="card-sub">Organic (excl. Ascent): +10.2% YoY</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">FY26 Core PAT (Consolidated)</div>
+        <div class="card-value">₹3,531 Mn</div>
+        <div class="card-delta delta-pos">▲ 6.2% YoY</div>
+        <div class="card-sub">PAT margin compressed to 27.1% from 30.5%</div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p><strong>Top 5 Most Important Developments:</strong></p>
+    </div>
+
+    <div class="callout callout-blue" style="margin-bottom:0.6rem;">
+      <div class="title">① Ascent Integration — The Strategic Pivot Materialises</div>
+      <div class="body">KFintech now administers US$45.7 billion of AUM across 499 international clients in 18 countries. The international revenue mix jumped from ~4% to ~20% of total revenues in a single year. This is the most consequential structural shift in KFin's history, transforming it from an India-only middleware company to a credible global fund administrator aspirant.</div>
+    </div>
+    <div class="callout callout-amber" style="margin-bottom:0.6rem;">
+      <div class="title">② Margin Compression — The Integration Tax</div>
+      <div class="body">Ascent runs at roughly 8% EBITDA margin versus KFintech's standalone ~43%. Consolidating ~15% of revenues at near-zero margin mathematically drags blended margins by 400–500 bps. This is a deliberate, knowable, and temporary drag — but the market appears to be pricing it as a structural deterioration.</div>
+    </div>
+    <div class="callout callout-red" style="margin-bottom:0.6rem;">
+      <div class="title">③ Domestic MF Revenue Under-Earns AUM Growth — Pricing Discount Hangover</div>
+      <div class="body">Industry AUM grew 21% but KFin's domestic MF revenue grew only ~8% in Q4. The culprit is a large contract renegotiation that yielded pricing discounts in April 2025, depressing revenue while AUM surged. This base effect normalises from FY27. A secondary factor is a 200 bps shift in equity AUM mix toward low-yield metal ETFs.</div>
+    </div>
+    <div class="callout callout-green" style="margin-bottom:0.6rem;">
+      <div class="title">④ NPS — The Hidden Compounding Machine</div>
+      <div class="body">NPS subscriber base grew 35.6% YoY vs industry's 11.7%, market share expanded from 9.8% to 11.9%. Management disclosed that NPS has broken even and now runs ~30% EBITDA margins — a remarkable inflection for a business that was loss-making four years ago. This trajectory replicates every other KFin business unit transformation.</div>
+    </div>
+    <div class="callout callout-gold" style="margin-bottom:0.6rem;">
+      <div class="title">⑤ Issuer Solutions — Short-Term Pain, Structural Strength</div>
+      <div class="body">Revenue fell 16.5% YoY in Q4 due to retail folio erosion (−1.7 mn net), low corporate action activity, and a demerger-related base effect from Q4FY25. However, market share in NSE500 by market cap rose to 52.3%, and the corporate client base crossed 10,600. The revenue weakness is cyclical, not structural.</div>
+    </div>
+
+    <div class="prose" style="margin-top:1.25rem;">
+      <p><strong>What the Market is Likely Missing:</strong> The market appears to be penalising KFintech for its acquisition-induced margin compression without adequately pricing in (a) the base-effect normalisation in MF revenues from April 2026 onwards, (b) the NPS inflection which is now a structurally profitable business unit growing at 3× the industry, (c) the optionality embedded in Ascent's growing large-client mandate wins (6 funds with $100mn+ AUM), and (d) the 200-bps ETF mix headwind that management identifies as already reversing in April. The stock trading at ₹804 — down 42% from its peak — likely prices in excessive pessimism relative to KFin's durable franchise.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 2 — RESULT QUALITY ANALYSIS
+  ════════════════════════════════════════════ -->
+  <section id="quality">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Result Quality Analysis</h2>
+    </div>
+
+    <div class="grid-3" style="margin-bottom:1.5rem;">
+      <div class="stat-card">
+        <div class="card-label">Revenue Growth — Organic</div>
+        <div class="card-value" style="font-size:1.6rem; color: var(--amber);">4.6%</div>
+        <div class="card-sub" style="margin-top:0.5rem;">YoY in Q4; 10.2% for FY26. Adjusted for pricing discounts given in April 2025, underlying growth is closer to 8–9%. Not impressive for a technology platform growing its addressable market.</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">EBITDA Quality</div>
+        <div class="card-value" style="font-size:1.6rem; color: var(--gold);">Moderate</div>
+        <div class="card-sub" style="margin-top:0.5rem;">Organic EBITDA margin of 41.9% is high quality. Consolidated 37.0% reflects Ascent dilution. The exceptionals (Labour Code ₹125.9 mn) are genuinely one-time. No capitalisation games, no related party distortions.</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">PAT Quality</div>
+        <div class="card-value" style="font-size:1.6rem; color: var(--amber);">Good</div>
+        <div class="card-sub" style="margin-top:0.5rem;">Other income of ₹424 mn includes interest income on ₹5,707 mn cash. No excessive "other income" dependency. Tax rate is normal. CFO at ₹3,696 mn vs PAT of ₹3,437 mn — healthy conversion ratio above 100%.</div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p><strong>Revenue Growth Decomposition:</strong> Consolidated revenue grew ₹2,107 mn YoY in FY26. Of this, Ascent contributed ~₹994 mn (entirely inorganic). The remaining ~₹1,113 mn was organic — primarily driven by Domestic MF (+₹824 mn), International SEA (+₹126 mn), and NPS (+₹54 mn), partially offset by GBS rundown (−₹211 mn). Issuer Solutions contributed +₹136 mn organically despite the Q4 softness.</p>
+      <p><strong>Margin Compression Explained:</strong> The 322 bps FY26 EBITDA margin compression (43.9% → 40.7%) has three identifiable drivers: (1) Ascent consolidation at ~8% margin accounting for ~200–220 bps of drag; (2) domestic MF yield compression from pricing discounts (~50 bps); and (3) equity-to-passive AUM mix shift (~50 bps). The organic KFin business, excluding Ascent, held EBITDA margins at 43.5% — practically flat, which is a strong outcome in a year of equity market underperformance.</p>
+      <p><strong>Cash Flow Truth:</strong> FY26 consolidated CFO of ₹3,696 mn vs PAT of ₹3,437 mn yields a 107% cash conversion — excellent for a financial services technology platform. Working capital shows trade receivables growing from ₹1,927 mn to ₹2,694 mn (+40%), which includes Ascent's receivable base. Standalone receivables grew more modestly from ₹1,797 mn to ₹2,081 mn (+16%), consistent with revenue growth. No evidence of aggressive revenue recognition or collection stress.</p>
+    </div>
+
+    <div class="callout callout-amber" style="margin-top:1rem;">
+      <div class="title">One Area to Watch — Goodwill Accumulation</div>
+      <div class="body">Consolidated goodwill nearly tripled from ₹5,526 mn to ₹13,272 mn due to Ascent PPA. Additionally, ₹6,307 mn in non-current "other financial liabilities" represents deferred/contingent consideration for the remaining 49% Ascent stake (3 tranches in FY29-31 linked to EBITDA milestones). If Ascent underperforms milestones, consideration reduces — but if it outperforms, this could be a meaningful cash outflow. The total Ascent obligation is fair-valued at ₹5,791 mn (US$65.27 mn), which is 42% of KFin's current market cap. This is the single largest financial risk in the balance sheet.</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 3 — GUIDANCE TRACKER
+  ════════════════════════════════════════════ -->
+  <section id="guidance">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Guidance Tracker & Execution Scorecard</h2>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Guidance / Promise</th>
+            <th>Timeline</th>
+            <th>Target</th>
+            <th>Actual / Status</th>
+            <th>Assessment</th>
+            <th>Commentary</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Revenue growth guidance</td>
+            <td class="td-mono">FY26</td>
+            <td class="td-mono">15–20% YoY</td>
+            <td class="td-mono">19.3% consolidated</td>
+            <td><span class="td-achieved">✓ ACHIEVED</span></td>
+            <td>Top end of range, but boosted by inorganic Ascent. Organic: 10.2%</td>
+          </tr>
+          <tr>
+            <td>EBITDA margin range</td>
+            <td class="td-mono">FY26</td>
+            <td class="td-mono">40–45%</td>
+            <td class="td-mono">40.7% incl. Ascent</td>
+            <td><span class="td-achieved">✓ ACHIEVED</span></td>
+            <td>Barely within lower bound. Q4 dropped to 37%, raising next-year concerns</td>
+          </tr>
+          <tr>
+            <td>PAT margin guidance</td>
+            <td class="td-mono">FY26</td>
+            <td class="td-mono">27–30%</td>
+            <td class="td-mono">27.1% (incl. Ascent)</td>
+            <td><span class="td-achieved">✓ ACHIEVED</span></td>
+            <td>Lower bound maintained. Standalone: 29.9% (comfortable)</td>
+          </tr>
+          <tr>
+            <td>Domestic MF revenue below 50% of mix</td>
+            <td class="td-mono">5-year plan</td>
+            <td class="td-mono">&lt;50% revenue share</td>
+            <td class="td-mono">65.5% FY26; 61% Q4</td>
+            <td><span class="td-ongoing">→ IN PROGRESS</span></td>
+            <td>Directionally correct. Management now says it can achieve this faster than planned given 70%+ international growth targeted in FY27</td>
+          </tr>
+          <tr>
+            <td>NPS break-even & margin improvement</td>
+            <td class="td-mono">Q3FY26</td>
+            <td class="td-mono">EBITDA positive</td>
+            <td class="td-mono">~30% EBITDA margin</td>
+            <td><span class="td-achieved">✓ EXCEEDED</span></td>
+            <td>Significant beat. NPS now at healthy margins growing 3× industry. Major credibility builder</td>
+          </tr>
+          <tr>
+            <td>Ascent EPS accretive on cash basis</td>
+            <td class="td-mono">Acquisition date</td>
+            <td class="td-mono">Cash EPS accretive</td>
+            <td class="td-mono">Confirmed Q3 call</td>
+            <td><span class="td-achieved">✓ ACHIEVED</span></td>
+            <td>Cash-basis accretive from day 1, though reported PAT includes amortisation drag</td>
+          </tr>
+          <tr>
+            <td>Ascent margin to ~35%+ in 3–5 years</td>
+            <td class="td-mono">FY28–FY30</td>
+            <td class="td-mono">35%+ EBITDA margin</td>
+            <td class="td-mono">~8% in Q4FY26</td>
+            <td><span class="td-ongoing">→ TRACKING</span></td>
+            <td>Still early. Q4 margin is 8%. Gap of ~2,700 bps to close in 3–5 years. Ambitious but management maintains high confidence</td>
+          </tr>
+          <tr>
+            <td>10,000+ issuer clients</td>
+            <td class="td-mono">FY26</td>
+            <td class="td-mono">10,000 corporates</td>
+            <td class="td-mono">10,603 as of Mar 31</td>
+            <td><span class="td-achieved">✓ ACHIEVED</span></td>
+            <td>Target crossed mid-Q3. FY27 target set at 11,500</td>
+          </tr>
+          <tr>
+            <td>International AUM scale-up</td>
+            <td class="td-mono">FY26</td>
+            <td class="td-mono">Material expansion</td>
+            <td class="td-mono">US$45.7 bn (from $9.5 bn)</td>
+            <td><span class="td-achieved">✓ EXCEEDED</span></td>
+            <td>381.5% YoY AUM growth; largely inorganic. Organic GFS AUM up 43% to $12.9 bn</td>
+          </tr>
+          <tr>
+            <td>GIFT City international delivery hub (GCC)</td>
+            <td class="td-mono">FY26/FY27</td>
+            <td class="td-mono">Operational subsidiary</td>
+            <td class="td-mono">License secured, WIP</td>
+            <td><span class="td-delayed">⚠ DELAYED</span></td>
+            <td>License secured, subsidiary formed, but not yet fully operational. On track for FY27</td>
+          </tr>
+          <tr>
+            <td>Aladdin platform BD revenue</td>
+            <td class="td-mono">FY26/FY27</td>
+            <td class="td-mono">New revenue stream</td>
+            <td class="td-mono">Integration still ongoing</td>
+            <td><span class="td-delayed">⚠ DELAYED</span></td>
+            <td>Integration complexity underestimated. Management says BD activity starts "couple of quarters" — now pushed to FY27 Q1–Q2</td>
+          </tr>
+          <tr>
+            <td>FY27 Revenue growth guidance</td>
+            <td class="td-mono">FY27 outlook</td>
+            <td class="td-mono">23–24% consolidated</td>
+            <td class="td-mono">Internal projection</td>
+            <td><span class="td-ongoing">→ WATCH</span></td>
+            <td>Explicitly called "not formal guidance." Management reserves the right to recalibrate monthly given market volatility</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2" style="margin-top:1.25rem;">
+      <div class="callout callout-green">
+        <div class="title">Execution Credibility Assessment</div>
+        <div class="body">Management has an <strong>above-average hit rate</strong> on quantitative guidance. Financial metric targets (revenue range, margin band, PAT guidance) have been met or marginally missed in 9 of 12 tracked promises. The NPS turnaround is a genuine execution win. However, some qualitative technology timelines (Aladdin, AI platforms) have slipped.</div>
+      </div>
+      <div class="callout callout-amber">
+        <div class="title">Execution Credibility Rating</div>
+        <div class="body"><strong>STRONG</strong> — Management consistently underpromises on quantitative metrics while occasionally overpromising on technology delivery timelines. No evidence of narrative abandonment or silent goal-post shifting. The Ascent integration thesis remains intact. Rating would be "Exceptional" if organic growth were stronger.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 4 — FORENSIC FINANCIAL ARCHITECTURE
+  ════════════════════════════════════════════ -->
+  <section id="forensic">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Hidden Financial Architecture</h2>
+    </div>
+
+    <div class="grid-3" style="margin-bottom:1.25rem;">
+      <div class="stat-card">
+        <div class="card-label">Cash Conversion (FY26)</div>
+        <div class="card-value" style="color: var(--green);">107%</div>
+        <div class="card-sub">CFO ₹3,696 mn vs PAT ₹3,437 mn. No earnings manipulation signal. High quality.</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">FCF Yield (Approx.)</div>
+        <div class="card-value" style="color: var(--amber);">~1.9%</div>
+        <div class="card-sub">FCF ~₹2,587 mn after ₹1,109 mn capex. Market cap ₹13,873 Cr. Moderate but improving.</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">Cash + Equivalents</div>
+        <div class="card-value" style="color: var(--gold);">₹5,707 Mn</div>
+        <div class="card-sub">Includes ₹2,362 mn current investments. Fortress balance sheet for an asset-light business.</div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p><strong>Working Capital Forensics:</strong> Standalone trade receivables grew 16% YoY (₹1,797 mn → ₹2,081 mn), in line with standalone revenue growth of ~10%. Days Sales Outstanding (DSO) appears stable — no receivable spike relative to revenue, no hidden collection stress. The consolidated receivable jump to ₹2,694 mn is partially Ascent-driven (fund administration businesses typically carry higher receivables from fund managers).</p>
+      <p><strong>Balance Sheet Stress Mapping:</strong> The most significant off-balance-sheet risk is the deferred consideration for the remaining 49% Ascent stake. The ₹5,791 mn fair value liability (US$65.27 mn) is structured as three equal tranches payable in FY29, FY30, and FY31, linked to Ascent's EBITDA milestones. If Ascent performs as guided (margins improving toward 35%), this becomes a real cash obligation of ~₹2 bn per year across three years. KFin's current FCF of ~₹2.5–3 bn can accommodate this — but it significantly constrains future capital allocation flexibility.</p>
+      <p><strong>Hidden Leverage Architecture:</strong> The consolidated balance sheet shows ₹364 mn in non-current lease liabilities and ₹190 mn current lease liabilities — modest for the operating scale. Finance costs of ₹47 mn indicate minimal debt leverage. Goodwill of ₹13,272 mn (48% of total consolidated assets) is the primary risk item — any sustained Ascent underperformance could trigger an impairment charge that would be substantial relative to reported profits.</p>
+    </div>
+
+    <div class="callout callout-gold" style="margin-top:1rem;">
+      <div class="title">Real Cash Profit vs Accounting Profit</div>
+      <div class="body">A critical distinction: consolidated PAT of ₹3,437 mn is depressed by (a) ₹94 mn labour code exceptional (non-recurring), (b) ₹61 mn Ascent brand/client contract amortisation (non-cash PPA adjustment), and (c) ₹7.6 mn share of JV losses. Stripping these out, the underlying cash earnings power is approximately ₹3,600–3,700 mn, implying P/E of ~37–38× on true economic earnings. Additionally, ₹5,707 mn of cash earns ~₹175 mn annually in interest — partially disguised within "other income" and not highlighted in EBITDA discussions.</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 5 — MANAGEMENT COMMENTARY DECODE
+  ════════════════════════════════════════════ -->
+  <section id="management">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Management Commentary Decode</h2>
+    </div>
+
+    <div class="mgmt-classify">
+      <span class="mgmt-tag active">Visionary</span>
+      <span class="mgmt-tag active">Long-Term Allocator</span>
+      <span class="mgmt-tag active">Financially Disciplined</span>
+      <span class="mgmt-tag inactive">Conservative (partial)</span>
+      <span class="mgmt-tag inactive">Promotional</span>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:1.25rem;">
+      <div>
+        <div class="callout callout-green" style="margin-bottom:0.75rem;">
+          <div class="title">Management Emphasised</div>
+          <div class="body">Diversification narrative (MF below 50%), Ascent integration success, NPS turnaround as a playbook vindication, controllable vs uncontrollable distinction, 20%+ 5-year CAGR track record, 60%+ international revenue growth target for FY27, GCC/GIFT City expansion, AI-native platform launches.</div>
+        </div>
+        <div class="callout callout-red">
+          <div class="title">Management Avoided / Soft-Pedalled</div>
+          <div class="body">Quantitative organic domestic MF growth disappointment, the 4.6% organic revenue growth in Q4, Aladdin integration delay specifics, the magnitude of the deferred Ascent consideration obligation (₹5,791 mn), impact of equity market on near-term yield assumptions, precise Ascent EBITDA margin improvement timeline beyond "3 years."</div>
+        </div>
+      </div>
+      <div>
+        <div class="callout callout-amber" style="margin-bottom:0.75rem;">
+          <div class="title">Psychological Markers</div>
+          <div class="body">Management repeatedly distinguishes "controllables" from "non-controllables" — a healthy framing but also a pattern that deflects accountability for market-driven results. The Q4 call had a notably more defensive undertone than Q3, with more time spent on headwind explanations. However, unlike many managements, they did not abandon or quietly revise the Ascent integration margin thesis.</div>
+        </div>
+        <div class="callout callout-blue">
+          <div class="title">Hidden Signals</div>
+          <div class="body">Management's statement that "demergers in March pushed to May" signals Q1FY27 issuer solutions revenue should step up. The "April AUM up 2.5% month-on-month" comment (given on April 30) suggests Q1FY27 has already started stronger. The informal AMC mandate pipeline ("several more to announce in coming months") is a soft forward-looking positive that analysts may underweight.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>CEO Sreekanth Nadella's communication style is a blend of <strong>long-term strategic vision with selective optimism on cyclical headwinds</strong>. He is intellectually honest about macro dependencies but tends to frame execution misses (Aladdin integration delay, organic growth weakness) as temporary or external. The CFO (Vivek Mathur) is more conservative and quantitatively precise. The combination creates a credible management team — not purely promotional, but not fully conservative either. <em>Classification: Visionary with appropriate financial discipline.</em></p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 6 — SEGMENT ANALYSIS
+  ════════════════════════════════════════════ -->
+  <section id="segments">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Segment & Business Engine Analysis</h2>
+    </div>
+
+    <div class="segment-list" style="margin-bottom:1.25rem;">
+      <div class="segment-row">
+        <div class="seg-name">Domestic Mutual Fund</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:61%;background:var(--gold);"></div></div>
+        <div class="seg-pct">61.4% mix</div>
+        <div class="seg-growth delta-pos">+8.3% YoY</div>
+      </div>
+      <div class="segment-row">
+        <div class="seg-name">International (Ascent + SEA)</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:20%;background:var(--blue);"></div></div>
+        <div class="seg-pct">20.4% mix</div>
+        <div class="seg-growth delta-pos">+509% YoY</div>
+      </div>
+      <div class="segment-row">
+        <div class="seg-name">Issuer Solutions</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:9.4%;background:var(--amber);"></div></div>
+        <div class="seg-pct">9.4% mix</div>
+        <div class="seg-growth delta-neg">−16.5% YoY</div>
+      </div>
+      <div class="segment-row">
+        <div class="seg-name">Alternates / Wealth / PMS</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:4.6%;background:var(--green);"></div></div>
+        <div class="seg-pct">4.6% mix</div>
+        <div class="seg-growth delta-neg">−12.6% YoY Q4</div>
+      </div>
+      <div class="segment-row">
+        <div class="seg-name">National Pension System</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:1.6%;background:#9b59b6;"></div></div>
+        <div class="seg-pct">1.6% mix</div>
+        <div class="seg-growth delta-pos">+65.4% YoY</div>
+      </div>
+      <div class="segment-row">
+        <div class="seg-name">GBS (Winding Down)</div>
+        <div class="seg-bar-wrap"><div class="seg-bar" style="width:0.2%;background:var(--text-muted);"></div></div>
+        <div class="seg-pct">0.2% mix</div>
+        <div class="seg-growth delta-neg">−88% YoY</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <div class="callout callout-gold" style="margin-bottom:0.75rem;">
+          <div class="title">Core Profit Engine — Domestic MF</div>
+          <div class="body">Generates ~70–75% of group EBITDA at 43%+ margins. Segment EBITDA: ₹4,889 mn in FY26 vs ₹4,686 mn FY25 (+4.4%). Revenue growth was suppressed by pricing discounts — a one-time headwind. Structural demand (SIP inflows, financial inclusion, AUM CAGR) remains robust. Market share at 32.4% has expanded from 30.3% since FY22 — genuine share gain despite being a duopoly.</div>
+        </div>
+        <div class="callout callout-blue">
+          <div class="title">Emerging Engine — International (Ascent + SEA)</div>
+          <div class="body">Revenues jumped from ₹442 mn to ₹1,587 mn in FY26. Ascent alone contributed ₹994 mn. Segment EBITDA is marginally positive (Ascent at 8%). The quality of mandates is improving — 6 funds with $100mn+ AUM won in Q4. Growing at 30%+ organically with 18-country geographic optionality. This is the long-term earnings multiplier for KFin.</div>
+        </div>
+      </div>
+      <div>
+        <div class="callout callout-amber" style="margin-bottom:0.75rem;">
+          <div class="title">Recovery Story — Issuer Solutions</div>
+          <div class="body">Segment EBITDA actually grew from ₹802 mn to ₹843 mn FY26 (+5.1%) despite Q4 weakness, showing full-year resilience. Market share by market cap: 52.3% — the dominant player. Revenue decline in Q4 is a perfect storm of cyclical factors (retail exodus, low corporate actions, demerger base effect) that are unwinding in Q1FY27. Jio IPO and large pipeline demergers are meaningful Q1FY27 catalysts.</div>
+        </div>
+        <div class="callout callout-green">
+          <div class="title">Sleeper Engine — NPS</div>
+          <div class="body">Revenues grew from ₹110 mn to ₹164 mn FY26 (+49%). Subscriber base of 2.2 mn growing at 3× industry pace. Market share improving 200 bps YoY. ~30% EBITDA margin now. Revenue is transitioning to AUM-basis pricing — as pension corpus scales, yield per subscriber will expand. Potentially ₹500–700 mn revenue business by FY29 at 35%+ margins.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 7 — INDUSTRY & COMPETITIVE POSITIONING
+  ════════════════════════════════════════════ -->
+  <section id="industry">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Industry & Competitive Positioning</h2>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:1.25rem;">
+      <div class="stat-card">
+        <div class="card-label">MF Industry AAUM Growth (FY26)</div>
+        <div class="card-value">+21%</div>
+        <div class="card-sub">Industry AAUM: ₹81.6 trillion. KFin serves ₹26.4 trillion (32.4% share). SIP inflows at historic high of ₹320.9 bn/month in March 2026.</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">Competitive Moat Assessment</div>
+        <div class="card-value" style="font-size:1.5rem; color:var(--green);">Wide Moat</div>
+        <div class="card-sub">Domain-scale barriers are near-impenetrable. 8 RTAs existed a decade ago — now 2. Each transaction processes ₹2,300 Cr daily. Switching costs are catastrophic for clients.</div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p><strong>Industry Structure:</strong> The Indian RTA industry is effectively a duopoly between KFin and CAMS. Management accurately articulates that a third entrant faces (a) a decade of cash burn to achieve minimal scale, (b) client switching costs comparable to changing core banking systems, and (c) yield compression to 3 bps making the economics near-impossible at sub-scale. <em>This moat is structural, not cyclical, and AI will not eliminate it — it will entrench incumbents who deploy AI to further reduce the cost-to-serve gap.</em></p>
+      <p><strong>China+1 / Global Outsourcing Tailwind:</strong> Global fund administrators (State Street, SS&C, Citco) are expensive Western operators. KFin's value proposition — Indian operating cost structure with growing global compliance and technology capability — is structurally advantaged. The Ascent acquisition gave KFin the credibility to approach mid-tier global fund managers. This is the most important secular growth vector in the next decade.</p>
+      <p><strong>Passive AUM Headwind:</strong> The 200 bps equity AUM mix shift toward metal ETFs is a genuine near-term headwind, but KFin benefits from overall AUM growth regardless of asset class. The yield differential between equity and passive is roughly 0.5–1 bps — meaningful but not existential. As markets normalise, this headwind reverses automatically.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 8 — CAPITAL ALLOCATION
+  ════════════════════════════════════════════ -->
+  <section>
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Capital Allocation Analysis</h2>
+    </div>
+
+    <div class="grid-4" style="margin-bottom:1.25rem;">
+      <div class="stat-card">
+        <div class="card-label">FY26 Capex (Standalone)</div>
+        <div class="card-value" style="font-size:1.5rem;">₹780 Mn</div>
+        <div class="card-sub">PP&E + Intangibles. ~7% of standalone revenue — appropriate for a technology platform investing in product development and platform rewrite.</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">Dividend Payout (FY26)</div>
+        <div class="card-value" style="font-size:1.5rem;">₹12/sh</div>
+        <div class="card-sub">Total outflow ~₹1,291 mn. ~36% of standalone PAT. Consistent payout policy. Sustainable given cash generation.</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">Ascent Acquisition Cost</div>
+        <div class="card-value" style="font-size:1.5rem;">₹3,077 Mn</div>
+        <div class="card-sub">51% upfront. Total obligation ₹8,868 mn (US$100 mn) if all milestones hit. Funded by internal cash — no equity dilution beyond ESOPs.</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">ESOP Dilution FY26</div>
+        <div class="card-value" style="font-size:1.5rem;">0.26%</div>
+        <div class="card-sub">441,711 options exercised. 518,000 granted. ESOP expense declining — ₹126 mn vs ₹139 mn in FY25. Modest and appropriate for a technology company.</div>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p><strong>Capital Allocation Quality:</strong> KFin's capital allocation framework is disciplined. The Ascent acquisition is the defining bet — funded with internal cash (no equity dilution), targeting a high-growth global business, with structured earnout protections tied to EBITDA milestones. The alternative — continuing as an India-only RTA — offered declining revenue share in a consolidating market. The strategic rationale is sound. The execution risk is real but manageable. <em>Management demonstrates the hallmarks of a long-term allocator: patient capital, disciplined deal structuring, and willingness to accept near-term margin compression for durable long-term gain.</em></p>
+      <p>ROCE at 30.5% and ROE at 22.9% are high-quality returns for an asset-light financial technology business. Incremental ROCE on the Ascent investment remains to be proven — but the hurdle is achievable given the earnout pricing mechanism aligns incentives with performance.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 9 — RED FLAGS & FORENSIC DETECTION
+  ════════════════════════════════════════════ -->
+  <section id="flags">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Red Flags & Forensic Detection</h2>
+    </div>
+
+    <div class="flag-item">
+      <span class="flag flag-severe">Severe</span>
+      <div class="flag-item-text">
+        <strong>Auditor Emphasis of Matter — Historic RTA Escrow Breach</strong>
+        <small>The auditors have flagged — for multiple years — an unresolved matter where 1,294,489 shares were transferred from a client escrow account without authorisation by a Depository Participant in 2011 and 2020. KFin (via the amalgamated Karvy entity) made good the shares and has provisioned ₹90.09 mn. The matter is unresolved as of March 31, 2026. While classified "non-admission of fault" by the Board, ongoing unresolved audit emphasis across multiple years creates reputational and legal tail risk.</small>
+      </div>
+    </div>
+
+    <div class="flag-item">
+      <span class="flag flag-severe">Severe</span>
+      <div class="flag-item-text">
+        <strong>Goodwill at 48% of Consolidated Assets — Impairment Risk</strong>
+        <small>Goodwill of ₹13,272 mn on a total asset base of ₹27,737 mn is elevated. The Ascent PPA is on a provisional basis. If Ascent underperforms over the next 3 years, even a 20% impairment would reduce consolidated equity by ₹2,654 mn (~16% of book value). Not imminent, but a structural risk that investors must price.</small>
+      </div>
+    </div>
+
+    <div class="flag-item">
+      <span class="flag flag-moderate">Moderate</span>
+      <div class="flag-item-text">
+        <strong>Deferred Consideration Obligation — ₹6,307 Mn Non-Current Liability</strong>
+        <small>The contingent consideration for 49% remaining Ascent stake is recognised at ₹5,791 mn fair value. These EBITDA-linked payments in FY29–31 could consume 2–3 years of FCF if Ascent hits targets. Management has not disclosed a stress scenario for this cash outflow.</small>
+      </div>
+    </div>
+
+    <div class="flag-item">
+      <span class="flag flag-moderate">Moderate</span>
+      <div class="flag-item-text">
+        <strong>Organic Revenue Growth Deceleration — 4.6% in Q4</strong>
+        <small>Stripping Ascent, Q4 organic growth was a mere 4.6% YoY, and the organic FY26 growth of 10.2% was below the company's historical CAGR of 20%+. Management attributes this to pricing discounts and market conditions, which are plausible explanations — but if organic growth remains sub-10%, the investment thesis weakens.</small>
+      </div>
+    </div>
+
+    <div class="flag-item">
+      <span class="flag flag-moderate">Moderate</span>
+      <div class="flag-item-text">
+        <strong>Equity AAUM Market Share Erosion — 33.1% → 32.1%</strong>
+        <small>Equity AAUM market share has declined 100 bps over FY26, driven by KFin clients having lower hybrid fund exposure and higher passive/ETF share. If this reflects structural client preference rather than cyclical metal ETF frenzy, it portends slower revenue recovery even when markets improve.</small>
+      </div>
+    </div>
+
+    <div class="flag-item">
+      <span class="flag flag-minor">Minor</span>
+      <div class="flag-item-text">
+        <strong>Aladdin Integration Delay</strong>
+        <small>The BlackRock Aladdin partnership — cited as a major international growth driver — is progressing slower than the original timeline. The mPower-Aladdin integration is "exceptionally complex" per management. Revenue impact from this partnership has been pushed out to FY27 Q1–Q2 at earliest.</small>
+      </div>
+    </div>
+
+    <div class="flag-item">
+      <span class="flag flag-minor">Minor</span>
+      <div class="flag-item-text">
+        <strong>KRA Revenue Risk from Regulatory Change</strong>
+        <small>A proposed singular POS-based KYC fetch mechanism could eliminate a portion of KRA's "fetch cost" revenue. This is not yet operationalised but is actively under regulatory discussion. Impact uncertain but worth monitoring.</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 10 — POSITIVE INFLECTION DETECTION
+  ════════════════════════════════════════════ -->
+  <section id="inflection">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <h2 class="section-title">Positive Inflection Detection</h2>
+    </div>
+
+    <div class="signal-grid">
+      <div class="signal-card">
+        <div class="signal-icon">📈</div>
+        <div class="signal-title">Domestic MF Yield Recovery</div>
+        <div class="signal-body">The pricing discount base effect ends March 2026. From April 2026 onwards, revenue will more closely track AUM growth (~21%). ETF mix reversal in April is an early confirming signal. This alone could add 6–8 percentage points to domestic MF revenue growth in FY27 vs FY26.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-icon">🌏</div>
+        <div class="signal-title">Large International Mandate Pipeline</div>
+        <div class="signal-body">6 funds with $100mn+ AUM signed by Ascent, 3–4 launching in Q1FY27 with full-year revenue contribution. Philippines bank pension POC converted to execution. Malaysia OMS deal. 9 GIFT City mandates. This represents the quality step-up management guided toward.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-icon">🏛️</div>
+        <div class="signal-title">NPS AUM-Basis Revenue Transition</div>
+        <div class="signal-body">Migration from per-subscriber pricing to AUM-basis pricing means revenue will scale with corpus (currently ₹631 bn) as it grows. NPS corpus could reach ₹1.2–1.5 trillion by FY29 — doubling KFin's addressable NPS revenue at improving margins.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-icon">💼</div>
+        <div class="signal-title">Jio IPO + Large IPO Pipeline</div>
+        <div class="signal-body">Multiple large IPOs being withheld by unfavourable markets are building up. A market recovery would trigger a surge of primary issuance. KFin has 42% IPO market share by issue size in FY26. A single large IPO like Jio could meaningfully move Issuer Solutions revenues.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-icon">🤖</div>
+        <div class="signal-title">AI-Native Platform Launches</div>
+        <div class="signal-body">AEGIX (AI-driven investor relations platform) launched in Q4. Bond market platform launched. Delivery cycle times reduced 45–50% using GenAI. These are early but real examples of KFin using AI to upsell existing clients — the VAS revenue expansion story is intact.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-icon">⚙️</div>
+        <div class="signal-title">Core MF Platform Rewrite</div>
+        <div class="signal-body">The multi-year MF platform replatforming project has gone live with major modules. Speed has improved from seconds to milliseconds. This creates an invisible competitive moat strengthener — faster, more reliable service at lower cost — that will manifest in client retention and new mandate wins over 2–3 years.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-icon">🏗️</div>
+        <div class="signal-title">Ascent Synergy Materialisation</div>
+        <div class="signal-body">Real estate cost consolidation, shared technology infrastructure, IP cross-sell (60 KFin products with global applicability) are in early stages. Management expects the most immediate synergies in non-payroll cost — these should start appearing in H1FY27 financials as contractual overlaps are resolved.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-icon">💹</div>
+        <div class="signal-title">Demat Account Surge Tailwind</div>
+        <div class="signal-body">225 million demat accounts — 17% YoY growth — haven't yet translated to secondary market folios. When retail investor sentiment recovers, KFin (52.3% market cap share in NSE500) stands to capture the largest folio additions. The upside is non-linear: retail re-entry + market gains = double whammy.</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-icon">🌐</div>
+        <div class="signal-title">GIFT City Hub — 20-Year Tax Credit</div>
+        <div class="signal-body">KFin's GIFT City subsidiary carries a 20-year tax credit — a structural post-tax margin advantage for international revenue routing through this entity. As international revenues scale toward 25–30% of mix, this becomes a meaningful earnings enhancer.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 11 — VALUATION COMFORT
+  ════════════════════════════════════════════ -->
+  <section id="valuation">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <h2 class="section-title">Valuation Comfort Analysis</h2>
+    </div>
+
+    <div class="grid-4" style="margin-bottom:1.5rem;">
+      <div class="stat-card">
+        <div class="card-label">P/E (Reported TTM)</div>
+        <div class="card-value">39.3×</div>
+        <div class="card-sub">On reported PAT of ₹3,437 mn. Adjusted for Labour Code exceptionals and Ascent amortisation, underlying P/E ≈ 37×</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">EV / EBITDA (FY26)</div>
+        <div class="card-value">~24×</div>
+        <div class="card-sub">Consolidated EBITDA ₹5,297 mn. EV ~₹12,900 Cr (market cap minus net cash ₹5,707 mn). Moderate for a high-quality, 40%+ margin business</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">P/B Ratio</div>
+        <div class="card-value">8.3×</div>
+        <div class="card-sub">Price ₹804 vs BV ₹97. Premium is justified by ROCE of 30.5% — high quality asset-light franchise</div>
+      </div>
+      <div class="stat-card">
+        <div class="card-label">FCF Yield</div>
+        <div class="card-value">~1.9%</div>
+        <div class="card-sub">Approximate FCF ₹2,587 mn. Mkt Cap ₹13,873 Cr. Low yield reflects growth premium. Ascent drag will moderate</div>
+      </div>
+    </div>
+
+    <div class="val-meter-wrap">
+      <div class="val-meter-track">
+        <div class="val-marker" style="left: 38%;"></div>
+      </div>
+      <div class="val-labels">
+        <span>Deep Comfort</span>
+        <span>Reasonable</span>
+        <span>Fully Priced</span>
+        <span>Expensive</span>
+        <span>Dangerous</span>
+      </div>
+    </div>
+
+    <div class="callout callout-gold" style="margin: 1.25rem 0;">
+      <div class="title">Valuation Verdict: REASONABLE — Approaching Comfort Zone</div>
+      <div class="body">At ₹804, KFin trades at a 42% discount to its 52-week high of ₹1,388. The stock has been de-rated on three concerns: (1) organic growth deceleration, (2) margin compression from Ascent, and (3) equity market weakness. All three are transient or cyclical. The standalone business generates ₹29.9% PAT margins, growing at a structurally sound pace. The consolidation of Ascent at near-zero margins is a knowable, time-limited headwind. At 37–39× earnings on FY26 numbers that embed the worst of the drag, with FY27 and FY28 poised for double-digit PAT growth as headwinds normalise, the current price offers a reasonable entry point for a 3–5 year horizon. This is not a "Deep Comfort" value situation — the stock is not cheap — but the risk-reward is asymmetrically favourable relative to where it was at ₹1,388.</div>
+    </div>
+
+    <div class="prose">
+      <p><strong>What Growth is Priced In:</strong> At 39.3× P/E with ~10% FY27 PAT growth guidance, the market is essentially pricing in a low-growth, margin-compressed scenario perpetually. A mean-reversion to FY25 margins (30.5% PAT) on FY27 revenues (assumed 23% growth) would yield PAT of ~₹4,400–4,600 mn — implying forward P/E of 30–32×, which is well within the justified range for this franchise quality. <em>The current valuation embeds more pessimism than the business fundamentals warrant.</em></p>
+      <p><strong>Does It Deserve Premium Multiples?</strong> Yes, but calibrated. A 35–40× P/E is appropriate for: (a) a near-monopoly in critical financial market infrastructure, (b) 20%+ historical revenue CAGR, (c) 40%+ EBITDA margins on the core business, (d) a real option on becoming a global fund administrator with potentially $500mn+ revenue by 2030. The current 39× is at the lower end of this justifiable range — not cheap, but fair with meaningful upside.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 12 — FUTURE TRAJECTORY
+  ════════════════════════════════════════════ -->
+  <section id="trajectory">
+    <div class="section-header">
+      <span class="section-num">12</span>
+      <h2 class="section-title">Future Trajectory Modelling</h2>
+    </div>
+
+    <div class="scenario-grid">
+      <div class="scenario-card scenario-bull">
+        <div class="scenario-label">● Bull Case</div>
+        <div class="scenario-headline">The Global Inflection</div>
+        <div class="scenario-body">Markets recover sharply in H2FY27. ETF mix normalises. Jio IPO launches in FY27. Ascent wins 5+ large ($100mn+) mandates per quarter. Philippines pension contract scales. International revenues hit ₹4,500 mn in FY27. Ascent EBITDA margins reach 15%+ by FY28. KFin becomes a ₹25,000 Cr market cap company.</div>
+        <div class="scenario-kpi">
+          <div class="scenario-kpi-row"><span class="k">FY27E Revenue</span><span class="v">₹17,000+ Mn</span></div>
+          <div class="scenario-kpi-row"><span class="k">EBITDA Margin</span><span class="v">42%+</span></div>
+          <div class="scenario-kpi-row"><span class="k">PAT Growth</span><span class="v">30%+</span></div>
+          <div class="scenario-kpi-row"><span class="k">Target Price</span><span class="v">₹1,100–1,200</span></div>
+        </div>
+      </div>
+      <div class="scenario-card scenario-base">
+        <div class="scenario-label">● Base Case</div>
+        <div class="scenario-headline">Steady Normalisation</div>
+        <div class="scenario-body">Markets stabilise. ETF mix partially reverses. Domestic MF revenue tracks AUM growth from April. Issuer Solutions recovers to 15%+ growth. Ascent grows 25–30%, margins improve to 12% by FY28. International revenues reach ₹3,500–3,800 mn. Blended EBITDA margin recovers to 40%+. PAT grows ~10–12% in FY27, 18–20% in FY28.</div>
+        <div class="scenario-kpi">
+          <div class="scenario-kpi-row"><span class="k">FY27E Revenue</span><span class="v">₹16,000–16,500 Mn</span></div>
+          <div class="scenario-kpi-row"><span class="k">EBITDA Margin</span><span class="v">40–41%</span></div>
+          <div class="scenario-kpi-row"><span class="k">PAT Growth</span><span class="v">10–14%</span></div>
+          <div class="scenario-kpi-row"><span class="k">Target Price</span><span class="v">₹900–1,000</span></div>
+        </div>
+      </div>
+      <div class="scenario-card scenario-bear">
+        <div class="scenario-label">● Bear Case</div>
+        <div class="scenario-headline">Prolonged Headwind</div>
+        <div class="scenario-body">Equity markets remain under pressure through FY27. Ascent fails to win larger mandates. Domestic MF yield compression continues. Retail folios continue declining. Issuer Solutions revenue stagnates. Ascent margins improve only marginally to 10% by FY28. PAT growth sub-5%. Market de-rates further.</div>
+        <div class="scenario-kpi">
+          <div class="scenario-kpi-row"><span class="k">FY27E Revenue</span><span class="v">₹14,500–15,000 Mn</span></div>
+          <div class="scenario-kpi-row"><span class="k">EBITDA Margin</span><span class="v">38–39%</span></div>
+          <div class="scenario-kpi-row"><span class="k">PAT Growth</span><span class="v">3–5%</span></div>
+          <div class="scenario-kpi-row"><span class="k">Target Price</span><span class="v">₹680–750</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="monitoring-grid" style="margin-top:1.5rem;">
+      <div class="monitor-item">
+        <div class="monitor-num">Q1</div>
+        <div class="monitor-text"><strong>Domestic MF yield recovery:</strong> Track Q1FY27 domestic MF revenue vs Q4FY26. Should show meaningful step-up if pricing discount base effect normalises.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">Q1</div>
+        <div class="monitor-text"><strong>Issuer solutions revenue:</strong> Demergers pushed from March to May 2026. Q1 corporate action pickup is a critical near-term confirmation signal.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">Q2</div>
+        <div class="monitor-text"><strong>Ascent EBITDA margin:</strong> Track quarterly Ascent margins. Target: 12–15% by Q2FY27. Any improvement from 8% will trigger re-rating.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">Q2</div>
+        <div class="monitor-text"><strong>International large mandate wins:</strong> Monitor funds with $100mn+ AUM won by Ascent. Quality of client mix is now the key metric, not just fund count.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">H1</div>
+        <div class="monitor-text"><strong>Philippines pension platform revenue:</strong> POC completed, execution started. First meaningful revenue should appear by Q2FY27 — watch quarterly disclosures closely.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">H1</div>
+        <div class="monitor-text"><strong>Equity AUM mix recovery:</strong> Metal ETF share declining per April signals. Track monthly AAUM equity mix — should recover toward 58–60% from 56.7%.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">Annual</div>
+        <div class="monitor-text"><strong>Aladdin BD pipeline:</strong> Any announcement of mPower-Aladdin client win. This would be a material positive surprise given how long it's been pending.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">Annual</div>
+        <div class="monitor-text"><strong>NPS AUM-basis pricing transition:</strong> Confirm revenue model shift and track NPS revenue per subscriber. Higher corpus per subscriber = higher yield at improving margins.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 13 — FINAL VERDICT
+  ════════════════════════════════════════════ -->
+  <section id="verdict">
+    <div class="section-header">
+      <span class="section-num">13</span>
+      <h2 class="section-title">Final Investment Verdict</h2>
+    </div>
+
+    <div class="verdict-banner">
+      <div class="verdict-rating">Watchlist / Accumulate</div>
+      <div class="verdict-sub">Rating at ₹804 · 3–5 Year Institutional Horizon</div>
+
+      <div class="verdict-body">
+        <p>KFin Technologies is a <strong>high-quality franchise at a recovering valuation</strong>. The core domestic business — a near-monopoly in Indian mutual fund registry infrastructure — generates exceptional economics with 43%+ EBITDA margins, strong FCF conversion, and structural tailwinds from India's financialisation. The stock's 42% drawdown from its peak prices in the worst-case scenario of every headwind simultaneously: equity market weakness, Ascent margin drag, pricing discount hangover, and retail folio erosion.</p>
+        <p style="margin-top:0.75rem;">The investment case rests on three converging normalisation catalysts in FY27: <strong>(1)</strong> pricing discount base effect lapsing in April 2026, restoring MF revenue growth to AUM growth rates; <strong>(2)</strong> Ascent margin trajectory from 8% toward 20%+ over 36 months, which is verifiable quarter-by-quarter; and <strong>(3)</strong> large IPO pipeline activating as markets stabilise. The NPS inflection — from loss-making to 30% EBITDA margins — is a proof-of-concept for the Ascent journey and a genuine earnings surprise source that is underappreciated.</p>
+        <p style="margin-top:0.75rem;">The primary risk is that organic growth remains structurally impaired below 10% (possible if equity market underperforms and large AMCs don't switch RTAs). This is a <em>tail risk, not the base case</em>. KFin's moat — embedded in decades of domain knowledge, proprietary data, and switching cost economics — does not deteriorate in a weak market year.</p>
+      </div>
+
+      <div class="verdict-grid">
+        <div class="verdict-col pos">
+          <h4>Key Positives</h4>
+          <ul class="verdict-list">
+            <li>Near-monopoly domestic MF registry — 32.4% share, high switching costs, duopoly pricing stability</li>
+            <li>NPS inflection: 30% EBITDA margins, growing 3× industry — a $50mn revenue business by FY29</li>
+            <li>Pricing discount headwind ends April 2026 — 6–8 pp revenue acceleration locked in</li>
+            <li>Ascent quality mandates improving: 6 funds with $100mn+ AUM, Philippines bank win</li>
+            <li>Strong balance sheet: ₹5,707 mn cash, near-zero debt, CFO conversion above 100%</li>
+            <li>AI-native platforms (AEGIX, bond IR) as VAS revenue expanders — VAS share at 7% of revenue and growing</li>
+            <li>Issuer Solutions structural market share gains (52.3% NSE500 by mkt cap) — cyclical weakness only</li>
+          </ul>
+        </div>
+        <div class="verdict-col neg">
+          <h4>Key Risks</h4>
+          <ul class="verdict-list">
+            <li>Ascent margin improvement slower than guided — 8% today vs 35% aspirational target in 3–5 years</li>
+            <li>Deferred Ascent consideration ₹5,791 mn payable FY29–31 — constrains capital allocation flexibility</li>
+            <li>Unresolved auditor emphasis of matter (escrow share transfer) — reputational and legal tail risk</li>
+            <li>Goodwill at 48% of consolidated assets — impairment risk if Ascent underperforms</li>
+            <li>Equity market prolonged weakness — both MF and AIF revenues are market-beta exposed</li>
+            <li>Equity AAUM market share structural erosion risk if KFin clients remain passive-heavy</li>
+            <li>KRA revenue risk from regulatory change to single KYC fetch mechanism</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="divider gold" style="margin:1.75rem 0;">
+
+      <div class="grid-3">
+        <div class="callout callout-gold" style="margin:0;">
+          <div class="title">Earnings Quality Assessment</div>
+          <div class="body"><strong>Good</strong> — CFO/PAT ratio above 100%. No capitalisation games, no excessive other income dependency. Labour code exceptional is genuinely non-recurring. Ascent PPA amortisation adds noise but is transparent and quantified.</div>
+        </div>
+        <div class="callout callout-blue" style="margin:0;">
+          <div class="title">Long-Term Compounding Potential</div>
+          <div class="body"><strong>High</strong> — India's MF AUM can 3× to $3 trillion by FY31. KFin's global fund administration ambition at US$360bn AUM today can realistically reach $1–2 trillion by FY31. The combination of these two vectors creates a 20%+ revenue CAGR runway for the next decade.</div>
+        </div>
+        <div class="callout callout-green" style="margin:0;">
+          <div class="title">Valuation Comfort</div>
+          <div class="body"><strong>Reasonable — Approaching Comfort</strong> — At ₹804 / 39× FY26 earnings embedding maximum headwinds, the risk-reward for a 3-year horizon is attractive. Base case target ₹950–1,000. Bull case ₹1,100+. Bear case downside ₹680–750 (8–9% downside from CMP).</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div style="max-width:1340px; margin:0 auto; padding:0 2rem;">
+    <strong>DISCLAIMER</strong> — This analysis is prepared for informational and research purposes only based on publicly available disclosures filed by KFin Technologies Limited with the National Stock Exchange of India and BSE Limited, including the Q4 & FY26 Investor Presentation, audited financial results, earnings conference call transcripts, and factsheet. All figures are sourced from these documents unless indicated otherwise. This does not constitute investment advice, a solicitation to buy or sell securities, or a recommendation of any specific investment action. Investors should conduct their own due diligence and consult a registered investment advisor before making investment decisions. Market capitalisation, CMP, and price data noted are as disclosed or referenced in the documents. Past performance does not guarantee future results. Projections and scenarios are analyst estimates, not company guidance unless explicitly stated.
+    <br><br>
+    <strong>SOURCE DOCUMENTS:</strong> KFin Technologies Q4 & FY26 Investor Presentation (April 29, 2026) · Audited Standalone & Consolidated Financial Results FY26 · Q4 FY26 Earnings Conference Call Transcript (April 30, 2026) · Q3 FY26 Earnings Conference Call Transcript (February 16, 2026) · Independent Auditors' Report (BSR & Co., April 29, 2026) · Fact Sheet Q4 & FY26
+    <br><br>
+    Analysis prepared: <strong>May 18, 2026</strong> &nbsp;|&nbsp; NSE: KFINTECH · BSE: 543720 · CIN: L72400MH2017PLC444072
+  </div>
+</footer>
+
+</body>
+</html>
