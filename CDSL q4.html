@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CDSL — Institutional Equity Analysis | Q4 & FY26</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0e12;
+    --paper: #f5f2eb;
+    --cream: #ede9de;
+    --rule: #c8c0a8;
+    --accent: #b5230f;
+    --accent-soft: #e8c4be;
+    --gold: #b8941c;
+    --gold-soft: #f0e4b0;
+    --green: #1a5c38;
+    --green-soft: #c2ddd0;
+    --navy: #1a2744;
+    --navy-soft: #c4ccdf;
+    --muted: #6b6456;
+    --dim: #9a9080;
+    --card-bg: #faf7f2;
+    --border: #d4cdb8;
+    --warn: #7a4800;
+    --warn-soft: #f5e0c0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14.5px;
+    line-height: 1.75;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 3rem 4rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 35%;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 8px,
+      rgba(255,255,255,0.03) 8px,
+      rgba(255,255,255,0.03) 9px
+    );
+  }
+  .masthead-rule {
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--gold) 50%, transparent 100%);
+    margin-bottom: 2rem;
+  }
+  .masthead-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 0.75rem;
+  }
+  .masthead-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2rem;
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--paper);
+    margin-bottom: 0.5rem;
+  }
+  .masthead-title span { color: var(--gold); }
+  .masthead-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(245,242,235,0.6);
+    margin-bottom: 2rem;
+  }
+  .masthead-meta {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  .meta-item {
+    padding: 0 1.25rem 0 0;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .meta-item:last-child { border-right: none; padding-left: 1.25rem; }
+  .meta-item:first-child { padding-left: 0; }
+  .meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .meta-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--paper);
+  }
+  .meta-value.up { color: #6ee0a0; }
+  .meta-value.down { color: #f08080; }
+  .meta-value.warn { color: var(--gold); }
+
+  /* LAYOUT */
+  .container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem;
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* SCORES GRID */
+  .scores-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    border: 1.5px solid var(--ink);
+    margin-bottom: 2rem;
+  }
+  .score-item {
+    padding: 1rem 0.75rem;
+    border-right: 1px solid var(--border);
+    background: var(--card-bg);
+    text-align: center;
+  }
+  .score-item:last-child { border-right: none; }
+  .score-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+  .score-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .score-denom {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--dim);
+  }
+  .s-high { color: var(--green); }
+  .s-mid { color: var(--gold); }
+  .s-low { color: var(--accent); }
+
+  /* VERDICT BANNER */
+  .verdict-banner {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 1.25rem 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    border-left: 5px solid var(--accent);
+  }
+  .verdict-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .verdict-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--paper);
+  }
+  .verdict-rating {
+    font-family: 'DM Mono', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    background: var(--warn-soft);
+    color: var(--warn);
+    padding: 0.5rem 1.25rem;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+
+  /* FINANCIAL TABLE */
+  .fin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    font-size: 13px;
+  }
+  .fin-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--cream);
+    padding: 0.7rem 0.9rem;
+    text-align: right;
+    border-bottom: 2px solid var(--ink);
+  }
+  .fin-table th:first-child { text-align: left; }
+  .fin-table td {
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-size: 12.5px;
+    color: var(--ink);
+  }
+  .fin-table td:first-child {
+    text-align: left;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .fin-table tr:last-child td {
+    border-bottom: 2px solid var(--ink);
+    font-weight: 700;
+  }
+  .fin-table tr:hover td { background: var(--cream); }
+  .td-up { color: var(--green); }
+  .td-down { color: var(--accent); }
+  .td-warn { color: var(--gold); }
+  .td-bold { font-weight: 700; }
+
+  /* HIGHLIGHT CARDS */
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .highlight-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    border-left: 4px solid var(--rule);
+  }
+  .highlight-card.positive { border-left-color: var(--green); }
+  .highlight-card.negative { border-left-color: var(--accent); }
+  .highlight-card.warn { border-left-color: var(--gold); }
+  .highlight-card.neutral { border-left-color: var(--navy); }
+  .card-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .card-tag.pos { color: var(--green); }
+  .card-tag.neg { color: var(--accent); }
+  .card-tag.wrn { color: var(--gold); }
+  .card-tag.neu { color: var(--navy); }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .card-body {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* GUIDANCE TABLE */
+  .guidance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    margin-bottom: 1.5rem;
+  }
+  .guidance-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--navy);
+    color: var(--paper);
+    padding: 0.65rem 0.9rem;
+    text-align: left;
+  }
+  .guidance-table td {
+    padding: 0.65rem 0.9rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .guidance-table tr:hover td { background: var(--cream); }
+  .status-achieved {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--green);
+    font-weight: 500;
+  }
+  .status-partial {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .status-missed {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .status-ongoing {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* METRIC STRIP */
+  .metric-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border: 1.5px solid var(--ink);
+    margin-bottom: 2rem;
+  }
+  .metric-cell {
+    padding: 1.1rem 1rem;
+    border-right: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+  .metric-cell:last-child { border-right: none; }
+  .metric-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .metric-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .metric-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    margin-top: 0.2rem;
+  }
+  .metric-sub.up { color: var(--green); }
+  .metric-sub.dn { color: var(--accent); }
+
+  /* PROSE SECTIONS */
+  .prose {
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .prose strong { color: var(--navy); }
+  .prose em { color: var(--accent); font-style: italic; }
+
+  /* REDFLAG BOX */
+  .redflag-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .redflag-item {
+    padding: 1rem 1.1rem;
+    border-left: 3px solid var(--rule);
+    background: var(--card-bg);
+  }
+  .rf-severe { border-left-color: #8b0000; background: #fff5f5; }
+  .rf-moderate { border-left-color: var(--accent); }
+  .rf-minor { border-left-color: var(--gold); }
+  .rf-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+    display: block;
+  }
+  .rf-severe .rf-label { color: #8b0000; }
+  .rf-moderate .rf-label { color: var(--accent); }
+  .rf-minor .rf-label { color: var(--gold); }
+  .rf-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+  .rf-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* SCENARIO TABLE */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--ink);
+    border: 1.5px solid var(--ink);
+    margin-bottom: 2rem;
+  }
+  .scenario-col {
+    background: var(--card-bg);
+    padding: 1.25rem 1.5rem;
+  }
+  .scenario-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .scenario-bull .scenario-label { color: var(--green); }
+  .scenario-base .scenario-label { color: var(--navy); }
+  .scenario-bear .scenario-label { color: var(--accent); }
+  .scenario-head {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .scenario-item {
+    font-size: 12.5px;
+    color: var(--muted);
+    padding: 0.25rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .scenario-item:last-child { border-bottom: none; }
+  .scenario-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .scenario-bull .scenario-val { color: var(--green); }
+  .scenario-base .scenario-val { color: var(--navy); }
+  .scenario-bear .scenario-val { color: var(--accent); }
+
+  /* VALUATION BOX */
+  .val-box {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  .val-verdict {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.35rem;
+    line-height: 1.5;
+    color: rgba(245,242,235,0.9);
+  }
+  .val-tag {
+    text-align: center;
+    border: 1.5px solid var(--gold);
+    padding: 1rem;
+  }
+  .val-tag-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  .val-tag-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  /* MONITORING CHECKLIST */
+  .checklist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .check-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 13px;
+    color: var(--ink);
+    padding: 0.4rem 0;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .check-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  /* SECTION DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 2.5rem 0;
+  }
+
+  /* PULL QUOTE */
+  .pullquote {
+    border-left: 4px solid var(--accent);
+    padding: 0.75rem 1.5rem;
+    margin: 1.25rem 0;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--navy);
+    background: var(--cream);
+  }
+
+  /* MANAGEMENT CLASSIFICATION */
+  .mgmt-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1.5px solid var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .mgmt-cell {
+    padding: 1rem;
+    border-right: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+  .mgmt-cell:last-child { border-right: none; }
+  .mgmt-cell-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .mgmt-cell-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  /* FOOTER */
+  .report-footer {
+    background: var(--cream);
+    border-top: 2px solid var(--ink);
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.05em;
+  }
+
+  /* PRINT */
+  @media print {
+    .masthead { background: var(--navy) !important; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ MASTHEAD ═══ -->
+<header class="masthead">
+  <div class="masthead-rule"></div>
+  <div class="masthead-label">Institutional Equity Research &nbsp;·&nbsp; Q4 &amp; FY2025-26 &nbsp;·&nbsp; Market Infrastructure</div>
+  <div class="masthead-title">Central Depository Services <span>(India) Ltd</span></div>
+  <div class="masthead-sub">A forensic reconstruction of earnings quality, capital allocation, and future trajectory</div>
+  <div class="masthead-meta">
+    <div class="meta-item">
+      <span class="meta-label">CMP (₹)</span>
+      <span class="meta-value">1,187</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Market Cap (₹Cr)</span>
+      <span class="meta-value">24,802</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">P/E</span>
+      <span class="meta-value warn">54.4×</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">52W Range (₹)</span>
+      <span class="meta-value down">1,116 – 1,829</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">ROCE / ROE</span>
+      <span class="meta-value up">32% / 24.5%</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Div Yield</span>
+      <span class="meta-value">1.05%</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- ═══ STEP 1: EXECUTIVE SNAPSHOT ═══ -->
+<section style="margin-bottom: 2.5rem;">
+  <div class="section-header">
+    <span class="section-num">STEP 01</span>
+    <h2 class="section-title">Executive Snapshot — <em>What Truly Happened</em></h2>
+  </div>
+
+  <div class="verdict-banner">
+    <div>
+      <div class="verdict-label">Overall Assessment</div>
+      <div class="verdict-text">A structurally dominant monopoly in cyclical distress, with a subsidiary crisis in plain sight.</div>
+    </div>
+    <div class="verdict-rating">⚠ WATCHLIST</div>
+  </div>
+
+  <p class="prose">Q4 FY26 was <strong>fundamentally weak beneath an optically improving headline.</strong> Standalone operating income rose 16.5% year-on-year to ₹212 crore, but net profit fell 14.8% to ₹69 crore — the lowest quarterly profit in over five quarters. On a consolidated basis, the damage is starker: full-year FY26 net profit collapsed 13.5% to ₹455 crore despite revenue growing 3.3%. The divergence between revenue growth and profit destruction is not a margin story; it is a cost structure story — specifically technology cost inflation running at 30% per annum and a wholly-owned subsidiary (CVL) whose earnings halved in a single year.</p>
+
+  <p class="prose">The quarter also carried two discrete shocks that markets may be underestimating: a sharp decline in other income driven by mark-to-market losses on the investment corpus as at 31 March 2026, and the first full-quarter impact of KYC fee cuts (fetch: ₹35 → ₹28; creation: ₹20 → ₹5) effective 1 April 2026 — a structural headwind of ~₹60-70 crore annually on CVL's topline that has not yet been fully absorbed in reported numbers.</p>
+
+  <div class="scores-grid">
+    <div class="score-item">
+      <span class="score-label">Business Health</span>
+      <div class="score-value s-mid">7<span class="score-denom">/10</span></div>
+    </div>
+    <div class="score-item">
+      <span class="score-label">Earnings Quality</span>
+      <div class="score-value s-low">5<span class="score-denom">/10</span></div>
+    </div>
+    <div class="score-item">
+      <span class="score-label">Balance Sheet</span>
+      <div class="score-value s-high">9<span class="score-denom">/10</span></div>
+    </div>
+    <div class="score-item">
+      <span class="score-label">Capital Allocation</span>
+      <div class="score-value s-mid">6<span class="score-denom">/10</span></div>
+    </div>
+    <div class="score-item">
+      <span class="score-label">Mgmt Credibility</span>
+      <div class="score-value s-low">5<span class="score-denom">/10</span></div>
+    </div>
+    <div class="score-item">
+      <span class="score-label">Future Visibility</span>
+      <div class="score-value s-low">5<span class="score-denom">/10</span></div>
+    </div>
+  </div>
+
+  <div class="highlight-grid">
+    <div class="highlight-card negative">
+      <span class="card-tag neg">🔴 Critical Development</span>
+      <div class="card-title">CVL PAT Halved in One Year</div>
+      <div class="card-body">CDSL Ventures' profit after tax collapsed from ₹110 crore (FY25) to ₹55 crore (FY26) — a 50% decline — while expenses rose 14.5%. The SEBI-mandated KYC fee cuts effective April 2026 will compress FY27 revenues further, with creation fees cut 75% (₹20 → ₹5) and fetch fees cut 20% (₹35 → ₹28). Given 80% of CVL revenue is fetch-based, the net revenue impact in FY27 is estimated at ₹15-20 crore incremental headwind on top of FY26's base.</div>
+    </div>
+    <div class="highlight-card negative">
+      <span class="card-tag neg">🔴 Cost Structure Inflection</span>
+      <div class="card-title">Technology Cost Now Exceeds Employee Cost</div>
+      <div class="card-body">Consolidated IT costs crossed employee costs in FY26 — the first such crossing in CDSL's history. Tech spend has risen ~4× since FY23, growing at ~30% CAGR while volumes grew ~1.8×. Management neither provides a fixed/variable cost breakdown nor articulates a normalization timeline, describing it as "the DNA of the business." This opacity is analytically problematic and structurally weakens the operating leverage thesis that justified premium multiples.</div>
+    </div>
+    <div class="highlight-card positive">
+      <span class="card-tag pos">🟢 Structural Strength</span>
+      <div class="card-title">Demat Account Growth Remains Compulsive</div>
+      <div class="card-body">Total BO accounts reached 18.01 crore as at 31 March 2026, adding 2.7 crore accounts in FY26. Incremental market share remains 85-90%. Demat custody rose to ₹77 lakh crore from ₹71 lakh crore. The number of issuers crossed 48,000 — up 34% year-on-year — providing a durable and growing annuity income base through annual issuer charges (₹114 crore, stable quarter-on-quarter).</div>
+    </div>
+    <div class="highlight-card warn">
+      <span class="card-tag wrn">🟡 Hidden Risk</span>
+      <div class="card-title">Other Income Volatility Masks Core Performance</div>
+      <div class="card-body">Other income in Q4FY26 fell to ₹25 crore from ₹44 crore in Q4FY25 — a 43% decline — primarily due to MTM losses on the investment corpus as at 31 March. This is the second time in six quarters that investment income swings have materially distorted PAT (Q1FY26 carried a one-off ₹62 crore dividend from CVL). Investors reading headline PAT are receiving a systematically noisy signal.</div>
+    </div>
+    <div class="highlight-card neutral">
+      <span class="card-tag neu">🔵 Regulatory Optionality</span>
+      <div class="card-title">Issuer Fee Hike — Pending for 10+ Years</div>
+      <div class="card-body">Annual issuer charges have not been revised in over a decade. With issuers now exceeding 48,000 and costs escalating, management has acknowledged regulator awareness of the gap. Any approval — which requires SEBI sign-off — would be an asymmetric positive surprise. The CFO's comment "the appropriate time will come" signals active dialogue without commitment.</div>
+    </div>
+    <div class="highlight-card neutral">
+      <span class="card-tag neu">🔵 New Revenue Frontier</span>
+      <div class="card-title">GIFT City KYC Unit — Long-Dated Optionality</div>
+      <div class="card-body">CVL received SEBI no-objection to establish a KYC registration agency at GIFT IFSC, potentially becoming India's first such entity there. This positions CDSL in the international capital flow corridor. Monetization timeline is 2-3 years at minimum, but the regulatory first-mover advantage is real. ISIN issuance for unlisted companies — currently exclusively with NSDL — is also expected to be shared with CDSL "in the near future" per management.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ STEP 2: FINANCIAL PERFORMANCE ═══ -->
+<section style="margin-bottom: 2.5rem;">
+  <div class="section-header">
+    <span class="section-num">STEP 02</span>
+    <h2 class="section-title">Result Quality Analysis — <em>Decomposing the Numbers</em></h2>
+  </div>
+
+  <div class="metric-strip">
+    <div class="metric-cell">
+      <span class="metric-name">Q4 Op. Income</span>
+      <div class="metric-num">₹212Cr</div>
+      <div class="metric-sub up">+16.5% YoY</div>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-name">Q4 EBITDA</span>
+      <div class="metric-num">₹102Cr</div>
+      <div class="metric-sub dn">−10.5% YoY</div>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-name">Q4 PAT (Standalone)</span>
+      <div class="metric-num">₹69Cr</div>
+      <div class="metric-sub dn">−14.8% YoY</div>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-name">FY26 PAT (Consol)</span>
+      <div class="metric-num">₹455Cr</div>
+      <div class="metric-sub dn">−13.5% YoY</div>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-name">FY26 PAT (Standalone)</span>
+      <div class="metric-num">₹468Cr</div>
+      <div class="metric-sub up">+1.3% YoY</div>
+    </div>
+  </div>
+
+  <p class="prose">The table below reconstructs quarterly standalone income across all five periods to isolate the economic reality beneath headline numbers. Note the unusual Q1FY26 spike driven entirely by the ₹62 crore intra-group dividend from CVL — a non-recurring item that inflated Q1 PAT to ₹152 crore and created a misleading sequential trajectory for Q2, Q3, Q4.</p>
+
+  <table class="fin-table">
+    <thead>
+      <tr>
+        <th>Income Line (₹Cr)</th>
+        <th>Q4FY25</th>
+        <th>Q1FY26</th>
+        <th>Q2FY26</th>
+        <th>Q3FY26</th>
+        <th>Q4FY26</th>
+        <th>YoY Chg</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Annual Issuer Charges</td>
+        <td>87</td>
+        <td>114</td>
+        <td>115</td>
+        <td>113</td>
+        <td class="td-bold">114</td>
+        <td class="td-up td-bold">+31%</td>
+      </tr>
+      <tr>
+        <td>Transaction Charges</td>
+        <td>49</td>
+        <td>62</td>
+        <td>59</td>
+        <td>60</td>
+        <td class="td-bold">59</td>
+        <td class="td-up td-bold">+20%</td>
+      </tr>
+      <tr>
+        <td>IPO / Corporate Action</td>
+        <td>25</td>
+        <td>21</td>
+        <td>62</td>
+        <td>59</td>
+        <td class="td-bold td-down">17</td>
+        <td class="td-down td-bold">−32%</td>
+      </tr>
+      <tr>
+        <td>Dividend (Intra-group)</td>
+        <td>0</td>
+        <td class="td-warn">62</td>
+        <td>0</td>
+        <td>0</td>
+        <td class="td-bold">0</td>
+        <td class="td-bold">—</td>
+      </tr>
+      <tr>
+        <td>Other Income (MTM, etc.)</td>
+        <td>44</td>
+        <td>53</td>
+        <td>54</td>
+        <td>47</td>
+        <td class="td-bold td-down">25</td>
+        <td class="td-down td-bold">−43%</td>
+      </tr>
+      <tr>
+        <td><strong>Total Income</strong></td>
+        <td>205</td>
+        <td>312</td>
+        <td>290</td>
+        <td>279</td>
+        <td class="td-bold">215</td>
+        <td class="td-up td-bold">+5%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="fin-table">
+    <thead>
+      <tr>
+        <th>Expense Line (₹Cr)</th>
+        <th>Q4FY25</th>
+        <th>Q1FY26</th>
+        <th>Q2FY26</th>
+        <th>Q3FY26</th>
+        <th>Q4FY26</th>
+        <th>YoY Chg</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Employee Cost</td>
+        <td>26</td>
+        <td>33</td>
+        <td>35</td>
+        <td>34</td>
+        <td class="td-bold">30</td>
+        <td class="td-up">+15%</td>
+      </tr>
+      <tr>
+        <td>IT / Technology Cost</td>
+        <td>26</td>
+        <td>26</td>
+        <td>29</td>
+        <td>33</td>
+        <td class="td-bold td-down">37</td>
+        <td class="td-down td-bold">+42%</td>
+      </tr>
+      <tr>
+        <td>SEBI / IPF Charges</td>
+        <td>10</td>
+        <td>13</td>
+        <td>16</td>
+        <td>15</td>
+        <td class="td-bold">12</td>
+        <td class="td-up">+20%</td>
+      </tr>
+      <tr>
+        <td>Other Admin</td>
+        <td>41</td>
+        <td>43</td>
+        <td>44</td>
+        <td>43</td>
+        <td class="td-bold">49</td>
+        <td class="td-down">+20%</td>
+      </tr>
+      <tr>
+        <td>Tax</td>
+        <td>21</td>
+        <td>45</td>
+        <td>38</td>
+        <td>34</td>
+        <td class="td-bold">18</td>
+        <td class="td-up">−14%</td>
+      </tr>
+      <tr>
+        <td><strong>Total Expenses</strong></td>
+        <td>124</td>
+        <td>160</td>
+        <td>162</td>
+        <td>159</td>
+        <td class="td-bold td-down">146</td>
+        <td class="td-down td-bold">+18%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pullquote">The EBITDA margin compression from ~63% (Q4FY25) to ~48% (Q4FY26) on a like-for-like basis — excluding the MTM swing in other income — is a direct result of technology and admin cost inflation outpacing both transaction volume and issuer charge growth.</div>
+
+  <p class="prose">The revenue quality dichotomy is sharp. <strong>Annual issuer income (₹114 crore, Q4FY26)</strong> is annuity-like, recurring, and growing with issuers — this is high quality. <strong>Transaction charges (₹59 crore)</strong> are correlated with market volumes and therefore cyclical; combined daily turnover at BSE+NSE was ~₹1 lakh crore in March 2026, broadly flat year-on-year. <strong>IPO/CA income (₹17 crore)</strong> is episodic and structurally weak in a quarter with fewer large IPOs — both depositories saw a meaningful fall. The <em>critical distortion</em> is in "other income," which is effectively mark-to-market gains or losses on a large investment corpus; this is not operating income and should be excluded from earnings quality assessments.</p>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ STEP 3: GUIDANCE TRACKER ═══ -->
+<section style="margin-bottom: 2.5rem;">
+  <div class="section-header">
+    <span class="section-num">STEP 03</span>
+    <h2 class="section-title">Guidance Tracker — <em>Management Promise vs. Reality</em></h2>
+  </div>
+
+  <p class="prose">CDSL's stated policy is to provide no specific revenue or earnings guidance — a position reiterated verbatim at the start of every concall. However, management has made numerous directional claims, capability commitments, and thematic pledges across quarterly calls that can be tracked for execution consistency.</p>
+
+  <table class="guidance-table">
+    <thead>
+      <tr>
+        <th style="width:28%">Claim / Commitment</th>
+        <th style="width:14%">Period Made</th>
+        <th style="width:12%">Current Status</th>
+        <th style="width:46%">Forensic Commentary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>"Technology spend is building scalability to handle future surges — justified by growth potential"</td>
+        <td>Q3 FY26 Concall (Feb '26)</td>
+        <td><span class="status-ongoing">ONGOING</span></td>
+        <td>Tech costs are now 14% of revenue (from 7% in FY23) and exceed employee costs on a consolidated basis. Management neither quantifies capacity additions in concrete KPIs nor discloses fixed vs. variable split. The "infrastructure company" analogy is philosophically consistent but analytically opaque.</td>
+      </tr>
+      <tr>
+        <td>"ISIN issuance for unlisted companies will be available with CDSL in the near future"</td>
+        <td>Q4 FY26 Concall (May '26)</td>
+        <td><span class="status-ongoing">PENDING</span></td>
+        <td>ISIN issuance for unlisted entities remains exclusively with NSDL. CDSL's market share in unlisted companies (~₹3-3.5 crore/quarter issuer income) lags its 80%+ share in listed space. No regulatory timeline given. When pressed, management said "timelines we don't give."</td>
+      </tr>
+      <tr>
+        <td>"KYC fee reductions, if any, will be communicated to the market promptly"</td>
+        <td>Q3 FY26 Concall (Feb '26)</td>
+        <td><span class="status-achieved">DELIVERED</span></td>
+        <td>SEBI mandated cuts were communicated on the Q4 call: fetch ₹35 → ₹28 (−20%), creation ₹20 → ₹5 (−75%), effective 1 April 2026. However, the framing as a "volume-growth incentive" downplays the near-term revenue headwind of an estimated ₹15-20 crore incremental annual impact on CVL.</td>
+      </tr>
+      <tr>
+        <td>"No DP has completely migrated to the competitor; incremental market share is range-bound"</td>
+        <td>Q4 FY26 Concall (May '26)</td>
+        <td><span class="status-partial">PARTIAL</span></td>
+        <td>Technically accurate — no complete migration — but multiple analysts noted incremental market share softness. Management attribution to "seasonal DP-specific growth" is consistent with the data but does not address the structural question of whether NSDL's technology investments are closing the gap.</td>
+      </tr>
+      <tr>
+        <td>"Issuer fee hike is being engaged with the regulator; appropriate time will come"</td>
+        <td>Q3 FY26 Concall (Feb '26)</td>
+        <td><span class="status-ongoing">PENDING</span></td>
+        <td>Charges unchanged for 10+ years. Annual issuer income growing through volume (account additions) not price. A 20-30% hike, if approved, would add ₹90-140 crore to annual standalone operating income. This is the single largest unpriced asymmetric positive catalyst and management's most credible implicit guidance.</td>
+      </tr>
+      <tr>
+        <td>GIFT City KYC unit — "important step to support international issuers/investors"</td>
+        <td>Q4 FY26 Concall (May '26)</td>
+        <td><span class="status-ongoing">SEBI NOC Received</span></td>
+        <td>SEBI no-objection received; IFSCA registration pending. Revenue contribution 2-4 years away. Positive optionality but unlikely to offset near-term CVL weakness.</td>
+      </tr>
+      <tr>
+        <td>"We maintain 80%+ market share with 85-90% incremental share"</td>
+        <td>Q4 FY26 Concall (May '26)</td>
+        <td><span class="status-achieved">SUSTAINED</span></td>
+        <td>Total accounts: 18.01 crore (CDSL) vs ~6 crore (NSDL) — 75% gross share, but new account opening share is consistently 85-90%. This is the core competitive moat and is intact.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background:var(--cream); border:1px solid var(--border); padding:1rem 1.5rem; margin-bottom:1rem;">
+    <span style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent);">Execution Credibility Rating</span>
+    <div style="font-family:'Playfair Display',serif; font-size:1.15rem; font-weight:700; color:var(--navy); margin-top:0.3rem;">Moderate — Selectively Transparent, Philosophically Evasive</div>
+    <p style="font-size:13px; color:var(--muted); margin-top:0.4rem;">Management delivers on operational metrics (market share, account growth) but consistently deflects quantitative questions on cost structure, fee trajectory, and competitive dynamics. The deliberate absence of guidance is policy-sanctioned but creates significant analytical friction. "Eat the fruit, why count the trees" (MD's exact quote on employee count) exemplifies a communication culture that prioritizes narrative over data — problematic at 54× earnings.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ STEP 4: HIDDEN FINANCIAL ARCHITECTURE ═══ -->
+<section style="margin-bottom: 2.5rem;">
+  <div class="section-header">
+    <span class="section-num">STEP 04</span>
+    <h2 class="section-title">Hidden Financial Architecture — <em>Cash &amp; Balance Sheet</em></h2>
+  </div>
+
+  <p class="prose">CDSL's balance sheet is exceptionally clean — zero debt, a growing investment corpus, no contingent liabilities of significance, no pledged promoter shares, and no off-balance-sheet exposure. This is a genuine credit. However, the <strong>earnings quality story is more complex</strong> than the balance sheet suggests.</p>
+
+  <div class="highlight-grid">
+    <div class="highlight-card positive">
+      <span class="card-tag pos">Balance Sheet</span>
+      <div class="card-title">Fortress Financial Position</div>
+      <div class="card-body">Zero debt. Book value of ₹93.8 per share implies a P/B of ~12.7× — entirely composed of retained earnings and paid-in capital. No acquisition debt, no working capital borrowings, no subsidiary guarantees flagged. The business generates cash equivalent to stated profits with no meaningful working capital cycle (billings are largely prepaid or on short credit terms from DPs and issuers).</div>
+    </div>
+    <div class="highlight-card warn">
+      <span class="card-tag wrn">Earnings Quality</span>
+      <div class="card-title">MTM Sensitivity in Investment Corpus</div>
+      <div class="card-body">A substantial portion of CDSL's corpus is invested in market instruments. Q4FY26's "other income" fell to ₹25 crore from ₹44 crore in Q4FY25 — entirely explained by MTM losses at 31 March 2026. This creates systematic PAT volatility that is unrelated to operating performance. True operating PAT (ex-MTM, ex-intra-group dividend) is likely in the ₹55-60 crore range for Q4FY26, versus reported ₹69 crore.</div>
+    </div>
+    <div class="highlight-card negative">
+      <span class="card-tag neg">Cost Architecture</span>
+      <div class="card-title">Operating Leverage Is Broken — Temporarily or Permanently?</div>
+      <div class="card-body">The historical bull thesis on CDSL rested on operating leverage: every incremental ₹1 of revenue flowing through at 70-75% EBITDA margins. That thesis is under stress. Total standalone expenses grew 18% year-on-year in Q4FY26 against 5% revenue growth. Until management clarifies whether tech capex is front-loaded (one-time capacity build) or ongoing (structural), the operating leverage narrative cannot be reliably projected.</div>
+    </div>
+    <div class="highlight-card negative">
+      <span class="card-tag neg">CVL Subsidiary</span>
+      <div class="card-title">CVL Is a Drag, Not a Driver</div>
+      <div class="card-body">CVL's revenue fell 21% in FY26 (₹182Cr vs ₹231Cr) while costs rose 14.5% (₹124Cr vs ₹108Cr). PAT halved from ₹110 crore to ₹55 crore. The KYC fee cuts effective April 2026 will further compress FY27 CVL revenue by an estimated ₹15-20 crore on a net basis (80% fetch revenue × 20% price cut). The consolidated entity is effectively subsidising CVL's growth phase through the parent's investment income.</div>
+    </div>
+  </div>
+
+  <p class="prose"><strong>Cash flow quality assessment:</strong> CDSL's business model is naturally cash-generative. There is no inventory, minimal receivables, and upfront or predictable collections. Capex is primarily technology hardware and software (which management states is mostly capitalised, not expensed, though they decline to quantify). The key forensic concern is the growing gap between EBITDA (₹102 crore in Q4FY26) and PAT (₹69 crore) — a gap primarily explained by taxes and some non-cash MTM charges, not by hidden accruals or receivable manipulation. The balance sheet picture is clean; the earnings quality picture is materially noisier.</p>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ STEP 5: MANAGEMENT DECODE ═══ -->
+<section style="margin-bottom: 2.5rem;">
+  <div class="section-header">
+    <span class="section-num">STEP 05</span>
+    <h2 class="section-title">Management Commentary Decode — <em>Language &amp; Psychology</em></h2>
+  </div>
+
+  <div class="mgmt-grid">
+    <div class="mgmt-cell">
+      <span class="mgmt-cell-label">Classification</span>
+      <div class="mgmt-cell-value">Visionary + Opaque</div>
+    </div>
+    <div class="mgmt-cell">
+      <span class="mgmt-cell-label">Tone vs. Q3</span>
+      <div class="mgmt-cell-value">More defensive on costs</div>
+    </div>
+    <div class="mgmt-cell">
+      <span class="mgmt-cell-label">Capital Mindset</span>
+      <div class="mgmt-cell-value">Infrastructure compounder</div>
+    </div>
+    <div class="mgmt-cell">
+      <span class="mgmt-cell-label">Earnings Personality</span>
+      <div class="mgmt-cell-value">Short-term opacity, long-term faith</div>
+    </div>
+  </div>
+
+  <p class="prose">MD Nehal Vora deploys a consistent vocabulary of infrastructure analogies — "coastal road," "metro line," "DNA of the business" — to contextualize rising technology costs. These analogies are coherent and philosophically defensible for a market infrastructure institution. However, they are being used as a shield against legitimate quantitative questions from analysts: cost structure breakdown, capex-to-opex ratio, capacity KPIs, and incremental market share trends. When an analyst from Helios Capital requested even broad disclosure of fixed vs. variable technology costs, the MD responded: "It is tough for us to put out what is firm fixed and what is firm variable because there are lines which go beyond fixed and variable also." This is not a satisfying answer at 54× earnings.</p>
+
+  <div class="pullquote">"Eat the fruit, why are you counting the trees? The important thing is that CDSL has a performance role." — MD Nehal Vora, Q3 FY26 Concall, responding to employee count question.</div>
+
+  <p class="prose"><strong>Repeated phrases and patterns:</strong> "We don't give futuristic guidance" (used 11+ times across two transcripts), "the numbers speak for themselves" (used when deflecting competitive questions), "wait and watch" (used 5+ times). The concall tone shifted notably between Q3 and Q4 — in Q3, management was expansive on digital product launches; in Q4, most management time was spent justifying technology spend in response to increasingly pointed analyst questions. <strong>Avoided topics:</strong> specific employee count, hard timelines on ISIN sharing with CDSL for unlisted companies, competitive technology gap relative to NSDL, and CVL revenue recovery timeline post KYC fee cuts.</p>
+
+  <p class="prose"><strong>Positive signals in management language:</strong> The CEO's unprompted mention that technology cost exceeding employee cost "demonstrates my vision, which I have been articulating in various investor calls — that we are a tech-based and applied technology-based company" suggests genuine ideological commitment rather than reactive cost escalation. The emphasis on "horizontal and vertical scalability" and API-based infrastructure as a competitive differentiator across DP sizes is strategically sound. The announcement of GIFT City KYC and the investor education comic book in 12 languages (with Amar Chitra Katha) reflects an institution thinking generationally — a positive character signal.</p>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ STEP 6: SEGMENT ANALYSIS ═══ -->
+<section style="margin-bottom: 2.5rem;">
+  <div class="section-header">
+    <span class="section-num">STEP 06</span>
+    <h2 class="section-title">Segment &amp; Business Engine Analysis — <em>Revenue by Source</em></h2>
+  </div>
+
+  <table class="fin-table">
+    <thead>
+      <tr>
+        <th>Segment</th>
+        <th>Q4FY26 Revenue</th>
+        <th>Quality</th>
+        <th>Trend</th>
+        <th>Moat Durability</th>
+        <th>Analyst Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Annual Issuer Charges</strong></td>
+        <td>₹114 Cr (standalone)</td>
+        <td class="td-up">Very High</td>
+        <td class="td-up">Growing</td>
+        <td class="td-up">Strong</td>
+        <td>Annuity; grows with issuer count (48,103 now). Pending fee hike is key catalyst.</td>
+      </tr>
+      <tr>
+        <td><strong>Transaction Charges</strong></td>
+        <td>₹59 Cr</td>
+        <td class="td-warn">Medium</td>
+        <td class="td-warn">Flat-ish</td>
+        <td class="td-up">Strong</td>
+        <td>Correlated to market volumes. Flat ADTV environment limits near-term growth.</td>
+      </tr>
+      <tr>
+        <td><strong>IPO / Corporate Action</strong></td>
+        <td>₹17 Cr</td>
+        <td class="td-warn">Medium</td>
+        <td class="td-down">Declining</td>
+        <td class="td-warn">Moderate</td>
+        <td>Episodic; large IPO pipeline for FY27 could provide upside. Q4 was seasonally weak.</td>
+      </tr>
+      <tr>
+        <td><strong>CVL — KYC/KRA</strong></td>
+        <td>₹182 Cr (FY26)</td>
+        <td class="td-down">Declining</td>
+        <td class="td-down">Under Pressure</td>
+        <td class="td-warn">At Risk</td>
+        <td>Fee cuts effective April 2026: fetch −20%, creation −75%. PAT halved in FY26.</td>
+      </tr>
+      <tr>
+        <td><strong>Other Income (MTM)</strong></td>
+        <td>₹25 Cr</td>
+        <td class="td-down">Low</td>
+        <td class="td-down">Volatile</td>
+        <td class="td-down">None</td>
+        <td>Not operating income. Distorts PAT. Should be excluded from EV/EBITDA analysis.</td>
+      </tr>
+      <tr>
+        <td><strong>eCAS + e-Voting</strong></td>
+        <td>₹12 Cr + ₹5.6 Cr</td>
+        <td class="td-warn">Medium</td>
+        <td class="td-up">Steady</td>
+        <td class="td-up">Strong</td>
+        <td>Structurally growing. e-Voting is Q2-heavy (AGM season). eCAS in 23 languages now.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="prose">The <strong>core profit engine remains Annual Issuer Charges</strong>, which benefit from both the account/issuer count compounding and any eventual regulatory fee hike. Transaction charges are reliable but cyclical. The <strong>emerging growth engine</strong> — GIFT City KYC, CIRL (insurance repository at 20.7 lakh policies), CCRL (commodity repository) — remains pre-revenue or negligible at this stage. <strong>CVL is the dying profit pool</strong> within the group: costs are rising, fees are being cut by regulators, and the business model faces CKYC substitution risk over the long run despite management's confident deflection of this concern.</p>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ STEP 7: INDUSTRY POSITIONING ═══ -->
+<section style="margin-bottom: 2.5rem;">
+  <div class="section-header">
+    <span class="section-num">STEP 07</span>
+    <h2 class="section-title">Industry &amp; Competitive Positioning — <em>Structural vs. Cyclical</em></h2>
+  </div>
+
+  <p class="prose">CDSL operates as a <strong>regulated duopoly with de facto monopoly economics</strong>. With an 80%+ gross market share and 85-90% incremental share in new account openings, the competitive structure is asymmetric. The combined depository industry crossed 22.4 crore demat accounts by end-FY26 — penetration of India's investable population remains below 10%, implying structural long-term growth. The SEBI survey cited by management estimates the addressable universe could support 25-50% participation long-term (from under 10% today), consistent with global precedents.</p>
+
+  <p class="prose">However, three competitive realities deserve scrutiny. First, <strong>NSDL holds the exclusive ISIN issuance mandate for unlisted companies</strong> — a structural advantage in onboarding new issuers that CDSL has not yet been able to replicate. Second, multiple analysts flagged <strong>incremental market share softness</strong> across Q3 and Q4 FY26; management attributed this to DP-specific seasonality, but the pattern is persistent enough to merit monitoring. Third, NSDL's IPO in late 2023 provided it a war chest to invest in technology and service, raising the cost of maintaining CDSL's lead. Management's ₹0.50/account pricing advantage is acknowledged but the durability of that differential requires ongoing monitoring.</p>
+
+  <p class="prose">The broader market environment was challenging: combined BSE+NSE daily turnover in December 2025 was ~8.3% below the prior year, and March 2026 remained around ₹1 lakh crore. This directly suppresses transaction charges and indirectly affects IPO pipeline. India's macro fundamentals remain sound, but the securities market activity cycle has been in a modest contraction phase since the FY24-25 peak. CDSL is a market infrastructure play, not a markets direction play — account additions continue even in subdued environments.</p>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ STEP 8: CAPITAL ALLOCATION ═══ -->
+<section style="margin-bottom: 2.5rem;">
+  <div class="section-header">
+    <span class="section-num">STEP 08</span>
+    <h2 class="section-title">Capital Allocation Quality — <em>How Management Deploys Shareholder Cash</em></h2>
+  </div>
+
+  <p class="prose">CDSL's capital allocation framework is defined by its regulatory constraints and its asset-light model. There is no meaningful capex in the traditional sense — the "capex" is technology (hardware, software licenses, security infrastructure) which is mostly capitalised but partially expensed. <strong>ROCE stands at 32% and ROE at 24.5%</strong>, both respectable for a financial infrastructure company, though both have compressed from the FY24 peak levels.</p>
+
+  <p class="prose">The primary capital allocation decisions are: dividend policy (paying out approximately 50-60% of standalone PAT; dividend yield 1.05%), technology reinvestment (rising aggressively), subsidiary support (CVL is a drag but wholly owned; CIRL and CCRL are nascent bets), and investment corpus management (the MTM sensitivity suggests a reasonably sized corpus in market instruments). There are <strong>no share buybacks, no significant acquisitions, no equity dilution or ESOP dilution of concern</strong>. The promoter (BSE Limited) holds 15% with no pledging. This is a conservatively run financial infrastructure institution, not an empire-builder.</p>
+
+  <p class="prose">The one genuine concern in capital allocation is the <strong>opacity around technology reinvestment returns</strong>. The company has invested approximately ₹500-600 crore cumulatively over FY23-26 in technology (opex + capex combined estimate, unverified as management does not disclose), yet volumes have grown ~1.8× against a cost base that has grown ~4×. Until this returns in the form of operating leverage, it represents a 3-4 year drag on FCF yield. The faith-based narrative ("infrastructure takes time") is credible for a regulated entity but requires a visible normalization horizon to be analytically useful.</p>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ STEP 9: RED FLAGS ═══ -->
+<section style="margin-bottom: 2.5rem;">
+  <div class="section-header">
+    <span class="section-num">STEP 09</span>
+    <h2 class="section-title">Red Flags &amp; Forensic Detection — <em>Hidden Risks Ranked</em></h2>
+  </div>
+
+  <div class="redflag-grid">
+    <div class="redflag-item rf-moderate">
+      <span class="rf-label">🟠 Moderate Risk</span>
+      <div class="rf-title">CVL Revenue Cliff — April 2026</div>
+      <div class="rf-desc">KYC fee cuts (fetch −20%, creation −75%) effective from Q1FY27 onwards will structurally reduce CVL's already-declining revenue. With costs sticky and rising, CVL's PAT could compress further to ₹30-40 crore in FY27 from ₹55 crore in FY26. This is not priced into the market's FY27 consensus for consolidated earnings.</div>
+    </div>
+    <div class="redflag-item rf-moderate">
+      <span class="rf-label">🟠 Moderate Risk</span>
+      <div class="rf-title">Technology Cost Opacity — No Normalization Guidance</div>
+      <div class="rf-desc">IT costs have risen 4× since FY23. Management refuses to disclose fixed vs. variable split, capex vs. opex ratio, or a normalization timeline. This makes operating leverage modeling impossible and creates significant DCF uncertainty. At 54× PE, this uncertainty commands a premium discount.</div>
+    </div>
+    <div class="redflag-item rf-moderate">
+      <span class="rf-label">🟠 Moderate Risk</span>
+      <div class="rf-title">MTM-Driven PAT Volatility</div>
+      <div class="rf-desc">Investment corpus returns distort reported PAT both upward (Q1FY26: ₹62 crore dividend + strong MTM) and downward (Q4FY26: MTM losses). True operating PAT for FY26 is likely 10-12% below reported ₹468 crore. Models using reported PAT as the earnings base are overstating core profitability.</div>
+    </div>
+    <div class="redflag-item rf-moderate">
+      <span class="rf-label">🟠 Moderate Risk</span>
+      <div class="rf-title">Incremental Market Share Erosion</div>
+      <div class="rf-desc">Multiple analysts (Avendus Spark, Helios Capital, Jefferies) flagged quarter-on-quarter softness in CDSL's incremental account opening share across Q3 and Q4 FY26. Management attributed this to seasonal DP-specific factors. Two consecutive quarters of similar patterns may signal structural rather than seasonal pressure.</div>
+    </div>
+    <div class="redflag-item rf-minor">
+      <span class="rf-label">🟡 Minor Risk</span>
+      <div class="rf-title">Regulatory Pricing Risk — SEBI Controls All Tariffs</div>
+      <div class="rf-desc">Every pricing decision — up or down — requires SEBI approval. The same regulator cutting KYC fees can cut depository charges. The same regulator that has not approved a fee hike in 10 years may be slow to approve one. CDSL has no independent pricing power.</div>
+    </div>
+    <div class="redflag-item rf-minor">
+      <span class="rf-label">🟡 Minor Risk</span>
+      <div class="rf-title">CKYC 2.0 Substitution Risk for CVL</div>
+      <div class="rf-desc">Management dismissed CKYC 2.0 as a risk, citing richer data fields and validation in KRA records. This is true today, but CKYC's improving data quality and Ministry of Finance linkage mandates reduce the long-term functional differentiation of KRA records. The risk is 3-5 years out but directionally negative for CVL's addressable market.</div>
+    </div>
+  </div>
+
+  <p class="prose"><strong>No blow-up risk identified.</strong> CDSL has no audit qualifications, no related-party concerns, no inventory or receivable manipulation, no pledged promoter shares, no aggressive capitalization, and no contingent liabilities of concern. The red flags above are structural/strategic rather than forensic/accounting in nature. This is a financially sound institution with strategic headwinds, not a balance-sheet risk.</p>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ STEP 10: POSITIVE INFLECTIONS ═══ -->
+<section style="margin-bottom: 2.5rem;">
+  <div class="section-header">
+    <span class="section-num">STEP 10</span>
+    <h2 class="section-title">Positive Inflection Detection — <em>Leading Indicators of Upside</em></h2>
+  </div>
+
+  <div class="highlight-grid">
+    <div class="highlight-card positive">
+      <span class="card-tag pos">Catalyst 1 — High Impact</span>
+      <div class="card-title">Issuer Fee Hike Approval</div>
+      <div class="card-body">If SEBI approves even a 25% increase in annual issuer charges — unchanged for 10+ years — the annualized impact at the current 48,000+ issuer base is approximately ₹110-115 crore additional annual revenue flowing near-entirely to operating profit. This single event could rerate standalone PAT by 23-25% and is the most important near-term catalyst not in consensus models.</div>
+    </div>
+    <div class="highlight-card positive">
+      <span class="card-tag pos">Catalyst 2 — Medium Impact</span>
+      <div class="card-title">IPO Pipeline Recovery in FY27</div>
+      <div class="card-body">Management flagged large IPOs expected in FY27. A return to an active IPO calendar (similar to H1FY25) could add ₹40-60 crore per quarter in IPO/CA income versus the weak ₹17 crore in Q4FY26. This is cyclical, not structural, but timing it with market recovery creates a meaningful near-term earnings swing.</div>
+    </div>
+    <div class="highlight-card positive">
+      <span class="card-tag pos">Catalyst 3 — Long-dated</span>
+      <div class="card-title">Technology Spend Normalization</div>
+      <div class="card-body">If — and this remains the critical conditional — technology spending normalises to 10-11% of revenue from the current ~14%, the operating leverage inherent in CDSL's business model would regenerate. A return to 60%+ EBITDA margins on a growing revenue base would be a powerful re-rating event. Management provides no visibility here, but the capacity-build logic implies a tapering.</div>
+    </div>
+    <div class="highlight-card positive">
+      <span class="card-tag pos">Catalyst 4 — Structural</span>
+      <div class="card-title">India's Securities Market Penetration</div>
+      <div class="card-body">At sub-10% population penetration, versus 40-50% in mature markets, the long-term demat account growth runway is 10+ years. CDSL's 85-90% incremental share means every new entrant to India's capital markets likely becomes a CDSL customer first. The newborn demat account trend mentioned by management is not a marketing gimmick — it signals a secular cultural shift in wealth ownership.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ STEP 11: VALUATION ═══ -->
+<section style="margin-bottom: 2.5rem;">
+  <div class="section-header">
+    <span class="section-num">STEP 11</span>
+    <h2 class="section-title">Valuation Comfort Analysis — <em>Is the Premium Justified?</em></h2>
+  </div>
+
+  <div class="metric-strip">
+    <div class="metric-cell">
+      <span class="metric-name">Reported P/E (FY26)</span>
+      <div class="metric-num">54.4×</div>
+      <div class="metric-sub dn">On standalone PAT ₹468Cr</div>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-name">Core P/E (Ex-MTM)</span>
+      <div class="metric-num">~61×</div>
+      <div class="metric-sub dn">Adjusted for MTM noise</div>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-name">EV / EBITDA</span>
+      <div class="metric-num">~43×</div>
+      <div class="metric-sub dn">On annualised Q4 EBITDA</div>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-name">P/B</span>
+      <div class="metric-num">12.7×</div>
+      <div class="metric-sub">BV ₹93.8/share</div>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-name">FCF Yield</span>
+      <div class="metric-num">~1.6%</div>
+      <div class="metric-sub dn">Est. after tech capex</div>
+    </div>
+  </div>
+
+  <div class="val-box">
+    <div class="val-verdict">"CDSL is an <em>exceptional franchise</em> facing a genuine <em>earnings quality crisis</em> — premium multiples are partially justified by moat and long-runway, but the current valuation assumes cost normalisation and volume recovery that management has not committed to. At ₹1,187, the market is paying for a business that still needs to prove operating leverage will return."</div>
+    <div class="val-tag">
+      <span class="val-tag-label">Valuation Classification</span>
+      <div class="val-tag-text">Expensive but Conditionally Justified</div>
+    </div>
+  </div>
+
+  <p class="prose">The valuation case for CDSL rests on three pillars: (1) <strong>monopolistic moat</strong> in a regulated duopoly with 80%+ share, (2) <strong>secular growth</strong> in India's capital market participation, and (3) <strong>operating leverage latent</strong> in a near-zero marginal cost business model. All three are credible over a 3-5 year horizon. However, the near-term picture is being obscured by technology cost inflation that has neutralised operating leverage, a subsidiary in structural decline, and MTM volatility in reported earnings.</p>
+
+  <p class="prose"><strong>What is priced in at ₹1,187:</strong> The market is pricing ~15-18% earnings CAGR over FY26-29, contingent on technology costs normalising, IPO volume recovery, and continued account addition at current rates. There is limited tolerance for any of these assumptions to disappoint. The stock is 35% off its 52-week high of ₹1,829 — suggesting partial price discovery has already occurred — but at 54× FY26 earnings, with FY27 likely seeing further CVL earnings drag, the stock does not yet offer a margin of safety for value-conscious institutional investors.</p>
+
+  <p class="prose"><strong>What the market may be missing:</strong> The issuer fee hike optionality is not in models. The ISIN-sharing for unlisted companies (once activated) could add meaningful issuer count growth for CDSL specifically. And SEBI's own intent to deepen capital market participation — through regulatory actions, education mandates, and technology initiatives — is structurally positive for CDSL's volume base regardless of market cycles.</p>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ STEP 12: FUTURE TRAJECTORY ═══ -->
+<section style="margin-bottom: 2.5rem;">
+  <div class="section-header">
+    <span class="section-num">STEP 12</span>
+    <h2 class="section-title">Future Trajectory Modeling — <em>Three Scenarios</em></h2>
+  </div>
+
+  <div class="scenario-grid">
+    <div class="scenario-col scenario-bull">
+      <div class="scenario-label">🟢 BULL CASE (20% Probability)</div>
+      <div class="scenario-head">The Fee Hike + Volume Recovery Combination</div>
+      <div class="scenario-item"><span>Issuer fee hike approved</span><span class="scenario-val">+25% tariff</span></div>
+      <div class="scenario-item"><span>Tech cost as % revenue</span><span class="scenario-val">Stabilises at 12%</span></div>
+      <div class="scenario-item"><span>IPO pipeline recovery</span><span class="scenario-val">₹250Cr+ annual</span></div>
+      <div class="scenario-item"><span>CVL PAT FY27E</span><span class="scenario-val">₹40-45Cr</span></div>
+      <div class="scenario-item"><span>Standalone PAT FY27E</span><span class="scenario-val">₹570-600Cr</span></div>
+      <div class="scenario-item"><span>Target P/E</span><span class="scenario-val">55-60× → ₹1,700+</span></div>
+    </div>
+    <div class="scenario-col scenario-base">
+      <div class="scenario-label">🔵 BASE CASE (50% Probability)</div>
+      <div class="scenario-head">Gradual Normalisation, No Fee Hike</div>
+      <div class="scenario-item"><span>Issuer fee hike</span><span class="scenario-val">No, FY27</span></div>
+      <div class="scenario-item"><span>Tech cost as % revenue</span><span class="scenario-val">13-14% (still elevated)</span></div>
+      <div class="scenario-item"><span>Account growth</span><span class="scenario-val">2.5-3Cr net adds/yr</span></div>
+      <div class="scenario-item"><span>CVL PAT FY27E</span><span class="scenario-val">₹30-38Cr</span></div>
+      <div class="scenario-item"><span>Standalone PAT FY27E</span><span class="scenario-val">₹480-510Cr</span></div>
+      <div class="scenario-item"><span>Target P/E</span><span class="scenario-val">50× → ₹1,200-1,300</span></div>
+    </div>
+    <div class="scenario-col scenario-bear">
+      <div class="scenario-label">🔴 BEAR CASE (30% Probability)</div>
+      <div class="scenario-head">Cost Creep + Volume Softness + CVL Drag</div>
+      <div class="scenario-item"><span>Issuer fee hike</span><span class="scenario-val">No, FY27-28</span></div>
+      <div class="scenario-item"><span>Tech costs continue rising</span><span class="scenario-val">30%+ p.a.</span></div>
+      <div class="scenario-item"><span>Market volumes stay flat</span><span class="scenario-val">₹0.9-1Lac Cr ADTV</span></div>
+      <div class="scenario-item"><span>CVL PAT FY27E</span><span class="scenario-val">₹20-28Cr</span></div>
+      <div class="scenario-item"><span>Standalone PAT FY27E</span><span class="scenario-val">₹430-450Cr</span></div>
+      <div class="scenario-item"><span>Target P/E</span><span class="scenario-val">45× → ₹950-1,050</span></div>
+    </div>
+  </div>
+
+  <p class="prose"><strong>Key monitoring variables for FY27:</strong> Technology cost as a percentage of revenue (watch for stabilisation below 13%), CVL quarterly revenue run-rate post April 2026 fee cuts, new issuer additions per quarter (proxy for eventual fee hike quantum), incremental market share month-by-month, and any SEBI announcement on issuer tariff revision.</p>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ STEP 13: FINAL VERDICT ═══ -->
+<section style="margin-bottom: 2rem;">
+  <div class="section-header">
+    <span class="section-num">STEP 13</span>
+    <h2 class="section-title">Final Investment Verdict — <em>Institutional Summary</em></h2>
+  </div>
+
+  <div class="verdict-banner" style="margin-bottom:1.5rem;">
+    <div>
+      <div class="verdict-label">Long-Term Compounding Verdict</div>
+      <div class="verdict-text">Exceptional franchise, compromised near-term earnings quality. Do not pay the peak multiple for a trough earnings quarter.</div>
+    </div>
+    <div class="verdict-rating">⚠ WATCHLIST</div>
+  </div>
+
+  <div class="highlight-grid" style="margin-bottom:1.5rem;">
+    <div class="highlight-card positive">
+      <span class="card-tag pos">Key Positives</span>
+      <div class="card-body" style="font-size:13px; color:var(--ink);">
+        <strong>1.</strong> Dominant regulated duopoly with 80%+ gross market share and 85-90% incremental share — structurally irreplaceable infrastructure.<br><br>
+        <strong>2.</strong> 18.01 crore demat accounts and growing; secular multi-decade penetration story at sub-10% current levels.<br><br>
+        <strong>3.</strong> Zero debt, clean balance sheet, no pledging, no auditor concerns — balance sheet quality score 9/10.<br><br>
+        <strong>4.</strong> Annual issuer income (₹114 crore/quarter) is a growing, high-quality annuity that compounds with issuers, not market volumes.<br><br>
+        <strong>5.</strong> Unpriced issuer fee hike optionality: if approved, adds ₹110-115 crore annually to EBIT with no incremental cost — a potential 23-25% PAT re-rating event.
+      </div>
+    </div>
+    <div class="highlight-card negative">
+      <span class="card-tag neg">Key Negatives</span>
+      <div class="card-body" style="font-size:13px; color:var(--ink);">
+        <strong>1.</strong> FY26 consolidated PAT fell 13.5% despite revenue growth — operating leverage is decisively absent in the current investment phase.<br><br>
+        <strong>2.</strong> CVL (the largest subsidiary) saw PAT halve in FY26, with structural headwinds accelerating in FY27 from SEBI-mandated KYC fee cuts.<br><br>
+        <strong>3.</strong> Technology cost opacity: 4× cost growth since FY23 with no quantified capacity additions, no normalization timeline, no fixed/variable split disclosed.<br><br>
+        <strong>4.</strong> At 54× FY26 earnings, the stock prices in execution of assumptions that management explicitly refuses to commit to.<br><br>
+        <strong>5.</strong> MTM-distorted "other income" systematically overstates and understates reported PAT; true operating earnings quality is below what headline PAT implies.
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-grid" style="margin-bottom:1.5rem;">
+    <div class="highlight-card warn">
+      <span class="card-tag wrn">Hidden Insights — What the Market May Be Missing</span>
+      <div class="card-body" style="font-size:13px; color:var(--ink);">
+        <strong>1.</strong> The issuer fee hike is a binary event whose approval would immediately add ₹110+ crore to annual earnings — not in any broker model. SEBI's acknowledgment of cost escalation (via MD commentary) suggests this is closer than priced.<br><br>
+        <strong>2.</strong> ISIN issuance exclusivity for unlisted companies ending (in favor of both depositories) is a structural market-share gain for CDSL's issuer count — first-mover advantage in an under-penetrated segment.<br><br>
+        <strong>3.</strong> The newborn demat account trend (parents opening accounts for newly born children) signals a cultural institutionalization of equity ownership that will deepen the client base structurally over 20+ years.<br><br>
+        <strong>4.</strong> CVL's GIFT City KYC entity — first of its kind — opens India's international capital flow infrastructure to CDSL's reach. A 2-3 year development horizon, but positioning matters.
+      </div>
+    </div>
+    <div class="highlight-card negative">
+      <span class="card-tag neg">Major Risks — Ranked</span>
+      <div class="card-body" style="font-size:13px; color:var(--ink);">
+        <strong>1.</strong> [MODERATE] CVL earnings drag deepens in FY27 before recovering — consensus FY27 estimates likely optimistic on consolidated PAT.<br><br>
+        <strong>2.</strong> [MODERATE] Technology costs continue rising at 25-30% p.a. for another 2-3 years — operating leverage thesis pushed out further, multiple compression risk.<br><br>
+        <strong>3.</strong> [MODERATE] NSDL closes technology gap + incremental market share erosion becomes structural rather than seasonal.<br><br>
+        <strong>4.</strong> [MINOR] Extended weakness in equity market volumes suppresses transaction charges and IPO income simultaneously.<br><br>
+        <strong>5.</strong> [MINOR] CKYC 2.0 evolution undermines CVL's KRA business model over a 3-5 year horizon.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header" style="margin-top:2rem;">
+    <span class="section-num">MONITORING</span>
+    <h2 class="section-title">Quarterly Monitoring Checklist</h2>
+  </div>
+  <div class="checklist">
+    <div class="check-item"><span class="check-icon">◆</span>IT cost as % of total revenue (watch for signal below 13%)</div>
+    <div class="check-item"><span class="check-icon">◆</span>CVL quarterly revenue run-rate post April 2026 fee cuts</div>
+    <div class="check-item"><span class="check-icon">◆</span>SEBI circular on annual issuer tariff revision — key asymmetric upside</div>
+    <div class="check-item"><span class="check-icon">◆</span>Incremental market share (CDSL vs NSDL) month-on-month disclosures</div>
+    <div class="check-item"><span class="check-icon">◆</span>IPO pipeline — large deals announced for FY27 impact CA income</div>
+    <div class="check-item"><span class="check-icon">◆</span>Folio count disclosure (expected Q1FY27 call) — AII reset number</div>
+    <div class="check-item"><span class="check-icon">◆</span>Investment corpus MTM performance in other income (strip from core PAT)</div>
+    <div class="check-item"><span class="check-icon">◆</span>ISIN issuance mandate for unlisted companies — any SEBI notification</div>
+    <div class="check-item"><span class="check-icon">◆</span>GIFT City KYC entity IFSCA registration update</div>
+    <div class="check-item"><span class="check-icon">◆</span>BSE promoter (15%) — any commentary on stake changes</div>
+  </div>
+
+  <div style="background:var(--navy); color:var(--paper); padding:2rem 2.5rem; margin-top:1.5rem;">
+    <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.25em; text-transform:uppercase; color:var(--dim); margin-bottom:0.75rem;">Final Institutional Conclusion</div>
+    <div style="font-family:'Playfair Display',serif; font-size:1.25rem; line-height:1.7; color:var(--paper);">
+      CDSL is <strong style="color:var(--gold);">a high-quality business in a temporary earnings quality trough, trading at a premium multiple that assumes normalisation it cannot yet demonstrate.</strong> The franchise is exceptional — a regulated duopoly with irreplaceable market infrastructure, secular growth tailwinds, and one of the cleanest balance sheets in Indian financial services. However, the confluence of an opaque technology investment cycle, a subsidiary in structural fee compression, and investment-corpus-distorted reported PAT has created a gap between the business's intrinsic quality and current earnings visibility. The stock is fairly to slightly expensively priced for a long-term institutional owner, but does not yet offer the margin of safety to justify aggressive accumulation. The optimal entry point is either a further correction toward ₹950-1,050 (bear scenario), or the emergence of a visible catalyst such as the issuer fee hike approval, which would fundamentally re-rate the earnings base. <em style="color:var(--accent-soft);">Verdict: Watchlist with intent to Accumulate on weakness or catalyst confirmation.</em>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="report-footer">
+  <div class="footer-text">Central Depository Services (India) Limited &nbsp;|&nbsp; Q4 &amp; FY 2025-26 Institutional Analysis</div>
+  <div class="footer-text">Data Sources: Q4 &amp; Q3 FY26 Investor Presentations, Q3 &amp; Q4 FY26 Earnings Concall Transcripts, NSE Exchange Filings</div>
+  <div class="footer-text">For informational purposes only. Not investment advice. &nbsp;|&nbsp; As at May 2026</div>
+</footer>
+
+</body>
+</html>
