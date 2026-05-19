@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bajaj Finance — Institutional Earnings Analysis | Q4 FY26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@300;400;500;600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg-primary: #0d0f14;
+  --bg-secondary: #13161e;
+  --bg-card: #171b24;
+  --bg-card-hover: #1d2230;
+  --border: #252c3d;
+  --border-accent: #2e3850;
+  --gold: #c9a96e;
+  --gold-bright: #e8c98a;
+  --gold-dim: #8a6d42;
+  --text-primary: #e8e4da;
+  --text-secondary: #9aa0b0;
+  --text-muted: #5a6070;
+  --green: #5cb88c;
+  --green-dim: #2d5e48;
+  --red: #e05c5c;
+  --red-dim: #5e2d2d;
+  --amber: #d4924a;
+  --amber-dim: #5e3d1e;
+  --blue: #5b8ff0;
+  --blue-dim: #1e2d5e;
+  --purple: #9b7ed4;
+  --shadow-card: 0 4px 32px rgba(0,0,0,0.5);
+  --radius: 3px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scan-line texture overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.012) 2px,
+    rgba(255,255,255,0.012) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* ── Layout ── */
+.wrapper {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ── Header ── */
+.site-header {
+  border-bottom: 1px solid var(--border);
+  padding: 28px 0 24px;
+  position: sticky;
+  top: 0;
+  background: rgba(13,15,20,0.96);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.brand-ticker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+  border: 1px solid var(--gold-dim);
+  padding: 3px 10px;
+  border-radius: var(--radius);
+}
+
+.brand-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 0.06em;
+}
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.live-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+/* ── Hero ── */
+.hero {
+  padding: 64px 0 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+.report-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.report-label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold-dim);
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-sub {
+  font-family: 'Crimson Pro', serif;
+  font-size: 19px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 40px;
+}
+
+/* ── KPI strip ── */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.kpi-cell {
+  background: var(--bg-card);
+  padding: 16px 18px;
+  transition: background 0.2s;
+}
+.kpi-cell:hover { background: var(--bg-card-hover); }
+
+.kpi-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.kpi-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.kpi-value.positive { color: var(--green); }
+.kpi-value.warning { color: var(--amber); }
+.kpi-change {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.kpi-change.up { color: var(--green); }
+.kpi-change.down { color: var(--red); }
+
+/* ── Score board ── */
+.score-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 32px 0;
+}
+
+.score-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.score-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+
+.score-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+}
+.score-high::after { background: var(--green); }
+.score-mid::after { background: var(--gold); }
+.score-mod::after { background: var(--amber); }
+
+.score-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.score-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+}
+.score-high .score-number { color: var(--green); }
+.score-mid .score-number { color: var(--gold); }
+.score-mod .score-number { color: var(--amber); }
+
+.score-bar-track {
+  margin-top: 10px;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+.score-high .score-bar-fill { background: var(--green); }
+.score-mid .score-bar-fill { background: var(--gold); }
+.score-mod .score-bar-fill { background: var(--amber); }
+
+.score-denom {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-left: 3px;
+}
+
+/* ── Sections ── */
+section {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--border);
+}
+section:last-child { border-bottom: none; }
+
+.section-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label .step-num {
+  background: var(--gold-dim);
+  color: var(--bg-primary);
+  font-size: 9px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+  line-height: 1.2;
+}
+
+/* ── Prose ── */
+.prose p {
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.75;
+}
+.prose p:last-child { margin-bottom: 0; }
+.prose strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.prose em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+/* ── Pull quote ── */
+.pull-quote {
+  border-left: 3px solid var(--gold);
+  padding: 16px 24px;
+  margin: 28px 0;
+  background: rgba(201,169,110,0.04);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.pull-quote p {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin: 0;
+}
+.pull-quote cite {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+/* ── Metric table ── */
+.metric-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  margin: 24px 0;
+}
+.metric-table th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+.metric-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+.metric-table tr:hover td { background: var(--bg-card); }
+.metric-table td.mono { font-family: 'IBM Plex Mono', monospace; }
+.metric-table td.highlight { color: var(--text-primary); font-weight: 500; }
+.metric-table td.positive { color: var(--green); }
+.metric-table td.negative { color: var(--red); }
+.metric-table td.warning { color: var(--amber); }
+.metric-table td.gold { color: var(--gold); }
+
+/* Status badges */
+.badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-weight: 600;
+}
+.badge-green { background: var(--green-dim); color: var(--green); }
+.badge-amber { background: var(--amber-dim); color: var(--amber); }
+.badge-red { background: var(--red-dim); color: var(--red); }
+.badge-blue { background: var(--blue-dim); color: var(--blue); }
+.badge-gold { background: rgba(201,169,110,0.15); color: var(--gold); }
+
+/* ── Two-col layout ── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 24px 0;
+}
+@media(max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
+
+/* ── Card ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--border-accent); }
+.card-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.card-body { font-size: 16px; color: var(--text-secondary); font-weight: 300; line-height: 1.65; }
+.card-body strong { color: var(--text-primary); }
+
+/* ── Segment grid ── */
+.segment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 28px 0;
+}
+.segment-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+}
+.segment-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
+}
+.seg-bull::before { background: var(--green); }
+.seg-mid::before { background: var(--gold); }
+.seg-watch::before { background: var(--amber); }
+.seg-wind::before { background: var(--red); }
+
+.seg-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+.seg-metric {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.seg-metric.green { color: var(--green); }
+.seg-metric.gold { color: var(--gold); }
+.seg-metric.amber { color: var(--amber); }
+.seg-metric.red { color: var(--red); }
+.seg-desc { font-size: 14px; color: var(--text-secondary); font-weight: 300; line-height: 1.5; }
+
+/* ── Guidance tracker ── */
+.guidance-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 14px;
+}
+.guidance-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+  text-align: left;
+}
+.guidance-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.guidance-table tr:hover td { background: rgba(255,255,255,0.02); }
+.guidance-table td:first-child { font-weight: 400; color: var(--text-primary); font-family: 'Crimson Pro', serif; font-size: 15px; }
+
+/* ── Red flag list ── */
+.flag-list { list-style: none; margin: 20px 0; }
+.flag-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.flag-item:last-child { border-bottom: none; }
+.flag-severity {
+  flex-shrink: 0;
+  width: 72px;
+  text-align: center;
+}
+.flag-text {
+  font-size: 15px;
+  color: var(--text-secondary);
+  font-weight: 300;
+  line-height: 1.55;
+}
+.flag-text strong { color: var(--text-primary); font-weight: 600; }
+
+/* ── Scenario cards ── */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 28px 0;
+}
+@media(max-width: 680px) { .scenario-grid { grid-template-columns: 1fr; } }
+
+.scenario-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+}
+.scenario-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.sc-bull .scenario-label { color: var(--green); }
+.sc-base .scenario-label { color: var(--gold); }
+.sc-bear .scenario-label { color: var(--red); }
+
+.scenario-metric {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.sc-bull .scenario-metric { color: var(--green); }
+.sc-base .scenario-metric { color: var(--gold); }
+.sc-bear .scenario-metric { color: var(--red); }
+
+.scenario-sub { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-muted); margin-bottom: 16px; }
+.scenario-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
+
+/* ── Verdict block ── */
+.verdict-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.verdict-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-dim));
+}
+.verdict-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.verdict-rating {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 52px);
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+.verdict-context {
+  font-size: 17px;
+  color: var(--text-secondary);
+  font-weight: 300;
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+.verdict-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* ── Watchlist metrics ── */
+.watch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.watch-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold-dim);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.watch-item .wlabel {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.watch-item .wval {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* ── AI transformation bar ── */
+.ai-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 24px 0;
+}
+.ai-bar-item { padding: 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+.ai-bar-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+.ai-bar-value { font-family: 'IBM Plex Mono', monospace; font-size: 20px; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+.ai-bar-track { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.ai-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold-dim), var(--gold)); border-radius: 2px; }
+.ai-bar-sub { font-size: 12px; color: var(--text-muted); margin-top: 6px; font-family: 'IBM Plex Mono', monospace; }
+
+/* ── Footer ── */
+.report-footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 0;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.footer-disclaimer {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 600px;
+}
+.footer-meta { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-muted); text-align: right; line-height: 1.7; }
+
+/* ── Management credibility ── */
+.credibility-block {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin: 24px 0;
+}
+.cred-rating-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--green);
+  white-space: nowrap;
+}
+.cred-divider { width: 1px; height: 60px; background: var(--border); flex-shrink: 0; }
+.cred-desc { font-size: 15px; color: var(--text-secondary); font-weight: 300; line-height: 1.6; }
+.cred-desc strong { color: var(--text-primary); }
+
+/* ── Divider ── */
+.ornament { text-align: center; color: var(--text-muted); margin: 32px 0; font-size: 12px; letter-spacing: 0.4em; }
+
+/* ── Valuation card ── */
+.val-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 24px 0;
+}
+.val-cell {
+  background: var(--bg-card);
+  padding: 20px 22px;
+}
+.val-cell-label { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+.val-cell-value { font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; color: var(--text-primary); }
+.val-cell-note { font-size: 13px; color: var(--text-secondary); margin-top: 6px; line-height: 1.4; }
+
+/* ── Animate on scroll ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-accent); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+/* Selection */
+::selection { background: rgba(201,169,110,0.25); color: var(--text-primary); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ STICKY HEADER ═══════════════════ -->
+<header class="site-header">
+  <div class="wrapper header-inner">
+    <div class="header-brand">
+      <span class="brand-ticker">BAJFINANCE</span>
+      <span class="brand-name">BSE: 500034 / NSE: BAJFINANCE</span>
+    </div>
+    <div class="header-meta">
+      <div class="live-dot"></div>
+      <span class="header-tag">Q4 FY26 Institutional Analysis — April 29, 2026</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<div class="wrapper">
+  <div class="hero">
+    <div class="report-label">Institutional Earnings Intelligence</div>
+    <h1 class="hero-title">Bajaj Finance — <em>Reconstructing</em><br>the True Operating Reality</h1>
+    <p class="hero-sub">Q4 FY26 Concall Forensics · Cross-Quarter Guidance Tracker · Valuation Comfort Assessment</p>
+
+    <div class="kpi-strip">
+      <div class="kpi-cell">
+        <div class="kpi-label">AUM</div>
+        <div class="kpi-value positive">₹5.10L Cr</div>
+        <div class="kpi-change up">▲ 22.4% YoY</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">PAT Growth</div>
+        <div class="kpi-value positive">+26.7%</div>
+        <div class="kpi-change">Core-to-Core</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">ROA (Q4)</div>
+        <div class="kpi-value">4.60%</div>
+        <div class="kpi-change up">▲ Guided 4.4–4.6%</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">ROE (Q4)</div>
+        <div class="kpi-value">20.0%</div>
+        <div class="kpi-change">Guided 19–20%</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">Credit Cost</div>
+        <div class="kpi-value positive">1.65%</div>
+        <div class="kpi-change up">▼ from 1.97% (Q4 FY25)</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">CMP / P/E</div>
+        <div class="kpi-value warning">₹924</div>
+        <div class="kpi-change">29.9x TTM</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">GNPA / NNPA</div>
+        <div class="kpi-value">1.01%</div>
+        <div class="kpi-change up">NNPA: 41 bps</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-label">Customers</div>
+        <div class="kpi-value">119.3M</div>
+        <div class="kpi-change up">+3.93M in Q4</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ STEP 1: EXECUTIVE SNAPSHOT ═══════════════════ -->
+<div class="wrapper">
+<section class="fade-in">
+  <div class="section-label"><span class="step-num">01</span>Executive Snapshot</div>
+  <h2 class="section-title">What Actually Happened This Quarter</h2>
+
+  <div class="prose">
+    <p>Q4 FY26 was a <strong>genuinely strong quarter</strong> — not optically massaged. The company crossed the landmark of ₹5 lakh crore AUM, achieving a record single-quarter addition of ₹25,500 crores. PAT grew 26.7% at a core-to-core level, with all four key levers — volume, credit cost, opex efficiency, and NIM stability — moving in the right direction simultaneously. This is the first quarter in several reporting cycles where no lever was conspicuously breaking down.</p>
+    <p>That said, the quarter is layered with two accounting decisions investors must disentangle. First, a <strong>reclassification of written-off loan recoveries</strong> from "other operating income" to a net credit cost line changes two key reported ratios (opex to NTI moves up 60 bps; loan loss to AUM moves down 10 bps) with zero P&L impact — a transparency upgrade, not manipulation. Second, an additional ECL overlay of ₹142 crores was taken for macroeconomic conservatism. Neither distorts economic reality; both required analyst recalibration.</p>
+    <p>The <em>most important signal the market may underweight</em> is the vintage credit data. Management's 3-MOB, 6-MOB, and 9-MOB metrics are now tracking below FY19-20 levels on a 3.5x larger balance sheet — a structural, not cyclical, credit quality improvement. Combined with the planned wind-down of the captive 2-wheeler book (which at &lt;1% of AUM was causing 13% of GNPA) and the MSME business turning the corner by Q2 FY27, there is a credible, tangible path to credit cost reaching 140-155 bps by FY27-end — not merely a management aspiration.</p>
+  </div>
+
+  <div class="ornament">— — —</div>
+
+  <div class="score-board">
+    <div class="score-card score-high">
+      <div class="score-name">Business Health</div>
+      <div><span class="score-number">8.2</span><span class="score-denom">/10</span></div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:82%"></div></div>
+    </div>
+    <div class="score-card score-mid">
+      <div class="score-name">Earnings Quality</div>
+      <div><span class="score-number">7.5</span><span class="score-denom">/10</span></div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:75%"></div></div>
+    </div>
+    <div class="score-card score-high">
+      <div class="score-name">Balance Sheet Strength</div>
+      <div><span class="score-number">8.5</span><span class="score-denom">/10</span></div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:85%"></div></div>
+    </div>
+    <div class="score-card score-high">
+      <div class="score-name">Capital Allocation</div>
+      <div><span class="score-number">7.8</span><span class="score-denom">/10</span></div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:78%"></div></div>
+    </div>
+    <div class="score-card score-high">
+      <div class="score-name">Mgmt Credibility</div>
+      <div><span class="score-number">8.0</span><span class="score-denom">/10</span></div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:80%"></div></div>
+    </div>
+    <div class="score-card score-high">
+      <div class="score-name">Future Visibility</div>
+      <div><span class="score-number">8.0</span><span class="score-denom">/10</span></div>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:80%"></div></div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p>"We are entering the year on credit costs with tailwinds. Headwind over headwind virtually would consume twice the fuel. Thankfully, we are entering the year with tailwinds."</p>
+    <cite>— Rajeev Jain, Vice Chairman & MD, Q4 FY26 Concall</cite>
+  </div>
+</section>
+
+<!-- ═══════════════════ STEP 2: RESULT QUALITY ═══════════════════ -->
+<section class="fade-in">
+  <div class="section-label"><span class="step-num">02</span>Result Quality Analysis</div>
+  <h2 class="section-title">Dissecting the Real Growth Engine</h2>
+
+  <div class="prose">
+    <p>AUM growth of 22.4% in Q4 was secular — the headline is <strong>not flattered by a single product pocket</strong>. However, one must note that reported growth was constrained by two deliberate headwinds: (1) the captive 2-wheeler book declined ~₹6,500 crores in FY26 as the company wound it down, and (2) the MSME book was deliberately pruned to 6% growth from a historical run-rate of 25-30%. Absent these two, underlying portfolio growth would have been closer to 24-25%.</p>
+    <p>The margin picture is nuanced. <strong>NIM remained stable</strong> — a significant achievement given that cost of funds at 7.41% is still elevated relative to the pre-FY22 environment. Opex to NTI improved 36 basis points over FY26 despite accelerated gold loan branch buildout and MFI expansion — demonstrating genuine operating leverage from the 119M-customer franchise and early AI productivity gains. The Opex number on a comparable basis came in at 33.2% in Q4, a 10-bps improvement year-over-year.</p>
+    <p>PAT quality deserves a closer look. Excluding the ₹142 crore ECL overlay and the accounting reclassification impact, <strong>core PBT grew 26% and PAT grew 27%</strong>. This is clean profitability — driven by AUM growth, credit cost improvement (175 bps vs 197 bps prior year), and opex efficiency. There is no significant "other income" crutch or tax benefit propping these numbers (unlike Q4 FY25, which had a ₹348 crore tax benefit).</p>
+  </div>
+
+  <table class="metric-table">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Q4 FY26</th>
+        <th>Q4 FY25</th>
+        <th>Q3 FY26</th>
+        <th>Signal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="highlight">AUM Growth (YoY)</td>
+        <td class="positive">22.4%</td>
+        <td class="mono">28%+</td>
+        <td class="mono">22%</td>
+        <td><span class="badge badge-green">Stable</span></td>
+      </tr>
+      <tr>
+        <td class="highlight">PAT Growth (core)</td>
+        <td class="positive">+26.7%</td>
+        <td class="mono">(Adj.)</td>
+        <td class="mono">+23%</td>
+        <td><span class="badge badge-green">Accelerating</span></td>
+      </tr>
+      <tr>
+        <td class="highlight">Loan Loss / AUM (new metric)</td>
+        <td class="positive">1.65%</td>
+        <td class="mono">1.97%</td>
+        <td class="mono">1.91%</td>
+        <td><span class="badge badge-green">Improving</span></td>
+      </tr>
+      <tr>
+        <td class="highlight">Cost of Funds</td>
+        <td class="positive">7.41%</td>
+        <td class="mono">7.65%+</td>
+        <td class="mono">7.45%</td>
+        <td><span class="badge badge-green">Declining</span></td>
+      </tr>
+      <tr>
+        <td class="highlight">Opex / NTI (new basis)</td>
+        <td class="warning">33.8%</td>
+        <td class="mono">33.9%</td>
+        <td class="mono">32.8%</td>
+        <td><span class="badge badge-amber">Marginal Q/Q rise</span></td>
+      </tr>
+      <tr>
+        <td class="highlight">PCR (Stage 3)</td>
+        <td class="positive">60%</td>
+        <td class="mono">54%</td>
+        <td class="mono">61%+</td>
+        <td><span class="badge badge-green">Strengthening</span></td>
+      </tr>
+      <tr>
+        <td class="highlight">ROA (quarterly)</td>
+        <td class="positive">4.6%</td>
+        <td class="mono">~4.5%</td>
+        <td class="mono">4.6%</td>
+        <td><span class="badge badge-green">Stable at target</span></td>
+      </tr>
+      <tr>
+        <td class="highlight">New Loans Booked</td>
+        <td class="positive">12.9M</td>
+        <td class="mono">~12M</td>
+        <td class="mono">14M (record)</td>
+        <td><span class="badge badge-gold">Strong</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Accounting Change — What Really Changed</div>
+      <div class="card-body">The reclassification of written-off loan recoveries (previously in "Other Operating Income") to a net presentation under loan losses <strong>has zero P&L or PAT impact</strong>. It increases the opex-to-NTI ratio by ~60 bps and reduces the loan loss ratio by ~10 bps. Analysts must rebase historical ratios. This is a legitimate transparency improvement, not a financial engineering exercise.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Q3 One-Timers — Were They Genuine?</div>
+      <div class="card-body">The Q3 FY26 accelerated ECL provision of <strong>₹1,406 crores</strong> (LGD floor implementation) and the ₹265 crore new Labour Code gratuity charge were real, structural balance sheet investments — not earnings management. The subsequent Q4 credit cost improvement to 1.65% (vs guided 1.65-1.75%) validates that Q3 provisioning was conservative, not reactive.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STEP 3: GUIDANCE TRACKER ═══════════════════ -->
+<section class="fade-in">
+  <div class="section-label"><span class="step-num">03</span>Guidance Tracker & Execution Scorecard</div>
+  <h2 class="section-title">Management Promise vs. Reality</h2>
+
+  <div class="prose">
+    <p>Cross-referencing the Q3 FY26 concall (February 3, 2026) against Q4 FY26 actuals and forward guidance reveals a <strong>management team that is consistently conservative in near-term guidance and accurate on structural direction</strong>. Notable: Q3 credit cost guidance of "165-175 bps for FY27" was already beaten at the Q4 run-rate of 165 bps before the year even began.</p>
+  </div>
+
+  <table class="guidance-table">
+    <thead>
+      <tr>
+        <th style="width:28%">Guidance / Claim</th>
+        <th style="width:14%">Made When</th>
+        <th style="width:22%">Actual / Current Status</th>
+        <th style="width:14%">Assessment</th>
+        <th>Commentary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>FY26 AUM growth ~22-23%</td>
+        <td class="mono" style="font-size:12px">Q3 FY26 Call</td>
+        <td class="mono positive" style="font-size:13px">22.4% delivered</td>
+        <td><span class="badge badge-green">Met</span></td>
+        <td style="font-size:13px;color:var(--text-secondary)">Within 40 bps of guidance midpoint. Clean delivery.</td>
+      </tr>
+      <tr>
+        <td>FY27 Credit Cost: 165-175 bps (including permanent LGD floors)</td>
+        <td class="mono" style="font-size:12px">Q3 FY26 Call</td>
+        <td class="mono positive" style="font-size:13px">Revised to 145-160 bps (new metric; equivalent to ~155-170 old metric)</td>
+        <td><span class="badge badge-green">Exceeded</span></td>
+        <td style="font-size:13px;color:var(--text-secondary)">Q4 exit rate of 1.65% (new basis) already tracking at low end. Trajectory stronger than guided.</td>
+      </tr>
+      <tr>
+        <td>MSME back to 20%+ growth by Q2-Q3 FY27</td>
+        <td class="mono" style="font-size:12px">Q3 FY26 Call</td>
+        <td class="mono warning" style="font-size:13px">Q4: Still at 6%; worst "behind by June '26"; double-digits by Q2-Q3 FY27</td>
+        <td><span class="badge badge-amber">Tracking</span></td>
+        <td style="font-size:13px;color:var(--text-secondary)">Timeline consistent. MSME monthly disbursal cut from ₹1,800 Cr → ₹1,400 Cr. Discipline maintained.</td>
+      </tr>
+      <tr>
+        <td>FY26 new customers: 17-18 million</td>
+        <td class="mono" style="font-size:12px">Q3 FY26 Call</td>
+        <td class="mono positive" style="font-size:13px">17.5M delivered for FY26</td>
+        <td><span class="badge badge-green">Met</span></td>
+        <td style="font-size:13px;color:var(--text-secondary)">Within guidance range. FY27 guided at 15-17M (deliberate moderation amid MSME slowdown).</td>
+      </tr>
+      <tr>
+        <td>2-Wheeler captive book: ₹4,200 Cr by March exit</td>
+        <td class="mono" style="font-size:12px">Q3 FY26 Call</td>
+        <td class="mono positive" style="font-size:13px">Confirmed; &lt;₹1,500 Cr by Sep '26</td>
+        <td><span class="badge badge-green">Tracking</span></td>
+        <td style="font-size:13px;color:var(--text-secondary)">This wind-down removes a credit cost disproportionate contributor (13% of GNPA from &lt;1% of AUM).</td>
+      </tr>
+      <tr>
+        <td>ROA long-term: 4.3-4.7%; ROE: 20-22%</td>
+        <td class="mono" style="font-size:12px">Multi-year guidance</td>
+        <td class="mono positive" style="font-size:13px">ROA: 4.6% (Q4), ROE: 20.0% (Q4)</td>
+        <td><span class="badge badge-green">Delivered</span></td>
+        <td style="font-size:13px;color:var(--text-secondary)">19-year track record of 19-22% ROE. FY19 ROE was 22.5%. Balance sheet 4.5x larger since.</td>
+      </tr>
+      <tr>
+        <td>AI BOT deployment: All 26 products by April-May 2026</td>
+        <td class="mono" style="font-size:12px">Q3 FY26 Call</td>
+        <td class="mono positive" style="font-size:13px">Q4: 27 BOTs live; 100% communications by June '26</td>
+        <td><span class="badge badge-green">On Track</span></td>
+        <td style="font-size:13px;color:var(--text-secondary)">Execution accelerating. Q3 said 11 products; Q4 said 27 BOTs live across lines of business.</td>
+      </tr>
+      <tr>
+        <td>Opex/NTI: Improve 25-40 bps in FY27</td>
+        <td class="mono" style="font-size:12px">Q4 FY26 Call</td>
+        <td class="mono warning" style="font-size:13px">FY26 improved 36 bps; FY27 guidance pending</td>
+        <td><span class="badge badge-blue">Guiding</span></td>
+        <td style="font-size:13px;color:var(--text-secondary)">Management signalled AI productivity gains and operating leverage as primary drivers. Credible.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="credibility-block">
+    <div class="cred-rating-text">Strong</div>
+    <div class="cred-divider"></div>
+    <div class="cred-desc">
+      Management has been <strong>consistently conservative in near-term numerical guidance</strong> and structural on directional calls. The credit cost trajectory consistently outpaces guidance. The one area requiring monitoring is the MSME recovery timeline — flagged for two consecutive quarters with a Q2-Q3 FY27 target. The practice of separating "core" from "reported" performance was transparent and appropriate given genuine one-timers. <strong>No silent guidance abandonment detected.</strong> Execution Credibility Rating: <strong style="color:var(--green)">Strong</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STEP 4: HIDDEN FINANCIAL ARCHITECTURE ═══════════════════ -->
+<section class="fade-in">
+  <div class="section-label"><span class="step-num">04</span>Hidden Financial Architecture</div>
+  <h2 class="section-title">What the Headline Numbers Conceal</h2>
+
+  <div class="prose">
+    <p>The most significant hidden balance sheet development over Q3-Q4 FY26 is the <strong>structural uplift in provisioning coverage</strong>. The LGD floor implementation in Q3 took Stage 1 PCR from 74 bps to 98 bps, Stage 2 from 30.1% to 37%, and Stage 3 from 52% to 61%. By Q4, the overall PCR reached 60% — near-COVID-peak levels, but with a 3.5x larger balance sheet underneath. This is a hidden buffer that has been systematically built and will absorb shocks before they appear in reported credit costs.</p>
+    <p>The <strong>deposit book at ₹68,533 crores (16% of consolidated borrowings)</strong> is a strategically important but underappreciated liability diversification. Management deliberately slowed deposit growth in FY26 to optimize cost — suggesting they anticipated rate easing and preferred to preserve repricing flexibility. As RBI eases, this back book will reprice at meaningfully lower costs, providing a NIM tailwind that is not yet embedded in forward estimates.</p>
+    <p>The AI-related capex is <strong>intentionally undisclosed</strong> — management explicitly stated they will not publish this figure to prevent it becoming a separately tracked metric. The economic payoff, however, is measurable: AI call center agents at one-third the cost of human agents, 2-wheeler AI loan processing scaling from 100,000 to 600,000 in a single Diwali day. These cost savings will manifest through the opex-to-NTI ratio over FY27-28, not as a one-time credit.</p>
+  </div>
+
+  <div class="val-block">
+    <div class="val-cell">
+      <div class="val-cell-label">Stage 1 PCR (Post-Q3 Change)</div>
+      <div class="val-cell-value">98 bps</div>
+      <div class="val-cell-note">vs 74 bps pre-LGD floor. ~1% of Stage 1 assets now provisioned.</div>
+    </div>
+    <div class="val-cell">
+      <div class="val-cell-label">Stage 3 PCR (Q4)</div>
+      <div class="val-cell-value">60%</div>
+      <div class="val-cell-note">vs 54% in Q4 FY25. Near-COVID-peak coverage on 3.5x the balance sheet.</div>
+    </div>
+    <div class="val-cell">
+      <div class="val-cell-label">Captive 2W Book (Credit Cost Drag)</div>
+      <div class="val-cell-value">&lt;1% AUM</div>
+      <div class="val-cell-note">Yet responsible for 13% of GNPA and 5% of quarterly credit cost. Winds to &lt;₹1,500 Cr by Sep '26.</div>
+    </div>
+    <div class="val-cell">
+      <div class="val-cell-label">Annual AI-Driven Processing Capacity</div>
+      <div class="val-cell-value">6x Growth</div>
+      <div class="val-cell-note">Peak single-day loan processing: 100K → 600K (Diwali). Target 1M loans/day by Diwali FY27.</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Hidden Credit Tailwind — 2-Wheeler Wind-Down Math</div>
+      <div class="card-body">The captive 2-wheeler book contributes ~5% of quarterly credit cost while being &lt;1% of AUM. On a ₹5.1 lakh crore book, that's a <strong>disproportionate 5x credit cost inefficiency</strong>. As this ₹4,200 crore book winds to &lt;₹1,500 crore by September 2026, the annual credit cost relief is structurally embedded — not dependent on macro assumptions. This alone can drive ~5-8 bps of credit cost improvement.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">BHFL Gain — Balance Sheet vs P&L Treatment</div>
+      <div class="card-body">The Q3 BHFL stake-sale gain of ₹1,416 crores goes directly to consolidated reserves — not through the P&L. This is correct accounting (you cannot profit by selling yourself in consolidation). However, it has <strong>strengthened the net worth and capital adequacy ratio</strong> of the group, providing additional leverage capacity that is not visible in the standalone P&L. Capital adequacy at 21.45% in Q3 gives meaningful headroom.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STEP 5: MANAGEMENT DECODE ═══════════════════ -->
+<section class="fade-in">
+  <div class="section-label"><span class="step-num">05</span>Management Commentary Decode</div>
+  <h2 class="section-title">Reading Between the Lines</h2>
+
+  <div class="prose">
+    <p>Rajeev Jain's communication style is remarkably consistent across Q3 and Q4 concalls, which itself is a credibility signal. The <em>dominant psychological marker</em> across both calls is a deliberate distinction between micro and macro confidence — he explicitly states "I am not a macro person, I am a micro person" and doubles down on this in Q4. This is not evasion; it is a coherent investment philosophy that has been demonstrated over 19 years of navigating shocks from demonetization to COVID to Indo-Pakistan military tensions in FY26.</p>
+    <p>The <strong>"bulletproofing"</strong> language (used three times across the Q4 call) signals that Rajeev Jain is in a capital-preservation mindset — prioritising balance sheet resilience over near-term ROE maximization. This is a sophisticated long-term capital allocator acknowledging that at ₹5.1 lakh crore, systemic resilience becomes a fiduciary duty, not merely a competitive choice. The dividend at ₹6 per share, linking to BHFL dilution proceeds, demonstrates a commitment to shareholder distributions even as investment is accelerated.</p>
+    <p>One phrase worth flagging: <em>"We are not planning. We are in the process of implementing."</em> This is a material distinction in the AI context — Bajaj Finance is not announcing roadmaps; it is providing specific metrics (52 million voice-to-data conversions, 27 BOTs live, 600,000 loans processed in a single Diwali day). This is execution language, not promotional language.</p>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Emphasis Signals — What Management Stressed</div>
+      <div class="card-body">
+        <strong>Credit cost tailwinds</strong> (mentioned 4+ times across Q4 call), <strong>AI transformation as genuine business model change</strong> (not use-case deployment), <strong>customer franchise wallet depth</strong> (35-45% of new car/personal loan demand from existing 119M franchise), <strong>FY20 credit cost metrics as target</strong> (now being achieved on 3.5x balance sheet), and <strong>bulletproofing as strategy</strong>.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Avoidance Signals — What Was Not Addressed</div>
+      <div class="card-body">
+        <strong>Specific AI capex quantum</strong> (deliberately withheld — potential concern for those tracking true investment returns), <strong>NIM trajectory detail beyond "marginal moderation"</strong>, <strong>competitive pressure in personal loans</strong> (addressed only when directly probed — Rajeev acknowledged SBI is now the largest PL lender and competitive intensity is 3x pre-COVID), and <strong>specific MSME credit quality data cuts</strong>.
+      </div>
+    </div>
+  </div>
+
+  <div class="credibility-block" style="margin-top:20px">
+    <div class="cred-rating-text" style="color:var(--gold);font-size:22px">Long-Term<br>Allocator</div>
+    <div class="cred-divider"></div>
+    <div class="cred-desc">Management classification: <strong>Financially Disciplined Long-Term Allocator</strong>. The 19-year ROE track record, the explicit FY20 credit cost aspiration, the deliberate MSME slowdown despite near-term growth sacrifice, and the balance sheet bulletproofing posture all point to a management team that consistently chooses <strong>quality of compounding over velocity of compounding</strong>. The one risk: the AI transformation narrative, while executed, remains unmeasured in ROI terms — a black box investors must accept on faith for now.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STEP 6: SEGMENT ANALYSIS ═══════════════════ -->
+<section class="fade-in">
+  <div class="section-label"><span class="step-num">06</span>Segment & Business Engine Analysis</div>
+  <h2 class="section-title">The Portfolio — What's Working, What Isn't</h2>
+
+  <div class="segment-grid">
+    <div class="segment-card seg-bull">
+      <div class="seg-name">Gold Loans</div>
+      <div class="seg-metric green">+115% YoY</div>
+      <div class="seg-desc">The fastest-growing segment, now 3.5% of AUM (₹~18,000 Cr). Management targets 5% by FY27-end via sustained branch expansion. <strong>Branch count scaling from ~1,200 to significantly higher.</strong> Secured nature provides strong LGD profile. At ₹18,000 Cr, the base is no longer small — growth moderation is natural but still expected to lead the portfolio in FY27.</div>
+    </div>
+    <div class="segment-card seg-bull">
+      <div class="seg-name">Consumer B2C (Urban + Rural)</div>
+      <div class="seg-metric green">~20-26%</div>
+      <div class="seg-desc">Core profit engine. Personal loan market share at 8-9% vs 30-45% franchise penetration — massive white space. Competition has intensified (PSU banks now major PL players), but <strong>Bajaj's cross-sell advantage and data edge on existing customers maintains quality</strong>. Maintained sustainable growth in the mid-to-late 20s.</div>
+    </div>
+    <div class="segment-card seg-bull">
+      <div class="seg-name">New Car Finance</div>
+      <div class="seg-metric green">~38% YoY</div>
+      <div class="seg-desc">Strong growth on a small base. Market share only ~1% of total car loans despite 36% of bureau loans coming from Bajaj's 120M franchise. <strong>43-45% of disbursals come from existing-to-value (ETV) customers — superior risk profile.</strong> On track for early-30s growth in FY27.</div>
+    </div>
+    <div class="segment-card seg-mid">
+      <div class="seg-name">BHFL (Housing Finance)</div>
+      <div class="seg-metric gold">+23% AUM</div>
+      <div class="seg-desc">Subsidiary had a strong quarter: loan approvals +37%, PBT +20%, GNPA at remarkable 27 bps and NNPA at 11 bps. Opex/NTI improving toward a "pre-eminent mortgage company" target. <strong>AUM growing but competitive pressure in home loans is intensifying.</strong> Consolidation on net worth post-block sale strengthens the entity.</div>
+    </div>
+    <div class="segment-card seg-watch">
+      <div class="seg-name">MSME / SME Lending</div>
+      <div class="seg-metric amber">+6% YoY</div>
+      <div class="seg-desc">Deliberately slowed from 25-30% historical run-rate. Monthly disbursals cut from ₹1,800 Cr to ₹1,400 Cr, with further cuts in April 2026. <strong>Worst expected by June 2026; double-digit growth resumption targeted by Q2-Q3 FY27.</strong> This segment caused elevated credit cost in FY25-26 and is the primary risk recovery story for FY27.</div>
+    </div>
+    <div class="segment-card seg-wind">
+      <div class="seg-name">Captive 2W / 3W Financing</div>
+      <div class="seg-metric red">Winding Down</div>
+      <div class="seg-desc">&lt;1% of AUM yet 13% of GNPA and 5% of quarterly credit cost. <strong>Structural drag being eliminated.</strong> Balance sheet to shrink from ~₹4,200 Cr (March '26) to &lt;₹1,500 Cr by September 2026. Wind-down is the single most mechanically impactful credit cost lever for FY27 — no macro assumption required.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STEP 7: FinAI Transformation ═══════════════════ -->
+<section class="fade-in">
+  <div class="section-label"><span class="step-num">07</span>FinAI Transformation — Signal or Noise?</div>
+  <h2 class="section-title">Quantifying the AI Optionality</h2>
+
+  <div class="prose">
+    <p>Bajaj Finance's AI programme is unusually measurable for a company at this stage of deployment — and that measurability is the signal. The distinction management draws between <em>"deploying use cases"</em> and <em>"genuine business model transformation"</em> is substantiated by the scope: all 32 lines of business, all 260M monthly communication touchpoints, all 71,000 employees transitioning to Copilot-based training by end of May 2026. The FY27 plan for 600+ autonomous agents across operations, HR, risk, and DMS represents a step-change from current productivity levels.</p>
+    <p>The <strong>measurable ROI is already visible</strong> in two places: (1) AI call center agents at one-third the cost of human agents, with outbound voice headcount already reduced significantly from a 5,000-agent peak; and (2) single-day loan processing capacity at 6x the pre-AI level. On the opex-to-NTI metric, if AI drives even 20 bps of improvement over FY27-28, on a ₹5+ lakh crore AUM base, the PAT impact exceeds ₹1,000 crores annually. This is not priced into consensus.</p>
+  </div>
+
+  <div class="ai-metrics">
+    <div class="ai-bar-item">
+      <div class="ai-bar-label">Voice-to-Data Conversions (Q4 FY26)</div>
+      <div class="ai-bar-value">52M</div>
+      <div class="ai-bar-track"><div class="ai-bar-fill" style="width:72%"></div></div>
+      <div class="ai-bar-sub">vs 20M in Q3 · 100M target in FY27</div>
+    </div>
+    <div class="ai-bar-item">
+      <div class="ai-bar-label">AI Videos / Content (Monthly)</div>
+      <div class="ai-bar-value">100%</div>
+      <div class="ai-bar-track"><div class="ai-bar-fill" style="width:100%"></div></div>
+      <div class="ai-bar-sub">All digital marketing content AI-generated</div>
+    </div>
+    <div class="ai-bar-item">
+      <div class="ai-bar-label">AI Text/Voice BOTs Live</div>
+      <div class="ai-bar-value">27 BOTs</div>
+      <div class="ai-bar-track"><div class="ai-bar-fill" style="width:82%"></div></div>
+      <div class="ai-bar-sub">100% of comms to have BOT by June '26</div>
+    </div>
+    <div class="ai-bar-item">
+      <div class="ai-bar-label">AI Call Center Cost vs Human</div>
+      <div class="ai-bar-value">33% Cost</div>
+      <div class="ai-bar-track"><div class="ai-bar-fill" style="width:65%"></div></div>
+      <div class="ai-bar-sub">30% of outbound voice now AI agents</div>
+    </div>
+    <div class="ai-bar-item">
+      <div class="ai-bar-label">Single-Day Processing Capacity (Diwali '26 Target)</div>
+      <div class="ai-bar-value">1M Loans</div>
+      <div class="ai-bar-track"><div class="ai-bar-fill" style="width:60%"></div></div>
+      <div class="ai-bar-sub">vs 600K (FY26) · vs 100K (pre-AI)</div>
+    </div>
+    <div class="ai-bar-item">
+      <div class="ai-bar-label">Dedicated AI Unit (June '27 Target)</div>
+      <div class="ai-bar-value">363</div>
+      <div class="ai-bar-track"><div class="ai-bar-fill" style="width:56%"></div></div>
+      <div class="ai-bar-sub">vs 203 currently · Autonomous agents: 600+</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STEP 8: RED FLAGS ═══════════════════ -->
+<section class="fade-in">
+  <div class="section-label"><span class="step-num">08</span>Red Flags & Forensic Detection</div>
+  <h2 class="section-title">Honest Risk Accounting</h2>
+
+  <ul class="flag-list">
+    <li class="flag-item">
+      <div class="flag-severity"><span class="badge badge-amber">Moderate</span></div>
+      <div class="flag-text"><strong>Consecutive accounting presentation changes (Q3 + Q4).</strong> While individually justified — the LGD floor adoption in Q3 and recovery reclassification in Q4 — two successive ratio-redefining changes in two quarters require analyst vigilance. Neither is sinister, but they collectively make cross-period comparison harder and require explicit confirmation from management that the new basis is stable.</div>
+    </li>
+    <li class="flag-item">
+      <div class="flag-severity"><span class="badge badge-amber">Moderate</span></div>
+      <div class="flag-text"><strong>FY27 guidance assumes geopolitical de-escalation.</strong> Management explicitly flagged guidance is contingent on "easing geopolitical tensions and macro stability" — a caveat applied both to AUM growth (20-24%) and credit cost (145-160 bps). In a year that saw an Indo-Pak conflict, sustained tariff disruption, and Iran-US tensions, this is a non-trivial assumption. Credit cost guidance excluding geopolitical stress scenarios represents optimistic, not base-case, guidance.</div>
+    </li>
+    <li class="flag-item">
+      <div class="flag-severity"><span class="badge badge-amber">Moderate</span></div>
+      <div class="flag-text"><strong>AI capex black box.</strong> Management explicitly declined to publish AI investment quantum, citing concerns about creating a "new metric." This is a reasonable commercial decision, but it prevents investors from calculating return on this investment. The risk is that AI spend is larger than appreciated and is temporarily masking opex improvement that would otherwise be higher. There is no way to verify this from public disclosures.</div>
+    </li>
+    <li class="flag-item">
+      <div class="flag-severity"><span class="badge badge-green">Minor</span></div>
+      <div class="flag-text"><strong>Consumer leverage — the "one red flag" management itself cited.</strong> Rajeev Jain described elevated consumer leverage as the single red flag he continues to monitor. Bureau data shows it is flat on a year-over-year basis (as of February 2026) — an improvement from growth — but not declining. If macroeconomic stress materialises, consumer leverage amplifies credit deterioration across BFL's unsecured lending books.</div>
+    </li>
+    <li class="flag-item">
+      <div class="flag-severity"><span class="badge badge-green">Minor</span></div>
+      <div class="flag-text"><strong>MSME stress duration risk.</strong> The MSME book has been in deliberate deceleration for three consecutive quarters. Management's "worst behind us by June 2026" view is directionally supported by improving 3/6/9 MOB data, but this is the third consecutive quarter of "recovery is 2-3 quarters away." If MSME doesn't return to double-digit growth by Q3 FY27, it would represent a meaningful guidance miss and credit cycle elongation.</div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════ STEP 9: POSITIVE INFLECTION ═══════════════════ -->
+<section class="fade-in">
+  <div class="section-label"><span class="step-num">09</span>Positive Inflection Detection</div>
+  <h2 class="section-title">Leading Indicators Before the Numbers Reflect</h2>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Credit Cost Inflection — Already Happening</div>
+      <div class="card-body">The 3-MOB, 6-MOB, 9-MOB vintage credit performance is now <strong>tracking below FY20 levels</strong> — a period when the balance sheet was ₹115,000 crores vs ₹510,000 crores today. This is not management commentary; it is quantitative portfolio science. The FY27 credit cost guidance of 145-160 bps is likely to be at the low end or beaten if geopolitics stabilises.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">5M Loans in a Month — A New Velocity Signal</div>
+      <div class="card-body">Management noted that April 2026 is on track to be the first month in the company's history to cross 5 million loan bookings — beating the previous peak of 4.6 million set during the festival period. <strong>This suggests underlying consumer demand and franchise momentum is accelerating into FY27</strong>, not decelerating. A structural acceleration, not a seasonality spike.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Operating Leverage Compressing — Gold Branches + AI</div>
+      <div class="card-body">Opex/NTI improved 36 bps in FY26 <em>despite</em> aggressive gold loan branch expansion and MFI network buildout. As these new branches mature (a 12-18 month process), their incremental revenue contribution will exceed incremental costs, driving a <strong>second wave of opex leverage in FY27-28</strong> on top of AI-driven efficiency gains.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Customer Franchise Wallet Mining — Largely Untapped</div>
+      <div class="card-body">Bajaj Finance captures 35% of new car loan demand from within its own 119M franchise, yet holds only 1% market share of total car loans. This asymmetry is replicated across products: 30% personal loan franchise penetration vs 8% national market share. <strong>The franchise is a customer acquisition machine operating at a fraction of theoretical capacity.</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STEP 10: VALUATION ═══════════════════ -->
+<section class="fade-in">
+  <div class="section-label"><span class="step-num">10</span>Valuation Comfort Analysis</div>
+  <h2 class="section-title">Is the Premium Justified?</h2>
+
+  <div class="prose">
+    <p>At ₹924, Bajaj Finance trades at 29.9x trailing P/E and 5.1x book value — metrics that, in isolation, appear demanding. The analytical question is whether the <em>quality, durability, and visibility</em> of earnings justify this premium. The answer, through the lens of this quarter's disclosures, is nuanced: <strong>the premium is substantially justified, but leaves limited room for execution misses.</strong></p>
+    <p>Consider the earnings quality framework: ROA at 4.6% is at the top of the 19-year historical range; ROE at 20% is mid-point of the stated 19-22% long-term target; credit costs are in a structural downtrend supported by quantifiable portfolio mechanisms (2-wheeler wind-down, MSME cycle turning); and the 22-24% AUM growth guidance for FY27 is conservative by historical standards. The reinvestment runway — India credit penetration, customer wallet share, AI productivity gains — spans a decade, not a cycle.</p>
+    <p>The valuation risk is specific: <strong>the current P/E of 29.9x embeds expectations of approximately 22-25% PAT growth over FY27-28</strong>. If PAT grows at 25-30% (the bull case), the stock re-rates. If PAT grows at 18-20% due to geopolitical disruption or credit cycle elongation, the stock drifts to 24-26x P/E on new earnings — implying 10-15% downside from current levels. The multiple is not dangerous; it is full.</p>
+  </div>
+
+  <div class="val-block" style="grid-template-columns:repeat(4,1fr)">
+    <div class="val-cell">
+      <div class="val-cell-label">P/E (Trailing)</div>
+      <div class="val-cell-value">29.9×</div>
+      <div class="val-cell-note">Fully priced; not speculative</div>
+    </div>
+    <div class="val-cell">
+      <div class="val-cell-label">P/Book Value</div>
+      <div class="val-cell-value">5.10×</div>
+      <div class="val-cell-note">Book ₹183; CMP ₹924</div>
+    </div>
+    <div class="val-cell">
+      <div class="val-cell-label">ROE (Market Price)</div>
+      <div class="val-cell-value">18.2%</div>
+      <div class="val-cell-note">Q4 quarterly: 20.0%</div>
+    </div>
+    <div class="val-cell">
+      <div class="val-cell-label">Market Cap</div>
+      <div class="val-cell-value">₹5.75L Cr</div>
+      <div class="val-cell-note">India's largest consumer NBFC</div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p>"Is this a high-quality business at a fair valuation, a mediocre business at a premium, or an exceptional compounding machine deserving premium multiples?"</p>
+    <cite>Verdict: An exceptional compounding machine at a full — but not speculative — premium. The margin of safety comes from business quality, not valuation.</cite>
+  </div>
+
+  <div class="prose">
+    <p><strong>Valuation Classification: Expensive but Justified.</strong> The premium is earned through three durable moats: the 119-million-customer franchise (impossible to replicate in &lt;10 years), a 19-year demonstrated ROE track record of 19-22% through multiple cycles, and a technology transformation that is producing measurable, compounding efficiency gains. The downside protection at current levels is the business quality buffer — even in a bear scenario, BFL earns 15-18% ROE, making it a fundamentally sound hold. The opportunity cost risk is higher than the capital loss risk.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ STEP 11: TRAJECTORY ═══════════════════ -->
+<section class="fade-in">
+  <div class="section-label"><span class="step-num">11</span>Future Trajectory Modelling</div>
+  <h2 class="section-title">FY27–FY28 — Bull, Base, Bear</h2>
+
+  <div class="scenario-grid">
+    <div class="scenario-card sc-bull">
+      <div class="scenario-label">Bull Case</div>
+      <div class="scenario-metric">30–35%</div>
+      <div class="scenario-sub">PAT Growth FY27E</div>
+      <div class="scenario-desc">AUM grows 24%, credit cost reaches 140-150 bps, opex improves 40 bps, AI productivity accelerates. MSME fully recovers by Q2 FY27. Geopolitics stabilise. ROA exits FY27 at 4.7%. Stock re-rates to 32-34x on enhanced growth visibility.</div>
+    </div>
+    <div class="scenario-card sc-base">
+      <div class="scenario-label">Base Case</div>
+      <div class="scenario-metric">22–27%</div>
+      <div class="scenario-sub">PAT Growth FY27E</div>
+      <div class="scenario-desc">AUM grows 22%, credit cost at 150-160 bps, opex improves 25-30 bps, MSME recovers H2 FY27. NIM marginal compression offset by lower credit cost. ROA at 4.5-4.6%. P/E stable at 28-31x. Stock broadly tracks earnings growth.</div>
+    </div>
+    <div class="scenario-card sc-bear">
+      <div class="scenario-label">Bear Case</div>
+      <div class="scenario-metric">14–18%</div>
+      <div class="scenario-sub">PAT Growth FY27E</div>
+      <div class="scenario-desc">Geopolitical escalation, AUM growth slows to 18%, credit cost stays elevated at 170-180 bps, MSME recovery delayed to FY28. NIM compresses more than expected. ROA slides to 4.2-4.3%. Multiple compresses to 24-26x. Stock corrects 12-18%.</div>
+    </div>
+  </div>
+
+  <div class="watch-grid">
+    <div class="watch-item">
+      <div class="wlabel">Q1 FY27 Credit Cost</div>
+      <div class="wval">Watch for continuation of 165 bps exit rate. Sub-160 bps validates bull case trajectory.</div>
+    </div>
+    <div class="watch-item">
+      <div class="wlabel">MSME Monthly Disbursals</div>
+      <div class="wval">Resumption from ₹1,400 Cr toward ₹1,800 Cr+ by August–September 2026 is the key trigger.</div>
+    </div>
+    <div class="watch-item">
+      <div class="wlabel">Opex/NTI Trajectory</div>
+      <div class="wval">Expect 33.2-33.5% in Q1 FY27. Any improvement beyond 32.5% signals AI gains are accelerating.</div>
+    </div>
+    <div class="watch-item">
+      <div class="wlabel">Gold Loan AUM %</div>
+      <div class="wval">Track from 3.5% toward 5% of AUM. Sustained by branch expansion even if gold prices moderate.</div>
+    </div>
+    <div class="watch-item">
+      <div class="wlabel">Monthly Loan Volume</div>
+      <div class="wval">5M+ loans/month confirmation in Q1 FY27 validates the velocity acceleration signal.</div>
+    </div>
+    <div class="watch-item">
+      <div class="wlabel">2-Wheeler Book Size</div>
+      <div class="wval">Track wind-down from ~₹4,200 Cr to &lt;₹1,500 Cr by Sep '26. GNPA ratio improvement will follow.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STEP 12: FINAL VERDICT ═══════════════════ -->
+<section class="fade-in">
+  <div class="section-label"><span class="step-num">12</span>Final Investment Verdict</div>
+  <h2 class="section-title">Institutional Summary</h2>
+
+  <div class="two-col" style="margin-bottom:24px">
+    <div class="card">
+      <div class="card-title">Key Positives</div>
+      <div class="card-body" style="font-size:15px">
+        <p style="margin-bottom:10px">▸ <strong>Landmark AUM milestone</strong> (₹5.1L Cr) with 22.4% secular growth — no single concentrated bet.</p>
+        <p style="margin-bottom:10px">▸ <strong>Credit cost structural downtrend</strong>: vintage metrics at FY20 levels on 3.5x the balance sheet.</p>
+        <p style="margin-bottom:10px">▸ <strong>2-wheeler wind-down</strong> mechanically removes disproportionate GNPA drag by Sep '26.</p>
+        <p style="margin-bottom:10px">▸ <strong>PCR at 60%</strong> — balance sheet bulletproofing at near-COVID-peak provisioning levels.</p>
+        <p style="margin-bottom:10px">▸ <strong>AI is executing, not planning</strong>: 600K single-day loan capacity, 33% cost call center agents.</p>
+        <p style="margin-bottom:0">▸ <strong>May 2026 targeting 5M+ loans in a month</strong> — a new velocity milestone signalling FY27 momentum.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Key Negatives</div>
+      <div class="card-body" style="font-size:15px">
+        <p style="margin-bottom:10px">▸ <strong>Consecutive accounting changes</strong> (Q3 LGD floors + Q4 recovery reclassification) complicate cross-period comparisons.</p>
+        <p style="margin-bottom:10px">▸ <strong>Guidance conditioned on geopolitical stability</strong> — a macro assumption not in management's control.</p>
+        <p style="margin-bottom:10px">▸ <strong>MSME recovery is the third "2-3 quarters away" call</strong> — risk of further elongation.</p>
+        <p style="margin-bottom:10px">▸ <strong>AI capex undisclosed</strong> — ROI verification impossible from public filings.</p>
+        <p style="margin-bottom:0">▸ <strong>Consumer leverage remains elevated</strong> — management's own stated red flag. If macro deteriorates, this amplifies credit cycles.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-bottom:28px">
+    <div class="card">
+      <div class="card-title">Hidden Insights the Market May Miss</div>
+      <div class="card-body" style="font-size:15px">
+        <p style="margin-bottom:10px">▸ The 2-wheeler GNPA drag is a <strong>mechanical, not cyclical</strong>, credit improvement — certain to occur regardless of macro.</p>
+        <p style="margin-bottom:10px">▸ The deposit back book at 7.41% COF will <strong>reprice meaningfully lower as RBI eases</strong> — a NIM tailwind not yet in consensus.</p>
+        <p style="margin-bottom:10px">▸ AI processing capacity (1M loans/Diwali day target) allows <strong>revenue velocity to outpace headcount</strong> — the operating leverage story is just beginning.</p>
+        <p style="margin-bottom:0">▸ FY27 guidance of 15-17M new customers is <em>lower</em> than FY26 actual of 17.5M — creating a low base for positive surprise.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Major Risks — Ranked</div>
+      <div class="card-body" style="font-size:15px">
+        <p style="margin-bottom:10px"><span class="badge badge-amber">#1</span> &nbsp;<strong>Geopolitical shock</strong> derailing consumption and triggering a new credit cycle — the un-modelable risk.</p>
+        <p style="margin-bottom:10px"><span class="badge badge-amber">#2</span> &nbsp;<strong>MSME stress elongation</strong> — if recovery is delayed to FY28, credit cost guidance misses materially.</p>
+        <p style="margin-bottom:10px"><span class="badge badge-amber">#3</span> &nbsp;<strong>Consumer leverage unwinding</strong> — a delinquency spike across unsecured lending if income stress builds.</p>
+        <p style="margin-bottom:0"><span class="badge badge-blue">#4</span> &nbsp;<strong>AI investment cannibalism</strong> — opex benefits delayed while investment runs ahead of returns.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="verdict-block">
+    <div class="verdict-label">Final Investment Rating</div>
+    <div class="verdict-rating">ACCUMULATE</div>
+    <p class="verdict-context">
+      Bajaj Finance is an exceptional compounder — a 119-million-customer moat, a 19-year ROE track record at 19-22%, a genuine AI transformation underway, and a <em>structural</em> credit cost improvement cycle that is demonstrably ahead of the business cycle. The valuation at 29.9x P/E is full, not speculative — the margin of safety is business quality, not price. Recommended for systematic accumulation on dips toward ₹850-880, with a 12-18 month view anchored on FY27 credit cost delivery and MSME recovery confirmation.
+    </p>
+    <div class="verdict-tags">
+      <span class="badge badge-gold">Earnings Quality: High</span>
+      <span class="badge badge-green">Credit Cycle: Improving</span>
+      <span class="badge badge-green">Mgmt Credibility: Strong</span>
+      <span class="badge badge-amber">Valuation: Full / Expensive but Justified</span>
+      <span class="badge badge-blue">AI Optionality: Unpriced</span>
+      <span class="badge badge-green">Long-Term Compounder: Yes</span>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<div class="wrapper">
+  <div class="report-footer">
+    <div class="footer-inner">
+      <div class="footer-disclaimer">
+        This analysis is prepared for institutional informational purposes only and is not investment advice. It is based solely on publicly available earnings call transcripts and disclosed financial data. All data sourced from Q4 FY26 (April 29, 2026) and Q3 FY26 (February 3, 2026) earnings conference calls of Bajaj Finance Limited. Market price data as disclosed by the requester. Past performance of the company does not guarantee future results.
+      </div>
+      <div class="footer-meta">
+        <div>BAJFINANCE / BSE: 500034</div>
+        <div>Q4 FY26 Analysis</div>
+        <div>Data as of April 29, 2026</div>
+        <div style="color:var(--gold-dim);margin-top:4px">Institutional Earnings Intelligence</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      el.target.classList.add('visible');
+      observer.unobserve(el.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Animate score bars on visibility
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const fills = entry.target.querySelectorAll('.score-bar-fill, .ai-bar-fill');
+      fills.forEach(f => {
+        const target = f.style.width;
+        f.style.width = '0%';
+        setTimeout(() => { f.style.width = target; }, 100);
+      });
+      barObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.score-board, .ai-metrics').forEach(el => barObserver.observe(el));
+</script>
+</body>
+</html>

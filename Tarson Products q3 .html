@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarsons Products — Institutional Equity Analysis Q3 FY26</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0B1E3D;
+    --navy-mid: #132952;
+    --navy-light: #1E3A6E;
+    --gold: #C8A046;
+    --gold-light: #E8C97A;
+    --cream: #FAFAF7;
+    --white: #FFFFFF;
+    --text-primary: #0B1E3D;
+    --text-secondary: #4A5568;
+    --text-muted: #7B8794;
+    --border: #E2E8F0;
+    --border-strong: #CBD5E0;
+    --green: #1A7F4E;
+    --green-bg: #EBF8F1;
+    --green-border: #A3D9BC;
+    --red: #C0392B;
+    --red-bg: #FDF0EE;
+    --red-border: #F5C0BB;
+    --amber: #B7651A;
+    --amber-bg: #FEF8ED;
+    --amber-border: #F6DBA9;
+    --blue: #1B5EA8;
+    --blue-bg: #EBF3FC;
+  }
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .masthead {
+    background: var(--navy);
+    color: #fff;
+    padding: 36px 48px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  }
+  .masthead-grid { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; }
+  .masthead-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-light); font-weight: 500; margin-bottom: 6px; }
+  .masthead-company { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #fff; line-height: 1.1; }
+  .masthead-sector { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 6px; }
+  .masthead-meta { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+  .meta-item { }
+  .meta-val { font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 500; color: #fff; }
+  .meta-label { font-size: 10px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+  .meta-change-pos { font-size: 11px; color: #5EE6A0; margin-left: 4px; }
+  .meta-change-neg { font-size: 11px; color: #FC8B8B; margin-left: 4px; }
+  .verdict-badge { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border: 1.5px solid var(--gold); border-radius: 4px; }
+  .verdict-badge .v-label { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); display: block; margin-bottom: 3px; }
+  .verdict-badge .v-text { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--gold-light); font-weight: 500; }
+  .verdict-badge .v-dot { width: 10px; height: 10px; background: var(--gold); border-radius: 50%; }
+  .report-date { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 12px; }
+
+  .main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 64px; }
+
+  .section { margin-bottom: 40px; }
+  .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--gold); font-weight: 500; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 500; color: var(--navy); }
+  .section-sub { font-size: 12px; color: var(--text-muted); }
+
+  .score-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 28px; }
+  .score-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 14px 12px; text-align: center; }
+  .score-card .sc-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 8px; }
+  .score-card .sc-val { font-family: 'IBM Plex Mono', monospace; font-size: 26px; font-weight: 500; line-height: 1; }
+  .score-card .sc-denom { font-size: 12px; color: var(--text-muted); }
+  .score-card .sc-bar { height: 3px; background: var(--border); border-radius: 2px; margin-top: 8px; overflow: hidden; }
+  .score-card .sc-fill { height: 100%; border-radius: 2px; }
+  .s-high { color: var(--green); } .s-high .sc-fill { background: var(--green); }
+  .s-med { color: var(--amber); } .s-med .sc-fill { background: var(--amber); }
+  .s-low { color: var(--red); } .s-low .sc-fill { background: var(--red); }
+
+  .snapshot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .snapshot-col { }
+  .key-finding { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; display: flex; gap: 12px; align-items: flex-start; }
+  .kf-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; font-weight: 600; margin-top: 1px; }
+  .kf-pos { background: var(--green-bg); color: var(--green); }
+  .kf-neg { background: var(--red-bg); color: var(--red); }
+  .kf-neu { background: var(--amber-bg); color: var(--amber); }
+  .kf-text { font-size: 13px; line-height: 1.5; color: var(--text-primary); }
+  .kf-text strong { font-weight: 600; }
+
+  .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .metric-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 16px; }
+  .metric-card .mc-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 6px; }
+  .metric-card .mc-val { font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 500; color: var(--navy); }
+  .metric-card .mc-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+  .metric-card .mc-change { display: inline-block; font-size: 11px; padding: 2px 6px; border-radius: 3px; margin-top: 6px; font-family: 'IBM Plex Mono', monospace; }
+  .chg-pos { background: var(--green-bg); color: var(--green); }
+  .chg-neg { background: var(--red-bg); color: var(--red); }
+  .chg-neu { background: var(--amber-bg); color: var(--amber); }
+
+  .chart-container { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 20px 20px 16px; margin-bottom: 16px; }
+  .chart-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 4px; }
+  .chart-subtitle { font-size: 11px; color: var(--text-muted); margin-bottom: 16px; }
+  .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .guidance-table { width: 100%; border-collapse: collapse; font-size: 12.5px; background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .guidance-table th { background: var(--navy); color: rgba(255,255,255,0.85); font-weight: 500; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 12px; text-align: left; }
+  .guidance-table td { padding: 10px 12px; border-bottom: 0.5px solid var(--border); vertical-align: top; line-height: 1.45; }
+  .guidance-table tr:last-child td { border-bottom: none; }
+  .guidance-table tr:nth-child(even) td { background: #F8F9FC; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 3px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .badge-achieved { background: var(--green-bg); color: var(--green); border: 0.5px solid var(--green-border); }
+  .badge-delayed { background: var(--amber-bg); color: var(--amber); border: 0.5px solid var(--amber-border); }
+  .badge-missed { background: var(--red-bg); color: var(--red); border: 0.5px solid var(--red-border); }
+  .badge-ongoing { background: var(--blue-bg); color: var(--blue); border: 0.5px solid #B3D1F0; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  .analysis-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 18px; }
+  .analysis-card h4 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 12px; }
+  .analysis-card p { font-size: 13px; color: var(--text-primary); line-height: 1.6; margin-bottom: 8px; }
+  .analysis-card p:last-child { margin-bottom: 0; }
+
+  .rf-item { display: flex; gap: 12px; background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; align-items: flex-start; }
+  .rf-sev { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+  .sev-minor { background: var(--blue-bg); color: var(--blue); }
+  .sev-moderate { background: var(--amber-bg); color: var(--amber); }
+  .sev-severe { background: var(--red-bg); color: var(--red); }
+  .rf-content .rf-title { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+  .rf-content .rf-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+  .pos-item { display: flex; gap: 12px; background: var(--white); border: 0.5px solid var(--green-border); border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; align-items: flex-start; }
+  .pos-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+  .pos-content .pos-title { font-size: 13px; font-weight: 600; color: var(--green); margin-bottom: 3px; }
+  .pos-content .pos-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+  .valuation-box { background: var(--navy); color: #fff; border-radius: 8px; padding: 20px 22px; margin-bottom: 16px; }
+  .vb-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 6px; }
+  .vb-rating { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold-light); margin-bottom: 8px; }
+  .vb-desc { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+
+  .traj-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .traj-card { border-radius: 8px; padding: 16px; border: 0.5px solid; }
+  .traj-bull { background: var(--green-bg); border-color: var(--green-border); }
+  .traj-base { background: var(--blue-bg); border-color: #B3D1F0; }
+  .traj-bear { background: var(--red-bg); border-color: var(--red-border); }
+  .traj-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .traj-bull .traj-label { color: var(--green); }
+  .traj-base .traj-label { color: var(--blue); }
+  .traj-bear .traj-label { color: var(--red); }
+  .traj-prob { font-family: 'IBM Plex Mono', monospace; font-size: 24px; font-weight: 500; margin-bottom: 6px; }
+  .traj-bull .traj-prob { color: var(--green); }
+  .traj-base .traj-prob { color: var(--blue); }
+  .traj-bear .traj-prob { color: var(--red); }
+  .traj-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+  .verdict-section { background: var(--navy); border-radius: 12px; padding: 32px 36px; margin-top: 40px; }
+  .verdict-section .vs-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 6px; }
+  .verdict-section .vs-title { font-family: 'Playfair Display', serif; font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+  .verdict-final { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: var(--gold-light); margin: 12px 0; line-height: 1; }
+  .verdict-rationale { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7; max-width: 720px; margin-top: 14px; }
+  .verdict-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
+  .vg-col { }
+  .vg-col h4 { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
+  .vg-item { display: flex; gap: 8px; margin-bottom: 8px; font-size: 12.5px; color: rgba(255,255,255,0.7); }
+  .vg-item::before { content: ''; flex-shrink: 0; width: 5px; height: 5px; border-radius: 50%; margin-top: 7px; }
+  .vg-pos::before { background: #5EE6A0; }
+  .vg-neg::before { background: #FC8B8B; }
+
+  .mgmt-chip { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 500; margin: 3px; }
+  .chip-neu { background: var(--amber-bg); color: var(--amber); border: 0.5px solid var(--amber-border); }
+  .chip-pos { background: var(--green-bg); color: var(--green); border: 0.5px solid var(--green-border); }
+  .chip-neg { background: var(--red-bg); color: var(--red); border: 0.5px solid var(--red-border); }
+
+  .exec-rating { display: flex; align-items: center; gap: 12px; background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+  .er-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); flex-shrink: 0; }
+  .er-val { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--amber); font-weight: 500; }
+
+  .quote-block { border-left: 3px solid var(--gold); padding: 10px 16px; background: var(--amber-bg); border-radius: 0 6px 6px 0; margin: 10px 0; font-size: 12.5px; color: var(--text-secondary); font-style: italic; line-height: 1.5; }
+
+  .wc-table { width: 100%; font-size: 12.5px; }
+  .wc-table td { padding: 7px 10px; border-bottom: 0.5px solid var(--border); }
+  .wc-table td:last-child { text-align: right; font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
+
+  .divider { height: 0.5px; background: var(--border); margin: 32px 0; }
+  .footnote { font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-top: 6px; }
+
+  @media (max-width: 768px) {
+    .score-grid { grid-template-columns: repeat(3, 1fr); }
+    .metrics-grid, .two-col, .three-col, .chart-row, .traj-grid, .snapshot-grid, .verdict-grid { grid-template-columns: 1fr; }
+    .masthead { padding: 24px; }
+    .masthead-grid { grid-template-columns: 1fr; }
+    .main { padding: 20px 16px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-grid">
+    <div>
+      <div class="masthead-label">Institutional Equity Research · Q3 & 9M FY2026</div>
+      <div class="masthead-company">Tarsons Products Limited</div>
+      <div class="masthead-sector">Plastic Labware · Life Sciences Infrastructure · BSE: 543399 · NSE: TARSONS</div>
+      <div class="masthead-meta">
+        <div class="meta-item">
+          <div class="meta-val">₹214</div>
+          <div class="meta-label">CMP (₹)</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-val">₹1,141 Cr</div>
+          <div class="meta-label">Market Cap</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-val">53.7×</div>
+          <div class="meta-label">P/E (Distorted)</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-val">1.84×</div>
+          <div class="meta-label">Price / Book</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-val">6.91%</div>
+          <div class="meta-label">ROCE</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-val">₹458 / ₹164</div>
+          <div class="meta-label">52W High / Low</div>
+        </div>
+      </div>
+      <div class="report-date">Analysis Date: February 2026 · Based on Q3 FY26 Concall, Q2 FY26 Concall, Investor Presentations</div>
+    </div>
+    <div>
+      <div class="verdict-badge">
+        <div>
+          <div class="v-label">Investment Verdict</div>
+          <div class="v-text">Watchlist</div>
+        </div>
+        <div class="v-dot"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SECTION 1: SCORES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Institutional Scorecard</span>
+      <span class="section-sub">Based on Q3 & 9M FY26 disclosures</span>
+    </div>
+    <div class="score-grid">
+      <div class="score-card s-med">
+        <div class="sc-label">Business Health</div>
+        <div class="sc-val">5.5<span class="sc-denom">/10</span></div>
+        <div class="sc-bar"><div class="sc-fill" style="width:55%"></div></div>
+      </div>
+      <div class="score-card s-med">
+        <div class="sc-label">Earnings Quality</div>
+        <div class="sc-val">5<span class="sc-denom">/10</span></div>
+        <div class="sc-bar"><div class="sc-fill" style="width:50%"></div></div>
+      </div>
+      <div class="score-card s-med">
+        <div class="sc-label">Balance Sheet</div>
+        <div class="sc-val">5.5<span class="sc-denom">/10</span></div>
+        <div class="sc-bar"><div class="sc-fill" style="width:55%"></div></div>
+      </div>
+      <div class="score-card s-low">
+        <div class="sc-label">Capital Allocation</div>
+        <div class="sc-val">4.5<span class="sc-denom">/10</span></div>
+        <div class="sc-bar"><div class="sc-fill" style="width:45%"></div></div>
+      </div>
+      <div class="score-card s-med">
+        <div class="sc-label">Mgmt. Credibility</div>
+        <div class="sc-val">5<span class="sc-denom">/10</span></div>
+        <div class="sc-bar"><div class="sc-fill" style="width:50%"></div></div>
+      </div>
+      <div class="score-card s-low">
+        <div class="sc-label">Future Visibility</div>
+        <div class="sc-val">4<span class="sc-denom">/10</span></div>
+        <div class="sc-bar"><div class="sc-fill" style="width:40%"></div></div>
+      </div>
+    </div>
+
+    <!-- EXECUTIVE SNAPSHOT -->
+    <div class="snapshot-grid">
+      <div>
+        <div class="key-finding"><div class="kf-icon kf-pos">+</div><div class="kf-text"><strong>Cash PAT the real story:</strong> Q3 FY26 cash PAT grew 33.9% YoY to ₹31.1 Cr standalone — the strongest signal of underlying business health, dwarfing the reported PAT figure that is depressed by ₹22.7 Cr quarterly depreciation.</div></div>
+        <div class="key-finding"><div class="kf-icon kf-pos">+</div><div class="kf-text"><strong>EBITDA trajectory improving:</strong> 9M FY26 standalone EBITDA margin expanded 190 bps YoY to 32.9%, and Q2 standalone margins hit 34.7% — a multi-quarter inflection. Operating leverage on existing plants is real.</div></div>
+        <div class="key-finding"><div class="kf-icon kf-pos">+</div><div class="kf-text"><strong>Cell culture: genuine first-mover:</strong> Tarsons is the only Indian manufacturer launching cell culture capacity. India constitutes just 2.5–3% of the global market, offering an asymmetric opportunity if execution delivers.</div></div>
+      </div>
+      <div>
+        <div class="key-finding"><div class="kf-icon kf-neg">−</div><div class="kf-text"><strong>₹600 Cr capex took 4+ years longer than promised:</strong> Announced in FY21-22, Panchla is only partially commissioned in Q3 FY26. Cell culture launches in Q4 FY26. The market has priced in both the promise AND the disappointment.</div></div>
+        <div class="key-finding"><div class="kf-icon kf-neg">−</div><div class="kf-text"><strong>Revenue stagnant domestically for 4 years:</strong> Domestic revenue at ~₹200 Cr appears structurally flat. Gross block has grown from ₹160 Cr to ₹730 Cr in the same period — an alarming capital efficiency deterioration.</div></div>
+        <div class="key-finding"><div class="kf-icon kf-neu">!</div><div class="kf-text"><strong>Market missing the depreciation optionality:</strong> Peak depreciation of ₹100–105 Cr in FY27 will suppress reported PAT for 2–3 more years. If revenue ramps materialise from FY27, a significant PAT re-rating becomes possible.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: FINANCIAL PERFORMANCE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Result Quality Analysis</span>
+      <span class="section-sub">Q3 FY26 and 9M FY26 · Standalone + Consolidated</span>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="mc-label">Q3 Revenue (Consol)</div>
+        <div class="mc-val">₹107.9 Cr</div>
+        <div class="mc-sub">Q3 FY25: ₹95.7 Cr</div>
+        <div class="mc-change chg-pos">+12.8% YoY</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-label">Q3 EBITDA (SA)</div>
+        <div class="mc-val">₹29.1 Cr</div>
+        <div class="mc-sub">Margin: 34.7% | -200 bps QoY</div>
+        <div class="mc-change chg-pos">+4.4% YoY</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-label">Q3 Cash PAT (SA)</div>
+        <div class="mc-val">₹31.1 Cr</div>
+        <div class="mc-sub">True earnings power proxy</div>
+        <div class="mc-change chg-pos">+33.9% YoY</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-label">9M Adj. PAT (SA)</div>
+        <div class="mc-val">₹18.5 Cr</div>
+        <div class="mc-sub">Depressed by ₹60.6 Cr depreciation</div>
+        <div class="mc-change chg-neg">−31.3% YoY</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-label">9M Revenue (SA)</div>
+        <div class="mc-val">₹235.8 Cr</div>
+        <div class="mc-sub">9M FY25: ₹221.1 Cr</div>
+        <div class="mc-change chg-pos">+6.6% YoY</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-label">9M EBITDA Margin (SA)</div>
+        <div class="mc-val">32.9%</div>
+        <div class="mc-sub">9M FY25: 30.9%</div>
+        <div class="mc-change chg-pos">+190 bps YoY</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-label">9M Cash PAT (SA)</div>
+        <div class="mc-val">₹79.1 Cr</div>
+        <div class="mc-sub">9M FY25: ₹63.5 Cr</div>
+        <div class="mc-change chg-pos">+24.5% YoY</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-label">Q3 Other Income</div>
+        <div class="mc-val">₹9.7 Cr</div>
+        <div class="mc-sub">vs. ₹2.1 Cr Q3 FY25 — forex gain</div>
+        <div class="mc-change chg-neu">One-time</div>
+      </div>
+    </div>
+
+    <div class="chart-row">
+      <div class="chart-container">
+        <div class="chart-title">Quarterly Revenue (Standalone, ₹ Cr)</div>
+        <div class="chart-subtitle">6-quarter trend showing gradual recovery</div>
+        <div style="position: relative; height: 220px;">
+          <canvas id="revenueChart" role="img" aria-label="Tarsons standalone quarterly revenue from Q2FY25 to Q3FY26">Revenue: Q2FY25 80.1, Q3FY25 76.2, Q1FY26 71.3, Q2FY26 80.5, Q3FY26 84.0</canvas>
+        </div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-title">EBITDA vs Cash PAT (Standalone, ₹ Cr)</div>
+        <div class="chart-subtitle">Cash PAT growing faster as fixed costs are absorbed</div>
+        <div style="position: relative; height: 220px;">
+          <canvas id="profitChart" role="img" aria-label="Tarsons EBITDA vs Cash PAT quarterly standalone">Quarterly EBITDA and Cash PAT comparison</canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="analysis-card">
+      <h4>Revenue Quality Assessment</h4>
+      <p>Revenue growth is entirely organic and volume-led — management explicitly confirmed no price increases or reductions in Q2 FY26. The 12.8% consolidated growth in Q3 was partly aided by Nerbe's 22% INR-denominated growth, of which management acknowledged most was attributable to EUR/INR depreciation rather than real volume.</p>
+      <p>The domestic-to-export revenue mix shift is notable: standalone exports rose from 30% (Q3FY25) to 36% (Q3FY26), while consolidated showed the inverse — a structural signal that the Nerbe EUR-denominated revenues are growing in INR terms through currency tailwinds, not genuine business expansion. The ₹9.7 Cr "other income" in Q3 FY26 (vs ₹2.1 Cr prior year) reflects forex gains from capex advances booked at lower EUR rates — a one-time item distorting standalone EBIT quality.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3: GUIDANCE TRACKER -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Guidance Tracker & Execution Scorecard</span>
+      <span class="section-sub">Management Promise vs. Reality</span>
+    </div>
+    <div style="overflow-x: auto;">
+    <table class="guidance-table">
+      <thead>
+        <tr>
+          <th style="width:28%">Historical Guidance / Claim</th>
+          <th style="width:14%">Timeline Given</th>
+          <th style="width:16%">Current Status</th>
+          <th style="width:12%">Verdict</th>
+          <th style="width:30%">Commentary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>₹600 Cr capex programme at Panchla & Amta to transform product portfolio and double addressable market</td>
+          <td>Announced FY21-22; targeted commercialisation FY23-24</td>
+          <td>Partial Panchla commissioning Q3FY26; cell culture Q4FY26; Amta Q4FY26</td>
+          <td><span class="badge badge-delayed">Delayed</span></td>
+          <td>4+ year delay. Capex also crept to ₹550–650 Cr. Original triggers (COVID demand) have structurally reversed — markets now far more competitive.</td>
+        </tr>
+        <tr>
+          <td>Indian plastic labware market to reach ₹2,600–2,700 Cr by FY25 (Frost & Sullivan IPO report)</td>
+          <td>Projected at IPO (FY22)</td>
+          <td>Management now estimates current market at ~₹1,200 Cr</td>
+          <td><span class="badge badge-missed">Missed</span></td>
+          <td>Market is less than half the projected size. Post-COVID demand normalisation and structural slowdown invalidated IPO projections. Management acknowledged these projections "may not have been satisfied."</td>
+        </tr>
+        <tr>
+          <td>Peak revenue potential of ₹350–400 Cr from Panchla + Amta at full utilisation</td>
+          <td>3–5 years from FY26</td>
+          <td>Bioprocess products launched; cell culture Q4FY26; near-zero revenue currently</td>
+          <td><span class="badge badge-ongoing">Ongoing</span></td>
+          <td>₹100–125 Cr from capacity expansion (existing products), ₹275+ Cr from new products (cell culture, bioprocess). Management expects 15–20% utilisation in Year 1, reaching optimal in 3–4 years.</td>
+        </tr>
+        <tr>
+          <td>Panchla facility full commissioning and revenue ramp beginning</td>
+          <td>Q4 FY26</td>
+          <td>Partial commissioning in Q3FY26; full operational by Q4FY26</td>
+          <td><span class="badge badge-ongoing">On Track</span></td>
+          <td>Cell culture capacity to be commissioned in Q4 FY26. Bioprocess (PETG bottles, roller bottles) already launched with initial customer approvals underway. First revenue contributions modest.</td>
+        </tr>
+        <tr>
+          <td>Export business growth; Nerbe synergies contributing to revenue and margins</td>
+          <td>FY24-25 onwards</td>
+          <td>Nerbe flat in local currency; no supply from India to Nerbe yet</td>
+          <td><span class="badge badge-missed">Missed</span></td>
+          <td>Nerbe revenue ~EUR 8.5 Mn (~₹78 Cr), essentially flat. No India-made products supplied to Nerbe channel. Management is prioritising external orders before Nerbe channel. German economy weak.</td>
+        </tr>
+        <tr>
+          <td>Export growth and geographic diversification to 120+ countries in 5–10 years</td>
+          <td>Ongoing strategic target</td>
+          <td>Exports flat/declining for 3+ consecutive quarters; US tariff impact (50%); BL delays</td>
+          <td><span class="badge badge-delayed">Delayed</span></td>
+          <td>US tariff at 50% is described as "a no-trade zone." BL issuance delays impacted Q1 and Q2. Management claims order book is growing but this has not converted to reported revenue. No customer losses claimed.</td>
+        </tr>
+        <tr>
+          <td>Domestic market growth; wallet share expansion with existing customers</td>
+          <td>Consistent every quarter</td>
+          <td>Domestic standalone revenue ~₹200 Cr for 4+ years; price competition intensifying</td>
+          <td><span class="badge badge-missed">Missed</span></td>
+          <td>Management now blames GeM portal, commoditisation of products, and MNC subcontracting to local manufacturers. The core domestic moat appears weaker than portrayed at IPO.</td>
+        </tr>
+        <tr>
+          <td>Peak depreciation guidance for FY26 and FY27</td>
+          <td>Q2 FY26 concall</td>
+          <td>9M FY26 depreciation: ₹60.6 Cr. Peak FY26: ₹85–90 Cr; FY27: ₹100–105 Cr</td>
+          <td><span class="badge badge-achieved">Tracking</span></td>
+          <td>Depreciation guidance appears accurate and consistent across quarters. This is the most specific and verifiable guidance given, and is on track. PAT suppression from this will continue into FY27-28.</td>
+        </tr>
+        <tr>
+          <td>Peak debt at ₹425–450 Cr consolidated; standalone not beyond ₹350 Cr</td>
+          <td>Q2 FY26 concall</td>
+          <td>Sep-25 consolidated debt: ~₹385 Cr (NC ₹214.6 Cr + Current ₹170.4 Cr)</td>
+          <td><span class="badge badge-ongoing">Tracking</span></td>
+          <td>Debt is elevated but within guided range. Active repayment underway. Peak debt likely already reached or near peak. Interest cost containment is key to PAT recovery.</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div style="margin-top: 14px;">
+      <div class="exec-rating">
+        <div class="er-label">Execution Credibility Rating</div>
+        <div class="er-val">Moderate — Structurally Declining</div>
+      </div>
+      <p class="footnote" style="margin-top: 8px;">Management consistently blames external factors (COVID-era competition, US tariffs, GeM portal, freight disruptions, global geopolitics) — legitimate individually but collectively suggesting the original investment thesis was built on IPO-era optimism not validated by structural market realities.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4: HIDDEN FINANCIAL ARCHITECTURE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <span class="section-title">Hidden Financial Architecture</span>
+      <span class="section-sub">Working capital forensics · Cash flow truth · Balance sheet stress mapping</span>
+    </div>
+
+    <div class="two-col" style="margin-bottom: 16px;">
+      <div class="analysis-card">
+        <h4>Working Capital Forensics</h4>
+        <table class="wc-table">
+          <tr><td style="color: var(--text-secondary);">Working capital cycle</td><td>125 days</td></tr>
+          <tr><td style="color: var(--text-secondary);">Raw materials</td><td>₹41 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">Work-in-progress</td><td>₹5 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">Finished goods</td><td>₹39 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">Stock-in-trade</td><td>₹7 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">Packing materials</td><td>₹13 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">Total inventories (Consol, Sep-25)</td><td>₹135.4 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">Trade receivables (Sep-25)</td><td>₹72.5 Cr</td></tr>
+        </table>
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 10px;">125-day cycle is structurally elevated for a business of this scale, justified by 2,500+ SKU complexity and new product sampling inventory. Management expects improvement as revenue scales. The decline in receivables from ₹79.6 Cr (Mar-25) to ₹72.5 Cr (Sep-25) is a mild positive, suggesting no collection stress.</p>
+      </div>
+      <div class="analysis-card">
+        <h4>Cash Flow Truth Analysis</h4>
+        <table class="wc-table">
+          <tr><td style="color: var(--text-secondary);">H1 FY26 Operating CF (Consol)</td><td style="color: var(--green); font-weight: 600;">₹44.5 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">H1 FY25 Operating CF (Consol)</td><td>₹22.0 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">YoY improvement</td><td style="color: var(--green); font-weight: 600;">+102%</td></tr>
+          <tr><td style="color: var(--text-secondary);">CFO / EBITDA conversion</td><td style="color: var(--green); font-weight: 600;">85% (vs 50% H1FY25)</td></tr>
+          <tr><td style="color: var(--text-secondary);">H1 Investing CF</td><td style="color: var(--red);">−₹78.3 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">H1 Financing CF</td><td>+₹32.1 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">Cash balance (Sep-25)</td><td>₹25.9 Cr</td></tr>
+        </table>
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 10px;">The doubling of operating cash flow and the CFO/EBITDA ratio jumping to 85% is the most underappreciated positive in recent disclosures. This signals genuine working capital discipline and suggests the underlying cash engine is intact despite reported PAT compression from depreciation.</p>
+      </div>
+    </div>
+
+    <div class="analysis-card">
+      <h4>Balance Sheet Stress Assessment</h4>
+      <p>Total consolidated debt stands at approximately ₹385 Cr (non-current ₹214.6 Cr + current ₹170.4 Cr as of Sep-25), against equity of ₹626.6 Cr. Debt-to-equity at ~0.6× is manageable. Management guided peak consolidated debt at ₹425–450 Cr, suggesting limited incremental borrowing.</p>
+      <p>The significant CWIP of ₹251 Cr and capital advances of ₹64 Cr are expected to be capitalised in Q3-Q4 FY26, which will sharply increase depreciation in FY27. The equity base has been eroded from ₹630.2 Cr (Mar-25) to ₹626.6 Cr (Sep-25), reflecting PAT barely covering the dilution from retained-loss accumulation. No promoter pledging, no off-balance-sheet guarantees highlighted. The Singapore subsidiary debt (for Nerbe acquisition) is structured via SBLC and is being serviced through equity infusions from India — adding hidden cross-border leverage complexity.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 5: MANAGEMENT DECODE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <span class="section-title">Management Commentary Decode</span>
+      <span class="section-sub">Concall psychology analysis · Language patterns · Credibility signals</span>
+    </div>
+
+    <div class="two-col" style="margin-bottom: 16px;">
+      <div class="analysis-card">
+        <h4>Behavioural Markers — Q3 FY26</h4>
+        <p>The most revealing signal in Q3 was Aryan Sehgal's candid admission: <em>"Definitely, I think the markets got more competitive post the COVID era… sweating those capacities will take us longer than what we had projected."</em> This is a rare, unscripted acknowledgment of fundamental underestimation.</p>
+        <p>On cell culture customer stickiness: Sehgal correctly identified that customers in research organizations "could say a lot and give you a lot of comforting statements when they don't have to make a decision." This unusual epistemic honesty about pipeline visibility is a credibility positive — but simultaneously signals that revenue visibility from new products is genuinely low.</p>
+        <div class="quote-block">The question on purchasing criteria drew a non-answer ("too much of sensitive marketing information") — an unusual deflection that may simply reflect competitive confidentiality rather than evasion.</div>
+        <p>Promoter declining to buy shares despite 52%+ drawdown from 52W highs ("currently no plan to increase stake") is a clear negative credibility signal, however management rationalised it as being "fully focused on increasing the business."</p>
+      </div>
+      <div class="analysis-card">
+        <h4>Topics Emphasised vs. Avoided</h4>
+        <p><strong>Emphasised (positive framing):</strong> Cash PAT growth (+33.9%), EBITDA margin expansion, cell culture first-mover advantage, India-US FTA potential, government biopharma allocation (₹100 Bn over 5 years), near-full utilisation in existing plants, India brand trust.</p>
+        <p><strong>Structurally avoided or deflected:</strong> Domestic revenue stagnation mechanism (beyond "competition"), specific Nerbe revenue/EBIT breakout, forward guidance (explicitly refused at every turn), concrete new customer wins in cell culture/bioprocess, quantification of order book growth, details on other expense increase.</p>
+        <div class="quote-block">On domestic revenue stagnation: "We are facing competition. That's why we are launching new products." This is a narrative shift — from "brand is strong and growing share" (IPO positioning) to "market is competitive and we are adapting."</div>
+        <p>Management personality classification: <strong>Conservative-Transitional</strong>. Sanjive Sehgal (founder) is measured and sector-realistic. Aryan Sehgal (next-gen) shows greater strategic clarity but limited track record of execution at scale. Both avoid quantitative forward commitments systematically.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 4px;">
+      <div style="margin-bottom: 8px; font-size: 12px; color: var(--text-muted); font-weight: 500;">Management Classification Tags</div>
+      <span class="mgmt-chip chip-pos">Long-term oriented</span>
+      <span class="mgmt-chip chip-neu">Conservative</span>
+      <span class="mgmt-chip chip-neu">Guidance-averse</span>
+      <span class="mgmt-chip chip-neg">Execution lagging narrative</span>
+      <span class="mgmt-chip chip-pos">Quality-focused</span>
+      <span class="mgmt-chip chip-neu">External blame tendency</span>
+      <span class="mgmt-chip chip-pos">Candid on market structure</span>
+      <span class="mgmt-chip chip-neg">No promoter conviction buy</span>
+    </div>
+  </div>
+
+  <!-- SECTION 6: INDUSTRY & COMPETITIVE -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <span class="section-title">Industry & Competitive Positioning</span>
+      <span class="section-sub">Market structure · Cycle position · Competitive threats</span>
+    </div>
+    <div class="three-col">
+      <div class="analysis-card">
+        <h4>Industry Cycle Position</h4>
+        <p>The domestic plastic labware market is in a post-COVID overcapacity trough. COVID created 24–30 months of artificial demand inflation; multiple players expanded capacity simultaneously. Prices are at "all-time lows" with a clear buyer's market dynamic. Management sees no near-term inflection in supply/demand balance.</p>
+        <p>The global market (ex-India = 97% of total) is more mature and structurally growing, particularly in cell culture and bioprocess for biopharma. India's biopharma sector is growing rapidly but from a very low base, limiting near-term domestic cell culture demand.</p>
+      </div>
+      <div class="analysis-card">
+        <h4>Competitive Dynamics</h4>
+        <p>Domestic competition: existing players with excess COVID-era capacity aggressively cutting prices. MNC players (Corning, Thermo Fisher, Greiner) increasingly sourcing from Indian local manufacturers, collapsing the pricing umbrella Tarsons historically benefited from.</p>
+        <p>Export competition: Global labware market dominated by large multinationals with broader SKU portfolios. Tarsons' advantage is price-value positioning and focused quality. The GeM portal has structurally damaged the government institutional segment — previously a reliable domestic revenue driver.</p>
+        <p>Cell culture moat: High customer stickiness (validated SOPs, established relationships with equipment manufacturers), but Tarsons starts with zero market share and faces decades-old incumbent relationships with international brands.</p>
+      </div>
+      <div class="analysis-card">
+        <h4>Structural Tailwinds Worth Monitoring</h4>
+        <p><strong>India-US FTA:</strong> If executed, tariff reduction from 50% to 18% on Indian labware exports to the US would be transformative — potentially the single largest near-term revenue catalyst. Management characterises this as a "big one" that "gives us a new lease of life."</p>
+        <p><strong>India-EU FTA:</strong> Smaller impact — tariff reduction from 6% to 0% provides incremental competitiveness but the EU market is protected by strong local family-owned players (Sarstedt, Greiner, Eppendorf).</p>
+        <p><strong>INR depreciation:</strong> Dollar moved from ₹80 to ₹90 — a 12.5% depreciation making Indian manufactured goods structurally cheaper vs. imported alternatives. Tarsons benefits as a domestic manufacturer supplying import-replacing products.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: RED FLAGS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <span class="section-title">Red Flags & Forensic Detection</span>
+      <span class="section-sub">Classified by severity and systemic risk</span>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="rf-item"><span class="rf-sev sev-severe">Severe</span><div class="rf-content"><div class="rf-title">Capital Efficiency Destruction</div><div class="rf-desc">Gross block grew from ₹160 Cr to ₹730 Cr (4.6×) while domestic standalone revenue remained flat at ~₹200 Cr. Incremental ROCE on new capex is near-zero. The ₹550–650 Cr investment has yet to generate a single rupee of demonstrable revenue return. Even at management's 0.7–0.8× asset turnover target, achieving ₹400 Cr revenue from new facilities requires 3–5 years of flawless execution.</div></div></div>
+        <div class="rf-item"><span class="rf-sev sev-severe">Severe</span><div class="rf-content"><div class="rf-title">Capex Timeline Credibility — 4+ Year Delay</div><div class="rf-desc">Originally planned for FY23-24 commercialisation, the ₹600 Cr capex is only reaching partial commissioning in Q3-Q4 FY26. Every delay quarter has carried an annual depreciation burden without corresponding revenue. Management cited COVID, machinery transit damage, equipment delays, and foreign exchange fluctuations — individually valid, collectively suggesting inadequate project management discipline.</div></div></div>
+        <div class="rf-item"><span class="rf-sev sev-moderate">Moderate</span><div class="rf-content"><div class="rf-title">Other Income Dependency in Q3</div><div class="rf-desc">Q3 standalone other income surged to ₹9.7 Cr (vs ₹2.1 Cr prior year) — a forex gain from capex advances. This masked the true operating picture. Without this, standalone PBT would have been ₹2.2 Cr lower and EBIT quality would be weaker. Management acknowledged this openly, which is a partial positive.</div></div></div>
+        <div class="rf-item"><span class="rf-sev sev-moderate">Moderate</span><div class="rf-content"><div class="rf-title">Nerbe Acquisition — Value Destruction Risk</div><div class="rf-desc">Two years post-acquisition, Nerbe generates flat revenues (EUR 8.5 Mn), contributes ~₹2.5 Cr to 9M FY26 PAT, and still receives no India-manufactured supply (the original strategic rationale). The acquisition cost is being amortised (₹2.4 Cr/9M intangible amortisation) and interest costs of ₹2.9 Cr are being paid on subsidiary debt — a total drag of ~₹5.3 Cr on 9M consolidated PAT for negligible strategic progress.</div></div></div>
+      </div>
+      <div>
+        <div class="rf-item"><span class="rf-sev sev-moderate">Moderate</span><div class="rf-content"><div class="rf-title">Export Revenue Consistently Disappointing</div><div class="rf-desc">Three consecutive quarters of flat or declining exports despite management's consistent optimism. US tariffs (50%), BL delays, capacity constraints, and geopolitical disruptions have all been cited. The Q2 FY26 export decline was blamed on BL non-issuance "at the end of the quarter" — a pattern that has appeared twice consecutively and begins to resemble a structural issue rather than timing.</div></div></div>
+        <div class="rf-item"><span class="rf-sev sev-moderate">Moderate</span><div class="rf-content"><div class="rf-title">Working Capital Cycle Elevated at 125 Days</div><div class="rf-desc">For a manufacturing company with relatively standard products, 125-day WC cycle is elevated. It is partly structural (2,500+ SKUs, sample inventory for new products), but also reflects the risk that as new products ramp, inventory will build further before revenues materialise, creating additional cash flow pressure in FY27.</div></div></div>
+        <div class="rf-item"><span class="rf-sev sev-minor">Minor</span><div class="rf-content"><div class="rf-title">No Promoter Conviction Buy Despite 52% Drawdown</div><div class="rf-desc">With the stock trading near 52W lows (₹164–214 range) and 52% below the 52W high of ₹458, the promoter family has not purchased shares in the open market. While promoter holding remains high, the absence of open market buying removes a powerful positive signal for minority investors.</div></div></div>
+        <div class="rf-item"><span class="rf-sev sev-minor">Minor</span><div class="rf-content"><div class="rf-title">Singapore Entity Cross-Border Complexity</div><div class="rf-desc">The Singapore subsidiary holds debt for the Nerbe acquisition (EUR-denominated). India entity infuses equity (not loans) into Singapore to service EMI obligations — a non-standard structure that adds FX exposure, currency mismatch risk, and consolidation complexity without creating operational value.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: POSITIVE INFLECTION -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <span class="section-title">Positive Inflection Signals</span>
+      <span class="section-sub">Early indicators before numbers fully reflect them</span>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="pos-item"><div class="pos-dot"></div><div class="pos-content"><div class="pos-title">Operating cash flow doubled YoY</div><div class="pos-desc">H1 FY26 operating CF of ₹44.5 Cr vs ₹22 Cr — the CFO/EBITDA ratio at 85% signals authentic business quality. Working capital is being managed tightly even as the capex cycle peaks. This is the most concrete near-term positive.</div></div></div>
+        <div class="pos-item"><div class="pos-dot"></div><div class="pos-content"><div class="pos-title">Cell culture — genuine first-mover in India</div><div class="pos-desc">India has never had a domestic cell culture vessel manufacturer. Tarsons' 30-40 years of existing relationships with the same user base (who use cell culture alongside standard labware) provides an adoption advantage that new entrants cannot replicate. Customer stickiness in cell culture is "much, much higher" per management.</div></div></div>
+        <div class="pos-item"><div class="pos-dot"></div><div class="pos-content"><div class="pos-title">EBITDA margin inflection on existing business</div><div class="pos-desc">9M FY26 standalone EBITDA margin expanded 190 bps to 32.9% — and Q3 margins reached 34.7%. This reflects operating leverage on existing plants running at near-full capacity and disciplined cost management despite flat revenue growth.</div></div></div>
+        <div class="pos-item"><div class="pos-dot"></div><div class="pos-content"><div class="pos-title">Bioprocess container validation gaining traction</div><div class="pos-desc">Management confirmed "good response from customer approvals" for PETG bottles and roller bottles launched from Panchla. Initial sales began flowing in Q2-Q3 FY26. The bioprocess container capacity can generate ₹150+ Cr at full utilisation — a significant revenue optionality.</div></div></div>
+      </div>
+      <div>
+        <div class="pos-item"><div class="pos-dot"></div><div class="pos-content"><div class="pos-title">India-US FTA — asymmetric binary catalyst</div><div class="pos-desc">US tariff reduction from 50% to 18% (if executed) would be transformative. The US labware market is large multinationals with global supply chains — far more receptive to Indian suppliers than the EU. Management calls this the single largest external catalyst and has been maintaining US customer relationships actively.</div></div></div>
+        <div class="pos-item"><div class="pos-dot"></div><div class="pos-content"><div class="pos-title">INR depreciation competitive advantage</div><div class="pos-desc">USD/INR at ₹90 vs ₹80 two years prior represents a 12.5% structural cost advantage for domestic manufacturers against importers. This directly benefits Tarsons in import-substitution categories domestically and improves export price competitiveness.</div></div></div>
+        <div class="pos-item"><div class="pos-dot"></div><div class="pos-content"><div class="pos-title">Peak debt likely reached; deleveraging commences FY28</div><div class="pos-desc">Management guided peak consolidated debt at ₹425–450 Cr, with current levels at ~₹385 Cr. As capex payments taper in H2 FY26, free cash flow should begin improving. If revenue ramps from FY27, rapid deleveraging from FY28 onwards is plausible.</div></div></div>
+        <div class="pos-item"><div class="pos-dot"></div><div class="pos-content"><div class="pos-title">Government biopharma push — structural demand tailwind</div><div class="pos-desc">Union Budget FY26: ₹100 Bn allocation over 5 years for India's biopharma ecosystem. The National Institute of Pharmaceutical Education and Research expansion and clinical trial infrastructure growth will incrementally drive labware demand — particularly in the high-value segment where Tarsons is pivoting.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 9: VALUATION -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <span class="section-title">Valuation Comfort Analysis</span>
+      <span class="section-sub">Quality-adjusted valuation framework</span>
+    </div>
+
+    <div class="chart-row" style="margin-bottom: 16px;">
+      <div class="chart-container">
+        <div class="chart-title">Valuation Multiples Context</div>
+        <div class="chart-subtitle">Current vs. normalised earnings power estimates</div>
+        <div style="position: relative; height: 220px;">
+          <canvas id="valuationChart" role="img" aria-label="Tarsons valuation multiples chart">Tarsons valuation metrics in context</canvas>
+        </div>
+      </div>
+      <div class="analysis-card">
+        <h4>Valuation Framework</h4>
+        <table class="wc-table">
+          <tr><td style="color: var(--text-secondary);">Market Cap</td><td>₹1,141 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">Total Debt (Consol, Sep-25)</td><td>~₹385 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">Enterprise Value (approx.)</td><td>~₹1,500 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">9M Annualised EBITDA (SA)</td><td>~₹103 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">EV / EBITDA (Estimated)</td><td>~14.6×</td></tr>
+          <tr><td style="color: var(--text-secondary);">9M Annualised Cash PAT (SA)</td><td>~₹105 Cr</td></tr>
+          <tr><td style="color: var(--text-secondary);">P / Cash PAT</td><td>~10.9×</td></tr>
+          <tr><td style="color: var(--text-secondary);">Price / Book</td><td>1.84×</td></tr>
+          <tr><td style="color: var(--text-secondary);">Reported P/E</td><td>53.7× (distorted)</td></tr>
+          <tr><td style="color: var(--text-secondary);">ROCE (Current)</td><td>6.91%</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="valuation-box">
+      <div class="vb-label">Valuation Comfort Classification</div>
+      <div class="vb-rating">Fully Priced on Current Earnings — Speculative Premium on Future Optionality</div>
+      <div class="vb-desc">At 14.6× EV/EBITDA on current earnings, Tarsons is not cheap. The reported P/E of 53.7× is entirely a depreciation-driven distortion and should not be used for valuation. P/Cash PAT of ~10.9× is reasonable for a quality manufacturer IF the new facility ramp materialises. The critical question is whether the market is pricing in FY27-28 earnings recovery — and if those expectations are realistic given the 4+ year history of delays. The stock's 52% correction from highs has already absorbed significant disappointment. However, the risk of further multiple compression exists if FY27 revenue ramp underdelivers, pushing the next "recovery" story 12–18 months further.</div>
+    </div>
+
+    <div class="analysis-card">
+      <h4>Market Expectations Embedded in Current Price</h4>
+      <p>At ₹214/share and ₹1,141 Cr market cap, the market appears to be pricing: (1) negligible value for the new Panchla/Amta capacity beyond asset-in-place book value — the P/B of 1.84× suggests minimal future earnings premium on the new assets; (2) continued domestic revenue stagnation with no near-term pricing recovery; (3) 2–3 more years of PAT suppression from peak depreciation; (4) optionality on India-US FTA and cell culture ramp — but discounted heavily given execution history.</p>
+      <p>A normalised earnings framework (post-depreciation peak, assuming 25–30% utilisation of new capacity by FY28) suggests PAT in the ₹50–70 Cr range by FY28, implying the stock would trade at 16–23× forward FY28 PAT at current prices — reasonable if execution is credible. However, this requires meaningful new product revenue materialisation over the next 24 months, which remains unproven.</p>
+      <p><strong>Conclusion:</strong> This is a high-quality franchise at a compressed valuation, but is a mediocre-to-fair business today at a price that demands significant near-to-medium term execution. Not a "business at dangerous overvaluation" — but not a "deep comfort" opportunity either without evidence of cell culture/bioprocess revenue acceleration.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 10: FUTURE TRAJECTORY -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <span class="section-title">Future Trajectory — 3 Scenarios</span>
+      <span class="section-sub">2-year business direction · FY27–FY28 modelling</span>
+    </div>
+    <div class="traj-grid">
+      <div class="traj-card traj-bull">
+        <div class="traj-label">Bull Case</div>
+        <div class="traj-prob">25%</div>
+        <div class="traj-desc">India-US FTA executes, reducing tariff to 18%. Cell culture and bioprocess containers achieve 25–30% capacity utilisation in FY27. Domestic demand recovers as industry supply rationalises. Nerbe begins receiving India-manufactured products. Consolidated revenue reaches ₹450–500 Cr by FY28. PAT inflects sharply from FY28 as fixed cost leverage kicks in. Stock could re-rate to ₹350–400 range.</div>
+      </div>
+      <div class="traj-card traj-base">
+        <div class="traj-label">Base Case</div>
+        <div class="traj-prob">55%</div>
+        <div class="traj-desc">Panchla/Amta reach 15–20% utilisation in FY27, contributing incremental ₹50–70 Cr revenue. Domestic market stable at ₹215–230 Cr; exports recover modestly from current suppressed levels. Consolidated revenue reaches ₹380–420 Cr by FY28. PAT recovers from ~₹24 Cr (FY26E) to ₹45–55 Cr by FY28 as depreciation-heavy years pass. Stock consolidates in ₹180–270 range.</div>
+      </div>
+      <div class="traj-card traj-bear">
+        <div class="traj-label">Bear Case</div>
+        <div class="traj-prob">20%</div>
+        <div class="traj-desc">Cell culture ramp faces 18–24 month delays. US FTA stalls. Export business remains depressed. Domestic pricing pressure intensifies. High fixed cost base (depreciation + interest) creates sustained cash drain. Debt peaks at ₹450 Cr with limited deleveraging capacity. Consolidated revenue stagnates at ₹300–340 Cr. Equity erosion possible. Stock tests ₹140–160 range (near book value floor).</div>
+      </div>
+    </div>
+
+    <div class="analysis-card" style="margin-top: 16px;">
+      <h4>Key Monitoring Variables for Quarterly Tracking</h4>
+      <p>Every future quarter, investors should specifically track: (1) Cell culture revenue contribution — any revenue from this segment is a step-change signal; (2) Bioprocess container (PETG/roller bottles) revenue run-rate — target ₹10+ Cr/quarter by Q2 FY27 for base case; (3) Panchla overall facility revenue — management breakeven threshold is ₹70–75 Cr annualised; (4) Export revenue trajectory — any evidence of US tariff resolution or meaningful volume recovery; (5) Operating cash flow vs EBITDA ratio — needs to stay above 70% to validate business quality; (6) Working capital cycle — improvement below 100 days would be highly positive; (7) Debt quantum — any increase above ₹420 Cr consolidated would be a stress signal.</p>
+    </div>
+  </div>
+
+  <!-- FINAL VERDICT -->
+  <div class="verdict-section">
+    <div class="vs-label">Final Investment Verdict · February 2026</div>
+    <div class="vs-title">Tarsons Products Limited</div>
+    <div class="verdict-final">Watchlist</div>
+    <div class="verdict-rationale">Tarsons is a genuine quality franchise — 40 years of brand equity, among the top 3 players in Indian plastic labware, ISO 9001 and ISO 13485 certified, 68–71% gross margins that are structurally intact, and a first-mover position in Indian cell culture manufacturing. The underlying business is sound. However, the investment case demands a leap of faith on execution that history has repeatedly not delivered. The ₹600 Cr capex announced in FY21-22 is only reaching partial commissioning in FY26 — four years behind plan — in a market that is simultaneously far more competitive, far more price-pressured, and far smaller than the original IPO thesis projected. The stock's current valuation at 1.84× book and 10.9× cash PAT is neither a crisis level nor a screaming opportunity. The setup is compelling for a patient, risk-tolerant investor with a 3-5 year horizon — but requires one or more of the following to provide real conviction: evidence of cell culture/bioprocess revenue materialisation in Q4 FY26 or Q1 FY27, resolution of India-US trade tensions, or promoter buying signalling insider confidence.</div>
+    <div class="verdict-grid">
+      <div class="vg-col">
+        <h4>Key Positives</h4>
+        <div class="vg-item vg-pos">Strong gross margins (68–71%) structurally intact despite price competition</div>
+        <div class="vg-item vg-pos">Cash PAT growing 24–34% YoY — real earnings power is healthy</div>
+        <div class="vg-item vg-pos">Operating CF doubled YoY; CFO/EBITDA at 85% — working capital discipline</div>
+        <div class="vg-item vg-pos">India's only cell culture manufacturer — first-mover advantage in a sticky, high-value segment</div>
+        <div class="vg-item vg-pos">India-US FTA optionality (50%→18% tariff) is a binary re-rating catalyst</div>
+        <div class="vg-item vg-pos">INR depreciation (₹80→₹90 vs USD) provides structural cost advantage</div>
+      </div>
+      <div class="vg-col">
+        <h4>Key Risks</h4>
+        <div class="vg-item vg-neg">Capex delayed 4+ years; new facility still zero revenue — execution credibility low</div>
+        <div class="vg-item vg-neg">Domestic revenue stagnant ₹200 Cr for 4 years despite ₹550–650 Cr investment</div>
+        <div class="vg-item vg-neg">Peak depreciation (₹100–105 Cr FY27) will suppress reported PAT for 2+ more years</div>
+        <div class="vg-item vg-neg">Nerbe acquisition generating no synergies; hidden subsidiary cost drag of ₹5+ Cr/half-year</div>
+        <div class="vg-item vg-neg">Market size projections at IPO proved to be exactly half of actuals — thesis built on sand</div>
+        <div class="vg-item vg-neg">No promoter open-market buying despite 52% drawdown from highs</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const gridColor = 'rgba(100,120,160,0.08)';
+const axisColor = '#7B8794';
+const navyAccent = '#0B1E3D';
+const goldAccent = '#C8A046';
+const greenAccent = '#1A7F4E';
+const redAccent = '#C0392B';
+const blueAccent = '#1B5EA8';
+
+const tickFont = { family: "'IBM Plex Mono', monospace", size: 10 };
+const baseOpts = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: { legend: { display: false }, tooltip: { backgroundColor: navyAccent, titleFont: { family: "'IBM Plex Sans', sans-serif", size: 12, weight: '500' }, bodyFont: { family: "'IBM Plex Mono', monospace", size: 11 }, padding: 10, cornerRadius: 4 } },
+  scales: { x: { grid: { color: gridColor, drawBorder: false }, ticks: { color: axisColor, font: tickFont } }, y: { grid: { color: gridColor, drawBorder: false }, ticks: { color: axisColor, font: tickFont } } }
+};
+
+const revLabels = ['Q1 FY25','Q2 FY25','Q3 FY25','Q1 FY26','Q2 FY26','Q3 FY26'];
+const revData = [64.8, 80.1, 76.2, 71.3, 80.5, 84.0];
+new Chart(document.getElementById('revenueChart'), {
+  type: 'bar',
+  data: {
+    labels: revLabels,
+    datasets: [{
+      label: 'Revenue (₹ Cr)',
+      data: revData,
+      backgroundColor: revData.map((_,i) => i >= 3 ? 'rgba(11,30,61,0.85)' : 'rgba(11,30,61,0.35)'),
+      borderRadius: 3,
+      borderSkipped: false
+    }]
+  },
+  options: { ...baseOpts, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, min: 50, ticks: { ...baseOpts.scales.y.ticks, callback: v => '₹' + v } } } }
+});
+
+const qLabels = ['Q1 FY25','Q2 FY25','Q3 FY25','Q1 FY26','Q2 FY26','Q3 FY26'];
+new Chart(document.getElementById('profitChart'), {
+  type: 'line',
+  data: {
+    labels: qLabels,
+    datasets: [
+      { label: 'EBITDA (₹ Cr)', data: [17.0, 23.5, 27.9, 22.3, 26.1, 29.1], borderColor: blueAccent, backgroundColor: 'transparent', tension: 0.4, borderWidth: 2, pointBackgroundColor: blueAccent, pointRadius: 4, borderDash: [4,3] },
+      { label: 'Cash PAT (₹ Cr)', data: [15.4, 24.9, 23.2, 21.3, 26.7, 31.1], borderColor: greenAccent, backgroundColor: 'transparent', tension: 0.4, borderWidth: 2.5, pointBackgroundColor: greenAccent, pointRadius: 4 }
+    ]
+  },
+  options: { ...baseOpts }
+});
+
+const valLabels = ['EV/EBITDA\n(~14.6×)','P/Cash PAT\n(~10.9×)','P/Book\n(1.84×)','ROCE\n(6.91%)'];
+new Chart(document.getElementById('valuationChart'), {
+  type: 'bar',
+  data: {
+    labels: ['EV/EBITDA', 'P/Cash PAT', 'P/Book (×5 scale)', 'ROCE % (×1.5)'],
+    datasets: [{
+      label: 'Metric value',
+      data: [14.6, 10.9, 9.2, 10.4],
+      backgroundColor: ['rgba(11,30,61,0.7)', 'rgba(200,160,70,0.7)', 'rgba(27,94,168,0.7)', 'rgba(26,127,78,0.7)'],
+      borderRadius: 3,
+      borderSkipped: false
+    }]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: (ctx) => {
+    const raw = ctx.parsed.y;
+    const labels = ['EV/EBITDA: 14.6×','P/Cash PAT: 10.9×','P/Book: 1.84×','ROCE: 6.91%'];
+    return labels[ctx.dataIndex];
+  }}}}}
+});
+</script>
+</body>
+</html>

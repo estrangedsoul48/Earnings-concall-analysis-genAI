@@ -1,0 +1,2297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lemon Tree Hotels — Institutional Equity Analysis | Q3 FY26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #060B14;
+    --bg-surface: #0C1420;
+    --bg-elevated: #131D2E;
+    --bg-card: #1A2540;
+    --bg-card-hover: #1F2D4A;
+    --border: #243352;
+    --border-light: #1C2A42;
+    --accent-gold: #C4943A;
+    --accent-gold-light: #DDB96A;
+    --accent-gold-dim: rgba(196,148,58,0.15);
+    --accent-blue: #4A9EDB;
+    --accent-blue-dim: rgba(74,158,219,0.12);
+    --accent-green: #3DB87A;
+    --accent-green-dim: rgba(61,184,122,0.12);
+    --accent-red: #E05252;
+    --accent-red-dim: rgba(224,82,82,0.12);
+    --accent-amber: #E0943A;
+    --text-primary: #E0DAD0;
+    --text-secondary: #8B96A8;
+    --text-muted: #506070;
+    --text-gold: #C4943A;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Crimson Pro', serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --nav-width: 220px;
+    --radius: 4px;
+    --radius-lg: 8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.7;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  nav#sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--nav-width);
+    height: 100vh;
+    background: var(--bg-surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    overflow-y: auto;
+  }
+
+  .nav-brand {
+    padding: 24px 20px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-brand .ticker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .nav-brand .company-name {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+
+  .nav-brand .report-type {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    letter-spacing: 0.08em;
+  }
+
+  .nav-section-title {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    padding: 16px 20px 6px;
+  }
+
+  nav#sidebar a {
+    display: block;
+    padding: 7px 20px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s;
+    border-left: 2px solid transparent;
+    font-weight: 400;
+  }
+
+  nav#sidebar a:hover, nav#sidebar a.active {
+    color: var(--accent-gold-light);
+    border-left-color: var(--accent-gold);
+    background: var(--accent-gold-dim);
+  }
+
+  .nav-verdict {
+    margin-top: auto;
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .verdict-pill {
+    display: inline-block;
+    background: var(--accent-green-dim);
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: var(--radius);
+    font-weight: 500;
+  }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    margin-left: var(--nav-width);
+    flex: 1;
+    padding: 0 40px 80px;
+    max-width: 1100px;
+  }
+
+  /* ── COVER SECTION ── */
+  .cover {
+    padding: 60px 0 50px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: 0; right: -40px;
+    width: 300px; height: 100%;
+    background: radial-gradient(ellipse at 80% 40%, rgba(196,148,58,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .cover-eyebrow span {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .cover-eyebrow .divider { color: var(--border); }
+
+  .cover h1 {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+
+  .cover h1 em {
+    color: var(--accent-gold);
+    font-style: italic;
+  }
+
+  .cover-sub {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+  }
+
+  /* ── QUICK METRICS BAR ── */
+  .metrics-bar {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-top: 32px;
+  }
+
+  .metric-item {
+    padding: 14px 14px;
+    background: var(--bg-elevated);
+    border-right: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .metric-item:last-child { border-right: none; }
+  .metric-item:hover { background: var(--bg-card); }
+
+  .metric-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .metric-value {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .metric-value.gold { color: var(--accent-gold); }
+  .metric-value.green { color: var(--accent-green); }
+  .metric-value.blue { color: var(--accent-blue); }
+
+  /* ── SCORECARD ── */
+  .scorecard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .score-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .score-card:hover { border-color: var(--accent-gold); }
+
+  .score-card-title {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .score-display {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .score-number {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-primary);
+  }
+
+  .score-denom {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .score-bar-bg {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .score-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+
+  .score-desc {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  /* ── SECTION HEADERS ── */
+  section { padding: 52px 0 0; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-number {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent-gold);
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .section-tag {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    padding: 3px 8px;
+    border-radius: var(--radius);
+  }
+
+  /* ── PROSE ── */
+  .prose {
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--text-primary);
+    font-weight: 300;
+  }
+
+  .prose p { margin-bottom: 16px; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  .prose strong {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .prose em { font-style: italic; color: var(--accent-gold-light); }
+
+  .highlight-box {
+    background: var(--accent-gold-dim);
+    border: 1px solid rgba(196,148,58,0.3);
+    border-left: 3px solid var(--accent-gold);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin: 20px 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 16.5px;
+    color: var(--accent-gold-light);
+    line-height: 1.6;
+  }
+
+  .insight-box {
+    background: var(--accent-blue-dim);
+    border: 1px solid rgba(74,158,219,0.2);
+    border-left: 3px solid var(--accent-blue);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #9DC8ED;
+    line-height: 1.6;
+  }
+
+  .warning-box {
+    background: var(--accent-red-dim);
+    border: 1px solid rgba(224,82,82,0.2);
+    border-left: 3px solid var(--accent-red);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #E89090;
+    line-height: 1.6;
+  }
+
+  /* ── KPI GRID ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .kpi-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    transition: all 0.2s;
+  }
+
+  .kpi-card:hover {
+    border-color: rgba(196,148,58,0.4);
+    background: var(--bg-card);
+  }
+
+  .kpi-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .kpi-val {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .kpi-change {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 400;
+  }
+
+  .kpi-change.pos { color: var(--accent-green); }
+  .kpi-change.neg { color: var(--accent-red); }
+  .kpi-change.neu { color: var(--text-muted); }
+
+  .kpi-context {
+    font-family: var(--font-body);
+    font-size: 11.5px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* ── DATA TABLE ── */
+  .data-table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead tr {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+  }
+
+  thead th {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border-light);
+    transition: background 0.15s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--bg-card-hover); }
+
+  tbody td {
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    font-size: 13.5px;
+    vertical-align: top;
+  }
+
+  td.mono { font-family: var(--font-mono); font-size: 12.5px; }
+  td.green { color: var(--accent-green); }
+  td.red { color: var(--accent-red); }
+  td.gold { color: var(--accent-gold); }
+  td.muted { color: var(--text-muted); font-style: italic; }
+
+  .status-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+
+  .status-badge.achieved { background: var(--accent-green-dim); color: var(--accent-green); border: 1px solid rgba(61,184,122,0.3); }
+  .status-badge.on-track { background: var(--accent-blue-dim); color: var(--accent-blue); border: 1px solid rgba(74,158,219,0.3); }
+  .status-badge.delayed { background: rgba(224,148,58,0.12); color: var(--accent-amber); border: 1px solid rgba(224,148,58,0.3); }
+  .status-badge.pending { background: var(--bg-card); color: var(--text-secondary); border: 1px solid var(--border); }
+  .status-badge.below { background: var(--accent-red-dim); color: var(--accent-red); border: 1px solid rgba(224,82,82,0.3); }
+
+  /* ── BRANDS TABLE ── */
+  .brand-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .brand-row {
+    display: grid;
+    grid-template-columns: 140px 80px 80px 80px 80px 80px;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-light);
+    transition: background 0.15s;
+  }
+
+  .brand-row:last-child { border-bottom: none; }
+  .brand-row:hover { background: var(--bg-card-hover); }
+  .brand-row.header { background: var(--bg-card); }
+  .brand-row.header div { font-family: var(--font-mono); font-size: 9px; color: var(--accent-gold); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .brand-name { font-family: var(--font-body); font-size: 13.5px; color: var(--text-primary); font-weight: 400; }
+  .brand-stat { font-family: var(--font-mono); font-size: 12px; color: var(--text-primary); text-align: right; }
+  .brand-stat.up { color: var(--accent-green); }
+  .brand-stat.down { color: var(--accent-red); }
+
+  /* ── MOAT ── */
+  .moat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .moat-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px;
+    transition: all 0.2s;
+  }
+
+  .moat-card:hover { border-color: rgba(196,148,58,0.35); }
+
+  .moat-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .moat-card-name {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .moat-score-badge {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--accent-gold);
+    line-height: 1;
+  }
+
+  .moat-score-badge span {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .moat-bar-bg {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .moat-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light));
+  }
+
+  .moat-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .moat-type-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    border: 1px solid;
+    margin-top: 8px;
+  }
+
+  .moat-type-tag.wide { color: var(--accent-green); border-color: rgba(61,184,122,0.4); background: var(--accent-green-dim); }
+  .moat-type-tag.moderate { color: var(--accent-gold); border-color: rgba(196,148,58,0.4); background: var(--accent-gold-dim); }
+  .moat-type-tag.narrow { color: var(--accent-blue); border-color: rgba(74,158,219,0.4); background: var(--accent-blue-dim); }
+  .moat-type-tag.emerging { color: var(--accent-amber); border-color: rgba(224,148,58,0.4); background: rgba(224,148,58,0.1); }
+
+  .moat-summary-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(196,148,58,0.25);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .moat-summary-item { text-align: center; }
+
+  .moat-summary-val {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--accent-gold);
+    line-height: 1;
+    display: block;
+  }
+
+  .moat-summary-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: 6px;
+    display: block;
+  }
+
+  .moat-summary-sub {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* ── SCHEME BOXES ── */
+  .scheme-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .scheme-entity {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    transition: border-color 0.2s;
+  }
+
+  .scheme-entity.lemon { border-top: 3px solid var(--accent-green); }
+  .scheme-entity.fleur { border-top: 3px solid var(--accent-gold); }
+
+  .scheme-entity:hover { border-color: rgba(196,148,58,0.4); }
+  .scheme-entity.lemon:hover { border-color: rgba(61,184,122,0.4); }
+
+  .entity-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .entity-subtitle {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .entity-metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 13px;
+  }
+
+  .entity-metric:last-child { border-bottom: none; }
+  .entity-metric-key { color: var(--text-secondary); }
+  .entity-metric-val { font-family: var(--font-mono); font-size: 12px; color: var(--text-primary); font-weight: 500; }
+
+  /* ── FLAG ROWS ── */
+  .flag-list { margin: 16px 0; }
+
+  .flag-item {
+    display: grid;
+    grid-template-columns: 100px 1fr 80px;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-light);
+    align-items: start;
+  }
+
+  .flag-item:last-child { border-bottom: none; }
+
+  .flag-severity {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: 1px solid;
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+
+  .flag-severity.minor { color: var(--accent-blue); border-color: rgba(74,158,219,0.4); background: var(--accent-blue-dim); }
+  .flag-severity.moderate { color: var(--accent-amber); border-color: rgba(224,148,58,0.4); background: rgba(224,148,58,0.1); }
+  .flag-severity.positive { color: var(--accent-green); border-color: rgba(61,184,122,0.4); background: var(--accent-green-dim); }
+
+  .flag-desc { font-size: 13.5px; color: var(--text-primary); line-height: 1.5; }
+  .flag-resolution { font-size: 11.5px; color: var(--text-muted); font-style: italic; }
+
+  /* ── SCENARIOS ── */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .scenario-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+  }
+
+  .scenario-card.bull { border-top: 3px solid var(--accent-green); }
+  .scenario-card.base { border-top: 3px solid var(--accent-gold); }
+  .scenario-card.bear { border-top: 3px solid var(--accent-red); }
+
+  .scenario-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .scenario-card.bull .scenario-label { color: var(--accent-green); }
+  .scenario-card.base .scenario-label { color: var(--accent-gold); }
+  .scenario-card.bear .scenario-label { color: var(--accent-red); }
+
+  .scenario-prob {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .scenario-card.bull .scenario-prob { color: var(--accent-green); }
+  .scenario-card.base .scenario-prob { color: var(--accent-gold); }
+  .scenario-card.bear .scenario-prob { color: var(--accent-red); }
+
+  .scenario-content { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+  .scenario-target {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-light);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* ── VERDICT ── */
+  .verdict-section {
+    background: var(--bg-elevated);
+    border: 1px solid rgba(196,148,58,0.3);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    margin-top: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .verdict-section::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 250px; height: 100%;
+    background: radial-gradient(ellipse at 80% 50%, rgba(196,148,58,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .verdict-rating {
+    font-family: var(--font-display);
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--accent-green);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .verdict-sub {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .verdict-reason {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 680px;
+  }
+
+  .checkpoints {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .checkpoint {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .checkpoint::before {
+    content: '▸';
+    color: var(--accent-gold);
+    font-size: 11px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── DIVIDERS ── */
+  .rule { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+
+  /* ── TWO COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+
+  .content-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px;
+  }
+
+  .content-card-title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-gold-light);
+    margin-bottom: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .bullet-list {
+    list-style: none;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .bullet-list li {
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border-light);
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .bullet-list li:last-child { border-bottom: none; }
+
+  .bullet-list li::before {
+    content: '·';
+    color: var(--accent-gold);
+    position: absolute;
+    left: 0;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  /* ── MANAGEMENT DECODE ── */
+  .decode-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .decode-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+  }
+
+  .decode-card-title {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .decode-card .green-title { color: var(--accent-green); }
+  .decode-card .red-title { color: var(--accent-red); }
+  .decode-card .gold-title { color: var(--accent-gold); }
+
+  .decode-item {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border-light);
+    line-height: 1.4;
+  }
+
+  .decode-item:last-child { border-bottom: none; }
+
+  /* ── OWNERSHIP ── */
+  .ownership-bar {
+    display: flex;
+    height: 32px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 16px 0;
+    gap: 2px;
+  }
+
+  .ownership-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--bg-primary);
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .ownership-segment:hover { opacity: 0.85; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-surface); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    :root { --nav-width: 0px; }
+    nav#sidebar { display: none; }
+    main { margin-left: 0; padding: 0 20px 60px; }
+    .metrics-bar { grid-template-columns: repeat(4, 1fr); }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .scorecard { grid-template-columns: repeat(2, 1fr); }
+    .moat-grid { grid-template-columns: 1fr; }
+    .scheme-layout { grid-template-columns: 1fr; }
+    .scenario-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    nav#sidebar { display: none; }
+    main { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ SIDEBAR ═══════════════════════ -->
+<nav id="sidebar">
+  <div class="nav-brand">
+    <div class="ticker">NSE: LEMONTREE</div>
+    <div class="company-name">Lemon Tree Hotels Limited</div>
+    <div class="report-type">Q3 FY26 · Institutional Analysis</div>
+  </div>
+
+  <div class="nav-section-title">Analysis Sections</div>
+  <a href="#cover" class="active">Cover & Scores</a>
+  <a href="#executive">Executive Snapshot</a>
+  <a href="#financials">Financial Dashboard</a>
+  <a href="#guidance">Guidance Tracker</a>
+  <a href="#architecture">Financial Architecture</a>
+  <a href="#management">Management Decode</a>
+  <a href="#segments">Segment Analysis</a>
+  <a href="#scheme">Composite Scheme</a>
+  <a href="#moat">Moat Analysis</a>
+  <a href="#capital">Capital Allocation</a>
+  <a href="#flags">Red Flags</a>
+  <a href="#inflection">Inflection Signals</a>
+  <a href="#valuation">Valuation Comfort</a>
+  <a href="#trajectory">Future Trajectory</a>
+  <a href="#verdict">Final Verdict</a>
+
+  <div class="nav-verdict">
+    <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Rating</div>
+    <span class="verdict-pill">Accumulate</span>
+    <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-muted);margin-top:8px;">CMP ₹111 · Target ₹145–160</div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════ MAIN ═══════════════════════ -->
+<main>
+
+<!-- ── COVER ── -->
+<div class="cover" id="cover">
+  <div class="cover-eyebrow">
+    <span>Institutional Equity Research</span>
+    <span class="divider">|</span>
+    <span>Consumer Discretionary · Hospitality</span>
+    <span class="divider">|</span>
+    <span>Q3 & 9M FY26 Results + Demerger Analysis</span>
+  </div>
+  <h1>Lemon Tree Hotels<br><em>The Structural Reset</em></h1>
+  <div class="cover-sub">A forensic reconstruction of earnings quality, management intent, and post-demerger value architecture</div>
+
+  <div class="metrics-bar">
+    <div class="metric-item">
+      <div class="metric-label">Mkt Cap</div>
+      <div class="metric-value gold">₹8,802 Cr</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-label">CMP</div>
+      <div class="metric-value">₹111</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-label">52W Range</div>
+      <div class="metric-value" style="font-size:11px">₹99.6–181</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-label">P/E (Reported)</div>
+      <div class="metric-value">36.6×</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-label">Price/Book</div>
+      <div class="metric-value">7.16×</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-label">ROCE</div>
+      <div class="metric-value">13.0%</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-label">ROE</div>
+      <div class="metric-value green">18.4%</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-label">Dividend Yield</div>
+      <div class="metric-value muted" style="color:var(--text-muted)">0.00%</div>
+    </div>
+  </div>
+
+  <!-- SCORECARD -->
+  <div style="margin-top:28px; font-family:var(--font-mono);font-size:9px;letter-spacing:0.14em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px;">Institutional Scorecard</div>
+  <div class="scorecard">
+    <div class="score-card">
+      <div class="score-card-title">Overall Business Health</div>
+      <div class="score-display">
+        <div class="score-number">7.5</div>
+        <div class="score-denom">/10</div>
+      </div>
+      <div class="score-bar-bg"><div class="score-bar-fill" style="width:75%;background:linear-gradient(90deg,#4A9EDB,#6BBFE8);"></div></div>
+      <div class="score-desc">Record revenues; masked by one-off renovation, GST, and labour code charges totaling ~6% of revenue</div>
+    </div>
+    <div class="score-card">
+      <div class="score-card-title">Earnings Quality</div>
+      <div class="score-display">
+        <div class="score-number">6.5</div>
+        <div class="score-denom">/10</div>
+      </div>
+      <div class="score-bar-bg"><div class="score-bar-fill" style="width:65%;background:linear-gradient(90deg,#E09B52,#EDBC7A);"></div></div>
+      <div class="score-desc">Reported PAT +2% YoY due to exceptional items; normalized earnings power significantly higher at ~55%+ margins</div>
+    </div>
+    <div class="score-card">
+      <div class="score-card-title">Balance Sheet Strength</div>
+      <div class="score-display">
+        <div class="score-number">6.0</div>
+        <div class="score-denom">/10</div>
+      </div>
+      <div class="score-bar-bg"><div class="score-bar-fill" style="width:60%;background:linear-gradient(90deg,#E05252,#E87A7A);"></div></div>
+      <div class="score-desc">Current debt being fully transferred to Fleur; post-demerger Lemon Tree becomes debt-free. Improving trajectory.</div>
+    </div>
+    <div class="score-card">
+      <div class="score-card-title">Capital Allocation Quality</div>
+      <div class="score-display">
+        <div class="score-number">7.5</div>
+        <div class="score-denom">/10</div>
+      </div>
+      <div class="score-bar-bg"><div class="score-bar-fill" style="width:75%;background:linear-gradient(90deg,#C4943A,#DDB96A);"></div></div>
+      <div class="score-desc">Renovation spend is genuinely value-accretive; demerger structure is intelligent capital allocation across investor types</div>
+    </div>
+    <div class="score-card">
+      <div class="score-card-title">Management Credibility</div>
+      <div class="score-display">
+        <div class="score-number">7.0</div>
+        <div class="score-denom">/10</div>
+      </div>
+      <div class="score-bar-bg"><div class="score-bar-fill" style="width:70%;background:linear-gradient(90deg,#3DB87A,#6ECFA0);"></div></div>
+      <div class="score-desc">Transparent on headwinds; GST impact revised favorably; key-man dependency (Patanjali Keswani) is the main deduction</div>
+    </div>
+    <div class="score-card">
+      <div class="score-card-title">Future Visibility</div>
+      <div class="score-display">
+        <div class="score-number">8.0</div>
+        <div class="score-denom">/10</div>
+      </div>
+      <div class="score-bar-bg"><div class="score-bar-fill" style="width:80%;background:linear-gradient(90deg,#4A9EDB,#7FC3F0);"></div></div>
+      <div class="score-desc">Clear margin recovery path; renovation completion FY27; 22,000-room pipeline implies 3-year fee income compounding</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 1: EXECUTIVE SNAPSHOT ── -->
+<section id="executive">
+  <div class="section-header">
+    <span class="section-number">01</span>
+    <h2 class="section-title">Executive Snapshot</h2>
+    <span class="section-tag">Reconstructing Reality</span>
+  </div>
+
+  <div class="prose">
+    <p>Q3 FY26 was, by every headline metric, Lemon Tree's strongest third quarter in its history — record revenue of ₹407.8 crore (+15% YoY), record EBITDA of ₹206.4 crore (+12% YoY), and record cash profit of ₹131.1 crore (+14% YoY). Yet beneath these records lies a more nuanced picture: a company <strong>deliberately absorbing substantial short-term pain</strong> — renovation costs, a GST regime change, and a one-off labour code provision — while simultaneously executing the most consequential structural transformation in its history.</p>
+
+    <p>The dominant event is not the Q3 results. It is the <strong>Composite Scheme of Arrangement</strong> announced in January 2026, which bifurcates the group into Lemon Tree Hotels (pure asset-light brand/management company) and Fleur Hotels (asset-heavy ownership platform). This structural separation, with Warburg Pincus committing ₹960 crore to Fleur, is the lens through which all current financial noise must be interpreted.</p>
+  </div>
+
+  <div class="highlight-box">
+    "The market is penalising Lemon Tree for temporary one-offs (renovation at 4.4% of revenue, GST impact at 1.1%, tech investment at 0.6%) that together suppressed EBITDA margins by approximately 600 basis points in Q3 FY26 — all of which normalize by FY28."
+  </div>
+
+  <div class="two-col">
+    <div class="content-card">
+      <div class="content-card-title">Top 5 Most Important Developments</div>
+      <ul class="bullet-list">
+        <li><strong>Composite Scheme announced</strong> — The most significant structural event in LT's history. Creates two distinct, investor-appropriate vehicles with separate capital structures.</li>
+        <li><strong>Warburg Pincus ₹960 Cr commitment to Fleur</strong> — A world-class PE firm at a premium to current value validates the asset quality and hospitality upcycle thesis.</li>
+        <li><strong>Record Q3 despite 6%+ revenue headwinds</strong> — Underlying demand is robustly ahead of reported numbers once renovation/GST drag is stripped.</li>
+        <li><strong>GST impact better than feared</strong> — Initially guided 3–3.5% hit to revenue; actual Q3 impact was ~1.8%, revised FY27 guidance to ~2%. A positive surprise.</li>
+        <li><strong>Keys portfolio delivering 25% RevPAR growth</strong> — Early validation of the renovation investment thesis; other brands (Lemon Tree, Red Fox) will follow.</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <div class="content-card-title">What the Market Is Missing</div>
+      <ul class="bullet-list">
+        <li><strong>Post-demerger Lemon Tree EBITDA margins target 80%+</strong> — A pure fee company with near-zero capex; no listed Indian hotel brand manager peer exists for comparison.</li>
+        <li><strong>3-year lag between room signings and full fee recognition</strong> — Current 22,000-room pipeline (signed, not yet fully operational) implies a very large fee income surge in FY28–FY29.</li>
+        <li><strong>Renovation OPEX is entirely temporary</strong> — ₹60+ crore of renovation OPEX drops to near-zero by FY28, an instant 300–350 bps margin expansion.</li>
+        <li><strong>Fleur EBITDA of ₹1,000 Cr by FY28</strong> implies ~₹5.5–6 lakh crore enterprise value at sector multiples; Lemon Tree's 74% effective stake alone may exceed the current combined market cap.</li>
+        <li><strong>India hospitality upcycle is structural, not cyclical</strong> — National occupancy at ~66% vs. repricing threshold of 75–80%; significant runway before the cycle peaks.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 2: FINANCIAL DASHBOARD ── -->
+<section id="financials">
+  <div class="section-header">
+    <span class="section-number">02</span>
+    <h2 class="section-title">Q3 FY26 Financial Dashboard</h2>
+    <span class="section-tag">Earnings Quality Analysis</span>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Total Revenue</div>
+      <div class="kpi-val">₹407.8 Cr</div>
+      <div class="kpi-change pos">+15% YoY &nbsp;|&nbsp; +32% QoQ</div>
+      <div class="kpi-context">Highest-ever Q3 revenue. ARR-led growth (+11% YoY) complemented by sequential occupancy recovery (+362 bps QoQ).</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Net EBITDA</div>
+      <div class="kpi-val">₹206.4 Cr</div>
+      <div class="kpi-change pos">+12% YoY &nbsp;|&nbsp; +56% QoQ</div>
+      <div class="kpi-context">Normalized EBITDA (ex-renovation + GST drag of ~₹24 Cr) was approximately ₹230 Cr, implying a ~56.5% underlying margin.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">EBITDA Margin</div>
+      <div class="kpi-val">50.6%</div>
+      <div class="kpi-change neg">-133 bps YoY</div>
+      <div class="kpi-context">Renovation (4.0% rev) + GST (1.8% rev) + tech (0.6% rev) = 6.4% drag. Underlying margin improving toward 57%+ range.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">PAT</div>
+      <div class="kpi-val">₹81.8 Cr</div>
+      <div class="kpi-change neu">+2% YoY (reported)</div>
+      <div class="kpi-context">Distorted by ₹31.3 Cr exceptional items (Labour Code ₹14.5 Cr, Ex-gratia ₹11.1 Cr, Property Tax ₹4.8 Cr). Pre-exceptional PBT +31% YoY.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Gross ARR</div>
+      <div class="kpi-val">₹7,487</div>
+      <div class="kpi-change pos">+11% YoY &nbsp;|&nbsp; +20% QoQ</div>
+      <div class="kpi-context">Consistent above-inflation pricing power; Mumbai Aurika still in ramp-up phase and diluting blended ARR.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">RevPAR</div>
+      <div class="kpi-val">₹5,494</div>
+      <div class="kpi-change pos">+9% YoY &nbsp;|&nbsp; +26% QoQ</div>
+      <div class="kpi-context">Dragged by Gurgaon (-2% YoY) and renovation-related room shutdowns (~700-800 rooms at any point). Excluding Gurgaon, most markets +11-19%.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Occupancy</div>
+      <div class="kpi-val">73.4%</div>
+      <div class="kpi-change neg">-82 bps YoY</div>
+      <div class="kpi-context">Deliberate occupancy-ARR tradeoff in Hyderabad (+25% ARR, -350 bps occ) and renovation shutdowns suppressing the headline.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Cash Profit</div>
+      <div class="kpi-val">₹131.1 Cr</div>
+      <div class="kpi-change pos">+14% YoY &nbsp;|&nbsp; +72% QoQ</div>
+      <div class="kpi-context">The better quality earnings metric; includes PAT + D&A + Labour Code provision. Consistently improving.</div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <strong>The True Earnings Power Signal:</strong> PBT before exceptional items in Q3 FY26 was ₹130.2 crore (+31% YoY). Strip out renovation drag (~₹16.5 Cr in Q3) and GST impact (~₹7.4 Cr), and the normalized PBT approaches ₹154 crore — approximately double the ₹81.8 crore PAT the market is fixating on. The effective tax rate was unusually low at 17.2% vs. 19.8% in Q3 FY25, partly masking even better pre-tax trajectory.
+  </div>
+
+  <div class="data-table-wrap" style="margin-top:24px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Period</th>
+          <th>Revenue (₹Cr)</th>
+          <th>EBITDA (₹Cr)</th>
+          <th>EBITDA%</th>
+          <th>PBT (₹Cr)</th>
+          <th>PAT (₹Cr)</th>
+          <th>Cash Profit (₹Cr)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(196,148,58,0.06);">
+          <td class="mono" style="color:var(--accent-gold)">Q3 FY26</td>
+          <td class="mono">407.8</td>
+          <td class="mono">206.4</td>
+          <td class="mono">50.6%</td>
+          <td class="mono">98.8*</td>
+          <td class="mono">81.8</td>
+          <td class="mono">131.1</td>
+        </tr>
+        <tr>
+          <td class="mono muted">Q3 FY25</td>
+          <td class="mono">355.8</td>
+          <td class="mono">184.8</td>
+          <td class="mono">51.9%</td>
+          <td class="mono">99.5</td>
+          <td class="mono">79.9</td>
+          <td class="mono">114.9</td>
+        </tr>
+        <tr>
+          <td class="mono muted">Q2 FY26</td>
+          <td class="mono">308.0</td>
+          <td class="mono">132.4</td>
+          <td class="mono">43.0%</td>
+          <td class="mono">55.8</td>
+          <td class="mono">41.9</td>
+          <td class="mono">76.3</td>
+        </tr>
+        <tr>
+          <td class="mono muted">Q4 FY25</td>
+          <td class="mono">379.4</td>
+          <td class="mono">205.0</td>
+          <td class="mono">54.0%</td>
+          <td class="mono">122.3</td>
+          <td class="mono">108.1</td>
+          <td class="mono">143.0</td>
+        </tr>
+        <tr style="background:rgba(74,158,219,0.05);">
+          <td class="mono" style="color:var(--accent-blue)">9M FY26</td>
+          <td class="mono">1,033.2</td>
+          <td class="mono">481.0</td>
+          <td class="mono">46.6%</td>
+          <td class="mono">217.5*</td>
+          <td class="mono">171.9</td>
+          <td class="mono">289.6</td>
+        </tr>
+        <tr>
+          <td class="mono muted">9M FY25</td>
+          <td class="mono">909.0</td>
+          <td class="mono">431.5</td>
+          <td class="mono">47.5%</td>
+          <td class="mono">174.0</td>
+          <td class="mono">135.0</td>
+          <td class="mono">239.4</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);margin-top:6px;">*PBT after exceptional items. Pre-exceptional PBT Q3 FY26: ₹130.2 Cr (+31% YoY); 9M FY26: ₹248.9 Cr (+43% YoY).</div>
+
+  <div class="two-col" style="margin-top:28px;">
+    <div class="content-card">
+      <div class="content-card-title">Cost Structure Quality</div>
+      <div class="data-table-wrap" style="margin:0;border:none;">
+        <table>
+          <thead><tr><th>Cost Item</th><th>Q3 FY26</th><th>Q3 FY25</th><th>Δ bps</th></tr></thead>
+          <tbody>
+            <tr><td>Payroll</td><td class="mono green">14.6%</td><td class="mono">15.9%</td><td class="mono green">-129</td></tr>
+            <tr><td>F&B / Raw Mat.</td><td class="mono">5.6%</td><td class="mono">5.5%</td><td class="mono neg">+13</td></tr>
+            <tr><td>Power & Fuel</td><td class="mono green">5.0%</td><td class="mono">6.0%</td><td class="mono green">-102</td></tr>
+            <tr><td>Other Expenses*</td><td class="mono neg">24.2%</td><td class="mono">20.6%</td><td class="mono neg">+351</td></tr>
+            <tr style="background:rgba(196,148,58,0.05);"><td>Total Expenses</td><td class="mono">49.4%</td><td class="mono">48.1%</td><td class="mono neg">+133</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-family:var(--font-mono);font-size:9.5px;color:var(--text-muted);margin-top:8px;">*Other Expenses elevated by renovation + GST (~6% of revenue in Q3 vs. 2.4% in Q3 FY25)</div>
+    </div>
+    <div class="content-card">
+      <div class="content-card-title">Finance Cost Trajectory</div>
+      <ul class="bullet-list">
+        <li>Finance costs on borrowings: ₹33.7 Cr vs ₹42.0 Cr in Q3 FY25 — <strong>20% YoY reduction</strong>, reflecting debt prepayment. Post-demerger, this entire line transfers to Fleur.</li>
+        <li>Lease finance costs stable at ₹10.7 Cr — 202 leased rooms (Indore + Aurangabad) remain in Lemon Tree temporarily.</li>
+        <li>Post-demerger Lemon Tree: effectively <strong>zero finance cost</strong>, dramatically improving PAT conversion.</li>
+        <li>9M FY26 interest savings: ₹128.6 Cr → ₹105.4 Cr; annualizing savings of ~₹30 Cr before full demerger.</li>
+        <li>Aurika Shillong: ₹200 Cr project with 70% concessional debt at 5% below market — an exceptionally structured investment.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: GUIDANCE TRACKER ── -->
+<section id="guidance">
+  <div class="section-header">
+    <span class="section-number">03</span>
+    <h2 class="section-title">Guidance Tracker & Execution Scorecard</h2>
+    <span class="section-tag">Management Promise vs Reality</span>
+  </div>
+
+  <div class="data-table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Historical Guidance / Claim</th>
+          <th>Timeline</th>
+          <th>Status</th>
+          <th>Verdict</th>
+          <th>Commentary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Fee income growth of ~20% annually from managed contracts</td>
+          <td class="mono muted">Ongoing</td>
+          <td><span class="status-badge on-track">On Track</span></td>
+          <td class="green">✓ Partial</td>
+          <td style="font-size:12.5px;color:var(--text-secondary)">Third-party fees +24% YoY in Q3; Fleur fees flat (GST/renovation drag). Combined +10% — slightly below pace.</td>
+        </tr>
+        <tr>
+          <td>GST ITC loss to be 3–3.5% of revenue (initial estimate)</td>
+          <td class="mono muted">FY26</td>
+          <td><span class="status-badge achieved">Better Than Guided</span></td>
+          <td class="green">✓ Beat</td>
+          <td style="font-size:12.5px;color:var(--text-secondary)">Actual GST impact ~1.8% in Q3, ~1% in 9M FY26. Favorable ARR repricing reduced below-₹7,500 room share faster than expected.</td>
+        </tr>
+        <tr>
+          <td>Labour Code impact of ₹16–20 Cr in Q3</td>
+          <td class="mono muted">Q3 FY26</td>
+          <td><span class="status-badge achieved">Achieved (lower end)</span></td>
+          <td class="green">✓ Beat</td>
+          <td style="font-size:12.5px;color:var(--text-secondary)">Actual provision ₹14.5 Cr — at the lower end; management initially guided ₹16–20 Cr range. One-time; no recurrence.</td>
+        </tr>
+        <tr>
+          <td>Delhi Airport property tax ~₹8–10 Cr exceptional</td>
+          <td class="mono muted">Q3 FY26</td>
+          <td><span class="status-badge achieved">Achieved (lower end)</span></td>
+          <td class="green">✓ Beat</td>
+          <td style="font-size:12.5px;color:var(--text-secondary)">Actual ₹4.8 Cr — significantly below guided ₹8–10 Cr range. Favorable resolution.</td>
+        </tr>
+        <tr>
+          <td>Aurika Shimla opening (91 rooms, 2-of-3 blocks)</td>
+          <td class="mono muted">Q2 FY27</td>
+          <td><span class="status-badge on-track">On Track</span></td>
+          <td class="gold">⟳ In Progress</td>
+          <td style="font-size:12.5px;color:var(--text-secondary)">Management confirmed plan to open 2 blocks by Q2 FY27 to capture summer season. ₹66 Cr already deployed.</td>
+        </tr>
+        <tr>
+          <td>Renovation program completion across 4,100 owned rooms</td>
+          <td class="mono muted">H1 FY27</td>
+          <td><span class="status-badge on-track">On Track (65%+ done)</span></td>
+          <td class="gold">⟳ In Progress</td>
+          <td style="font-size:12.5px;color:var(--text-secondary)">~65% of 4,100 rooms renovated; ~200 rooms still shut (Keys portfolio). Full completion expected FY27.</td>
+        </tr>
+        <tr>
+          <td>Fleur EBITDA guidance: ₹620 Cr FY26E / ₹850 Cr FY27P / ₹1,000 Cr FY28P</td>
+          <td class="mono muted">FY26–28</td>
+          <td><span class="status-badge on-track">On Track</span></td>
+          <td class="gold">⟳ Watching</td>
+          <td style="font-size:12.5px;color:var(--text-secondary)">₹620 Cr FY26E implies ~₹111 Cr EBITDA/quarter annualized; current run rate Q3 ₹206 Cr consolidated but includes 3P + Lemon Tree standalone. FY27 at ₹850 Cr requires acquisitions of ~2,500 rooms.</td>
+        </tr>
+        <tr>
+          <td>Lemon Tree standalone EBITDA margin 80%+ (pure fee income) by FY28</td>
+          <td class="mono muted">FY28</td>
+          <td><span class="status-badge pending">Pending (Demerger)</span></td>
+          <td class="gold">⟳ Aspirational</td>
+          <td style="font-size:12.5px;color:var(--text-secondary)">Currently at 76–77% margins on fee income basis per management; highly credible given near-zero capex nature of fee business.</td>
+        </tr>
+        <tr>
+          <td>Keys portfolio RevPAR equal to Red Fox levels post-renovation</td>
+          <td class="mono muted">FY27</td>
+          <td><span class="status-badge on-track">Progressing (25% RevPAR growth, still 12% gap to Red Fox)</span></td>
+          <td class="gold">⟳ In Progress</td>
+          <td style="font-size:12.5px;color:var(--text-secondary)">Keys RevPAR +25% YoY in Q3 FY26 — strongest brand growth in portfolio. Management dissatisfied, targeting 50% growth to close the gap with Red Fox.</td>
+        </tr>
+        <tr>
+          <td>2,500 rooms acquisition/development announcements in 12 months</td>
+          <td class="mono muted">FY26–27</td>
+          <td><span class="status-badge pending">Active Pipeline</span></td>
+          <td class="gold">⟳ To Watch</td>
+          <td style="font-size:12.5px;color:var(--text-secondary)">Varanasi Aurika (47 rooms, effective 150-room equiv.) signed Jan 2026. Management confident of "significant" announcements in 3 months from Jan call.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col" style="margin-top:20px;">
+    <div class="content-card">
+      <div class="content-card-title" style="color:var(--accent-green)">Execution Credibility Rating</div>
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--accent-green);margin-bottom:8px;">STRONG</div>
+      <div style="font-size:13.5px;color:var(--text-secondary);line-height:1.6;">Management consistently guides conservatively and tends to beat on cost items. The GST estimate revision (3–3.5% → ~2%) and lower-than-guided exceptional items both demonstrate intellectual honesty. The single execution risk is the 2,500-room acquisition pipeline — this depends on external negotiation timelines not fully within management control.</div>
+    </div>
+    <div class="content-card">
+      <div class="content-card-title" style="color:var(--accent-gold)">Narrative Consistency Check</div>
+      <ul class="bullet-list">
+        <li>No mid-quarter target abandonment detected across 3 concall transcripts reviewed.</li>
+        <li>Renovation pain narrative has been consistent for 4+ quarters — not a changing excuse.</li>
+        <li>Brand expansion guidance (no new brands) has been consistently held despite analyst pressure.</li>
+        <li>Demerger rationale (Marriott/Host Hotels analogy) was pre-committed long before announcement — credibly delivered.</li>
+        <li>ROE question on demerger structure was honestly acknowledged as "I haven't evaluated that" — unusual transparency for listed company management.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 4: FINANCIAL ARCHITECTURE ── -->
+<section id="architecture">
+  <div class="section-header">
+    <span class="section-number">04</span>
+    <h2 class="section-title">Hidden Financial Architecture</h2>
+    <span class="section-tag">Cash Flow Truth Analysis</span>
+  </div>
+
+  <div class="prose">
+    <p>The critical forensic exercise here is separating <strong>accounting profits from economic reality</strong>. Lemon Tree's reported EBITDA margin of 50.6% in Q3 FY26 is significantly understated due to elevated renovation OPEX (categorized as maintenance, flowing through P&L) and the GST input credit loss. The true hotel-level economics are far superior.</p>
+  </div>
+
+  <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="kpi-card">
+      <div class="kpi-label">Finance Cost Savings (Q3 YoY)</div>
+      <div class="kpi-val" style="color:var(--accent-green)">₹8.2 Cr</div>
+      <div class="kpi-change pos">-20% YoY reduction in debt interest</div>
+      <div class="kpi-context">Finance costs on borrowings fell from ₹42.0 Cr to ₹33.7 Cr. The debt reduction trajectory is structural — all debt migrates to Fleur.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">One-Off P&L Charges (Q3 FY26)</div>
+      <div class="kpi-val" style="color:var(--accent-red)">₹31.3 Cr</div>
+      <div class="kpi-change neg">₹14.5 Labour + ₹11.1 Ex-gratia + ₹4.8 Tax</div>
+      <div class="kpi-context">All three items are non-recurring. Labour Code provision is a one-time reset; ex-gratia payments are described as "finally over." Property tax dispute settled.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Normalized Q3 PAT Estimate</div>
+      <div class="kpi-val" style="color:var(--accent-gold)">~₹105 Cr</div>
+      <div class="kpi-change pos">vs. ₹81.8 Cr reported (+28%)</div>
+      <div class="kpi-context">Adding back exceptional items (₹31.3 Cr) net of ~25% tax effect, normalized PAT is approximately ₹105 Cr. Annualized: ~₹400–420 Cr vs. reported ~₹290 Cr.</div>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:16px;">
+    <div class="content-card">
+      <div class="content-card-title">Working Capital Health</div>
+      <ul class="bullet-list">
+        <li>Hotel business inherently has favorable WC dynamics — corporate clients on credit, leisure guests pay upfront through OTAs.</li>
+        <li>No receivable concerns detected. Management fees from Fleur are intra-group and settle regularly.</li>
+        <li>The managed/franchised business is capital-light by nature; asset turns are irrelevant on the fee side.</li>
+        <li>Renovation CAPEX (₹70–80 Cr annually) is fully funded from operating cash flows without external borrowing — positive sign.</li>
+        <li>Post-demerger, Lemon Tree's WC requirement shrinks dramatically (only corporate overhead + tech costs to fund).</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <div class="content-card-title">Balance Sheet Stress Mapping</div>
+      <ul class="bullet-list">
+        <li>Total debt to be transferred to Fleur — Lemon Tree becomes debt-free at demerger (12–15 months).</li>
+        <li>Fleur will carry ~₹1,300 Cr debt post-demerger at ~₹900 Cr EBITDA — a comfortable ~1.4x net debt/EBITDA.</li>
+        <li>No off-balance-sheet liabilities or contingent obligations flagged in either transcript.</li>
+        <li>Lease liabilities (Ind AS 116): ₹10.7 Cr quarterly finance cost — modest and well-disclosed.</li>
+        <li>No promoter pledge detected. No auditor concerns flagged. Clean governance record.</li>
+        <li>APG (second-largest shareholder, ~15% of Lemon Tree) confirmed no intention to sell — prevents near-term overhang.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="insight-box" style="margin-top:16px;">
+    <strong>The Incremental ROCE Signal:</strong> Hotel-level EBITDAR margins post-renovation are averaging 57% across the owned portfolio (Q3 FY26). Keys hotels are achieving 42% and rising toward 52%+ (Red Fox level) as renovation completes. The renovation capex is delivering >15% cash-on-cash returns in renovated markets like Hyderabad (+19% RevPAR, 64% hotel EBITDAR margin) — well above cost of capital.
+  </div>
+</section>
+
+<!-- ── SECTION 5: MANAGEMENT DECODE ── -->
+<section id="management">
+  <div class="section-header">
+    <span class="section-number">05</span>
+    <h2 class="section-title">Management Commentary Decode</h2>
+    <span class="section-tag">Psychology & Credibility</span>
+  </div>
+
+  <div class="prose">
+    <p>Patanjali Keswani demonstrates a rare combination of <strong>strategic clarity and operational candor</strong> unusual in the Indian listed space. Across three concall transcripts analyzed, the tone is consistently confident but not promotional — he voluntarily acknowledges what he "should not have said" (the 48% margin guidance), concedes the Gurgaon market is "a work in progress," and declines to provide formal guidance while giving substantive directional indicators. The management archetype is <em>Visionary Long-Term Allocator</em> with high intellectual honesty.</p>
+  </div>
+
+  <div class="decode-grid">
+    <div class="decode-card">
+      <div class="decode-card-title green-title">What Management Emphasized</div>
+      <div class="decode-item">Structural nature of India hospitality upcycle (10–20 year thesis)</div>
+      <div class="decode-item">Renovation as permanent value creation, not a cost</div>
+      <div class="decode-item">Post-demerger Lemon Tree as India's first pure-play hotel brand/tech company</div>
+      <div class="decode-item">Fleur EBITDA of ₹1,000 Cr "without doubt" by FY28</div>
+      <div class="decode-item">Technology as revenue enhancer and cost reducer simultaneously</div>
+      <div class="decode-item">Brand exportability (following Indians traveling abroad)</div>
+    </div>
+    <div class="decode-card">
+      <div class="decode-card-title red-title">What Management Sidestepped</div>
+      <div class="decode-item">Exact APG exit timing (15% stake in Lemon Tree — potential overhang)</div>
+      <div class="decode-item">Warburg Pincus acquisition price for APG's Fleur stake (refused comment)</div>
+      <div class="decode-item">Specific post-demerger ROE guidance (acknowledged gap: "I haven't even evaluated that")</div>
+      <div class="decode-item">Gurgaon recovery timeline (described as "work in progress" without commitment)</div>
+      <div class="decode-item">Explicit dividend policy post-demerger (deferred 6 months to Board)</div>
+    </div>
+    <div class="decode-card">
+      <div class="decode-card-title gold-title">Hidden Signals</div>
+      <div class="decode-item">Reference to "very interesting announcements" on 2,500-room pipeline "in next 3 months" (from Jan 15 call) — high confidence marker</div>
+      <div class="decode-item">Mumbai Aurika at "75% of what it should be in RevPAR" — implies 33% upside in Aurika Mumbai fees alone</div>
+      <div class="decode-item">Red Fox Jaipur (183 rooms) potential land monetization + Aurika conversion — underappreciated optionality</div>
+      <div class="decode-item">MakeMyTrip "Loved by Indians" label reference — signals imminent international brand export initiative</div>
+      <div class="decode-item">Keswani calling Keys RevPAR growth of 25% "very dissatisfying" — implies >50% growth is internally benchmarked</div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top:16px;">
+    Management Classification: <strong>Visionary Long-Term Allocator</strong> with Strong Execution Track Record. The demerger architecture mirrors exactly what Marriott did with Host Hotels — this is not improvisation; it is a deliberate decades-in-the-making strategic design. The 20-year brand-building phase was preparatory to this brand monetization phase.
+  </div>
+</section>
+
+<!-- ── SECTION 6: SEGMENT ANALYSIS ── -->
+<section id="segments">
+  <div class="section-header">
+    <span class="section-number">06</span>
+    <h2 class="section-title">Segment & Brand Analysis</h2>
+    <span class="section-tag">Q3 FY26 — 41 Owned Hotels</span>
+  </div>
+
+  <div class="brand-grid">
+    <div class="brand-row header">
+      <div>Brand (Rooms)</div>
+      <div>RevPAR</div>
+      <div>YoY Δ</div>
+      <div>ADR</div>
+      <div>Occ%</div>
+      <div>EBITDAR%</div>
+    </div>
+    <div class="brand-row">
+      <div class="brand-name">Aurika Hotels &amp; Resorts <span style="color:var(--text-muted);font-size:11px;">(808)</span></div>
+      <div class="brand-stat">₹8,109</div>
+      <div class="brand-stat up">+9%</div>
+      <div class="brand-stat">₹10,984</div>
+      <div class="brand-stat">74%</div>
+      <div class="brand-stat" style="color:var(--accent-green);">65%</div>
+    </div>
+    <div class="brand-row">
+      <div class="brand-name">Lemon Tree Premier <span style="color:var(--text-muted);font-size:11px;">(1,603)</span></div>
+      <div class="brand-stat">₹6,890</div>
+      <div class="brand-stat up">+8%</div>
+      <div class="brand-stat">₹8,506</div>
+      <div class="brand-stat">81%</div>
+      <div class="brand-stat" style="color:var(--accent-green);">60%</div>
+    </div>
+    <div class="brand-row">
+      <div class="brand-name">Lemon Tree Hotels <span style="color:var(--text-muted);font-size:11px;">(1,769)</span></div>
+      <div class="brand-stat">₹5,203</div>
+      <div class="brand-stat up">+8%</div>
+      <div class="brand-stat">₹7,081</div>
+      <div class="brand-stat">73%</div>
+      <div class="brand-stat">52%</div>
+    </div>
+    <div class="brand-row">
+      <div class="brand-name">Red Fox by LTH <span style="color:var(--text-muted);font-size:11px;">(643)</span></div>
+      <div class="brand-stat">₹3,525</div>
+      <div class="brand-stat up">+9%</div>
+      <div class="brand-stat">₹5,016</div>
+      <div class="brand-stat">70%</div>
+      <div class="brand-stat">52%</div>
+    </div>
+    <div class="brand-row">
+      <div class="brand-name">Keys by LTH <span style="color:var(--text-muted);font-size:11px;">(936)</span></div>
+      <div class="brand-stat" style="color:var(--accent-green);">₹2,748</div>
+      <div class="brand-stat up" style="font-size:13px;">+25%</div>
+      <div class="brand-stat">₹4,443</div>
+      <div class="brand-stat">62%</div>
+      <div class="brand-stat" style="color:var(--accent-amber);">42%</div>
+    </div>
+  </div>
+
+  <div class="insight-box" style="margin-top:16px;">
+    <strong>Key Segment Insight:</strong> Keys' 25% RevPAR growth is the leading indicator for all other brands — it represents renovated hotels repricing from depressed post-acquisition levels. Management's internal target is Keys reaching Red Fox ADR parity (currently 12% below). Achieving this would add approximately ₹15–18 Cr annually to the Keys EBITDA run-rate. The renovation thesis is working.
+  </div>
+
+  <div style="margin-top:24px; font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:14px;">Regional RevPAR Performance — Q3 FY26 vs Q3 FY25</div>
+  <div class="brand-grid">
+    <div class="brand-row header">
+      <div>Region (Rooms)</div>
+      <div>RevPAR</div>
+      <div>YoY Δ</div>
+      <div>ADR</div>
+      <div>Occ%</div>
+      <div>EBITDAR%</div>
+    </div>
+    <div class="brand-row">
+      <div class="brand-name">Hyderabad <span style="color:var(--text-muted);font-size:11px;">(663)</span></div>
+      <div class="brand-stat" style="color:var(--accent-green);">₹7,005</div>
+      <div class="brand-stat up" style="font-size:13px;">+19%</div>
+      <div class="brand-stat">₹9,113</div>
+      <div class="brand-stat">77%</div>
+      <div class="brand-stat" style="color:var(--accent-green);">64%</div>
+    </div>
+    <div class="brand-row">
+      <div class="brand-name">Pune <span style="color:var(--text-muted);font-size:11px;">(426)</span></div>
+      <div class="brand-stat">₹4,804</div>
+      <div class="brand-stat up">+15%</div>
+      <div class="brand-stat">₹6,205</div>
+      <div class="brand-stat">77%</div>
+      <div class="brand-stat">51%</div>
+    </div>
+    <div class="brand-row">
+      <div class="brand-name">Bengaluru <span style="color:var(--text-muted);font-size:11px;">(874)</span></div>
+      <div class="brand-stat">₹3,731</div>
+      <div class="brand-stat up">+14%</div>
+      <div class="brand-stat">₹6,183</div>
+      <div class="brand-stat">60%</div>
+      <div class="brand-stat">52%</div>
+    </div>
+    <div class="brand-row">
+      <div class="brand-name">Delhi <span style="color:var(--text-muted);font-size:11px;">(636)</span></div>
+      <div class="brand-stat">₹7,363</div>
+      <div class="brand-stat up">+11%</div>
+      <div class="brand-stat">₹8,748</div>
+      <div class="brand-stat">84%</div>
+      <div class="brand-stat">56%</div>
+    </div>
+    <div class="brand-row">
+      <div class="brand-name">Mumbai <span style="color:var(--text-muted);font-size:11px;">(972)</span></div>
+      <div class="brand-stat">₹7,384</div>
+      <div class="brand-stat up">+7%</div>
+      <div class="brand-stat">₹9,391</div>
+      <div class="brand-stat">79%</div>
+      <div class="brand-stat">64%</div>
+    </div>
+    <div class="brand-row">
+      <div class="brand-name" style="color:var(--accent-red);">Gurugram <span style="color:var(--text-muted);font-size:11px;">(529)</span></div>
+      <div class="brand-stat down">₹4,483</div>
+      <div class="brand-stat down">-2%</div>
+      <div class="brand-stat">₹6,542</div>
+      <div class="brand-stat">69%</div>
+      <div class="brand-stat" style="color:var(--accent-red);">50%</div>
+    </div>
+  </div>
+  <div style="font-size:12px;color:var(--text-muted);font-style:italic;margin-top:8px;">Gurugram drag: Large corporate block business (~250 rooms Red Fox Sector 60) did not materialize in Q3 FY26 vs Q3 FY25. Described as transient; recovery expected in FY27.</div>
+</section>
+
+<!-- ── SECTION 7: COMPOSITE SCHEME ── -->
+<section id="scheme">
+  <div class="section-header">
+    <span class="section-number">07</span>
+    <h2 class="section-title">The Composite Scheme — Structural Reset</h2>
+    <span class="section-tag">Value Architecture Analysis</span>
+  </div>
+
+  <div class="prose">
+    <p>The Composite Scheme of Arrangement is the single most important event for Lemon Tree shareholders. It mirrors the Marriott/Host Hotels separation and the Hilton/Park Hotels split — a proven global playbook for unlocking value embedded in a blended asset-heavy/asset-light hospitality company. The result: two separate, investor-appropriate vehicles accessing different capital pools at different valuations.</p>
+  </div>
+
+  <div class="scheme-layout">
+    <div class="scheme-entity lemon">
+      <div class="entity-title" style="color:var(--accent-green);">Lemon Tree Hotels</div>
+      <div class="entity-subtitle" style="color:var(--accent-green);">Pure-Play Asset-Light Brand &amp; Management Co.</div>
+      <div class="entity-metric"><span class="entity-metric-key">Nature</span><span class="entity-metric-val">Fee &amp; Brand Income</span></div>
+      <div class="entity-metric"><span class="entity-metric-key">Debt Post-Demerger</span><span class="entity-metric-val" style="color:var(--accent-green);">Zero</span></div>
+      <div class="entity-metric"><span class="entity-metric-key">EBITDA Margin Target (FY28)</span><span class="entity-metric-val">80%+</span></div>
+      <div class="entity-metric"><span class="entity-metric-key">Capital Intensity</span><span class="entity-metric-val" style="color:var(--accent-green);">Near-Zero</span></div>
+      <div class="entity-metric"><span class="entity-metric-key">Services Offered</span><span class="entity-metric-val">Mgmt, Brand, Loyalty, Distribution, Tech</span></div>
+      <div class="entity-metric"><span class="entity-metric-key">Fee Structure</span><span class="entity-metric-val">~70% fixed + 30% performance</span></div>
+      <div class="entity-metric"><span class="entity-metric-key">Cash Use Post-Demerger</span><span class="entity-metric-val">Dividends / Buybacks</span></div>
+      <div class="entity-metric"><span class="entity-metric-key">Comparable</span><span class="entity-metric-val">Marriott International</span></div>
+    </div>
+    <div class="scheme-entity fleur">
+      <div class="entity-title" style="color:var(--accent-gold);">Fleur Hotels</div>
+      <div class="entity-subtitle" style="color:var(--accent-gold);">Growth-Oriented Hotel Ownership &amp; Dev Platform</div>
+      <div class="entity-metric"><span class="entity-metric-key">Nature</span><span class="entity-metric-val">Asset Ownership &amp; Development</span></div>
+      <div class="entity-metric"><span class="entity-metric-key">Debt at Demerger</span><span class="entity-metric-val">~₹1,300 Cr (1.4× EBITDA)</span></div>
+      <div class="entity-metric"><span class="entity-metric-key">EBITDA Target (FY28)</span><span class="entity-metric-val">₹1,000+ Cr</span></div>
+      <div class="entity-metric"><span class="entity-metric-key">EBITDA Margin Target</span><span class="entity-metric-val">48%+ (post-fees); 60% gross</span></div>
+      <div class="entity-metric"><span class="entity-metric-key">Warburg Pincus Commitment</span><span class="entity-metric-val">₹960 Cr Primary Infusion</span></div>
+      <div class="entity-metric"><span class="entity-metric-key">Dev Pipeline (Active)</span><span class="entity-metric-val">2,500 rooms under negotiation</span></div>
+      <div class="entity-metric"><span class="entity-metric-key">Construction Pipeline</span><span class="entity-metric-val">750+ rooms (Shimla, Shillong, Delhi)</span></div>
+      <div class="entity-metric"><span class="entity-metric-key">Comparable</span><span class="entity-metric-val">Host Hotels &amp; Resorts</span></div>
+    </div>
+  </div>
+
+  <div style="margin-top:20px;font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:10px;">Post-Demerger Ownership Structure of Fleur Hotels</div>
+  <div class="ownership-bar">
+    <div class="ownership-segment" style="width:41%;background:#3DB87A;">41% — LT Shareholders Direct</div>
+    <div class="ownership-segment" style="width:26%;background:#C4943A;">26% — Warburg Pincus</div>
+    <div class="ownership-segment" style="width:33%;background:#4A9EDB;">33% — Lemon Tree Co. (indirect)</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px;font-family:var(--font-mono);font-size:10px;color:var(--text-muted);">
+    <div style="color:#3DB87A;">▸ Direct free float — immediate liquidity at listing</div>
+    <div style="color:#C4943A;">▸ Pre-listing commitment at premium to current value</div>
+    <div style="color:#4A9EDB;">▸ LT retains "skin in game" to align management incentives</div>
+  </div>
+
+  <div class="warning-box" style="margin-top:20px;">
+    <strong>Key Structural Risk:</strong> Lemon Tree holds 33% of Fleur directly as a holding, which creates a technical holdco discount on LT shares. Management argues this should be minimal (concentrated, non-conglomerate structure) but the market will apply some discount. The 41% indirect stake through LT in Fleur creates a double-exposure complexity that some institutional investors may find unappealing.
+  </div>
+
+  <div class="insight-box">
+    <strong>The Value Creation Math:</strong> If Fleur achieves ₹1,000 Cr EBITDA by FY28 and lists at 10–12× EV/EBITDA (conservative for a high-growth Indian hospitality owner), the enterprise value would be ₹10,000–12,000 Cr. LT shareholders' effective 74% stake = ₹7,400–8,900 Cr of Fleur value alone. Add Lemon Tree standalone fee business at 25–30× EBITDA on ₹250–300 Cr EBITDA = ₹6,250–9,000 Cr. Combined sum-of-parts: ₹13,650–17,900 Cr vs. current ₹8,802 Cr market cap — a 55–100%+ upside case.
+  </div>
+</section>
+
+<!-- ── SECTION 8: MOAT ANALYSIS ── -->
+<section id="moat">
+  <div class="section-header">
+    <span class="section-number">08</span>
+    <h2 class="section-title">Moat Analysis & Competitive Structure</h2>
+    <span class="section-tag">Durability Assessment</span>
+  </div>
+
+  <div class="prose">
+    <p>Lemon Tree's competitive moat is multi-dimensional but not yet deeply entrenched in the manner of a Marriott or IHG. The company is, however, <strong>at the inflection point where brand scale begins to self-reinforce</strong> — the transition from brand-building mode to brand-monetization mode. The demerger is engineered precisely to accelerate this inflection. Each moat dimension is assessed below on a 10-point scale.</p>
+  </div>
+
+  <div class="moat-grid">
+    <div class="moat-card">
+      <div class="moat-card-top">
+        <div>
+          <div class="moat-card-name">Brand Recognition Moat</div>
+          <span class="moat-type-tag wide">Wide — Domestic</span>
+        </div>
+        <div class="moat-score-badge">8.0<span>/10</span></div>
+      </div>
+      <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:80%;"></div></div>
+      <div class="moat-desc">Lemon Tree is the dominant mid-market hotel brand in India, operating 130 hotels across 80+ destinations in just 20 years. MakeMyTrip CEO's observation that a new Lemon Tree property instantly draws 20–25% occupancy from the platform is a strong validation of brand pull. The loyalty program generates repeat demand that smaller operators cannot replicate at this scale. The brand is now exportable internationally — confirmed by the Nepal, Bhutan, and Dubai pipeline.</div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-card-top">
+        <div>
+          <div class="moat-card-name">Location & Supply Constraint Moat</div>
+          <span class="moat-type-tag wide">Wide — Key Markets</span>
+        </div>
+        <div class="moat-score-badge">8.0<span>/10</span></div>
+      </div>
+      <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:80%;"></div></div>
+      <div class="moat-desc">Airport hotels in Mumbai (Aurika, 670 rooms) and Delhi (multiple properties, Aerocity) are structurally irreplaceable — land is unavailable and cost of new supply at airports is prohibitive. Gurgaon strategy of targeting 3,000 of 4,000 rooms in the micro-market exemplifies supply-control thinking. Delhi Aerocity, Mumbai airport, and Hyderabad already exhibit genuine micro-market supply constraints. This moat deepens with each owned asset added to Fleur.</div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-card-top">
+        <div>
+          <div class="moat-card-name">Scale & Network Effects</div>
+          <span class="moat-type-tag moderate">Moderate-Wide</span>
+        </div>
+        <div class="moat-score-badge">7.5<span>/10</span></div>
+      </div>
+      <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:75%;"></div></div>
+      <div class="moat-desc">With 22,000 rooms (operational + pipeline), Lemon Tree is the largest mid-market hotel network in India. This creates bidirectional network effects: corporate clients prefer a national chain that can accommodate travellers across all cities, while hotel owners prefer to affiliate with the brand that corporate clients already trust. Every new hotel signed amplifies this effect. Pipeline coverage across 150+ unique destinations creates the "everywhere" positioning that drives OTA platform preference.</div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-card-top">
+        <div>
+          <div class="moat-card-name">Management Capability & Operating Playbook</div>
+          <span class="moat-type-tag moderate">Moderate</span>
+        </div>
+        <div class="moat-score-badge">7.0<span>/10</span></div>
+      </div>
+      <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:70%;"></div></div>
+      <div class="moat-desc">The D-360 hotel opening playbook (identifying GMs 12 months early, mock runs, demand-seeding before opening) is a genuine operational advantage developed over 80+ hotel openings. The inclusive HR model (Opportunity Deprived Indians at 16% of workforce, targeting 30%) reduces employee attrition and training costs materially. However, the key-man dependency on Patanjali Keswani is a legitimate moat risk — he chairs both Lemon Tree and Fleur, and no clear succession signal has been communicated.</div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-card-top">
+        <div>
+          <div class="moat-card-name">Switching Cost & Contract Stickiness</div>
+          <span class="moat-type-tag moderate">Moderate</span>
+        </div>
+        <div class="moat-score-badge">6.5<span>/10</span></div>
+      </div>
+      <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:65%;"></div></div>
+      <div class="moat-desc">Hotel management contracts are typically 10–15 year agreements with substantial exit penalties. Once a Lemon Tree brand standard is installed (renovation, F&B, systems, loyalty program), switching operator requires costly de-branding and re-renovation. However, franchise contracts have lower stickiness than management contracts (owner hires their own GM), which is a noted risk. Management explicitly expressed caution about franchise model: "the impact is ultimately set by the brand."</div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-card-top">
+        <div>
+          <div class="moat-card-name">Technology & Distribution Moat</div>
+          <span class="moat-type-tag emerging">Emerging</span>
+        </div>
+        <div class="moat-score-badge">5.5<span>/10</span></div>
+      </div>
+      <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:55%;"></div></div>
+      <div class="moat-desc">The technology moat is real but early-stage. The AI-first digital transformation (AWS private cloud, single data lake, Salesforce next-gen sales, AI-based revenue management) is a 2-year journey with measurable returns already claimed (~₹25 Cr improvement). The third step — commercializing tech to 1.5 million unbranded Indian hotel rooms — is potentially transformational and completely unpriced by the market. The biggest technology risk cited by Keswani himself: an Amazon or Meta white-labeling hospitality distribution could disintermediate all mid-market brands simultaneously.</div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-card-top">
+        <div>
+          <div class="moat-card-name">Cost Structure Advantage</div>
+          <span class="moat-type-tag moderate">Moderate</span>
+        </div>
+        <div class="moat-score-badge">6.5<span>/10</span></div>
+      </div>
+      <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:65%;"></div></div>
+      <div class="moat-desc">Payroll as % of revenue has declined 129 bps YoY to 14.6% — notably lower than luxury hotel comparables — reflecting the mid-market operating model and ODI HR strategy. Power & fuel at 5.0% (down 102 bps) reflects renewable energy investments (17% RE in FY25, targeting 50% by FY26). The post-renovation portfolio will structurally lower energy intensity. Cost advantages compound with scale but are not insurmountable for a well-capitalised new entrant.</div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-card-top">
+        <div>
+          <div class="moat-card-name">India Structural Demand Tailwind</div>
+          <span class="moat-type-tag wide">Macro Moat</span>
+        </div>
+        <div class="moat-score-badge">9.0<span>/10</span></div>
+      </div>
+      <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:90%;"></div></div>
+      <div class="moat-desc">India's aggregate hotel occupancy of ~66% is well below the 75–80% repricing threshold. With airline capacity expanding (new aircraft orders), Vande Bharat rail connectivity, 4-lane highway expansion, and the explosive growth of domestic leisure and business travel, the demand tailwind is structural rather than cyclical. 200 Indian cities with 5+ lakh population represent addressable white space. 30 million outbound Indian trips (growing to 150 million in 6 years per management estimate) create the international expansion runway. This moat belongs to any Indian hotel operator — but Lemon Tree is best positioned in the mid-market segment to capture it.</div>
+    </div>
+  </div>
+
+  <div class="moat-summary-card">
+    <div class="moat-summary-item">
+      <span class="moat-summary-val">7.1</span>
+      <span class="moat-summary-label">Overall Moat Score /10</span>
+      <div class="moat-summary-sub">Weighted average across 8 dimensions. Primary moats: Brand + Location + Scale Network. Secondary moat: Technology (emerging).</div>
+    </div>
+    <div class="moat-summary-item">
+      <span class="moat-summary-val">8–10 yr</span>
+      <span class="moat-summary-label">Moat Durability Horizon</span>
+      <div class="moat-summary-sub">Key risk is platform disintermediation (Amazon/Meta travel) and potential luxury brand entry into mid-market. Near-term competitive position is very defensible.</div>
+    </div>
+    <div class="moat-summary-item">
+      <span class="moat-summary-val">Widening</span>
+      <span class="moat-summary-label">Moat Trajectory</span>
+      <div class="moat-summary-sub">The demerger structurally widens the brand moat by removing asset-heavy complexity and enabling Lemon Tree to focus exclusively on brand building, tech, and distribution — the durable moat sources.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 9: CAPITAL ALLOCATION ── -->
+<section id="capital">
+  <div class="section-header">
+    <span class="section-number">09</span>
+    <h2 class="section-title">Capital Allocation Analysis</h2>
+    <span class="section-tag">Value Creation vs Destruction</span>
+  </div>
+
+  <div class="prose">
+    <p>Management's capital allocation has been, on balance, <strong>shareholder value-accretive</strong>. The renovation program is generating measurable RevPAR and margin improvements. The Keys acquisition (despite transitional pain) is showing 25% RevPAR growth already. The Fleur demerger structure is intellectually sound. The Warburg Pincus deal at a premium to current values validates asset quality. The critical near-term test is the execution of the 2,500-room acquisition pipeline — this will determine whether Fleur achieves its ₹1,000 Cr FY28 EBITDA target.</p>
+  </div>
+
+  <div class="two-col">
+    <div class="content-card">
+      <div class="content-card-title">What Capital Is Being Deployed Well</div>
+      <ul class="bullet-list">
+        <li><strong>Renovation OPEX/CAPEX (₹170+ Cr annual total):</strong> Delivering 19% RevPAR growth in renovated Hyderabad, 14% in Bengaluru, 25% in Keys. Returns are well above cost of capital.</li>
+        <li><strong>Technology investment (₹0.6% of revenue):</strong> Conservative estimate suggests ₹25+ Cr annual return already generated from revenue management improvements alone.</li>
+        <li><strong>Aurika Shillong (₹200 Cr total, 70% at 2.5–3% concessional rate):</strong> An exceptionally structured deal with state GST revenue share. IRR likely 15–20%.</li>
+        <li><strong>Demerger structure:</strong> Zero incremental capital deployed; creates two separately-valued entities that should command higher combined multiples.</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <div class="content-card-title">What Deserves Scrutiny</div>
+      <ul class="bullet-list">
+        <li><strong>202 leased rooms (Indore + Aurangabad) not transferred:</strong> These older leases (6–8 years remaining) create residual asset-heavy exposure in Lemon Tree. Rationale is clear (transfer restrictions) but creates complexity.</li>
+        <li><strong>Aurika Nehru Place (₹550 rooms, 4-year timeline):</strong> A marquee but capital-intensive bet. CAPEX disclosure "to be announced soon" suggests uncertainty in project economics at current stage.</li>
+        <li><strong>Dividend policy undefined:</strong> Post-demerger Lemon Tree will generate substantial free cash flow with no reinvestment need. Board has 6 months to define policy — until then, capital allocation narrative is incomplete for income investors.</li>
+        <li><strong>2,500-room acquisition pipeline:</strong> Aggressive but unspecified timing. If delayed significantly, FY28 EBITDA targets are at risk.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 10: RED FLAGS ── -->
+<section id="flags">
+  <div class="section-header">
+    <span class="section-number">10</span>
+    <h2 class="section-title">Red Flags & Forensic Detection</h2>
+    <span class="section-tag">Risk Architecture</span>
+  </div>
+
+  <div class="flag-list">
+    <div class="flag-item">
+      <div><span class="flag-severity minor">Minor</span></div>
+      <div class="flag-desc"><strong>Management fees from Fleur flat YoY despite strong operations.</strong> Fleur fee income was ₹25.3 Cr in Q3 FY26, identical to Q3 FY25 (0% growth). Management attributes this to GST ITC loss (impacting net revenue) and renovation disruption (temporarily suppressing EBITDA on which variable fees are calculated).</div>
+      <div class="flag-resolution">Structural/Temporary. Resolves as renovation completes in FY27. Aurika Mumbai at 75% of full RevPAR potential suggests meaningful fee upside ahead.</div>
+    </div>
+    <div class="flag-item">
+      <div><span class="flag-severity minor">Minor</span></div>
+      <div class="flag-desc"><strong>Gurgaon RevPAR -2% YoY.</strong> Loss of large corporate block bookings at Red Fox and Lemon Tree Sector 60. Approximately 400 rooms in Gurgaon underperforming against last year's high base, creating a 50–80 bps drag on blended portfolio metrics.</div>
+      <div class="flag-resolution">Market/Cyclical. Gurgaon is India's largest corporate hotel market and is prone to block booking volatility. Management is actively replacing lost accounts. No structural demand deterioration detected.</div>
+    </div>
+    <div class="flag-item">
+      <div><span class="flag-severity minor">Minor</span></div>
+      <div class="flag-desc"><strong>APG holds ~15% stake in Lemon Tree and is exiting Fleur.</strong> While APG confirmed no intention to sell Lemon Tree shares, a 15% institutional overhang exists. Any large block sale could create near-term price pressure unrelated to fundamentals.</div>
+      <div class="flag-resolution">Overhang Risk. Keswani indicated any sale would be "orderly, with our help." No specific sale signals detected. Monitor for block deal disclosures.</div>
+    </div>
+    <div class="flag-item">
+      <div><span class="flag-severity minor">Minor</span></div>
+      <div class="flag-desc"><strong>Franchisee model reputation risk explicitly acknowledged.</strong> Management flagged that franchisee GMs are "more aligned with the owner" and some owners "are ready to cut costs," potentially damaging the Lemon Tree brand standard. This is an honest acknowledgement of a real tension as the company scales franchising.</div>
+      <div class="flag-resolution">Structural/Manageable. Company is investing in technology to remotely monitor brand standards at franchise properties — this is the correct long-term solution. The conscious bias toward management contracts over franchises is value-protective.</div>
+    </div>
+    <div class="flag-item">
+      <div><span class="flag-severity minor">Minor</span></div>
+      <div class="flag-desc"><strong>Occupancy -82 bps YoY despite record revenues.</strong> While management's explanation (renovation shutdowns, deliberate repricing in Hyderabad) is credible, the market interprets flat/declining occupancy as a demand softness signal. Industry RevPAR growth of 12% vs. Lemon Tree's 9% creates a relative underperformance narrative.</div>
+      <div class="flag-resolution">Presentation/Framing issue, not fundamental. Renovation shuts ~700–800 rooms at any point; accounting for this, like-for-like RevPAR is materially higher. Expects to outperform industry once renovation completes.</div>
+    </div>
+  </div>
+
+  <div class="insight-box" style="margin-top:16px;">
+    <strong>Forensic Summary:</strong> No Severe or Moderate red flags detected across all three documents reviewed. The company has clean auditor relationships (no qualifications flagged), no promoter pledging, no aggressive capitalization, no unusual related-party transactions beyond the transparent Fleur management fee arrangement, and consistent cash conversion. This is an unusually clean governance record for an Indian mid-cap hospitality company.
+  </div>
+</section>
+
+<!-- ── SECTION 11: INFLECTION SIGNALS ── -->
+<section id="inflection">
+  <div class="section-header">
+    <span class="section-number">11</span>
+    <h2 class="section-title">Positive Inflection Detection</h2>
+    <span class="section-tag">Early Upside Signals</span>
+  </div>
+
+  <div class="two-col">
+    <div class="content-card">
+      <div class="content-card-title">Confirmed Inflections Already Underway</div>
+      <ul class="bullet-list">
+        <li><strong>Keys renovation thesis validating:</strong> 25% RevPAR growth in Keys — the single strongest brand in the portfolio this quarter. Management targets further 50% RevPAR growth to Red Fox parity. This is a ₹40–60 Cr EBITDA step-up alone.</li>
+        <li><strong>Finance cost structurally declining:</strong> ₹42 Cr → ₹33.7 Cr in one year on borrowings. Post-demerger, this cost disappears entirely from Lemon Tree's P&L.</li>
+        <li><strong>ARR repricing working in high-constraint markets:</strong> Hyderabad +25% ADR despite -350 bps occupancy — classic pricing power in action. ARR leadership will normalize as occupancy recovers.</li>
+        <li><strong>Mumbai Aurika ramp:</strong> 79% occupancy achieved at 670 rooms. Management signals imminent repricing phase. Every 10% RevPAR increase at Aurika Mumbai adds ~₹10–12 Cr to Fleur EBITDA annually.</li>
+        <li><strong>Q4 FY26 outlook explicitly positive:</strong> February described as "very good," March "excellent." Sequential improvement from sluggish January confirmed. Q4 likely to show 15%+ growth.</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <div class="content-card-title">Future Inflections Not Yet in Numbers</div>
+      <ul class="bullet-list">
+        <li><strong>Renovation OPEX cliff in FY28:</strong> ₹120+ Cr of combined OPEX+CAPEX renovation spend drops to near zero, creating an instant 400–500 bps EBITDA margin expansion at Fleur level.</li>
+        <li><strong>22,000-room pipeline fee income maturity:</strong> Hotels signed in FY22–23 begin reaching full stabilization in FY25–26. The fee income step-up from this cohort alone should add 20–25% to total management fee revenue over FY26–FY28.</li>
+        <li><strong>Technology commercialization to third-party hotels:</strong> The possibility of offering LT's tech stack to India's 1.5 million unbranded hotel rooms is completely unmodeled. Even 10,000 rooms at ₹50K/year annual tech fee = ₹50 Cr revenue at near-100% margin.</li>
+        <li><strong>International brand export:</strong> Dubai, UAE (10M Indians/year), Thailand, Nepal. The loyalty-driven international expansion model (following Indian travellers) mirrors OYO's international strategy but with a premium branded execution. First meaningful revenue could emerge by FY28.</li>
+        <li><strong>Aurika brand premiumization pipeline:</strong> Aurika Varanasi (47 rooms at 3× Aurika Mumbai ARR), Aurika Nehru Place Delhi (550 rooms, 14,000 sq ft convention centre). Both are high-multiple assets that revalue the Aurika brand upward.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 12: VALUATION ── -->
+<section id="valuation">
+  <div class="section-header">
+    <span class="section-number">12</span>
+    <h2 class="section-title">Valuation Comfort Analysis</h2>
+    <span class="section-tag">Quality-Adjusted Value Framework</span>
+  </div>
+
+  <div class="prose">
+    <p>At ₹111 per share and ₹8,802 crore market cap, Lemon Tree trades at a <strong>deceptively high reported P/E of 36.6×</strong> that is entirely an artefact of temporary earnings suppression. On normalized earnings (removing exceptional items and renovation drag), the P/E drops to approximately <strong>22–24×</strong>. On the more meaningful post-demerger FY28 earnings power, the implied P/E is <strong>14–16×</strong> — a significant discount to the high-quality compounding business the company is transitioning into.</p>
+  </div>
+
+  <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="kpi-card">
+      <div class="kpi-label">Reported P/E</div>
+      <div class="kpi-val">36.6×</div>
+      <div class="kpi-change neg">On depressed FY26E earnings</div>
+      <div class="kpi-context">Misleading; includes ₹31.3 Cr one-off exceptional + renovation drag. Not the right lens for valuation.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Normalized P/E</div>
+      <div class="kpi-val" style="color:var(--accent-gold);">~22–24×</div>
+      <div class="kpi-change neu">Ex-exceptional, ex-renovation drag</div>
+      <div class="kpi-context">Normalized FY26E PAT approximately ₹370–400 Cr annualized. Reasonable for a structural growth hospitality company in India.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">FY28 Sum-of-Parts</div>
+      <div class="kpi-val" style="color:var(--accent-green);">₹145–175</div>
+      <div class="kpi-change pos">+30–58% from CMP</div>
+      <div class="kpi-context">Fleur (10–12× ₹1,000 Cr EBITDA, 74% share) + Lemon Tree fee business (25× ₹250 Cr EBITDA) divided by shares outstanding.</div>
+    </div>
+  </div>
+
+  <div class="data-table-wrap" style="margin-top:20px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Valuation Dimension</th>
+          <th>Current State</th>
+          <th>Comfort Assessment</th>
+          <th>Key Assumption Risk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Earnings Quality vs. Multiple</td>
+          <td class="mono muted">Reported P/E 36.6×</td>
+          <td><span class="status-badge on-track">Reasonable (Normalized)</span></td>
+          <td style="font-size:12.5px;color:var(--text-muted);">One-offs already largely through; renovation completes FY27</td>
+        </tr>
+        <tr>
+          <td>FCF Generation vs. Capex Need</td>
+          <td class="mono muted">Heavy capex FY26–27</td>
+          <td><span class="status-badge delayed">Constrained Near-Term</span></td>
+          <td style="font-size:12.5px;color:var(--text-muted);">Post-FY27 FCF improves dramatically; post-demerger FCF entirely unencumbered</td>
+        </tr>
+        <tr>
+          <td>ROCE vs. Cost of Capital</td>
+          <td class="mono muted">13.0% (suppressed)</td>
+          <td><span class="status-badge on-track">Improving</span></td>
+          <td style="font-size:12.5px;color:var(--text-muted);">Target: Lemon Tree fee-co at 50%+ ROCE; Fleur at 15–18% asset-level ROCE</td>
+        </tr>
+        <tr>
+          <td>Demerger Value Unlock</td>
+          <td class="mono muted">Not in current price</td>
+          <td><span class="status-badge achieved">Significant Upside</span></td>
+          <td style="font-size:12.5px;color:var(--text-muted);">Execution on 2,500-room pipeline and timeline (12–15 months for demerger)</td>
+        </tr>
+        <tr>
+          <td>Peer Valuation Context</td>
+          <td class="mono muted">Indian luxury (IHCL/EIH) at 30–50× P/E</td>
+          <td><span class="status-badge on-track">Reasonable Discount</span></td>
+          <td style="font-size:12.5px;color:var(--text-muted);">Post-demerger Lemon Tree fee-co deserves premium to current blended multiple</td>
+        </tr>
+        <tr>
+          <td>Market Expectations Embedded</td>
+          <td class="mono muted">~15% revenue CAGR, stable margins</td>
+          <td><span class="status-badge on-track">Achievable</span></td>
+          <td style="font-size:12.5px;color:var(--text-muted);">Management guided minimum 15% revenue growth for FY27 with "pretty sure" confidence</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-box" style="margin-top:20px;">
+    Valuation Classification: <strong>Reasonable at Current Price, Attractive on 18-Month View.</strong> This is a mediocre business at a premium valuation if evaluated on trailing reported numbers — but it is an exceptional compounding machine at a reasonable valuation if evaluated through the FY28 post-demerger, post-renovation lens. The investment case requires a 12–24 month horizon and a catalyst (demerger completion + acquisition announcements) to fully unlock.
+  </div>
+</section>
+
+<!-- ── SECTION 13: TRAJECTORY ── -->
+<section id="trajectory">
+  <div class="section-header">
+    <span class="section-number">13</span>
+    <h2 class="section-title">Future Trajectory Modeling</h2>
+    <span class="section-tag">FY27–FY29 Scenarios</span>
+  </div>
+
+  <div class="scenario-grid">
+    <div class="scenario-card bull">
+      <div class="scenario-label">Bull Case</div>
+      <div class="scenario-prob">35%</div>
+      <div class="scenario-content">Demerger completes on schedule (12–15 months). Fleur acquires 2,000+ of the 2,500 rooms under discussion by FY28 at disciplined valuations. Aurika Mumbai reaches full occupancy + repricing in FY27, adding ₹80+ Cr to Fleur EBITDA. Keys achieves Red Fox ADR parity by FY27. India hospitality RevPAR sustains 12–15% growth into FY28. Lemon Tree fee income reaches ₹350+ Cr by FY28 at 82% EBITDA margin.</div>
+      <div class="scenario-target">Target: ₹175–200 Cr/share &nbsp;|&nbsp; Upside: 58–80%</div>
+    </div>
+    <div class="scenario-card base">
+      <div class="scenario-label">Base Case</div>
+      <div class="scenario-prob">50%</div>
+      <div class="scenario-content">Demerger completes by Q2 FY27. Fleur acquires ~1,500 rooms of the 2,500-room pipeline. Aurika Mumbai stabilizes at 80–85% occupancy by FY27 with moderate repricing. Renovation completes on time (FY27 H1). Industry RevPAR growth normalizes to 10–12%. Lemon Tree fee income reaches ₹280–300 Cr by FY28 at 80% EBITDA margin. Fleur EBITDA reaches ₹900–950 Cr by FY28.</div>
+      <div class="scenario-target">Target: ₹145–160 Cr/share &nbsp;|&nbsp; Upside: 30–45%</div>
+    </div>
+    <div class="scenario-card bear">
+      <div class="scenario-label">Bear Case</div>
+      <div class="scenario-prob">15%</div>
+      <div class="scenario-content">Demerger faces regulatory delays (18+ months). Acquisition pipeline stalls — only 500–800 rooms close by FY28. Gurgaon market remains weak for 2+ quarters. GST impact remains at 2%+ as ARR repricing stalls. Global macro slowdown reduces business travel. Fleur EBITDA only ₹750–800 Cr by FY28. India hospitality RevPAR growth decelerates to 6–8%.</div>
+      <div class="scenario-target">Downside: ₹88–95 Cr/share &nbsp;|&nbsp; Drawdown: -15–20%</div>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:20px;">
+    <div class="content-card">
+      <div class="content-card-title">Key Monitoring Variables (Quarterly Checklist)</div>
+      <ul class="bullet-list">
+        <li>Fleur EBITDA per quarter vs. ₹212 Cr quarterly run-rate needed for ₹850 Cr FY27 target</li>
+        <li>Aurika Mumbai ARR progression — needs to reach ₹12,000–13,000 ADR for full RevPAR potential</li>
+        <li>Keys brand RevPAR gap vs. Red Fox (currently 12% below; watch for convergence)</li>
+        <li>New Fleur acquisition/development announcements (2,500 room pipeline closure timeline)</li>
+        <li>Demerger regulatory filing progress (NCLT, Stock Exchange approvals)</li>
+        <li>Management fee growth rate from 3P hotels (needs to maintain 20%+ pace)</li>
+        <li>Renovation OPEX as % of revenue (should be declining quarter-on-quarter)</li>
+        <li>APG stake in Lemon Tree — any block deal signals</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <div class="content-card-title">Industry Structure Indicators to Watch</div>
+      <ul class="bullet-list">
+        <li>India aggregate hotel occupancy vs. 66% current level (75–80% = repricing threshold)</li>
+        <li>New supply additions in key micro-markets (Delhi, Mumbai airport, Hyderabad) — all constrained</li>
+        <li>Domestic airline passenger growth — leading indicator for hotel demand 6–12 months out</li>
+        <li>Corporate travel budget announcements for FY27 (Q1 = annual RFP season)</li>
+        <li>Gurgaon corporate demand recovery — watch for specific large-account wins</li>
+        <li>India outbound travel volume — precursor to international brand expansion opportunity</li>
+        <li>GST policy changes — any upward revision to ₹7,500 threshold would be significantly positive</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 14: VERDICT ── -->
+<section id="verdict">
+  <div class="section-header">
+    <span class="section-number">14</span>
+    <h2 class="section-title">Final Investment Verdict</h2>
+    <span class="section-tag">Institutional Assessment</span>
+  </div>
+
+  <div class="verdict-section">
+    <div class="verdict-rating">ACCUMULATE</div>
+    <div class="verdict-sub">12–24 Month View · CMP ₹111 · Target ₹145–160 · Risk: Moderate</div>
+    <div class="verdict-reason">
+      Lemon Tree Hotels is a structurally superior business in the midst of a deliberately chosen — and temporary — period of financial noise. The renovation program, GST impact, and exceptional items together suppress reported earnings by approximately 500–600 basis points relative to the company's true underlying economics. The Composite Scheme of Arrangement, backed by a world-class PE investor (Warburg Pincus) at a premium to current valuations, is a shareholder value-creation event of significant magnitude. The demerger creates India's first pure-play hotel brand-and-management company, a business archetype that trades at 25–40× EBITDA globally.
+      <br><br>
+      The bear case is a stock price range of ₹88–95 — limited downside at current levels given strong operational momentum, clean balance sheet, and zero promoter pledging. The bull case is ₹175–200 as demerger completion and acquisition announcements crystallize the sum-of-parts value. The stock is most appropriately owned by investors with a 12–24 month minimum horizon who can tolerate near-term P&L noise in exchange for structural value realization.
+    </div>
+
+    <div class="checkpoints">
+      <div class="checkpoint">Renovation completing by FY27 H1 with measurable margin recovery</div>
+      <div class="checkpoint">Demerger on timeline — Lemon Tree becomes debt-free, high-ROCE fee company</div>
+      <div class="checkpoint">22,000-room pipeline converting to fee income over FY26–FY29</div>
+      <div class="checkpoint">Aurika Mumbai repricing toward ₹12,000+ ADR — a ₹80 Cr EBITDA upside</div>
+      <div class="checkpoint">Fleur acquisitions (2,500 rooms) adding incremental EBITDA toward ₹1,000 Cr FY28 target</div>
+      <div class="checkpoint">India hospitality structural upcycle — macro tailwind of 8–12 years remaining</div>
+      <div class="checkpoint">Technology monetization — free option on 1.5M Indian unbranded hotel room addressable market</div>
+      <div class="checkpoint">Warburg Pincus validation at premium confirms asset quality undervaluation</div>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:20px;">
+    <div class="content-card">
+      <div class="content-card-title" style="color:var(--accent-green);">Key Positives (Structural)</div>
+      <ul class="bullet-list">
+        <li>India's #1 mid-market hotel brand with genuine national scale and growing loyalty ecosystem</li>
+        <li>Pure asset-light transformation (post-demerger) peers globally trade at 25–40× EBITDA</li>
+        <li>Renovation investment is capital-efficient and delivering measurable RevPAR/margin returns</li>
+        <li>Warburg Pincus at premium validates intrinsic value and provides Fleur growth capital</li>
+        <li>Management is visionary, transparent, and has delivered on structural commitments for 20 years</li>
+        <li>Structural India travel upcycle provides 8–12 years of demand tailwind</li>
+      </ul>
+    </div>
+    <div class="content-card">
+      <div class="content-card-title" style="color:var(--accent-red);">Key Risks (Ranked)</div>
+      <ul class="bullet-list">
+        <li><strong>[High]</strong> Demerger execution delay or regulatory hurdle extending beyond 15 months</li>
+        <li><strong>[Medium]</strong> Fleur acquisition pipeline failing to close — FY28 EBITDA target becomes aggressive</li>
+        <li><strong>[Medium]</strong> APG large block sale of 15% Lemon Tree stake creating overhang</li>
+        <li><strong>[Medium]</strong> Key-man risk: Patanjali Keswani's centrality to strategy and operations</li>
+        <li><strong>[Low-Medium]</strong> Platform disintermediation risk (Amazon/Meta travel white-labeling)</li>
+        <li><strong>[Low]</strong> Global macro slowdown reducing business travel demand in FY27</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top:28px;padding:20px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-lg);display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+    <div style="text-align:center;">
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Earnings Quality</div>
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--accent-gold);">Moderate</div>
+      <div style="font-size:11px;color:var(--text-muted);font-style:italic;">Reported suppressed; underlying high</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Mgmt Execution</div>
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--accent-green);">Strong</div>
+      <div style="font-size:11px;color:var(--text-muted);font-style:italic;">Conservative guide; beats on costs</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Valuation Comfort</div>
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--accent-gold);">Reasonable</div>
+      <div style="font-size:11px;color:var(--text-muted);font-style:italic;">Attractive on FY28 SoP basis</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--text-muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;">Compounding Potential</div>
+      <div style="font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--accent-green);">High</div>
+      <div style="font-size:11px;color:var(--text-muted);font-style:italic;">Post-demerger fee model is exceptional</div>
+    </div>
+  </div>
+
+  <div style="margin-top:20px;padding:16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elevated);font-family:var(--font-mono);font-size:10px;color:var(--text-muted);line-height:1.7;">
+    DISCLAIMER · This analysis is for informational purposes only and does not constitute investment advice. It is based solely on publicly available disclosures filed with Indian stock exchanges (BSE/NSE) through February 2026. The analyst has no commercial relationship with Lemon Tree Hotels Limited. All projections and scenarios are probabilistic estimates, not guarantees. Investors should conduct independent due diligence and consult a SEBI-registered investment advisor before making investment decisions.
+    <br>Report compiled: May 2026 · Documents reviewed: Q3 FY26 Investor Presentation (Feb 6, 2026), Q3 FY26 Earnings Concall Transcript (Feb 10, 2026), Composite Scheme of Arrangement Concall Transcript (Jan 15, 2026)
+  </div>
+</section>
+
+</main>
+
+<script>
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section, .cover');
+  const navLinks = document.querySelectorAll('nav#sidebar a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Animate score bars on load
+  document.addEventListener('DOMContentLoaded', () => {
+    const fills = document.querySelectorAll('.score-bar-fill, .moat-bar-fill');
+    fills.forEach(fill => {
+      const target = fill.style.width;
+      fill.style.width = '0';
+      setTimeout(() => { fill.style.width = target; }, 200);
+    });
+  });
+</script>
+
+</body>
+</html>
