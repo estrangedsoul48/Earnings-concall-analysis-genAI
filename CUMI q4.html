@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CUMI — Institutional Equity Research | Q4 & FY26 Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070c18;
+    --bg2: #0d1425;
+    --bg3: #111928;
+    --bg4: #16202f;
+    --border: rgba(180,155,90,0.18);
+    --border-bright: rgba(180,155,90,0.45);
+    --gold: #c9a84c;
+    --gold-light: #e3c97a;
+    --gold-dim: rgba(201,168,76,0.35);
+    --red: #e05252;
+    --red-dim: rgba(224,82,82,0.18);
+    --green: #4caa7c;
+    --green-dim: rgba(76,170,124,0.18);
+    --amber: #d4874e;
+    --amber-dim: rgba(212,135,78,0.18);
+    --blue: #5b8ce8;
+    --blue-dim: rgba(91,140,232,0.15);
+    --text: #e8e2d4;
+    --text-muted: #8a8070;
+    --text-dim: #5a5348;
+    --white: #f0ece2;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(7,12,24,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    display: flex; align-items: center; gap: 0; height: 52px;
+  }
+  .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--gold); letter-spacing: 0.04em; margin-right: 36px; white-space: nowrap; }
+  .nav-links { display: flex; gap: 0; overflow-x: auto; flex: 1; }
+  .nav-links a { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 400; color: var(--text-muted); text-decoration: none; padding: 0 14px; height: 52px; display: flex; align-items: center; border-right: 1px solid var(--border); transition: color 0.2s, background 0.2s; white-space: nowrap; }
+  .nav-links a:hover { color: var(--gold); background: rgba(201,168,76,0.05); }
+  .nav-badge { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-dim); white-space: nowrap; padding-left: 20px; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1440px; margin: 0 auto; padding: 0 32px 80px; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #070c18 0%, #0d1625 50%, #0a1020 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 52px 32px 40px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 1440px; margin: 0 auto; }
+  .hero-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-bottom: 36px; }
+  .hero-title { }
+  .hero-ticker { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+  .hero-name { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 8px; }
+  .hero-sub { font-size: 13px; color: var(--text-muted); font-weight: 300; }
+  .hero-verdict {
+    background: rgba(76,170,124,0.12);
+    border: 1px solid rgba(76,170,124,0.35);
+    border-radius: 4px; padding: 16px 24px; text-align: right;
+  }
+  .hero-verdict-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; margin-bottom: 4px; }
+  .hero-verdict-val { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--green); }
+  .hero-verdict-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  .hero-metrics { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+  .metric-cell { background: var(--bg2); padding: 14px 16px; }
+  .metric-label { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .metric-value { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 600; color: var(--gold-light); }
+  .metric-sub { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+  /* ── SCORECARD ── */
+  .scorecard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
+  .score-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 16px; }
+  .score-name { font-size: 11px; color: var(--text-muted); margin-bottom: 10px; font-weight: 500; }
+  .score-bar-wrap { background: rgba(255,255,255,0.06); border-radius: 2px; height: 4px; margin-bottom: 8px; }
+  .score-bar { height: 4px; border-radius: 2px; }
+  .score-num { font-family: 'JetBrains Mono', monospace; font-size: 20px; font-weight: 600; }
+  .score-denom { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); }
+
+  /* ── SECTIONS ── */
+  .section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px; }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold-dim); font-weight: 400; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--white); letter-spacing: 0.01em; }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* ── CARDS ── */
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 24px; margin-bottom: 16px; }
+  .card-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--gold-light); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .card p { font-size: 13.5px; line-height: 1.75; color: var(--text); margin-bottom: 10px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* ── GRID LAYOUTS ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .two-col-wide { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+
+  /* ── TABLES ── */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  thead tr { background: var(--bg3); }
+  th { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  td { padding: 10px 14px; border-bottom: 1px solid rgba(180,155,90,0.08); color: var(--text); vertical-align: top; line-height: 1.5; }
+  tr:hover td { background: rgba(201,168,76,0.03); }
+  .td-mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+  .td-green { color: var(--green); }
+  .td-red { color: var(--red); }
+  .td-amber { color: var(--amber); }
+  .td-gold { color: var(--gold); }
+  .td-bold { font-weight: 600; }
+
+  /* ── BADGES ── */
+  .badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 500; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; white-space: nowrap; }
+  .badge-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(76,170,124,0.3); }
+  .badge-red { background: var(--red-dim); color: var(--red); border: 1px solid rgba(224,82,82,0.3); }
+  .badge-amber { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(212,135,78,0.3); }
+  .badge-gold { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(201,168,76,0.35); }
+  .badge-blue { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(91,140,232,0.3); }
+
+  /* ── CALLOUT BOXES ── */
+  .callout { border-left: 3px solid; padding: 16px 20px; margin: 16px 0; border-radius: 0 4px 4px 0; font-size: 13.5px; }
+  .callout-green { border-color: var(--green); background: var(--green-dim); }
+  .callout-red { border-color: var(--red); background: var(--red-dim); }
+  .callout-amber { border-color: var(--amber); background: var(--amber-dim); }
+  .callout-gold { border-color: var(--gold); background: var(--gold-dim); }
+  .callout-blue { border-color: var(--blue); background: var(--blue-dim); }
+  .callout strong { display: block; margin-bottom: 4px; font-weight: 600; }
+
+  /* ── SEGMENT BARS ── */
+  .seg-item { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .seg-name { width: 140px; font-size: 12px; color: var(--text-muted); flex-shrink: 0; }
+  .seg-bar-wrap { flex: 1; background: rgba(255,255,255,0.05); border-radius: 2px; height: 6px; }
+  .seg-bar { height: 6px; border-radius: 2px; }
+  .seg-val { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gold); width: 50px; text-align: right; flex-shrink: 0; }
+
+  /* ── MOAT SCORE ── */
+  .moat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .moat-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 16px; text-align: center; }
+  .moat-icon { font-size: 22px; margin-bottom: 8px; }
+  .moat-name { font-size: 11px; color: var(--text-muted); margin-bottom: 10px; font-weight: 500; }
+  .moat-score-num { font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 600; color: var(--gold); }
+
+  /* ── TAM TABLE ── */
+  .tam-bar { height: 8px; border-radius: 2px; background: linear-gradient(90deg, var(--gold), var(--amber)); margin-top: 6px; }
+
+  /* ── VERDICT FINAL ── */
+  .verdict-final {
+    background: linear-gradient(135deg, rgba(76,170,124,0.08) 0%, rgba(201,168,76,0.06) 100%);
+    border: 2px solid rgba(76,170,124,0.35);
+    border-radius: 6px; padding: 36px; text-align: center; margin-top: 24px;
+  }
+  .verdict-rating { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 700; color: var(--green); line-height: 1; margin-bottom: 8px; }
+  .verdict-sub { font-size: 13px; color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.7; margin-top: 12px; }
+
+  /* ── FLAGS ── */
+  .flag-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(180,155,90,0.07); }
+  .flag-item:last-child { border-bottom: none; }
+  .flag-sev { flex-shrink: 0; margin-top: 2px; }
+  .flag-text { font-size: 13px; color: var(--text); line-height: 1.6; }
+  .flag-title { font-weight: 600; margin-bottom: 2px; }
+
+  /* ── CASE GRID ── */
+  .case-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .case-card { border-radius: 4px; padding: 20px; border: 1px solid; }
+  .case-bull { border-color: rgba(76,170,124,0.3); background: rgba(76,170,124,0.05); }
+  .case-base { border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.05); }
+  .case-bear { border-color: rgba(224,82,82,0.3); background: rgba(224,82,82,0.05); }
+  .case-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .case-val { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+  .case-text { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width: 1024px) { .two-col, .three-col, .two-col-wide, .case-grid, .moat-grid { grid-template-columns: 1fr; } .scorecard-grid { grid-template-columns: 1fr 1fr; } }
+  @media(max-width: 640px) { .hero-name { font-size: 30px; } .scorecard-grid { grid-template-columns: 1fr; } .hero-metrics { grid-template-columns: repeat(2,1fr); } nav { padding: 0 16px; } .container { padding: 0 16px 60px; } .hero { padding: 36px 16px 28px; } }
+
+  /* ── PRINT ── */
+  .page-break { page-break-before: always; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+  .section { animation: fadeUp 0.4s ease both; }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+  /* ── INLINE DATA ── */
+  .data-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid rgba(180,155,90,0.06); }
+  .data-row:last-child { border-bottom: none; }
+  .data-key { font-size: 12.5px; color: var(--text-muted); }
+  .data-val { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--gold-light); font-weight: 500; }
+
+  /* ── HIGHLIGHT TEXT ── */
+  .hl-gold { color: var(--gold); font-weight: 600; }
+  .hl-green { color: var(--green); font-weight: 600; }
+  .hl-red { color: var(--red); font-weight: 600; }
+  .hl-amber { color: var(--amber); font-weight: 600; }
+
+  /* ── FOOTNOTE ── */
+  .footnote { font-size: 11px; color: var(--text-dim); margin-top: 8px; font-style: italic; }
+
+  /* SCROLL FIX */
+  [id] { scroll-margin-top: 60px; }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav>
+  <div class="nav-brand">CUMI ⬡ Research</div>
+  <div class="nav-links">
+    <a href="#snapshot">Snapshot</a>
+    <a href="#quality">Earnings Quality</a>
+    <a href="#guidance">Guidance Tracker</a>
+    <a href="#hidden">Hidden Financials</a>
+    <a href="#mgmt">Mgmt Decode</a>
+    <a href="#segments">Segments</a>
+    <a href="#capex">Capital Allocation</a>
+    <a href="#flags">Red Flags</a>
+    <a href="#inflections">Inflections</a>
+    <a href="#valuation">Valuation & Moat</a>
+    <a href="#trajectory">Trajectory</a>
+    <a href="#verdict">Verdict</a>
+  </div>
+  <div class="nav-badge">Q4 FY26 | May 2026</div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-top">
+      <div class="hero-title">
+        <div class="hero-ticker">NSE: CARBORUNIV &nbsp;·&nbsp; BSE: 513375 &nbsp;·&nbsp; Murugappa Group &nbsp;·&nbsp; Advanced Materials</div>
+        <div class="hero-name">Carborundum Universal Limited</div>
+        <div class="hero-sub">Abrasives &nbsp;·&nbsp; Technical Ceramics &nbsp;·&nbsp; Electrominerals &nbsp;·&nbsp; Q4 FY2026 Full-Year Institutional Analysis</div>
+      </div>
+      <div class="hero-verdict">
+        <div class="hero-verdict-label">Investment Stance</div>
+        <div class="hero-verdict-val">ACCUMULATE</div>
+        <div class="hero-verdict-sub">With 18–24 month horizon</div>
+      </div>
+    </div>
+    <div class="hero-metrics">
+      <div class="metric-cell"><div class="metric-label">Market Cap</div><div class="metric-value">₹20,132 Cr</div></div>
+      <div class="metric-cell"><div class="metric-label">CMP</div><div class="metric-value">₹1,057</div></div>
+      <div class="metric-cell"><div class="metric-label">P/E</div><div class="metric-value">78.6×</div><div class="metric-sub">Trailing (consol.)</div></div>
+      <div class="metric-cell"><div class="metric-label">P/Book</div><div class="metric-value">5.22×</div><div class="metric-sub">BV ₹205</div></div>
+      <div class="metric-cell"><div class="metric-label">ROCE</div><div class="metric-value">10.5%</div><div class="metric-sub">FY26 consol.</div></div>
+      <div class="metric-cell"><div class="metric-label">ROE</div><div class="metric-value">6.89%</div><div class="metric-sub">Consol. (dragged by intl.)</div></div>
+      <div class="metric-cell"><div class="metric-label">52W High/Low</div><div class="metric-value">₹1,166</div><div class="metric-sub">Low ₹735</div></div>
+      <div class="metric-cell"><div class="metric-label">Div. Yield</div><div class="metric-value">0.38%</div><div class="metric-sub">₹4/share total FY26</div></div>
+      <div class="metric-cell"><div class="metric-label">Stndln. PAT</div><div class="metric-value">₹416 Cr</div><div class="metric-sub">+29.4% YoY</div></div>
+      <div class="metric-cell"><div class="metric-label">FCF / PAT</div><div class="metric-value">56.6%</div><div class="metric-sub">Consol. vs 16.1% prior yr</div></div>
+      <div class="metric-cell"><div class="metric-label">Debt / Equity</div><div class="metric-value">0.08×</div><div class="metric-sub">Effectively debt-free</div></div>
+      <div class="metric-cell"><div class="metric-label">FY27 Rev. Guide</div><div class="metric-value">+4–4.5%</div><div class="metric-sub">Comparable: +11–12%</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTAINER ═══ -->
+<div class="container">
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- STEP 1: EXECUTIVE SNAPSHOT -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="snapshot">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <span class="section-title">Executive Snapshot</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="two-col-wide">
+    <div>
+      <div class="card">
+        <div class="card-title">What Actually Happened This Year</div>
+        <p>FY26 was a year of two distinct halves for CUMI — a soft H1 dragged by dealer inventory correction, unseasonal rains, tepid industrial demand, and geopolitical caution — followed by a strong, broad-based H2 recovery. Standalone H2 sales grew <span class="hl-gold">14.1% YoY</span>, versus a barely positive 3% in H1. Q4 FY26 standalone sales of ₹845 Cr grew <span class="hl-green">23.1% YoY</span>, with all three segments delivering 21%+ growth simultaneously — a genuine operational recovery, not an accounting artifact.</p>
+        <p>At the consolidated level, however, the picture is more complicated. Consolidated PBT before exceptional items declined <span class="hl-red">27.2% to ₹416 Cr</span> from ₹572 Cr in FY25, largely due to the triple drag of VAW Russia (US OFAC sanctions), Foskor Zirconia South Africa (unviable since 2013), and Awuko Abrasives Germany (EUR 30M cumulative losses over four years, now being wound down). The decisive action to close both Awuko and Foskor in FY26 eliminates approximately <span class="hl-gold">₹100–120 Cr</span> of annual consolidated losses — this is the single most value-accretive decision management made this year.</p>
+        <p>Free cash flow quality improved dramatically. Consolidated FCF/PAT reached <span class="hl-green">56.6%</span> (vs 16.1% last year), and standalone FCF/PAT was 46.5% (vs 14%). This signals that the working capital-consuming growth phase is giving way to cash generation. The company is effectively net-debt-free (D/E: 0.08×). However, standalone PAT of ₹416 Cr includes a <span class="hl-amber">₹76 Cr inter-company dividend</span> from a subsidiary — stripping this, organic standalone PAT is approximately ₹340 Cr.</p>
+        <p>The market is likely underpricing three structural optionalities: (1) the SOFC ceramics ramp tied to AI data center demand, (2) semiconductor wafer fabrication ceramics entering serial supply in FY27 with material revenue from FY29, and (3) the standalone Electrominerals export engine that grew from 11% to 33% export share in a single year, directly benefiting from EU anti-dumping duties on Chinese grains.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Top 5 Developments of FY26</div>
+        <p><strong class="hl-gold">1. Closure of Awuko + Foskor — Structural P&L De-risking:</strong> These two entities collectively consumed ₹100–120 Cr of consolidated earnings annually. Their exit transforms the consolidated earnings trajectory from FY27 onwards. The exceptional charge of ₹135 Cr is the accounting pain for future clean earnings.</p>
+        <p><strong class="hl-gold">2. Standalone Electrominerals Export Explosion:</strong> Exports grew 100% in a single year, rising from 11% to over 33% of standalone EMD sales (₹300+ Cr). EU anti-dumping duties on Chinese fused alumina grains and the company's treated product strategy are structurally expanding addressable market.</p>
+        <p><strong class="hl-gold">3. Semiconductor Ceramics Facility Commissioned:</strong> ₹66 Cr capex for wafer fab equipment ceramics with 4–6 year qualification cycle already completed. Serial production begins FY27. Management signals 3–4× further investment ahead. Material revenue from FY29. This is CUMI's highest-ROCE future optionality.</p>
+        <p><strong class="hl-gold">4. Strong Q4 Recovery Validates Demand Thesis:</strong> All segments growing 21%+ YoY in Q4 confirms the H1 slowdown was cyclical, not structural. The Aspiration 2030 framework is beginning to show tangible execution.</p>
+        <p><strong class="hl-gold">5. FCF Quality Inflection:</strong> FCF/PAT leap from 16% to 57% consolidated indicates the working capital cycle has been tightened. Debt-free balance sheet with ₹697 Cr consolidated cash provides both investment firepower and downside protection.</p>
+      </div>
+    </div>
+
+    <div>
+      <!-- SCORECARD -->
+      <div class="card">
+        <div class="card-title">Business Health Scorecard</div>
+        <div class="scorecard-grid">
+          <div class="score-item">
+            <div class="score-name">Overall Business Health</div>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:70%;background:var(--green);"></div></div>
+            <span class="score-num" style="color:var(--green)">7</span><span class="score-denom">/10</span>
+          </div>
+          <div class="score-item">
+            <div class="score-name">Earnings Quality</div>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:60%;background:var(--amber);"></div></div>
+            <span class="score-num" style="color:var(--amber)">6</span><span class="score-denom">/10</span>
+          </div>
+          <div class="score-item">
+            <div class="score-name">Balance Sheet Strength</div>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:85%;background:var(--green);"></div></div>
+            <span class="score-num" style="color:var(--green)">8.5</span><span class="score-denom">/10</span>
+          </div>
+          <div class="score-item">
+            <div class="score-name">Capital Allocation</div>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:70%;background:var(--green);"></div></div>
+            <span class="score-num" style="color:var(--green)">7</span><span class="score-denom">/10</span>
+          </div>
+          <div class="score-item">
+            <div class="score-name">Management Credibility</div>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:70%;background:var(--amber);"></div></div>
+            <span class="score-num" style="color:var(--amber)">7</span><span class="score-denom">/10</span>
+          </div>
+          <div class="score-item">
+            <div class="score-name">Future Visibility</div>
+            <div class="score-bar-wrap"><div class="score-bar" style="width:65%;background:var(--amber);"></div></div>
+            <span class="score-num" style="color:var(--amber)">6.5</span><span class="score-denom">/10</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-title">Key Financial Snapshot</div>
+        <div class="data-row"><span class="data-key">Standalone Sales FY26</span><span class="data-val">₹3,024 Cr (+8.6%)</span></div>
+        <div class="data-row"><span class="data-key">Standalone PAT FY26</span><span class="data-val">₹416 Cr (+29.4%)</span></div>
+        <div class="data-row"><span class="data-key">Consol. Sales FY26</span><span class="data-val">₹5,149 Cr (+6.5%)</span></div>
+        <div class="data-row"><span class="data-key">Consol. PBT (pre-exceptional)</span><span class="data-val">₹416 Cr (–27.2%)</span></div>
+        <div class="data-row"><span class="data-key">Exceptional Charges</span><span class="data-val">₹135 Cr (Awuko + Foskor)</span></div>
+        <div class="data-row"><span class="data-key">Q4 FY26 Standalone Sales</span><span class="data-val">₹845 Cr (+23.1%)</span></div>
+        <div class="data-row"><span class="data-key">Q4 FY26 Standalone PAT</span><span class="data-val">₹122 Cr (+100%)</span></div>
+        <div class="data-row"><span class="data-key">Consolidated Capex FY26</span><span class="data-val">₹309 Cr</span></div>
+        <div class="data-row"><span class="data-key">Net Debt</span><span class="data-val">Net Zero / D/E 0.08×</span></div>
+        <div class="data-row"><span class="data-key">Consol. Cash (ex-VAW)</span><span class="data-val">~₹400 Cr</span></div>
+      </div>
+
+      <div class="callout callout-amber" style="margin-top:16px;">
+        <strong>⚠ What the Market May Be Missing</strong>
+        The 78.6× P/E masks the underlying earnings power improvement. Strip Awuko + Foskor losses (₹120 Cr drag), normalize the VAW sanction impact (₹87 Cr drag), and exclude the Rhodius logistics one-off, and FY26 comparable consolidated PBT would have been approximately ₹700–720 Cr. The FY27 P/E on cleaned-up earnings is closer to 35–40×. At the same time, emerging businesses (semiconductor ceramics, SOFC, aerospace, EMD exports) carry embedded option value the market is not yet pricing.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- STEP 2: RESULT QUALITY ANALYSIS -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="quality">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <span class="section-title">Result Quality Analysis</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="card">
+        <div class="card-title">Revenue Quality Dissection</div>
+        <p><strong>Growth is real but H1-weighted caution is warranted.</strong> Standalone revenue growth of 8.6% is entirely volume-driven — management confirmed pricing was flat to marginally positive across Electrominerals and Abrasives. The H2 acceleration (14.4% sequential H1→H2) was organic: dealer inventory destocking normalized, festival demand rebounded, GST rate rationalization provided an impetus, and industrial order pipelines re-opened.</p>
+        <p><strong>EMD is the quality surprise.</strong> Export share moving from 11% to 33% in twelve months represents structural, not cyclical revenue — global OEM relationships now anchor over ₹300 Cr of EMD revenue. The anti-dumping duty on Chinese grains in the EU market is a multi-year structural tailwind.</p>
+        <p><strong>Ceramics is a mixed picture.</strong> Full-year standalone Ceramics grew 6.5%, but this was 400 bps below management's 10–11% target. Wear ceramics exports to America de-grew 40% due to tariff uncertainty among US customers. Metallized cylinder production was impacted by a production challenge in H1 (resolved by Q4). SOFC and Engineering Ceramics grew strongly (30%+). The segment contains both a structural winner and a cyclically impaired sub-vertical simultaneously.</p>
+        <p><strong>No channel stuffing detected.</strong> The H1 weakness was actually caused by dealers de-stocking, the opposite of channel stuffing. H2 volume growth coincided with normalization of dealer channel inventories — this is organic sell-through, not pull-forward.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">PAT Quality & Margin Dynamics</div>
+        <p><strong>Standalone PAT quality — moderate concern.</strong> FY26 standalone PAT of ₹416 Cr includes a <span class="hl-amber">₹76 Cr dividend from subsidiary SEDCL</span>. Organic standalone PAT is approximately ₹340 Cr. Nine-month standalone PAT was ₹294 Cr at a 13.5% PAT margin — strong. Q4 saw a PAT of ₹122 Cr (nearly doubling YoY), which is partially explained by negative unallocable expenses of -₹11.35 Cr in Q4 versus high unallocable charges in Q4 FY25.</p>
+        <p><strong>Standalone margins improving at segment level.</strong> Standalone PBIT margin of Electrominerals improved from ~7.7% to 9.1% on stronger export mix and value-added products. Standalone Abrasives PBIT margin dipped 81 bps to 15.3% due to low H1 volume absorption — H2 recovery was strong at 17%+ implied margins.</p>
+        <p><strong>Consolidated margin degradation is entirely international.</strong> The consolidated PBIT margin fell from 10.7% to approximately 7.8% — but the entire margin compression is attributable to VAW (-₹87 Cr), Foskor (-₹22 Cr), Awuko (-₹19 Cr), and Rhodius (-₹46 Cr). Standalone India business PBIT margins improved. Post-closure of Awuko and Foskor, FY27 consolidated margins will structurally recover towards 10%+.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-title">Segment Revenue Performance</div>
+        <p style="margin-bottom:16px;font-size:12px;color:var(--text-muted);">Standalone full-year FY26</p>
+        <div class="seg-item">
+          <div class="seg-name">Abrasives</div>
+          <div class="seg-bar-wrap"><div class="seg-bar" style="width:76%;background:var(--gold);"></div></div>
+          <div class="seg-val">+6.2%</div>
+        </div>
+        <div class="seg-item">
+          <div class="seg-name">Ceramics</div>
+          <div class="seg-bar-wrap"><div class="seg-bar" style="width:65%;background:var(--blue);"></div></div>
+          <div class="seg-val">+6.5%</div>
+        </div>
+        <div class="seg-item">
+          <div class="seg-name">Electrominerals</div>
+          <div class="seg-bar-wrap"><div class="seg-bar" style="width:100%;background:var(--green);"></div></div>
+          <div class="seg-val">+11.1%</div>
+        </div>
+        <p style="margin-top:16px;margin-bottom:16px;font-size:12px;color:var(--text-muted);">Q4 FY26 standalone YoY growth</p>
+        <div class="seg-item">
+          <div class="seg-name">Abrasives</div>
+          <div class="seg-bar-wrap"><div class="seg-bar" style="width:88%;background:var(--gold);"></div></div>
+          <div class="seg-val">+21.5%</div>
+        </div>
+        <div class="seg-item">
+          <div class="seg-name">Ceramics</div>
+          <div class="seg-bar-wrap"><div class="seg-bar" style="width:84%;background:var(--blue);"></div></div>
+          <div class="seg-val">+21.7%</div>
+        </div>
+        <div class="seg-item">
+          <div class="seg-name">Electrominerals</div>
+          <div class="seg-bar-wrap"><div class="seg-bar" style="width:100%;background:var(--green);"></div></div>
+          <div class="seg-val">+22.3%</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-title">PBIT Margin Bridge FY25→FY26</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Segment</th><th>FY25</th><th>FY26</th><th>Change</th></tr></thead>
+            <tbody>
+              <tr><td>Standalone Abrasives</td><td class="td-mono">16.1%</td><td class="td-mono">15.3%</td><td class="td-mono td-amber">-81 bps</td></tr>
+              <tr><td>Standalone Ceramics</td><td class="td-mono">24.8%</td><td class="td-mono">21.4%</td><td class="td-mono td-red">-340 bps</td></tr>
+              <tr><td>Standalone EMD</td><td class="td-mono">7.7%</td><td class="td-mono">9.1%</td><td class="td-mono td-green">+140 bps</td></tr>
+              <tr><td>Consol. Abrasives</td><td class="td-mono">7.0%</td><td class="td-mono">4.3%</td><td class="td-mono td-red">-270 bps</td></tr>
+              <tr><td>Consol. Ceramics</td><td class="td-mono">24.7%</td><td class="td-mono">20.2%</td><td class="td-mono td-red">-450 bps</td></tr>
+              <tr><td>Consol. EMD</td><td class="td-mono">11.2%</td><td class="td-mono">5.6%</td><td class="td-mono td-red">-560 bps</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="footnote">Ceramics PBIT decline is largely from deferred projects and US tariff uncertainty. EMD consolidated decline entirely due to VAW/Foskor drag. Both effects are clearing in FY27.</p>
+      </div>
+
+      <div class="callout callout-gold" style="margin-top:16px;">
+        <strong>Tax Quality Note</strong>
+        Effective standalone tax rate ~20.7% in FY26 vs ~24.4% in FY25. This is partly due to the higher other income (intra-group dividend) which is taxed lower. No low-tax-despite-high-profits red flag here — the Electrominerals export growth attracts legitimate tax benefits under SEZ/export incentive frameworks. Deferred tax asset position is comfortable (₹157 Lakhs net DTA standalone).
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- STEP 3: GUIDANCE TRACKER -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="guidance">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <span class="section-title">Guidance Tracker — Management Promises vs. Reality</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="callout callout-blue">
+    <strong>Execution Credibility Rating: MODERATE → STRONG</strong>
+    Management has demonstrated discipline on revenue guidance (consistently within stated ranges) but has overpromised on Ceramics and Abrasives margins, and significantly underdelivered on international subsidiary turnarounds. The decisive closure of Awuko and Foskor marks an improvement in capital discipline — problems that lingered for years were finally addressed decisively in FY26. This warrants an upgrade in management credibility for forward-looking capital allocation decisions.
+  </div>
+
+  <div class="table-wrap" style="margin-top: 20px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Guidance / Claim</th>
+          <th>Period</th>
+          <th>Target</th>
+          <th>Actual</th>
+          <th>Status</th>
+          <th>Commentary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-bold">Consolidated sales growth</td>
+          <td>FY26 (given Q3 call)</td>
+          <td class="td-mono">5.5–6.5%</td>
+          <td class="td-mono td-green">6.5%</td>
+          <td><span class="badge badge-green">Achieved</span></td>
+          <td>Hit the top of the guided range precisely.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Ceramics sales growth</td>
+          <td>FY26 (original guidance)</td>
+          <td class="td-mono">16–18%</td>
+          <td class="td-mono td-amber">9.3%</td>
+          <td><span class="badge badge-red">Missed</span></td>
+          <td>Q3 downgrade to 13–14%. Final at 9.3%. Deferred projects + US tariff uncertainty drove miss. Two consecutive downgrades is concerning for Ceramics guidance reliability.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Ceramics PBIT margin</td>
+          <td>FY26</td>
+          <td class="td-mono">23.5–23.7%</td>
+          <td class="td-mono td-amber">~20.2%</td>
+          <td><span class="badge badge-red">Missed</span></td>
+          <td>Mid-year revised to 21–22%. Finished at 20.2%. Lower volume absorption on deferred projects drove underperformance.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Consolidated Abrasives sales</td>
+          <td>FY26</td>
+          <td class="td-mono">4–5%</td>
+          <td class="td-mono td-green">5.1%</td>
+          <td><span class="badge badge-green">Achieved</span></td>
+          <td>Hit upper band of guidance range.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Abrasives PBIT margin</td>
+          <td>FY26</td>
+          <td class="td-mono">6–6.5% → revised 4–4.5%</td>
+          <td class="td-mono td-green">4.3%</td>
+          <td><span class="badge badge-amber">Revised & Met</span></td>
+          <td>Management proactively downgraded margin guidance mid-year once Rhodius/Awuko deterioration was visible. Credit for transparency.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Consolidated EMD sales growth</td>
+          <td>FY26</td>
+          <td class="td-mono">1–2%</td>
+          <td class="td-mono td-green">3.7%</td>
+          <td><span class="badge badge-green">Beat</span></td>
+          <td>Exceeded guidance, driven by standalone EMD export surge.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">EMD PBIT margin</td>
+          <td>FY26</td>
+          <td class="td-mono">4.5–5.5%</td>
+          <td class="td-mono td-green">5.6%</td>
+          <td><span class="badge badge-green">Slightly Beat</span></td>
+          <td>Standalone EMD margin improvement drove outperformance vs guidance.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Full-year Capex</td>
+          <td>FY26</td>
+          <td class="td-mono">₹350 Cr</td>
+          <td class="td-mono td-amber">₹309 Cr</td>
+          <td><span class="badge badge-amber">Underspent</span></td>
+          <td>₹41 Cr underspend — likely project scheduling delays. Not concerning; will carry forward to FY27 (guidance ₹400 Cr).</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Awuko turnaround</td>
+          <td>FY22–FY26 (multi-year)</td>
+          <td class="td-mono">Profitability</td>
+          <td class="td-mono td-red">EUR 30M losses</td>
+          <td><span class="badge badge-red">Failed → Wound Down</span></td>
+          <td>Acquired for ~EUR 5-6M, absorbed EUR 30M in losses over 4 years. A capital allocation failure — finally corrected. Credibility hit, but credit for decisiveness in FY26.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Foskor turnaround</td>
+          <td>FY13–FY26 (multi-year)</td>
+          <td class="td-mono">Sustainable profitability</td>
+          <td class="td-mono td-red">Losses since 2013</td>
+          <td><span class="badge badge-red">Failed → Wound Down</span></td>
+          <td>13-year drag. Multiple restructuring attempts failed. Again, decisive closure is the right outcome — but the delay is a credibility concern for international M&A execution.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">Semiconductor ceramics revenue</td>
+          <td>Serial production FY27+</td>
+          <td class="td-mono">Material revenue FY29</td>
+          <td class="td-mono td-blue">On Track</td>
+          <td><span class="badge badge-blue">In Progress</span></td>
+          <td>Facility commissioned H1 FY26, qualification completed, serial supply begins FY27. 4–6 year qualification cycle crossed. On track.</td>
+        </tr>
+        <tr>
+          <td class="td-bold">EMD export share target</td>
+          <td>FY26</td>
+          <td class="td-mono">30% long-term</td>
+          <td class="td-mono td-green">33%</td>
+          <td><span class="badge badge-green">Achieved / Exceeded</span></td>
+          <td>Remarkable execution — export share tripled in one year, driven by EU anti-dumping duties and treated grain products strategy.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-amber" style="margin-top:20px;">
+    <strong>Pattern Recognition — Ceramics Guidance Gap</strong>
+    Ceramics is consistently the segment where management over-guides. This has occurred three consecutive reporting periods — Q3 FY26 original guidance 16-18%, revised to 13-14%, final at 9.3%. The explanation — deferred projects and US tariff uncertainty — is credible but investors should apply a structural 20-25% haircut to Ceramics growth guidance when underwriting forward estimates. FY27 Ceramics guidance of 15–15.5% should therefore be modeled at 11-12%.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- STEP 4: HIDDEN FINANCIAL ARCHITECTURE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="hidden">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <span class="section-title">Hidden Financial Architecture</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="card">
+        <div class="card-title">Working Capital Forensics</div>
+        <p><strong>Receivables expansion is the primary working capital concern.</strong> Standalone trade receivables grew from ₹451 Cr (FY25) to ₹545 Cr (FY26) — an increase of ₹94 Cr, or a ~21% jump against revenue growth of 8.6%. This implies receivable days expanded materially. The operating cash flow statement shows ₹9,092 Lakhs (₹91 Cr) outflow from trade receivables increase, partly explained by the Q4 revenue concentration (₹845 Cr in Q4 vs ₹769 Cr in Q3).</p>
+        <p><strong>Inventory management is stable.</strong> Standalone inventories grew ₹25 Cr to ₹467 Cr — reasonable given the revenue base and the H2 volume ramp requiring higher raw material buffers. No unusual inventory build detected.</p>
+        <p><strong>Trade payables expanded constructively.</strong> Standalone trade payables grew from ₹190 Cr to ₹222 Cr — a ₹32 Cr increase, showing the company is appropriately using supplier credit as working capital. No signs of distress-driven payable stretching; the increase is proportionate to activity levels.</p>
+        <p><strong>Consolidated working capital signals positive.</strong> Despite strong Q4 revenue, the consolidated cash conversion improved dramatically — FCF/PAT rose from 16% to 57%. This is the primary counter-evidence to any working capital concern: if collections were a problem, FCF would not have jumped this much.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Balance Sheet Stress Mapping</div>
+        <div class="data-row"><span class="data-key">Standalone Debt</span><span class="data-val">Zero</span></div>
+        <div class="data-row"><span class="data-key">Consol. Non-current Borrowings</span><span class="data-val">₹26 Cr</span></div>
+        <div class="data-row"><span class="data-key">Consol. Short-term Borrowings</span><span class="data-val">₹279 Cr (⬆ from ₹95 Cr)</span></div>
+        <div class="data-row"><span class="data-key">Consol. Lease Liabilities</span><span class="data-val">₹107 Cr (total)</span></div>
+        <div class="data-row"><span class="data-key">Contingent Liabilities (disclosed)</span><span class="data-val">Under standard disclosures</span></div>
+        <div class="data-row"><span class="data-key">VAW Cash (blocked)</span><span class="data-val">₹297 Cr (restricted)</span></div>
+        <div class="data-row"><span class="data-key">Consol. Cash (ex-VAW)</span><span class="data-val">~₹400 Cr (free)</span></div>
+        <div class="data-row"><span class="data-key">Pledged Promoter Shares</span><span class="data-val">None disclosed</span></div>
+        <div class="data-row"><span class="data-key">Goodwill (consol.)</span><span class="data-val">₹297 Cr</span></div>
+        <p class="footnote" style="margin-top:12px;">Short-term borrowings jump from ₹95 Cr to ₹279 Cr warrants monitoring — likely related to international subsidiary working capital facilities (Rhodius, Awuko wind-down costs). Not a standalone concern given zero standalone debt.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-title">Cash Flow Truth Analysis</div>
+        <p><strong>The FCF improvement story is real.</strong> Standalone operating cash flow before tax was ₹414 Cr vs ₹483 Cr — the difference is the ₹91 Cr receivables increase largely explained by Q4 revenue concentration. After tax, standalone CFO was ₹302 Cr vs ₹190 Cr last year. Net investing outflow was ₹110 Cr (after the ₹118 Cr dividend received from subsidiary — note: this is circular if it's counted in both PAT and CFI).</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Cash Flow Metric</th><th>FY26</th><th>FY25</th><th>Direction</th></tr></thead>
+            <tbody>
+              <tr><td>Standalone CFO (post-tax)</td><td class="td-mono">₹302 Cr</td><td class="td-mono">₹190 Cr</td><td class="td-mono td-green">▲ Strong</td></tr>
+              <tr><td>Standalone Capex</td><td class="td-mono">₹235 Cr</td><td class="td-mono">₹184 Cr</td><td class="td-mono td-amber">▲ Growth mode</td></tr>
+              <tr><td>Standalone FCF</td><td class="td-mono">~₹67 Cr</td><td class="td-mono">~₹6 Cr</td><td class="td-mono td-green">▲ Dramatic</td></tr>
+              <tr><td>Consol. CFO (post-tax)</td><td class="td-mono">₹367 Cr</td><td class="td-mono">₹304 Cr</td><td class="td-mono td-green">▲ Healthy</td></tr>
+              <tr><td>Consol. Capex</td><td class="td-mono">₹309 Cr</td><td class="td-mono">₹282 Cr</td><td class="td-mono td-amber">▲ Rising</td></tr>
+              <tr><td>Consol. FCF/PAT</td><td class="td-mono">56.6%</td><td class="td-mono">16.1%</td><td class="td-mono td-green">▲ Inflection</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-green" style="margin-top:16px;">
+          <strong>Critical Observation</strong>
+          The dramatic FCF improvement despite higher capex spending is driven by two factors: (1) working capital discipline — inventory draw-down and faster collections in H2, and (2) the consolidated CFO benefiting from profitable export growth in EMD (exports carry favorable cash cycles with upfront LC payments). This is a genuine quality improvement.
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-title">Hidden Liability Architecture</div>
+        <p><strong>VAW Russia Blocked Cash (₹297 Cr):</strong> This cash exists on the balance sheet but is legally inaccessible due to US OFAC sanctions. It inflates the reported consolidated cash position. True free cash is approximately ₹400 Cr (ex-VAW), not ₹698 Cr as reported.</p>
+        <p><strong>Awuko Wind-Down Costs (₹119 Cr exceptional):</strong> The ₹119 Cr write-down for Awuko closure (Germany) includes restructuring costs under German labor law, which can be substantial. There is moderate risk of additional costs in FY27 as the winding-up process progresses through German courts. Management has not quantified the FY27 tail cost explicitly.</p>
+        <p><strong>Goodwill Sensitivity (₹297 Cr):</strong> With Awuko closed and Foskor winding down, the ₹297 Cr goodwill balance (primarily from Rhodius) needs monitoring. Rhodius is now expected to show breakeven in FY27 — any further deterioration in German abrasives market conditions would trigger an impairment test.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- STEP 5: MANAGEMENT COMMENTARY DECODE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="mgmt">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <span class="section-title">Management Commentary Decode</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="card">
+        <div class="card-title">Tone, Confidence & Behavioral Signals</div>
+        <p><strong>MD Sridharan Rangarajan's tone was notably more confident than Q3.</strong> The Q3 call had a defensive undertone with significant guidance cuts across three segments. The Q4 call was structured, forward-looking, and showed management leaning into the Aspiration 2030 narrative with genuine conviction. The opening remarks ran unusually long (management themselves acknowledged this) but were substantive — covering new business opportunities, capex deployments, and strategic milestones in real detail.</p>
+        <p><strong>Avoided questions and selective disclosures detected:</strong></p>
+        <p>1. <span class="hl-amber">SOFC wallet share deflection.</span> When directly asked about wallet share with the key SOFC customer, management refused to answer — "We wouldn't like to share such details." This is typical when the share is either too small (uncomfortable) or sole-sourced (commercially sensitive). The customer question — whether this can be 10%+ of sales in 3 years — was met with a vague "definitely meaningful" response.</p>
+        <p>2. <span class="hl-amber">No Aspiration 2030 revenue or margin targets.</span> Management explicitly declined to provide a revenue or EBITDA target for 2030, saying "we have not been sharing guidance beyond one year." While conservative, this limits investor ability to underwrite the premium valuation. Compare this against peers who have announced specific 2030/2027 revenue milestones.</p>
+        <p>3. <span class="hl-amber">Ceramics underperformance framing.</span> "Deferred projects" was the single line answer for a 400–900 bps guidance miss. This is the third consecutive quarter where this explanation was used. The underlying risk — whether US tariff uncertainty is permanent demand destruction rather than deferral — was not directly addressed.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-title">Management Classification & Capital Mindset</div>
+        <p><strong>Classification: Conservative → Transitioning to Visionary</strong></p>
+        <p>The Murugappa Group heritage runs conservative — dividend payout is modest (0.38% yield on current market cap), there's zero promoter pledging, and the balance sheet is pristine. However, the Aspiration 2030 framework represents a meaningful strategic stretch — semiconductor ceramics, SOFC electrolytes, aerospace defence, nitride powders, graphene — these are high-technology bets uncommon for a traditional Indian materials company.</p>
+        <p>The decisive closure of Awuko and Foskor in FY26 signals that the management is shedding the "hold and hope" mentality that characterized the previous five years of managing these loss-making entities. This is a positive behavioral evolution.</p>
+
+        <div class="table-wrap" style="margin-top:16px;">
+          <table>
+            <thead><tr><th>Behavioral Marker</th><th>Signal</th><th>Assessment</th></tr></thead>
+            <tbody>
+              <tr><td>Subsidiary losses held for 4–13 years</td><td><span class="badge badge-red">Negative</span></td><td>Empire-building tendency</td></tr>
+              <tr><td>Proactive Q3 margin guidance cuts</td><td><span class="badge badge-green">Positive</span></td><td>Transparency improving</td></tr>
+              <tr><td>Refused to provide 2030 targets</td><td><span class="badge badge-amber">Neutral</span></td><td>Conservative but investor-unfriendly</td></tr>
+              <tr><td>Awuko + Foskor closure in FY26</td><td><span class="badge badge-green">Strong Positive</span></td><td>Capital discipline maturing</td></tr>
+              <tr><td>R&D % at 1% → targeting 2–3%</td><td><span class="badge badge-green">Positive</span></td><td>Long-term investment mindset</td></tr>
+              <tr><td>Zero promoter pledging</td><td><span class="badge badge-green">Strong Positive</span></td><td>Promoter alignment</td></tr>
+              <tr><td>BEFAST culture articulation</td><td><span class="badge badge-amber">Watch</span></td><td>Execution culture being built</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- STEP 6 + 7: SEGMENT & INDUSTRY ANALYSIS -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="segments">
+  <div class="section-header">
+    <span class="section-num">06–07</span>
+    <span class="section-title">Segment Deep Dive & Competitive Positioning</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="three-col">
+    <div class="card">
+      <div class="card-title" style="color:var(--gold)">⬡ Abrasives — Core Engine</div>
+      <p><strong>Standalone FY26: ₹1,270 Cr (+6.2%)</strong></p>
+      <p><strong>Consolidated FY26: ₹2,271 Cr (+5.1%)</strong></p>
+      <div class="divider"></div>
+      <p>The standalone abrasives business is healthy and gaining structural momentum. H2 FY26 delivered 15.6% growth over H2 FY25 — dealers have restocked, industrial demand has normalized, and the competitive dynamic is improving as China removes 9% export rebate from April 2026. This effectively raises the landed cost of Chinese abrasives by ~9%, improving CUMI's pricing power in both domestic and export markets.</p>
+      <p>The thin wheel capacity commissioned via DRONCO assets (₹83 Cr capex, 46 million wheel capacity, ₹120 Cr peak revenue potential) directly addresses China competition in the commodity thin wheel segment. This is a defensive but intelligent move.</p>
+      <p><strong>Standalone PBIT margin</strong> declined 81 bps to 15.3% due to H1 under-absorption. Management guided 12% standalone Abrasives growth for FY27 — this is achievable if the China export rebate removal creates pricing tailwinds and dealer restocking continues. At 12% growth and improving margins (target 16–17%), the Abrasives segment earnings could grow 20%+.</p>
+      <p><strong>Consolidation risk:</strong> Rhodius (EUR 61M, -8.8%) remains a drag but management expects breakeven in FY27. Awuko is being wound down — its EUR 108 Cr revenue contribution disappears from FY27 consolidated Abrasives, reducing the headline consolidated growth rate but dramatically improving quality of reported numbers.</p>
+      <div style="margin-top:12px;">
+        <span class="badge badge-green">Structural Tailwinds</span>&nbsp;
+        <span class="badge badge-amber">Rhodius Risk</span>&nbsp;
+        <span class="badge badge-gold">China Rebate Removal Catalyst</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--blue)">⬡ Ceramics — Dual Character</div>
+      <p><strong>Standalone FY26: ₹1,000 Cr (+6.5%)</strong></p>
+      <p><strong>Consolidated FY26: ₹1,268 Cr (+9.3%)</strong></p>
+      <div class="divider"></div>
+      <p>Ceramics is the most strategically complex segment — containing both high-growth emerging businesses and cyclically sensitive traditional businesses within the same P&L.</p>
+      <p><strong>Core winners (Metallized Cylinders):</strong> CUMI is the global #2 player in metallized cylinders for vacuum interrupters — a market driven by the global power T&D infrastructure buildout. Export-dominated (>80% of business is exports). Growing 14% typically, though production challenges reduced this to 9% in FY26. Expansion in 3 phases over next 18-24 months.</p>
+      <p><strong>High-growth: SOFC Ceramics for AI Data Centers.</strong> CUMI supplies ceramic components to one of the world's largest SOFC manufacturers. The customer's capacity is expanding from 1GW to 2GW. SOFC Ceramics grew >20% in FY26 and represents the single largest near-term secular growth driver in the Ceramics segment. The replacement demand cycle (5–7 years) creates a recurring revenue stream.</p>
+      <p><strong>New optionality: Semiconductor Wafer Fab Ceramics.</strong> ₹66 Cr facility, qualification complete, serial supply begins FY27. The qualification cycle of 4-6 years creates a durable competitive moat — new entrants cannot replicate overnight. Material revenue from FY29 per management.</p>
+      <p><strong>Challenges:</strong> Wear ceramics exports to America (-40%) and refractory project deferrals held FY26 growth below potential. US tariff uncertainty affecting ceramic project spending by American customers appears to be resolving.</p>
+      <div style="margin-top:12px;">
+        <span class="badge badge-green">SOFC Secular Driver</span>&nbsp;
+        <span class="badge badge-blue">Semiconductor Optionality</span>&nbsp;
+        <span class="badge badge-amber">US Tariff Sensitivity</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--green)">⬡ Electrominerals — Export Engine</div>
+      <p><strong>Standalone FY26: ₹906 Cr (+11.1%)</strong></p>
+      <p><strong>Consolidated FY26: ₹1,632 Cr (+3.7%)</strong></p>
+      <div class="divider"></div>
+      <p>The standalone Electrominerals story is arguably the most impressive execution in CUMI's FY26 narrative. Export share went from 11% to 33% of standalone EMD revenue in a single year — driven by treated grain products and the EU anti-dumping duty framework on Chinese grains. Over ₹300 Cr of export revenue is now anchored with global OEMs in abrasives and refractories.</p>
+      <p><strong>Strategic product evolution (Core → Treated → Specialty → Transformational):</strong> The 2030 roadmap shifts the EMD revenue mix from 85% core products (fused alumina, SiC) today to 55-60% core with 20% treated products, 18-20% specialty (alumina zirconia, Zirmul, calcia-stabilized zirconia) and 10% transformational (SOFC powders, nitrides, HPSiC, graphene). Each step up the value chain significantly improves EBIT margins.</p>
+      <p><strong>HPSiC (High Purity Silicon Carbide):</strong> 5N purity achieved in FY26 — targeting industrial and semiconductor applications. 6N purity technology route initiated. This is a 5-year capability build that could unlock substantial export premium pricing.</p>
+      <p><strong>Consolidated drag:</strong> VAW Russia (down 35% in ruble terms) and Foskor Zirconia closure explain the muted consolidated growth. On a like-for-like basis (ex-VAW, ex-Foskor), consolidated EMD would have grown 8-9%.</p>
+      <div style="margin-top:12px;">
+        <span class="badge badge-green">Export Engine</span>&nbsp;
+        <span class="badge badge-gold">Product Mix Upgrade</span>&nbsp;
+        <span class="badge badge-red">VAW Uncertainty</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title">Industry Structure & Competitive Dynamics</div>
+    <div class="two-col">
+      <div>
+        <p><strong>Global Abrasives:</strong> A mature oligopoly (Saint-Gobain, 3M, Tyrolit, Klingspor, CUMI) with steady demand from automotive, construction, and precision manufacturing. China is a disruptive force through subsidized pricing but the EU anti-dumping duty on Chinese fused alumina grains is a multi-year structural shift. India's infrastructure and manufacturing capex cycle (railways, power T&D, real estate, defence) provides secular domestic demand tailwinds. CUMI's thin wheel initiative via DRONCO assets directly addresses the import replacement opportunity in the fastest-growing Abrasives sub-segment.</p>
+        <p><strong>Technical Ceramics:</strong> A structurally attractive specialty materials market with high qualification barriers and sticky customer relationships. The addressable opportunity has expanded significantly due to AI data centers (SOFC demand), defence indigenization (ballistic protection ceramics), power electronics (substrate ceramics for EVs and inverters), and semiconductor manufacturing (wafer fab equipment ceramics). CUMI is positioned at the intersection of all four mega-themes — a rare alignment.</p>
+      </div>
+      <div>
+        <p><strong>Electrominerals / Fused Alumina:</strong> Chinese producers dominate global supply with 60%+ share. Anti-dumping duties in the EU are creating a protected premium market for non-Chinese fused alumina. India is the primary beneficiary alongside Australia (Altech). CUMI's treated grain capability differentiates it from commodity Chinese producers — treated grains command 30-50% price premiums.</p>
+        <p><strong>China+1 Strategic Beneficiary:</strong> CUMI is explicitly positioned to benefit from global supply chain diversification across all three segments. EU anti-dumping in EMD, potential CHIPS Act-related ceramic supply qualification in semiconductors, and defence indigenization in ceramics all create structural market share gains for CUMI that are not cyclical in nature.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- STEP 8: CAPITAL ALLOCATION -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="capex">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <span class="section-title">Capital Allocation Quality</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="card">
+        <div class="card-title">FY26 Capital Deployment (₹309 Cr Consolidated)</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Programme</th><th>Capex</th><th>Revenue Potential</th><th>Verdict</th></tr></thead>
+            <tbody>
+              <tr><td>Semiconductor Wafer Fab Ceramics (Phase 1)</td><td class="td-mono">₹66 Cr</td><td class="td-mono">3–4× initial investment</td><td><span class="badge badge-green">Exceptional ROCE</span></td></tr>
+              <tr><td>Aerospace & Defence Ballistic Ceramics</td><td class="td-mono">₹49 Cr</td><td class="td-mono">Gradual scale to 2030</td><td><span class="badge badge-blue">Strategic Positioning</span></td></tr>
+              <tr><td>WFA Furnace Upgrade (2→4.5 MVA)</td><td class="td-mono">₹53 Cr</td><td class="td-mono">₹95 Cr peak revenue</td><td><span class="badge badge-gold">Good ROCE ~1.8×</span></td></tr>
+              <tr><td>Treatment Facility Expansion</td><td class="td-mono">₹30 Cr</td><td class="td-mono">₹120 Cr peak revenue</td><td><span class="badge badge-green">Excellent ROCE ~4×</span></td></tr>
+              <tr><td>Thin Wheel Capacity (DRONCO assets)</td><td class="td-mono">₹83 Cr</td><td class="td-mono">₹120 Cr peak revenue</td><td><span class="badge badge-gold">Moderate ROCE ~1.4×</span></td></tr>
+              <tr><td>SOFC Ceramic Powders Pilot</td><td class="td-mono">Small</td><td class="td-mono">Long-term option</td><td><span class="badge badge-blue">R&D Bet</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="footnote" style="margin-top:12px;">FY27 capex guidance: ₹400 Cr. Key programs: Advanced Ceramics for power electronics, BFA expansion, thermal spray powder furnace, Zirconia furnace, 110kV substation, tunnel kiln for refractories.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-title">Capital Allocation Scorecard</div>
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-green">POSITIVE</span></div>
+          <div class="flag-text"><div class="flag-title">Domestic India capex is high-quality</div>Semiconductor ceramics, defence, SOFC, treated EMD products — these are high-ROCE, long-qualification-cycle investments that create durable competitive barriers.</div>
+        </div>
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-red">FAILURE</span></div>
+          <div class="flag-text"><div class="flag-title">International M&A track record is poor</div>Awuko (EUR 30M losses), Foskor (13-year drain), VAW Russia (now sanctioned) — three out of four major international acquisitions have destroyed shareholder value. Rhodius is marginal. CUMI should be cautious about international inorganic growth.</div>
+        </div>
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-amber">WATCH</span></div>
+          <div class="flag-text"><div class="flag-title">Rising capex intensity vs earnings quality</div>FY27 ₹400 Cr capex on ~₹500-600 Cr standalone EBIT implies 65-80% capex/EBIT ratio. Sustainability requires the new capacity to ramp revenue within 18-24 months.</div>
+        </div>
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-green">POSITIVE</span></div>
+          <div class="flag-text"><div class="flag-title">Self-funding growth with zero equity dilution</div>CUMI is funding ₹400 Cr capex entirely from internal accruals and modest short-term debt. No equity dilution, no rights issue, no pledging. This is the Murugappa way — and it's value-accretive.</div>
+        </div>
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-amber">WATCH</span></div>
+          <div class="flag-text"><div class="flag-title">Dividend policy is conservative</div>Total dividend of ₹4/share (₹76 Cr payout) on ₹416 Cr standalone PAT implies 18% payout ratio. Given the strong balance sheet and abundant free cash, a higher payout would be justified. However, given the growth investment phase, this is understandable.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- STEP 9: RED FLAGS -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="flags">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <span class="section-title">Red Flags & Forensic Detection</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="card">
+        <div class="card-title">Identified Red Flags</div>
+
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-amber">Moderate</span></div>
+          <div class="flag-text"><div class="flag-title">Standalone PAT Inflated by Subsidiary Dividend</div>₹76 Cr of the ₹416 Cr standalone PAT is an inter-company dividend from SEDCL — not operational earnings. Normalised PAT is ~₹340 Cr. The 29.4% headline PAT growth partly overstates operational progress.</div>
+        </div>
+
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-amber">Moderate</span></div>
+          <div class="flag-text"><div class="flag-title">Ceramics Guidance Credibility — Recurring Miss</div>Three consecutive quarters of Ceramics growth guidance downgrades. While explanations are plausible (project deferrals, tariff uncertainty), the pattern of optimistic guidance followed by delivery shortfalls creates a structural credibility discount on Ceramics segment forward estimates.</div>
+        </div>
+
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-red">Severe</span></div>
+          <div class="flag-text"><div class="flag-title">VAW Russia — Blocked Cash & Ongoing Uncertainty</div>₹297 Cr of consolidated cash is blocked in VAW due to US OFAC sanctions. Management has no alternative plan ("we need to wait for sanctions to be lifted"). This creates a permanent write-off risk if sanctions are sustained for another 3-5 years. The cash appeared as an exceptional write-down (₹104 Cr) in FY25 — further impairment is possible.</div>
+        </div>
+
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-amber">Moderate</span></div>
+          <div class="flag-text"><div class="flag-title">Short-term Borrowings Jump — Consolidated</div>Consolidated short-term borrowings tripled from ₹95 Cr to ₹279 Cr YoY. While standalone is debt-free, the international subsidiary balance sheets (particularly Rhodius and Awuko wind-down costs) have drawn on short-term credit. This needs monitoring in FY27 as Awuko costs crystalize.</div>
+        </div>
+
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-amber">Moderate</span></div>
+          <div class="flag-text"><div class="flag-title">Rhodius Goodwill Risk</div>With ₹297 Cr goodwill on consolidated books (predominantly from European acquisitions) and Rhodius barely breaking even (EUR 2.6M loss in FY26, expected breakeven in FY27), any further deterioration in the European industrial abrasives market could trigger a goodwill impairment test. The IND AS 36 trigger is "indicators of impairment" — a continued loss-making trajectory at Rhodius would qualify.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-title">Cleared / Non-Issues</div>
+
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-green">Clear</span></div>
+          <div class="flag-text"><div class="flag-title">No Auditor Concerns</div>Price Waterhouse Chartered Accountants LLP issued an unmodified opinion on both standalone and consolidated FY26 results. The only emphasis of matter was the VAW sanctions situation (already disclosed prominently by management). No going concern doubts, no material uncertainties on the India business.</div>
+        </div>
+
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-green">Clear</span></div>
+          <div class="flag-text"><div class="flag-title">No Promoter Pledging</div>Zero promoter share pledging detected. Murugappa Group maintains clean corporate governance standards. No related party transaction concerns of materiality.</div>
+        </div>
+
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-green">Clear</span></div>
+          <div class="flag-text"><div class="flag-title">No Revenue Recognition Issues</div>Growth is volume-driven, broad-based across geographies and customer types, and independently corroborated by industry trends (construction recovery, industrial demand normalization, SOFC expansion at customer). No channel stuffing; H1 was actually channel de-stuffing.</div>
+        </div>
+
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-green">Clear</span></div>
+          <div class="flag-text"><div class="flag-title">No Accounting Policy Changes</div>No mid-year accounting policy changes. Labour Codes impact (₹313-432 Lakhs) was properly disclosed and is a regulatory change, not an accounting manipulation.</div>
+        </div>
+
+        <div class="flag-item">
+          <div class="flag-sev"><span class="badge badge-green">Clear</span></div>
+          <div class="flag-text"><div class="flag-title">No Equity Dilution</div>Share count increase minimal — only 44,638 equity shares from ESOP exercise in Q4 FY26. No rights issue, QIP, or equity placement planned. Dilution is immaterial.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- STEP 10: POSITIVE INFLECTIONS -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="inflections">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <span class="section-title">Positive Inflection Signals</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="three-col">
+    <div class="callout callout-green">
+      <strong>🔑 EMD Export Breakthrough</strong>
+      Exports tripled from 11% to 33% of standalone EMD revenue in FY26. This is not a one-time event — it's structural. EU anti-dumping duties on Chinese fused alumina grains are now in force, and CUMI's treated grain capability offers genuine product differentiation. The ₹300 Cr+ export base is anchored with long-term OEM relationships across Europe. Incremental export growth from here requires minimal capex (existing capacity leverage) — pure margin accretion.
+    </div>
+    <div class="callout callout-green">
+      <strong>🔑 Awuko + Foskor Exit — P&L Liberation</strong>
+      The closure of these two entities removes ₹100–120 Cr of annual consolidated losses from FY27 onwards. On a ₹500 Cr PBT base, this represents 20–24% PAT uplift before any business growth. This single action is worth more than two years of organic PAT growth and deserves valuation re-rating.
+    </div>
+    <div class="callout callout-green">
+      <strong>🔑 Semiconductor Ceramics — Serial Supply Begins FY27</strong>
+      The qualification cycle (4–6 years) has been completed. Products approved by key global OEMs. Serial production begins FY27. Management guided material revenue from FY29 with 3–4× further capex expansion ahead. This is a low-volume, high-ASP, high-ROCE business with strong IP barriers — a fundamentally different earnings quality than commodity abrasives.
+    </div>
+    <div class="callout callout-blue">
+      <strong>🔷 China Export Rebate Removal</strong>
+      China removed the 9% export rebate on abrasives products effective April 2026. This raises the effective cost of Chinese abrasive exports by ~9–10%, improving CUMI's competitive position in both domestic India and global export markets. Effect is beginning to show in pricing and will accelerate through FY27 as channel inventories of Chinese product deplete.
+    </div>
+    <div class="callout callout-blue">
+      <strong>🔷 FCF Inflection — Cash Accumulation Begins</strong>
+      Consolidated FCF/PAT jumped from 16% to 57%. With ₹400 Cr capex guided for FY27 against projected CFO of ₹450–500 Cr, CUMI transitions to a genuine free cash flow generating business by FY28. Debt-free balance sheet with FCF accumulation creates optionality for both shareholder returns and selective M&A (India-focused this time).
+    </div>
+    <div class="callout callout-blue">
+      <strong>🔷 India Manufacturing + Defence Capex</strong>
+      Indian government's accelerating Defence Make in India push (DRDO, STANAG certifications, SCOMET approvals) creates a structural TAM expansion for CUMI's advanced ceramics. Vehicle armour (STANAG 4), ballistic protection (NIJ 3+/4 equivalent) — these are 5-10 year supply contracts with PSU defence contractors. SCOMET approval pending — once received, export opportunities open in allied defence markets.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- STEP 11: VALUATION + MOAT + TAM -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="valuation">
+  <div class="section-header">
+    <span class="section-num">11</span>
+    <span class="section-title">Valuation Comfort, Moat Analysis & TAM Structure</span>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- VALUATION METRICS -->
+  <div class="card">
+    <div class="card-title">Valuation Metrics — Reported vs. Normalised</div>
+    <div class="two-col">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Metric</th><th>Reported FY26</th><th>Normalised FY26*</th><th>FY27E</th></tr></thead>
+          <tbody>
+            <tr><td>Market Cap</td><td class="td-mono td-gold">₹20,132 Cr</td><td class="td-mono td-gold">₹20,132 Cr</td><td class="td-mono">—</td></tr>
+            <tr><td>P/E (Consolidated)</td><td class="td-mono">78.6×</td><td class="td-mono td-amber">~38–42×</td><td class="td-mono td-green">~30–35×</td></tr>
+            <tr><td>P/E (Standalone)</td><td class="td-mono">48.3×</td><td class="td-mono td-amber">~59× (ex-div)</td><td class="td-mono td-green">~40–45×</td></tr>
+            <tr><td>EV / EBITDA</td><td class="td-mono">~35–38×</td><td class="td-mono td-amber">~22–25×</td><td class="td-mono td-green">~18–20×</td></tr>
+            <tr><td>Price / Book</td><td class="td-mono td-amber">5.22×</td><td class="td-mono td-amber">5.22×</td><td class="td-mono">~4.5×</td></tr>
+            <tr><td>ROCE (Consol.)</td><td class="td-mono td-amber">10.5%</td><td class="td-mono td-gold">~16–18%*</td><td class="td-mono td-green">~14–16%</td></tr>
+            <tr><td>ROE (Consol.)</td><td class="td-mono td-red">6.89%</td><td class="td-mono td-amber">~12–14%*</td><td class="td-mono td-green">~13–15%</td></tr>
+            <tr><td>FCF Yield</td><td class="td-mono">~0.7%</td><td class="td-mono">—</td><td class="td-mono td-green">~1.5–2%</td></tr>
+            <tr><td>Dividend Yield</td><td class="td-mono">0.38%</td><td class="td-mono">—</td><td class="td-mono">~0.4%</td></tr>
+          </tbody>
+        </table>
+        <p class="footnote">*Normalised: excludes VAW (₹87 Cr drag), Awuko (₹19 Cr drag), Foskor (₹22 Cr drag), Rhodius exceptional (₹46 Cr). FY27E assumes Awuko + Foskor closures fully reflected.</p>
+      </div>
+      <div>
+        <div class="callout callout-amber">
+          <strong>Valuation Classification: EXPENSIVE BUT JUSTIFIED (with caveats)</strong>
+          At 78.6× reported P/E, CUMI is optically expensive. But the reported earnings are structurally depressed by international losses that are being eliminated. Normalised consolidated P/E is 38-42×. FY27E P/E post-restructuring drops to 30–35×. For a quality Indian materials compounder with genuine advanced-tech optionality, 30–35× FY27E earnings is defensible — not cheap, but not irrational.
+          <br><br>The key question is whether CUMI can grow normalised EPS at 18–22% CAGR over FY27–FY29. If it can (EMD exports + Ceramics emerging + Semiconductor ceramics ramping + India industrial recovery), the current price offers a reasonable entry with embedded optionality. If Ceramics continues to disappoint and EMD export growth decelerates, the valuation is stretched.
+        </div>
+        <div class="callout callout-red" style="margin-top:12px;">
+          <strong>Risk to Valuation</strong>
+          ROCE of 10.5% (reported) and ROE of 6.89% are dangerously below the cost of equity (estimate 12–14%). While normalised returns are better (~16–18%), the market is pricing in a significant improvement in capital returns. Any delay in the semiconductor ceramics ramp, further EMD export deceleration, or renewed international subsidiary losses could compress multiples meaningfully.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOAT ANALYSIS -->
+  <div class="card" style="margin-top:20px;">
+    <div class="card-title">Economic Moat Analysis — Score: 6.5/10</div>
+    <div class="moat-grid">
+      <div class="moat-item">
+        <div class="moat-icon">🔬</div>
+        <div class="moat-name">Technical Qualification Moats</div>
+        <div class="score-bar-wrap" style="margin:8px 0;"><div class="score-bar" style="width:90%;background:var(--green);"></div></div>
+        <div class="moat-score-num">9</div><span class="score-denom">/10</span>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:8px;">Semiconductor ceramics (4-6 yr qual), metallized cylinders (#2 global), SOFC ceramics. Near-impossible to replicate fast.</p>
+      </div>
+      <div class="moat-item">
+        <div class="moat-icon">📦</div>
+        <div class="moat-name">Cost Position (EMD)</div>
+        <div class="score-bar-wrap" style="margin:8px 0;"><div class="score-bar" style="width:65%;background:var(--amber);"></div></div>
+        <div class="moat-score-num">6.5</div><span class="score-denom">/10</span>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:8px;">India power cost & bauxite access advantages. Chinese competition keeps this moderate. Treated grains create premium.</p>
+      </div>
+      <div class="moat-item">
+        <div class="moat-icon">🔗</div>
+        <div class="moat-name">Customer Switching Costs</div>
+        <div class="score-bar-wrap" style="margin:8px 0;"><div class="score-bar" style="width:75%;background:var(--gold);"></div></div>
+        <div class="moat-score-num">7.5</div><span class="score-denom">/10</span>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:8px;">High in advanced ceramics (OEM qualification), moderate in standard abrasives. SOFC customer is effectively captive given component criticality.</p>
+      </div>
+      <div class="moat-item">
+        <div class="moat-icon">🌐</div>
+        <div class="moat-name">Geographic Scale & Brand</div>
+        <div class="score-bar-wrap" style="margin:8px 0;"><div class="score-bar" style="width:60%;background:var(--amber);"></div></div>
+        <div class="moat-score-num">6</div><span class="score-denom">/10</span>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:8px;">Strong India brand, decent Europe presence (Rhodius), growing Australia/US ceramics exposure. Not global market leadership in core segments.</p>
+      </div>
+      <div class="moat-item">
+        <div class="moat-icon">⚙️</div>
+        <div class="moat-name">R&D & IP Pipeline</div>
+        <div class="score-bar-wrap" style="margin:8px 0;"><div class="score-bar" style="width:50%;background:var(--amber);"></div></div>
+        <div class="moat-score-num">5</div><span class="score-denom">/10</span>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:8px;">R&D at 1% of sales — below global peers (3M, Saint-Gobain at 3-5%). Targeting 2-3%. Technology tie-ups (CGCRI, tech transfer for AMB/DBC) partially compensate. Still catching up.</p>
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:13px;color:var(--text-muted);">Overall Moat Score: <strong style="color:var(--gold);">6.5/10 — Moderate-Wide Moat</strong> in advanced ceramics; Narrow Moat in standard abrasives and commodity EMD. The moat is widening as the emerging segment portfolio scales. The key moat-building activity in progress is the semiconductor ceramics qualification pipeline — once fully operational, this creates a 5–7 year defensible competitive position.</p>
+  </div>
+
+  <!-- TAM STRUCTURE -->
+  <div class="card" style="margin-top:20px;">
+    <div class="card-title">TAM Structure Analysis — Addressable Market Segmentation</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Business Area</th>
+            <th>Global TAM</th>
+            <th>India TAM</th>
+            <th>CUMI FY26 Rev</th>
+            <th>CUMI Market Share</th>
+            <th>Growth Driver</th>
+            <th>TAM CAGR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-bold">Bonded & Coated Abrasives (India)</td>
+            <td class="td-mono">$14B+</td>
+            <td class="td-mono">₹6,000–7,000 Cr</td>
+            <td class="td-mono">₹1,270 Cr</td>
+            <td class="td-mono td-gold">~18–20%</td>
+            <td>Infra, construction, auto, engineering</td>
+            <td class="td-green td-mono">8–10%</td>
+          </tr>
+          <tr>
+            <td class="td-bold">Advanced Ceramics (Global)</td>
+            <td class="td-mono">$12B+</td>
+            <td class="td-mono">₹2,000 Cr+</td>
+            <td class="td-mono">₹569 Cr (Ind. Ceramic)</td>
+            <td class="td-mono td-amber">~5% India, global niche</td>
+            <td>SOFC, semiconductors, EVs, defence</td>
+            <td class="td-green td-mono">12–15%</td>
+          </tr>
+          <tr>
+            <td class="td-bold">Semiconductor Ceramics</td>
+            <td class="td-mono">$3–4B</td>
+            <td class="td-mono">Nascent</td>
+            <td class="td-mono">Pilot — FY27 ramp</td>
+            <td class="td-mono td-blue">&lt;0.5% today</td>
+            <td>CHIPS Act, fab expansion, AI compute</td>
+            <td class="td-green td-mono">18–22%</td>
+          </tr>
+          <tr>
+            <td class="td-bold">SOFC / Clean Energy Ceramics</td>
+            <td class="td-mono">$800M–1.5B</td>
+            <td class="td-mono">₹200–400 Cr</td>
+            <td class="td-mono">₹100–120 Cr est.</td>
+            <td class="td-mono td-gold">15–20% est.</td>
+            <td>AI data centers, clean energy transition</td>
+            <td class="td-green td-mono">25–35%</td>
+          </tr>
+          <tr>
+            <td class="td-bold">Fused Alumina / EMD (Export)</td>
+            <td class="td-mono">$4–5B</td>
+            <td class="td-mono">₹5,000 Cr+</td>
+            <td class="td-mono">₹300 Cr (exports)</td>
+            <td class="td-mono td-amber">~5–7% EU addressable</td>
+            <td>Anti-dumping duty on China, treated grains</td>
+            <td class="td-green td-mono">10–14%</td>
+          </tr>
+          <tr>
+            <td class="td-bold">Defence Ceramics (India)</td>
+            <td class="td-mono">$8–10B global</td>
+            <td class="td-mono">₹500–800 Cr est.</td>
+            <td class="td-mono">Early stage</td>
+            <td class="td-mono td-blue">&lt;2% today</td>
+            <td>Make in India defence, SCOMET approval</td>
+            <td class="td-green td-mono">20–30%</td>
+          </tr>
+          <tr>
+            <td class="td-bold">Refractory Ceramics (India)</td>
+            <td class="td-mono">$5B+</td>
+            <td class="td-mono">₹8,000–10,000 Cr</td>
+            <td class="td-mono">₹437 Cr</td>
+            <td class="td-mono td-amber">~5%</td>
+            <td>Glass, steel, petrochem, fertilisers</td>
+            <td class="td-green td-mono">7–9%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout callout-gold" style="margin-top:16px;">
+      <strong>TAM Assessment: Under-penetrated in High-Value Adjacencies</strong>
+      CUMI's current revenue of ₹5,149 Cr (consolidated) represents a fraction of its addressable TAM. The core India business is well-positioned with 18–20% market share in abrasives. But the real compounding opportunity lies in advanced ceramics (semiconductor, SOFC, defence) where CUMI has near-zero market share today in multi-billion dollar global markets with 15–35% CAGR. Even capturing 2–5% share over 5 years in these segments would add ₹500–1,500 Cr to consolidated revenue.
+    </div>
+  </div>
+
+  <!-- VALUATION COMFORT FINAL -->
+  <div class="card" style="margin-top:20px;">
+    <div class="card-title">Valuation Comfort Summary</div>
+    <div class="two-col">
+      <div>
+        <p><strong>Is this a high-quality business at a fair valuation, a mediocre business at a premium, or an exceptional compounding machine deserving premium multiples?</strong></p>
+        <p style="margin-top:12px;">CUMI is a <span class="hl-gold">high-quality Indian materials business in the midst of a strategic transformation towards premium advanced materials</span>, currently trading at a valuation that fully prices in the transformation succeeding. The core India standalone business (Abrasives + Ceramics + EMD) is genuinely high-quality — strong competitive positions, improving margins, FCF generating, and exposure to secular growth themes. At standalone EBIT normalised for the inter-company dividend, CUMI India is trading at approximately 40× EBIT — fair-to-expensive for a materials company, but justifiable given the embedded optionalities.</p>
+        <p>The premium valuation is <span class="hl-amber">conditionally justified</span>: it requires (1) EMD exports sustaining at 30%+ of revenues, (2) Ceramics recovering to 14–15% growth in FY27, (3) Awuko/Foskor closures fully flowing through to consolidated P&L, and (4) the semiconductor ceramics ramp beginning to show in FY28–29 financials. Any meaningful miss on conditions (1) or (2) would pressure the 78× consolidated P/E.</p>
+      </div>
+      <div>
+        <div class="data-row"><span class="data-key">Valuation Classification</span><span class="data-val" style="color:var(--amber)">Expensive But Conditionally Justified</span></div>
+        <div class="data-row"><span class="data-key">Implied FY27E P/E (post-restr.)</span><span class="data-val">30–35×</span></div>
+        <div class="data-row"><span class="data-key">Warranted P/E (base case)</span><span class="data-val">28–35×</span></div>
+        <div class="data-row"><span class="data-key">Downside risk (bear case)</span><span class="data-val">₹780–820 (–24%)</span></div>
+        <div class="data-row"><span class="data-key">Upside potential (bull case)</span><span class="data-val">₹1,350–1,500 (+28–42%)</span></div>
+        <div class="data-row"><span class="data-key">Base case target (18 months)</span><span class="data-val">₹1,200–1,250 (+13–18%)</span></div>
+        <div class="data-row"><span class="data-key">Moat Score</span><span class="data-val">6.5/10 — Widening</span></div>
+        <div class="data-row"><span class="data-key">Compounding Potential</span><span class="data-val">High (15–20% EPS CAGR)</span></div>
+        <div class="callout callout-blue" style="margin-top:12px;font-size:12.5px;">
+          <strong>Market Expectation Embedded</strong>
+          At ₹1,057 CMP, the market is pricing in ~18–20% EPS CAGR over FY27–FY30, full normalisation of consolidated margins to 12–14% EBIT, and successful execution of semiconductor ceramics monetisation. This is not a stretch assumption — but it requires execution discipline across all three segments simultaneously.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- STEP 12: FUTURE TRAJECTORY -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="trajectory">
+  <div class="section-header">
+    <span class="section-num">12</span>
+    <span class="section-title">Future Trajectory — 3-Year Modeling</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="case-grid">
+    <div class="case-card case-bull">
+      <div class="case-label" style="color:var(--green)">🐂 Bull Case</div>
+      <div class="case-val" style="color:var(--green)">₹1,400–1,500</div>
+      <div class="case-text">
+        <strong>Assumptions:</strong> Ceramics grows 15%+ for FY27-FY29; EMD exports sustain at 35%+ share; Semiconductor ceramics ramps to ₹200+ Cr by FY29; Rhodius reaches profitability; consolidated normalised PAT reaches ₹750–800 Cr by FY29; re-rating to 28× on high-quality earnings mix.
+        <br><br><strong>P&L Scenario:</strong> Consolidated revenue ₹7,500–8,000 Cr by FY29, EBIT margin 13–15%, PAT ₹700 Cr.
+        <br><br>Probability: 25–30%
+      </div>
+    </div>
+    <div class="case-card case-base">
+      <div class="case-label" style="color:var(--gold)">📊 Base Case</div>
+      <div class="case-val" style="color:var(--gold)">₹1,200–1,250</div>
+      <div class="case-text">
+        <strong>Assumptions:</strong> Ceramics grows 11–12% (guidance haircut); EMD exports at 30–33%; semiconductor ceramics begins contributing in FY28–29; Awuko/Foskor closure fully reflected in FY27; Rhodius near breakeven; consolidated PAT grows to ₹550–600 Cr by FY29.
+        <br><br><strong>P&L Scenario:</strong> Consolidated revenue ₹6,500–7,000 Cr by FY29, EBIT margin 11–12%, PAT ₹550 Cr.
+        <br><br>Probability: 50–55%
+      </div>
+    </div>
+    <div class="case-card case-bear">
+      <div class="case-label" style="color:var(--red)">🐻 Bear Case</div>
+      <div class="case-val" style="color:var(--red)">₹780–850</div>
+      <div class="case-text">
+        <strong>Assumptions:</strong> Ceramics growth disappoints again (6–8%); EMD exports face Chinese competition resurgence; Rhodius requires further write-down; VAW sanctions tighten with additional ₹100 Cr impairment; semiconductor ceramics ramp delayed to FY30+; P/E compression to 22–25× on earnings disappointment.
+        <br><br><strong>P&L Scenario:</strong> Consolidated revenue ₹5,800–6,200 Cr by FY29, EBIT margin 9–10%, PAT ₹400 Cr.
+        <br><br>Probability: 20–25%
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px;">
+    <div class="card-title">Key Monitoring Variables — Quarterly Checklist</div>
+    <div class="three-col">
+      <div>
+        <p><strong style="color:var(--gold);">Ceramics Indicators (Most Critical)</strong></p>
+        <p>Industrial Ceramics export growth rate YoY; SOFC ceramics revenue quarterly trend; Metallized cylinder order book and shipments; US market project pipeline comments; Refractory order book from glass/petrochem customers.</p>
+      </div>
+      <div>
+        <p><strong style="color:var(--gold);">EMD Export Engine</strong></p>
+        <p>Export % of standalone EMD sales (must stay 30%+); Treated grain revenue share (target 20% by 2030); EU anti-dumping duty enforcement status; China export pricing trajectory; Q4 seasonality of export bookings.</p>
+      </div>
+      <div>
+        <p><strong style="color:var(--gold);">Consolidation Cleanup Progress</strong></p>
+        <p>Awuko wind-down completion timeline and residual costs; Foskor wind-down approvals; Rhodius quarterly P&L trajectory (target breakeven FY27); VAW Russia blocked cash status; Consolidated short-term debt normalization.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- STEP 13: FINAL INVESTMENT VERDICT -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="verdict">
+  <div class="section-header">
+    <span class="section-num">13</span>
+    <span class="section-title">Final Investment Verdict</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="card">
+        <div class="card-title" style="color:var(--green)">Key Positives</div>
+        <p>✦ Standalone business acceleration — 23% Q4 YoY growth is broad-based and genuine, not a statistical artifact.</p>
+        <p>✦ Awuko + Foskor closure eliminates ₹100–120 Cr annual consolidated earnings drag — largest single earnings improvement since IPO era.</p>
+        <p>✦ EMD export surge to 33% share (from 11%) is structural, anchored by EU anti-dumping duties and OEM relationships. Minimal capex required to sustain.</p>
+        <p>✦ Semiconductor ceramics qualification completed — serial supply begins FY27, material revenue FY29. 4–6 year qualification moat is irreplicable.</p>
+        <p>✦ FCF/PAT leapt to 57% — cash generation improving even as capex rises. Debt-free balance sheet with ₹400 Cr free cash.</p>
+        <p>✦ China export rebate removal (April 2026) is an unambiguous medium-term competitive tailwind for both Abrasives and EMD.</p>
+        <p>✦ Murugappa promoter quality — zero pledging, conservative governance, no equity dilution track record.</p>
+        <p>✦ SOFC demand driven by AI data center growth — secular, not cyclical. CUMI is an important supplier to the market leader.</p>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-title" style="color:var(--amber)">Hidden Insights Market May Miss</div>
+        <p>1. The "true" normalised consolidated P/E is 38–42× (not 78.6×) once international loss drag is excluded. FY27E drops to 30–35× post-closures.</p>
+        <p>2. The SOFC business may already be ₹100–120 Cr standalone — management's refusal to disclose wallet share and deflection suggests a concentrated, material relationship.</p>
+        <p>3. Standalone EMD at 33% export share and growing generates premium pricing vs domestic — this segment's margin profile may improve 200–300 bps over FY27–28 without incremental capex.</p>
+        <p>4. The ₹297 Cr VAW blocked cash, if sanctions are eventually lifted, creates a one-time cash windfall worth approximately ₹15 per share — not in any analyst model currently.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="card-title" style="color:var(--red)">Key Negatives & Risks</div>
+        <p>✦ Ceramics segment has missed guidance three consecutive periods — structural ability to deliver 15%+ growth targets remains unproven.</p>
+        <p>✦ Reported consolidated ROCE (10.5%) and ROE (6.89%) are below cost of equity — market is priced for improvement, not current reality.</p>
+        <p>✦ Standalone PAT quality is impaired by ₹76 Cr inter-company dividend — operational standalone PAT is ₹340 Cr vs reported ₹416 Cr.</p>
+        <p>✦ International M&A track record is poor — three out of four major international investments have failed. No new international inorganic strategy should command premium valuation.</p>
+        <p>✦ VAW Russia remains an unresolved liability — ₹297 Cr blocked cash, ongoing sanctions uncertainty, potential further impairment.</p>
+        <p>✦ Awuko wind-down tail costs in FY27 under German labour law are not quantified — risk of additional exceptional charges.</p>
+        <p>✦ Rhodius goodwill (₹297 Cr consolidated) faces impairment risk if European industrial abrasives market deteriorates further.</p>
+        <p>✦ At 78.6× P/E with 10.5% ROCE, the valuation requires near-perfect execution of a multi-year transformation plan.</p>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-title">Management Execution Scorecard</div>
+        <div class="data-row"><span class="data-key">Revenue Guidance Track Record</span><span class="data-val" style="color:var(--green)">Strong (consistently met)</span></div>
+        <div class="data-row"><span class="data-key">Margin Guidance Track Record</span><span class="data-val" style="color:var(--amber)">Moderate (Ceramics misses)</span></div>
+        <div class="data-row"><span class="data-key">Capital Discipline (Domestic)</span><span class="data-val" style="color:var(--green)">Strong</span></div>
+        <div class="data-row"><span class="data-key">Capital Discipline (International)</span><span class="data-val" style="color:var(--red)">Weak Historically</span></div>
+        <div class="data-row"><span class="data-key">Strategic Vision Execution</span><span class="data-val" style="color:var(--gold)">Improving (Aspiration 2030)</span></div>
+        <div class="data-row"><span class="data-key">Problem Acknowledgement</span><span class="data-val" style="color:var(--green)">Transparent (Awuko/Foskor)</span></div>
+        <div class="data-row"><span class="data-key">Overall Credibility Rating</span><span class="data-val" style="color:var(--gold)">Moderate → Strong</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL VERDICT -->
+  <div class="verdict-final">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);letter-spacing:0.12em;margin-bottom:12px;">INSTITUTIONAL INVESTMENT VERDICT</div>
+    <div class="verdict-rating">ACCUMULATE</div>
+    <div style="font-size:14px;color:var(--gold);margin-top:8px;">18–24 month horizon · Target ₹1,200–1,250 · Upside ~13–18%</div>
+    <div class="verdict-sub">CUMI is a genuinely high-quality Indian advanced materials franchise entering a structural earnings re-rating phase. The decisive closure of Awuko and Foskor eliminates the primary P&L drag, the EMD export engine is firing, and the semiconductor ceramics optionality is beginning to crystallize. The core India business merits 30–35× FY27E normalised earnings. The valuation is full — not cheap — but the embedded optionalities in SOFC, semiconductor ceramics, defence, and EMD exports are not yet reflected in consensus numbers. Accumulate in tranches on weakness towards ₹950–1,000 (30–32× FY27E normalised earnings) for a 2-year compounding journey. Do not expect re-rating at 78× P/E — the re-rating will come through earnings growth, not multiple expansion. Size accordingly — this is a 3–5% portfolio position for a quality Indian mid-to-large cap growth portfolio.</div>
+  </div>
+
+  <div class="two-col" style="margin-top:24px;">
+    <div class="callout callout-amber">
+      <strong>Long-Term Compounding Potential: HIGH (Conditional)</strong>
+      If CUMI successfully transitions 20–25% of revenue to advanced materials (semiconductors, SOFC electrolytes, defence, nitrides) by FY30, the business quality profile approaches that of a specialty chemical/advanced materials compounder. At that point, the current multiple could be sustained at 35–40× on a structurally higher earnings base, delivering 3–4× returns from current levels over a 7–10 year horizon.
+    </div>
+    <div class="callout callout-red">
+      <strong>Major Risks Ranked by Materiality</strong>
+      1. Ceramics structural slowdown (not cyclical deferral) · 2. VAW Russia permanent write-off risk · 3. Awuko wind-down cost overruns · 4. Rhodius goodwill impairment · 5. China competition resurgence in EMD · 6. Semiconductor ceramics ramp delay beyond FY29 · 7. Valuation de-rating if ROE doesn't recover to 14%+ by FY28.
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:40px;padding:24px;border-top:1px solid var(--border);">
+    <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);">CARBORUNDUM UNIVERSAL LIMITED (NSE: CARBORUNIV) · Q4 & FY26 Full-Year Institutional Analysis · May 2026</p>
+    <p style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);margin-top:6px;">This document is for informational purposes only and does not constitute investment advice. All financial data sourced from company disclosures (Q4 FY26 concall transcript, Q3 FY26 concall transcript, audited financial results, board meeting outcomes). Market data as of May 2026.</p>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+  // Simple scroll highlighting for nav
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 80) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
