@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Azad Engineering — Institutional Analysis | Q4 FY26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0f14;
+    --ink-2: #141720;
+    --ink-3: #1c2030;
+    --ink-4: #252a3a;
+    --border: rgba(255,255,255,0.07);
+    --border-soft: rgba(255,255,255,0.04);
+    --gold: #c9a84c;
+    --gold-lt: #e2c47a;
+    --gold-dim: rgba(201,168,76,0.15);
+    --gold-border: rgba(201,168,76,0.3);
+    --text: #e8e6df;
+    --text-muted: #8a8a94;
+    --text-dim: #5a5a68;
+    --green: #4caf82;
+    --green-dim: rgba(76,175,130,0.12);
+    --red: #e05a4b;
+    --red-dim: rgba(224,90,75,0.12);
+    --amber: #e8a23c;
+    --amber-dim: rgba(232,162,60,0.12);
+    --blue: #5a8fcc;
+    --blue-dim: rgba(90,143,204,0.12);
+    --accent-line: 2px solid var(--gold);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ───── LAYOUT ───── */
+  .page { max-width: 1200px; margin: 0 auto; padding: 0 32px 80px; }
+
+  /* ───── MASTHEAD ───── */
+  .masthead {
+    border-bottom: 1px solid var(--border);
+    padding: 40px 32px 36px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: end;
+  }
+  .masthead-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .masthead h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--text);
+    letter-spacing: -0.5px;
+  }
+  .masthead h1 span { color: var(--gold); }
+  .masthead-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    font-weight: 300;
+  }
+  .masthead-meta {
+    text-align: right;
+  }
+  .masthead-ticker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .masthead-price {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+  .masthead-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+
+  /* ───── VERDICT BANNER ───── */
+  .verdict-banner {
+    background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.03) 100%);
+    border: 1px solid var(--gold-border);
+    border-radius: 4px;
+    padding: 20px 28px;
+    margin: 32px 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .verdict-pill {
+    background: var(--gold);
+    color: var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .verdict-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--text);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* ───── SCORECARD GRID ───── */
+  .scorecard-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 28px 0;
+  }
+  .score-cell {
+    background: var(--ink-2);
+    padding: 20px 16px;
+    text-align: center;
+    position: relative;
+  }
+  .score-cell::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 20%; right: 20%;
+    height: 2px;
+    background: var(--bar-color, var(--gold));
+    border-radius: 2px;
+  }
+  .score-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .score-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--score-color, var(--gold));
+    line-height: 1;
+  }
+  .score-denom {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  /* ───── KPI ROW ───── */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin: 28px 0;
+  }
+  .kpi-card {
+    background: var(--ink-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px 20px;
+  }
+  .kpi-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .kpi-delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    margin-top: 4px;
+  }
+  .delta-up { color: var(--green); }
+  .delta-down { color: var(--red); }
+  .delta-neutral { color: var(--text-muted); }
+
+  /* ───── SECTION STRUCTURE ───── */
+  .section {
+    margin-top: 56px;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    padding: 3px 8px;
+    border: 1px solid var(--gold-border);
+    border-radius: 2px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+  .section-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+
+  /* ───── PROSE ───── */
+  .prose {
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-size: 13.5px;
+    font-weight: 300;
+  }
+  .prose strong { color: var(--text); font-weight: 500; }
+  .prose em { color: var(--gold-lt); font-style: italic; }
+
+  /* ───── TWO-COL ───── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+  /* ───── PANEL ───── */
+  .panel {
+    background: var(--ink-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+  }
+  .panel-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ───── FLAG ITEMS ───── */
+  .flag-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .flag-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .flag-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .dot-green { background: var(--green); }
+  .dot-amber { background: var(--amber); }
+  .dot-red { background: var(--red); }
+  .dot-gold { background: var(--gold); }
+  .dot-blue { background: var(--blue); }
+
+  /* ───── GUIDANCE TABLE ───── */
+  .guidance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    margin-top: 8px;
+  }
+  .guidance-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    background: var(--ink-3);
+  }
+  .guidance-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-soft);
+    color: var(--text-muted);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .guidance-table tr:last-child td { border-bottom: none; }
+  .guidance-table tr:hover td { background: rgba(255,255,255,0.015); }
+  .status-achieved {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: var(--green-dim);
+    color: var(--green);
+    border: 1px solid rgba(76,175,130,0.25);
+    white-space: nowrap;
+  }
+  .status-partial {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: var(--amber-dim);
+    color: var(--amber);
+    border: 1px solid rgba(232,162,60,0.25);
+    white-space: nowrap;
+  }
+  .status-delayed {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: var(--red-dim);
+    color: var(--red);
+    border: 1px solid rgba(224,90,75,0.25);
+    white-space: nowrap;
+  }
+  .status-ongoing {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: var(--blue-dim);
+    color: var(--blue);
+    border: 1px solid rgba(90,143,204,0.25);
+    white-space: nowrap;
+  }
+
+  /* ───── CF TABLE ───── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  .data-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 8px 12px;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+    background: var(--ink-3);
+  }
+  .data-table th:first-child { text-align: left; }
+  .data-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border-soft);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-align: right;
+    color: var(--text-muted);
+  }
+  .data-table td:first-child { text-align: left; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 12.5px; }
+  .data-table .bold-row td { color: var(--text); font-weight: 500; border-top: 1px solid var(--border); }
+  .data-table .neg { color: var(--red); }
+  .data-table .pos { color: var(--green); }
+
+  /* ───── MOAT BARS ───── */
+  .moat-item { margin-bottom: 16px; }
+  .moat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .moat-name { font-size: 12.5px; color: var(--text); }
+  .moat-score-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--gold); }
+  .moat-bar-bg {
+    height: 4px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .moat-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+  }
+  .moat-note { font-size: 11.5px; color: var(--text-dim); margin-top: 4px; }
+
+  /* ───── SCENARIO GRID ───── */
+  .scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 16px; }
+  .scenario-card {
+    border-radius: 4px;
+    padding: 20px;
+    border: 1px solid;
+  }
+  .scenario-bull { background: var(--green-dim); border-color: rgba(76,175,130,0.2); }
+  .scenario-base { background: var(--gold-dim); border-color: var(--gold-border); }
+  .scenario-bear { background: var(--red-dim); border-color: rgba(224,90,75,0.2); }
+  .scenario-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .scenario-bull .scenario-label { color: var(--green); }
+  .scenario-base .scenario-label { color: var(--gold); }
+  .scenario-bear .scenario-label { color: var(--red); }
+  .scenario-prob {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .scenario-items { list-style: none; }
+  .scenario-items li {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    padding: 3px 0;
+    line-height: 1.5;
+  }
+  .scenario-items li::before { content: '— '; color: var(--text-dim); }
+
+  /* ───── VALUATION METER ───── */
+  .val-meter-wrap {
+    background: var(--ink-3);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-top: 16px;
+  }
+  .val-meter-track {
+    height: 8px;
+    background: linear-gradient(90deg, var(--green), var(--amber) 40%, var(--red));
+    border-radius: 4px;
+    position: relative;
+    margin: 16px 0;
+  }
+  .val-meter-pointer {
+    position: absolute;
+    top: -6px;
+    width: 20px; height: 20px;
+    background: var(--ink);
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+  .val-meter-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+  .val-rating {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--amber);
+    margin-bottom: 8px;
+  }
+
+  /* ───── VALUATION METRICS GRID ───── */
+  .val-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+  .val-metric-card {
+    background: var(--ink-3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px;
+    text-align: center;
+  }
+  .val-metric-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.15em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px; }
+  .val-metric-value { font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; color: var(--text); }
+  .val-metric-sub { font-size: 10.5px; color: var(--text-dim); margin-top: 4px; }
+  .val-score-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    background: var(--amber-dim);
+    border: 1px solid rgba(232,162,60,0.3);
+    border-radius: 2px;
+    padding: 8px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--amber);
+    text-transform: uppercase;
+  }
+
+  /* ───── HIGHLIGHT BOX ───── */
+  .highlight-box {
+    background: var(--gold-dim);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 4px 4px 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .highlight-box p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+  .highlight-box strong { color: var(--gold-lt); }
+
+  .warn-box {
+    background: var(--red-dim);
+    border-left: 3px solid var(--red);
+    border-radius: 0 4px 4px 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .warn-box p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+  .warn-box strong { color: var(--red); }
+
+  /* ───── CHECKLIST ───── */
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .checklist li {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 13px; color: var(--text-muted); line-height: 1.6;
+  }
+  .check-icon { color: var(--green); flex-shrink: 0; margin-top: 2px; }
+  .cross-icon { color: var(--red); flex-shrink: 0; margin-top: 2px; }
+  .warn-icon { color: var(--amber); flex-shrink: 0; margin-top: 2px; }
+
+  /* ───── TAM DISPLAY ───── */
+  .tam-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 12px; }
+  .tam-card {
+    background: var(--ink-3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .tam-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--bar-bg, var(--gold));
+  }
+  .tam-segment { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.15em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 12px; }
+  .tam-value { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .tam-cagr { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--green); margin-bottom: 12px; }
+  .tam-azad { font-size: 11.5px; color: var(--text-muted); }
+  .tam-azad strong { color: var(--gold-lt); }
+
+  /* ───── DIVIDER ───── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+  /* ───── MANAGEMENT DECODE ───── */
+  .decode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .decode-card {
+    background: var(--ink-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+  }
+  .decode-head {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .decode-pos .decode-head { color: var(--green); }
+  .decode-neg .decode-head { color: var(--amber); }
+
+  /* ───── FOOTER ───── */
+  .report-footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-disclaimer { font-size: 10px; color: var(--text-dim); line-height: 1.6; max-width: 700px; }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: var(--gold); font-style: italic; white-space: nowrap; }
+
+  /* ───── NAV TABS ───── */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13,15,20,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .nav-inner {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 14px 16px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .nav-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* ───── ANIMATIONS ───── */
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .section { animation: fadeSlide 0.4s ease both; }
+
+  /* ───── PRINT ───── */
+  @media print {
+    body { background: white; color: #111; }
+    .sticky-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header>
+  <div class="masthead">
+    <div>
+      <div class="masthead-label">Institutional Equity Research · Q4 FY2026 Full-Year Analysis</div>
+      <h1>Azad<br><span>Engineering</span></h1>
+      <div class="masthead-sub">
+        BSE: 544061 &nbsp;·&nbsp; NSE: AZAD &nbsp;·&nbsp; Hyderabad, Telangana &nbsp;·&nbsp; Precision Aerospace &amp; Energy Components
+      </div>
+    </div>
+    <div class="masthead-meta">
+      <div class="masthead-ticker">AZAD</div>
+      <div class="masthead-price">₹2,047 &nbsp;·&nbsp; MCap ₹13,223 Cr</div>
+      <div class="masthead-date">Analysis Date: 22 May 2026</div>
+    </div>
+  </div>
+</header>
+
+<!-- STICKY NAV -->
+<nav>
+  <div class="sticky-nav">
+    <div class="nav-inner">
+      <a class="nav-link" href="#exec">Executive Snapshot</a>
+      <a class="nav-link" href="#quality">Result Quality</a>
+      <a class="nav-link" href="#guidance">Guidance Tracker</a>
+      <a class="nav-link" href="#hidden">Hidden Financials</a>
+      <a class="nav-link" href="#mgmt">Management Decode</a>
+      <a class="nav-link" href="#segments">Segments</a>
+      <a class="nav-link" href="#moat">Moat &amp; TAM</a>
+      <a class="nav-link" href="#capital">Capital Allocation</a>
+      <a class="nav-link" href="#flags">Red Flags</a>
+      <a class="nav-link" href="#inflection">Positive Inflection</a>
+      <a class="nav-link" href="#valuation">Valuation</a>
+      <a class="nav-link" href="#trajectory">Trajectory</a>
+      <a class="nav-link" href="#verdict">Final Verdict</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+
+<!-- VERDICT BANNER -->
+<div class="verdict-banner">
+  <div class="verdict-pill">⬆ Accumulate</div>
+  <div class="verdict-text">An exceptional compounding machine in the early innings of a multi-year capacity conversion cycle — temporarily masking free cash flow behind deliberate investment; quality is real, valuation demands patience but not avoidance.</div>
+</div>
+
+<!-- SCORECARD -->
+<div class="scorecard-grid">
+  <div class="score-cell" style="--score-color:#4caf82; --bar-color:#4caf82;">
+    <div class="score-label">Business Health</div>
+    <div class="score-num">8.5<span class="score-denom">/10</span></div>
+  </div>
+  <div class="score-cell" style="--score-color:#c9a84c; --bar-color:#c9a84c;">
+    <div class="score-label">Earnings Quality</div>
+    <div class="score-num">6.5<span class="score-denom">/10</span></div>
+  </div>
+  <div class="score-cell" style="--score-color:#4caf82; --bar-color:#4caf82;">
+    <div class="score-label">Balance Sheet</div>
+    <div class="score-num">7.5<span class="score-denom">/10</span></div>
+  </div>
+  <div class="score-cell" style="--score-color:#4caf82; --bar-color:#4caf82;">
+    <div class="score-label">Capital Allocation</div>
+    <div class="score-num">7.5<span class="score-denom">/10</span></div>
+  </div>
+  <div class="score-cell" style="--score-color:#c9a84c; --bar-color:#c9a84c;">
+    <div class="score-label">Mgmt Credibility</div>
+    <div class="score-num">7.0<span class="score-denom">/10</span></div>
+  </div>
+  <div class="score-cell" style="--score-color:#4caf82; --bar-color:#4caf82;">
+    <div class="score-label">Future Visibility</div>
+    <div class="score-num">8.5<span class="score-denom">/10</span></div>
+  </div>
+</div>
+
+<!-- KPI ROW -->
+<div class="kpi-row">
+  <div class="kpi-card">
+    <div class="kpi-label">FY26 Revenue (SA)</div>
+    <div class="kpi-value">₹590 Cr</div>
+    <div class="kpi-delta delta-up">▲ 30.3% YoY</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">EBITDA Margin</div>
+    <div class="kpi-value">36.9%</div>
+    <div class="kpi-delta delta-up">▲ 140bps YoY</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">PAT (SA)</div>
+    <div class="kpi-value">₹132 Cr</div>
+    <div class="kpi-delta delta-up">▲ 49.3% YoY</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Order Book</div>
+    <div class="kpi-value">₹6,500 Cr</div>
+    <div class="kpi-delta delta-neutral">~11x FY26 Revenue</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Operating CFO</div>
+    <div class="kpi-value">–₹123 Cr</div>
+    <div class="kpi-delta delta-down">▼ WC Drag ₹300 Cr</div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- STEP 1 · EXECUTIVE SNAPSHOT -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="exec">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Executive Snapshot</h2>
+    <span class="section-tag">What Actually Happened</span>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>The quarter was fundamentally strong — not optically manipulated.</strong> Revenue of ₹157 Cr grew 26.4% with EBITDA margins of 36.7%, up marginally from 36.5% a year prior. PAT margins expanded 140bps to 22.3%. FY26 as a whole delivered record revenue (₹590 Cr), record EBITDA (₹217.8 Cr) and record PAT (₹132 Cr) — every metric at an all-time high despite commissioning two new plants mid-cycle, undergoing organizational restructuring and absorbing heavy upfront inventory buildup. The reported profit number is authentic; the missing element is free cash flow, which turned deeply negative owing to deliberate working capital investment rather than any accounting distortion.</p>
+  </div>
+
+  <div class="two-col" style="margin-top:20px;">
+    <div class="panel">
+      <div class="panel-title">Top 5 Most Important Developments</div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span><strong>MHI Single-Source 8-Year Contract:</strong> Azad secured a single-source LTCPA with Mitsubishi Heavy Industries for hot-section Nozzle Vane Segments — among the most technically demanding components made globally. This represents entry into a category previously cracked by only 3 players worldwide (Howmet, PCC, and now Azad).</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span><strong>4 Dedicated Facilities Inaugurated:</strong> GE Vernova (Apr '25), MHI (Mar '25), Siemens Energy (Sep '25), Baker Hughes (Apr '26). The infrastructure phase is 70–80% complete, marking the transition from build-mode to throughput-mode.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span><strong>Rolls-Royce Qualification in H2 FY27:</strong> First commercial aero-engine airfoil qualification batch expected H2 FY26, with revenue starting Q4 FY27 or early FY28. Followed by Pratt &amp; Whitney and Safran in sequence.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span><strong>Negative Operating Cash Flow:</strong> OCF of –₹123 Cr despite ₹185 Cr PBT. Working capital drew ₹300 Cr owing to inventory buildup for new facility ramps. This is temporary and structurally explainable, not a warning sign of earnings manipulation.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-blue"></span><span><strong>ATGG Engine Delivery Imminent:</strong> India's indigenous turbofan engine (GTRE/DRDO contract) progressed from "years to months to weeks" in CEO language. This is a strategic national milestone and a reputational proof-point of full-engine manufacturing capability.</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">What the Market is Likely Missing</div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span>The <strong>order book of ₹6,500 Cr is understated</strong>. Management explicitly stated publicly disclosed orders are ₹6,500 Cr "plus" — undisclosed contracts exist with confidential customers, particularly in defense.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span><strong>Hot-section nozzle vane capability</strong> is transformationally different from compressor airfoils. Competitors are Howmet Aerospace and PCC — companies with 3–5x EBITDA margins on hot-section work. Azad's entry here is not incremental; it is category-defining.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span><strong>GST credit of ₹100 Cr</strong> sits on the balance sheet, realizable by H1 FY28, providing a hidden liquidity buffer not visible in CFO figures.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span>The 25% top-line guidance is <strong>deliberately conservative</strong>. The CEO acknowledged this on-call, suggesting post-full stabilization the trajectory could accelerate materially. OEMs are booked for the next decade with demand far exceeding Azad's current capacity.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>Oil &amp; Gas segment (Baker Hughes, Saudi Arabia plant) is <strong>near-zero today but could be ₹200–400 Cr in 3 years</strong>, following the same ramp trajectory as Energy (₹120 Cr in 2020 → ₹481 Cr in FY26).</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- STEP 2 · RESULT QUALITY ANALYSIS -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="quality">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Result Quality Analysis</h2>
+    <span class="section-tag">Separating Optical from Economic Reality</span>
+  </div>
+
+  <div class="three-col">
+    <div class="panel">
+      <div class="panel-title">Revenue Quality</div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>Growth is <strong>100% organic</strong> — no acquisitions, no government subsidies, no channel stuffing risk given custom precision parts with qualified part-number-level delivery schedules.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>Revenue is <strong>multi-customer, multi-segment</strong>. Energy contributed 81.5% but grew across multiple sub-customers (GE, Siemens, MHI, Arabelle). A&amp;D hit ₹101 Cr milestone (+25% YoY).</span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span>Exports are 93% of revenue. This creates <strong>FX translation gain dependency</strong>: other income of ₹47 Cr in FY26 was substantially FX gain and FD interest on QIP proceeds. This will moderate as QIP funds are deployed.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>No related-party revenue risks. Customer base is all blue-chip global OEMs. No government timing distortions or inventory-led revenue booking.</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Margin Analysis</div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span><strong>EBITDA margin of 36.9%</strong> is structurally supported — not cyclical. Driven by product mix (mission-critical components command pricing power), backward integration reducing outsourcing costs, and operating leverage on fixed overheads.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>Raw material consumption fell as a percentage of revenue owing to indigenization (Sunflag, Star Wire approved for energy grades). This is <strong>permanent, not transient</strong>.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span>Employee costs rose (new organizational hires, senior leadership build-out). This is an <strong>investment, not inefficiency</strong>, but will modestly compress margins in FY27 before operating leverage kicks in.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span>Depreciation nearly doubled (₹501 Cr vs ₹286 Cr) and finance costs rose 65%. PAT margin expansion despite this demonstrates <strong>underlying operational quality</strong> but both will continue rising in FY27.</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">PAT Quality Assessment</div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>PAT growth of 49.3% to ₹132 Cr is real. Tax rate of 28.7% is normal. No deferred tax games, no exceptional income gaming.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span>Other income of ₹47 Cr (8% of revenue) includes ~₹20–25 Cr FX gains and ~₹15–20 Cr FD interest on QIP proceeds. <strong>Core EBIT quality is somewhat flattered</strong> at the PBT level.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>No capitalized development costs (CFO confirmed). No aggressive capitalization of expenses. Qualification costs are fully expensed — this means <strong>reported EBITDA is actually conservative</strong>.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>EPS at ₹20.46 (FY26). Share count stable (no dilution beyond QIP which was used for genuine capex). ESOP dilution not material.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top:20px;">
+    <table class="data-table" style="background:var(--ink-2); border-radius:4px; overflow:hidden; border:1px solid var(--border);">
+      <thead>
+        <tr>
+          <th>Metric (Standalone)</th>
+          <th>FY21</th><th>FY22</th><th>FY23</th><th>FY24</th><th>FY25</th><th>FY26</th><th>CAGR 5Y</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Revenue (₹ Mn)</td><td>1,205</td><td>1,945</td><td>2,517</td><td>3,408</td><td>4,529</td><td>5,904</td><td class="pos">+37.4%</td></tr>
+        <tr><td>Adj. EBITDA (₹ Mn)</td><td>376</td><td>632</td><td>795</td><td>1,175</td><td>1,646</td><td>2,195</td><td class="pos">+42.3%</td></tr>
+        <tr><td>EBITDA Margin</td><td>31.2%</td><td>32.5%</td><td>31.6%</td><td>34.5%</td><td>36.3%</td><td>37.2%</td><td class="pos">+600bps</td></tr>
+        <tr><td>PAT (₹ Mn)</td><td>135</td><td>280</td><td>85</td><td>586</td><td>885</td><td>1,322</td><td class="pos">+57.8%</td></tr>
+        <tr class="bold-row"><td>PAT Margin</td><td>11.2%</td><td>14.4%</td><td>3.4%</td><td>17.2%</td><td>19.5%</td><td>22.4%</td><td class="pos">+1,120bps</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- STEP 3 · GUIDANCE TRACKER -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="guidance">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Guidance Tracker &amp; Execution Scorecard</h2>
+    <span class="section-tag">Management Promise vs Reality</span>
+  </div>
+
+  <table class="guidance-table" style="background:var(--ink-2); border:1px solid var(--border); border-radius:4px; overflow:hidden;">
+    <thead>
+      <tr>
+        <th style="width:28%;">Historical Guidance / Claim</th>
+        <th style="width:12%;">Timeline</th>
+        <th style="width:12%;">Current Status</th>
+        <th style="width:10%;">Verdict</th>
+        <th style="width:38%;">Commentary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>FY26 as inflection point for revenue</strong> (stated in FY24 earnings call)</td>
+        <td>FY26</td>
+        <td>Revenue +30%, record performance</td>
+        <td><span class="status-achieved">Achieved</span></td>
+        <td>FY26 delivered ₹590 Cr vs ₹453 Cr in FY25 — the highest ever. Framing shifted mid-year to "consolidation" but the financial inflection materialized regardless.</td>
+      </tr>
+      <tr>
+        <td><strong>25–30% annual revenue growth guidance</strong></td>
+        <td>FY26 &amp; Multiyear</td>
+        <td>FY26: +30.3%</td>
+        <td><span class="status-achieved">Achieved</span></td>
+        <td>Delivered at the upper end of guidance range. Management has consistently beaten this guidance across multiple quarters — acknowledging internally they target higher.</td>
+      </tr>
+      <tr>
+        <td><strong>8 dedicated lean facilities in 12–18 months</strong> (Q1 FY26)</td>
+        <td>~Dec '25–Jun '26</td>
+        <td>4 of 8 completed; 4 more targeted FY27</td>
+        <td><span class="status-partial">Partial/Delayed</span></td>
+        <td>4 plants inaugurated (MHI Mar '25, GE Apr '25, Siemens Sep '25, Baker Hughes Apr '26). Timeline for 4 more slipped from 12–18 months to FY27 full year. Operationally understandable given scale.</td>
+      </tr>
+      <tr>
+        <td><strong>EBITDA margin of 33–35%+</strong></td>
+        <td>Ongoing</td>
+        <td>36.9% FY26; 36.7% Q4FY26</td>
+        <td><span class="status-achieved">Exceeded</span></td>
+        <td>Consistently overdelivered on margin guidance. The "+" qualifier has proven meaningful — margins have expanded sequentially. Operating leverage from new plants could push margins toward 38–40%+ in FY28.</td>
+      </tr>
+      <tr>
+        <td><strong>Working capital normalization</strong> — inventory days to ~200 in H1, ~160–170 in H2 FY27</td>
+        <td>FY27</td>
+        <td>FY26 WC days elevated (~370 combined); plan in execution</td>
+        <td><span class="status-ongoing">Ongoing</span></td>
+        <td>Management guided WC normalization for H1/H2 FY27. Key lever: inventory-to-revenue conversion as new plants reach throughput. GST credit realization by H1 FY28 adds ₹100 Cr. Achievable but investors should monitor Q1/Q2 FY27 closely.</td>
+      </tr>
+      <tr>
+        <td><strong>Rolls-Royce first qualification batch delivery</strong></td>
+        <td>H2 FY26; revenue from Q4 FY27/FY28</td>
+        <td>Qualification batch targeting H2 FY26 as guided</td>
+        <td><span class="status-ongoing">On Track</span></td>
+        <td>Confirmed in Q4 FY26 call — qualification batch expected H2, revenue from Q4 FY27 or early FY28. P&amp;W follows, then Safran. Sequencing is consistent with previous guidance.</td>
+      </tr>
+      <tr>
+        <td><strong>ATGG Engine delivery to GTRE/DRDO</strong></td>
+        <td>Q2 FY26: "couple of months"; Q4 FY26: "weeks away"</td>
+        <td>Imminent as of May 2026</td>
+        <td><span class="status-partial">Delayed but Near</span></td>
+        <td>Original timelines suggested delivery by Q3 FY26. Now described as "weeks not months". This is a national defense program with sovereign approval layers — minor delays are normal and non-commercial in nature.</td>
+      </tr>
+      <tr>
+        <td><strong>Saudi Arabia Baker Hughes facility (MoU signed)</strong></td>
+        <td>FY26–27</td>
+        <td>Timelines shifted; deprioritized in near term</td>
+        <td><span class="status-delayed">Delayed</span></td>
+        <td>Explicitly acknowledged timeline shift due to geopolitical situation and management bandwidth. Not abandoned — opportunity still live. Azad is rightly prioritizing existing plant ramp-up over overseas expansion.</td>
+      </tr>
+      <tr>
+        <td><strong>Adj ROCE of 15–20%+ on new investments</strong></td>
+        <td>FY26</td>
+        <td>Adj ROCE: 15.3%; Reported ROCE: 9.2%</td>
+        <td><span class="status-partial">Partial</span></td>
+        <td>Adjusted ROCE (excluding CWIP) at 15.3% vs 20.7% in FY25 — diluted by massive asset additions in denominator before revenue ramp. Historically tracked 18–21% adjusted. Should recover to 18–22% as throughput converts.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="two-col" style="margin-top:20px;">
+    <div class="panel">
+      <div class="panel-title">Execution Credibility Assessment</div>
+      <p class="prose">Management has demonstrated a pattern of <strong>consistent underpromising and overdelivering</strong> on the financial KPIs they control (revenue growth, EBITDA margins, PAT growth). Where guidance has slipped, it has been on infrastructure timelines — which are genuinely complex given a 10x capacity build in under 2 years. There is no evidence of narrative abandonment on any core business commitment, no silent target-dropping, and no contradiction between stated strategy and capital deployment. The Saudi Arabia delay is the one area of honest acknowledgment of prioritization shift.</p>
+    </div>
+    <div class="panel" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+      <div class="panel-title" style="text-align:center;">Execution Credibility Rating</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:var(--gold);line-height:1;">Strong</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:0.15em;margin-top:8px;">Improving trajectory. Financial delivery consistent. Infrastructure timelines show expected lags for complexity.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- STEP 4 · HIDDEN FINANCIAL ARCHITECTURE -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="hidden">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Hidden Financial Architecture</h2>
+    <span class="section-tag">Cash Flow Truth &amp; Working Capital Forensics</span>
+  </div>
+
+  <div class="warn-box">
+    <p><strong>Critical Signal:</strong> Azad reported ₹185 Cr in pre-tax profit but generated –₹123 Cr in operating cash flow. This ₹308 Cr divergence is the single most important number to understand. It is <em>not</em> a red flag — it is the predictable consequence of pre-funding a 10x capacity build. The forensic question is: will this reverse? Evidence suggests yes, but timeline monitoring is essential.</p>
+  </div>
+
+  <div class="two-col" style="margin-top:20px;">
+    <div class="panel">
+      <div class="panel-title">Cash Flow Bridge (FY26 Standalone, ₹ Mn)</div>
+      <table class="data-table">
+        <tbody>
+          <tr><td>Profit Before Tax</td><td class="pos">+1,855</td></tr>
+          <tr><td>Add: Non-Cash/Non-Op Adjustments</td><td>+402</td></tr>
+          <tr class="bold-row"><td>Operating Profit Before WC</td><td class="pos">+2,257</td></tr>
+          <tr><td>Changes in Working Capital</td><td class="neg">–3,003</td></tr>
+          <tr><td>&nbsp;&nbsp;↳ Inventory Buildup</td><td class="neg">~–1,382</td></tr>
+          <tr><td>&nbsp;&nbsp;↳ Receivables Increase</td><td class="neg">~–877</td></tr>
+          <tr><td>&nbsp;&nbsp;↳ Payable/Other Changes</td><td class="neg">~–744</td></tr>
+          <tr><td>Cash from Operations</td><td class="neg">–746</td></tr>
+          <tr><td>Direct Taxes Paid</td><td class="neg">–487</td></tr>
+          <tr class="bold-row"><td>Net CFO</td><td class="neg">–1,233</td></tr>
+          <tr><td>Capex Capitalized</td><td class="neg">–3,920</td></tr>
+          <tr><td>Treasury Investments (net)</td><td class="pos">+3,219</td></tr>
+          <tr class="bold-row"><td>Net Investing CF</td><td class="neg">–701</td></tr>
+          <tr><td>Net Borrowings (term loans)</td><td class="pos">+1,540</td></tr>
+          <tr><td>QIP/Other Financing</td><td class="pos">+226</td></tr>
+          <tr class="bold-row"><td>Net Financing CF</td><td class="pos">+1,766</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Working Capital Forensics</div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span><strong>Inventory at ₹326 Cr (154 days of revenue):</strong> Elevated but management confirms 96% is less than 1 year old, linked to new plant ramp-up and qualification requirements. This is pre-positioning inventory, not legacy stock. Low obsolescence risk.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span><strong>Receivables at ₹309 Cr (212 days):</strong> Elevated vs ideal, but management states "broadly in line with historical levels." Given all customers are blue-chip global OEMs (GE, Siemens, MHI), collection risk is near-zero. No ECL spike, no disputed receivables flagged.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span><strong>Payables at ₹87 Cr (~51 days):</strong> Healthy — not aggressively stretching suppliers. Trade payables in line with historical norms.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span><strong>Treasury of ₹184 Cr</strong> (incl. ₹160 Cr undeployed QIP) provides strong liquidity buffer. Company explicitly did not use bill discounting facilities despite availability, reflecting balance sheet confidence.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span><strong>GST Credit ₹100 Cr:</strong> Accumulated over 2 years from capital expenditure. Realizable by H1 FY28. Hidden liquidity not visible in CFO but real cash inflow expected. Partially offsets reported negative FCF narrative.</span></li>
+      </ul>
+      <div style="margin-top:16px; padding:12px 16px; background:var(--ink-3); border-radius:4px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.15em;color:var(--text-dim);margin-bottom:8px;">NET DEBT STRUCTURE</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;">
+          <div><span style="color:var(--text-dim);">Gross Debt</span><br><span style="color:var(--red);">₹457 Cr</span></div>
+          <div><span style="color:var(--text-dim);">Net Debt</span><br><span style="color:var(--amber);">₹272 Cr</span></div>
+          <div><span style="color:var(--text-dim);">Net D/E</span><br><span style="color:var(--green);">0.17x</span></div>
+          <div><span style="color:var(--text-dim);">Interest Cover</span><br><span style="color:var(--green);">~6.2x EBIT</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- STEP 5 · MANAGEMENT COMMENTARY DECODE -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="mgmt">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Management Commentary Decode</h2>
+    <span class="section-tag">Language, Psychology &amp; Credibility Signals</span>
+  </div>
+
+  <div class="decode-grid">
+    <div class="decode-card decode-pos">
+      <div class="decode-head">▲ Confidence Signals</div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>CEO proactively contextualizes growth narrative before financials — framing qualifications-to-revenue conversion. This is the behavior of a founder who understands the business deeply, not someone managing investor optics.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>When Goldman Sachs analyst suggests 25% guidance is conservative, CEO agrees and hints at "massive growth" post-stabilization — a rare moment of breaking the under-promise convention. Signals genuine conviction, not false modesty.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>Detailed three-lever growth explanation (wallet share on qualified parts, adjacent categories, new customers) by Vishnu Malpani shows institutional-grade strategic clarity at the operating level.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>Consistent and calm on geopolitical/tariff questions — no panic, no overclaiming. The "OEMs don't switch mission-critical suppliers for cost" argument is factually correct and delivered without defensiveness.</span></li>
+      </ul>
+    </div>
+    <div class="decode-card decode-neg">
+      <div class="decode-head">⚠ Watch Points</div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span>The <strong>"please visit us"</strong> deflection appears multiple times when pressed on hot-section manufacturing details, ATGG engine milestones, and Saudi capex specifics. While some relates to genuine NDAs, it is a pattern of redirecting scrutiny through hospitality rather than disclosure.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span>When asked about capitalized development costs in the FY25 annual report, the CFO's answer ("we generally don't capitalize... there can be some tools") was slightly evasive. The question deserved a more quantified answer.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span>The reconciliation of FY24's "FY26 is the inflection point" narrative with the mid-year reframing to "year of stabilization/consolidation" was handled defensively rather than directly. Chopdar's "we are very consistent" claim stretches credibility on this specific point.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span>No concrete FY27 capex guidance provided when explicitly asked ("very difficult to quantify"). For a company of this capex intensity, quarterly capex visibility would be valuable. This is a disclosure gap.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+    <div style="background:var(--green-dim);border:1px solid rgba(76,175,130,0.2);border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--green);letter-spacing:0.1em;">✓ VISIONARY</div>
+    <div style="background:var(--green-dim);border:1px solid rgba(76,175,130,0.2);border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--green);letter-spacing:0.1em;">✓ TECHNICALLY CREDIBLE</div>
+    <div style="background:var(--green-dim);border:1px solid rgba(76,175,130,0.2);border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--green);letter-spacing:0.1em;">✓ LONG-TERM ALLOCATOR</div>
+    <div style="background:var(--amber-dim);border:1px solid rgba(232,162,60,0.2);border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--amber);letter-spacing:0.1em;">⚡ SELECTIVE DISCLOSURE</div>
+    <div style="background:var(--amber-dim);border:1px solid rgba(232,162,60,0.2);border-radius:4px;padding:10px 16px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--amber);letter-spacing:0.1em;">⚡ OCCASIONALLY PROMOTIONAL</div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- STEP 6 · SEGMENT ANALYSIS -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="segments">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Segment &amp; Business Engine Analysis</h2>
+    <span class="section-tag">Per-Vertical Deconstruction</span>
+  </div>
+
+  <div class="three-col">
+    <div class="panel" style="border-top:3px solid var(--gold);">
+      <div class="panel-title">Energy (Gas, Steam, Nuclear Turbines)</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;margin-bottom:12px;">
+        <span style="color:var(--text);">₹481 Cr FY26 </span>
+        <span style="color:var(--green);"> +34% YoY </span>
+        <span style="color:var(--text-dim);">| 81.5% of revenue</span>
+      </div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>Customers include GE Vernova, Siemens Energy, MHI, Arabelle Solutions (EDF/nuclear). Covers gas, thermal, nuclear turbines — all growing demand verticals.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span>MHI hot-section nozzle vane (new 8-year single-source) represents category upgrade. Only 3 companies globally manufacture this — Azad just became one.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>Supply to OEMs controlling ~75% of global gas turbine market. Global OEM backlogs are 8–10 years. Structural, not cyclical demand.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span>Heavy concentration at 81.5% — management targets Energy at 55–60% of revenue in 5 years as A&amp;D and O&amp;G scale, reducing this concentration risk.</span></li>
+      </ul>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text-dim);margin-top:12px;letter-spacing:0.1em;">CORE PROFIT ENGINE · STRUCTURAL GROWTH · HIGH MOAT</div>
+    </div>
+
+    <div class="panel" style="border-top:3px solid var(--blue);">
+      <div class="panel-title">Aerospace &amp; Defence</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;margin-bottom:12px;">
+        <span style="color:var(--text);">₹101 Cr FY26 </span>
+        <span style="color:var(--green);"> +25% YoY </span>
+        <span style="color:var(--text-dim);">| 17.2% of revenue</span>
+      </div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>Crossed ₹100 Cr milestone for first time. Key customers: Honeywell, Eaton Aerospace, Rolls-Royce, Pratt &amp; Whitney Canada, Safran (MOU). Airbus platforms A320, A350, Boeing 737/777 family.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>Rolls-Royce qualification batch in H2 FY26 — first revenue in Q4 FY27. P&amp;W and Safran to follow in sequence. This segment could be ₹300–500 Cr by FY29.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span>ATGG engine (India's indigenous turbofan) is a strategic option — not in projections, but positions Azad as India's only credible engine-capable manufacturer, creating massive defense order potential.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>NADCAP accreditation for coatings achieved by subsidiary. AS9100D certification held. Qualification barriers continue to rise, protecting Azad's position.</span></li>
+      </ul>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text-dim);margin-top:12px;letter-spacing:0.1em;">EMERGING GROWTH ENGINE · HIGHEST LONG-TERM OPTIONALITY</div>
+    </div>
+
+    <div class="panel" style="border-top:3px solid var(--green);">
+      <div class="panel-title">Oil &amp; Gas (Upstream/Midstream)</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;margin-bottom:12px;">
+        <span style="color:var(--text);">&lt;₹10 Cr FY26 </span>
+        <span style="color:var(--amber);"> Qualification Phase </span>
+        <span style="color:var(--text-dim);">| ~1.5% of revenue</span>
+      </div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>Baker Hughes is the anchor customer. Dedicated facility inaugurated April 2026. Qualification phase ongoing — first material revenue in FY27.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span>TAM is ₹930 Bn by CY29. The Energy vertical took FY08–FY20 to reach ₹120 Cr and 5x'ed in the next 5 years. O&amp;G is expected to "breach ₹100 Cr over the next couple of years" per management.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span>Saudi Arabia facility (Baker Hughes MOU) timelines shifted. Currently deprioritized vs domestic ramp. Geopolitical risk to overseas expansion timeline.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>NADCAP for coatings achieved — critical certification for O&amp;G subsea and drilling equipment components.</span></li>
+      </ul>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text-dim);margin-top:12px;letter-spacing:0.1em;">EARLY-STAGE HIDDEN OPTIONALITY · WATCH FY27</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- MOAT & TAM ANALYSIS (NEW SECTION) -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="moat">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Moat Architecture &amp; TAM Structure Analysis</h2>
+    <span class="section-tag">Competitive Durability &amp; Market Opportunity</span>
+  </div>
+
+  <div class="highlight-box">
+    <p>Azad's competitive moat is one of the most structurally sound and time-tested moats available in Indian manufacturing. It is not built on brand, patents, or regulatory licenses — it is built on <strong>qualification-embedded relationships</strong> that take 30–48 months to establish per component and cannot be replicated without the OEM's active participation. Once established, switching costs are effectively infinite for mission-critical airfoil components. The moat widens with every new qualification and dedicated facility built — it is <em>not</em> static.</p>
+  </div>
+
+  <div style="margin-top:24px; background:var(--ink-2); border:1px solid var(--border); border-radius:4px; padding:28px;">
+    <div class="panel-title">Moat Dimension Scoring (out of 10)</div>
+    <div class="two-col">
+      <div>
+        <div class="moat-item">
+          <div class="moat-header"><span class="moat-name">Qualification Moat (Switching Cost)</span><span class="moat-score-label">10 / 10</span></div>
+          <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:100%;"></div></div>
+          <div class="moat-note">30–48 months per part, OEM must actively qualify the alternate supplier. Effectively infinite switching cost once qualified.</div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-header"><span class="moat-name">Technical Capability (Process Know-How)</span><span class="moat-score-label">9 / 10</span></div>
+          <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:90%;"></div></div>
+          <div class="moat-note">1,700+ qualified parts, 45+ processes, NADCAP, AS9100D, ISO 27001. Hot-section nozzle vane entry puts Azad in a 3-player global club.</div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-header"><span class="moat-name">Customer Relationship Depth</span><span class="moat-score-label">9 / 10</span></div>
+          <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:90%;"></div></div>
+          <div class="moat-note">Average relationship &gt;10 years. Dedicated factories represent deepest possible supplier integration. MHI "Partner of the Year 2024."</div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-header"><span class="moat-name">Capital Intensity Barrier (Entry Cost)</span><span class="moat-score-label">8 / 10</span></div>
+          <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:80%;"></div></div>
+          <div class="moat-note">₹700+ Cr QIP deployed into 5-axis precision machinery, specialized heat treatment, vacuum processes. Replication cost for a new entrant: 5–8 years and ₹1,500+ Cr without OEM relationships.</div>
+        </div>
+      </div>
+      <div>
+        <div class="moat-item">
+          <div class="moat-header"><span class="moat-name">Revenue Visibility (Order Book Coverage)</span><span class="moat-score-label">9 / 10</span></div>
+          <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:90%;"></div></div>
+          <div class="moat-note">₹6,500 Cr+ order book = ~11x FY26 revenue with 5–7 year contracts at part-number level delivery schedules. Extremely rare in manufacturing.</div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-header"><span class="moat-name">Geographic Moat (India Cost Advantage)</span><span class="moat-score-label">7 / 10</span></div>
+          <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:70%;"></div></div>
+          <div class="moat-note">Competing head-on with US/European/Japanese suppliers at equivalent quality. ~30–40% cost advantage on labor. However, not the primary moat driver.</div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-header"><span class="moat-name">Pricing Power</span><span class="moat-score-label">8 / 10</span></div>
+          <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:80%;"></div></div>
+          <div class="moat-note">Long-term fixed contracts with 5% raw material fluctuation pass-through clause. Margins expanding despite capacity investment — structural pricing power evident.</div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-header"><span class="moat-name">Innovation / Product Ladder Expansion</span><span class="moat-score-label">8 / 10</span></div>
+          <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:80%;"></div></div>
+          <div class="moat-note">Moving from cold-section compressor airfoils → hot-section nozzle vanes → full engine assembly (ATGG). Each step materially expands addressable market and margin potential.</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:24px; padding:16px; background:var(--ink-3); border-radius:4px; text-align:center;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.2em;color:var(--text-dim);margin-bottom:8px;">OVERALL MOAT CLASSIFICATION</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--gold);">Wide &amp; Widening</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Qualification-embedded switching costs + technical complexity + capital intensity create a compound moat that strengthens with each additional qualification. Comparable in structure to Howmet Aerospace and Precision Castparts at an early stage.</div>
+    </div>
+  </div>
+
+  <!-- TAM STRUCTURE -->
+  <div style="margin-top:28px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;">Total Addressable Market Structure (CY2029 Targets)</div>
+    <div class="tam-grid">
+      <div class="tam-card" style="--bar-bg:var(--gold);">
+        <div class="tam-segment">Energy Turbines</div>
+        <div class="tam-value">₹310 Bn</div>
+        <div class="tam-cagr">Growing 8–10% CAGR</div>
+        <div class="tam-azad">Current share: <strong>~0.5–1%</strong><br>Potential: <strong>₹800–2,000+ Cr</strong> at scale<br>Customers control ~75% of global gas turbine market. Replacement demand + new capacity driving sustained volume.</div>
+      </div>
+      <div class="tam-card" style="--bar-bg:var(--blue);">
+        <div class="tam-segment">Aerospace &amp; Defence</div>
+        <div class="tam-value">₹2,190 Bn</div>
+        <div class="tam-cagr">Growing 11% CAGR</div>
+        <div class="tam-azad">Current share: <strong>&lt;0.1%</strong><br>Addressable with 6 OEM relationships: <strong>₹500–2,000 Cr</strong><br>Global air traffic doubling by 2029. 15,000-unit backlog at Boeing/Airbus. Defense budget expansion globally.</div>
+      </div>
+      <div class="tam-card" style="--bar-bg:var(--green);">
+        <div class="tam-segment">Oil &amp; Gas</div>
+        <div class="tam-value">₹930 Bn</div>
+        <div class="tam-cagr">Growing 6–8% CAGR</div>
+        <div class="tam-azad">Current share: <strong>&lt;0.01%</strong><br>Near-zero today, ₹100 Cr target in 2–3 years<br>Baker Hughes-anchored. Saudi Arabia MOU. Most underpenetrated segment — highest incremental revenue optionality.</div>
+      </div>
+    </div>
+    <div style="margin-top:16px; padding:16px 20px; background:var(--ink-2); border:1px solid var(--border); border-radius:4px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.15em;color:var(--text-dim);margin-bottom:8px;">WALLET SHARE REALITY CHECK</div>
+      <p class="prose" style="font-size:12.5px;">Management disclosed Azad's current wallet share across its customer base is approximately <strong>1–1.5% of what it could potentially be</strong>. This is the single most important statistic for long-term investors. Combined TAM of ~₹3,430 Bn across three segments means that even reaching 1% TAM penetration would imply revenues of ~₹3,400 Cr — nearly 6x FY26 levels. Azad's ₹6,500 Cr order book, while impressive, represents only the earliest visible fraction of this opportunity.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- STEP 8 · CAPITAL ALLOCATION -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="capital">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title">Capital Allocation Analysis</h2>
+    <span class="section-tag">How Management Deploys Shareholder Capital</span>
+  </div>
+
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">Capex Framework (FY26)</div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span><strong>₹392 Cr capitalized in FY26</strong> — adding dedicated plants for GE, MHI, Siemens (Q2 FY26 + capex ordered for Baker Hughes). CWIP &amp; capital advances of ₹191 Cr represent the forward pipeline.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>Capex is <strong>customer-demand-driven</strong>, not speculative. Each dedicated facility corresponds to a signed multi-year supply agreement with a named global OEM. Zero white-elephant risk.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span><strong>No dividend, no buybacks</strong> — 100% of earnings retained and reinvested. Given incremental ROCE potential of 18–22%+, this is the correct capital allocation decision for compounders.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span>FY27 capex guidance not explicitly quantified (₹180–190 Cr balance from QIP + additional term loans). The lack of precise guidance is a disclosure gap investors should watch.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span>Target incremental <strong>asset turns of 1.7–1.8x</strong> on QIP deployment (₹700 Cr), implying incremental revenue of ₹1,190–1,260 Cr from this capex cycle. Management's math is internally consistent.</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title">ROCE &amp; Returns Architecture</div>
+      <div style="margin-bottom:16px;">
+        <table class="data-table">
+          <thead><tr><th>Metric</th><th>FY21</th><th>FY23</th><th>FY25</th><th>FY26</th></tr></thead>
+          <tbody>
+            <tr><td>Reported ROCE</td><td>12.1%</td><td>13.0%</td><td>20.7%</td><td class="neg">9.2%</td></tr>
+            <tr><td>Adjusted ROCE (ex-CWIP)</td><td>17.0%</td><td>21.2%</td><td>21.2%</td><td class="amber">15.3%</td></tr>
+            <tr class="bold-row"><td>Net D/E</td><td>0.78x</td><td>1.22x</td><td>NA (net cash)</td><td class="pos">0.17x</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="prose" style="font-size:12.5px;">The reported ROCE decline to 9.2% in FY26 (from 20.7% in FY25) is <strong>purely an artifact of the denominator expanding</strong> with ₹392 Cr of freshly capitalized assets that have not yet reached full throughput. The adjusted ROCE (excluding CWIP) at 15.3% already understates mature-state returns, as 4 new plants are at 30–60% utilization. Historical ROCE has ranged 18–28% at full capacity. The FY26 figure is the <em>trough</em> of the ROCE cycle, not a structural deterioration.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- STEP 9 · RED FLAGS -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="flags">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2 class="section-title">Red Flags &amp; Forensic Detection</h2>
+    <span class="section-tag">Risk Architecture Assessment</span>
+  </div>
+
+  <div class="three-col">
+    <div class="panel">
+      <div class="panel-title" style="color:var(--amber);">⚠ Moderate Flags</div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span><strong>Negative Operating Cash Flow (–₹123 Cr):</strong> PAT–CFO divergence of ₹308 Cr. Explainable by working capital investment, but must normalize in FY27. If it doesn't, the thesis changes. <em>Monitor closely.</em></span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span><strong>Other Income ₹47 Cr (8% of Revenue):</strong> Includes FX gains and FD interest on QIP. This will moderate as proceeds are deployed. FY27 core EBITDA quality will be cleaner but absolute profit growth may appear muted optically.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span><strong>Elevated Working Capital Days (~370 combined):</strong> Inventory 154 days + Receivables 212 days. Historical levels were 117–160 days for inventory and 211–246 days for receivables across segments. The aggregate is elevated but not structurally broken.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span><strong>Disclosure Gaps:</strong> FY27 capex not quantified. No segment-level receivable/inventory days disclosed. Hot-section manufacturing process not discussed. These gaps make forensic verification difficult.</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title" style="color:var(--text-dim);">Minor Flags</div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span><strong>Concentration Risk (81.5% Energy):</strong> Not dangerous given diversification trajectory, but any slowdown in global gas turbine orders would meaningfully impact revenue. Management's 5-year rebalancing plan addresses this.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-amber"></span><span><strong>Borrowing Increase:</strong> Gross debt rose from ₹238 Cr to ₹457 Cr. Still at 0.17x net D/E — manageable. But as capex continues, leverage will need monitoring. Interest coverage is adequate at ~6x EBIT.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span><strong>Saudi Arabia Capex Delay:</strong> MoU exists, facility planned, but timelines shifted. Not a financial risk yet — no capex deployed for overseas. Risk materializes only if customer relationship is damaged (low probability given Baker Hughes dedicated India plant just inaugurated).</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span><strong>Capitalized Tools:</strong> CFO mentioned tools specifically designed for customers can be capitalized. This is a minor area — not aggressive accounting, but worth tracking in future annual reports for scale.</span></li>
+      </ul>
+    </div>
+    <div class="panel">
+      <div class="panel-title" style="color:var(--green);">✓ Not Red Flags (Commonly Misread)</div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span><strong>Negative OCF:</strong> Not manipulation — it's planned pre-positioning of inventory for new plant ramps. 96% inventory &lt;1 year old. The cash will return as throughput converts.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span><strong>Low Reported ROCE (9.2%):</strong> CWIP distortion. Adjusted ROCE 15.3% with 4 plants at 30–60% utilization. This will recover to 18–22%+ as throughput ramps.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span><strong>Rising Depreciation &amp; Finance Costs:</strong> Direct consequence of front-ended capex. Expected and disclosed. Not evidence of financial distress.</span></li>
+        <li class="flag-item"><span class="flag-dot dot-green"></span><span><strong>No Dividend:</strong> Appropriate for a 30%+ CAGR compounder reinvesting at high returns. Dividends at this stage would be capital misallocation.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- STEP 10 · POSITIVE INFLECTION -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="inflection">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2 class="section-title">Positive Inflection Detection</h2>
+    <span class="section-tag">Early Signals of Major Future Upside</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <ul class="checklist">
+        <li><span class="check-icon">→</span><span><strong>Hot-Section Entry (MHI Nozzle Vane):</strong> Single-source 8-year contract for the most demanding component in a gas turbine. Only 3 manufacturers globally. This is Azad's most significant product milestone since inception — comparable in strategic importance to when Howmet moved from cold to hot sections.</span></li>
+        <li><span class="check-icon">→</span><span><strong>Operating Leverage Inflection Approaching:</strong> Infrastructure build 70–80% complete. 4 dedicated plants now inaugurated, all with spindles running. Mgt: "this quarter is the churnout month" — Q1 FY27 should see material revenue step-up as metal starts dispatching.</span></li>
+        <li><span class="check-icon">→</span><span><strong>Full OEM Coverage Achieved:</strong> With Safran MOU, Azad now has relationships with all 4 major aero-engine OEMs (Rolls-Royce contracted, P&amp;W contracted, Safran MOU, Honeywell contracted). No major white space in global engine manufacturing.</span></li>
+        <li><span class="check-icon">→</span><span><strong>India Indigenization Tailwind:</strong> Government's push for co-production/co-development + AMCA engine program + ATGG delivery positions Azad as India's only credible precision engine component supplier. Regulatory tailwind converting to contracts.</span></li>
+        <li><span class="check-icon">→</span><span><strong>Supply Chain Indigenization Reducing Input Costs:</strong> Sunflag and Star Wire approved for energy-grade alloys — this will sequentially improve raw material costs. Aerospace alloy indigenization in discussions with OEMs for additional grades.</span></li>
+        <li><span class="check-icon">→</span><span><strong>Oil &amp; Gas Revenue Ramp Starting FY27:</strong> Baker Hughes facility operational (April 2026). First revenue from O&amp;G segment expected FY27. This segment is the invisible option — not in any analyst model today.</span></li>
+        <li><span class="check-icon">→</span><span><strong>Working Capital Release ≥ H2 FY27:</strong> As existing inventory converts to dispatched revenue, ₹300+ Cr of working capital locked in FY26 will release, producing a significant FCF step-up that is invisible in current reported numbers.</span></li>
+      </ul>
+    </div>
+    <div class="panel" style="height:fit-content;">
+      <div class="panel-title">Lead Indicators to Monitor</div>
+      <ul class="flag-list">
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span>Q1/Q2 FY27 revenue acceleration — should show clear step-up from ₹157 Cr Q4 FY26 baseline</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span>Inventory days normalization toward 200 days (from 154 raw + WIP buildup) by H1 FY27</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span>OCF turning positive in FY27 — any positive OCF quarter is a significant signal of WC normalization</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span>Rolls-Royce qualification batch result (H2 FY26) — approval is the gate to ₹100+ Cr A&amp;D revenue step-up</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span>ATGG engine official delivery announcement — national validation, reputational catalyst</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span>Baker Hughes O&amp;G revenue appearing in quarterly disclosures for first time</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span>MHI hot-section nozzle vane — first production batch delivery date (triggers revenue recognition)</span></li>
+        <li class="flag-item"><span class="flag-dot dot-gold"></span><span>Adjusted ROCE recovery toward 18%+ (signals new plant productivity improving)</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- STEP 11 · VALUATION -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="valuation">
+  <div class="section-header">
+    <span class="section-num">11</span>
+    <h2 class="section-title">Valuation Comfort &amp; Earnings Quality Matrix</h2>
+    <span class="section-tag">₹13,223 Cr MCap · ₹2,047 Price</span>
+  </div>
+
+  <div class="val-metrics">
+    <div class="val-metric-card">
+      <div class="val-metric-label">Market Cap</div>
+      <div class="val-metric-value">₹13,223</div>
+      <div class="val-metric-sub">Crores</div>
+    </div>
+    <div class="val-metric-card">
+      <div class="val-metric-label">P/E (FY26)</div>
+      <div class="val-metric-value">99.5x</div>
+      <div class="val-metric-sub">On PAT ₹132 Cr</div>
+    </div>
+    <div class="val-metric-card">
+      <div class="val-metric-label">EV/EBITDA</div>
+      <div class="val-metric-value">~63x</div>
+      <div class="val-metric-sub">EBITDA ₹218 Cr</div>
+    </div>
+    <div class="val-metric-card">
+      <div class="val-metric-label">P/B</div>
+      <div class="val-metric-value">8.67x</div>
+      <div class="val-metric-sub">Book ₹237/share</div>
+    </div>
+    <div class="val-metric-card">
+      <div class="val-metric-label">ROE (FY26)</div>
+      <div class="val-metric-value">9.1%</div>
+      <div class="val-metric-sub">Trough — CWIP diluted</div>
+    </div>
+    <div class="val-metric-card">
+      <div class="val-metric-label">Adj. ROCE</div>
+      <div class="val-metric-value">15.3%</div>
+      <div class="val-metric-sub">Ex-CWIP, stable</div>
+    </div>
+    <div class="val-metric-card">
+      <div class="val-metric-label">MCap / Sales</div>
+      <div class="val-metric-value">~22x</div>
+      <div class="val-metric-sub">FY26 Revenue</div>
+    </div>
+    <div class="val-metric-card">
+      <div class="val-metric-label">Fwd P/E FY28E</div>
+      <div class="val-metric-value">~45x</div>
+      <div class="val-metric-sub">Assuming 48%+ PAT CAGR</div>
+    </div>
+  </div>
+
+  <!-- Valuation Meter -->
+  <div class="val-meter-wrap" style="margin-top:24px;">
+    <div class="val-rating">Fully Priced — but Justified by Quality and Runway</div>
+    <div class="val-meter-track">
+      <div class="val-meter-pointer" style="left:72%;"></div>
+    </div>
+    <div class="val-meter-labels">
+      <span>Deep Comfort</span>
+      <span>Reasonable</span>
+      <span>Fully Priced</span>
+      <span>Expensive/Justified</span>
+      <span>Dangerous Premium</span>
+    </div>
+    <p class="prose" style="margin-top:16px;font-size:12.5px;">At 99.5x trailing P/E and ~63x EV/EBITDA, Azad is not cheap by any conventional metric. However, conventional metrics misstate the investment case. The relevant framework is <strong>what multiple does this business deserve</strong> given: (a) 37%+ revenue CAGR sustained over 5 years, (b) widening moat, (c) 11x order book coverage, (d) addressable TAM of ₹3,430 Bn vs current revenues of ₹590 Cr, (e) no cyclicality in demand, and (f) ROCE returning to 18–22% as new plants fill. On FY28 estimated PAT of ~₹285–320 Cr (at 48% CAGR sustained), the business trades at ~41–46x forward earnings — still premium but achievable for compounders of this quality. The key question is whether 25–30% CAGR continues past FY28; the order book and qualification pipeline make a strong affirmative case.</p>
+  </div>
+
+  <div style="margin-top:24px;">
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-title">Valuation Score Framework</div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:12.5px;">Earnings Quality vs Valuation Multiple</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);">6/10</span></div>
+            <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:60%;background:linear-gradient(90deg,var(--amber-dim),var(--amber));"></div></div>
+            <div class="moat-note">99.5x P/E on trough earnings is optically expensive. Quality is real but cash conversion lag is a legitimate concern.</div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:12.5px;">Business Quality vs Peer Premium</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--green);">9/10</span></div>
+            <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:90%;"></div></div>
+            <div class="moat-note">Comparable to Howmet Aerospace / PCC at equivalent stage. Premium multiples are deserved for the moat architecture.</div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:12.5px;">Downside Protection at Current Price</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);">5/10</span></div>
+            <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:50%;background:linear-gradient(90deg,var(--amber-dim),var(--amber));"></div></div>
+            <div class="moat-note">Limited margin of safety. If FY27 growth disappoints or WC normalization delays, stock is vulnerable to 20–30% correction.</div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:12.5px;">Long-Term Compounding Potential</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--green);">9/10</span></div>
+            <div class="moat-bar-bg"><div class="moat-bar-fill" style="width:90%;"></div></div>
+            <div class="moat-note">3–5 year CAGR of 25–35% in earnings highly probable given order book and TAM runway. Exceptional long-term return potential.</div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:20px;">
+          <div class="val-score-badge">Valuation Comfort Score: 6.5 / 10 — Expensive But Justified</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Market Expectations Embedded in Price</div>
+        <ul class="flag-list">
+          <li class="flag-item"><span class="flag-dot dot-gold"></span><span>Market is pricing <strong>~25–28% revenue CAGR</strong> for the next 4–5 years (consistent with management guidance and order book).</span></li>
+          <li class="flag-item"><span class="flag-dot dot-gold"></span><span>Market assumes <strong>EBITDA margins sustain at 36–38%</strong> — reasonable given backward integration, operating leverage, and product mix shift toward hot-section components.</span></li>
+          <li class="flag-item"><span class="flag-dot dot-amber"></span><span>Market is NOT pricing in O&amp;G ramp, Safran contract conversion, ATGG follow-on orders, or single-crystal blade capability development — these are free options at current price.</span></li>
+          <li class="flag-item"><span class="flag-dot dot-green"></span><span><strong>Key rerating trigger:</strong> FCF turning positive and sustained in FY27/FY28 as working capital normalizes. This will compress the "earnings quality discount" embedded in current multiples.</span></li>
+          <li class="flag-item"><span class="flag-dot dot-red"></span><span><strong>Derating risk:</strong> Revenue growth disappointing below 20% for two consecutive quarters, or working capital deteriorating further without explanation, or a major OEM relationship disruption.</span></li>
+        </ul>
+        <div style="margin-top:16px;padding:14px;background:var(--ink-3);border-radius:4px;text-align:center;">
+          <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--text-muted);">"An exceptional compounding machine deserving premium multiples — but demanding patience from investors who must tolerate the FCF-to-profit lag in the investment phase before the operating leverage story fully materializes."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- STEP 12 · FUTURE TRAJECTORY -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="trajectory">
+  <div class="section-header">
+    <span class="section-num">12</span>
+    <h2 class="section-title">Future Trajectory Modeling</h2>
+    <span class="section-tag">2–3 Year Forward View</span>
+  </div>
+
+  <div class="scenario-grid">
+    <div class="scenario-card scenario-bull">
+      <div class="scenario-label">Bull Case — 30% Probability</div>
+      <div class="scenario-prob" style="color:var(--green);">₹1,500+ Cr</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:10px;">FY29 Revenue Target</div>
+      <ul class="scenario-items">
+        <li>Revenue CAGR 33–35% over FY27–29</li>
+        <li>Hot-section nozzle vanes ramp materially by FY28</li>
+        <li>Rolls-Royce + Safran contracts convert to scale revenue</li>
+        <li>O&amp;G breaches ₹200 Cr by FY28</li>
+        <li>EBITDA margins reach 40%+ from operating leverage</li>
+        <li>FCF turns strongly positive from FY27 H2</li>
+        <li>FY29 PAT: ₹400–500 Cr; Stock: ₹3,500–4,500</li>
+      </ul>
+    </div>
+    <div class="scenario-card scenario-base">
+      <div class="scenario-label">Base Case — 55% Probability</div>
+      <div class="scenario-prob" style="color:var(--gold);">₹1,150 Cr</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:10px;">FY29 Revenue Target</div>
+      <ul class="scenario-items">
+        <li>Revenue CAGR 25% sustained over FY27–29</li>
+        <li>WC normalization completes by H1 FY28</li>
+        <li>All 8 dedicated plants at 70%+ utilization by FY28</li>
+        <li>Margins stable at 37–38%</li>
+        <li>ATGG follow-on orders materializing</li>
+        <li>O&amp;G reaches ₹100–150 Cr by FY28</li>
+        <li>FY29 PAT: ₹285–340 Cr; Stock: ₹2,500–3,200</li>
+      </ul>
+    </div>
+    <div class="scenario-card scenario-bear">
+      <div class="scenario-label">Bear Case — 15% Probability</div>
+      <div class="scenario-prob" style="color:var(--red);">₹800 Cr</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:10px;">FY29 Revenue Target</div>
+      <ul class="scenario-items">
+        <li>Revenue growth slows to 15–18% CAGR</li>
+        <li>Working capital spiral — inventory and receivables stay elevated</li>
+        <li>OEM qualification delays (hot-section, Rolls-Royce)</li>
+        <li>Energy sector slowdown / global recession</li>
+        <li>Management bandwidth crunch causing execution errors</li>
+        <li>Margins compress to 33–34% from employee cost inflation</li>
+        <li>FY29 PAT: ₹170–210 Cr; Stock: ₹1,200–1,600</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top:24px;" class="panel">
+    <div class="panel-title">Key Monitoring Variables — Quarterly Checklist</div>
+    <div class="two-col">
+      <ul class="checklist">
+        <li><span class="warn-icon">◈</span><span><strong>Revenue trajectory:</strong> Should accelerate to ₹165–185 Cr in Q1 FY27 and ₹180–200 Cr in Q2 FY27 as new plants contribute</span></li>
+        <li><span class="warn-icon">◈</span><span><strong>Operating CFO:</strong> Must turn positive by Q3 FY27 at latest — the critical validation of WC normalization story</span></li>
+        <li><span class="warn-icon">◈</span><span><strong>Inventory days:</strong> Management guidance — H1 FY27 toward 200 days, H2 toward 160–170 days. Deviation signals problem</span></li>
+        <li><span class="warn-icon">◈</span><span><strong>A&amp;D segment revenue:</strong> Should cross ₹150 Cr in FY27 as Rolls-Royce deliveries begin</span></li>
+      </ul>
+      <ul class="checklist">
+        <li><span class="warn-icon">◈</span><span><strong>O&amp;G segment first revenue disclosure:</strong> Any material O&amp;G revenue is a positive surprise not priced in</span></li>
+        <li><span class="warn-icon">◈</span><span><strong>Remaining 4 plant inaugurations:</strong> All 4 should be completed by Q3/Q4 FY27 per guidance</span></li>
+        <li><span class="warn-icon">◈</span><span><strong>ATGG engine official delivery announcement:</strong> Watch for exchange disclosure or government press releases</span></li>
+        <li><span class="warn-icon">◈</span><span><strong>New order announcements:</strong> Any Phase 3 MHI, Safran contract, or new OEM relationship would be a significant rerating catalyst</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- STEP 13 · FINAL VERDICT -->
+<!-- ─────────────────────────────────────────────── -->
+<section class="section" id="verdict">
+  <div class="section-header">
+    <span class="section-num">13</span>
+    <h2 class="section-title">Final Investment Verdict</h2>
+    <span class="section-tag">Institutional Summary</span>
+  </div>
+
+  <div class="two-col">
+    <div class="panel" style="border-top:3px solid var(--green);">
+      <div class="panel-title" style="color:var(--green);">Key Positives</div>
+      <ul class="checklist">
+        <li><span class="check-icon">✓</span><span>Widening qualification moat — MHI hot-section nozzle vane represents category-defining capability entry</span></li>
+        <li><span class="check-icon">✓</span><span>₹6,500+ Cr order book = 11x FY26 revenue — extraordinary multi-year visibility for a ₹590 Cr company</span></li>
+        <li><span class="check-icon">✓</span><span>Consistent 5-year track record: Revenue CAGR 37.4%, EBITDA CAGR 42.3%, PAT CAGR 57.8%</span></li>
+        <li><span class="check-icon">✓</span><span>All global aero-engine OEM relationships now established (Rolls-Royce, P&amp;W, Safran, Honeywell)</span></li>
+        <li><span class="check-icon">✓</span><span>India's only qualified nuclear turbine airfoil manufacturer — strategic irreplaceability</span></li>
+        <li><span class="check-icon">✓</span><span>EBITDA margins expanding despite massive capacity investment — structural, not cyclical</span></li>
+        <li><span class="check-icon">✓</span><span>Management credibility: consistently beats financial guidance; honest about operational complexity</span></li>
+        <li><span class="check-icon">✓</span><span>Net D/E of 0.17x with ₹184 Cr treasury — balance sheet strength provides execution cushion</span></li>
+      </ul>
+    </div>
+    <div class="panel" style="border-top:3px solid var(--amber);">
+      <div class="panel-title" style="color:var(--amber);">Key Negatives &amp; Risks</div>
+      <ul class="checklist">
+        <li><span class="cross-icon">✗</span><span>Negative operating cash flow (–₹123 Cr) creates near-term investor discomfort and must reverse in FY27</span></li>
+        <li><span class="cross-icon">✗</span><span>99.5x P/E and ~63x EV/EBITDA offer minimal margin of safety — highly vulnerable to any execution miss</span></li>
+        <li><span class="cross-icon">✗</span><span>Working capital days remain elevated at combined ~370 — normalization is a 12–18 month story, not immediate</span></li>
+        <li><span class="cross-icon">✗</span><span>Other income dependency (₹47 Cr, 8% of revenue from FX gains + FD interest) will reduce sharply in FY27</span></li>
+        <li><span class="cross-icon">✗</span><span>Saudi Arabia facility delayed — indicates management bandwidth constraints at current scale</span></li>
+        <li><span class="cross-icon">✗</span><span>No dividend, no buyback — the long tail of payoff requires patience; short-term investor horizon creates volatility risk</span></li>
+        <li><span class="cross-icon">✗</span><span>Infrastructure commissioning complexity is the key execution risk — any quality escape could damage OEM relationships</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:20px; border-top:3px solid var(--gold);">
+    <div class="panel-title" style="color:var(--gold);">Hidden Insights (Market May Miss)</div>
+    <div class="three-col">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:0.15em;margin-bottom:10px;">OPTIONALITY NOT PRICED IN</div>
+        <ul class="flag-list">
+          <li class="flag-item"><span class="flag-dot dot-gold"></span><span>O&amp;G segment at near-zero revenue is a multi-hundred-crore option that is invisible in all financial models.</span></li>
+          <li class="flag-item"><span class="flag-dot dot-gold"></span><span>ATGG follow-on orders (post-successful engine delivery) could be transformative for defense revenue.</span></li>
+          <li class="flag-item"><span class="flag-dot dot-gold"></span><span>Hot-section nozzle vanes carry materially higher margins than current products (Howmet analogy).</span></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:0.15em;margin-bottom:10px;">BALANCE SHEET HIDDEN VALUE</div>
+        <ul class="flag-list">
+          <li class="flag-item"><span class="flag-dot dot-gold"></span><span>₹100 Cr GST credit realizable by H1 FY28 — not in OCF but a genuine future cash inflow.</span></li>
+          <li class="flag-item"><span class="flag-dot dot-gold"></span><span>CWIP of ₹256 Cr represents productive assets already ordered but not yet earning — book value is understated relative to earning potential.</span></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:0.15em;margin-bottom:10px;">STRATEGIC POSITIONING</div>
+        <ul class="flag-list">
+          <li class="flag-item"><span class="flag-dot dot-gold"></span><span>India's first credible competitor to Howmet Aerospace / PCC in mission-critical turbine components — a $50 Bn+ global market dominated by 3–4 players.</span></li>
+          <li class="flag-item"><span class="flag-dot dot-gold"></span><span>With wall-to-wall OEM coverage across A&amp;D, Energy, and O&amp;G, Azad is structurally irreplaceable in its customer ecosystems.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL SCORECARD -->
+  <div style="margin-top:28px; background:var(--ink-2); border:1px solid var(--gold-border); border-radius:4px; padding:32px;">
+    <div style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--text-dim);text-transform:uppercase;margin-bottom:12px;">Final Investment Verdict</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:12px;">Accumulate</div>
+        <p style="color:var(--text-muted);font-size:13px;line-height:1.7;max-width:700px;">Azad Engineering is an exceptional compounding machine — one of India's rarest genuinely world-class industrial businesses — in the midst of the most capital-intensive phase of its growth cycle. The business quality is indisputable, the moat is widening, and the 11x order book provides multi-year earnings visibility. At 99.5x trailing P/E, investors are not getting a bargain, but they are buying an asset that could compound at 25–35% annually for the next 5–7 years. The core risk is valuation — a single quarter of below-expectation delivery would be painful at current prices. Build positions on any meaningful weakness (15–20% correction), hold conviction through the FCF-negative investment phase, and expect the operating leverage inflection to validate the thesis from FY27 H2 onwards.</p>
+      </div>
+      <div style="text-align:center;min-width:180px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.2em;color:var(--text-dim);margin-bottom:16px;">SCORECARD SUMMARY</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;justify-content:space-between;gap:20px;"><span style="font-size:12px;color:var(--text-muted);">Management</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--green);">Strong</span></div>
+          <div style="display:flex;justify-content:space-between;gap:20px;"><span style="font-size:12px;color:var(--text-muted);">Moat</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--green);">Wide &amp; Widening</span></div>
+          <div style="display:flex;justify-content:space-between;gap:20px;"><span style="font-size:12px;color:var(--text-muted);">Earnings Quality</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);">6.5/10</span></div>
+          <div style="display:flex;justify-content:space-between;gap:20px;"><span style="font-size:12px;color:var(--text-muted);">Valuation Comfort</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);">6.5/10</span></div>
+          <div style="display:flex;justify-content:space-between;gap:20px;"><span style="font-size:12px;color:var(--text-muted);">Compounding Potential</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--green);">9/10</span></div>
+          <div style="border-top:1px solid var(--border);padding-top:10px;margin-top:4px;display:flex;justify-content:space-between;gap:20px;"><span style="font-size:12px;color:var(--text);">Conviction Level</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);">High</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="report-footer">
+    <div class="footer-disclaimer">This report is prepared for informational purposes only based on publicly available disclosures including BSE/NSE filings, earnings transcripts and investor presentations. It does not constitute investment advice. All estimates and scenarios are analytical projections only. Past performance does not guarantee future results. Investors should conduct their own due diligence. Data as of Q4 FY2026 results published 16 May 2026.</div>
+    <div class="footer-brand">Institutional Analysis · May 2026</div>
+  </div>
+</footer>
+
+</div><!-- /page -->
+</body>
+</html>
