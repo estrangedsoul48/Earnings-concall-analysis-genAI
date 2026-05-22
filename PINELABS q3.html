@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pine Labs Limited — Institutional Equity Analysis | Q3 FY26</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #05080f;
+    --bg-secondary: #0c1220;
+    --bg-card: #111827;
+    --bg-card-hover: #162236;
+    --accent-teal: #00c896;
+    --accent-teal-dim: rgba(0,200,150,0.12);
+    --accent-amber: #f59e0b;
+    --accent-amber-dim: rgba(245,158,11,0.12);
+    --accent-red: #ef4444;
+    --accent-red-dim: rgba(239,68,68,0.10);
+    --accent-blue: #3b82f6;
+    --accent-blue-dim: rgba(59,130,246,0.12);
+    --text-primary: #f0f4f8;
+    --text-secondary: #94a3b8;
+    --text-muted: #4b5e72;
+    --border: rgba(255,255,255,0.07);
+    --border-accent: rgba(0,200,150,0.25);
+    --font-display: 'DM Serif Display', serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --glow: 0 0 30px rgba(0,200,150,0.10);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ── Header ── */
+  .masthead {
+    background: linear-gradient(135deg, #060c18 0%, #0a1628 50%, #04090f 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,200,150,0.06) 0%, transparent 70%);
+  }
+  .masthead-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 48px 36px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: start;
+  }
+  .brand-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .brand-logo {
+    width: 40px; height: 40px;
+    background: var(--accent-teal);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head);
+    font-size: 16px; font-weight: 800;
+    color: #000;
+    letter-spacing: -0.5px;
+  }
+  .brand-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+  .brand-meta span { color: var(--accent-teal); }
+  .report-title {
+    font-family: var(--font-display);
+    font-size: 38px;
+    line-height: 1.12;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .report-title em { color: var(--accent-teal); font-style: normal; }
+  .report-subtitle {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    max-width: 560px;
+  }
+
+  .masthead-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 120px);
+    gap: 12px;
+    padding-top: 8px;
+  }
+  .mstat {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .mstat-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .mstat-value {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .mstat-value.up { color: var(--accent-teal); }
+  .mstat-value.down { color: var(--accent-red); }
+  .mstat-value.warn { color: var(--accent-amber); }
+
+  .tag-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+  .tag-teal { background: var(--accent-teal-dim); border-color: rgba(0,200,150,0.3); color: var(--accent-teal); }
+  .tag-amber { background: var(--accent-amber-dim); border-color: rgba(245,158,11,0.3); color: var(--accent-amber); }
+  .tag-red { background: var(--accent-red-dim); border-color: rgba(239,68,68,0.3); color: var(--accent-red); }
+  .tag-blue { background: var(--accent-blue-dim); border-color: rgba(59,130,246,0.3); color: var(--accent-blue); }
+  .tag-muted { background: rgba(255,255,255,0.04); border-color: var(--border); color: var(--text-muted); }
+
+  /* ── Nav ── */
+  .nav-bar {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-item {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 14px 16px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    text-decoration: none;
+    display: block;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-item:hover, .nav-item.active {
+    color: var(--accent-teal);
+    border-bottom-color: var(--accent-teal);
+  }
+
+  /* ── Layout ── */
+  .page { max-width: 1280px; margin: 0 auto; padding: 48px 48px 80px; }
+
+  .section {
+    margin-bottom: 64px;
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent-teal);
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+    min-width: 36px;
+  }
+  .section-title {
+    font-family: var(--font-head);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+  }
+  .section-tag {
+    margin-left: auto;
+  }
+
+  /* ── Cards ── */
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .card:hover { border-color: rgba(0,200,150,0.2); }
+  .card.accent-left { border-left: 3px solid var(--accent-teal); }
+  .card.accent-amber { border-left: 3px solid var(--accent-amber); }
+  .card.accent-red { border-left: 3px solid var(--accent-red); }
+  .card.accent-blue { border-left: 3px solid var(--accent-blue); }
+
+  .card-label {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .card-value {
+    font-family: var(--font-mono);
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .card-value.up { color: var(--accent-teal); }
+  .card-value.down { color: var(--accent-red); }
+  .card-sub {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+  .card-sub .badge-up { color: var(--accent-teal); font-weight: 600; }
+  .card-sub .badge-down { color: var(--accent-red); font-weight: 600; }
+
+  /* ── Score Cards ── */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .score-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .score-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .score-dial {
+    font-family: var(--font-display);
+    font-size: 32px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .score-dial.s-high { color: var(--accent-teal); }
+  .score-dial.s-mid { color: var(--accent-amber); }
+  .score-dial.s-low { color: var(--accent-red); }
+  .score-bar {
+    height: 3px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .score-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--accent-teal);
+  }
+  .score-bar-fill.mid { background: var(--accent-amber); }
+  .score-bar-fill.low { background: var(--accent-red); }
+
+  /* ── Table ── */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead tr {
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 14px 18px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  td {
+    padding: 13px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text-secondary);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  td.mono { font-family: var(--font-mono); font-size: 12.5px; }
+  td.pos { color: var(--accent-teal); font-family: var(--font-mono); }
+  td.neg { color: var(--accent-red); font-family: var(--font-mono); }
+  td.warn { color: var(--accent-amber); font-family: var(--font-mono); }
+  td.strong { color: var(--text-primary); font-weight: 500; }
+
+  /* ── Insight blocks ── */
+  .insight {
+    background: var(--accent-teal-dim);
+    border: 1px solid rgba(0,200,150,0.2);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .insight-warn {
+    background: var(--accent-amber-dim);
+    border-color: rgba(245,158,11,0.2);
+  }
+  .insight-danger {
+    background: var(--accent-red-dim);
+    border-color: rgba(239,68,68,0.2);
+  }
+  .insight-label {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    margin-bottom: 8px;
+  }
+  .insight-warn .insight-label { color: var(--accent-amber); }
+  .insight-danger .insight-label { color: var(--accent-red); }
+  .insight p { color: var(--text-secondary); font-size: 13.5px; line-height: 1.65; }
+
+  /* ── Progress bars ── */
+  .kpi-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .kpi-row:last-child { border-bottom: none; }
+  .kpi-name {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    min-width: 220px;
+  }
+  .kpi-bar-wrap {
+    flex: 1;
+    height: 5px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .kpi-bar { height: 100%; border-radius: 3px; }
+  .kpi-val {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-primary);
+    min-width: 60px;
+    text-align: right;
+  }
+
+  /* ── Verdict block ── */
+  .verdict-block {
+    background: linear-gradient(135deg, rgba(0,200,150,0.08) 0%, rgba(0,200,150,0.02) 100%);
+    border: 1px solid rgba(0,200,150,0.25);
+    border-radius: 16px;
+    padding: 32px 36px;
+    margin-top: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .verdict-block::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(0,200,150,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .verdict-rating {
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: var(--accent-teal);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .verdict-subtitle {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .verdict-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 800px;
+  }
+
+  /* ── Moat ── */
+  .moat-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 80px;
+    gap: 20px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .moat-row:last-child { border-bottom: none; }
+  .moat-name {
+    font-family: var(--font-head);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .moat-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.5; }
+  .moat-strength {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  /* ── Quote ── */
+  .pullquote {
+    border-left: 3px solid var(--accent-teal);
+    padding: 16px 24px;
+    margin: 24px 0;
+    background: rgba(0,200,150,0.04);
+    border-radius: 0 8px 8px 0;
+  }
+  .pullquote p {
+    font-family: var(--font-display);
+    font-size: 17px;
+    color: var(--text-primary);
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .pullquote cite {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-style: normal;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 32px 0;
+  }
+
+  /* ── Flag boxes ── */
+  .flag-list { display: flex; flex-direction: column; gap: 10px; }
+  .flag-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .flag-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .flag-dot.green { background: var(--accent-teal); }
+  .flag-dot.amber { background: var(--accent-amber); }
+  .flag-dot.red { background: var(--accent-red); }
+  .flag-dot.blue { background: var(--accent-blue); }
+  .flag-text { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
+  .flag-text strong { color: var(--text-primary); font-weight: 500; }
+  .flag-severity {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    align-self: flex-start;
+  }
+
+  /* ── Scenario cards ── */
+  .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .scenario-card {
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid;
+  }
+  .scenario-card.bull {
+    background: rgba(0,200,150,0.06);
+    border-color: rgba(0,200,150,0.2);
+  }
+  .scenario-card.base {
+    background: rgba(59,130,246,0.06);
+    border-color: rgba(59,130,246,0.2);
+  }
+  .scenario-card.bear {
+    background: rgba(239,68,68,0.06);
+    border-color: rgba(239,68,68,0.2);
+  }
+  .scenario-head {
+    font-family: var(--font-head);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .scenario-card.bull .scenario-head { color: var(--accent-teal); }
+  .scenario-card.base .scenario-head { color: var(--accent-blue); }
+  .scenario-card.bear .scenario-head { color: var(--accent-red); }
+  .scenario-prob {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .scenario-items { font-size: 12.5px; color: var(--text-secondary); line-height: 1.65; }
+
+  /* ── Footer ── */
+  .report-footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .footer-text {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .section { animation: fadeUp 0.5s ease both; }
+
+  .prose p {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--text-primary); font-weight: 500; }
+
+  @media (max-width: 900px) {
+    .grid-4, .score-grid { grid-template-columns: repeat(2, 1fr); }
+    .masthead-inner { grid-template-columns: 1fr; }
+    .page { padding: 32px 24px; }
+    .scenario-grid { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     MASTHEAD
+══════════════════════════════════════════════════════════ -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <div class="brand-row">
+        <div class="brand-logo">PL</div>
+        <div>
+          <div class="brand-meta">NSE: <span>PINELABS</span> &nbsp;|&nbsp; BSE: <span>544606</span> &nbsp;|&nbsp; CIN: L67100HR1998PLC113312</div>
+        </div>
+      </div>
+      <h1 class="report-title">Pine Labs Limited<br><em>Institutional Equity Analysis</em></h1>
+      <p class="report-subtitle">Forensic dissection of Q3 FY26 results — investor presentation, earnings concall transcript, and Q2 FY26 concall. Based on disclosures dated January 28, 2026.</p>
+      <div class="tag-row">
+        <span class="tag tag-teal">Q3 FY26 Results</span>
+        <span class="tag tag-teal">Revenue ₹744 Cr +24% YoY</span>
+        <span class="tag tag-amber">PAT Positive (3rd Consecutive Q)</span>
+        <span class="tag tag-red">Negative FCF: -₹98.7 Cr</span>
+        <span class="tag tag-muted">Fintech Infrastructure</span>
+        <span class="tag tag-muted">20+ Countries</span>
+      </div>
+    </div>
+    <div class="masthead-stats">
+      <div class="mstat">
+        <div class="mstat-label">CMP</div>
+        <div class="mstat-value warn">₹148</div>
+      </div>
+      <div class="mstat">
+        <div class="mstat-label">Mkt Cap</div>
+        <div class="mstat-value">₹17,046 Cr</div>
+      </div>
+      <div class="mstat">
+        <div class="mstat-label">EV/EBITDA</div>
+        <div class="mstat-value warn">43.6×</div>
+      </div>
+      <div class="mstat">
+        <div class="mstat-label">52W H/L</div>
+        <div class="mstat-value">284/143</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════
+     NAV
+══════════════════════════════════════════════════════════ -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a class="nav-item active" href="#s1">01 Snapshot</a>
+    <a class="nav-item" href="#s2">02 Result Quality</a>
+    <a class="nav-item" href="#s3">03 Guidance Tracker</a>
+    <a class="nav-item" href="#s4">04 Cash Architecture</a>
+    <a class="nav-item" href="#s5">05 Management Decode</a>
+    <a class="nav-item" href="#s6">06 Segments</a>
+    <a class="nav-item" href="#s7">07 Industry Position</a>
+    <a class="nav-item" href="#s8">08 Capital Allocation</a>
+    <a class="nav-item" href="#s9">09 Red Flags</a>
+    <a class="nav-item" href="#s10">10 Inflection Signals</a>
+    <a class="nav-item" href="#s11">11 Moat Structure</a>
+    <a class="nav-item" href="#s12">12 Valuation</a>
+    <a class="nav-item" href="#s13">13 Trajectory</a>
+    <a class="nav-item" href="#s14">14 Verdict</a>
+  </div>
+</nav>
+
+<main class="page">
+
+<!-- ══════════════════════════════════════════════════════════
+     STEP 1: EXECUTIVE SNAPSHOT
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="s1">
+  <div class="section-head">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Executive Snapshot — What Actually Happened?</h2>
+    <span class="section-tag tag tag-teal">Fundamentally Strong</span>
+  </div>
+
+  <div class="prose" style="margin-bottom: 28px;">
+    <p>Q3 FY26 was Pine Labs' strongest quarter since its listing — not merely by optically flattering numbers but by genuine operational progress across multiple dimensions. Revenue hit a record ₹744 Cr (+24% YoY), adjusted EBITDA surged 59% to ₹171 Cr (23% margin, +500 bps YoY), and the company posted its third consecutive quarter of positive PAT at ₹42 Cr (₹52 Cr ex-exceptional). The festive season played a role — Q3 is structurally Pine Labs' strongest quarter — but the underlying business momentum, particularly in affordability, online payments, and international card issuance, is real and widening.</p>
+    <p>The single largest risk investors must confront: <strong>operating cash flow remains deeply negative (-₹152 Cr) despite surging EBITDA</strong>. Management attributes this to festive working capital seasonality, with a normalization expected in Q4. This explanation is plausible but must be verified sequentially.</p>
+  </div>
+
+  <div class="score-grid">
+    <div class="score-card">
+      <div class="score-label">Business<br>Health</div>
+      <div class="score-dial s-high">7.5</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:75%"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">Earnings<br>Quality</div>
+      <div class="score-dial s-mid">5.5</div>
+      <div class="score-bar"><div class="score-bar-fill mid" style="width:55%"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">Balance Sheet<br>Strength</div>
+      <div class="score-dial s-mid">5.0</div>
+      <div class="score-bar"><div class="score-bar-fill mid" style="width:50%"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">Capital<br>Allocation</div>
+      <div class="score-dial s-mid">6.0</div>
+      <div class="score-bar"><div class="score-bar-fill mid" style="width:60%"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">Management<br>Credibility</div>
+      <div class="score-dial s-high">7.0</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:70%"></div></div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">Future<br>Visibility</div>
+      <div class="score-dial s-mid">6.5</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:65%"></div></div>
+    </div>
+  </div>
+
+  <div class="grid-4" style="margin-top: 24px;">
+    <div class="card accent-left">
+      <div class="card-label">Revenue (Q3 FY26)</div>
+      <div class="card-value up">₹744 Cr</div>
+      <div class="card-sub">Record high &nbsp;|&nbsp; <span class="badge-up">+24% YoY</span></div>
+    </div>
+    <div class="card accent-left">
+      <div class="card-label">Adj. EBITDA</div>
+      <div class="card-value up">₹171 Cr</div>
+      <div class="card-sub">23% margin &nbsp;|&nbsp; <span class="badge-up">+59% YoY</span></div>
+    </div>
+    <div class="card accent-left">
+      <div class="card-label">PAT</div>
+      <div class="card-value up">₹42 Cr</div>
+      <div class="card-sub">3rd consec. positive &nbsp;|&nbsp; <span class="badge-up">vs -₹57 Cr</span></div>
+    </div>
+    <div class="card accent-amber">
+      <div class="card-label">Operating Cash Flow</div>
+      <div class="card-value down">-₹152 Cr</div>
+      <div class="card-sub">Incl. early settlement. Seasonal WC drag.</div>
+    </div>
+  </div>
+
+  <div class="insight" style="margin-top: 28px;">
+    <div class="insight-label">⚡ What the Market is Likely Missing</div>
+    <p>The EBITDA-to-PAT conversion is accelerating faster than most models assumed: amortisation of acquisition intangibles is declining, ESOP costs are structurally falling (now 4% of revenue vs 7% two years ago), and DCP depreciation is compressing (4% vs 11% two years ago). These are structural tailwinds that will continue to benefit PAT conversion through FY27, even if EBITDA growth moderates. Additionally, the IAP (Issuing & Acquiring) segment, growing at 42% YoY, is still under-appreciated in consensus models as a durable, high-ARPU global business.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STEP 2: RESULT QUALITY
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="s2">
+  <div class="section-head">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Result Quality Analysis — Dissecting the Numbers</h2>
+  </div>
+
+  <div class="grid-2" style="margin-bottom: 28px;">
+    <div>
+      <div class="prose">
+        <p><strong>Revenue Quality — Organic and Multi-Engine.</strong> Pine Labs reports revenue on a net basis (stripping out pass-through payment processing fees), which is the more conservative and informative presentation. Certain peers report gross, making comparisons misleading. The 24% YoY revenue growth is genuinely broad-based: DITP (Digital Infrastructure & Transaction Platform) grew 16% and IAP (Issuing & Acquiring) grew 42%. Critically, online payments revenue alone grew ~50% YoY. International revenue grew ~35% YoY. No single segment is carrying the full load — this is multi-engine growth.</p>
+        <p><strong>Contribution Margin — Slight Compression, Explainable.</strong> Q3 contribution margin came in at 74% vs 77% in Q3 FY25, a ~300 bps decline. This is entirely attributable to business mix: the IAP segment's distribution revenues (lower CM% at ~55%) are scaling rapidly, diluting the blended margin. Crucially, DITP CM held steady at 83–84%. The CFO explicitly guided that 9M FY26 blended CM is ~76%, within the 76–78% guided corridor. This is not margin deterioration — it is intentional mix shift towards a faster-growing segment.</p>
+        <p><strong>EBITDA Quality.</strong> The 59% EBITDA growth is driven by two clean structural forces: (1) operating leverage on a relatively fixed cost base (employee costs grew only 4% YoY while revenue grew 24%), and (2) a more profitable revenue mix. The ₹50–₹57 flow-through per ₹100 incremental contribution margin was delivered as guided in Q3, providing high credibility to the guided operating model.</p>
+      </div>
+    </div>
+    <div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Q3 FY25</th>
+              <th>Q2 FY26</th>
+              <th>Q3 FY26</th>
+              <th>YoY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="strong">Revenue (₹Cr)</td><td class="mono">602</td><td class="mono">650</td><td class="mono">744</td><td class="pos">+24%</td></tr>
+            <tr><td class="strong">Contribution (₹Cr)</td><td class="mono">462</td><td class="mono">497</td><td class="mono">551</td><td class="pos">+19%</td></tr>
+            <tr><td class="strong">CM%</td><td class="mono">77%</td><td class="mono">77%</td><td class="mono">74%</td><td class="neg">-300bps</td></tr>
+            <tr><td class="strong">Adj. EBITDA (₹Cr)</td><td class="mono">108</td><td class="mono">122</td><td class="mono">171</td><td class="pos">+59%</td></tr>
+            <tr><td class="strong">EBITDA Margin</td><td class="mono">18%</td><td class="mono">19%</td><td class="mono">23%</td><td class="pos">+500bps</td></tr>
+            <tr><td class="strong">PAT (₹Cr)</td><td class="mono">-57</td><td class="mono">6</td><td class="mono">42</td><td class="pos">+₹99Cr</td></tr>
+            <tr><td class="strong">Employee % Rev</td><td class="mono">37%</td><td class="mono">—</td><td class="mono">31%</td><td class="pos">-600bps</td></tr>
+            <tr><td class="strong">ESOP % Rev</td><td class="mono">5%</td><td class="mono">4.5%</td><td class="mono">4%</td><td class="pos">-100bps</td></tr>
+            <tr><td class="strong">DCP Depr. % Rev</td><td class="mono">6%</td><td class="mono">5%</td><td class="mono">4%</td><td class="pos">-200bps</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="insight insight-warn" style="margin-top: 16px;">
+        <div class="insight-label">⚠ PAT Quality Note</div>
+        <p>Reported PAT of ₹42 Cr includes a ₹12 Cr one-off exceptional charge for new labour code implementation. Adjusted PAT would have been ~₹52 Cr. This is a genuine one-time item, not a recurring drag. However, "Others (incl. other income)" includes ₹28 Cr of other income in Q3 FY26 — a material contributor to PBT (₹63 Cr) that analysts should decompose carefully. Interest income on bank deposits and fair valuation gains on mutual funds are excluded from Adjusted EBITDA per the glossary definition, suggesting the PBT line benefits from treasury income.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p><strong>Seasonality Context.</strong> Q3 is structurally Pine Labs' strongest quarter due to festive demand (Diwali, Navratri, corporate gifting season). The management explicitly acknowledged this, and Amrish Rau noted that 9M FY26 EBITDA of ₹413 Cr at 21% margin is the more meaningful normalized metric. Sequentially, Q3 EBITDA of ₹171 Cr vs Q2's ₹122 Cr reflects genuine festive leverage, but also caution for modelling Q4 sequentially lower. The 9M trajectory at ₹2,010 Cr revenue and ₹413 Cr EBITDA implies a full-year run-rate of ~₹2,700 Cr revenue and ~₹550 Cr EBITDA.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STEP 3: GUIDANCE TRACKER
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="s3">
+  <div class="section-head">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Guidance Tracker — Management Promise vs. Reality</h2>
+    <span class="section-tag tag tag-teal">Execution Credibility: Strong</span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Historical Guidance / Claim</th>
+          <th>Timeline Given</th>
+          <th>Current Status</th>
+          <th>Verdict</th>
+          <th>Commentary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="strong">₹50–57 EBITDA flow-through per ₹100 incremental CM</td>
+          <td>Q2 FY26 earnings call (Dec 2025)</td>
+          <td>Delivered: >₹50 flow-through in Q3</td>
+          <td class="pos">✓ Achieved</td>
+          <td>This is now the single most important operational benchmark. Management has delivered it for two consecutive quarters, validating the operating leverage model.</td>
+        </tr>
+        <tr>
+          <td class="strong">CM to remain in 76–78% corridor</td>
+          <td>Q2 FY26 concall</td>
+          <td>9M FY26 CM: 76%. Q3 was 74% due to mix shift.</td>
+          <td class="warn">~ On Track</td>
+          <td>Quarter-specific mix effect (IAP distribution scale-up). 9M cumulative is within guided range. Will need monitoring if IAP mix continues rising.</td>
+        </tr>
+        <tr>
+          <td class="strong">No meaningful headcount increase; AI-led productivity gains</td>
+          <td>Q2 FY26 concall (Dec 2025)</td>
+          <td>Headcount +8% YoY (4,679 vs 4,324). Employee costs +3.7% YoY.</td>
+          <td class="pos">✓ Delivered</td>
+          <td>Cost-to-revenue ratio fell from 37% to 31%. The claim of "18-21% AI-written code" appears to be generating real efficiency, though the exact savings cannot be separately quantified.</td>
+        </tr>
+        <tr>
+          <td class="strong">ESOP cost to decline as % of revenue</td>
+          <td>Q2 FY26 concall; IPO narrative</td>
+          <td>Now 4% (vs 5% Q3 FY25 normalized). Absolute: ₹31.2 Cr.</td>
+          <td class="pos">✓ On Trajectory</td>
+          <td>New ESOPs issued at FMV instead of deep discount. Clear downward trajectory. Structurally reduces gap between EBITDA and PAT.</td>
+        </tr>
+        <tr>
+          <td class="strong">DCP depreciation declining as % of revenue</td>
+          <td>Multiple quarters; ongoing guidance</td>
+          <td>4% in Q3 FY26 vs 6% in Q3 FY25 vs 11% two years ago.</td>
+          <td class="pos">✓ Sustained</td>
+          <td>Deliberate shift to software-led and refurbished DCP deployments. Structural improvement, not cyclical. This reduces capex burden and boosts FCF potential.</td>
+        </tr>
+        <tr>
+          <td class="strong">Working capital normalisation in Q4 after Q3 festive drag</td>
+          <td>Q3 FY26 earnings (Jan 2026)</td>
+          <td>Pending — Q4 FY26 results not yet published</td>
+          <td class="warn">To Be Verified</td>
+          <td>Management stated -₹262 Cr WC outflow in Q3 FY26 (ex-early settlement) is seasonal and will normalize in Q4. This is the single most important near-term monitoring variable.</td>
+        </tr>
+        <tr>
+          <td class="strong">Online payments revenue growing rapidly with major e-commerce logos</td>
+          <td>Q2 FY26 (Myntra, Meesho, BigBasket, Swiggy named)</td>
+          <td>Online payments +~50% YoY in Q3. New adds: Thyrocare, Cultfit, Lenskart, Myntra, Swiggy, Redbus, Navi.</td>
+          <td class="pos">✓ Exceeded</td>
+          <td>Online is clearly an emerging growth driver. Growing from a low base but velocity is impressive. Apple Pay enablement for international customers adds cross-border DCC revenue.</td>
+        </tr>
+        <tr>
+          <td class="strong">International revenue to reach and sustain 15% of total</td>
+          <td>Implied by FY25 trend (15% for FY25)</td>
+          <td>9M FY26: 15% mix. Q3 FY26: 13% (seasonal domestic skew).</td>
+          <td class="warn">~ On Track</td>
+          <td>International revenue grew ~35% YoY in Q3. Mix fluctuates due to India's seasonal strength in Q3. Key wins: Wio Bank (UAE), Sri Lanka card issuer, Singapore in-store launch.</td>
+        </tr>
+        <tr>
+          <td class="strong">VAS-activated DCP base to keep rising sequentially</td>
+          <td>Continuous guidance since listing</td>
+          <td>28% of DCP base in Q3 vs 21% a year ago, 25% in Q2 FY26.</td>
+          <td class="pos">✓ Outperforming</td>
+          <td>This is the most critical long-term revenue unlock. 72% of DCPs still unmonetised for VAS/affordability — a massive embedded monetization option.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pullquote" style="margin-top: 28px;">
+    <p>"We try to be very careful by not trying to be aggressive in the projections we give out. We do feel comfortable with what we have sent out there."</p>
+    <cite>— Amrish Rau, CEO, Q2 FY26 Earnings Call (Dec 2025)</cite>
+  </div>
+
+  <div class="prose" style="margin-top: 20px;">
+    <p><strong>Execution Credibility Assessment.</strong> Pine Labs management has, over two post-listing earnings calls (Q2 and Q3 FY26), consistently delivered on or slightly exceeded their operating model commitments. The ₹50–₹57 EBITDA flow-through guidance has been the anchor metric and both quarters have validated it. The contribution margin corridor of 76–78% has been maintained at the 9M level. The key open question — whether Q3's cash flow drag is truly seasonal or structural — will be answered definitively in Q4 FY26 results. Management is classified as <strong>Conservative-to-Visionary</strong> with a clear long-term platform narrative and a disciplined reluctance to over-promise on quarterly specifics.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STEP 4: HIDDEN FINANCIAL ARCHITECTURE
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="s4">
+  <div class="section-head">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Hidden Financial Architecture — Cash Flow Truth</h2>
+  </div>
+
+  <div class="grid-2" style="margin-bottom: 28px;">
+    <div class="card accent-amber">
+      <div class="card-label">The EBITDA vs. Cash Flow Gap — Critical Diagnosis</div>
+      <div class="prose" style="margin-top: 12px;">
+        <p>The single most important forensic concern in Pine Labs' financials is the persistent gap between reported EBITDA and operating cash flow. In Q3 FY26, Adjusted EBITDA was ₹171 Cr but net operating cash flow was <strong>-₹152 Cr</strong> — a swing of ₹323 Cr. Over 9M FY26, Adjusted EBITDA was ₹413 Cr but net operating cash flow was <strong>-₹281 Cr</strong>.</p>
+        <p>The reconciliation reveals the drivers: working capital outflows of -₹226 Cr (9M, ex-early settlement) and early settlement payments of -₹362 Cr (9M). The "early settlement" line relates to Pine Labs' prepaid card and affordability business, where the company may advance settlement funds to merchants before collecting from the payment ecosystem — a structural working capital feature of their fintech infrastructure model. Management guided this at 15–16% of revenue as normalised net working capital, consistent with what was disclosed in the RHP.</p>
+        <p><strong>Verdict:</strong> The cash flow model is not fraudulent but it is demanding. At ₹2,700+ Cr annualised revenue, 15% working capital intensity implies a structural ₹400+ Cr WC need. The business will only become FCF-positive at scale if WC intensity moderates as the distribution business matures. This is the key watch variable for long-term investors.</p>
+      </div>
+    </div>
+    <div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Cash Flow Bridge</th>
+              <th>9M FY25</th>
+              <th>9M FY26</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="strong">Adj. EBITDA</td><td class="pos mono">₹273 Cr</td><td class="pos mono">₹413 Cr</td></tr>
+            <tr><td>Cash-settled ESOP</td><td class="neg mono">-₹23 Cr</td><td class="neg mono">-₹9 Cr</td></tr>
+            <tr><td>Impairment on financial assets</td><td class="neg mono">-₹17 Cr</td><td class="neg mono">-₹33 Cr</td></tr>
+            <tr><td>Other items</td><td class="neg mono">-₹20 Cr</td><td class="neg mono">-₹51 Cr</td></tr>
+            <tr><td>WC adjustments (ex-early settlement)</td><td class="neg mono">-₹44 Cr</td><td class="neg mono">-₹226 Cr</td></tr>
+            <tr><td>Income taxes paid</td><td class="pos mono">+₹43 Cr</td><td class="neg mono">-₹80 Cr</td></tr>
+            <tr><td class="strong">Adj. OCF (ex-early settlement)</td><td class="pos mono">₹246 Cr</td><td class="pos mono">₹81 Cr</td></tr>
+            <tr><td>Early Settlement</td><td class="neg mono">-₹170 Cr</td><td class="neg mono">-₹362 Cr</td></tr>
+            <tr><td class="strong">Net OCF</td><td class="pos mono">₹75 Cr</td><td class="neg mono">-₹281 Cr</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="insight insight-warn" style="margin-top: 16px;">
+        <div class="insight-label">⚠ Forensic Flag — Impairment on Financial Assets</div>
+        <p>Impairment losses on financial assets and contract assets have nearly doubled: ₹33 Cr in 9M FY26 vs ₹17 Cr in 9M FY25. This likely relates to receivables and contract assets in the affordability or fintech infrastructure business. While not alarming at this scale, it warrants monitoring as a potential early-stage credit quality indicator across the merchant base.</p>
+      </div>
+      <div class="insight" style="margin-top: 12px;">
+        <div class="insight-label">✓ Positive — Structural Capex Compression</div>
+        <p>Depreciation and amortisation has declined from ₹223 Cr (9M FY25) to ₹199 Cr (9M FY26) despite growing revenue — a rare combination. This is structural (software-led deployments, refurbished DCPs) and directly funds PAT improvement without revenue growth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STEP 5: MANAGEMENT COMMENTARY DECODE
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="s5">
+  <div class="section-head">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Management Commentary Decode — Psychology & Signals</h2>
+    <span class="section-tag tag tag-teal">Conservative-Visionary</span>
+  </div>
+
+  <div class="grid-3" style="margin-bottom: 24px;">
+    <div class="card accent-left">
+      <div class="card-label">Tone Signature</div>
+      <div class="prose" style="margin-top: 8px;">
+        <p>CEO Amrish Rau projects high confidence bordering on evangelical ("I think we crushed it in Q3"), but this is grounded in specific metrics rather than vague optimism. He volunteered the AI-code-share statistic (21%) without being asked, suggesting an attempt to shift the market's mental model of the company. CFO Sameer Kamath is measured, uses ranges deliberately, and explicitly steered away from forward guidance on quarters not yet reported. This is a well-coordinated management communication style.</p>
+      </div>
+    </div>
+    <div class="card accent-left">
+      <div class="card-label">What Was Emphasised</div>
+      <div class="flag-list" style="margin-top: 8px;">
+        <div class="flag-item" style="padding: 10px 14px;">
+          <div class="flag-dot green"></div>
+          <div class="flag-text">Operating leverage at the ₹100 CM → ₹50–57 EBITDA level, validated again</div>
+        </div>
+        <div class="flag-item" style="padding: 10px 14px;">
+          <div class="flag-dot green"></div>
+          <div class="flag-text">Multi-product, multi-segment, multi-market strategy (Stripe/Adyen analogy repeatedly used)</div>
+        </div>
+        <div class="flag-item" style="padding: 10px 14px;">
+          <div class="flag-dot green"></div>
+          <div class="flag-text">IAP international wins (Wio Bank, Sri Lanka, Singapore launch, Miniso USA, Waymo)</div>
+        </div>
+        <div class="flag-item" style="padding: 10px 14px;">
+          <div class="flag-dot green"></div>
+          <div class="flag-text">AI integration leading to real productivity gains (60% DCP anomaly auto-resolution, 50% merchant email automation)</div>
+        </div>
+      </div>
+    </div>
+    <div class="card accent-amber">
+      <div class="card-label">What Was Sidestepped</div>
+      <div class="flag-list" style="margin-top: 8px;">
+        <div class="flag-item" style="padding: 10px 14px;">
+          <div class="flag-dot amber"></div>
+          <div class="flag-text"><strong>No specific FY27 revenue guidance</strong> — deflected as forward-looking</div>
+        </div>
+        <div class="flag-item" style="padding: 10px 14px;">
+          <div class="flag-dot amber"></div>
+          <div class="flag-text"><strong>No domestic vs. international GTV split</strong> — "don't have it handy right now"</div>
+        </div>
+        <div class="flag-item" style="padding: 10px 14px;">
+          <div class="flag-dot amber"></div>
+          <div class="flag-text"><strong>No quantification of AI Opex savings</strong> — reinvested, not separately tracked</div>
+        </div>
+        <div class="flag-item" style="padding: 10px 14px;">
+          <div class="flag-dot amber"></div>
+          <div class="flag-text"><strong>No per-logo revenue for issuing business</strong> — "not in a position to share"</div>
+        </div>
+        <div class="flag-item" style="padding: 10px 14px;">
+          <div class="flag-dot amber"></div>
+          <div class="flag-text"><strong>No Q4 guidance on cash flow normalisation</strong> — "we expect" language only</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p><strong>Hidden Signals.</strong> The CEO's comment that "85% of major merchants' transaction throughput runs on Pine Labs platform" is a powerful stickiness indicator that was mentioned in passing but carries enormous competitive moat implications. Management's voluntary disclosure that 66% of all DCP transactions are now QR-based (rather than card-swipe) — offered without being asked — pre-empts the bear case on POS displacement by UPI, and does so from a position of evident comfort. The repeated Stripe/Adyen comparison is aspirational positioning, not hollow rhetoric: the product suite (instore + online + prepaid + BBPS + account aggregator) is genuinely comparable in scope if not yet scale.</p>
+    <p><strong>Management Classification:</strong> <strong>Conservative-Visionary</strong> — long-term strategic clarity with numerical discipline. Not promotional. Capital allocation decisions (asset-light pivot, hardware-to-software shift, FMV ESOPs) demonstrate genuine financial discipline. Not empire-building — the headcount commentary is clear evidence of restraint.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STEP 6: SEGMENT ANALYSIS
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="s6">
+  <div class="section-head">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Segment & Business Engine Analysis</h2>
+  </div>
+
+  <div class="table-wrap" style="margin-bottom: 24px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Segment</th>
+          <th>Q3 FY26 Rev</th>
+          <th>YoY Growth</th>
+          <th>CM%</th>
+          <th>GTV Growth</th>
+          <th>Role</th>
+          <th>Competitive Position</th>
+          <th>Risk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="strong">DITP — In-Store Payments (subscription)</td>
+          <td class="mono">~₹200 Cr est.</td>
+          <td class="warn">+8–10%</td>
+          <td class="pos">~82–84%</td>
+          <td class="pos">+11% DCPs</td>
+          <td>Stable cash engine; "rail" for VAS upsell</td>
+          <td>Dominant: #1 with all top-5 retailers & banks</td>
+          <td>UPI disruption risk (partially mitigated — 66% QR)</td>
+        </tr>
+        <tr>
+          <td class="strong">DITP — VAS, Affordability & Online</td>
+          <td class="mono">~₹296 Cr est.</td>
+          <td class="pos">+30–35%</td>
+          <td class="pos">~82%</td>
+          <td class="pos">+41% GTV</td>
+          <td>Core profit engine; highest margin</td>
+          <td>~80–85% affordability market share (mgmt claim)</td>
+          <td>Regulatory (MDR changes); credit cycle</td>
+        </tr>
+        <tr>
+          <td class="strong">IAP — India (Gift cards, prepaid, processing)</td>
+          <td class="mono">~₹142 Cr est.</td>
+          <td class="pos">+42%</td>
+          <td class="pos">~70%+</td>
+          <td class="pos">+28% GTV</td>
+          <td>Emerging growth engine</td>
+          <td>Market leader in gift card / prepaid issuance; post-GST clarity a tailwind</td>
+          <td>Competition from bank-owned platforms</td>
+        </tr>
+        <tr>
+          <td class="strong">IAP — International</td>
+          <td class="mono">~₹106 Cr est.</td>
+          <td class="pos">+41%</td>
+          <td>~55%</td>
+          <td class="pos">+35%+</td>
+          <td>Strategic optionality; long-term growth</td>
+          <td>Early-stage in most markets; anchor wins (UAE, SEA, Australia)</td>
+          <td>Regulatory; FX; high SG&A investment needed</td>
+        </tr>
+        <tr>
+          <td class="strong">Fintech Infrastructure (BBPS, UPI switch, AA)</td>
+          <td class="mono">Included in DITP</td>
+          <td class="pos">+38% txn</td>
+          <td>Moderate</td>
+          <td class="pos">31 Cr txns Q3</td>
+          <td>Hidden option; rapidly growing</td>
+          <td>Top-2 in BBPS; agentic bill payments a differentiated product</td>
+          <td>Per-transaction fees compressed by regulatory fiat</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight">
+    <div class="insight-label">🔍 Hidden Optionality — VAS Monetisation Underpenetration</div>
+    <p>Only 28% of Pine Labs' 19.3 lakh DCPs are generating VAS, Affordability, or transactional volumes — up from 21% a year ago. This means 72% of the deployed network is currently unmonetised for the highest-margin revenue streams. Each incremental percentage point of VAS penetration on a growing DCP base adds high-margin revenue with near-zero incremental fixed cost. At 50% VAS penetration (a plausible 3-year target), the revenue and margin trajectory would be materially higher than current consensus.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STEP 7: INDUSTRY & COMPETITIVE POSITIONING
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="s7">
+  <div class="section-head">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Industry & Competitive Positioning</h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="prose">
+      <p><strong>India Payments — Structurally Expanding TAM.</strong> India's digital payments GTV continues to compound at 20–25% annually. UPI is the dominant volume mechanism but takes limited per-transaction revenue from Pine Labs' enterprise customers (who need UPI alongside card acceptance). The PIDF incentive removal has negligible impact — management quantified this at ₹4–5 Cr/quarter, rounding error on ₹744 Cr revenue. The potential MDR introduction on organised retail UPI transactions could be a moderate tailwind for Pine Labs' revenue per transaction, though uncertain in timing.</p>
+      <p><strong>Affordability / BNPL.</strong> Pine Labs commands 80–85% market share in in-store affordability/EMI, a segment growing at 35–40% annually for the past 5 years. This is a structural winner from India's aspirational consumption growth. The company explicitly does not take balance sheet risk — it connects consumers with banks' credit — which means it earns platform economics without credit risk. The non-consumer durables expansion (automobiles, fashion, healthcare) is a genuine category extension.</p>
+      <p><strong>Competitive Intensity.</strong> The "fintech infrastructure" frame (not merely a POS hardware company) is a deliberate and justified repositioning. Domestic competition from Razorpay, PayU, and bank-owned acquiring is real but differentiated: Pine Labs' advantage is enterprise-depth (top-5 banks, top-5 retailers all locked in), full-stack prepaid issuance, and an international footprint that domestic-only competitors lack.</p>
+    </div>
+    <div>
+      <div class="flag-list">
+        <div class="flag-item">
+          <div class="flag-dot green"></div>
+          <div class="flag-text"><strong>China+1 Analogy for Payments:</strong> As global brands expand into India and Southeast Asia, Pine Labs is positioned as the default B2B payment infrastructure partner — providing the "picks and shovels" without betting on which merchant wins.</div>
+        </div>
+        <div class="flag-item">
+          <div class="flag-dot green"></div>
+          <div class="flag-text"><strong>Malaysia Proof of Concept:</strong> Malaysia (first international market, c.2019) now has 11 bank issuers, tens of thousands of POS devices, and grows ~40% annually. This validates the 3-stage market penetration model the company is now replicating in UAE, Singapore, and Southeast Asia.</div>
+        </div>
+        <div class="flag-item">
+          <div class="flag-dot blue"></div>
+          <div class="flag-text"><strong>Agentic Payments — First-Mover Positioning:</strong> The Model Context Protocol (MCP) integration for bill payments via ChatGPT is a genuinely novel product. If AI-driven conversational commerce scales, Pine Labs is the only listed Indian fintech with a production deployment of this kind.</div>
+        </div>
+        <div class="flag-item">
+          <div class="flag-dot amber"></div>
+          <div class="flag-text"><strong>Regulatory Risk:</strong> RBI's digital payments regulation is generally supportive but could impose interchange fee caps, restrict prepaid instrument functionality, or mandate interoperability in ways that compress Pine Labs' take rates. The PIDF scheme discontinuation is a minor example of this risk class.</div>
+        </div>
+        <div class="flag-item">
+          <div class="flag-dot amber"></div>
+          <div class="flag-text"><strong>International Regulatory Complexity:</strong> Operating across 20+ countries requires multiple licensing regimes, local compliance, and foreign exchange management. Execution risk is real even if strategy is correct.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STEP 8: CAPITAL ALLOCATION
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="s8">
+  <div class="section-head">
+    <span class="section-num">08</span>
+    <h2 class="section-title">Capital Allocation Analysis</h2>
+  </div>
+
+  <div class="grid-3">
+    <div class="card accent-left">
+      <div class="card-label">Hardware → Software Shift</div>
+      <div class="prose" style="margin-top: 8px;">
+        <p>Management is deliberately pushing DCP ownership to merchants and banks, reducing Pine Labs' capital commitment. This makes the balance sheet increasingly asset-light, lowers depreciation drag, and improves the quality of recurring revenue (subscription-based rather than hardware-dependent). Subscription now contributes 27% of DITP revenue, with the goal to grow this proportion over time. This is excellent capital discipline.</p>
+      </div>
+    </div>
+    <div class="card accent-left">
+      <div class="card-label">ESOP Alignment Change</div>
+      <div class="prose" style="margin-top: 8px;">
+        <p>Post-IPO ESOPs are now granted at FMV rather than deep discount. This directly benefits existing shareholders (less dilution at artificial prices) and aligns employee incentives with true value creation. The result: ESOP cost is declining structurally, improving PAT quality. This is a genuinely shareholder-friendly capital allocation decision that management voluntarily disclosed.</p>
+      </div>
+    </div>
+    <div class="card accent-amber">
+      <div class="card-label">International Expansion Capex</div>
+      <div class="prose" style="margin-top: 8px;">
+        <p>The 3-stage "seed → land & expand → deepen" model is explicitly asset-light for early stages (partner-led, cloud-native, no physical footprint). This is disciplined capital allocation for a global ambition. However, as markets mature to Stage 3 (local teams, licensing, localized products), capex intensity will rise in those geographies. UAE and Singapore are entering Stage 3 — this will bear watching.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top: 24px;">
+    <p><strong>Incremental ROCE.</strong> The reported ROCE is -0.49% and ROIC is -0.64% — both negative, reflecting the company's transition phase where EBITDA has only recently become positive and PAT is just crossing into positive territory. These metrics will only become meaningful from FY27 onwards. The relevant forward-looking metric is the incremental ROCE on new business: given ~74% contribution margins and ~50% EBITDA flow-through with negligible incremental fixed capex, marginal ROCE on growth investments is extremely high. The constraint is working capital, not fixed capital.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STEP 9: RED FLAGS & FORENSIC DETECTION
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="s9">
+  <div class="section-head">
+    <span class="section-num">09</span>
+    <h2 class="section-title">Red Flags & Forensic Detection</h2>
+  </div>
+
+  <div class="flag-list">
+    <div class="flag-item">
+      <div class="flag-dot amber"></div>
+      <div class="flag-text"><strong>Persistent EBITDA-to-OCF Divergence (9M FY26: ₹413 Cr EBITDA vs -₹281 Cr OCF).</strong> While management's explanation (festive WC seasonality + early settlement) is structurally credible for a payment aggregator, the magnitude (-₹362 Cr early settlement in 9M) is significant. If Q4 FY26 does not demonstrate clear WC normalisation, this becomes a Moderate-to-Severe concern requiring deeper investigation of the early settlement mechanism.</div>
+      <span class="flag-severity" style="background: var(--accent-amber-dim); color: var(--accent-amber); border: 1px solid rgba(245,158,11,0.3);">Moderate</span>
+    </div>
+    <div class="flag-item">
+      <div class="flag-dot amber"></div>
+      <div class="flag-text"><strong>Rising Impairment on Financial Assets (₹33 Cr in 9M FY26 vs ₹17 Cr in 9M FY25).</strong> This near-doubling suggests either rapid growth in the receivables/contract asset base or emerging credit quality stress in certain merchant/partner relationships. Not alarming at this scale but should be monitored for further deterioration.</div>
+      <span class="flag-severity" style="background: var(--accent-amber-dim); color: var(--accent-amber); border: 1px solid rgba(245,158,11,0.3);">Moderate</span>
+    </div>
+    <div class="flag-item">
+      <div class="flag-dot amber"></div>
+      <div class="flag-text"><strong>Other Income Dependence on PBT.</strong> In Q3 FY26, "Others (incl. other income)" contributed -₹28 Cr (income net) to the EBITDA→PBT bridge, materially reducing "other expenses" from ₹108 Cr to a lower PBT deduction. Treasury income (interest on bank deposits, mutual fund gains) is inflating PBT. At ₹63 Cr PBT, a significant portion may be non-operating. This is standard for cash-rich companies but makes the business look more profitable on a PAT basis than on operating metrics alone.</div>
+      <span class="flag-severity" style="background: var(--accent-amber-dim); color: var(--accent-amber); border: 1px solid rgba(245,158,11,0.3);">Minor</span>
+    </div>
+    <div class="flag-item">
+      <div class="flag-dot green"></div>
+      <div class="flag-text"><strong>No Auditor Concerns Flagged.</strong> No mentions of auditor qualifications, emphasis of matter paragraphs, or unusual accounting policy changes in the disclosed documents. Revenue recognition policy (net basis) is explicitly disclosed and consistent.</div>
+      <span class="flag-severity" style="background: var(--accent-teal-dim); color: var(--accent-teal); border: 1px solid rgba(0,200,150,0.3);">Positive</span>
+    </div>
+    <div class="flag-item">
+      <div class="flag-dot green"></div>
+      <div class="flag-text"><strong>No Promoter Pledging Disclosed.</strong> No mentions of promoter share pledging or covenant concerns in available disclosures.</div>
+      <span class="flag-severity" style="background: var(--accent-teal-dim); color: var(--accent-teal); border: 1px solid rgba(0,200,150,0.3);">Positive</span>
+    </div>
+    <div class="flag-item">
+      <div class="flag-dot amber"></div>
+      <div class="flag-text"><strong>Negative Interest Coverage (-0.27×).</strong> The company's EBIT remains marginally negative on a trailing full-year basis (EV/EBIT: -552), meaning finance costs exceed EBIT. As EBITDA grows, this will normalise by FY27, but it currently creates technical vulnerability if access to working capital credit lines is disrupted.</div>
+      <span class="flag-severity" style="background: var(--accent-amber-dim); color: var(--accent-amber); border: 1px solid rgba(245,158,11,0.3);">Minor</span>
+    </div>
+    <div class="flag-item">
+      <div class="flag-dot green"></div>
+      <div class="flag-text"><strong>No Related-Party Revenue Concerns.</strong> Revenue is diversified across merchants, banks, and brands. No disclosed related-party revenue dependencies identified in the available documents.</div>
+      <span class="flag-severity" style="background: var(--accent-teal-dim); color: var(--accent-teal); border: 1px solid rgba(0,200,150,0.3);">Positive</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STEP 10: POSITIVE INFLECTION DETECTION
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="s10">
+  <div class="section-head">
+    <span class="section-num">10</span>
+    <h2 class="section-title">Positive Inflection Detection — Leading Indicators</h2>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <div class="kpi-row">
+        <span class="kpi-name">VAS-Activated DCP Base</span>
+        <div class="kpi-bar-wrap"><div class="kpi-bar" style="width: 28%; background: var(--accent-teal);"></div></div>
+        <span class="kpi-val">28%</span>
+      </div>
+      <div class="kpi-row">
+        <span class="kpi-name">Online Payments Revenue Growth (YoY)</span>
+        <div class="kpi-bar-wrap"><div class="kpi-bar" style="width: 50%; background: var(--accent-teal);"></div></div>
+        <span class="kpi-val">~50%</span>
+      </div>
+      <div class="kpi-row">
+        <span class="kpi-name">International Revenue Growth (YoY)</span>
+        <div class="kpi-bar-wrap"><div class="kpi-bar" style="width: 35%; background: var(--accent-teal);"></div></div>
+        <span class="kpi-val">~35%</span>
+      </div>
+      <div class="kpi-row">
+        <span class="kpi-name">IAP Revenue Growth (YoY)</span>
+        <div class="kpi-bar-wrap"><div class="kpi-bar" style="width: 42%; background: var(--accent-teal);"></div></div>
+        <span class="kpi-val">42%</span>
+      </div>
+      <div class="kpi-row">
+        <span class="kpi-name">AI-Generated Code Share</span>
+        <div class="kpi-bar-wrap"><div class="kpi-bar" style="width: 20%; background: var(--accent-blue);"></div></div>
+        <span class="kpi-val">~20%</span>
+      </div>
+      <div class="kpi-row">
+        <span class="kpi-name">DCP Anomaly Auto-Resolution Rate</span>
+        <div class="kpi-bar-wrap"><div class="kpi-bar" style="width: 60%; background: var(--accent-blue);"></div></div>
+        <span class="kpi-val">~60%</span>
+      </div>
+      <div class="kpi-row">
+        <span class="kpi-name">App/Device Performance Improvement (AI)</span>
+        <div class="kpi-bar-wrap"><div class="kpi-bar" style="width: 50%; background: var(--accent-blue);"></div></div>
+        <span class="kpi-val">~50%</span>
+      </div>
+    </div>
+    <div class="flag-list">
+      <div class="flag-item">
+        <div class="flag-dot green"></div>
+        <div class="flag-text"><strong>Fintech Infrastructure Transactions: +38% YoY.</strong> 31 Cr transactions in Q3, compounding strongly. As BBPS, UPI switch, and Account Aggregator transactions grow, per-transaction revenue compounds with near-zero marginal cost. This is a high-quality, regulatory-backed revenue stream.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot green"></div>
+        <div class="flag-text"><strong>Bharat Yatra Card Launch.</strong> The National Common Mobility Card powered by Pine Labs — distributed via Blinkit/Zepto/quick commerce — is an entirely new product category. Success would open transit/government B2C prepaid as a revenue vertical, currently unmodelled by the street.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot green"></div>
+        <div class="flag-text"><strong>Agentic Bill Payments (MCP for ChatGPT).</strong> Production-deployed conversational commerce integration. First-mover in India. If AI assistants become a meaningful payment channel, Pine Labs is positioned as the underlying infrastructure.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot green"></div>
+        <div class="flag-text"><strong>Credit Card Processing Wins.</strong> CEO mentioned "very big deals on the credit card processing side just in recent days" — not fully disclosed but suggesting IAP growth may accelerate further from a new product line (issuer processing). This is material and under-reported.</div>
+      </div>
+      <div class="flag-item">
+        <div class="flag-dot green"></div>
+        <div class="flag-text"><strong>Premiumisation of Revenue Mix.</strong> The conscious shift away from hardware revenue toward subscription and VAS means each unit of incremental revenue carries structurally higher margins. This is a multi-year tailwind for margin expansion beyond the already-guided levels.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STEP 11: MOAT STRUCTURE ANALYSIS
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="s11">
+  <div class="section-head">
+    <span class="section-num">11</span>
+    <h2 class="section-title">Moat Structure Analysis — Durability of Competitive Advantage</h2>
+    <span class="section-tag tag tag-blue">Wide Moat — Building</span>
+  </div>
+
+  <div class="prose" style="margin-bottom: 28px;">
+    <p>Pine Labs possesses an unusual combination of moat types that are mutually reinforcing. Critically, the moats are deepening — not stable — because the company is actively expanding its product surface area, geographic footprint, and the density of its integrations. The moat is wider in India than internationally but the international playbook is a proven model (Malaysia → UAE → Singapore → SEA).</p>
+  </div>
+
+  <div class="card" style="padding: 28px; margin-bottom: 24px;">
+    <div class="moat-row">
+      <div><div class="moat-name">Switching Cost Moat</div></div>
+      <div class="moat-desc">Enterprise merchants have deep ERP integrations (hotel PMS, retail ERP, airline wallet systems). Migrating a payment provider means rebuilding these integrations — typically 6–18 months of work. Pine Labs explicitly targets this stickiness by building "specialized workflows that increase merchant lifetime value." All top-5 retailers, top-5 banks, all top-3 petroleum companies use Pine Labs — evidence that switching costs are real and effective.</div>
+      <div class="moat-strength" style="color: var(--accent-teal);">Very High</div>
+    </div>
+    <div class="moat-row">
+      <div><div class="moat-name">Network Effect Moat</div></div>
+      <div class="moat-desc">The affordability/BNPL platform connects 400+ brands with 40+ credit institutions. This two-sided network becomes more valuable as both sides grow. A new credit institution can offer products to 400 brand merchant bases; a new brand gets access to 40 credit partners instantly. This creates a compounding barrier: a new entrant would need to sign both sides simultaneously. Pine Labs' 80–85% market share is the output of this network effect domination.</div>
+      <div class="moat-strength" style="color: var(--accent-teal);">High</div>
+    </div>
+    <div class="moat-row">
+      <div><div class="moat-name">Scale / Data Moat</div></div>
+      <div class="moat-desc">Processing $51 Bn in GTV and 193 Cr transactions per quarter generates proprietary data for fraud detection, credit scoring, merchant analytics, and campaign targeting. The AI enrichment layer for bank statement analysis and the advanced transaction categorization for brand campaigns are monetisable outputs of this scale advantage. Smaller competitors simply lack the data density to replicate these products.</div>
+      <div class="moat-strength" style="color: var(--accent-teal);">High</div>
+    </div>
+    <div class="moat-row">
+      <div><div class="moat-name">Technology & IP Moat</div></div>
+      <div class="moat-desc">The patented Tap to Pay Online (NFC-based online card payment), the Bharat Yatra mobility card with NFC-based balance top-up, the MCP-based agentic bill payment, and the self-healing terminal technology represent a genuine R&D pipeline. ~20% of new product code written by AI suggests a capability to innovate at lower marginal cost than competitors. The full-stack programmable currency platform (Air India case) is a proprietary product not easily replicated.</div>
+      <div class="moat-strength" style="color: var(--accent-amber);">Moderate–High</div>
+    </div>
+    <div class="moat-row">
+      <div><div class="moat-name">Regulatory/Trust Moat</div></div>
+      <div class="moat-desc">Operating as a BBPS biller unit/consumer unit, Account Aggregator, UPI switch, and prepaid payment instrument issuer requires ongoing regulatory certification in India and across 20+ countries. Certifications in each country (PCI-DSS, local payment network approvals, Aadhaar/UIDAI partnership) represent barriers that cannot be purchased overnight. The UIDAI mAadhaar partnership for KYC is a regulatory moat that signals deep government trust.</div>
+      <div class="moat-strength" style="color: var(--accent-amber);">Moderate</div>
+    </div>
+    <div class="moat-row" style="border-bottom: none;">
+      <div><div class="moat-name">Distribution Moat</div></div>
+      <div class="moat-desc">The prepaid gift card distribution network — spanning Blinkit, Zepto, Flipkart, quick commerce, corporate channel programs, and physical retail — is a hard-to-replicate commercial moat. Distribution is identified by management as "a critical moat" and explains why IAP (Issuing & Acquiring) take rates in India are higher than international: the distribution network in India is decades-deep. Globally, this is being built through channel programs and is already evidenced by 41% international IAP revenue growth.</div>
+      <div class="moat-strength" style="color: var(--accent-teal);">High (India), Moderate (International)</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-label">⚡ Moat Assessment — Honest Caveat</div>
+    <p>The moat is wide in the enterprise segment but narrow at the SME/long-tail level where Razorpay, PayU, and PhonePe have superior penetration. Pine Labs has deliberately not competed in the long-tail and this is the right choice — the enterprise segment is higher margin, stickier, and growing faster. The international moat is genuinely nascent and dependent on successful execution of the 3-stage model in each new market. The technology moat benefits significantly from AI-led productivity but remains vulnerable to better-funded global platforms like Stripe or Adyen choosing to aggressively enter India.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STEP 12: VALUATION COMFORT
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="s12">
+  <div class="section-head">
+    <span class="section-num">12</span>
+    <h2 class="section-title">Valuation Comfort vs. Earnings Quality</h2>
+    <span class="section-tag tag tag-amber">Fully Priced — Transitioning to Reasonable</span>
+  </div>
+
+  <div class="grid-4" style="margin-bottom: 28px;">
+    <div class="card">
+      <div class="card-label">Market Cap</div>
+      <div class="card-value">₹17,046 Cr</div>
+      <div class="card-sub">~$1.91 Bn at ₹89.15/USD</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Enterprise Value</div>
+      <div class="card-value warn">₹11,806 Cr</div>
+      <div class="card-sub">EV lower than Mkt Cap — net cash position</div>
+    </div>
+    <div class="card accent-amber">
+      <div class="card-label">EV / Trailing EBITDA</div>
+      <div class="card-value warn">43.6×</div>
+      <div class="card-sub">Based on FY25 full-year EBITDA (~₹357 Cr)</div>
+    </div>
+    <div class="card accent-left">
+      <div class="card-label">EV / Forward EBITDA (Est.)</div>
+      <div class="card-value up">~21×</div>
+      <div class="card-sub">Based on annualised 9M FY26 (~₹550 Cr)</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Price / Book</div>
+      <div class="card-value warn">4.62×</div>
+      <div class="card-sub">Book Value: ₹32.3 per share</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Free Cash Flow</div>
+      <div class="card-value down">-₹98.7 Cr</div>
+      <div class="card-sub">CMP/FCF: -46.3× (negative base)</div>
+    </div>
+    <div class="card">
+      <div class="card-label">CROIC / ROIC</div>
+      <div class="card-value down">-8.47% / -0.64%</div>
+      <div class="card-sub">Returns on capital still negative — transition</div>
+    </div>
+    <div class="card accent-left">
+      <div class="card-label">EBITDA 3-Year CAGR</div>
+      <div class="card-value up">25.8%</div>
+      <div class="card-sub">Accelerating — 59% YoY in Q3 FY26</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="prose">
+      <p><strong>The Valuation Paradox.</strong> At ₹148 (52-week low territory, down ~48% from high of ₹284), Pine Labs is substantially cheaper than at IPO, yet operationally it is demonstrably stronger. Revenue is at a record high, EBITDA margin has expanded 500 bps YoY, and PAT is positive for three consecutive quarters. The market is pricing in one of three concerns: (1) the FCF destruction story, (2) doubt about whether EBITDA margins are sustainable or festive-season inflated, or (3) the broader valuation derating of listed Indian fintech.</p>
+      <p><strong>EV/Forward EBITDA of ~21×</strong> for a business growing EBITDA at 59% YoY, with 74% gross margins, a defensible enterprise moat, and a genuine global expansion runway is not obviously expensive. By PEG logic — if EBITDA compounds at 35–40% over FY26–28 — a 21× forward multiple is actually reasonable. The challenge is that FCF remains deeply negative, making the business impossible to value on traditional cash yield metrics.</p>
+      <p><strong>Margin Durability Question.</strong> The core bear argument is that 23% EBITDA margin is Q3-seasonal and the "true" steady-state is closer to 18–20%. The 9M FY26 margin of 21% supports the mid-range. Management claims margins are "sustainable and can expand as businesses build scale" — the operating leverage architecture (₹50–57 per ₹100 CM) validates this structurally.</p>
+    </div>
+    <div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Valuation Metric</th><th>Current</th><th>Implied Scenario</th><th>Assessment</th></tr></thead>
+          <tbody>
+            <tr><td>EV/Trailing EBITDA (FY25)</td><td class="warn mono">43.6×</td><td>Backward-looking; EBITDA is rapidly increasing</td><td class="warn">Expensive</td></tr>
+            <tr><td>EV/Forward EBITDA (Est. FY26)</td><td class="pos mono">~21×</td><td>Based on ₹550 Cr annualised FY26E EBITDA</td><td class="warn">Fair Value</td></tr>
+            <tr><td>EV/Forward EBITDA (Est. FY27)</td><td class="pos mono">~14–15×</td><td>If EBITDA grows to ₹800 Cr at 30% growth</td><td class="pos">Attractive</td></tr>
+            <tr><td>EV/Revenue (FY26E)</td><td class="mono">~4.4×</td><td>~₹2,700 Cr annualised revenue</td><td class="pos">Reasonable</td></tr>
+            <tr><td>P/Book</td><td class="warn mono">4.62×</td><td>Book value not meaningful for fintech platforms</td><td class="warn">Neutral</td></tr>
+            <tr><td>FCF Yield</td><td class="neg mono">Negative</td><td>FCF positive scenario: FY28–29E at earliest</td><td class="warn">Risk Factor</td></tr>
+            <tr><td>52-Week Position</td><td class="pos mono">~4% above 52W Low</td><td>Maximum pessimism zone — sentiment deeply negative</td><td class="pos">Contrarian Signal</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="insight" style="margin-top: 16px;">
+        <div class="insight-label">📊 Valuation Comfort Classification</div>
+        <p><strong>Transitioning from Fully Priced → Reasonable.</strong> At ₹148, the stock is ~48% below its 52-week high. EV/Forward EBITDA of ~21× for 40–60% EBITDA growth with an improving structural story is not a speculative premium — it is a fair-but-not-cheap price for a high-quality platform business in transition. For long-term investors, the asymmetry is beginning to tilt favourably. The single condition: Q4 FY26 must validate cash flow normalisation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STEP 13: FUTURE TRAJECTORY
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="s13">
+  <div class="section-head">
+    <span class="section-num">13</span>
+    <h2 class="section-title">Future Trajectory Modeling — 2–3 Year Outlook</h2>
+  </div>
+
+  <div class="scenario-grid">
+    <div class="scenario-card bull">
+      <div class="scenario-head">Bull Case</div>
+      <div class="scenario-prob">Probability: ~25%</div>
+      <div class="scenario-items">
+        Revenue scales to ₹4,000+ Cr by FY28 (20%+ CAGRs across all segments). VAS penetration reaches 40–45% of DCP base. Online payments doubles market share. International accounts for 20%+ of revenue. EBITDA margins expand to 28–30% through operating leverage. FCF turns positive in FY27. Stock re-rates to 25–30× FY28E EBITDA, implying significant upside from current levels. Credit card processing wins become a material new revenue engine. Agentic payments gains adoption.
+      </div>
+    </div>
+    <div class="scenario-card base">
+      <div class="scenario-head">Base Case</div>
+      <div class="scenario-prob">Probability: ~55%</div>
+      <div class="scenario-items">
+        Revenue grows at 20–22% CAGR to reach ₹3,500 Cr by FY28. EBITDA margins stabilise at 22–25% (9M FY26 trajectory sustained). VAS penetration reaches 35% of DCP base. International stays at 15–18% of revenue mix. FCF turns positive by FY28 as WC needs moderate. EBITDA grows to ₹800–875 Cr by FY28. Stock trades at 18–22× FY28E EBITDA. Return profile attractive for 3-year horizon but requires patience through FCF negativity period.
+      </div>
+    </div>
+    <div class="scenario-card bear">
+      <div class="scenario-head">Bear Case</div>
+      <div class="scenario-prob">Probability: ~20%</div>
+      <div class="scenario-items">
+        Revenue growth slows to 12–15% as UPI zero-MDR expands, affordability competition intensifies, and international execution disappoints. EBITDA margins plateau at 18–20%. FCF remains negative through FY28 due to persistent WC intensity. Working capital disclosures reveal structural (not seasonal) cash absorption. Stock de-rates further. Regulatory action on MDR or prepaid instruments could compress take rates materially. International investments fail to generate adequate returns.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="prose">
+    <p><strong>Key Monitoring Variables for Next 4 Quarters.</strong> Q4 FY26 operating cash flow (confirmation of WC normalisation vs. structural drain). Contribution margin trajectory — does IAP distribution scale-up keep mixing CM below 76%? Online payments revenue share within DITP. International revenue mix crossing 17–18%. VAS-activated DCP percentage continuing past 28%. ESOP expense in absolute terms. The "credit card processing deals" mentioned by CEO — watch for announcements. Any RBI regulatory action on MDR or payment instrument categorisation.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STEP 14: FINAL VERDICT
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="s14">
+  <div class="section-head">
+    <span class="section-num">14</span>
+    <h2 class="section-title">Final Investment Verdict</h2>
+  </div>
+
+  <div class="grid-2" style="margin-bottom: 32px;">
+    <div>
+      <h3 style="font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--accent-teal); margin-bottom: 16px; letter-spacing: 0.05em; text-transform: uppercase;">Key Positives</h3>
+      <div class="flag-list">
+        <div class="flag-item"><div class="flag-dot green"></div><div class="flag-text">Record revenue quarter with broad-based, multi-engine growth — no single segment driving the entire number.</div></div>
+        <div class="flag-item"><div class="flag-dot green"></div><div class="flag-text">Third consecutive quarter of PAT profitability; trend is accelerating, not faltering.</div></div>
+        <div class="flag-item"><div class="flag-dot green"></div><div class="flag-text">Operating leverage model validated: ₹50–57 EBITDA per ₹100 incremental CM delivered for two consecutive quarters as guided.</div></div>
+        <div class="flag-item"><div class="flag-dot green"></div><div class="flag-text">Structural cost compression on three axes (employee %, ESOP %, DCP depreciation %) — all declining simultaneously.</div></div>
+        <div class="flag-item"><div class="flag-dot green"></div><div class="flag-text">IAP segment at 42% YoY growth with international IAP also growing 41% — underpenetrated globally with proven template.</div></div>
+        <div class="flag-item"><div class="flag-dot green"></div><div class="flag-text">Stock at near-52-week lows despite materially improved fundamentals — sentiment/fundamentals divergence is a contrarian opportunity signal.</div></div>
+        <div class="flag-item"><div class="flag-dot green"></div><div class="flag-text">Genuine product innovation pipeline (Tap to Pay Online patent, Bharat Yatra, MCP agentic payments, mAadhaar) creating embedded optionality not in current models.</div></div>
+        <div class="flag-item"><div class="flag-dot green"></div><div class="flag-text">72% of DCP base still unmonetised for VAS/affordability — massive embedded growth option requiring no new capex.</div></div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--accent-red); margin-bottom: 16px; letter-spacing: 0.05em; text-transform: uppercase;">Key Negatives & Risks</h3>
+      <div class="flag-list">
+        <div class="flag-item"><div class="flag-dot red"></div><div class="flag-text">FCF deeply negative (-₹98.7 Cr TTM); business cannot self-fund growth without relying on balance sheet cash or credit lines.</div></div>
+        <div class="flag-item"><div class="flag-dot red"></div><div class="flag-text">Q3 WC normalisation remains unverified — the key binary for short-term investors is Q4 FY26 OCF.</div></div>
+        <div class="flag-item"><div class="flag-dot amber"></div><div class="flag-text">IAP distribution scale-up is compressing blended contribution margin; if distribution grows faster than processing, CM could drift below 76% corridor.</div></div>
+        <div class="flag-item"><div class="flag-dot amber"></div><div class="flag-text">Interest coverage is -0.27× (negative EBIT); any increase in working capital borrowing cost is a direct PAT headwind.</div></div>
+        <div class="flag-item"><div class="flag-dot amber"></div><div class="flag-text">International expansion is asset-light in early stages but becomes capex-intensive as markets mature — UAE and Singapore are approaching Stage 3.</div></div>
+        <div class="flag-item"><div class="flag-dot amber"></div><div class="flag-text">ROIC (-0.64%) and ROCE (-0.49%) remain negative — the returns inflection is still ahead, not behind.</div></div>
+        <div class="flag-item"><div class="flag-dot amber"></div><div class="flag-text">Regulatory risk: MDR, PPI regulations, BBPS fee changes are all potential headwinds that could emerge without warning.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-bottom: 32px;">
+    <div class="card">
+      <div class="card-label">Hidden Insights</div>
+      <div class="prose" style="margin-top: 8px;">
+        <p>The market is fixated on the POS story and FCF negativity. It is underweighting: (1) the embedded VAS monetisation option in 72% of unactivated DCPs, (2) the credit card processing deals quietly announced by the CEO, (3) the agentic bill payments' potential to create an entirely new revenue category, and (4) the structural PAT improvement from declining ESOP/depreciation costs even at flat EBITDA growth.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Management Scorecard</div>
+      <div class="prose" style="margin-top: 8px;">
+        <p><strong>Execution Credibility: Strong.</strong> Management has delivered on every quantitative commitment made at the IPO stage and in Q2 FY26 concall. The ₹50–57 CM flow-through is now a trust-building anchor. The deliberate avoidance of forward revenue guidance is conservative and appropriate. The asset-light pivot, FMV ESOP alignment, and AI-led cost management reflect financial discipline uncommon in high-growth fintechs.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Valuation Conclusion</div>
+      <div class="prose" style="margin-top: 8px;">
+        <p><strong>A high-quality platform business at a transitional valuation.</strong> This is neither a mediocre business at a premium nor a pure value play. At ₹148 (~21× FY26E EBITDA), the market has priced in a significant portion of the FCF risk but is undervaluing the pace of profitability improvement. For a 3-year investment horizon, the risk-reward is increasingly attractive. Not yet a screaming buy, but the asymmetry is tilting to the upside — conditional on Q4 FY26 cash flow normalisation.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="verdict-block">
+    <div class="verdict-rating">WATCHLIST → ACCUMULATE</div>
+    <div class="verdict-subtitle">With a specific trigger condition — Q4 FY26 OCF normalisation</div>
+    <div class="verdict-text">
+      Pine Labs is a genuinely differentiated enterprise fintech platform operating at the intersection of India's digital payments growth and global payment infrastructure demand. The Q3 FY26 results confirm that the operating leverage model is working as guided, management credibility is high, and the product innovation pipeline is real. The business is clearly moving in the right direction: revenue at record highs, margins expanding, PAT positive, and cost ratios structurally declining.
+
+      <br><br>
+      
+      However, the persistent and significant operating cash flow negativity — -₹281 Cr in 9M FY26 despite ₹413 Cr of EBITDA — is a red line that prevents an outright "Accumulate" rating today. Until Q4 FY26 demonstrates that Q3's -₹152 Cr OCF was indeed seasonal and normalises to positive territory, the FCF story remains an open question.
+
+      <br><br>
+
+      <strong>Trigger for upgrade to Accumulate:</strong> Q4 FY26 operating cash flow (ex-early settlement) returning to positive or at minimum normalising to -₹50 Cr or better, confirming the seasonal working capital narrative. At current market price of ₹148 (48% below peak, near 52-week low), the stock is at maximum pessimism. Long-term institutional investors with a 3-year horizon and tolerance for FCF negativity during the profitability inflection phase can begin building positions. Target EV/FY28E EBITDA of 18–20× implies significant upside from current levels in the base case.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════ -->
+<footer class="report-footer">
+  <div class="footer-text">
+    This analysis is based solely on publicly available corporate disclosures filed with BSE/NSE: the Q3 FY26 Investor Presentation (January 28, 2026), Q3 FY26 Earnings Concall Transcript (January 28, 2026), and Q2 FY26 Earnings Concall Transcript (December 3, 2025). This document is prepared for informational and analytical purposes only. It does not constitute investment advice, a solicitation, or a recommendation to buy or sell any security. The analyst and associated parties may or may not hold positions in the mentioned securities. Past performance is not indicative of future results. All financial projections are estimates and subject to material deviation. Investors should conduct their own due diligence and consult a SEBI-registered investment advisor before making investment decisions. Market data (CMP, Market Cap, EV, ratios) provided as inputs by the user and sourced from publicly available screener/exchange data.
+    <br><br>
+    Pine Labs Limited &nbsp;|&nbsp; NSE: PINELABS &nbsp;|&nbsp; BSE: 544606 &nbsp;|&nbsp; Analysis Date: Q3 FY26 (Results: January 28, 2026)
+  </div>
+</footer>
+
+<script>
+  // Active nav highlighting on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navItems = document.querySelectorAll('.nav-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navItems.forEach(item => {
+          item.classList.toggle('active', item.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => observer.observe(s));
+
+  // Smooth scroll
+  navItems.forEach(item => {
+    item.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(item.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>

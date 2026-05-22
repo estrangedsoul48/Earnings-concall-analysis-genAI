@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rolex Rings Limited — Institutional Equity Analysis | Q4 & FY26</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy2: #112236;
+    --navy3: #1a334f;
+    --accent: #c8a96e;
+    --accent2: #e8c98a;
+    --red: #d64045;
+    --green: #3a9d6e;
+    --amber: #e8a020;
+    --blue: #3a7fc1;
+    --text: #e8e4dc;
+    --text2: #a8a49c;
+    --text3: #6e6a64;
+    --border: rgba(200,169,110,0.18);
+    --border2: rgba(200,169,110,0.08);
+    --mono: 'DM Mono', monospace;
+    --sans: 'Instrument Sans', sans-serif;
+    --serif: 'DM Serif Display', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 15px; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  a { color: var(--accent); text-decoration: none; }
+
+  /* ─── LAYOUT ──────────────────────────────── */
+  .page { max-width: 1100px; margin: 0 auto; padding: 0 2rem 4rem; }
+
+  /* ─── HEADER ─────────────────────────────── */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 0 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .header-top {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+  }
+  .company-name { font-family: var(--serif); font-size: 2.4rem; color: var(--accent); letter-spacing: -0.02em; line-height: 1.1; }
+  .company-sub { font-size: 0.8rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 0.4rem; font-family: var(--mono); }
+  .report-badge {
+    background: var(--navy3); border: 1px solid var(--border); border-radius: 6px;
+    padding: 0.75rem 1.25rem; text-align: right; min-width: 200px;
+  }
+  .report-badge .label { font-size: 0.72rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--mono); }
+  .report-badge .value { font-size: 0.92rem; font-weight: 500; color: var(--text); margin-top: 2px; }
+
+  /* ─── SCORE STRIP ────────────────────────── */
+  .score-strip {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden; margin: 2rem 0;
+  }
+  .score-item {
+    background: var(--navy2); padding: 1rem 0.75rem; text-align: center;
+  }
+  .score-label { font-size: 0.68rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--mono); line-height: 1.4; }
+  .score-num { font-family: var(--serif); font-size: 2rem; margin-top: 0.25rem; line-height: 1; }
+  .score-num.high { color: var(--green); }
+  .score-num.mid { color: var(--amber); }
+  .score-num.low { color: var(--red); }
+
+  /* ─── MARKET METRICS STRIP ───────────────── */
+  .metrics-strip {
+    display: grid; grid-template-columns: repeat(8, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden; margin-bottom: 2.5rem;
+  }
+  .metric-item { background: var(--navy2); padding: 0.75rem 0.6rem; text-align: center; }
+  .metric-label { font-size: 0.66rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.07em; font-family: var(--mono); }
+  .metric-val { font-size: 1rem; font-weight: 600; color: var(--text); margin-top: 3px; font-family: var(--mono); }
+  .metric-val.pos { color: var(--green); }
+  .metric-val.neu { color: var(--accent); }
+
+  /* ─── NAV ────────────────────────────────── */
+  .toc {
+    background: var(--navy2); border: 1px solid var(--border); border-radius: 8px;
+    padding: 1.25rem 1.5rem; margin-bottom: 3rem;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.3rem 2rem;
+  }
+  .toc a { font-size: 0.8rem; color: var(--text2); font-family: var(--mono); display: flex; align-items: center; gap: 0.4rem; padding: 0.15rem 0; border-bottom: none; }
+  .toc a:hover { color: var(--accent); }
+  .toc-step { color: var(--accent2); font-size: 0.7rem; opacity: 0.7; }
+
+  /* ─── SECTIONS ───────────────────────────── */
+  .section { margin-bottom: 3.5rem; }
+  .section-header {
+    display: flex; align-items: baseline; gap: 1rem;
+    border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; margin-bottom: 1.5rem;
+  }
+  .section-num { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); background: rgba(200,169,110,0.1); border: 1px solid rgba(200,169,110,0.25); border-radius: 4px; padding: 2px 8px; }
+  .section-title { font-family: var(--serif); font-size: 1.45rem; color: var(--text); }
+
+  /* ─── PROSE ──────────────────────────────── */
+  p { margin-bottom: 1rem; color: var(--text); font-size: 0.95rem; line-height: 1.75; }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--accent2); font-weight: 600; }
+  em { color: var(--text2); font-style: normal; font-size: 0.92rem; }
+
+  /* ─── CALLOUT BOXES ─────────────────────── */
+  .callout {
+    border-left: 3px solid; border-radius: 0 6px 6px 0;
+    padding: 0.85rem 1.2rem; margin: 1.2rem 0; font-size: 0.9rem;
+  }
+  .callout.positive { border-color: var(--green); background: rgba(58,157,110,0.08); color: #a8e0c0; }
+  .callout.negative { border-color: var(--red); background: rgba(214,64,69,0.08); color: #f0a0a0; }
+  .callout.neutral { border-color: var(--amber); background: rgba(232,160,32,0.08); color: #e8c070; }
+  .callout.info { border-color: var(--blue); background: rgba(58,127,193,0.08); color: #90b8e0; }
+
+  /* ─── CARDS GRID ─────────────────────────── */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 1.5rem 0; }
+  .card { background: var(--navy2); padding: 1.1rem 1.25rem; }
+  .card-label { font-size: 0.72rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--mono); }
+  .card-value { font-size: 1.5rem; font-weight: 600; color: var(--text); margin: 0.3rem 0 0.2rem; font-family: var(--mono); }
+  .card-delta { font-size: 0.78rem; font-family: var(--mono); }
+  .card-delta.up { color: var(--green); }
+  .card-delta.down { color: var(--red); }
+  .card-delta.flat { color: var(--text2); }
+
+  /* ─── TABLE ──────────────────────────────── */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; font-family: var(--mono); margin: 1.5rem 0; }
+  .data-table th { background: var(--navy3); color: var(--accent); font-weight: 500; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+  .data-table td { padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--border2); color: var(--text); vertical-align: top; }
+  .data-table tr:hover td { background: rgba(200,169,110,0.04); }
+  .td-achieved { color: var(--green); }
+  .td-partial { color: var(--amber); }
+  .td-missed { color: var(--red); }
+  .td-ongoing { color: var(--blue); }
+
+  /* ─── CHART CONTAINER ────────────────────── */
+  .chart-wrap { position: relative; width: 100%; margin: 1.5rem 0; }
+  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+
+  /* ─── VERDICT BOX ────────────────────────── */
+  .verdict {
+    background: var(--navy3); border: 2px solid var(--accent); border-radius: 10px;
+    padding: 2rem 2.5rem; margin-top: 3rem; text-align: center;
+  }
+  .verdict-label { font-family: var(--mono); font-size: 0.72rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.5rem; }
+  .verdict-rating { font-family: var(--serif); font-size: 2.5rem; color: var(--accent); margin-bottom: 0.5rem; }
+  .verdict-rationale { font-size: 0.9rem; color: var(--text2); max-width: 600px; margin: 0 auto; }
+
+  /* ─── FLAG PILL ──────────────────────────── */
+  .pill { display: inline-block; font-size: 0.68rem; font-family: var(--mono); border-radius: 3px; padding: 2px 7px; margin: 2px 2px; font-weight: 500; }
+  .pill.minor { background: rgba(58,127,193,0.18); color: #90b8e0; }
+  .pill.moderate { background: rgba(232,160,32,0.18); color: #e8c070; }
+  .pill.severe { background: rgba(214,64,69,0.18); color: #f0a0a0; }
+  .pill.pos { background: rgba(58,157,110,0.18); color: #a8e0c0; }
+
+  /* ─── TWO COL ────────────────────────────── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+
+  /* ─── SUB SECTION ────────────────────────── */
+  .subsection-title { font-size: 0.8rem; font-family: var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin: 1.5rem 0 0.75rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border2); }
+
+  /* ─── MOAT TABLE ─────────────────────────── */
+  .moat-bar { height: 8px; background: var(--navy3); border-radius: 4px; overflow: hidden; margin-top: 6px; }
+  .moat-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
+
+  /* ─── SCORE TAG ──────────────────────────── */
+  .score-tag { font-family: var(--mono); font-size: 1.1rem; font-weight: 600; }
+
+  /* ─── DIVIDER ────────────────────────────── */
+  hr.divider { border: none; border-top: 1px solid var(--border2); margin: 2rem 0; }
+
+  /* ─── FOOTER ─────────────────────────────── */
+  .footer { border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-text { font-size: 0.75rem; color: var(--text3); font-family: var(--mono); }
+
+  /* ─── RESPONSIVE ─────────────────────────── */
+  @media (max-width: 800px) {
+    .score-strip { grid-template-columns: repeat(3,1fr); }
+    .metrics-strip { grid-template-columns: repeat(4,1fr); }
+    .chart-grid, .two-col, .three-col { grid-template-columns: 1fr; }
+    .toc { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 500px) {
+    .metrics-strip { grid-template-columns: repeat(2,1fr); }
+    .toc { grid-template-columns: 1fr; }
+    .company-name { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══ HEADER ═══════════════════════════════════════════════════════════ -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="company-name">Rolex Rings Limited</div>
+      <div class="company-sub">NSE: ROLEXRINGS &nbsp;·&nbsp; BSE: 543325 &nbsp;·&nbsp; Forging &amp; Precision Machined Components</div>
+    </div>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <div class="report-badge">
+        <div class="label">Period Covered</div>
+        <div class="value">Q4 &amp; FY2026</div>
+      </div>
+      <div class="report-badge">
+        <div class="label">Report Date</div>
+        <div class="value">May 22, 2026</div>
+      </div>
+      <div class="report-badge">
+        <div class="label">Analysis Type</div>
+        <div class="value">Institutional Deep-Dive</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Score strip -->
+  <div class="score-strip" style="margin-top:2rem;">
+    <div class="score-item">
+      <div class="score-label">Business Health</div>
+      <div class="score-num high">7.5<span style="font-size:1rem;color:var(--text3)">/10</span></div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">Earnings Quality</div>
+      <div class="score-num mid">6.5<span style="font-size:1rem;color:var(--text3)">/10</span></div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">Balance Sheet</div>
+      <div class="score-num high">9.0<span style="font-size:1rem;color:var(--text3)">/10</span></div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">Capital Allocation</div>
+      <div class="score-num high">7.5<span style="font-size:1rem;color:var(--text3)">/10</span></div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">Mgmt Credibility</div>
+      <div class="score-num high">7.0<span style="font-size:1rem;color:var(--text3)">/10</span></div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">Future Visibility</div>
+      <div class="score-num mid">6.5<span style="font-size:1rem;color:var(--text3)">/10</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Market metrics -->
+<div class="metrics-strip">
+  <div class="metric-item"><div class="metric-label">Mkt Cap</div><div class="metric-val neu">₹3,925 Cr</div></div>
+  <div class="metric-item"><div class="metric-label">Price</div><div class="metric-val">₹144</div></div>
+  <div class="metric-item"><div class="metric-label">52W H/L</div><div class="metric-val">₹176/99</div></div>
+  <div class="metric-item"><div class="metric-label">P/E</div><div class="metric-val">21.9×</div></div>
+  <div class="metric-item"><div class="metric-label">P/B</div><div class="metric-val">3.24×</div></div>
+  <div class="metric-item"><div class="metric-label">RoCE</div><div class="metric-val pos">20.1%</div></div>
+  <div class="metric-item"><div class="metric-label">RoE</div><div class="metric-val pos">15.9%</div></div>
+  <div class="metric-item"><div class="metric-label">Net Cash</div><div class="metric-val pos">₹367 Cr</div></div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <a href="#s1"><span class="toc-step">01</span> Executive Snapshot</a>
+  <a href="#s2"><span class="toc-step">02</span> Result Quality Analysis</a>
+  <a href="#s3"><span class="toc-step">03</span> Guidance Tracker</a>
+  <a href="#s4"><span class="toc-step">04</span> Hidden Financial Architecture</a>
+  <a href="#s5"><span class="toc-step">05</span> Management Decode</a>
+  <a href="#s6"><span class="toc-step">06</span> Segment Analysis</a>
+  <a href="#s7"><span class="toc-step">07</span> Industry &amp; Competitive Position</a>
+  <a href="#s8"><span class="toc-step">08</span> Capital Allocation</a>
+  <a href="#s9"><span class="toc-step">09</span> Red Flags &amp; Forensics</a>
+  <a href="#s10"><span class="toc-step">10</span> Positive Inflection</a>
+  <a href="#s11"><span class="toc-step">11</span> Valuation Comfort</a>
+  <a href="#s12"><span class="toc-step">12</span> Future Trajectory</a>
+  <a href="#s13"><span class="toc-step">13</span> Investment Verdict</a>
+  <a href="#moat"><span class="toc-step">+</span> Moat Structure Analysis</a>
+</div>
+
+
+<!-- ═══ STEP 1: EXECUTIVE SNAPSHOT ═══════════════════════════════════════ -->
+<div class="section" id="s1">
+  <div class="section-header">
+    <span class="section-num">STEP 01</span>
+    <h2 class="section-title">Executive Snapshot</h2>
+  </div>
+
+  <p>FY26 was a story of <strong>resilient operating machinery navigating an extraordinary external shock</strong>. US import tariffs surged from ~3% to 53% on auto components under IEEPA, triggering a temporary plant shutdown by a key US customer and compressing US export revenues by 30% year-on-year. Management's ability to pivot — redirecting volumes toward a resurgent Europe (+25%) and a strengthening domestic market (+15%) — kept total revenue essentially flat at ₹1,143 Cr. The quarter came out stronger with Q4 revenues up 7.7% YoY, and gross margins hitting 54.7% in Q4 — a multi-year high driven by superior product mix.</p>
+
+  <p>The most significant development of the year is structural rather than financial: the full settlement of the CDR Right of Recompense (₹101 Cr) removes the last legacy obligation and transforms Rolex Rings into an <strong>unencumbered, fully net-cash business</strong> with ₹367 Cr of surplus capital. A ₹180 Cr buyback with promoters opting out signals confidence. On the operational side, capacity utilization remains at 62-63%, presenting meaningful operating leverage headroom as US volumes recover.</p>
+
+  <div class="callout neutral">The quarter itself was <strong>mixed but improving</strong>: revenue recovery underway, gross margins expanding structurally on product mix shift, but EBITDA margins compressed 70bps for the full year due to elevated customs duties and one-time legal costs inflating other expenses. Excluding these two items (totaling ~₹28 Cr), normalized EBITDA margin would be approximately 22.6% — the best in the company's history.
+  </div>
+
+  <p class="subsection-title">Top 5 Developments</p>
+  <div class="card-grid" style="grid-template-columns: repeat(5, 1fr);">
+    <div class="card"><div class="card-label">Development 1</div><div style="font-size:0.82rem;margin-top:0.5rem;color:var(--text);">CDR RoR ₹101 Cr fully settled — clean balance sheet, zero legacy drag</div></div>
+    <div class="card"><div class="card-label">Development 2</div><div style="font-size:0.82rem;margin-top:0.5rem;color:var(--text);">Europe revenues +25% YoY; 60%+ of new program nominations from European OEMs</div></div>
+    <div class="card"><div class="card-label">Development 3</div><div style="font-size:0.82rem;margin-top:0.5rem;color:var(--text);">US tariff normalised at 25% (Section 232); customers re-engaging from Q1 FY27</div></div>
+    <div class="card"><div class="card-label">Development 4</div><div style="font-size:0.82rem;margin-top:0.5rem;color:var(--text);">Q4 gross margin 54.7% (+790bps YoY) — structural mix shift to machined auto components</div></div>
+    <div class="card"><div class="card-label">Development 5</div><div style="font-size:0.82rem;margin-top:0.5rem;color:var(--text);">₹180 Cr buyback approved; promoters not tendering — direct shareholder value return</div></div>
+  </div>
+</div>
+
+
+<!-- ═══ STEP 2: RESULT QUALITY ════════════════════════════════════════════ -->
+<div class="section" id="s2">
+  <div class="section-header">
+    <span class="section-num">STEP 02</span>
+    <h2 class="section-title">Result Quality Analysis</h2>
+  </div>
+
+  <div class="card-grid">
+    <div class="card"><div class="card-label">FY26 Revenue</div><div class="card-value">₹1,143 Cr</div><div class="card-delta down">▼ 1.0% YoY</div></div>
+    <div class="card"><div class="card-label">FY26 EBITDA</div><div class="card-value">₹230 Cr</div><div class="card-delta down">▼ 4.3% YoY | 20.1% margin</div></div>
+    <div class="card"><div class="card-label">Adj. PAT FY26</div><div class="card-value">₹193 Cr</div><div class="card-delta flat">→ Flat YoY (+0.1%)</div></div>
+    <div class="card"><div class="card-label">Q4 Revenue</div><div class="card-value">₹306 Cr</div><div class="card-delta up">▲ 7.7% YoY</div></div>
+    <div class="card"><div class="card-label">Q4 Gross Margin</div><div class="card-value">54.7%</div><div class="card-delta up">▲ 790bps YoY</div></div>
+    <div class="card"><div class="card-label">Q4 EBITDA Margin</div><div class="card-value">18.4%</div><div class="card-delta flat">→ Flat YoY</div></div>
+  </div>
+
+  <div class="chart-grid">
+    <div>
+      <p class="subsection-title">Revenue &amp; EBITDA — 5 Year Trend (₹ Cr)</p>
+      <div class="chart-wrap" style="height:240px;">
+        <canvas id="revChart" role="img" aria-label="Revenue and EBITDA trend FY22 to FY26. Revenue peaked at FY24 at 1222 Cr, EBITDA peaked at FY23-24. Both declined slightly in FY25-26.">Revenue FY22:1010, FY23:1179, FY24:1222, FY25:1155, FY26:1143. EBITDA FY22:229, FY23:261, FY24:262, FY25:241, FY26:230.</canvas>
+      </div>
+    </div>
+    <div>
+      <p class="subsection-title">EBITDA Margin Trend (%)</p>
+      <div class="chart-wrap" style="height:240px;">
+        <canvas id="marginChart" role="img" aria-label="EBITDA margin trending down from 22.7% in FY22 to 20.1% in FY26.">Margins: FY22: 22.7, FY23: 22.1, FY24: 21.4, FY25: 20.8, FY26: 20.1</canvas>
+      </div>
+    </div>
+  </div>
+
+  <p class="subsection-title">Revenue Quality Dissection</p>
+  <p><strong>Organic composition:</strong> All growth is entirely organic — no acquisitions, no inter-company adjustments. Volume and mix are the key levers; raw material pass-through happens quarterly for overseas customers (half-yearly for select accounts), which prevents material pricing distortions. The FY26 revenue shortfall is clean and attributable to a single exogenous factor: US tariffs forcing a temporary 30% reduction in that geography.</p>
+  <p><strong>Mix shift is the story of the decade:</strong> Auto components have grown from 40% of revenue in FY22 to 45% in FY26 (by product segment), and from effectively zero in the auto-export lane to ₹350 Cr in FY26 exports. This mix shift carries structurally higher gross margins — management explicitly confirmed auto components carry net EBITDA margins of 20-25% versus 18-22% for bearing rings. The Q4 FY26 gross margin spike to 54.7% is the clearest proof: as auto component mix rose within the quarter and raw material composition shifted toward domestic steel, the gross margin expanded dramatically.</p>
+  <p><strong>One-time items in FY26 other expenses:</strong> ₹22 Cr in US customs duties paid (of which ~₹11 Cr reimbursement expected in Q1-Q2 FY27), plus ₹6 Cr RoR legal settlement costs. Normalizing these, operating EBITDA margin for FY26 approximates 22.5% — not a deteriorating business but an optically depressed one.</p>
+  <p><strong>PAT quality:</strong> Adjusted PAT of ₹193 Cr is flat YoY. However, the reported PAT of ₹141 Cr reflects ₹51.6 Cr of exceptional items (RoR settlement provisions recognized in Q4). The tax line is elevated in FY26 (₹49 Cr versus ₹33.7 Cr in FY25) partly because of the deferred tax liability reversal pattern — this should normalize in FY27.</p>
+  <p><strong>Other income dependency:</strong> A notable concern is the rise in other income from ₹28.5 Cr in FY25 to ₹50.3 Cr in FY26. This reflects interest on the growing cash/investment pool (₹288 Cr in MF investments at year-end) and some FX gains. This income will grow further given the large cash balance, but investors should note it constitutes approximately 26% of reported EBIT — a meaningful but structurally stable contribution given the zero-debt balance sheet.</p>
+
+  <div class="callout positive">
+    <strong>Earnings quality verdict:</strong> Core operating earnings are genuine and conservatively reported. The apparent EBITDA decline masks two one-time cost items (~₹28 Cr combined) and deferred customs revenue (~₹11 Cr). Normalizing these, FY26 would be the company's strongest operating year on record. Quality is improving, not deteriorating.
+  </div>
+</div>
+
+
+<!-- ═══ STEP 3: GUIDANCE TRACKER ═════════════════════════════════════════ -->
+<div class="section" id="s3">
+  <div class="section-header">
+    <span class="section-num">STEP 03</span>
+    <h2 class="section-title">Guidance Tracker &amp; Execution Scorecard</h2>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Guidance / Claim</th><th>When Given</th><th>Target</th><th>Outcome</th><th>Status</th><th>Commentary</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>FY26 revenue "broadly flat to FY25"</td><td>Q3 FY26 concall (Feb 2026)</td><td>~₹1,150 Cr</td><td>₹1,143 Cr</td><td class="td-achieved">✓ Achieved</td><td>US tariff headwind was communicated proactively; guidance calibrated appropriately</td></tr>
+      <tr><td>EBITDA margin ≥20%</td><td>Q3 FY26 concall; MD statement</td><td>20–21%</td><td>20.1%</td><td class="td-achieved">✓ Achieved</td><td>Delivered at the floor; normalized margin would be ~22.5%</td></tr>
+      <tr><td>New order program revenues ~₹175 Cr in FY26</td><td>Q3 FY25 concall (Dec 2024)</td><td>₹175 Cr incremental</td><td>~₹75-80 Cr realized</td><td class="td-partial">⚠ Partial</td><td>Explicitly attributed to US tariff disruption; European portion delivered; US programs deferred to FY27</td></tr>
+      <tr><td>US revenue recovery from Q1 FY27</td><td>Q3 FY26 + Q4 FY26 concalls</td><td>H1 FY27 recovery</td><td>Dispatches at pre-slowdown levels from Feb 2026</td><td class="td-achieved">✓ On Track</td><td>Customers re-engaged; February 2026 onwards back on track per management</td></tr>
+      <tr><td>Capacity utilization at 60-65%</td><td>Q4 FY26 investor presentation</td><td>62-63%</td><td>62-63%</td><td class="td-achieved">✓ Accurate</td><td>Consistent across both FY26 concalls — honest disclosure</td></tr>
+      <tr><td>Monthly order book ₹115-125 Cr in H1 FY27</td><td>Q4 FY26 concall (May 2026)</td><td>₹115-125 Cr/month</td><td>Guidance as stated</td><td class="td-ongoing">▶ Pending</td><td>Cross-checks: implies ~₹700 Cr H1 revenue → 22% above H1 FY26; plausible given US recovery + Europe momentum</td></tr>
+      <tr><td>FY27 revenue growth 15-17%</td><td>Q4 FY26 concall</td><td>₹1,315-1,340 Cr</td><td>Guidance, not actuals</td><td class="td-ongoing">▶ Forward</td><td>Conservative given: US recovery (~₹80-90 Cr incremental), Europe momentum, new Mexico/US customer programs adding from mid-FY27</td></tr>
+      <tr><td>RoR settlement before March 2026</td><td>Q3 FY26 concall</td><td>March 2026 closure</td><td>Settled March 31, 2026</td><td class="td-achieved">✓ Delivered exactly</td><td>Strong character signal — honoured CDR commitment to the day; builds institutional credibility</td></tr>
+      <tr><td>Capex guidance ₹30-50 Cr/year</td><td>Q4 FY26 concall</td><td>₹30-50 Cr</td><td>FY26 actual: ₹36 Cr</td><td class="td-achieved">✓ Accurate</td><td>Maintenance + targeted capacity additions; lean capex regime fully consistent with 60% utilization</td></tr>
+      <tr><td>EBITDA margin expansion with scale to 22-22.5%</td><td>Q3 FY26 concall</td><td>22-22.5% at 68-70% utilization</td><td>Guidance, not actuals</td><td class="td-ongoing">▶ Forward</td><td>Operating leverage math supports this; with fixed cost base of ~₹360 Cr and 20% revenue growth, margins expand ~200bps</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout positive">
+    <strong>Execution Credibility Rating: STRONG</strong> — Management has consistently delivered on stated targets within their control. The one shortfall (FY26 new order revenues) was explicitly flagged in advance as externally driven (US tariffs), was quantified accurately, and partial recovery is already being demonstrated. There is no evidence of silent guidance abandonment or narrative shifting. Guidance on margins, cash flows, and capex has been accurate across the trailing 6–8 quarters.
+  </div>
+</div>
+
+
+<!-- ═══ STEP 4: HIDDEN FINANCIAL ARCHITECTURE ════════════════════════════ -->
+<div class="section" id="s4">
+  <div class="section-header">
+    <span class="section-num">STEP 04</span>
+    <h2 class="section-title">Hidden Financial Architecture</h2>
+  </div>
+
+  <p class="subsection-title">Working Capital Forensics</p>
+  <div class="card-grid" style="grid-template-columns:repeat(5,1fr);">
+    <div class="card"><div class="card-label">WC Days FY26</div><div class="card-value">195</div><div class="card-delta down">▲ 9 days vs FY25 (186)</div></div>
+    <div class="card"><div class="card-label">Inventory Days</div><div class="card-value">~158</div><div class="card-delta down">▲ from 151 (FY25)</div></div>
+    <div class="card"><div class="card-label">Debtor Days</div><div class="card-value">~66</div><div class="card-delta flat">→ Stable</div></div>
+    <div class="card"><div class="card-label">Creditor Days</div><div class="card-value">~29</div><div class="card-delta flat">→ Near stable</div></div>
+    <div class="card"><div class="card-label">Trade Receivables</div><div class="card-value">₹220 Cr</div><div class="card-delta up">▲ from ₹193 Cr</div></div>
+  </div>
+
+  <p>The working capital deterioration of 9 days is <strong>largely structural and explainable</strong>, not a sign of collection stress. Two factors drove this: first, consignment stock arrangements with US customers — under Incoterms, goods shipped to a nominated US warehouse are carried in Rolex's inventory until the customer lifts them; these transit inventories inflated the headline figure. Management clarifies that excluding transit inventory, actual underlying inventory days are 70-85 days — lean by Indian auto-component standards. Second, receivables rose from ₹193 Cr to ₹220 Cr, partly reflecting the customs duty receivable (~₹11 Cr from customers) not yet recognized as revenue but sitting in debtors.</p>
+
+  <p class="subsection-title">Cash Flow Truth Analysis</p>
+  <div class="chart-wrap" style="height:220px;">
+    <canvas id="cashChart" role="img" aria-label="Operating cash flow versus capex from FY22 to FY26. FCF has been strongly positive since FY23.">CFO: FY22:59, FY23:214, FY24:222, FY25:227, FY26:190. Capex: FY22:70, FY23:42, FY24:55, FY25:52, FY26:36</canvas>
+  </div>
+
+  <p>The EBITDA-to-CFO conversion is the clearest test of earnings quality. FY26 operating cash flow of ₹190 Cr versus EBITDA of ₹230 Cr implies a conversion ratio of approximately 83% — below FY24-25 levels (~86-87%) due to working capital deterioration. However, this is a timing issue (consignment stock + customs receivables), not structural cash leakage. The ₹37 Cr cumulative working capital outflow in FY26 should partially reverse in FY27 as receivables normalize. Free cash flow of approximately ₹154 Cr represents an FCF yield of ~3.9% on market cap — moderate but improving.</p>
+
+  <p><strong>The investment pile is a hidden engine:</strong> The company has deployed surplus cash into mutual fund investments (₹288 Cr at year-end FY26 versus ₹261 Cr at FY25). Combined with ₹69 Cr in cash, total liquid assets of ₹357 Cr essentially equal the entire market value of the company's long-term assets. This gives the balance sheet fortress-like quality — net cash of ₹367 Cr against zero gross debt.</p>
+
+  <p class="subsection-title">Balance Sheet Stress Mapping</p>
+  <div class="callout positive">Balance sheet is pristine: zero gross debt, no pledged shares (promoter pledge of &lt;5% was a temporary personal obligation noted in Q3 FY26, since resolved), no off-balance-sheet liabilities, no JV/subsidiary exposure, no contingent liabilities of substance. Deferred tax liability of ₹50.8 Cr is the only meaningful non-current obligation — and this is declining year-on-year as depreciation allowances normalise. No covenant risks whatsoever.
+  </div>
+</div>
+
+
+<!-- ═══ STEP 5: MANAGEMENT COMMENTARY DECODE ════════════════════════════ -->
+<div class="section" id="s5">
+  <div class="section-header">
+    <span class="section-num">STEP 05</span>
+    <h2 class="section-title">Management Commentary Decode</h2>
+  </div>
+
+  <p class="subsection-title">Tone &amp; Psychological Markers</p>
+  <p>CFO Hiren Doshi's commentary across both the Q3 FY26 and Q4 FY26 concalls is remarkably consistent in <strong>calibrated confidence</strong> — not promotional, not defensive. He proactively flagged the customs-duty expense items as one-time before analysts could frame them as structural. He disclosed the partial nature of the ₹175 Cr order book achievement without being asked. He named the specific customer whose plant shut down (without naming them) and quantified the 30% US revenue decline precisely.</p>
+  <p>The language pattern is operational rather than aspirational: specific numerical targets (₹115-125 Cr/month H1 FY27 order book, "15-17% growth FY27, high-teen FY28"), clear attribution of misses to external factors with internal validation ("the programs are intact, the disruption was tariff-driven"). When asked about cold forging or market share targets beyond 30%, management resisted the promotional answer and said "it's in our mind but not aggressive yet." This is the language of a disciplined operator.</p>
+  <p><strong>What management avoided:</strong> No guidance was given on absolute revenue targets for FY27 beyond percentage growth. No comment on valuation or the rationale for the buyback price (₹180) relative to current prices (~₹144) — a notable omission given the buyback is effectively underwater at the current price. No discussion of potential M&amp;A beyond "early exploratory stage."</p>
+  <p><strong>Narrative shift assessment:</strong> Management's narrative has been consistent across FY25-FY26: China+1 European tailwind, domestic bearing ring market share gains, auto component mix shift as margin driver, US recovery as a catalyst. There has been no sudden pivot to new narratives to explain underperformance.</p>
+
+  <p class="subsection-title">Management Classification</p>
+  <div class="callout info">
+    <strong>Classification: Financially Disciplined + Long-term Allocator.</strong> The CDR settlement, zero-debt achievement, conservative capex approach (₹36 Cr in a year of ₹190 Cr operating cash flow), and non-participation in buyback by promoters are all signals of disciplined stewardship. The founder-led structure (Madeka family across CMD, two wholetime directors) creates alignment. No empire-building impulses visible.
+  </div>
+</div>
+
+
+<!-- ═══ STEP 6: SEGMENT ANALYSIS ════════════════════════════════════════ -->
+<div class="section" id="s6">
+  <div class="section-header">
+    <span class="section-num">STEP 06</span>
+    <h2 class="section-title">Segment &amp; Business Engine Analysis</h2>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <p class="subsection-title">Bearing Rings — 47% of FY26 Revenue</p>
+      <p><strong>Domestic bearing rings (₹386 Cr, +17% YoY):</strong> The standout performer. Growth is driven by share gains with India's top bearing manufacturers (SKF, Schaeffler, Timken, NSK, NBC). Management holds approximately 30% of the addressable hot-forged domestic bearing ring market (₹1,600-1,800 Cr TAM). Four out of six key customers are growing their wallet share with Rolex; the one near-stagnant group (an industrial bearing customer) is facing industry-wide demand softness, not Rolex-specific.</p>
+      <p><strong>Export bearing rings (₹154 Cr, flat YoY):</strong> This segment underperformed relative to its potential. Prior to FY24-25, export bearing rings constituted 22-23% of total revenue; it is now at 13-14%. The decline reflects both the European industrial segment slowdown and partial US disruption. This segment has significant recovery potential as European industrial demand normalises and US bearing ring enquiries progress through qualification.</p>
+    </div>
+    <div>
+      <p class="subsection-title">Auto Components — 45% of FY26 Revenue</p>
+      <p><strong>Domestic auto components (₹170 Cr):</strong> Relatively small but growing, with initial indirect OEM supply relationships now becoming direct. Management has started supplying domestic car manufacturers through intermediary suppliers and is building direct connections. This is an underpenetrated channel.</p>
+      <p><strong>Export auto components (₹350 Cr, -12% YoY):</strong> This is the nerve centre of the business — and the epicentre of the FY26 disruption. The core US CV/HCV customer (major global truck manufacturer) temporarily zeroed imports when tariffs hit 53%, cutting approximately ₹80-90 Cr of revenues. European auto components (primarily passenger vehicle and light commercial) grew substantially (+25% region-wide). The 50%+ revenue share of auto components — combined with its higher margin profile — is the single most important structural development in the business over the last five years.</p>
+    </div>
+  </div>
+
+  <div class="chart-wrap" style="height:200px;">
+    <canvas id="segChart" role="img" aria-label="Segment revenue breakdown FY26 showing domestic bearing rings 386, domestic auto 170, export bearing rings 154, export auto 350, scrap and other 84.">Domestic BR:386, Dom Auto:170, Exp BR:154, Exp Auto:350, Scrap/Other:84</canvas>
+  </div>
+</div>
+
+
+<!-- ═══ STEP 7: INDUSTRY & COMPETITIVE ══════════════════════════════════ -->
+<div class="section" id="s7">
+  <div class="section-header">
+    <span class="section-num">STEP 07</span>
+    <h2 class="section-title">Industry &amp; Competitive Positioning</h2>
+  </div>
+
+  <p>The global bearings market (projected ₹301 Bn by 2033 at ~9% CAGR) and Indian forging market (₹12.8 Bn by 2032 at 7.4% CAGR) provide secular growth backdrop. More immediate catalysts are:</p>
+
+  <div class="three-col">
+    <div class="callout info"><strong>China+1 Sourcing Shift</strong><br>Western OEMs are actively diversifying supply chains away from China. India is the primary beneficiary for precision forgings. European OEMs are leading this transition — visible in Rolex's 60%+ new program nominations from Europe.</div>
+    <div class="callout info"><strong>European Recovery</strong><br>European industrial/bearing demand was near zero in FY24-FY25. Recovery is now structural (not inventory restocking per management) — production ramp-ups at customer plants. This geography can sustain 20%+ growth for 2-3 years.</div>
+    <div class="callout info"><strong>India Domestic Auto</strong><br>India bearing manufacturers expanding capacity, producing import substitutes. Rolex's 30% market share has clear runway to 40-50% over 5 years. Each percentage point gain adds approximately ₹16-18 Cr in revenues.</div>
+  </div>
+
+  <p><strong>Competitive position:</strong> Rolex's 5th-largest forging capacity in India (1,65,000 MTPA), 26 forging lines, and 625 CNC spindles under one roof create a scale advantage that competitors hold at 10-20% of this level by management's own assessment. The combination of hot forging + heat treatment + cold rolling + precision machining under one facility (vertically integrated) is rare — and creates both cost advantages and the ability to win integrated component programs that pure forging players cannot address.</p>
+
+  <p><strong>EV risk assessment:</strong> Management's view is that EV penetration posing a material risk to bearing rings is a 5-7 year horizon at minimum. Near-term, EVs still require multiple bearing applications (motor bearings, wheel bearings, transmission bearings). For auto components, EV platform gears and transmission parts are already in scope — management confirmed capabilities to serve EV/hybrid programs. The risk is lower than commonly perceived.</p>
+</div>
+
+
+<!-- ═══ STEP 8: CAPITAL ALLOCATION ══════════════════════════════════════ -->
+<div class="section" id="s8">
+  <div class="section-header">
+    <span class="section-num">STEP 08</span>
+    <h2 class="section-title">Capital Allocation Analysis</h2>
+  </div>
+
+  <p>Rolex's capital allocation is exceptionally disciplined for an SME manufacturer. The company generates approximately ₹150-190 Cr of FCF annually against a capex requirement of only ₹30-50 Cr (maintenance + selective additions). The resulting cash accumulation has been substantial — from ₹3.8 Cr in FY22 to ₹357 Cr in liquid assets by FY26. The deployment of this surplus is being done intelligently:</p>
+
+  <p><strong>The buyback structure is shareholder-friendly:</strong> ₹180 Cr at ₹180/share with promoters opting out is effectively a wealth transfer from promoters to public shareholders — promoter stake will increase post-buyback without any expenditure. At ₹144 current price, the buyback price of ₹180 represents a 25% premium and provides a meaningful return to tendering shareholders.</p>
+
+  <p><strong>Capex discipline:</strong> Annual capex of ₹36-52 Cr on ₹446 Cr of fixed assets represents a 8-12% reinvestment rate — appropriate for a business operating at 62% utilization. The company is not gold-plating capacity. Specific capex targets 75-80% allocation to forging infrastructure and 20-25% to machining — consistent with expanding the higher-margin machined component capability.</p>
+
+  <p><strong>M&amp;A optionality:</strong> Management is at "preliminary stage" exploring inorganic opportunities in the hot forging/extended value-added process space. Given the balance sheet strength (₹367 Cr net cash), a bolt-on acquisition of ₹100-150 Cr is feasible without straining the company. This optionality is not priced in. The key risk is whether management will remain disciplined in target selection — the language so far suggests caution.</p>
+
+  <p><strong>ROCE trajectory:</strong> RoCE has declined from 28% (FY22) to 20.1% (FY26) as equity base expanded through retained earnings while EBIT growth was constrained by US tariff headwinds. FY27 recovery should see RoCE move back toward 22-24% as operating leverage kicks in — a meaningful improvement on invested capital returns.</p>
+</div>
+
+
+<!-- ═══ STEP 9: RED FLAGS ═════════════════════════════════════════════════ -->
+<div class="section" id="s9">
+  <div class="section-header">
+    <span class="section-num">STEP 09</span>
+    <h2 class="section-title">Red Flags &amp; Forensic Detection</h2>
+  </div>
+
+  <table class="data-table">
+    <thead><tr><th>Flag</th><th>Severity</th><th>Assessment</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Working capital days rose 9 days to 195 (multi-year high)</td>
+        <td><span class="pill minor">Minor</span></td>
+        <td>Largely explained by US consignment stock structure and customs duty receivable (~₹11 Cr). Management clarified 70-85 days true underlying inventory. Not indicative of collection stress — zero bad debt history with anchor customers of 15+ years.</td>
+      </tr>
+      <tr>
+        <td>Other income rising sharply (₹50.3 Cr FY26 vs ₹28.5 Cr FY25)</td>
+        <td><span class="pill minor">Minor</span></td>
+        <td>This is genuine financial income from growing cash/MF pool — not manufactured. As cash base continues to grow, this income stream will structurally increase. Not an earnings quality concern; however, it inflates EBIT margin and PAT margin optics.</td>
+      </tr>
+      <tr>
+        <td>Other expenses spike in Q4 FY26 (₹92.3 Cr vs ₹63.7 Cr in Q4 FY25)</td>
+        <td><span class="pill minor">Minor</span></td>
+        <td>Explicitly disclosed: ₹22 Cr customs duties (half reimbursable) + ₹6 Cr legal RoR costs. Both confirmed one-time. Management transparency on this was proactive and detailed.</td>
+      </tr>
+      <tr>
+        <td>Promoter pledge noted in Q3 FY26 concall (&lt;5% of promoter stake)</td>
+        <td><span class="pill minor">Minor</span></td>
+        <td>Acknowledged as temporary personal liquidity need. Small quantum (~2.7% of total equity). No leverage risk at company level. Expected to be cleared — not visible in FY26 annual disclosures.</td>
+      </tr>
+      <tr>
+        <td>Revenue growth flat to negative for 3 consecutive years (FY24-FY26)</td>
+        <td><span class="pill moderate">Moderate</span></td>
+        <td>This is the most legitimate concern for long-term investors. FY24 (₹1,222 Cr) → FY25 (₹1,155 Cr) → FY26 (₹1,143 Cr). While the reasons are largely exogenous (Europe weak FY24-25, US tariffs FY26), the failure to scale revenue meaningfully from a ₹1,200 Cr level despite strong capacity is a watch item. Management's FY27 guidance (15-17% growth) must be tracked quarterly.</td>
+      </tr>
+      <tr>
+        <td>Customer concentration: top 5 groups = 65-70% of revenue</td>
+        <td><span class="pill moderate">Moderate</span></td>
+        <td>High concentration, but mitigated by: (a) 7 out of top 10 customers associated 15+ years; (b) programs span multiple plants of same customer group; (c) wallet share with bearing OEMs at 45-50%. The US tariff episode showed what losing one major customer's plant can do — a structural risk rather than an imminent one.</td>
+      </tr>
+      <tr>
+        <td>US tariff uncertainty (Section 232 at 25% permanent risk)</td>
+        <td><span class="pill moderate">Moderate</span></td>
+        <td>Section 232 at 25% is now accepted by customers; order flows have resumed. However, any renewed tariff escalation remains a binary risk on 23% of revenues. The Mexico/US new customer additions partially diversify the customer geography but not the tariff exposure structurally.</td>
+      </tr>
+      <tr>
+        <td>Auditor concerns / accounting irregularities</td>
+        <td><span class="pill pos">None detected</span></td>
+        <td>No auditor qualifications. Exceptional items are properly disclosed and explained. Revenue recognition is conservative (customs reimbursement not yet booked despite claim being valid). No related party transaction concerns. No frequent restructuring charges.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ═══ STEP 10: POSITIVE INFLECTION ════════════════════════════════════ -->
+<div class="section" id="s10">
+  <div class="section-header">
+    <span class="section-num">STEP 10</span>
+    <h2 class="section-title">Positive Inflection Detection</h2>
+  </div>
+
+  <div class="three-col">
+    <div class="callout positive">
+      <strong>US Revenue Recovery (Q1 FY27+)</strong><br>
+      30% of FY25 US revenue (~₹80-90 Cr) was lost in FY26. With tariffs stabilised at 25% and customers re-engaging since February 2026, management expects at least 50% of this to recover in H1 FY27. This alone adds ~₹40-45 Cr in incremental quarterly run-rate — a 14-15% annualised tailwind from a single geography recovery.
+    </div>
+    <div class="callout positive">
+      <strong>New Program Ramp-ups (FY27)</strong><br>
+      FY26 new customer programs (primarily European) began at 10-20% of peak volume. Management expects ramp to 50-60% through FY27. Combined with new Mexico + US plant programs starting mid-FY27, incremental revenue of ₹160-165 Cr is targeted on top of the base business.
+    </div>
+    <div class="callout positive">
+      <strong>Deferred Revenue Recognition</strong><br>
+      ~₹11 Cr in customs duty reimbursements not yet recognised will flow through Q1-Q2 FY27 top line. Additionally, consignment stock held at US warehouses will generate revenue as customers lift inventory — providing an early-FY27 boost with no corresponding cost.
+    </div>
+  </div>
+
+  <div class="three-col">
+    <div class="callout positive">
+      <strong>Gross Margin Structural Expansion</strong><br>
+      Q4 FY26 gross margin of 54.7% reflects the structural benefit of higher-value machined auto components dominating the mix. As auto component share rises toward 50%+ and domestic steel sourcing expands, gross margins can sustain 52-54% — versus the 49-51% range of prior years.
+    </div>
+    <div class="callout positive">
+      <strong>Operating Leverage at 65-75% Utilisation</strong><br>
+      Fixed cost base is approximately ₹360 Cr (employees + other expenses + depreciation). Each 5% utilisation improvement on a ₹1,143 Cr revenue base adds ~₹57 Cr revenue at ~75% incremental EBITDA margin (since fixed costs barely move), expanding EBITDA margins by approximately 160-200 bps.
+    </div>
+    <div class="callout positive">
+      <strong>Renewable Energy Cost Savings</strong><br>
+      21.55 MW renewable capacity operational, with additional 9 MW by mid-CY2026. Energy is 15-20% of operating costs for a forging business. Plan to reach 60% green energy by 2030 could structurally reduce power costs by ₹15-25 Cr annually — a direct EBITDA margin benefit of 130-220 bps at current scale.
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ STEP 11: VALUATION COMFORT ══════════════════════════════════════ -->
+<div class="section" id="s11">
+  <div class="section-header">
+    <span class="section-num">STEP 11</span>
+    <h2 class="section-title">Valuation Comfort vs. Earnings Quality</h2>
+  </div>
+
+  <div class="card-grid" style="grid-template-columns:repeat(6,1fr);">
+    <div class="card"><div class="card-label">Market Cap</div><div class="card-value">₹3,925 Cr</div><div class="card-delta flat">At ₹144/share</div></div>
+    <div class="card"><div class="card-label">EV (ex-cash)</div><div class="card-value">₹3,558 Cr</div><div class="card-delta flat">M.Cap – ₹367 Cr</div></div>
+    <div class="card"><div class="card-label">EV/EBITDA</div><div class="card-value">15.5×</div><div class="card-delta flat">FY26 actual</div></div>
+    <div class="card"><div class="card-label">Adj. P/E</div><div class="card-value">20.4×</div><div class="card-delta flat">On ₹193 Cr adj. PAT</div></div>
+    <div class="card"><div class="card-label">P/FCF</div><div class="card-value">25.5×</div><div class="card-delta flat">On ₹154 Cr FCF</div></div>
+    <div class="card"><div class="card-label">FY27E P/E</div><div class="card-value">~15×</div><div class="card-delta up">▼ At 15% growth</div></div>
+  </div>
+
+  <p class="subsection-title">Is the Valuation Justified?</p>
+  <p>At ₹144 and ₹3,925 Cr market cap, Rolex Rings trades at <strong>15.5× EV/EBITDA and 20.4× adjusted P/E on a depressed FY26 base</strong>. The critical question is whether FY26 is the trough or just another data point in a multi-year stagnation. The case for trough: US tariffs were a one-off exogenous shock now normalising; Europe is in early recovery; domestic bearing rings are growing organically; and the two largest opaque items in the P&amp;L (₹28 Cr in other expenses + ₹11 Cr deferred revenue) reverse in FY27.</p>
+  <p>On FY27 estimates using management's own 15-17% growth guidance: revenue of ~₹1,315 Cr, EBITDA of ~₹275-280 Cr (margins recovering toward 21% on operating leverage + normalised costs), adjusted PAT of ~₹215-225 Cr. At these numbers, the stock trades at roughly <strong>17-18× FY27E EBITDA and 17-18× FY27E P/E</strong> — reasonable but not cheap for a manufacturing business with moderate moat characteristics.</p>
+  <p>The net cash of ₹367 Cr (9.4% of market cap) provides a meaningful buffer. On an ex-cash basis at FY27E EBITDA, EV/EBITDA drops to approximately <strong>11.5-12×</strong> — which is attractive for a 20%+ RoCE business with a clear 2-3 year earnings recovery path.</p>
+
+  <div class="callout neutral">
+    <strong>Valuation Classification: Reasonable / Modestly Attractive on a Recovery Basis</strong><br>
+    The market appears to be discounting a partial US recovery (not full) and modest margin improvement. If FY27 delivers the guided 15-17% growth with margin normalisation to 21-21.5%, earnings would surprise positively. The stock is not expensive on a business-quality-adjusted basis, nor is it a deep-value bargain. The margin of safety comes from the cash balance, zero debt, and RoCE above cost of capital.
+  </div>
+
+  <p class="subsection-title">What Is Priced In?</p>
+  <p>At the current price, the market appears to assume approximately 10-12% revenue growth in FY27 (conservative versus management guidance), EBITDA margins of ~20.5% (no operating leverage benefit), and no meaningful US recovery upside. If management delivers 15%+ growth with margins at 21%+, the stock could re-rate to 18-20× FY27E P/E — implying 20-35% upside from current levels. The buyback itself at ₹180/share (25% premium to current) suggests the board views the stock as meaningfully undervalued.</p>
+</div>
+
+
+<!-- ═══ MOAT STRUCTURE ANALYSIS (BONUS SECTION) ═══════════════════════ -->
+<div class="section" id="moat">
+  <div class="section-header">
+    <span class="section-num">MOAT</span>
+    <h2 class="section-title">Moat Structure Analysis</h2>
+  </div>
+
+  <p>Rolex Rings has <strong>narrow-to-moderate moat</strong> characteristics across multiple dimensions. It does not possess a single impenetrable competitive advantage, but rather a <em>cluster of interlocking operational and relational barriers</em> that collectively make displacement difficult and expensive. The moat is strengthening, not eroding.</p>
+
+  <table class="data-table">
+    <thead><tr><th>Moat Dimension</th><th>Score</th><th>Strength</th><th>Key Evidence</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Customer Switching Costs</strong></td>
+        <td><span class="score-tag" style="color:var(--green)">8/10</span></td>
+        <td>
+          <div class="moat-bar"><div class="moat-fill" style="width:80%;background:var(--green)"></div></div>
+        </td>
+        <td>IATF 16949 certification + Ford Q1 + Zero PPM award. Customer re-qualification takes 15-18 months minimum. 7/10 top customers associated 15+ years. 45-50% wallet share with three major bearing OEMs — too embedded to displace without significant cost and risk for customers.</td>
+      </tr>
+      <tr>
+        <td><strong>Scale &amp; Infrastructure Advantage</strong></td>
+        <td><span class="score-tag" style="color:var(--green)">8/10</span></td>
+        <td>
+          <div class="moat-bar"><div class="moat-fill" style="width:80%;background:var(--green)"></div></div>
+        </td>
+        <td>26 forging lines + 625 CNC spindles under one roof. Competitors have 10-20% of this scale. Replication cost: ₹600-800 Cr+ capex plus 3-5 years of customer qualification time. Most direct competitors operate in a single product vertical; Rolex covers bearing rings through complex auto assemblies.</td>
+      </tr>
+      <tr>
+        <td><strong>Vertical Integration &amp; Process Depth</strong></td>
+        <td><span class="score-tag" style="color:var(--amber)">7/10</span></td>
+        <td>
+          <div class="moat-bar"><div class="moat-fill" style="width:70%;background:var(--amber)"></div></div>
+        </td>
+        <td>Full process capability: forging → heat treatment → cold rolling → precision machining → quality testing. 85% of revenues from fully machined components (near-net shape). In-house tool and die making. Allows single-source complex component programs that simpler shops cannot bid on.</td>
+      </tr>
+      <tr>
+        <td><strong>Geographic &amp; Customer Diversification</strong></td>
+        <td><span class="score-tag" style="color:var(--amber)">6/10</span></td>
+        <td>
+          <div class="moat-bar"><div class="moat-fill" style="width:60%;background:var(--amber)"></div></div>
+        </td>
+        <td>57 customers across 14 countries. Top 5 customer groups = 65-70% of revenues — concentration risk partially offset by multi-plant engagement within each group. FY26 demonstrated the vulnerability; simultaneous disruption in US and Europe in FY24-25 shows correlation risk. New Mexico + US plant additions diversify within geographies.</td>
+      </tr>
+      <tr>
+        <td><strong>Pricing Power</strong></td>
+        <td><span class="score-tag" style="color:var(--amber)">6/10</span></td>
+        <td>
+          <div class="moat-bar"><div class="moat-fill" style="width:60%;background:var(--amber)"></div></div>
+        </td>
+        <td>Raw material pass-through on quarterly basis provides protection, not pricing power. True pricing power is limited — Rolex is a Tier-2 supplier competing on quality, delivery, and cost rather than brand premium. Higher-complexity machined components command better realizations but are still subject to OEM cost-down pressure.</td>
+      </tr>
+      <tr>
+        <td><strong>Quality Credentials &amp; Certifications</strong></td>
+        <td><span class="score-tag" style="color:var(--green)">8/10</span></td>
+        <td>
+          <div class="moat-bar"><div class="moat-fill" style="width:80%;background:var(--green)"></div></div>
+        </td>
+        <td>ISO 9001, IATF 16949, ISO 45001, ISO 18001. Ford Q1 Certificate (2021). Zero PPM award (2022). Quality award in CV braking systems (2025). Green Category Supplier status. Quality excellence awards 2014-2022 continuously. These certifications are structural entry barriers — getting recertified takes years.</td>
+      </tr>
+      <tr>
+        <td><strong>Balance Sheet Moat</strong></td>
+        <td><span class="score-tag" style="color:var(--green)">9/10</span></td>
+        <td>
+          <div class="moat-bar"><div class="moat-fill" style="width:90%;background:var(--green)"></div></div>
+        </td>
+        <td>₹367 Cr net cash, zero debt, no legacy obligations, RoCE of 20%+. The financial health creates strategic optionality (bolt-on M&amp;A, capacity investment, returning cash) without any existential risk. In a downcycle, this fortress balance sheet is itself a competitive advantage — undercapitalized competitors struggle while Rolex can invest counter-cyclically.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="subsection-title">Overall Moat Assessment</p>
+  <div class="callout neutral">
+    <strong>Moat Rating: Narrow-to-Moderate (6.5–7.0/10)</strong><br>
+    Rolex is not a franchise business with pricing power over end markets. Its competitive strength lies in the difficulty of replication — combining scale, customer trust built over 15+ years, full vertical integration, and an expanding set of quality credentials that take years to accumulate. The moat is narrower than a pure software or consumer brand business but significantly wider than a commodity forging shop. It is more durable than it appears, and strengthening as auto component complexity increases and China+1 tailwinds deepen customer relationships.
+  </div>
+</div>
+
+
+<!-- ═══ STEP 12: FUTURE TRAJECTORY ══════════════════════════════════════ -->
+<div class="section" id="s12">
+  <div class="section-header">
+    <span class="section-num">STEP 12</span>
+    <h2 class="section-title">Future Trajectory Modeling</h2>
+  </div>
+
+  <div class="three-col">
+    <div style="background:rgba(58,157,110,0.07);border:1px solid rgba(58,157,110,0.25);border-radius:8px;padding:1.25rem;">
+      <div style="color:var(--green);font-family:var(--mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;">Bull Case</div>
+      <p style="font-size:0.88rem;color:var(--text);margin-bottom:0.5rem;"><strong>FY27 Revenue: ₹1,380-1,420 Cr (+21-24%)</strong></p>
+      <p style="font-size:0.83rem;color:var(--text2);">Full US recovery + European momentum + new programs at 60% peak. EBITDA margins at 22-23% on operating leverage. Adj. PAT ~₹245-260 Cr. FY27 P/E at 15-16×. M&amp;A adds incremental ₹100-150 Cr revenue by FY28. Stock re-rates to 20-22× forward earnings. Target: ₹175-190/share (18-month horizon).</p>
+    </div>
+    <div style="background:rgba(232,160,32,0.07);border:1px solid rgba(232,160,32,0.25);border-radius:8px;padding:1.25rem;">
+      <div style="color:var(--amber);font-family:var(--mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;">Base Case</div>
+      <p style="font-size:0.88rem;color:var(--text);margin-bottom:0.5rem;"><strong>FY27 Revenue: ₹1,310-1,345 Cr (+15-17%)</strong></p>
+      <p style="font-size:0.83rem;color:var(--text2);">Consistent with management guidance. 50% US recovery in H1, full ramp in H2. EBITDA margins at 21-21.5%. Adj. PAT ~₹215-225 Cr. FY27 P/E at 17.5-18×. Reasonable re-rating to 18-20× supported by FCF yield improvement. Stock consolidates at ₹150-165/share over 12 months.</p>
+    </div>
+    <div style="background:rgba(214,64,69,0.07);border:1px solid rgba(214,64,69,0.25);border-radius:8px;padding:1.25rem;">
+      <div style="color:var(--red);font-family:var(--mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.75rem;">Bear Case</div>
+      <p style="font-size:0.88rem;color:var(--text);margin-bottom:0.5rem;"><strong>FY27 Revenue: ₹1,200-1,250 Cr (+5-9%)</strong></p>
+      <p style="font-size:0.83rem;color:var(--text2);">US tariff re-escalation, European demand relapse, global auto slowdown. EBITDA margins at 19.5-20%. Adj. PAT ~₹185-195 Cr. Revenue stagnation narrative persists, stock trades at 16-18× depressed earnings. Floor support from net cash (₹367 Cr = 9.4% of current market cap). Stock range: ₹120-135/share.</p>
+    </div>
+  </div>
+
+  <p class="subsection-title">Quarterly Monitoring Checklist</p>
+  <p>The following metrics should be tracked every quarter to assess whether the thesis is playing out or breaking down: (1) US revenue recovery trajectory — must show sequential quarterly growth; (2) EBITDA margin — must recover toward 21%+ by Q2 FY27; (3) working capital days — should normalise below 185 days by FY27 year-end; (4) new program revenue contribution (Europe + Mexico + US new plants) — should accumulate to ₹40-50 Cr/quarter by Q3-Q4 FY27; (5) domestic bearing ring revenue — must sustain 12-15% YoY growth; (6) order book guidance for the subsequent quarter — should remain ₹115-130 Cr/month range.</p>
+</div>
+
+
+<!-- ═══ STEP 13: INVESTMENT VERDICT ═════════════════════════════════════ -->
+<div class="section" id="s13">
+  <div class="section-header">
+    <span class="section-num">STEP 13</span>
+    <h2 class="section-title">Final Investment Verdict</h2>
+  </div>
+
+  <p class="subsection-title">What Truly Matters From This Period</p>
+  <p>FY26's legacy is the <strong>complete elimination of all legacy obligations</strong> (CDR RoR settled) and the transition to a fully unencumbered operating entity with ₹367 Cr net cash. The tariff-driven US disruption, while painful in the headline numbers, has proven temporary — customers have not cancelled programs, relationships are intact, and dispatches have already returned to pre-slowdown levels. The underlying business quality — sticky customer relationships, structural China+1 tailwinds, expanding auto component mix — is intact and improving.</p>
+
+  <div class="two-col">
+    <div>
+      <p class="subsection-title">Key Positives</p>
+      <p>Complete CDR legacy closure — no remaining financial overhang. Zero debt with ₹367 Cr net cash providing absolute balance sheet safety. Q4 gross margin of 54.7% reflects genuinely improving product economics. Europe +25% YoY with structural underpinning from China+1 and localization trends. Domestic bearing rings +17% YoY, gaining market share to above 30%. FY27 guidance of 15-17% growth is credible and likely conservative given deferred revenues and multiple new programs ramping. Buyback at ₹180 (25% premium) with promoter non-participation is a direct capital return signal. Management credibility track record is strong — delivered on all controllable commitments.</p>
+    </div>
+    <div>
+      <p class="subsection-title">Key Negatives &amp; Risks</p>
+      <p>Revenue has been essentially flat for three years (FY24-FY26) — the market appropriately discounts this. US tariff risk under Section 232 at 25% is permanent; any further escalation is a binary headwind on 23% of revenues. Working capital has deteriorated over 3 years (179→186→195 days) and must reverse to validate cash conversion quality. Customer concentration at 65-70% in top five groups is a structural vulnerability. RoCE has declined from 28% to 20% over four years — must recover with scale. EV disruption risk in CV/HCV is a 5-7 year horizon but not zero.</p>
+    </div>
+  </div>
+
+  <p class="subsection-title">Hidden Insights the Market May Be Missing</p>
+  <p>The market appears to price Rolex as a revenue-stagnating manufacturer at a moderate multiple. What is not fully priced: (1) the normalised EBITDA margin of ~22.5% (ex-one-time items) would put FY26 as the highest margin year in history; (2) approximately ₹11 Cr in deferred customs revenue will flow through Q1-Q2 FY27 at 100% gross margin; (3) the ₹367 Cr net cash (9.4% of market cap) makes the ex-cash P/E approximately 18× on FY26 adjusted earnings — fair, not expensive; (4) management is guiding ₹160-165 Cr in incremental revenue from existing won programs — this is contractual, not aspirational.</p>
+
+  <div class="two-col">
+    <div>
+      <p class="subsection-title">Management Execution Scorecard</p>
+      <div class="callout positive"><strong>Strong</strong> — Consistent delivery on guidance within management's control. Transparent disclosure of setbacks. Conservative revenue recognition (customs not booked). CDR honoured to the last rupee and on the exact date promised. No earnings quality concerns.</div>
+    </div>
+    <div>
+      <p class="subsection-title">Long-Term Compounding Potential</p>
+      <div class="callout neutral"><strong>Moderate-to-Good (12-15% CAGR)</strong> — Management's own 5-year ambition is to double revenues (implying ~15% CAGR from FY26). With 20%+ RoCE, strong FCF, and operating leverage potential, the earnings CAGR should exceed revenue growth as margins expand. Not a 20%+ compounder, but a reliable, low-drama compounding machine if execution stays on track.</div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <div class="verdict-label">Institutional Recommendation</div>
+    <div class="verdict-rating">Accumulate</div>
+    <div class="verdict-rationale">Rolex Rings is a <strong>high-quality SME manufacturer at a fair-to-reasonable valuation on a trough earnings base</strong>. The combination of clean balance sheet (₹367 Cr net cash), structural industry tailwinds (China+1, European recovery, domestic market share gains), recovering US business, and shareholder-friendly capital allocation (buyback with promoter non-participation) makes the risk-reward skewed positively from current levels. Position sizing should reflect the concentration risks and the fact that near-term earnings recovery depends on geopolitical stability in US-India trade. Recommended entry on weakness toward ₹130-135 range for meaningful accumulation; current levels offer acceptable entry. 12-18 month base case target: ₹165-175/share (+15-22% from current).</div>
+  </div>
+</div>
+
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════════════════════ -->
+<div class="footer">
+  <div class="footer-text">Rolex Rings Limited · NSE: ROLEXRINGS · Q4 &amp; FY2026 Institutional Analysis · May 22, 2026</div>
+  <div class="footer-text">Sources: Q4 FY26 Investor Presentation · Q4 FY26 Earnings Concall Transcript · Q3 FY26 Concall Transcript · Q3 FY26 Investor Update</div>
+  <div class="footer-text">For informational purposes only. Not investment advice.</div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+const gridColor = 'rgba(200,169,110,0.12)';
+const tickColor = '#6e6a64';
+const baseOpts = {
+  responsive: true, maintainAspectRatio: false,
+  plugins: { legend: { display: false } },
+  scales: {
+    x: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 11, family: 'DM Mono' } } },
+    y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 11, family: 'DM Mono' } } }
+  }
+};
+
+// Revenue & EBITDA
+new Chart(document.getElementById('revChart'), {
+  type: 'bar',
+  data: {
+    labels: ['FY22','FY23','FY24','FY25','FY26'],
+    datasets: [
+      { label: 'Revenue', data: [1010,1179,1222,1155,1143], backgroundColor: 'rgba(58,127,193,0.55)', borderColor: 'rgba(58,127,193,0.8)', borderWidth: 1, borderRadius: 3 },
+      { label: 'EBITDA', data: [229,261,262,241,230], backgroundColor: 'rgba(200,169,110,0.55)', borderColor: 'rgba(200,169,110,0.8)', borderWidth: 1, borderRadius: 3 }
+    ]
+  },
+  options: { ...baseOpts, plugins: { legend: { display: true, labels: { color: tickColor, font: { size: 11, family: 'DM Mono' }, boxWidth: 10, boxHeight: 10 } } } }
+});
+
+// Margin trend
+new Chart(document.getElementById('marginChart'), {
+  type: 'line',
+  data: {
+    labels: ['FY22','FY23','FY24','FY25','FY26'],
+    datasets: [{
+      label: 'EBITDA Margin %', data: [22.7, 22.1, 21.4, 20.8, 20.1],
+      borderColor: '#c8a96e', backgroundColor: 'rgba(200,169,110,0.08)',
+      borderWidth: 2, fill: true, tension: 0.3,
+      pointBackgroundColor: '#c8a96e', pointRadius: 5
+    }]
+  },
+  options: {
+    ...baseOpts,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 11, family: 'DM Mono' } } },
+      y: { grid: { color: gridColor }, ticks: { color: tickColor, font: { size: 11, family: 'DM Mono' }, callback: v => v + '%' }, min: 19, max: 24 }
+    }
+  }
+});
+
+// Cash flow chart
+new Chart(document.getElementById('cashChart'), {
+  type: 'bar',
+  data: {
+    labels: ['FY22','FY23','FY24','FY25','FY26'],
+    datasets: [
+      { label: 'Operating CFO', data: [59,214,222,227,190], backgroundColor: 'rgba(58,157,110,0.55)', borderColor: 'rgba(58,157,110,0.8)', borderWidth: 1, borderRadius: 3 },
+      { label: 'Capex', data: [70,42,55,52,36], backgroundColor: 'rgba(214,64,69,0.5)', borderColor: 'rgba(214,64,69,0.8)', borderWidth: 1, borderRadius: 3 }
+    ]
+  },
+  options: { ...baseOpts, plugins: { legend: { display: true, labels: { color: tickColor, font: { size: 11, family: 'DM Mono' }, boxWidth: 10, boxHeight: 10 } } } }
+});
+
+// Segment pie
+new Chart(document.getElementById('segChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Dom. Bearing Rings','Dom. Auto Comp.','Exp. Bearing Rings','Exp. Auto Comp.','Scrap &amp; Other'],
+    datasets: [{
+      data: [386, 170, 154, 350, 84],
+      backgroundColor: ['rgba(58,127,193,0.7)','rgba(200,169,110,0.7)','rgba(58,127,193,0.35)','rgba(200,169,110,0.35)','rgba(110,106,100,0.5)'],
+      borderColor: ['rgba(58,127,193,1)','rgba(200,169,110,1)','rgba(58,127,193,0.6)','rgba(200,169,110,0.6)','rgba(110,106,100,0.8)'],
+      borderWidth: 1.5
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: 'right', labels: { color: tickColor, font: { size: 10.5, family: 'DM Mono' }, boxWidth: 10, boxHeight: 10, padding: 8 } }
+    }
+  }
+});
+</script>
+</body>
+</html>
