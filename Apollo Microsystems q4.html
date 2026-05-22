@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apollo Micro Systems — Institutional Analysis | Q4 FY26</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0f14;
+    --bone: #f5f0e8;
+    --cream: #faf7f2;
+    --accent: #c4361a;
+    --accent2: #1a4c8c;
+    --gold: #b8960c;
+    --green: #1a6b3a;
+    --amber: #c47a1a;
+    --muted: #6b6b6b;
+    --divider: #d8d0c4;
+    --card-bg: #ffffff;
+    --highlight: #fff8e6;
+    --danger-bg: #fef2f0;
+    --danger-border: #e8c4bc;
+    --positive-bg: #f0f7f3;
+    --positive-border: #b4d4c0;
+    --warn-bg: #fef9ec;
+    --warn-border: #e4d090;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--cream);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    background: var(--ink);
+    color: var(--bone);
+    padding: 48px 60px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 400px; height: 100%;
+    background: linear-gradient(135deg, transparent 40%, rgba(196,54,26,0.12) 100%);
+  }
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+  .report-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .company-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+  .company-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #9a9a8a;
+    margin-top: 6px;
+    letter-spacing: 0.05em;
+  }
+  .report-meta {
+    text-align: right;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #9a9a8a;
+    line-height: 1.9;
+  }
+  .verdict-badge {
+    display: inline-block;
+    padding: 8px 22px;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+  .score-strip {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: #2a2a2a;
+    border-top: 1px solid #2a2a2a;
+    margin-top: 32px;
+  }
+  .score-cell {
+    background: #161820;
+    padding: 16px 20px;
+    text-align: center;
+  }
+  .score-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6a6a7a;
+    margin-bottom: 6px;
+  }
+  .score-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .score-denom {
+    font-size: 13px;
+    color: #6a6a7a;
+  }
+  .s-green { color: #4ac98a; }
+  .s-amber { color: #e8b84b; }
+  .s-red { color: #e86b4b; }
+  .s-blue { color: #6ab0e8; }
+
+  /* LAYOUT */
+  .body-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+  }
+
+  /* SECTION ARCHITECTURE */
+  .section {
+    margin-top: 52px;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+  }
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    margin-left: auto;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* PROSE */
+  .prose {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #2a2a2a;
+    max-width: 880px;
+  }
+  .prose p { margin-bottom: 12px; }
+  .prose strong { color: var(--ink); font-weight: 600; }
+
+  /* CARDS */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--divider);
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .card-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .card-change {
+    font-size: 12px;
+    margin-top: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .pos { color: var(--green); }
+  .neg { color: var(--accent); }
+  .warn { color: var(--amber); }
+
+  /* METRIC GRIDS */
+  .metrics-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .metrics-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .metrics-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .metrics-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+
+  /* TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  .data-table th {
+    background: var(--ink);
+    color: var(--bone);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 500;
+  }
+  .data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--divider);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .data-table tr:nth-child(even) td { background: #faf8f5; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .achieved { color: var(--green); font-weight: 600; font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+  .missed { color: var(--accent); font-weight: 600; font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+  .partial { color: var(--amber); font-weight: 600; font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+  .pending { color: var(--accent2); font-weight: 600; font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+
+  /* ALERT BOXES */
+  .alert {
+    padding: 18px 22px;
+    margin-bottom: 12px;
+    border-left: 3px solid;
+  }
+  .alert-danger { background: var(--danger-bg); border-color: var(--accent); }
+  .alert-warn { background: var(--warn-bg); border-color: var(--gold); }
+  .alert-positive { background: var(--positive-bg); border-color: var(--green); }
+  .alert-info { background: #f0f4fc; border-color: var(--accent2); }
+  .alert-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .alert-danger .alert-label { color: var(--accent); }
+  .alert-warn .alert-label { color: var(--gold); }
+  .alert-positive .alert-label { color: var(--green); }
+  .alert-info .alert-label { color: var(--accent2); }
+  .alert p { font-size: 13px; line-height: 1.65; }
+
+  /* RED FLAG SEVERITY */
+  .rf-grid { display: flex; flex-direction: column; gap: 8px; }
+  .rf-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 16px;
+    border: 1px solid var(--divider);
+    background: var(--card-bg);
+  }
+  .rf-severity {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+  .sev-severe { background: #fde8e4; color: #a32010; border: 1px solid #e4c0ba; }
+  .sev-moderate { background: #fef3dc; color: #8a5a0a; border: 1px solid #e0cc90; }
+  .sev-minor { background: #e8f4ed; color: #1a6b3a; border: 1px solid #b0d4bc; }
+  .sev-blowup { background: #2a0a0a; color: #ff9070; border: 1px solid #6a2010; font-weight: 700; }
+  .rf-text { font-size: 13px; line-height: 1.6; }
+  .rf-text strong { color: var(--ink); }
+
+  /* CASH FLOW TRUTH */
+  .cf-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1.5px solid var(--ink);
+    margin-top: 12px;
+  }
+  .cf-box {
+    padding: 20px 24px;
+  }
+  .cf-box:first-child { border-right: 1px solid var(--divider); }
+  .cf-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .cf-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+  }
+  .cf-note { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+  /* VALUATION SECTION */
+  .val-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1.5px solid var(--ink); }
+  .val-cell {
+    padding: 18px 20px;
+    border-right: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+  }
+  .val-cell:nth-child(4n) { border-right: none; }
+  .val-name {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .val-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .val-context { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+
+  /* MOAT SCORE */
+  .moat-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+  .moat-bar-label {
+    font-size: 12px;
+    width: 200px;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .moat-bar-track {
+    flex: 1;
+    height: 8px;
+    background: #e8e4dc;
+    position: relative;
+  }
+  .moat-bar-fill {
+    height: 100%;
+    background: var(--accent2);
+  }
+  .moat-bar-score {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    width: 36px;
+    text-align: right;
+    color: var(--muted);
+  }
+
+  /* SCENARIO TABLE */
+  .scenario-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--divider);
+  }
+  .scenario-row.header { background: var(--ink); color: var(--bone); }
+  .scenario-cell {
+    padding: 12px 16px;
+    font-size: 13px;
+    border-right: 1px solid var(--divider);
+  }
+  .scenario-row.header .scenario-cell {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-color: #2a2a2a;
+  }
+  .sc-bull { border-left: 3px solid var(--green); }
+  .sc-base { border-left: 3px solid var(--accent2); }
+  .sc-bear { border-left: 3px solid var(--accent); }
+
+  /* VERDICT FINAL */
+  .final-verdict {
+    background: var(--ink);
+    color: var(--bone);
+    padding: 40px 48px;
+    margin-top: 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-verdict::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; right: -30px;
+    width: 200px; height: 200px;
+    border: 40px solid rgba(196,54,26,0.1);
+    border-radius: 50%;
+  }
+  .verdict-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  .verdict-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    max-width: 700px;
+  }
+  .verdict-reasoning {
+    font-size: 14px;
+    color: #c8c4bc;
+    line-height: 1.75;
+    max-width: 760px;
+  }
+  .verdict-tags {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .vtag {
+    padding: 5px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid;
+  }
+  .vtag-pos { border-color: #4ac98a; color: #4ac98a; }
+  .vtag-neg { border-color: #e86b4b; color: #e86b4b; }
+  .vtag-neutral { border-color: #e8b84b; color: #e8b84b; }
+
+  /* MONITORING CHECKLIST */
+  .checklist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1px solid var(--divider);
+    background: var(--card-bg);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .check-icon {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--accent2);
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  /* DIVIDERS */
+  .rule { border: none; border-top: 1px solid var(--divider); margin: 28px 0; }
+  .thick-rule { border: none; border-top: 2px solid var(--ink); margin: 36px 0; }
+
+  /* TAM BOXES */
+  .tam-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+  .tam-box {
+    border: 1px solid var(--divider);
+    background: var(--card-bg);
+    padding: 20px;
+  }
+  .tam-domain {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .tam-size {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .tam-note { font-size: 11.5px; color: #444; line-height: 1.55; }
+
+  /* INLINE LABEL */
+  .inline-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 3px;
+  }
+  .big-stat {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+    border-left: 2px solid var(--divider);
+    margin-top: 12px;
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 16px;
+    padding-left: 18px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -26px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    background: var(--accent2);
+    border-radius: 50%;
+  }
+  .tl-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .tl-text { font-size: 13px; line-height: 1.55; }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  /* FOOTNOTE */
+  .footnote {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--divider);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #aaa;
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 860px) {
+    .masthead { padding: 28px 20px 24px; }
+    .company-name { font-size: 28px; }
+    .score-strip { grid-template-columns: repeat(3, 1fr); }
+    .body-wrap { padding: 0 16px 60px; }
+    .metrics-4, .metrics-6 { grid-template-columns: repeat(2, 1fr); }
+    .val-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col, .three-col, .checklist { grid-template-columns: 1fr; }
+    .tam-grid { grid-template-columns: 1fr 1fr; }
+    .scenario-row { grid-template-columns: 80px 1fr 1fr 1fr; }
+    .cf-comparison { grid-template-columns: 1fr; }
+    .final-verdict { padding: 28px 24px; }
+    .verdict-main { font-size: 26px; }
+    .masthead-top { flex-direction: column; gap: 12px; }
+    .report-meta { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ MASTHEAD ═══════════════════ -->
+<div class="masthead">
+  <div class="masthead-top">
+    <div>
+      <div class="report-label">Institutional Equity Analysis · Q4 FY2026 · Forensic Disclosure Review</div>
+      <div class="company-name">Apollo Micro<br>Systems Limited</div>
+      <div class="company-sub">BSE: 540879 · NSE: APOLLO · Defense Electronics & Weaponization</div>
+      <div class="verdict-badge">⚑ Watchlist — High Conviction, Execution Risk Elevated</div>
+    </div>
+    <div class="report-meta">
+      Date of Analysis: 22 May 2026<br>
+      CMP: ₹354 &nbsp;|&nbsp; Mkt Cap: ₹12,648 Cr<br>
+      52W High/Low: ₹378 / ₹135<br>
+      Documents: Q4 FY26 Concall · Q3 FY26 Concall<br>
+      Q4 FY26 Results · Q3 FY26 Results<br>
+      Analyst: Institutional Research Desk
+    </div>
+  </div>
+  <div class="score-strip">
+    <div class="score-cell">
+      <div class="score-label">Business Health</div>
+      <div class="score-value s-amber">7.5<span class="score-denom">/10</span></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Earnings Quality</div>
+      <div class="score-value s-red">4.5<span class="score-denom">/10</span></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Balance Sheet</div>
+      <div class="score-value s-amber">5.5<span class="score-denom">/10</span></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Capital Allocation</div>
+      <div class="score-value s-amber">6.0<span class="score-denom">/10</span></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Mgmt Credibility</div>
+      <div class="score-value s-amber">6.5<span class="score-denom">/10</span></div>
+    </div>
+    <div class="score-cell">
+      <div class="score-label">Future Visibility</div>
+      <div class="score-value s-green">7.0<span class="score-denom">/10</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+<!-- ═══════════════════ STEP 1: EXECUTIVE SNAPSHOT ═══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Step 01</span>
+    <span class="section-title">Executive Snapshot — What Actually Happened</span>
+    <span class="section-subtitle">Q4 & FY26 Full Year</span>
+  </div>
+
+  <div class="prose">
+    <p>Apollo Micro Systems delivered its <strong>highest ever quarterly and annual revenue</strong> in Q4 and FY26, with consolidated topline growing 61% YoY to ₹904 crores and PAT expanding 91% to ₹107 crores. The headline numbers are genuinely strong. However, a forensic dissection reveals a bifurcated reality: the standalone defense electronics engine is performing admirably, but it is masked at the consolidated level by a <strong>deeply cash-consumptive operating structure, a loss-making IDL Explosives subsidiary, and deeply negative operating cash flows</strong> that fundamentally challenge the quality of reported earnings.</p>
+    <p>This is not a manipulated quarter in the traditional sense — the growth is real and order book-backed — but investors are paying for <strong>optically strong PAT multiples atop earnings that do not convert to cash</strong>. The company is simultaneously executing well operationally while consuming capital at a pace that necessitates continuous external funding. The strategic direction is compelling; the financial architecture carries meaningful risk.</p>
+  </div>
+
+  <div class="metrics-4" style="margin-top: 24px;">
+    <div class="card">
+      <div class="card-title">Consol. FY26 Revenue</div>
+      <div class="card-value">₹904 Cr</div>
+      <div class="card-change pos">▲ 61% YoY · vs ₹562 Cr</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Consol. FY26 PAT</div>
+      <div class="card-value">₹107 Cr</div>
+      <div class="card-change pos">▲ 91% YoY · vs ₹56 Cr</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Q4 FY26 Revenue</div>
+      <div class="card-value">₹293 Cr</div>
+      <div class="card-change pos">▲ 81% YoY · vs ₹162 Cr</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Order Book (Mar 26)</div>
+      <div class="card-value">₹1,432 Cr</div>
+      <div class="card-change warn">~1.6x Annual Revenue · Adequate</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <div class="alert alert-warn">
+      <div class="alert-label">⚠ Critical Hidden Signal #1 — Cash Flow Divergence</div>
+      <p>Despite standalone PAT of ₹120.6 crores in FY26, standalone operating cash flow was <strong>negative ₹166.6 crores</strong>. The company generated zero real cash from operations while reporting record profits. This is a structural characteristic of defense development-order businesses, but its persistence at this scale represents a fundamental quality caveat.</p>
+    </div>
+    <div class="alert alert-info">
+      <div class="alert-label">◆ Key Positive — 5-Year Compounding Engine</div>
+      <p>Between FY21 and FY26, revenue grew at 30% CAGR, EBITDA at 41% CAGR, and PAT at 64% CAGR. EBITDA margin expanded 500 bps (19% → 24%), PAT margin expanded 700 bps (5% → 12%), and ROCE improved from 10% to 18.23%. This multi-year track record is genuine and substantial.</p>
+    </div>
+    <div class="alert alert-warn">
+      <div class="alert-label">⚠ Critical Hidden Signal #2 — Standalone Organic Growth Miss</div>
+      <p>Standalone revenue grew approximately 36% in FY26 versus a stated guidance of 45–50% CAGR. Management acknowledged missing by "8–9%" due to customer approval delays. While the excuse has merit in defense procurement contexts, this is a <strong>guidance miss that should be tracked</strong> and was quietly absorbed without a formal revision.</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <div class="inline-label">Top 5 Most Important Developments — FY26</div>
+    <div class="rf-grid" style="margin-top: 8px;">
+      <div class="rf-item"><span class="rf-severity sev-minor" style="background:#ddf0e8; color:#1a6b3a; border-color:#b0d4bc;">POSITIVE</span><div class="rf-text"><strong>Standalone PAT margin hit 16%</strong> vs guided 15% — the first meaningful guidance over-delivery in recent memory. This is structurally significant as it validates the product mix improving toward higher-value systems.</div></div>
+      <div class="rf-item"><span class="rf-severity sev-minor" style="background:#ddf0e8; color:#1a6b3a; border-color:#b0d4bc;">POSITIVE</span><div class="rf-text"><strong>DPIIT license received</strong> covering UAVs, INS systems, torpedoes, mines, ATGM, loitering munition, missiles — a lifetime license enabling full-platform participation. This is the single most strategically significant milestone since the company's founding.</div></div>
+      <div class="rf-item"><span class="rf-severity sev-moderate">MIXED</span><div class="rf-text"><strong>100% acquisition of IDL Explosives</strong> (₹107 Cr purchase price) provides strategic backward integration but is currently loss-making and has <strong>going concern qualifications</strong> in the Q3 auditor's review for three subsidiaries. Management expects EBITDA breakeven from Q1 FY27.</div></div>
+      <div class="rf-item"><span class="rf-severity sev-severe">RISK</span><div class="rf-text"><strong>Related party transaction resolution defeated</strong> by ~99% of institutional shareholders at the EGM. Management explained it as a misunderstood corporate guarantee mechanism, and subsequently did not re-table it. The episode signals a <strong>governance gap</strong> between promoter intent and institutional trust.</div></div>
+      <div class="rf-item"><span class="rf-severity sev-moderate">MONITOR</span><div class="rf-text"><strong>Promoter pledge remains at 39%</strong> despite FY26 being the stated deadline for zero pledging. This is the second consecutive year of missed de-pledging targets. Management reaffirmed FY27 as the new target — the third iteration of this commitment.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ STEP 2: RESULT QUALITY ═══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Step 02</span>
+    <span class="section-title">Result Quality Analysis — Dissecting the Numbers</span>
+    <span class="section-subtitle">Revenue · Margins · PAT · EBITDA</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="inline-label">Standalone FY26 P&L Reconstruction</div>
+      <table class="data-table" style="margin-top: 8px;">
+        <tr><th>Item (₹ Cr)</th><th>FY26</th><th>FY25</th><th>Growth</th></tr>
+        <tr><td>Revenue from Ops</td><td><strong>764.9</strong></td><td>562.1</td><td class="pos">+36%</td></tr>
+        <tr><td>COGS (Materials)</td><td>592.5</td><td>435.3</td><td>+36%</td></tr>
+        <tr><td>Employee Costs</td><td>26.9</td><td>21.8</td><td>+23%</td></tr>
+        <tr><td>Finance Costs</td><td>37.1</td><td>34.1</td><td>+8.8%</td></tr>
+        <tr><td>Depreciation</td><td>19.5</td><td>15.3</td><td>+27%</td></tr>
+        <tr><td>Other Expenses</td><td>26.8</td><td>14.4</td><td>+86%</td></tr>
+        <tr><td><strong>EBITDA (excl. OI)</strong></td><td><strong>~185 Cr</strong></td><td>~134 Cr</td><td class="pos"><strong>+38%</strong></td></tr>
+        <tr><td>EBITDA Margin</td><td><strong>~24.2%</strong></td><td>~23.8%</td><td class="pos">+40 bps</td></tr>
+        <tr><td><strong>PAT</strong></td><td><strong>120.6</strong></td><td>57.2</td><td class="pos"><strong>+111%</strong></td></tr>
+        <tr><td>PAT Margin</td><td><strong>~15.8%</strong></td><td>~10.2%</td><td class="pos"><strong>+560 bps</strong></td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="inline-label">Consolidated FY26 vs Standalone — Dilution Map</div>
+      <table class="data-table" style="margin-top: 8px;">
+        <tr><th>Item (₹ Cr)</th><th>Consol.</th><th>Standalone</th><th>Delta</th></tr>
+        <tr><td>Revenue</td><td>904.4</td><td>764.9</td><td class="pos">+139.5 (IDL)</td></tr>
+        <tr><td>EBITDA (~)</td><td>~218</td><td>~185</td><td>+33</td></tr>
+        <tr><td>EBITDA Margin</td><td>~24.1%</td><td>~24.2%</td><td>-10 bps</td></tr>
+        <tr><td>PAT</td><td>107.4</td><td>120.6</td><td class="neg">-13.2 (IDL drag)</td></tr>
+        <tr><td>PAT Margin</td><td>~11.9%</td><td>~15.8%</td><td class="neg">-390 bps</td></tr>
+        <tr><td>NCI (Non-Control.)</td><td>-5.54</td><td>—</td><td class="neg">Minority drag</td></tr>
+        <tr><td>PAT attrib. to owners</td><td>112.9</td><td>120.6</td><td class="neg">-7.7</td></tr>
+      </table>
+      <div class="alert alert-warn" style="margin-top: 12px;">
+        <div class="alert-label">Revenue Quality Assessment</div>
+        <p>Growth is primarily organic, driven by order book execution and product transitions from development to production phases. No channel stuffing or inventory-led revenue concerns are visible in standalone. However, IDL's ~₹380 Cr revenue is primarily industrial explosives (Coal India), not defense, creating a <strong>mixed-quality consolidated revenue stream</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="prose">
+    <p><strong>Margin Analysis — Why PAT Margin Expanded So Sharply:</strong> The 560 bps standalone PAT margin expansion from 10.2% to 15.8% is driven by two intersecting forces. First, operating leverage is finally materializing as revenue scaled faster than fixed overheads — a genuine positive. Second, effective tax rate optimization (deferred tax adjustments contributed ₹16 Cr) played a role. The EBITDA margin at ~24% is more modest at only +40 bps, suggesting the primary PAT expansion story is below-EBITDA. Finance costs grew only 8.8% despite elevated debt, indicating better debt management. Other expenses surged 86%, largely attributable to R&D expenditure (8% of revenue, or ₹72 Cr), exhibition costs, and travel — investment costs, not warning signs of cost leakage.</p>
+  </div>
+
+  <div class="metrics-4" style="margin-top: 16px;">
+    <div class="card">
+      <div class="card-title">COGS as % Revenue (Standalone)</div>
+      <div class="card-value">~77%</div>
+      <div class="card-change warn">Persistent; will improve with large production orders</div>
+    </div>
+    <div class="card">
+      <div class="card-title">EBITDA (Consol.) FY26</div>
+      <div class="card-value">₹218 Cr</div>
+      <div class="card-change pos">▲ 69% YoY · Strong operational leverage</div>
+    </div>
+    <div class="card">
+      <div class="card-title">R&D as % Revenue</div>
+      <div class="card-value">8%</div>
+      <div class="card-change pos">₹72 Cr · Highest in industry per mgmt</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Q4 FY26 PAT Growth</div>
+      <div class="card-value">+164%</div>
+      <div class="card-change pos">₹37 Cr vs ₹14 Cr — Back-end loaded FY</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ STEP 3: GUIDANCE TRACKER ═══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Step 03</span>
+    <span class="section-title">Guidance Tracker — Management Promise vs. Reality</span>
+    <span class="section-subtitle">Cross-Call Promise Scorecard</span>
+  </div>
+
+  <table class="data-table">
+    <tr>
+      <th style="width:26%">Historical Guidance / Claim</th>
+      <th style="width:14%">Timeline Given</th>
+      <th style="width:16%">Current Status</th>
+      <th style="width:12%">Verdict</th>
+      <th style="width:32%">Analyst Commentary</th>
+    </tr>
+    <tr>
+      <td>Revenue CAGR of 45–50% standalone organic</td>
+      <td>Q3 FY26 concall (ongoing)</td>
+      <td>Actual: ~36% standalone FY26</td>
+      <td><span class="missed">MISSED</span></td>
+      <td>Management cited customer approval delays. Missed by ~8–9 percentage points. Key programs (MIGM mine, QRSAM sub-orders) slipped quarters. The guidance was not formally revised — it was quietly absorbed.</td>
+    </tr>
+    <tr>
+      <td>Standalone PAT margin of 15%</td>
+      <td>Q3 FY26 concall</td>
+      <td>Delivered 15.8–16% standalone</td>
+      <td><span class="achieved">ACHIEVED</span></td>
+      <td>One of the few clean guidance deliveries. PAT margin expansion was aided by operating leverage and tax optimization. This credibly demonstrates the path to durable profitability at scale.</td>
+    </tr>
+    <tr>
+      <td>Promoter pledge reduction to zero</td>
+      <td>Stated target: FY26</td>
+      <td>Still ~39% pledged as of Q4 FY26</td>
+      <td><span class="missed">MISSED (2nd yr)</span></td>
+      <td>This is the second consecutive year this target has been missed. Now guided for FY27 again. Each iteration of this commitment carries diminishing credibility. The pledge represents a structural overhang on the stock.</td>
+    </tr>
+    <tr>
+      <td>IDL Explosives EBITDA breakeven by Q4 FY26</td>
+      <td>Q3 FY26 concall (explicit)</td>
+      <td>IDL still loss-making; full-year PAT loss ~₹30 Cr</td>
+      <td><span class="missed">MISSED</span></td>
+      <td>Management was explicit that IDL would reach EBITDA breakeven in Q4 FY26. The consolidated results show it did not happen. The revised guidance is now Q1 FY27 for EBITDA positivity and PAT positivity.</td>
+    </tr>
+    <tr>
+      <td>Additional acquisition (RF company) before FY26 end</td>
+      <td>Q3 FY26 — "before financial year end"</td>
+      <td>Still pending as of Q4 FY26 concall</td>
+      <td><span class="partial">DELAYED</span></td>
+      <td>Bound by NDA. Management cited "global conflicts" as cause for delay. Guided for closure "before end of this quarter" (Q1 FY27). Second successive delay on the same acquisition target.</td>
+    </tr>
+    <tr>
+      <td>MIGM underwater mine order (₹2,500 Cr total market)</td>
+      <td>Q3 FY26 — "expecting this month"</td>
+      <td>DAC approval expected; order not yet received</td>
+      <td><span class="partial">DELAYED</span></td>
+      <td>The MIGM order has been "imminent" for two consecutive quarters. DAC process is outside company's control, but the drumbeating creates investor expectation that is repeatedly unmet. Order when received will be genuinely transformative.</td>
+    </tr>
+    <tr>
+      <td>QRSAM subsystem orders before March 2026</td>
+      <td>Q3 FY26 — "before March they want to finalize"</td>
+      <td>Negotiation ongoing between BEL and MoD</td>
+      <td><span class="partial">DELAYED</span></td>
+      <td>BEL-MoD contract negotiation has extended beyond Q4 FY26. This is a systemic defense procurement delay, not Apollo-specific. However, management gave specific timelines that did not materialize.</td>
+    </tr>
+    <tr>
+      <td>3 company acquisitions pipeline for FY26</td>
+      <td>Q3 FY26 MD statement</td>
+      <td>Only 1 (IDL) closed; RF target pending; others unclear</td>
+      <td><span class="missed">MISSED</span></td>
+      <td>MD mentioned 3 companies in due diligence, targeting 1–2 closures by FY26 end. Only IDL (Q2 FY26) was the major acquisition. The two additional targets appear to have not progressed. Vision 2036 unveiling also shifted to future dates.</td>
+    </tr>
+    <tr>
+      <td>Defense-grade explosive production from IDL within 6 months</td>
+      <td>Q3 FY26 — "start another six months' time"</td>
+      <td>DPRs being finalized; machinery orders placed</td>
+      <td><span class="partial">IN PROGRESS</span></td>
+      <td>Management clarified the initial licenses are for industrial-grade explosives; defense-grade requires separate, larger capex. A "very large expansion" is planned but timelines remain vague. This is a multi-year buildout, not H1 FY27.</td>
+    </tr>
+    <tr>
+      <td>Working capital days reduction (stated 359 days FY26)</td>
+      <td>Ongoing</td>
+      <td>359 days FY26 vs 626 days FY21 — improvement visible</td>
+      <td><span class="achieved">DIRECTIONALLY MET</span></td>
+      <td>Material improvement over 5 years but 359 days remains extremely high in absolute terms. In-house test facility buildout should improve cycle time. Management guided further improvement as production orders scale.</td>
+    </tr>
+  </table>
+
+  <div style="margin-top: 20px; display: flex; align-items: center; gap: 24px; padding: 20px; background: var(--warn-bg); border: 1px solid var(--warn-border);">
+    <div style="text-align: center; flex-shrink: 0;">
+      <div class="inline-label">Execution Credibility</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--amber);">MODERATE</div>
+    </div>
+    <div style="font-size: 13px; line-height: 1.65;">
+      Management delivers on operational metrics (revenue scale, margin targets) but consistently misses timeline-specific promises (pledge removal, acquisitions, imminent orders). The pattern suggests genuine commitment to long-term strategic goals but <strong>optimistic bias in near-term milestone projection</strong>. No evidence of deliberate obfuscation — this is a management team that believes its own timelines — but investors should apply a structural "one quarter delay" discount to all stated timelines.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ STEP 4: HIDDEN FINANCIAL ARCHITECTURE ═══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Step 04</span>
+    <span class="section-title">Hidden Financial Architecture — Cash Flow Truth</span>
+    <span class="section-subtitle">Working Capital · CFO · Balance Sheet Stress</span>
+  </div>
+
+  <div class="cf-comparison">
+    <div class="cf-box">
+      <div class="cf-label">Standalone FY26 PAT (Reported)</div>
+      <div class="cf-num pos">₹120.6 Cr</div>
+      <div class="cf-note">+111% YoY. Impressive headline. EPS ₹3.57 annualised.</div>
+    </div>
+    <div class="cf-box">
+      <div class="cf-label">Standalone FY26 Operating Cash Flow</div>
+      <div class="cf-num neg">-₹166.6 Cr</div>
+      <div class="cf-note">Deeply negative. Cash consumed, not generated. PAT-to-CFO conversion: <strong>-138%</strong>. This is the single most important number in the entire disclosure.</div>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top: 20px;">
+    <p>The operating cash flow divergence is <strong>not an accounting manipulation</strong> — it is a structural characteristic of development-stage defense businesses where revenue is recognized on milestones while cash is collected after protracted acceptance testing. The key drivers are: trade receivables increased by ₹215 crores (representing ~28% of FY26 revenue), and inventories increased by ₹159 crores as work-in-progress accumulates ahead of production order completions. Until the large production orders (MIGM mine, QRSAM, Agni series, torpedo bulk orders) begin flowing in volume, this pattern will persist.</p>
+    <p>More concerning is the financing cash flow of <strong>+₹749 crores</strong> — the company is funding its entire operating and investment deficit through equity (₹290 Cr from preferential issue + warrants conversion) and debt. The balance sheet is being supported by external capital, not internal cash generation. This is sustainable only as long as capital markets remain receptive to the defense sector narrative.</p>
+  </div>
+
+  <hr class="rule">
+
+  <div class="inline-label" style="margin-bottom: 12px;">Balance Sheet Forensics — Standalone FY26 vs FY25</div>
+  <div class="metrics-4">
+    <div class="card">
+      <div class="card-title">Inventories</div>
+      <div class="card-value">₹760 Cr</div>
+      <div class="card-change neg">vs ₹601 Cr · +26% · ~37% of Revenue</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Trade Receivables</div>
+      <div class="card-value">₹453 Cr</div>
+      <div class="card-change neg">vs ₹238 Cr · +90% · ~22 months outstanding</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Total Debt (Standalone)</div>
+      <div class="card-value">₹485 Cr</div>
+      <div class="card-change warn">NC: ₹119 Cr · Current: ₹366 Cr · Elevated WC debt</div>
+    </div>
+    <div class="card">
+      <div class="card-title">CWIP (Capital WIP)</div>
+      <div class="card-value">₹171 Cr</div>
+      <div class="card-change warn">vs ₹59 Cr · +190% · Unit 3 buildout</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 16px;">
+    <div class="alert alert-danger">
+      <div class="alert-label">🔴 Critical — Receivables Spike (+90% YoY)</div>
+      <p>Trade receivables surged from ₹238 crores to ₹453 crores — a 90% increase against a 36% revenue increase. This implies receivable days expanded materially. In defense, this reflects milestone-linked payment structures where the customer (MoD/DRDO/PSUs) has not yet formally accepted deliverables. This is systemic rather than fraudulent, but it creates a <strong>liquidity overhang</strong> and means reported PAT contains a substantial portion of uncollected earnings. Management acknowledges this and links it to development order character shifting to production orders over time.</p>
+    </div>
+    <div class="alert alert-warn">
+      <div class="alert-label">⚠ Moderate — Loans to Subsidiaries (₹298 Cr in FY26)</div>
+      <p>The standalone cash flow shows ₹297.9 crores lent to subsidiaries in FY26, up from ₹8.3 crores in FY25. This is primarily Apollo Defence Industries Private Limited's acquisition of IDL. The going concern qualifications on ADIPL and IDL Explosives in the Q3 auditor's review means the parent is effectively providing working capital to entities with net-worth erosion. This off-balance-sheet risk at the subsidiary level should be monitored closely.</p>
+    </div>
+    <div class="alert alert-warn">
+      <div class="alert-label">⚠ Moderate — Share Warrant Dilution in Progress</div>
+      <p>The company issued 3.8 crore share warrants at ₹114/share during FY26. As of March 2026, 1.43 crore warrants remain unconverted, representing a potential equity dilution of ~4% of current share count. At current market prices (₹354 vs ₹114 warrant price), conversion is highly likely and will provide cash inflows but will dilute existing shareholders at historically low prices relative to current CMP.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ STEP 5: MANAGEMENT COMMENTARY DECODE ═══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Step 05</span>
+    <span class="section-title">Management Commentary Decode</span>
+    <span class="section-subtitle">Psychology · Tone · Avoidance · Credibility Signals</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="inline-label">What Management Emphasized</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">Highest Ever Record</div>
+          <div class="tl-text">The phrase "highest ever" for quarterly revenue, EBITDA, and PAT appeared repeatedly — a legitimate milestone but also serves as a rhetorical anchor that prevents investors from focusing on the cash flow gap.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">DPIIT License & Platforms</div>
+          <div class="tl-text">Extraordinary emphasis on the breadth of the DPIIT license as a "lifetime" and "game-changing" credential. Management is pivoting the company narrative from subsystem supplier to platform manufacturer — a valid strategic evolution but one that will take 3–5 years to monetize.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">"We Commit, We Deliver"</div>
+          <div class="tl-text">The company motto was invoked in the context of the 15% PAT margin achievement. This rhetorical framing is commendable when backed by delivery but creates dissonance against the pattern of missed timeline promises elsewhere.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Vision 2036 Narrative</div>
+          <div class="tl-text">Management introduced the Vision 2036 framework — a 10-year aspiration document — without quantified financial targets. This is early-stage vision-setting that provides strategic direction but no accountability metrics. Financial parameters were explicitly deferred to future disclosures.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="inline-label">What Management Avoided / Deflected</div>
+      <div class="rf-grid">
+        <div class="rf-item"><span class="rf-severity sev-moderate">DEFLECTED</span><div class="rf-text"><strong>Order book composition</strong> — directly asked, management said "we have never given this and I want to take it offline." Investors cannot independently verify order quality, customer concentration, or execution timelines.</div></div>
+        <div class="rf-item"><span class="rf-severity sev-moderate">VAGUE</span><div class="rf-text"><strong>IDL margin guidance</strong> — repeatedly deferred to "Q3 onwards" in Q4 concall, and before that to "after 31st March" in Q3 concall. No specific numbers were ever provided across two concalls. IDL guidance opacity is a structural blind spot.</div></div>
+        <div class="rf-item"><span class="rf-severity sev-moderate">AVOIDED</span><div class="rf-text"><strong>RF acquisition details</strong> — bound by NDA was the consistent response, which is legitimate but leaves investors with no ability to assess strategic fit or financial impact of the pending acquisition.</div></div>
+        <div class="rf-item"><span class="rf-severity sev-severe">CONCERNING</span><div class="rf-text"><strong>Operating cash flow</strong> — neither asked about nor volunteered across both concalls. The deeply negative CFO is the most important number in the financial statements and received zero management commentary.</div></div>
+      </div>
+
+      <div style="margin-top: 16px; padding: 16px; background: #f5f2eb; border: 1px solid var(--divider);">
+        <div class="inline-label">Management Classification</div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin: 6px 0;">Visionary / Promotional — Transitioning</div>
+        <p style="font-size: 13px; line-height: 1.6;">The management team exhibits a founder-operator mindset with deep technical credibility (41 years, DRDO relationships, IP ownership). The promotional tendency is present — large market sizes (₹4,000–4,500 Cr for mines alone), ambitious vision claims — but appears to be driven by genuine strategic conviction rather than deliberate obfuscation. Financial discipline is improving but governance communication quality lags behind operational quality.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ STEP 6: SEGMENT ANALYSIS ═══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Step 06</span>
+    <span class="section-title">Segment & Business Engine Analysis</span>
+    <span class="section-subtitle">Defense Electronics · IDL Explosives · Subsidiaries</span>
+  </div>
+
+  <div class="three-col">
+    <div class="card" style="border-top: 3px solid var(--accent2);">
+      <div class="card-title">Core: Defense Electronics (Standalone)</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin-bottom: 6px;">₹764.9 Cr</div>
+      <div class="card-change pos" style="margin-bottom: 12px;">+36% Revenue · 15.8% PAT Margin</div>
+      <p style="font-size: 13px; line-height: 1.6;">This is the high-quality core. Air (missiles, torpedoes, EW, avionics) and underwater (sonars, mines, INS) domains dominate. Heritage moat in 63% of DRDO missile subsystems. Transitioning from development to production phase across multiple programs simultaneously. <strong>This is a genuinely excellent business held back by defense procurement timelines, not competitive weakness.</strong></p>
+    </div>
+    <div class="card" style="border-top: 3px solid var(--amber);">
+      <div class="card-title">IDL Explosives (Step-Down Subsidiary)</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin-bottom: 6px;">~₹380 Cr</div>
+      <div class="card-change neg" style="margin-bottom: 12px;">Loss-Making · EBITDA Negative · Going Concern Note</div>
+      <p style="font-size: 13px; line-height: 1.6;">Currently a pure drag on consolidated financials. Revenue is primarily Coal India and mining sector industrial explosives — low-margin, commoditized, and strategically misaligned with defense thesis. The rationale is vertical integration: captive warhead/propellant supply for Apollo's own weapons programs. Transformation to defense-grade explosive manufacturing is a 2–3 year undertaking requiring significant capex. Near-term: pure dilution. Medium-term: strategic optionality.</p>
+    </div>
+    <div class="card" style="border-top: 3px solid var(--muted);">
+      <div class="card-title">Emerging: Ananya SIP RF Technologies (51%)</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin-bottom: 6px;">Early Stage</div>
+      <div class="card-change warn" style="margin-bottom: 12px;">RF Capability Building · Revenue Non-Material Yet</div>
+      <p style="font-size: 13px; line-height: 1.6;">Apollo's RF seeker development ambitions are housed partly here and in the pending acquisition. RF seekers (for missiles and munitions) represent one of the highest-value defense electronics components. Establishing in-house RF seeker capability would be transformative for ASP and margin. Currently pre-revenue at meaningful scale. This is a 3–5 year option, not a near-term driver.</p>
+    </div>
+  </div>
+
+  <div class="alert alert-info" style="margin-top: 16px;">
+    <div class="alert-label">◆ Land Domain — New Entry in FY27</div>
+    <p>FY27 marks Apollo's deliberate entry into armament electronics, fire control systems, battle tanks, ICVs, and vehicle-mounted counter-drone systems. Trials are scheduled in upcoming quarters. This represents a <strong>completely new revenue stream with zero current order book contribution</strong> — but the TAM in land systems is the largest single defense segment in India. Success here would fundamentally re-rate the company's growth trajectory from FY28 onwards.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════ STEP 7: INDUSTRY & COMPETITIVE POSITIONING ═══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Step 07</span>
+    <span class="section-title">Industry & Competitive Positioning</span>
+    <span class="section-subtitle">India Defense Ecosystem · Indigenization Wave</span>
+  </div>
+
+  <div class="prose">
+    <p>Apollo operates within one of the most structurally favored sectors in the Indian economy. The Indian defense budget has grown at ~8–10% CAGR and, for the first time in FY26, 100% of the allocated defense budget was reportedly utilized — a historic milestone that validates the demand absorption capacity of the ecosystem. India's defense capital expenditure is targeting ₹6+ lakh crore over the next five years, with an explicit policy of 75%+ indigenization by value.</p>
+    <p>Apollo's unique structural position is that it is a <strong>Tier 1 IP holder, not merely a contract manufacturer</strong>. While peers (BEL, L&T Defense, Bharat Forge) operate primarily as system integrators or volume manufacturers, Apollo holds indigenous IP across 700+ defense technologies and is qualified in 63% of DRDO subsystem requirements across missile programs. This IP-led moat is difficult to replicate and creates a structural supply dependency for every indigenous missile and naval program that enters production.</p>
+  </div>
+
+  <div class="two-col" style="margin-top: 20px;">
+    <div>
+      <div class="inline-label">Structural Tailwinds (FY27–FY30)</div>
+      <div class="rf-grid">
+        <div class="rf-item"><span class="rf-severity sev-minor" style="background:#ddf0e8; color:#1a6b3a; border-color:#b0d4bc;">STRONG</span><div class="rf-text">QRSAM, Akash-NG entering bulk production — Apollo has embedded content in both programs. DAC approvals already secured; subsystem orders to follow system integrator contracts.</div></div>
+        <div class="rf-item"><span class="rf-severity sev-minor" style="background:#ddf0e8; color:#1a6b3a; border-color:#b0d4bc;">STRONG</span><div class="rf-text">India MIGM (Vighna) naval mine — Apollo is DCPP partner with ~₹2,500 Cr total program size. Order imminent post-DAC approval. This single order represents ~170% of FY26 standalone revenue.</div></div>
+        <div class="rf-item"><span class="rf-severity sev-minor" style="background:#ddf0e8; color:#1a6b3a; border-color:#b0d4bc;">MEDIUM</span><div class="rf-text">Agni-1, Agni-5 bulk production rounds — Apollo contributes critical subsystems. Long-range missile production is entering a multi-year procurement cycle driven by India's strategic deterrence modernization.</div></div>
+        <div class="rf-item"><span class="rf-severity sev-minor" style="background:#ddf0e8; color:#1a6b3a; border-color:#b0d4bc;">EMERGING</span><div class="rf-text">Artillery ammunition for European export demand — IDL's explosives capability + Apollo's fuze/guidance hardware creates a vertically integrated artillery shell capability. European demand post-Ukraine conflict is a multi-year opportunity.</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="inline-label">Competitive Risks</div>
+      <div class="rf-grid">
+        <div class="rf-item"><span class="rf-severity sev-moderate">MODERATE</span><div class="rf-text">Defense PSUs (BEL, DRDO labs) expanding subsystem capabilities in-house. BEL has stated ambitions in electronic warfare and avionics. However, the IP gap vs. Apollo in specific domains remains wide.</div></div>
+        <div class="rf-item"><span class="rf-severity sev-moderate">MODERATE</span><div class="rf-text">Large private players (L&T, Bharat Forge, Tata Advanced Systems) entering defense electronics with deeper capital bases and manufacturing scale. They are primarily system integrators, not IP developers — different competitive space.</div></div>
+        <div class="rf-item"><span class="rf-severity sev-minor" style="background:#fdf4e0; color:#8a5a0a; border-color:#e0cc90;">MINOR</span><div class="rf-text">Import substitution risk from global OEMs offering offset deals with technology transfer. India's DPIIT licensing regime and indigenization mandates provide structural protection against this risk.</div></div>
+        <div class="rf-item"><span class="rf-severity sev-minor" style="background:#fdf4e0; color:#8a5a0a; border-color:#e0cc90;">MINOR</span><div class="rf-text">Semiconductor supply chain dependency. Apollo's primary raw material is defense-grade semiconductors. Post-COVID, management has implemented advance procurement protocols to mitigate this risk.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ STEP 8: CAPITAL ALLOCATION ═══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Step 08</span>
+    <span class="section-title">Capital Allocation Quality</span>
+    <span class="section-subtitle">Capex · Acquisitions · R&D · Returns</span>
+  </div>
+
+  <div class="prose">
+    <p>Capital allocation at Apollo is <strong>strategically sound but financially aggressive</strong>. The company is simultaneously building three capital-intensive growth platforms: Unit 3 greenfield expansion (₹150 Cr outlay, ₹110 Cr term loan, plus additional 5.6-acre expansion for ₹100–150 Cr more), defense-grade explosive manufacturing capability at IDL (multi-hundred crore planned), and R&D infrastructure (₹100 Cr ring-fenced, ₹72 Cr deployed in FY26). The total capital deployment in FY26 exceeded ₹800 crores including the IDL acquisition, funded primarily by the preferential allotment (₹290 Cr) and incremental debt.</p>
+    <p>The critical question is <strong>incremental ROCE on new capital</strong>. Reported standalone ROCE of 18.23% is improving but the new investments are pre-revenue. The Unit 3 expansion doubles capacity; if revenue scales proportionately (as management's guidance implies), ROCE should improve materially from FY28 as new facilities become operational. However, the current period represents peak capital consumption with minimal return contribution from new assets — a classic "J-curve" investment profile.</p>
+  </div>
+
+  <div class="metrics-4" style="margin-top: 16px;">
+    <div class="card">
+      <div class="card-title">ROCE (Standalone FY26)</div>
+      <div class="card-value">18.2%</div>
+      <div class="card-change pos">vs 10% in FY21 · Improving trend</div>
+    </div>
+    <div class="card">
+      <div class="card-title">ROE (Standalone FY26)</div>
+      <div class="card-value">11.2%</div>
+      <div class="card-change warn">Below ROCE — leverage partially working against equity</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Total Capex + Acquisitions FY26</div>
+      <div class="card-value">~₹800+ Cr</div>
+      <div class="card-change neg">Funded by equity raise + debt — equity dilutive</div>
+    </div>
+    <div class="card">
+      <div class="card-title">R&D Investment (FY26)</div>
+      <div class="card-value">₹72 Cr</div>
+      <div class="card-change pos">8% of Revenue · Zero attrition in R&D team</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ STEP 9: RED FLAGS ═══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Step 09</span>
+    <span class="section-title">Red Flags & Forensic Detection</span>
+    <span class="section-subtitle">Ranked by Severity</span>
+  </div>
+
+  <div class="rf-grid">
+    <div class="rf-item"><span class="rf-severity sev-severe">SEVERE</span><div class="rf-text"><strong>Operating Cash Flow: -₹166.6 Cr (Standalone FY26) vs PAT +₹120.6 Cr.</strong> PAT-to-CFO conversion is -138%. Every rupee of reported profit actually consumed 1.38 rupees of cash. This is the most critical financial quality risk. While structurally explainable in defense development businesses, the gap is widening and the business is entirely dependent on external funding.</div></div>
+    <div class="rf-item"><span class="rf-severity sev-severe">SEVERE</span><div class="rf-text"><strong>Receivables surge: +90% YoY (₹238 Cr → ₹453 Cr) against +36% revenue growth.</strong> Receivable days expanded dramatically. While defense PSU payment timelines explain part of this, the acceleration is disproportionate and suggests either revenue recognition ahead of cash collections or extended outstanding from development milestones not yet formally accepted.</div></div>
+    <div class="rf-item"><span class="rf-severity sev-severe">SEVERE</span><div class="rf-text"><strong>Going concern qualification in Q3 FY26 auditor's limited review for Apollo Defence Industries, Apollo Strategic Technologies, and IDL Explosives.</strong> Three out of four consolidated entities had going concern issues flagged. The Q4 FY26 standalone audit carries unmodified opinion, but the group-level risk from subsidiaries is a material undisclosed risk that most retail investors will miss.</div></div>
+    <div class="rf-item"><span class="rf-severity sev-moderate">MODERATE</span><div class="rf-text"><strong>Related party transaction resolution defeated by ~99% of institutional shareholders (INR 500 Cr corporate guarantee mechanism).</strong> Management explained the rationale on the Q3 concall. The governance episode reveals an institutional trust deficit. The resolution has not been re-tabled and the need for corporate guarantees to subsidiaries remains unresolved, creating contingent liability risk.</div></div>
+    <div class="rf-item"><span class="rf-severity sev-moderate">MODERATE</span><div class="rf-text"><strong>Promoter pledge at 39% — third consecutive year of missed de-pledging targets.</strong> The pledge is collateralized against promoter's personal loans, creating forced-sale risk in the event of a sharp stock price correction. At ₹354 current price and 52W low of ₹135, a return to low-territory could trigger margin calls.</div></div>
+    <div class="rf-item"><span class="rf-severity sev-moderate">MODERATE</span><div class="rf-text"><strong>₹297.9 Cr loans from parent to subsidiaries (FY26 standalone investing CF) vs ₹8.3 Cr in FY25.</strong> Effectively, Apollo is providing working capital financing to loss-making subsidiaries. The quantum jumped 36x in one year. This capital is at risk if subsidiaries do not turn around as projected.</div></div>
+    <div class="rf-item"><span class="rf-severity sev-minor">MINOR</span><div class="rf-text"><strong>Company Secretary resignation effective May 31, 2026</strong> — noted in the board outcome. CS changes at the same time as major governance events (RPT resolution failure) warrant monitoring, though the new appointment (June 1, 2026) is already in place.</div></div>
+    <div class="rf-item"><span class="rf-severity sev-minor">MINOR</span><div class="rf-text"><strong>Other expenses grew 86% YoY</strong> — substantially attributable to R&D spend and business development. Not a manipulation flag, but worth monitoring to ensure expense growth does not exceed justifiable investment spending as revenue scales.</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════ STEP 10: POSITIVE INFLECTION ═══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Step 10</span>
+    <span class="section-title">Positive Inflection Detection</span>
+    <span class="section-subtitle">Early Signals of Future Upside</span>
+  </div>
+
+  <div class="three-col">
+    <div class="alert alert-positive" style="margin-bottom: 0;">
+      <div class="alert-label">🟢 MIGM Mine Order — Imminent Inflection</div>
+      <p>Apollo is DCPP partner for India's first indigenous naval mine (Vighna). The ₹2,500 Cr program has DAC approval. One order alone would represent ~3.3x current annual order book. Receipt would trigger massive order book re-rating, potential margin expansion from volume, and credibility for all subsequent pipeline claims.</p>
+    </div>
+    <div class="alert alert-positive" style="margin-bottom: 0;">
+      <div class="alert-label">🟢 Production Order Transition — COGS Inflection</div>
+      <p>At 70%+ COGS currently (development order mix), the shift to large production orders brings structured BOM, economies of scale, and lower per-unit material costs. Management has been saying this for several quarters; with QRSAM, Agni, and mine programs entering bulk production, FY27-28 could finally see COGS drop meaningfully below 70%.</p>
+    </div>
+    <div class="alert alert-positive" style="margin-bottom: 0;">
+      <div class="alert-label">🟢 Unit 3 Capacity + In-House Testing</div>
+      <p>Unit 3 Phase 1 civil work complete. Key constraint in defense manufacturing is access to certified testing infrastructure — Apollo has been outsourcing this for years. As in-house test facilities come online in FY27, working capital days should compress materially, improving the perennially negative operating cash flow cycle.</p>
+    </div>
+  </div>
+
+  <div class="three-col" style="margin-top: 12px;">
+    <div class="alert alert-positive" style="margin-bottom: 0;">
+      <div class="alert-label">🟢 Export Revenue — First Order Received</div>
+      <p>FY26 marked receipt of Apollo's first export order. Overseas customer audits are underway. The company is positioning for a sustained export stream particularly in ammunition/artillery (leveraging IDL's explosive capability) and electronic warfare. Export orders typically carry premium pricing vs. domestic.</p>
+    </div>
+    <div class="alert alert-positive" style="margin-bottom: 0;">
+      <div class="alert-label">🟢 INS / Fiber Optic Gyro Products</div>
+      <p>Apollo successfully developed fiber optic gyro-based inertial navigation systems in FY26 — product unveil imminent. INS is a high-ASP, high-margin product category with applications across all three defense domains. Domestic sourcing is a strategic priority for MoD. First mover advantage is significant.</p>
+    </div>
+    <div class="alert alert-positive" style="margin-bottom: 0;">
+      <div class="alert-label">🟢 Private Sector Collaboration Opportunity</div>
+      <p>Defence Secretary's indication of private sector participation in ballistic missile production opens a massive new opportunity. Apollo's 40 years of subsystem IP makes it a natural "build-block" partner for any private sector ballistic missile program. This is a 2030+ optionality but directionally very positive.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ STEP 11: VALUATION COMFORT + MOAT/TAM ═══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Step 11</span>
+    <span class="section-title">Valuation Comfort, Moat Architecture & TAM Analysis</span>
+    <span class="section-subtitle">Earnings Quality vs. Multiple · Moat Score · Market Opportunity</span>
+  </div>
+
+  <!-- VALUATION METRICS GRID -->
+  <div class="inline-label" style="margin-bottom: 8px;">Current Valuation Matrix (CMP: ₹354 · Market Cap: ₹12,648 Cr)</div>
+  <div class="val-grid">
+    <div class="val-cell">
+      <div class="val-name">P/E (Trailing)</div>
+      <div class="val-num">112x</div>
+      <div class="val-context">On reported standalone PAT ₹120.6 Cr. Expensive in absolute terms.</div>
+    </div>
+    <div class="val-cell">
+      <div class="val-name">P/E (Consol. TTM)</div>
+      <div class="val-num">~118x</div>
+      <div class="val-context">On consolidated PAT ₹107.4 Cr. IDL drag makes consolidation worse.</div>
+    </div>
+    <div class="val-cell">
+      <div class="val-name">EV/EBITDA</div>
+      <div class="val-num">~58x</div>
+      <div class="val-context">EV ~₹12,633 Cr (mkt cap + debt ~₹485 Cr - cash ~₹20 Cr) / ₹218 Cr EBITDA</div>
+    </div>
+    <div class="val-cell">
+      <div class="val-name">P/Sales (Consol.)</div>
+      <div class="val-num">14.0x</div>
+      <div class="val-context">₹12,648 Cr / ₹904 Cr revenue. High but defensible for IP-led defense tech.</div>
+    </div>
+    <div class="val-cell">
+      <div class="val-name">Price/Book Value</div>
+      <div class="val-num">9.51x</div>
+      <div class="val-context">Book ₹36.8/share. Premium to book is justified by IP and order pipeline.</div>
+    </div>
+    <div class="val-cell">
+      <div class="val-name">ROCE (Reported)</div>
+      <div class="val-num">14.5%</div>
+      <div class="val-context">Mgmt-stated 18.23% vs. stock data 14.5% — computation methodology differs.</div>
+    </div>
+    <div class="val-cell">
+      <div class="val-name">ROE</div>
+      <div class="val-num">11.8%</div>
+      <div class="val-context">Below cost of equity. Will improve as new capacity is utilized.</div>
+    </div>
+    <div class="val-cell">
+      <div class="val-name">Dividend Yield</div>
+      <div class="val-num">0.07%</div>
+      <div class="val-context">₹0.25/share declared. Company is in reinvestment mode — correct capital allocation given growth.</div>
+    </div>
+  </div>
+
+  <!-- FORWARD VALUATION -->
+  <div style="margin-top: 24px;">
+    <div class="inline-label" style="margin-bottom: 12px;">Forward Valuation — Is the Premium Justified?</div>
+    <div class="prose">
+      <p>At 112x trailing P/E and 58x EV/EBITDA, Apollo is priced for significant execution. The embedded market expectation is approximately <strong>50–60% PAT CAGR over the next 3 years</strong>. At the high end of management's own guidance (45–50% standalone CAGR + IDL turnaround), this implies:</p>
+    </div>
+    <table class="data-table" style="margin-top: 12px;">
+      <tr><th>Year</th><th>Revenue Est. (Consol.)</th><th>PAT Est. (Consol.)</th><th>P/E at CMP ₹354</th><th>Implied EPS</th><th>Valuation Comment</th></tr>
+      <tr><td><strong>FY26 Actual</strong></td><td>₹904 Cr</td><td>₹107 Cr</td><td>118x</td><td>₹3.18</td><td>Fully priced on trailing basis</td></tr>
+      <tr><td><strong>FY27E (Base)</strong></td><td>~₹1,350 Cr (+49%)</td><td>~₹155 Cr (+44%)</td><td>82x fwd</td><td>~₹4.30</td><td>Expensive but improves materially if order flows</td></tr>
+      <tr><td><strong>FY28E (Base)</strong></td><td>~₹1,960 Cr (+45%)</td><td>~₹240 Cr (+55%)</td><td>53x fwd</td><td>~₹6.60</td><td>Reasonable for defense IP business if delivered</td></tr>
+      <tr><td><strong>FY27E (Bear)</strong></td><td>~₹1,150 Cr (+27%)</td><td>~₹115 Cr (+7%)</td><td>110x fwd</td><td>~₹3.20</td><td>Valuation unsustainable — significant correction risk</td></tr>
+      <tr><td><strong>FY27E (Bull)</strong></td><td>~₹1,600 Cr (+77%)</td><td>~₹200 Cr (+86%)</td><td>63x fwd</td><td>~₹5.60</td><td>Assumes MIGM + QRSAM orders land in H1 FY27</td></tr>
+    </table>
+    <div class="alert alert-warn" style="margin-top: 16px;">
+      <div class="alert-label">Valuation Comfort Classification: FULLY PRICED to SPECULATIVE PREMIUM</div>
+      <p>Apollo is not dangerously overvalued in the sense of a business with deteriorating fundamentals — the strategic position is compelling and trajectory is upward. However, the current multiple embeds <strong>near-perfect execution over 3 years</strong> without room for the delivery delays that have characterized the past two years. The stock offers asymmetric downside risk if any major order (MIGM mine, QRSAM) delays by more than 2 quarters, and asymmetric upside if the order cascade begins in H1 FY27. This is a high-conviction speculative position, not a margin-of-safety investment.</p>
+    </div>
+  </div>
+
+  <!-- MOAT ANALYSIS -->
+  <hr class="rule">
+  <div class="inline-label" style="margin-bottom: 16px;">Competitive Moat Architecture — Structural Durability Assessment</div>
+
+  <div class="two-col">
+    <div>
+      <div class="moat-bar-row"><div class="moat-bar-label">IP Ownership Depth</div><div class="moat-bar-track"><div class="moat-bar-fill" style="width:88%; background:#1a4c8c;"></div></div><div class="moat-bar-score">8.8/10</div></div>
+      <div class="moat-bar-row"><div class="moat-bar-label">DRDO Relationship Lock-in</div><div class="moat-bar-track"><div class="moat-bar-fill" style="width:85%; background:#1a4c8c;"></div></div><div class="moat-bar-score">8.5/10</div></div>
+      <div class="moat-bar-row"><div class="moat-bar-label">Program Qualification Barrier</div><div class="moat-bar-track"><div class="moat-bar-fill" style="width:82%; background:#1a4c8c;"></div></div><div class="moat-bar-score">8.2/10</div></div>
+      <div class="moat-bar-row"><div class="moat-bar-label">Cross-Domain Presence</div><div class="moat-bar-track"><div class="moat-bar-fill" style="width:80%; background:#1a4c8c;"></div></div><div class="moat-bar-score">8.0/10</div></div>
+      <div class="moat-bar-row"><div class="moat-bar-label">R&D Investment Capacity</div><div class="moat-bar-track"><div class="moat-bar-fill" style="width:75%; background:#1a4c8c;"></div></div><div class="moat-bar-score">7.5/10</div></div>
+      <div class="moat-bar-row"><div class="moat-bar-label">Manufacturing Scale</div><div class="moat-bar-track"><div class="moat-bar-fill" style="width:60%; background:#c4a01a;"></div></div><div class="moat-bar-score">6.0/10</div></div>
+      <div class="moat-bar-row"><div class="moat-bar-label">Balance Sheet Strength</div><div class="moat-bar-track"><div class="moat-bar-fill" style="width:48%; background:#c4361a;"></div></div><div class="moat-bar-score">4.8/10</div></div>
+      <div class="moat-bar-row"><div class="moat-bar-label">Cash Generation Quality</div><div class="moat-bar-track"><div class="moat-bar-fill" style="width:35%; background:#c4361a;"></div></div><div class="moat-bar-score">3.5/10</div></div>
+
+      <div style="margin-top: 16px; padding: 14px; background: #f0f4fc; border: 1px solid #b4c8e4;">
+        <div class="inline-label">Overall Moat Score</div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--accent2);">7.1 <span style="font-size:16px; font-weight:400; color: var(--muted);">/ 10 — Durable Niche Moat</span></div>
+        <p style="font-size: 12px; margin-top: 6px; line-height: 1.55; color: #444;">IP depth and qualification barriers create a structurally durable competitive position. The moat is real but not wide — it requires continuous R&D investment to maintain, and financial fragility is a structural vulnerability if the capital market cycle turns.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="inline-label" style="margin-bottom: 12px;">Total Addressable Market (TAM) Architecture</div>
+      <div class="tam-grid" style="grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div class="tam-box">
+          <div class="tam-domain">Underwater Mines</div>
+          <div class="tam-size" style="color: var(--accent2);">₹4,000–4,500 Cr</div>
+          <div class="tam-note">Near-term visible TAM from MIGM (Vighna), Moored Mine, limpet mine variants. Apollo is DCPP partner — high capture probability.</div>
+        </div>
+        <div class="tam-box">
+          <div class="tam-domain">Missile Subsystems</div>
+          <div class="tam-size" style="color: var(--accent2);">₹8,000+ Cr</div>
+          <div class="tam-note">QRSAM, Akash-NG, Agni series, BrahMos (seeker development). Apollo's presence in 63% of DRDO programs gives structural capture rate.</div>
+        </div>
+        <div class="tam-box">
+          <div class="tam-domain">Torpedoes & Naval EW</div>
+          <div class="tam-size" style="color: var(--accent2);">₹2,500–3,000 Cr</div>
+          <div class="tam-note">Heavyweight torpedo bulk production expected. Tripartite alliance with Indian Navy and IIT Chennai for underwater autonomous vehicle systems.</div>
+        </div>
+        <div class="tam-box">
+          <div class="tam-domain">Artillery / Ammunition</div>
+          <div class="tam-size" style="color: var(--amber);">₹5,000–7,000 Cr</div>
+          <div class="tam-note">Filled artillery shell capability (IDL explosives + Apollo guidance). European export demand adds international dimension. 3–4 year buildout.</div>
+        </div>
+        <div class="tam-box">
+          <div class="tam-domain">Land Systems (New)</div>
+          <div class="tam-size" style="color: var(--amber);">₹10,000+ Cr</div>
+          <div class="tam-note">Fire control, armament electronics, counter-drone. Largest single segment. Entry in FY27; material revenue from FY28+ if trials succeed.</div>
+        </div>
+        <div class="tam-box">
+          <div class="tam-domain">Directed Energy / AI</div>
+          <div class="tam-size" style="color: var(--muted);">₹3,000+ Cr</div>
+          <div class="tam-note">Laser-based DEW (technology transfer received), embedded AI for autonomous systems. 5+ year horizon. Option value, not current TAM.</div>
+        </div>
+      </div>
+      <div style="margin-top: 12px; padding: 14px; background: var(--highlight); border: 1px solid var(--warn-border);">
+        <div class="inline-label">Total Visible Near-Term TAM (FY27–FY30)</div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--ink);">₹25,000–30,000 Cr</div>
+        <p style="font-size: 12px; margin-top: 4px; color: #444; line-height: 1.55;">Apollo's serviceable portion (realistic capture with current capabilities): <strong>₹4,000–7,000 Cr over 5 years</strong>, implying revenue potential of ₹800–1,400 Cr per year by FY30. This validates management's growth guidance directionally but requires every major program to transition from development to production on schedule.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ STEP 12: FUTURE TRAJECTORY ═══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Step 12</span>
+    <span class="section-title">Future Trajectory Modeling — FY27–FY29</span>
+    <span class="section-subtitle">Bull / Base / Bear Scenario Framework</span>
+  </div>
+
+  <div style="border: 1.5px solid var(--ink);">
+    <div class="scenario-row header">
+      <div class="scenario-cell">Scenario</div>
+      <div class="scenario-cell">Key Assumptions</div>
+      <div class="scenario-cell">FY27–FY28 Trajectory</div>
+      <div class="scenario-cell">Implied Stock View</div>
+    </div>
+    <div class="scenario-row sc-bull">
+      <div class="scenario-cell" style="font-weight: 700; color: var(--green);">BULL CASE</div>
+      <div class="scenario-cell">MIGM mine order received H1 FY27 (₹800–1,000 Cr to Apollo); QRSAM subsystem orders flow by Q2 FY27; IDL turns EBITDA positive Q1 FY27; RF acquisition closes Q1 FY27; standalone revenue grows 60%+</div>
+      <div class="scenario-cell">FY27 Consolidated: ₹1,600+ Cr revenue · ₹200+ Cr PAT · PAT margin 12%+. FY28: ₹2,300+ Cr · ₹320+ Cr PAT · margin expansion to 14%+. Operating cash flow turns positive in FY28 as production order mix dominates.</div>
+      <div class="scenario-cell">At 70–80x FY28E PAT of ₹320 Cr, implied market cap ₹22,000–25,000 Cr. Target price ₹600–700. Significant upside from CMP ₹354. Probability: 25–30%.</div>
+    </div>
+    <div class="scenario-row sc-base">
+      <div class="scenario-cell" style="font-weight: 700; color: var(--accent2);">BASE CASE</div>
+      <div class="scenario-cell">MIGM order received by Q3 FY27; QRSAM orders delayed to H2 FY27; IDL reaches EBITDA breakeven Q2 FY27; standalone grows 45%; RF acquisition completes H1 FY27 with modest contribution</div>
+      <div class="scenario-cell">FY27 Consolidated: ₹1,350 Cr revenue · ₹155 Cr PAT · margin ~11.5%. FY28: ₹1,900 Cr · ₹240 Cr PAT · COGS improvement as production orders anchor ~40% of revenue. Operating CF turns neutral in FY28.</div>
+      <div class="scenario-cell">At 60–65x FY28E PAT, implied market cap ₹14,400–15,600 Cr. Target price ₹400–435. Modest upside from CMP. Probability: 45–50%.</div>
+    </div>
+    <div class="scenario-row sc-bear">
+      <div class="scenario-cell" style="font-weight: 700; color: var(--accent);">BEAR CASE</div>
+      <div class="scenario-cell">MIGM order slips to FY28; QRSAM negotiations extend to FY28; IDL continues to be loss-making and needs additional capital; promoter pledge triggers margin calls; equity dilution via fresh warrants below ₹200</div>
+      <div class="scenario-cell">FY27 Consolidated: ₹1,100–1,200 Cr revenue · ₹100–120 Cr PAT · margin under pressure. Working capital crisis if bank credit tightens. May require another preferential allotment — third in three years. Operating CF remains structurally negative.</div>
+      <div class="scenario-cell">At 40–50x FY28E PAT of ₹130 Cr, implied market cap ₹5,200–6,500 Cr. Target price ₹145–180. Significant downside from CMP ₹354. Probability: 20–25%.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ STEP 13: FINAL VERDICT ═══════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Step 13</span>
+    <span class="section-title">Final Investment Verdict</span>
+    <span class="section-subtitle">Institutional Summary</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="inline-label" style="margin-bottom: 10px;">Key Positives</div>
+      <div class="rf-grid">
+        <div class="rf-item"><span class="rf-severity sev-minor" style="background:#ddf0e8; color:#1a6b3a; border-color:#b0d4bc;">+</span><div class="rf-text">India's most IP-rich defense electronics company with 700+ onboarded technologies, present in 63% of all DRDO missile subsystems — a structural moat built over 41 years</div></div>
+        <div class="rf-item"><span class="rf-severity sev-minor" style="background:#ddf0e8; color:#1a6b3a; border-color:#b0d4bc;">+</span><div class="rf-text">5-year financial track record is genuine: 30% revenue CAGR, 64% PAT CAGR, 500 bps EBITDA margin expansion — not a one-year phenomenon</div></div>
+        <div class="rf-item"><span class="rf-severity sev-minor" style="background:#ddf0e8; color:#1a6b3a; border-color:#b0d4bc;">+</span><div class="rf-text">DPIIT lifetime license covering UAVs, INS, torpedoes, mines, ATGMs, loitering munition — opens full-platform participation; no competitor has this breadth</div></div>
+        <div class="rf-item"><span class="rf-severity sev-minor" style="background:#ddf0e8; color:#1a6b3a; border-color:#b0d4bc;">+</span><div class="rf-text">₹25,000–30,000 Cr near-term TAM with Apollo positioned in virtually every addressable program — demand visibility is exceptional</div></div>
+        <div class="rf-item"><span class="rf-severity sev-minor" style="background:#ddf0e8; color:#1a6b3a; border-color:#b0d4bc;">+</span><div class="rf-text">PAT margin target of 15% delivered at 16% — improving execution credibility on financial targets</div></div>
+        <div class="rf-item"><span class="rf-severity sev-minor" style="background:#ddf0e8; color:#1a6b3a; border-color:#b0d4bc;">+</span><div class="rf-text">Zero R&D team attrition; ₹72 Cr R&D investment; fiber optic gyro INS development — structural innovation pipeline is intact and well-funded</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="inline-label" style="margin-bottom: 10px;">Key Negatives</div>
+      <div class="rf-grid">
+        <div class="rf-item"><span class="rf-severity sev-severe">–</span><div class="rf-text">Operating cash flow deeply negative (-₹166.6 Cr standalone) despite strong PAT — the business does not generate cash and is entirely dependent on external funding for survival</div></div>
+        <div class="rf-item"><span class="rf-severity sev-severe">–</span><div class="rf-text">Promoter pledge at 39% despite three years of missed de-pledging targets — creates forced-sale overhang and governance credibility deficit</div></div>
+        <div class="rf-item"><span class="rf-severity sev-severe">–</span><div class="rf-text">Going concern qualifications on three of four consolidated subsidiaries in Q3 audit — hidden group-level risk not visible in headline consolidated numbers</div></div>
+        <div class="rf-item"><span class="rf-severity sev-moderate">–</span><div class="rf-text">IDL Explosives is loss-making and diluting consolidated margins — transformation to defense-grade explosive manufacturing is a multi-year journey, not near-term EPS accretive</div></div>
+        <div class="rf-item"><span class="rf-severity sev-moderate">–</span><div class="rf-text">Standalone organic growth missed guidance (36% vs 45–50%) for the second consecutive year — timeline credibility on "imminent" orders needs to improve</div></div>
+        <div class="rf-item"><span class="rf-severity sev-moderate">–</span><div class="rf-text">RPT resolution defeated by ~99% institutional vote — governance communication gap between promoters and institutional shareholders is unresolved</div></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="inline-label" style="margin-bottom: 12px;">Quarterly Monitoring Checklist (FY27)</div>
+  <div class="checklist">
+    <div class="check-item"><span class="check-icon">[Q1]</span>MIGM (Vighna) mine order receipt — ₹2,500 Cr total program; Apollo's share expected ₹600–800 Cr over execution period</div>
+    <div class="check-item"><span class="check-icon">[Q1]</span>IDL Explosives EBITDA status — management committed to Q1 FY27 breakeven; third deadline, must be met</div>
+    <div class="check-item"><span class="check-icon">[Q1]</span>RF acquisition closure — NDA-bound but stated "end of this quarter"; track for announcement</div>
+    <div class="check-item"><span class="check-icon">[Q1]</span>Promoter pledge data — track quarterly; any reduction is a significant positive signal</div>
+    <div class="check-item"><span class="check-icon">[Q2]</span>Standalone operating cash flow — most important single metric; must trend toward positive as production orders flow</div>
+    <div class="check-item"><span class="check-icon">[Q2]</span>QRSAM subsystem order receipt from BEL — confirms Apollo's share in India's most funded SAM program</div>
+    <div class="check-item"><span class="check-icon">[Q2]</span>Trade receivable days — must stabilize or decline; further spike would signal worsening cash quality</div>
+    <div class="check-item"><span class="check-icon">[H1]</span>Export revenue contribution — first export order received; watch for repeat orders or meaningful export booking</div>
+    <div class="check-item"><span class="check-icon">[H1]</span>Unit 3 commissioning timeline — in-house testing capacity is the key to unlocking working capital compression</div>
+    <div class="check-item"><span class="check-icon">[FY27]</span>Vision 2036 document with financial parameters — management has committed to unveiling; will provide 10-year accountability anchor</div>
+    <div class="check-item"><span class="check-icon">[FY27]</span>RPT resolution re-tabling — corporate guarantee mechanism for subsidiaries; watch for re-tabling with institutional pre-engagement</div>
+    <div class="check-item"><span class="check-icon">[FY27]</span>Land systems trials outcome — vehicle-mounted counter-drone and fire control systems; binary event that opens India's largest defense TAM</div>
+  </div>
+
+  <hr class="thick-rule">
+
+  <!-- SCORECARD SUMMARY -->
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px;">
+    <div style="padding: 20px; background: var(--card-bg); border: 1px solid var(--divider);">
+      <div class="inline-label">Management Execution Scorecard</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--amber); margin: 6px 0;">Moderate</div>
+      <p style="font-size: 12px; line-height: 1.55;">Delivers on financial targets (PAT margin); misses on timeline promises (pledge, acquisitions, orders). Genuine conviction, optimistic bias.</p>
+    </div>
+    <div style="padding: 20px; background: var(--card-bg); border: 1px solid var(--divider);">
+      <div class="inline-label">Earnings Quality Assessment</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--accent); margin: 6px 0;">Low–Moderate</div>
+      <p style="font-size: 12px; line-height: 1.55;">Real revenue, real orders, real margins — but cash does not follow profit. Operating CF negative. Quality improves structurally only when production orders dominate mix.</p>
+    </div>
+    <div style="padding: 20px; background: var(--card-bg); border: 1px solid var(--divider);">
+      <div class="inline-label">Long-Term Compounding Potential</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--green); margin: 6px 0;">High</div>
+      <p style="font-size: 12px; line-height: 1.55;">If execution improves and production orders materialize, this is a 5–8x business over a decade. The strategic position is exceptional. Execution risk is the primary discount factor.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ FINAL VERDICT ═══════════════════ -->
+<div class="final-verdict">
+  <div class="verdict-title">Institutional Conclusion — Apollo Micro Systems · May 2026</div>
+  <div class="verdict-main">An exceptional strategic position in India's most favored sector — held hostage by financial architecture and execution timeline credibility.</div>
+  <div class="verdict-reasoning">
+    Apollo Micro Systems is categorically not a mediocre business at a premium valuation. It possesses a genuinely durable competitive moat built over four decades, an IP estate that spans every critical indigenous defense program, and a strategic position that will only strengthen as India's defense indigenization mandate deepens. The operational track record — 30% revenue CAGR, 64% PAT CAGR over 5 years — is real and compelling.<br><br>
+    However, at 112x trailing earnings with deeply negative operating cash flows, 39% promoter pledge, a loss-making subsidiary with going-concern qualifications, and a pattern of timeline misses on the "imminent" orders that would validate the bull thesis, the stock is priced for near-perfect execution in an industry defined by non-linear order flows and procurement delays. The valuation leaves zero room for the delays that have historically characterized every major order Apollo has been "expecting this month."<br><br>
+    This is a <strong>high-quality business at an expensive-to-speculative valuation</strong> that demands selective accumulation on weakness rather than aggressive positioning at current levels. Investors with a 3–5 year horizon and tolerance for earnings volatility may find the strategic opportunity compelling. The base case offers modest upside from CMP; the bear case offers material downside; the bull case offers significant rewards. Risk-adjusted, the recommendation is <strong>WATCHLIST</strong> — monitor for MIGM order receipt (primary re-rating trigger) and evidence of operating cash flow inflection before materially increasing exposure.
+  </div>
+  <div class="verdict-tags">
+    <span class="vtag vtag-pos">IP-Led Moat</span>
+    <span class="vtag vtag-pos">Defense Indigenization Beneficiary</span>
+    <span class="vtag vtag-pos">TAM ₹25,000+ Cr Visible</span>
+    <span class="vtag vtag-neg">Negative Operating CF</span>
+    <span class="vtag vtag-neg">39% Promoter Pledge</span>
+    <span class="vtag vtag-neg">Going Concern - Subsidiaries</span>
+    <span class="vtag vtag-neutral">Timeline Risk Embedded</span>
+    <span class="vtag vtag-neutral">112x Trailing P/E</span>
+    <span class="vtag vtag-neutral">Production Order Transition Inflection</span>
+  </div>
+  <div style="margin-top: 32px; padding: 20px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); display: inline-block;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #888; margin-bottom: 8px;">Final Rating</div>
+    <div style="font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 700; color: #e8b84b; line-height: 1;">WATCHLIST</div>
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #aaa; margin-top: 4px;">Accumulate aggressively below ₹280 · Reduce exposure above ₹420</div>
+  </div>
+</div>
+
+<div class="footnote">
+  <strong>DISCLAIMER:</strong> This analysis is prepared solely for informational and educational purposes from publicly available disclosures including BSE/NSE filings, earnings concall transcripts, and audited/unaudited financial results of Apollo Micro Systems Limited. This does not constitute investment advice, a recommendation to buy or sell, or a solicitation of any offer. Investors should conduct their own due diligence and consult a SEBI-registered investment advisor before making any investment decisions. All estimates are the analyst's own projections and carry material uncertainty. Past performance does not guarantee future results.<br><br>
+  Documents Analyzed: Q4 FY26 Earnings Concall Transcript (May 19, 2026) · Q3 FY26 Earnings Concall Transcript (February 9, 2026) · Standalone &amp; Consolidated Financial Results Q4/FY26 (May 18, 2026) · Standalone &amp; Consolidated Financial Results Q3 FY26 (February 9, 2026) · All amounts in Indian Rupees (₹). Crore = 10 million. Analysis date: May 22, 2026.
+</div>
+
+</div><!-- /body-wrap -->
+</body>
+</html>
