@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTAR Technologies — Institutional Equity Analysis | Q4 FY26</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0D1117;
+    --ink-soft: #1C2333;
+    --ink-mid: #2E3A4E;
+    --paper: #F8F6F0;
+    --paper-warm: #EDE9E0;
+    --paper-dark: #E5E0D5;
+    --gold: #C9A84C;
+    --gold-light: #F0D98A;
+    --gold-pale: #FBF5E6;
+    --teal: #1A6E6E;
+    --teal-light: #2B9E9E;
+    --teal-pale: #E6F4F4;
+    --red: #B83232;
+    --red-pale: #FDEAEA;
+    --green: #2A6E4A;
+    --green-pale: #E6F4EC;
+    --orange: #C46C1A;
+    --orange-pale: #FDF0E6;
+    --border: #D4CFC4;
+    --border-dark: #B8B0A0;
+    --shadow: rgba(13,17,23,0.10);
+    --shadow-strong: rgba(13,17,23,0.20);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14.5px;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  /* ─── COVER ─── */
+  .cover {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 64px 72px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--teal-light) 60%, transparent 100%);
+  }
+  .cover-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    opacity: 0.9;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  .cover h1 span { color: var(--gold); }
+  .cover-sub {
+    font-size: 16px;
+    color: rgba(248,246,240,0.65);
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+  .cover-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 900px;
+  }
+  .cover-meta-item {
+    padding: 14px 18px;
+    border-right: 1px solid rgba(201,168,76,0.2);
+  }
+  .cover-meta-item:last-child { border-right: none; }
+  .cover-meta-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(248,246,240,0.45);
+    margin-bottom: 5px;
+  }
+  .cover-meta-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gold-light);
+  }
+  .cover-meta-value.neutral { color: var(--paper); }
+  .cover-meta-value.positive { color: #6DDBA8; }
+  .cover-meta-value.warning { color: #FFB347; }
+  .cover-meta-value.danger { color: #FF7070; }
+
+  /* ─── OVERALL SCORE BAND ─── */
+  .score-band {
+    background: var(--ink-soft);
+    color: var(--paper);
+    padding: 28px 72px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .score-band-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(248,246,240,0.5);
+    margin-bottom: 4px;
+  }
+  .score-band-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .score-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 3px;
+    padding: 10px 20px;
+  }
+  .score-badge-dot {
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .score-badge-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.03em;
+  }
+
+  /* ─── LAYOUT ─── */
+  .main-wrap { max-width: 1180px; margin: 0 auto; padding: 48px 48px 80px; }
+  
+  /* ─── SECTION TITLES ─── */
+  .section {
+    margin-bottom: 52px;
+    animation: fadeUp 0.5s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .section-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    background: var(--gold-pale);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 2px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.2px;
+  }
+  .section-sub {
+    font-size: 12.5px;
+    color: #888;
+    font-weight: 400;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── PROSE ─── */
+  .prose { font-size: 14.5px; line-height: 1.8; color: #2A3244; max-width: 860px; }
+  .prose p { margin-bottom: 14px; }
+  .prose strong { color: var(--ink); font-weight: 600; }
+  .prose em { color: var(--teal); font-style: normal; font-weight: 500; }
+
+  /* ─── SCORE CARDS ─── */
+  .scorecard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .scorecard {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scorecard::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--teal);
+  }
+  .scorecard.warn::before { background: var(--orange); }
+  .scorecard.bad::before { background: var(--red); }
+  .scorecard.gold::before { background: var(--gold); }
+  .scorecard-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 8px;
+  }
+  .scorecard-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .scorecard.warn .scorecard-score { color: var(--orange); }
+  .scorecard.bad .scorecard-score { color: var(--red); }
+  .scorecard.gold .scorecard-score { color: var(--gold); }
+  .scorecard-desc {
+    font-size: 11.5px;
+    color: #777;
+    line-height: 1.5;
+  }
+  .score-bar {
+    height: 4px;
+    background: var(--paper-dark);
+    border-radius: 2px;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+  .score-bar-fill {
+    height: 100%;
+    background: var(--teal);
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+  .scorecard.warn .score-bar-fill { background: var(--orange); }
+  .scorecard.bad .score-bar-fill { background: var(--red); }
+  .scorecard.gold .score-bar-fill { background: var(--gold); }
+
+  /* ─── DATA TABLE ─── */
+  .data-table-wrap { overflow-x: auto; border-radius: 6px; border: 1px solid var(--border); margin-bottom: 20px; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.data-table thead tr {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  table.data-table thead th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  table.data-table thead th:first-child { color: var(--gold-light); }
+  table.data-table tbody tr { border-bottom: 1px solid var(--border); }
+  table.data-table tbody tr:last-child { border-bottom: none; }
+  table.data-table tbody tr:nth-child(even) { background: var(--paper-warm); }
+  table.data-table tbody td {
+    padding: 11px 16px;
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  table.data-table tbody td:first-child { font-weight: 500; color: var(--ink); }
+  .td-achieved { color: var(--green); font-weight: 600; }
+  .td-partial { color: var(--orange); font-weight: 600; }
+  .td-miss { color: var(--red); font-weight: 600; }
+  .td-pending { color: var(--teal); font-weight: 500; }
+
+  /* ─── HIGHLIGHT BOXES ─── */
+  .hbox {
+    border-radius: 5px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    border-left: 3px solid var(--teal);
+    background: var(--teal-pale);
+  }
+  .hbox.warn { border-color: var(--orange); background: var(--orange-pale); }
+  .hbox.danger { border-color: var(--red); background: var(--red-pale); }
+  .hbox.gold { border-color: var(--gold); background: var(--gold-pale); }
+  .hbox-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--teal);
+    font-weight: 500;
+  }
+  .hbox.warn .hbox-title { color: var(--orange); }
+  .hbox.danger .hbox-title { color: var(--red); }
+  .hbox.gold .hbox-title { color: #9A7A20; }
+  .hbox-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.7; }
+
+  /* ─── TWO-COL LAYOUT ─── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 20px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+
+  /* ─── FLAG TAGS ─── */
+  .flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 3px;
+    padding: 3px 9px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .flag.minor { background: var(--teal-pale); color: var(--teal); border: 1px solid rgba(26,110,110,0.25); }
+  .flag.moderate { background: var(--orange-pale); color: var(--orange); border: 1px solid rgba(196,108,26,0.3); }
+  .flag.severe { background: var(--red-pale); color: var(--red); border: 1px solid rgba(184,50,50,0.3); }
+  .flag.positive { background: var(--green-pale); color: var(--green); border: 1px solid rgba(42,110,74,0.3); }
+
+  /* ─── VERDICT BOX ─── */
+  .verdict-box {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 8px;
+    padding: 36px 40px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+  .verdict-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--teal-light) 100%);
+  }
+  .verdict-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .verdict-rating {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+  }
+  .verdict-rating span { color: var(--gold); }
+  .verdict-reasoning {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(248,246,240,0.8);
+    max-width: 800px;
+  }
+
+  /* ─── SEGMENT TABLE ─── */
+  .seg-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+  .seg-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .seg-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .seg-rev {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--teal);
+    font-weight: 500;
+  }
+  .seg-body { font-size: 13.5px; color: #3A4558; line-height: 1.7; }
+
+  /* ─── MOAT WHEEL ─── */
+  .moat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .moat-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 16px;
+    text-align: center;
+  }
+  .moat-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  .moat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  .moat-score-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 4px;
+  }
+  .moat-desc { font-size: 11.5px; color: #777; line-height: 1.5; }
+
+  /* ─── VALUATION TABLE ─── */
+  .val-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 22px 24px;
+  }
+  .val-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ─── MONITORING TABLE ─── */
+  .monitor-item {
+    display: flex;
+    gap: 16px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .monitor-item:last-child { border-bottom: none; }
+  .monitor-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 2px;
+    min-width: 24px;
+  }
+  .monitor-text { font-size: 13.5px; color: var(--ink-mid); line-height: 1.6; }
+
+  /* ─── WATERMARK ─── */
+  .watermark {
+    text-align: center;
+    padding: 32px 0 16px;
+    border-top: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #aaa;
+    text-transform: uppercase;
+  }
+
+  /* ─── INLINE METRIC ─── */
+  .metric-inline {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    background: var(--paper-warm);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 2px 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    font-weight: 500;
+    margin: 0 2px;
+  }
+  .metric-inline.up { color: var(--green); background: var(--green-pale); border-color: rgba(42,110,74,0.25); }
+  .metric-inline.down { color: var(--red); background: var(--red-pale); border-color: rgba(184,50,50,0.25); }
+
+  /* ─── PRINT UTILITY ─── */
+  @media print {
+    .cover { page-break-after: always; }
+    .section { page-break-inside: avoid; }
+  }
+
+  /* ─── CASE GRID ─── */
+  .case-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .case-card {
+    border-radius: 6px;
+    padding: 20px;
+    border: 1px solid transparent;
+  }
+  .case-card.bull { background: var(--green-pale); border-color: rgba(42,110,74,0.25); }
+  .case-card.base { background: var(--teal-pale); border-color: rgba(26,110,110,0.25); }
+  .case-card.bear { background: var(--red-pale); border-color: rgba(184,50,50,0.25); }
+  .case-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .case-card.bull .case-title { color: var(--green); }
+  .case-card.base .case-title { color: var(--teal); }
+  .case-card.bear .case-title { color: var(--red); }
+  .case-rev {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    opacity: 0.8;
+  }
+  .case-body { font-size: 12.5px; line-height: 1.65; color: var(--ink-mid); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     COVER
+═══════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-label">Institutional Equity Analysis · Q4 FY26 · May 2026</div>
+  <h1>MTAR Technologies<br><span>Deep Dive</span></h1>
+  <div class="cover-sub">NSE: MTARTECH &nbsp;|&nbsp; BSE: 543270 &nbsp;|&nbsp; Sector: Defence & Precision Engineering &nbsp;|&nbsp; Market Cap: ₹24,446 Cr</div>
+  <div class="cover-meta-grid">
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">CMP</div>
+      <div class="cover-meta-value neutral">₹7,948</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">P / E</div>
+      <div class="cover-meta-value danger">249×</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">P / B</div>
+      <div class="cover-meta-value danger">29.6×</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">FY26 Rev</div>
+      <div class="cover-meta-value neutral">₹876 Cr</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">FY27E Rev</div>
+      <div class="cover-meta-value positive">~₹1,577 Cr</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">52W Hi/Lo</div>
+      <div class="cover-meta-value warning">8,025 / 1,390</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCORE BAND
+═══════════════════════════════════════════════════════ -->
+<div class="score-band">
+  <div>
+    <div class="score-band-title">Business Health</div>
+    <div class="score-band-value">7.5 / 10</div>
+  </div>
+  <div>
+    <div class="score-band-title">Earnings Quality</div>
+    <div class="score-band-value">6.5 / 10</div>
+  </div>
+  <div>
+    <div class="score-band-title">Balance Sheet</div>
+    <div class="score-band-value">6.0 / 10</div>
+  </div>
+  <div>
+    <div class="score-band-title">Capital Allocation</div>
+    <div class="score-band-value">6.5 / 10</div>
+  </div>
+  <div>
+    <div class="score-band-title">Mgmt Credibility</div>
+    <div class="score-band-value">6.5 / 10</div>
+  </div>
+  <div>
+    <div class="score-band-title">Future Visibility</div>
+    <div class="score-band-value">8.0 / 10</div>
+  </div>
+  <div class="score-badge">
+    <div class="score-badge-dot"></div>
+    <div class="score-badge-text">WATCHLIST → ACCUMULATE ON DIPS</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════════════════ -->
+<div class="main-wrap">
+
+<!-- ─── STEP 1: EXECUTIVE SNAPSHOT ─── -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">STEP 01</span>
+    <span class="section-title">Executive Snapshot — What Actually Happened</span>
+  </div>
+
+  <div class="hbox gold">
+    <div class="hbox-title">Quarter Characterisation</div>
+    <div class="hbox-text"><strong>Q4 FY26 was fundamentally strong but optically flattered.</strong> Record quarterly revenues of ₹306 Cr (+67% YoY, +10% QoQ) were accompanied by a <em>₹16.4 Cr other income surge</em> (largely forex gains), which inflated PBT margins to 19.5% — the underlying EBITDA margin of 20.2% was actually a QoQ compression from 23.0% in Q3. Full-year FY26 at ₹876 Cr came in slightly below management's ₹900 Cr+ guidance, and EBITDA at 19.5% missed the guided 21%±1% band, both attributable to gross margin compression from geopolitical cost pressures. The quality improvement that matters most is the <em>CFO of ₹197 Cr</em> (25.3% of revenue), finally confirming that MTAR's profitability is translating into real cash.</div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="hbox">
+        <div class="hbox-title">Top 5 Developments</div>
+        <div class="hbox-text">
+          <strong>1. Guidance upgrade to 80% growth:</strong> The most material event — FY27 revenue guidance raised from 50% to 80%±5%, implying ~₹1,577 Cr. This is underpinned by Bloom capacity commissioning and multi-sector momentum.<br><br>
+          <strong>2. Record OCF of ₹197 Cr:</strong> A structural improvement — CFO/Revenue went from 17% in FY25 to 25.3% in FY26, validating better payment terms negotiation and working capital discipline. NWC days collapsed from 278 to 172 days in Q4.<br><br>
+          <strong>3. New AI data-center vertical (SLB):</strong> First article orders of ₹35 Cr from SLB for data-center infrastructure assemblies, with potential of ₹400–500 Cr over 2 years. High value-add (~70%), specialized, and diversifies beyond Bloom dependency.<br><br>
+          <strong>4. Nuclear order book at ₹650+ Cr:</strong> Historically unprecedented. With Calandria/End-shield qualification adding ₹350–400 Cr per reactor opportunity, MTAR's nuclear addressable market has structurally expanded.<br><br>
+          <strong>5. Debt-to-equity jumped to 0.45×:</strong> Total borrowings rose to ₹369 Cr from ₹177 Cr a year earlier, funding aggressive capex of ₹353 Cr in investing activities. While manageable, this marks a key inflection in financial risk profile.
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="hbox warn">
+        <div class="hbox-title">What the Market May Be Missing</div>
+        <div class="hbox-text">
+          <strong>The Bloom concentration risk is understated.</strong> At 70% of FY26 revenues (₹615 Cr), MTAR is effectively a single-customer story dressed up as a diversified engineering conglomerate. If Bloom faces US tariff headwinds, demand softening from data-center capex fatigue, or a technology transition, MTAR's topline is immediately at risk.<br><br>
+          <strong>The quality of the WC improvement is partially advance-driven.</strong> Other Current Liabilities surged from ₹44.5 Cr to ₹254.9 Cr — almost certainly large customer advances. This is sustainable only as long as Bloom's pull is strong; the apparent NWC improvement could partially reverse if advances are drawn down.<br><br>
+          <strong>The FY27 guidance embeds significant execution risk.</strong> 80% revenue growth on a ₹876 Cr base requires Bloom capacity to scale materially, nuclear orders to execute on schedule, IAI first articles to complete by September, and the oil & gas plant to commission by September — all simultaneously.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scorecard-grid">
+    <div class="scorecard gold">
+      <div class="scorecard-label">Overall Business Health</div>
+      <div class="scorecard-score">7.5</div>
+      <div class="scorecard-desc">Multi-year structural positioning in clean energy, nuclear & aerospace maturing into revenue</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:75%"></div></div>
+    </div>
+    <div class="scorecard warn">
+      <div class="scorecard-label">Earnings Quality</div>
+      <div class="scorecard-score">6.5</div>
+      <div class="scorecard-desc">OCF improvement is real; gross margin compression and forex-inflated PAT temper quality</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:65%"></div></div>
+    </div>
+    <div class="scorecard warn">
+      <div class="scorecard-label">Balance Sheet Strength</div>
+      <div class="scorecard-score">6.0</div>
+      <div class="scorecard-desc">D/E at 0.45× is manageable but accelerating; inventory at ₹500 Cr is a potential cash trap</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div>
+    </div>
+    <div class="scorecard warn">
+      <div class="scorecard-label">Capital Allocation Quality</div>
+      <div class="scorecard-score">6.5</div>
+      <div class="scorecard-desc">Debt-funded capex expansion — ROCE improving but still below cost of capital</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:65%"></div></div>
+    </div>
+    <div class="scorecard warn">
+      <div class="scorecard-label">Management Credibility</div>
+      <div class="scorecard-score">6.5</div>
+      <div class="scorecard-desc">Track record mixed — FY26 revenue and margin guidance both missed marginally; delivery improving</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:65%"></div></div>
+    </div>
+    <div class="scorecard">
+      <div class="scorecard-label">Future Visibility</div>
+      <div class="scorecard-score">8.0</div>
+      <div class="scorecard-desc">Order book of ₹2,582 Cr, nuclear pipeline, Bloom demand clarity give strong multi-year runway</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── STEP 2: RESULT QUALITY ANALYSIS ─── -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">STEP 02</span>
+    <span class="section-title">Result Quality Analysis — Dissecting the Numbers</span>
+  </div>
+
+  <div class="prose">
+    <p><strong>Revenue Quality (FY26):</strong> Full-year revenue grew 29.6% to ₹876.2 Cr, entirely organic. The Clean Energy (Bloom) segment drove ₹615.4 Cr — a 47.6% surge from FY25's ₹416.9 Cr — demonstrating genuine volume ramp, not pricing. Aerospace & Defence contributed ₹103.8 Cr (+11.4% YoY), with volume production commencing at GKN, Thales, and other MNC customers. Nuclear surprised to the downside at ₹23.6 Cr (FY25: ₹18.4 Cr), as new orders remained in WIP build-up phase. Products & Others declined to ₹134.1 Cr from ₹147.5 Cr — a structural portfolio thinning as the company focus narrows. Exports now constitute <em>82% of revenue</em>, reflecting the Bloom-driven composition.</p>
+    <p><strong>Gross Margin Compression:</strong> Gross margins contracted from 49.4% to 47.7% in FY26 and further to 44.2% in Q4 FY26. Management attributed this to two factors: higher consumable and freight costs from geopolitical disruption, and elevated headcount costs as the company rapidly expanded capacity. The fuel cell product mix effect is also operative — Bloom assemblies carry structurally lower gross margins (~44–46%) versus domestic nuclear and product segments (~52–55%). With Bloom's share rising to 70%+, gross margin headwinds are <em>structural, not cyclical</em>. The market needs to recalibrate "normalized" gross margins to the 46–48% range going forward.</p>
+    <p><strong>EBITDA Quality:</strong> EBITDA of ₹171.2 Cr at 19.5% missed the guided 21% band. The shortfall is attributable to the gross margin miss plus employee cost inflation (+21.9% YoY to ₹150.9 Cr) as headcount ramped for capacity. With 28% of revenue in fixed costs (per CFO), the expected 5% operating leverage in FY27 on ~80% revenue growth should produce ~450–500 bps of EBITDA margin expansion, arriving around 24% — consistent with management guidance.</p>
+    <p><strong>PAT Quality — Red Flag:</strong> FY26 PAT of ₹94 Cr includes ₹23.1 Cr in "Other Income" (vs ₹5.2 Cr in FY25), of which Q4 alone contributed ₹16.4 Cr — primarily realized and unrealized forex gains. Stripping this out, underlying PAT would be approximately <strong>₹76–78 Cr</strong>, a PAT margin of ~8.8% rather than the reported 10.7%. Investors paying a P/E of 249× should note this distinction carefully.</p>
+  </div>
+
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>FY23</th>
+          <th>FY24</th>
+          <th>FY25</th>
+          <th>FY26</th>
+          <th>Q4 FY26</th>
+          <th>Trend</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Revenue (₹ Cr)</td><td>573.8</td><td>580.8</td><td>676.0</td><td>876.2</td><td>306.1</td><td class="td-achieved">↑ Accelerating</td></tr>
+        <tr><td>Gross Profit %</td><td>53.0%</td><td>47.9%</td><td>49.4%</td><td>47.7%</td><td>44.2%</td><td class="td-miss">↓ Structural compression</td></tr>
+        <tr><td>EBITDA (₹ Cr)</td><td>154.0</td><td>112.7</td><td>120.9</td><td>171.2</td><td>61.8</td><td class="td-achieved">↑ Improving</td></tr>
+        <tr><td>EBITDA %</td><td>26.8%</td><td>19.4%</td><td>17.9%</td><td>19.5%</td><td>20.2%</td><td class="td-partial">→ Below guidance (21%)</td></tr>
+        <tr><td>PAT (₹ Cr)</td><td>103.4</td><td>56.6</td><td>53.4</td><td>94.0</td><td>44.3</td><td class="td-achieved">↑ Recovery</td></tr>
+        <tr><td>PAT % (reported)</td><td>18.0%</td><td>9.8%</td><td>7.9%</td><td>10.7%</td><td>14.5%</td><td class="td-partial">Forex-inflated in FY26</td></tr>
+        <tr><td>Other Income (₹ Cr)</td><td>19.5</td><td>5.8</td><td>5.2</td><td>23.1</td><td>16.4</td><td class="td-miss">⚠ Spike — forex dependency</td></tr>
+        <tr><td>CFO (₹ Cr)</td><td>7.4</td><td>57.4</td><td>101.3</td><td>196.9</td><td>—</td><td class="td-achieved">↑ Strong improvement</td></tr>
+        <tr><td>CFO / Revenue</td><td>1.3%</td><td>9.9%</td><td>15.0%</td><td>22.5%</td><td>—</td><td class="td-achieved">↑ Compounding</td></tr>
+        <tr><td>ROCE</td><td>19.9%</td><td>10.6%</td><td>9.7%</td><td>17.2%</td><td>—</td><td class="td-achieved">↑ Recovery cycle</td></tr>
+        <tr><td>Net Debt (₹ Cr)</td><td>143</td><td>151</td><td>138</td><td>349</td><td>—</td><td class="td-miss">↑ Rising fast</td></tr>
+        <tr><td>D/E (×)</td><td>0.23</td><td>0.28</td><td>0.24</td><td>0.45</td><td>—</td><td class="td-miss">↑ Re-leveraging</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ─── STEP 3: GUIDANCE TRACKER ─── -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">STEP 03</span>
+    <span class="section-title">Guidance Tracker — Management Promise vs Reality</span>
+    <span class="section-sub">Cross-referencing Q3 FY26 and Q4 FY26 concall disclosures</span>
+  </div>
+
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Guidance / Claim</th>
+          <th>Timeline Given</th>
+          <th>Current Status</th>
+          <th>Verdict</th>
+          <th>Commentary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>FY26 Revenue "₹900 Cr+"</td>
+          <td>Q3 FY26 call (Jan 2026)</td>
+          <td>Achieved ₹876 Cr</td>
+          <td><span class="flag moderate">PARTIAL MISS</span></td>
+          <td>~₹24 Cr short. Nuclear/defense order deferrals cited. Directionally accurate but numerically missed.</td>
+        </tr>
+        <tr>
+          <td>FY26 EBITDA Margin 21% ±1%</td>
+          <td>Q3 FY26 call (Jan 2026)</td>
+          <td>Achieved 19.5%</td>
+          <td><span class="flag moderate">MISS</span></td>
+          <td>Below even the lower bound (20%). Geopolitical cost pressures and headcount expansion cited. Gross margin mix effect structural.</td>
+        </tr>
+        <tr>
+          <td>FY26 Order Book ₹2,800 Cr</td>
+          <td>Q3 FY26 call (Jan 2026)</td>
+          <td>Achieved ₹2,582 Cr</td>
+          <td><span class="flag moderate">PARTIAL MISS</span></td>
+          <td>~₹218 Cr shortfall. Nuclear and defense orders deferred to Q1 FY27. Management confirmed no business impact — credible explanation.</td>
+        </tr>
+        <tr>
+          <td>Bloom capacity: 12,000 units by Mar 2026</td>
+          <td>Q3 FY26 call (Jan 2026)</td>
+          <td>Commissioned (confirmed Q4 call)</td>
+          <td><span class="flag positive">ACHIEVED</span></td>
+          <td>Initial phase commissioned. Training and ramp-up underway. Positive execution signal.</td>
+        </tr>
+        <tr>
+          <td>Bloom capacity: 20,000 units by Dec FY27</td>
+          <td>Q3 FY26 call (Jan 2026)</td>
+          <td>In progress — multifold expansion confirmed</td>
+          <td><span class="flag pending">IN PROGRESS</span></td>
+          <td>Numbers significantly higher than 20,000 per Q4 call. On track per management; key execution risk for FY27 guidance.</td>
+        </tr>
+        <tr>
+          <td>Oil & Gas plant operational "by June, push to Sep 2026"</td>
+          <td>Q3 FY26 call (Jan 2026)</td>
+          <td>September 2026 confirmed</td>
+          <td><span class="flag pending">DELAYED SLIGHTLY</span></td>
+          <td>Originally pushed to June, now September. Minor delay. Peak plant revenue potential ₹450–500 Cr over 3–4 years.</td>
+        </tr>
+        <tr>
+          <td>IAI first articles complete by June/July FY27</td>
+          <td>Q3 FY26 call (Jan 2026)</td>
+          <td>Now guided "September" (Q4 call)</td>
+          <td><span class="flag moderate">DELAYED</span></td>
+          <td>Slipped again from June/July to September 2026. Volume production then October. Pattern of aerospace FAI delays is consistent.</td>
+        </tr>
+        <tr>
+          <td>Working capital ~200–210 days in FY27</td>
+          <td>Q3 FY26 call (Jan 2026)</td>
+          <td>Achieved 172 days at FY26 year-end</td>
+          <td><span class="flag positive">EXCEEDED</span></td>
+          <td>Significantly better than guided. Driven by large customer advances (OCL surged from ₹44.5 to ₹254.9 Cr). Quality of improvement needs monitoring as advances get utilized.</td>
+        </tr>
+        <tr>
+          <td>FY27 Revenue growth: 50% (initial guidance)</td>
+          <td>Q3 FY26 call (Jan 2026)</td>
+          <td><strong>Upgraded to 80%±5%</strong></td>
+          <td><span class="flag positive">UPGRADED</span></td>
+          <td>A significant positive signal — management raised, not cut, guidance. Underpinned by Bloom capacity visibility and multi-sector order momentum.</td>
+        </tr>
+        <tr>
+          <td>FY27 EBITDA margin ~24%</td>
+          <td>Q4 FY26 call (May 2026)</td>
+          <td>New guidance</td>
+          <td><span class="flag pending">TO BE MONITORED</span></td>
+          <td>~450 bps improvement from 19.5%. CFO confirms ~5% operating leverage as fixed costs ~28% of revenue. Achievable if revenue guidance is met; fails if volume disappoints.</td>
+        </tr>
+        <tr>
+          <td>FY27 Closing order book ~₹5,000 Cr</td>
+          <td>Q4 FY26 call (May 2026)</td>
+          <td>New guidance — aspirational</td>
+          <td><span class="flag pending">TO BE MONITORED</span></td>
+          <td>Requires ~₹3,300 Cr of new order inflows in FY27 (vs ₹2,453 Cr in FY26). Ambitious. Clean energy, refurbishment nuclear, and ASHVINI project orders are key catalysts.</td>
+        </tr>
+        <tr>
+          <td>INR 500 Cr nuclear (Kaiga 5&6) execution within 36 months</td>
+          <td>Q3 FY26 call (Jan 2026)</td>
+          <td>Nuclear scaling expected from Q2 FY27</td>
+          <td><span class="flag pending">ON TRACK</span></td>
+          <td>WIP build-up confirmed. Q2 FY27 onset of meaningful revenues from nuclear. Conservative analyst estimate of ₹150+ Cr in FY27 termed "comfortable" by management.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="hbox warn">
+    <div class="hbox-title">Execution Credibility Assessment</div>
+    <div class="hbox-text"><strong>Rating: Moderate (improving trajectory).</strong> Management has a pattern of setting ambitious targets and missing by small margins — FY26 revenue guidance (₹900 Cr) missed by ~2.7%, EBITDA margin missed by 150 bps outside the guided band. However, the working capital improvement materially exceeded guidance, and the upgrade to 80% growth guidance is a strong positive signal. Management is not promotionally unreliable — explanations for misses (geopolitical costs, order timing deferrals) are plausible and verifiable. The aerospace FAI delay pattern (IAI slipping from June to September) is worth monitoring. Overall, management is <em>visionary but slightly optimistic</em> in near-term calibration; the long-term directional track record is strong.</div>
+  </div>
+</div>
+
+<!-- ─── STEP 4: HIDDEN FINANCIAL ARCHITECTURE ─── -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">STEP 04</span>
+    <span class="section-title">Hidden Financial Architecture — Behind the Numbers</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="val-card">
+        <div class="val-card-title">Working Capital Forensics</div>
+        <div class="prose">
+          <p><strong>The NWC improvement from 278 to 172 days is real but partially structural.</strong> The Other Current Liabilities line — which likely contains customer advances — exploded from ₹44.5 Cr to ₹254.9 Cr. This ₹210 Cr swing is the single biggest driver of the working capital improvement. Advances from Bloom (and potentially nuclear/aerospace clients) have effectively been used to fund inventory build.</p>
+          <p><strong>Inventory at ₹500.5 Cr</strong> (up from ₹346.1 Cr) tells the real story. The company is holding 208 days of inventory — a massive WIP build-up ahead of the FY27 revenue ramp. This is strategically intentional (raw materials and WIP for nuclear projects, Bloom components) but creates a cash trap risk if execution slips. At 208 inventory days on ₹876 Cr revenue, MTAR is essentially pre-financing ~₹500 Cr of future revenues.</p>
+          <p><strong>Trade receivables rose to ₹336.8 Cr</strong> (140 days) from ₹209.8 Cr. A significant increase accompanying revenue growth is expected, but the absolute level demands monitoring — these are largely foreign receivables (Bloom/IAI), so forex risk exists on the collection cycle.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="val-card">
+        <div class="val-card-title">Cash Flow Truth Analysis</div>
+        <div class="data-table-wrap" style="border:none; margin:0">
+          <table class="data-table">
+            <thead>
+              <tr><th>Item</th><th>FY26</th><th>FY25</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>EBITDA</td><td>171.2</td><td>120.9</td></tr>
+              <tr><td>Other Income (forex)</td><td>23.1</td><td>5.2</td></tr>
+              <tr><td>Core EBITDA (ex-OI)</td><td>~148</td><td>~116</td></tr>
+              <tr><td>CFO</td><td>196.9</td><td>101.3</td></tr>
+              <tr><td>CFO vs EBITDA</td><td>115%</td><td>84%</td></tr>
+              <tr><td>Capex (Investing)</td><td>352.6</td><td>102.7</td></tr>
+              <tr><td>Free Cash Flow</td><td>−155.7</td><td>−1.4</td></tr>
+              <tr><td>Net Financing</td><td>+154.8</td><td>−35.8</td></tr>
+              <tr><td>Net Borrowings Added</td><td>~192</td><td>~(16)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:12px; font-size:12.5px; color:#3A4558; line-height:1.7">
+          <strong>Key insight:</strong> MTAR is CFO-positive (₹197 Cr) but free cash flow negative (−₹156 Cr) due to aggressive capacity capex. The company funded its ₹353 Cr capex hole primarily through ₹192 Cr of net new borrowings. This is growth capex, not distress borrowing — but it means MTAR will not generate meaningful free cash flow until FY28/29 when capacity is fully utilized. <strong>The business is currently a cash consumer, not a cash generator, despite strong OCF.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hbox warn">
+    <div class="hbox-title">Balance Sheet Stress Mapping</div>
+    <div class="hbox-text"><strong>Total debt of ₹369.3 Cr (₹147.7 Cr LT + ₹221.6 Cr ST).</strong> Short-term borrowings have more than doubled YoY from ₹96.2 Cr to ₹221.6 Cr, suggesting heavy working capital financing requirements to fund the inventory build. Lease liabilities of ₹7.3 Cr are new (from the SEZ facility near the airport). No pledged shares, no off-balance-sheet items, no JV exposures of significance. The D/E at 0.45× remains well within the targeted 0.5× ceiling the CFO has guided for. Contingent liabilities are not disclosed in these filings — a minor gap. The ₹215 Cr "Investment" in current assets (vs ₹0 in FY25) likely represents liquid mutual funds deployed from customer advance inflows — a positive liquidity buffer.</div>
+  </div>
+</div>
+
+<!-- ─── STEP 5: MANAGEMENT COMMENTARY DECODE ─── -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">STEP 05</span>
+    <span class="section-title">Management Commentary Decode — Language & Psychology</span>
+  </div>
+
+  <div class="three-col">
+    <div class="hbox">
+      <div class="hbox-title">What Management Emphasized</div>
+      <div class="hbox-text">Bloom capacity ramp speed; multifold expansion (deliberately vague on exact numbers); nuclear as "sweet spot" and strongest order book in history; working capital improvement ("172 vs 278 days"); SLB data center as new milestone; operating leverage coming in FY27; AI data center demand tailwind driving Bloom customer growth; company's 35+ year nuclear heritage; FY27 order book target of ₹5,000 Cr.</div>
+    </div>
+    <div class="hbox warn">
+      <div class="hbox-title">What Management Avoided / Deflected</div>
+      <div class="hbox-text">Precise Bloom capacity targets ("can't disclose due to NDA"); specific oil & gas revenue targets ("chicken and egg"); precise IAI first article delivery dates (slipped again); Fluence customer dropped with minimal discussion; AMCA/Adani collaboration ("no update as of now"); precise nuclear revenue breakdown for FY27; gross margin trajectory in detail. The NDA shield on Bloom metrics is increasingly concerning given concentration.</div>
+    </div>
+    <div class="hbox">
+      <div class="hbox-title">Tone & Credibility Assessment</div>
+      <div class="hbox-text">Srinivas Reddy maintains a confident, vision-driven tone with genuine conviction — he references 35-year nuclear experience, 15-year Bloom partnership, and 5-year technology roadmaps. The Q4 call had a noticeably more assertive tone than Q3, reflecting Q4's stronger numbers. Gunneswara Rao (CFO) provides grounded numerical context. No defensiveness on margin miss — geopolitical attribution was consistent across quarters. Management classification: <strong>Visionary + Long-term allocator</strong> with moderate promotional tendency.</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="hbox">
+      <div class="hbox-title">Hidden Signals — Positive</div>
+      <div class="hbox-text"><strong>Guidance raised 30 percentage points mid-year:</strong> From 50% to 80% revenue growth — this is extraordinarily rare and signals genuine demand visibility beyond public disclosure. <strong>The "we have enough on our plate" response to competition questions</strong> on Bloom is significant — it suggests MTAR's relationship with Bloom is not purely transactional but deeply embedded. <strong>80–100 first articles per month in aerospace</strong> versus industry average of 300/year — this throughput signal is not widely appreciated and indicates MTAR's manufacturing pace is exceptional.</div>
+    </div>
+    <div class="hbox warn">
+      <div class="hbox-title">Excuse Patterns & Risk Signals</div>
+      <div class="hbox-text"><strong>Geopolitical attribution for every margin miss</strong> — used in both Q3 and Q4 calls as a blanket explanation. Partially valid but potentially masking pricing pressure with Bloom. <strong>Repeated deferrals on IAI first articles</strong> — originally "September 2025," then "June/July 2026," now "September 2026" — suggests quality/complexity underestimation. <strong>Fluence customer dropped silently</strong> — this was a potential clean energy battery storage revenue stream that has quietly disappeared. No accountability on the ~₹0 revenue contribution despite past enthusiasm.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── STEP 6: SEGMENT ANALYSIS ─── -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">STEP 06</span>
+    <span class="section-title">Segment & Business Engine Analysis</span>
+  </div>
+
+  <div class="seg-card">
+    <div class="seg-card-header">
+      <div><div class="seg-name">Clean Energy — Fuel Cells (Bloom Energy) &nbsp;<span class="flag positive">Core Engine</span></div></div>
+      <div class="seg-rev">FY26: ₹615.4 Cr &nbsp;|&nbsp; 70% of revenue &nbsp;|&nbsp; +47.6% YoY</div>
+    </div>
+    <div class="seg-body">This is MTAR's engine of growth and its Achilles heel simultaneously. Bloom's announced $2.65 Bn AEP deal, 30% CAGR target through 2030, and 2GW capacity addition by CY26 create extraordinary demand visibility. MTAR's 10–15 year manufacturing relationship and steep learning curve create a formidable switching-cost moat. However, the gross margin on Bloom assemblies (estimated 44–46%) is below the company average and declining as Bloom pushes for cost reductions. India tariff exposure (US has tariffs on Indian imports) has been dismissed by management but warrants monitoring if Bloom is pressured to diversify supply. <strong>The key FY27 variable is whether Bloom's capacity expansion proceeds at the guided pace</strong> — any disruption to Bloom's US hyperscaler customer orders directly impacts MTAR's topline.</div>
+  </div>
+
+  <div class="seg-card">
+    <div class="seg-card-header">
+      <div><div class="seg-name">Civil Nuclear Power (NPCIL) &nbsp;<span class="flag positive">Re-emerging Engine</span></div></div>
+      <div class="seg-rev">FY26: ₹23.6 Cr &nbsp;|&nbsp; 3% of revenue &nbsp;|&nbsp; Order book: ₹650+ Cr</div>
+    </div>
+    <div class="seg-body">The single most misunderstood segment in MTAR's portfolio. The FY26 revenue contribution is deceptively small — ₹23.6 Cr — because orders are in WIP build-up phase. The order book of ₹650+ Cr (covering 3–3.5 years of execution) represents a structural step-change from historical levels. Kaiga 5&6 (₹500+ Cr), refurbishment orders for 5 reactors, and incoming ASHVINI project tenders (Mahi Banswara 4 reactors) collectively create a multi-year nuclear revenue stream with no comparable historical precedent for MTAR. The recent qualification for Calandria and End Shield assemblies adds ₹100–150 Cr per reactor to wallet share, increasing the addressable revenue from ₹250 Cr to ₹350–400 Cr per reactor. The segment will inflect visibly from Q2 FY27 and should contribute ₹200–250 Cr+ by FY27. <strong>High-quality, high-margin, long-cycle revenue with minimal competitive threat and 35+ years of institutional knowledge.</strong></div>
+  </div>
+
+  <div class="seg-card">
+    <div class="seg-card-header">
+      <div><div class="seg-name">Aerospace & Defence (GKN, IAI, Thales, Elbit, LCA Tejas) &nbsp;<span class="flag pending">Growth Engine Building</span></div></div>
+      <div class="seg-rev">FY26: ₹103.8 Cr &nbsp;|&nbsp; 12% of revenue &nbsp;|&nbsp; +11.4% YoY</div>
+    </div>
+    <div class="seg-body">The segment with the highest long-term potential and the most execution uncertainty. Volume production has commenced with GKN (engine components), Thales (storage boxes), and Thales Alenia Space (Z-Adapter load-bearing structure). IAI first articles are pending (September 2026 target), after which volume production yields potentially ₹40–50 Cr/quarter from IAI alone. LCA Tejas Mark 1A actuator assemblies (₹130–150 Cr) are expected "this quarter." Management targets ₹150–160 Cr in FY27 from aerospace, growing to ₹350–400 Cr within 3 years. Aerospace carries the highest gross margins in the portfolio (55%+). The 80–100 first articles/month throughput rate is structurally impressive and a genuine competitive differentiator. <strong>This segment is the margin expansion catalyst — every INR shifted from Bloom to aerospace improves consolidated gross margins by 8–10 percentage points.</strong></div>
+  </div>
+
+  <div class="seg-card">
+    <div class="seg-card-header">
+      <div><div class="seg-name">Oil & Gas (Weatherford, SLB, Indo Tech) &nbsp;<span class="flag pending">Emerging Engine</span></div></div>
+      <div class="seg-rev">FY26: Embedded in clean energy segment &nbsp;|&nbsp; Plant operational Sep 2026</div>
+    </div>
+    <div class="seg-body">A new, genuinely exciting vertical. The Weatherford whipstock assembly program has completed first articles (approved, volume orders expected "this quarter"). Management estimates peak plant revenue of ₹450–500 Cr over 3–4 years from this greenfield facility alone. SLB's addition creates dual-use potential — both oil & gas and AI data-center infrastructure assemblies (₹35 Cr first article, ₹400–500 Cr potential in 2 years). The <em>chicken-and-egg bottleneck</em> (customers waiting for dedicated plant) resolves in September 2026. <strong>This is the least understood optionality in MTAR and could be a material earnings surprise generator from FY28 onwards.</strong></div>
+  </div>
+
+  <div class="seg-card">
+    <div class="seg-card-header">
+      <div><div class="seg-name">Products & Others (Ball Screws, WLBs, Roller Screws) &nbsp;<span class="flag mild">Steady Contributor</span></div></div>
+      <div class="seg-rev">FY26: ₹134.1 Cr &nbsp;|&nbsp; 15% of revenue &nbsp;|&nbsp; −9.1% YoY</div>
+    </div>
+    <div class="seg-body">Declining as a revenue share but stabilizing in absolute terms. Ball screw exports to MNC customers recently commenced — a new quality validation milestone. Roller screws and EMA certification pending in defence, potentially adding ₹100+ Cr annually as import substitutes. Products division targets ₹200 Cr+ in FY27. This segment anchors domestic revenue (~17–18% of total) and provides gross margin support. Not a growth engine but provides capital-light revenue with higher domestic margins to offset Bloom's gross margin dilution.</div>
+  </div>
+</div>
+
+<!-- ─── STEP 7: INDUSTRY & COMPETITIVE ─── -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">STEP 07</span>
+    <span class="section-title">Industry & Competitive Positioning</span>
+  </div>
+
+  <div class="prose">
+    <p><strong>Clean Energy / Fuel Cells:</strong> Bloom Energy's growth trajectory is one of the strongest in industrial clean energy — a $2.65 Bn deal with AEP, 30% CAGR through 2030, AI-driven data-center electricity demand accelerating SOFC adoption. The data-center power market is estimated to double from 60GW to 140GW globally, and fuel cells — offering reliable, 24/7 clean power without grid dependency — are structurally favored. MTAR's position as Bloom's primary manufacturing partner outside the US carries enormous optionality. The India tariff exposure is real but manageable — US tariffs on Indian goods affect MTAR's export economics, yet Bloom confirmed continued and expanding orders, suggesting Bloom absorbs this cost premium given MTAR's irreplaceability at this scale and specification.</p>
+    <p><strong>Civil Nuclear:</strong> India's nuclear expansion program is entering its most ambitious phase since inception. The government has cleared 700MW PHWRs in fleet mode, NTPC-NPCIL's ASHVINI project (4 reactors), and private sector nuclear participation — potentially adding 8–10 new reactors over the next decade. At ₹350–400 Cr addressable per reactor for MTAR, this represents a ₹2,800–4,000 Cr pipeline over 8–10 years, entirely in MTAR's technical wheelhouse. No listed competitor has comparable nuclear manufacturing depth — MTAR's 35+ year legacy, specialized machines, and Calandria/End-shield qualification create a near-monopolistic position in this niche.</p>
+    <p><strong>Aerospace:</strong> India's push toward indigenous defence manufacturing and export ambitions creates structural tailwinds. The AMCA program, LCA Tejas production scale-up, and European MNC supply chain diversification toward India (IAI, GKN, Thales) align perfectly with MTAR's capabilities. The company's 100 first-article completions/month is approximately 4× the industry average, positioning it for outsized wallet-share capture as MNC customers scale Indian sourcing.</p>
+    <p><strong>Key competitive differentiator:</strong> MTAR's engineering-first culture, tolerance for complexity in first articles, and long partnership model (10–15 year relationships with key customers) constitute a genuine qualitative moat that is difficult for any competitor to replicate quickly. The company is not competing on price — it is competing on engineering irreplaceability.</p>
+  </div>
+</div>
+
+<!-- ─── STEP 8: CAPITAL ALLOCATION ─── -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">STEP 08</span>
+    <span class="section-title">Capital Allocation Analysis</span>
+  </div>
+
+  <div class="two-col">
+    <div class="hbox">
+      <div class="hbox-title">Capex Discipline Assessment</div>
+      <div class="hbox-text"><strong>FY26 Capex: ₹352.6 Cr</strong> (vs ₹102.7 Cr in FY25) — a 3.4× acceleration. This represents the most aggressive investment cycle in MTAR's listed history. The capital is being deployed across: (1) Bloom clean energy SEZ facility at Hyderabad airport for 20,000+ units; (2) Oil & gas greenfield plant (commissions Sep 2026); (3) Nuclear and aerospace capacity additions; (4) IT/automation. Total capex to reach ₹5,000 Cr revenue is guided at ₹500–700 Cr. At an implied asset turn of ~4× on incremental capex (₹700 Cr capex for incremental ₹4,124 Cr revenue from ₹876 Cr to ₹5,000 Cr), capital efficiency would be exceptional if realized. <strong>This is high-conviction, demand-driven capex — not speculative empire building.</strong> Zero acquisitions, no equity dilution, no diversification into unrelated verticals. Capital allocation philosophy is disciplined.</div>
+    </div>
+    <div class="hbox warn">
+      <div class="hbox-title">Return Metrics & Concerns</div>
+      <div class="hbox-text"><strong>ROCE at 17.2% in FY26</strong> (recovering from 9.7% in FY25) is improving but still relatively modest given the premium valuation. The company is in a capital deployment phase — ROCE will be suppressed by the ₹500+ Cr capex cycle through FY27–28. The incremental ROCE on new Bloom capacity (high asset turns, established margins) should be 25–30%+, while nuclear and oil & gas will take 2–3 years to season. Management has set debt-to-equity at 0.5× target for next 2 years — this implies total debt could reach ₹400–450 Cr, manageable at expected cash generation levels. Dividends: ₹0 (consistent — all capital reinvested). ESOP: No material dilution disclosed. No acquisitions or related-party capital leakage detected. <strong>Capital allocation quality: disciplined growth investors, not capital destroyers.</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── STEP 9: RED FLAGS ─── -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">STEP 09</span>
+    <span class="section-title">Red Flags & Forensic Detection</span>
+  </div>
+
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr><th>Flag</th><th>Severity</th><th>Detail</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Single-customer concentration (Bloom ~70%)</td>
+          <td><span class="flag severe">SEVERE</span></td>
+          <td>One customer representing 70% of revenue in a listed mid-cap is extraordinary concentration risk. Any demand disruption, Bloom pricing action, technology shift (post-SOFC), or US regulatory change creates immediate and severe topline impact for MTAR. No listed Indian precision engineering peer carries this concentration.</td>
+        </tr>
+        <tr>
+          <td>Gross margin structural compression</td>
+          <td><span class="flag moderate">MODERATE</span></td>
+          <td>GP% declined from 53% (FY23) to 47.7% (FY26) and 44.2% in Q4. As Bloom share grows, gross margins will continue to compress unless aerospace mix shifts. Management attributes to geopolitics — partially true but structurally, Bloom margins are lower than legacy domestic business.</td>
+        </tr>
+        <tr>
+          <td>Large Other Income (₹23.1 Cr FY26 vs ₹5.2 Cr FY25)</td>
+          <td><span class="flag moderate">MODERATE</span></td>
+          <td>Primarily forex gains (realized + unrealized). Q4 other income of ₹16.4 Cr is 26.5% of Q4 EBITDA. PAT quality is materially overstated by this one-time forex tailwind. If INR stabilizes or strengthens, FY27 other income normalizes to ₹8–10 Cr, implying 10–12% PAT compression versus FY26 reported.</td>
+        </tr>
+        <tr>
+          <td>Inventory at ₹500.5 Cr (208 days)</td>
+          <td><span class="flag moderate">MODERATE</span></td>
+          <td>The build-up is strategic (WIP for nuclear, Bloom pre-orders) but creates a potential cash trap. If Bloom demand softens or nuclear execution is delayed, ₹500 Cr of inventory could tie up capital for 12–18 months. The absolute level is the highest in MTAR's history.</td>
+        </tr>
+        <tr>
+          <td>Short-term borrowings doubled (₹96 → ₹222 Cr)</td>
+          <td><span class="flag moderate">MODERATE</span></td>
+          <td>ST borrowings now exceed LT borrowings, suggesting working capital financing dependence. This is partly funded by inventory build and receivables growth. If collections slow or advances reverse, liquidity could tighten. CFO noted "we are able to negotiate better INR loans" — beneficial but adds refinancing risk concentration.</td>
+        </tr>
+        <tr>
+          <td>Fluence customer dropped with no accountability</td>
+          <td><span class="flag minor">MINOR</span></td>
+          <td>Fluence (battery storage) was actively discussed as a potential revenue source through Q3, then dropped in Q4 citing tariff issues and deliberation. No financial disclosure of write-downs or investment made. Pattern of quietly shelving initiatives without investor communication.</td>
+        </tr>
+        <tr>
+          <td>Repeated IAI first article delays</td>
+          <td><span class="flag minor">MINOR</span></td>
+          <td>Timeline has now slipped twice — from "Sep 2025 completion" to "June/July 2026" to now "September 2026." Volume production revenue from IAI has been pushed back each quarter. Aerospace revenue expectations need consistent downward revision of ~1 quarter.</td>
+        </tr>
+        <tr>
+          <td>NDA shield on Bloom capacity numbers</td>
+          <td><span class="flag minor">MINOR</span></td>
+          <td>Management cannot (or chooses not to) disclose specific Bloom unit capacity targets, which limits investor ability to independently verify the FY27 80% revenue growth assumption. The key variable underpinning the bull thesis is unverifiable.</td>
+        </tr>
+        <tr>
+          <td>FY27 guidance implausibility risk</td>
+          <td><span class="flag moderate">MODERATE</span></td>
+          <td>80% revenue growth on a ₹876 Cr base requires simultaneous execution across 5 new capacity expansions, 3 first-article completions, 2 new plant commissions, and ₹3,300 Cr+ of new order wins — all in one year. The guidance is directionally correct but the tightness of execution dependency is underappreciated.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ─── STEP 10: POSITIVE INFLECTIONS ─── -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">STEP 10</span>
+    <span class="section-title">Positive Inflection Detection — Early Upside Signals</span>
+  </div>
+
+  <div class="three-col">
+    <div class="hbox">
+      <div class="hbox-title">Margin Inflection Ahead</div>
+      <div class="hbox-text">Operating leverage on 80% revenue growth is powerful. With ~28% fixed cost ratio, every ₹100 of new revenue drops ~₹28 directly to EBITDA. The CFO explicitly quantified 5% EBITDA margin expansion from operating leverage alone. Combined with aerospace mix improvement and nuclear scaling, MTAR could sustainably reach 24–26% EBITDA margins by FY28 — versus 17.9% in FY25, representing a 600–800 bps structural re-rating.</div>
+    </div>
+    <div class="hbox">
+      <div class="hbox-title">Nuclear Revenue Inflection</div>
+      <div class="hbox-text">Nuclear is at an absolute inflection — ₹23.6 Cr in FY26 is set to become ₹200+ Cr in FY27 and potentially ₹300–400 Cr in FY28, as Kaiga 5&6 orders execute, refurbishment cycles continue, and ASHVINI tenders materialize. This is the segment the market is most undermodeling. At ~55% gross margins, nuclear revenue is disproportionately valuable to MTAR's P&L.</div>
+    </div>
+    <div class="hbox">
+      <div class="hbox-title">AI Data Center Optionality</div>
+      <div class="hbox-text">The SLB data-center infrastructure partnership is genuinely new and underappreciated. At 70% value-add, ₹400–500 Cr potential within 2 years, and no comparable disclosed peer exposure, this represents an asymmetric optionality. If SLB scales MTAR's role, this segment could contribute ₹200+ Cr by FY28 at industry-leading margins.</td></div>
+    </div>
+    <div class="hbox">
+      <div class="hbox-title">Oil & Gas Plant Commission</div>
+      <div class="hbox-text">The September 2026 oil & gas plant commissioning unlocks Weatherford volume orders that have been deferred for over 6 quarters. Management estimates ₹450–500 Cr peak plant revenue over 3–4 years. With first articles already approved and multiple additional customer conversations ongoing, the plant has a strong commercial foundation upon commissioning.</div>
+    </div>
+    <div class="hbox">
+      <div class="hbox-title">Aerospace Volume Production Cascade</div>
+      <div class="hbox-text">GKN (in production), Thales (in production), Thales Alenia Space (Z-Adapter complete), IAI (September FAI completion) — all converging in FY27. Management guided ₹150–160 Cr aerospace revenues in FY27, accelerating to ₹350–400 Cr in 3 years. Each first article conversion to volume production carries a 3–5× revenue multiplier, creating potential for quarterly surprises.</div>
+    </div>
+    <div class="hbox">
+      <div class="hbox-title">Private Nuclear Entry</div>
+      <div class="hbox-text">Government clearance for private sector nuclear plant establishment represents a paradigm shift. MTAR's technical barriers to entry in nuclear manufacturing are near-insurmountable for new entrants. If 3–5 private nuclear players each require ₹300–400 Cr of MTAR-grade components, the total addressable nuclear market doubles over the next 10 years, with MTAR as the gatekeeper supplier.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── MOAT + VALUATION (NEW SECTION) ─── -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">MOAT +</span>
+    <span class="section-title">Moat Structure Analysis & Valuation Comfort</span>
+    <span class="section-sub">Proprietary Scoring · Market Cap ₹24,446 Cr · CMP ₹7,948 · P/E 249× · P/B 29.6×</span>
+  </div>
+
+  <!-- Moat Dimensions -->
+  <div style="margin-bottom:20px">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#888; margin-bottom:14px;">Moat Dimension Scoring</div>
+    <div class="moat-grid">
+      <div class="moat-card">
+        <div class="moat-icon">🔩</div>
+        <div class="moat-label">Switching Costs</div>
+        <div class="moat-score-val">9 / 10</div>
+        <div class="moat-desc">10–15 year manufacturing partnerships with Bloom/NPCIL. Customer qualification cycles of 2–4 years. Impossible to replicate mid-cycle.</div>
+      </div>
+      <div class="moat-card">
+        <div class="moat-icon">🏭</div>
+        <div class="moat-label">Scale & Capacity</div>
+        <div class="moat-score-val">7 / 10</div>
+        <div class="moat-desc">Largest SOFC hot-box manufacturer in India with 12,000+ unit capacity scaling fast. Nuclear specialized machines built in-house.</div>
+      </div>
+      <div class="moat-card">
+        <div class="moat-icon">🛡️</div>
+        <div class="moat-label">Regulatory Barriers</div>
+        <div class="moat-score-val">9 / 10</div>
+        <div class="moat-desc">Nuclear supplier qualification: 3–5 years minimum. Aerospace AS9100 certification, first-article approval cycles. Essentially government-backed monopoly in nuclear machining.</div>
+      </div>
+      <div class="moat-card">
+        <div class="moat-icon">🧠</div>
+        <div class="moat-label">Intangible Assets / Know-how</div>
+        <div class="moat-score-val">8 / 10</div>
+        <div class="moat-desc">35+ years of nuclear machining IP. Proprietary specialized machines. 100+ first articles/month throughput. Inconel, exotic alloy processing expertise.</div>
+      </div>
+      <div class="moat-card">
+        <div class="moat-icon">💰</div>
+        <div class="moat-label">Pricing Power</div>
+        <div class="moat-score-val">6 / 10</div>
+        <div class="moat-desc">Moderate — value-add preserved but BOM cost pass-through possible. Bloom drives cost reduction discipline. Nuclear and aerospace have more pricing stability.</div>
+      </div>
+      <div class="moat-card">
+        <div class="moat-icon">🌐</div>
+        <div class="moat-label">Network Effects</div>
+        <div class="moat-score-val">5 / 10</div>
+        <div class="moat-desc">Limited traditional network effects. However, reference-client flywheel (qualification with Bloom opens other clean energy doors; NPCIL expertise opens private nuclear) creates a reputation moat.</div>
+      </div>
+      <div class="moat-card">
+        <div class="moat-icon">📦</div>
+        <div class="moat-label">Cost Advantages</div>
+        <div class="moat-score-val">7 / 10</div>
+        <div class="moat-desc">India's labor cost advantage in precision engineering is ~40–50% vs US/European comparables. MTAR's capex efficiency (low-cost greenfield) enhances this structurally.</div>
+      </div>
+      <div class="moat-card">
+        <div class="moat-icon">⭐</div>
+        <div class="moat-label">Overall Moat Score</div>
+        <div class="moat-score-val" style="color:var(--gold)">7.3 / 10</div>
+        <div class="moat-desc"><strong>Narrow-to-wide moat.</strong> Strong in nuclear & clean energy. Moat is reinforced by each new capacity and qualification milestone.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Valuation Metrics Table -->
+  <div class="two-col" style="margin-bottom:20px">
+    <div class="val-card">
+      <div class="val-card-title">Current Valuation Metrics</div>
+      <div class="data-table-wrap" style="border:none; margin:0">
+        <table class="data-table">
+          <thead><tr><th>Metric</th><th>Value</th><th>Context</th></tr></thead>
+          <tbody>
+            <tr><td>Market Cap</td><td>₹24,446 Cr</td><td class="td-pending">~28× FY26 Revenue</td></tr>
+            <tr><td>P / E (FY26)</td><td>249×</td><td class="td-miss">Extreme premium</td></tr>
+            <tr><td>P / E (FY27E ~₹200 Cr PAT)</td><td>~122×</td><td class="td-miss">Still very high</td></tr>
+            <tr><td>EV / EBITDA (FY26)</td><td>~150×</td><td class="td-miss">Speculative</td></tr>
+            <tr><td>EV / EBITDA (FY27E)</td><td>~60–65×</td><td class="td-miss">High but improving</td></tr>
+            <tr><td>P / B</td><td>29.6×</td><td class="td-miss">Extreme premium to assets</td></tr>
+            <tr><td>Mkt Cap / Sales (FY26)</td><td>27.9×</td><td class="td-miss">Exceptional for a manufacturer</td></tr>
+            <tr><td>Mkt Cap / Sales (FY27E)</td><td>~15.5×</td><td class="td-miss">High even on FY27E</td></tr>
+            <tr><td>ROCE (FY26)</td><td>17.2%</td><td class="td-partial">Recovery but below P/E premium implies</td></tr>
+            <tr><td>FCF Yield</td><td>Negative</td><td class="td-miss">FCF −₹156 Cr in FY26</td></tr>
+            <tr><td>Dividend Yield</td><td>0.00%</td><td class="td-pending">All capital reinvested</td></tr>
+            <tr><td>52W Return</td><td>~+472%</td><td class="td-achieved">Exceptional rerating occurred</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="val-card">
+      <div class="val-card-title">What Growth Is Priced In — Reverse DCF Analysis</div>
+      <div class="prose" style="font-size:13px">
+        <p>At ₹24,446 Cr market cap, the stock is pricing in extraordinary execution over a very long horizon. A reverse DCF approximation suggests:</p>
+        <p><strong>To justify current valuation</strong> at a 15% discount rate and 15× terminal multiple on FY30 earnings, MTAR needs to achieve revenues of ~₹4,500–5,000 Cr by FY30 (17–19% CAGR from FY27E ₹1,577 Cr) with sustained EBITDA margins of 26–28% and consistent FCF generation. Management's own FY30 roadmap ("clear road map... hopefully ₹5,000 Cr by FY30") aligns with this, but the risk is that any shortfall in Bloom capacity, nuclear execution, or margin realization dramatically impairs the intrinsic value case.</p>
+        <p><strong>The embedded assumption is that Bloom Energy scales 30% annually through 2030 and MTAR retains majority market share</strong> — a scenario that is plausible but by no means assured. The market is applying a technology-platform valuation multiple to a precision-manufacturing business.</p>
+        <p><strong>Margin of safety:</strong> At current prices, there is <em>no margin of safety for execution errors.</em> The stock requires near-perfect execution on all 5 simultaneous growth vectors to justify its multiple.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Valuation Comfort Classification -->
+  <div class="hbox warn">
+    <div class="hbox-title">Valuation Comfort Classification</div>
+    <div class="hbox-text"><strong>Verdict: EXPENSIVE BUT STRATEGICALLY JUSTIFIABLE — Not Dangerous Overvaluation, But No Margin of Safety.</strong><br><br>
+    MTAR is trading at 249× trailing P/E and 122× FY27E P/E on a manufacturing business. These are technology-company multiples applied to a capital-intensive precision engineering firm. The justification rests entirely on: (1) the near-monopoly position in nuclear, (2) the decade-long Bloom partnership depth, (3) the multi-sector optionality (oil & gas, aerospace, data-center infrastructure), and (4) the visible 3–5 year growth runway with ₹2,582 Cr order book coverage. The stock rose from ₹1,390 to ₹8,025 — a ~5.8× move in 52 weeks — suggesting the market has already priced the bull case with high conviction. <strong>At this valuation, the risk-reward is asymmetric to the downside:</strong> any operational stumble (Bloom demand moderation, IAI delays, margin disappointment) could cause a 30–40% correction given how much future growth is embedded. The stock is not a value opportunity — it is a quality-growth franchise that requires careful position sizing and is best accumulated on meaningful corrections of 20–25%+.</div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div style="font-family:'Playfair Display',serif; font-size:15px; font-weight:700; margin-bottom:12px; color:var(--ink)">Peer Comparative Context</div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Company</th><th>P/E</th><th>EV/EBITDA</th><th>Revenue CAGR</th></tr></thead>
+          <tbody>
+            <tr><td>MTAR Technologies</td><td class="td-miss">249×</td><td class="td-miss">~150×</td><td class="td-achieved">~30% (FY25→26)</td></tr>
+            <tr><td>Paras Defence</td><td>55–65×</td><td>40–50×</td><td>20–25%</td></tr>
+            <tr><td>Data Patterns</td><td>60–80×</td><td>45–60×</td><td>25–30%</td></tr>
+            <tr><td>Bharat Forge</td><td>45–55×</td><td>22–28×</td><td>10–15%</td></tr>
+            <tr><td>HAL</td><td>35–45×</td><td>25–35×</td><td>12–18%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size:12px; color:#777; margin-top:8px;">MTAR trades at a material premium to even the most richly valued defence peers — reflective of the clean-energy × defence × nuclear triple optionality, but also of speculative premium.</div>
+    </div>
+    <div>
+      <div style="font-family:'Playfair Display',serif; font-size:15px; font-weight:700; margin-bottom:12px; color:var(--ink)">FY27 Implied Valuation (Bull/Base/Bear)</div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Scenario</th><th>FY27 Rev</th><th>PAT</th><th>Implied P/E</th></tr></thead>
+          <tbody>
+            <tr><td class="td-achieved">Bull (80% rev, 24% EBITDA)</td><td>₹1,577 Cr</td><td>~₹220 Cr</td><td class="td-miss">111×</td></tr>
+            <tr><td class="td-partial">Base (65% rev, 22% EBITDA)</td><td>₹1,446 Cr</td><td>~₹180 Cr</td><td class="td-miss">136×</td></tr>
+            <tr><td class="td-miss">Bear (40% rev, 19% EBITDA)</td><td>₹1,226 Cr</td><td>~₹120 Cr</td><td class="td-miss">204×</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size:12px; color:#777; margin-top:8px;">Even in the bull case, MTAR trades at 111× FY27E earnings. Warranted only if the FY28/29/30 trajectory extends the growth narrative convincingly.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── STEP 11: FUTURE TRAJECTORY ─── -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">STEP 11</span>
+    <span class="section-title">Future Trajectory Modeling — Bull / Base / Bear</span>
+  </div>
+
+  <div class="case-grid">
+    <div class="case-card bull">
+      <div class="case-title">🟢 Bull Case (30% probability)</div>
+      <div class="case-rev">FY27E: ₹1,577 Cr | FY28E: ₹2,200 Cr | FY29E: ₹3,000 Cr</div>
+      <div class="case-body">Bloom executes 30% CAGR through 2030; MTAR retains majority share with scaled capacity. Nuclear revenue inflects to ₹250+ Cr in FY27 and ₹400+ Cr in FY28 as Kaiga 5&6 + ASHVINI orders execute. Oil & gas plant commissions September 2026 and ramps to ₹200 Cr by FY28. IAI FAI completes September, volume starts October. SLB data-center grows to ₹300+ Cr by FY29. EBITDA margins reach 26–27% by FY28. ROCE sustainably above 22%. FCF positive from FY28. Stock re-rates to 60–70× FY28 earnings → target ₹10,000–12,000 range.</div>
+    </div>
+    <div class="case-card base">
+      <div class="case-title">🔵 Base Case (50% probability)</div>
+      <div class="case-rev">FY27E: ₹1,370–1,500 Cr | FY28E: ₹1,800–2,000 Cr</div>
+      <div class="case-body">Revenue growth of 55–70% in FY27, driven predominantly by Bloom with nuclear adding ₹150–175 Cr. Oil & gas commissions September but takes 6–9 months to ramp meaningfully. IAI delays to Q4 FY27. EBITDA margins reach 22–23%. PAT of ₹150–180 Cr. Free cash flow remains negative through FY27, turns positive in FY28. Valuation compresses gently as P/E re-rates to 80–100× on FY27 earnings — stock broadly range-bound at ₹6,500–8,500. Accumulation opportunity on any market-wide corrections.</div>
+    </div>
+    <div class="case-card bear">
+      <div class="case-title">🔴 Bear Case (20% probability)</div>
+      <div class="case-rev">FY27E: ₹1,050–1,200 Cr | Stock target: ₹3,500–5,000</div>
+      <div class="case-body">Bloom demand moderates due to US tariff escalation or hyperscaler capex pause. Revenue grows 20–35% — Bloom misses, nuclear execution slow, IAI delays persist. EBITDA margins stay at 19–20%. PAT of ₹100–120 Cr. Debt-to-equity approaches 0.5× with no FCF relief. Market de-rates to 50–60× FY28 earnings → 30–40% stock correction from current levels. Key risk trigger: any Bloom public announcement of capacity self-sufficiency or supply chain diversification away from India.</div>
+    </div>
+  </div>
+
+  <div class="prose" style="margin-top:16px">
+    <p><strong>Key monitoring variables for future quarters:</strong> Q1 FY27 revenue absolute (must confirm H1 FY27 "very good" guidance); nuclear revenue contribution from Q2 FY27 (target ₹50–60 Cr/quarter); IAI first article status by September 2026; oil & gas plant commissioning; SLB data-center order progression; working capital days remaining below 200 (sustainability of advance-driven improvement); debt levels relative to 0.5× D/E ceiling; other income normalization in FY27 (should drop significantly); and any Bloom Energy public disclosure of capacity additions, supply chain changes, or financial performance.</p>
+  </div>
+</div>
+
+<!-- ─── STEP 12–13: FINAL VERDICT ─── -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">STEP 12</span>
+    <span class="section-title">Final Investment Verdict — Institutional Summary</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="val-card">
+        <div class="val-card-title">Key Positives</div>
+        <div class="prose" style="font-size:13px">
+          <p><strong>1. Guidance upgraded to 80%:</strong> Rare and significant — indicates genuine demand visibility that management has high confidence in.</p>
+          <p><strong>2. OCF of ₹197 Cr (25.3% of revenue):</strong> The most structural positive of FY26 — cash conversion is finally matching earnings quality claims.</p>
+          <p><strong>3. Nuclear order book at historic high:</strong> ₹650+ Cr with Calandria/End-shield qualification expanding addressable opportunity. Widest moat segment entering a multi-decade expansion phase.</p>
+          <p><strong>4. Multi-sector diversification progressing:</strong> Oil & gas, SLB data-center, AMCA structural assemblies, IAI volume production — all approaching inflection simultaneously in FY27.</p>
+          <p><strong>5. Working capital inflection:</strong> 172 days from 278 in one quarter — structural improvement driven by better payment terms, not just a one-off. FY27 guidance to maintain these levels.</p>
+          <p><strong>6. ROCE recovery:</strong> From 9.7% to 17.2% in one year. Operating leverage will drive further improvement toward 22–25% range as new capacity revenues accrue.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="val-card">
+        <div class="val-card-title">Key Negatives & Hidden Risks</div>
+        <div class="prose" style="font-size:13px">
+          <p><strong>1. Bloom 70% concentration:</strong> The most critical unaddressed risk. Structurally embedded and will likely increase in FY27 before diversification partially offsets in FY28+.</p>
+          <p><strong>2. Forex-inflated PAT:</strong> ₹23.1 Cr other income masks underlying PAT quality. Normalize to ~₹76–78 Cr — the P/E is effectively higher than headline 249×.</p>
+          <p><strong>3. Negative FCF through FY27:</strong> The company is a cash consumer despite strong OCF. Investors should not confuse OCF improvement with FCF generation capacity — capex cycle will keep FCF negative for 1–2 more years.</p>
+          <p><strong>4. FY26 guidance misses:</strong> Revenue and margin both missed guidance — consistent pattern of slight over-promise. FY27 guidance of 80% and 24% EBITDA leaves no margin for execution error.</p>
+          <p><strong>5. IAI first article delays — pattern risk:</strong> Every quarter, this gets pushed back. Until it closes, this is an overhang on aerospace credibility.</p>
+          <p><strong>6. Extreme valuation with no margin of safety:</strong> 249× P/E, 29.6× P/B — any operational disappointment in the next 2 quarters risks a severe derating.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="val-card" style="margin-bottom:20px">
+    <div class="val-card-title">Hidden Insights — What The Market Is Missing</div>
+    <div class="prose" style="font-size:13px">
+      <p><strong>The SLB data-center infrastructure angle is almost completely unpriced.</strong> Most analysts are treating it as a minor development, but a ₹400–500 Cr revenue potential from one customer at ~70% value-add in 2 years is extraordinary for a company doing ₹876 Cr total revenue today. If realized, this single relationship would contribute ~25% of MTAR's current annual revenue at margins exceeding every segment except nuclear.</p>
+      <p><strong>The private nuclear entry creates a decade-long order visibility that is not reflected in current sell-side models.</strong> The Bharat government's decision to allow private nuclear plants effectively doubled MTAR's addressable nuclear market. Yet no analyst has modeled private nuclear orders into MTAR's revenue outlook. Each private reactor represents ₹350–400 Cr in potential MTAR content over 5–6 years of construction.</p>
+      <p><strong>The "100 first articles per month" throughput data is not appreciated.</strong> Industry standard is 300 per year. MTAR is completing 1,200 per year — a 4× productivity advantage in the most complex, highest-barrier phase of aerospace manufacturing. This implies MTAR can scale its aerospace wallet-share significantly faster than peers and is building institutional aerospace capability at unprecedented speed.</p>
+    </div>
+  </div>
+
+  <div class="verdict-box">
+    <div class="verdict-label">Final Investment Verdict</div>
+    <div class="verdict-rating">WATCHLIST → <span>ACCUMULATE ON DIPS (−20%+)</span></div>
+    <div class="verdict-reasoning">
+      MTAR Technologies is a genuinely exceptional business — a narrow-to-wide moat, multi-decade clean energy and nuclear manufacturing franchise with irreplaceable customer relationships, extraordinary engineering throughput, and a 5-year growth runway that is among the most visible in Indian mid-cap industrials. The FY26 results, while fractionally below guidance, demonstrated real operational progress: record revenues, structurally improved cash flows, and the courage to guide 80% growth with operational confidence.<br><br>
+      However, at 249× trailing P/E, 29.6× P/B, and a P/FCF that is negative, the current price embeds the bull case almost entirely. There is no margin of safety for execution stumbles, Bloom demand moderation, or geopolitical cost continuation. The 52-week journey from ₹1,390 to ₹8,025 has front-loaded 2–3 years of value creation into today's price. For a long-term institutional investor, this is a <em>high-quality business at an aggressive valuation</em> — warranting a watchlist position with accumulation discipline triggered by corrections of 20–25% from current levels (≈₹6,000–6,400 range). At those levels, the FY27E P/E approaches 90–100×, which, while still elevated, begins to price execution risk more realistically.<br><br>
+      <strong>Position sizing guidance:</strong> Do not chase at current prices. Build positions on broad market corrections or company-specific disappointments (IAI delay, margin miss) that create temporary mispricing. A 3–5 year horizon is essential. This is not a trade — it is a structural compounding story for investors with conviction and patience.
+    </div>
+  </div>
+
+  <!-- Quarterly Monitoring Checklist -->
+  <div class="val-card">
+    <div class="val-card-title">Quarterly Monitoring Checklist — Q1 FY27 & Beyond</div>
+    <div>
+      <div class="monitor-item">
+        <div class="monitor-num">01</div>
+        <div class="monitor-text"><strong>Revenue run-rate:</strong> Q1 FY27 revenue must be ≥₹350–380 Cr to confirm "strong H1" guidance. Any shortfall below ₹300 Cr would signal the 80% guidance is at risk.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">02</div>
+        <div class="monitor-text"><strong>Nuclear revenue contribution:</strong> Target ₹40–60 Cr from Q2 FY27. If nuclear revenue remains below ₹20 Cr through Q1–Q2, execution concern warranted.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">03</div>
+        <div class="monitor-text"><strong>IAI first article completion:</strong> September 2026 is the third revised deadline. Volume production revenue from IAI in Q3 FY27 is critical for aerospace credibility.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">04</div>
+        <div class="monitor-text"><strong>Oil & Gas plant commissioning:</strong> Must be live by September 2026. First Weatherford volume order arrival is the revenue trigger — watch for order disclosures in Q2 FY27.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">05</div>
+        <div class="monitor-text"><strong>EBITDA margins:</strong> Q1 FY27 margins will be suppressed (ramp-up phase) — expected 18–20%. From Q2, margins should trend toward 22–24% as operating leverage kicks in. Any sustained reading below 19% signals guidance risk.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">06</div>
+        <div class="monitor-text"><strong>Working capital days:</strong> Should remain below 200 days (management guided). If WC days re-expand above 220+, it signals the advance-driven improvement is reversing.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">07</div>
+        <div class="monitor-text"><strong>Other income normalization:</strong> FY27 other income should normalize to ₹10–12 Cr vs ₹23 Cr in FY26. If it remains elevated, watch for forex gain sustainability vs interest income growth.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">08</div>
+        <div class="monitor-text"><strong>Order inflows pace:</strong> Need ₹800+ Cr of new orders per quarter to approach ₹5,000 Cr closing order book. Specifically monitor: ASHVINI nuclear tenders, LCA Tejas actuator order (₹130–150 Cr), refurbishment reactor orders.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">09</div>
+        <div class="monitor-text"><strong>SLB data-center order progression:</strong> First article of ₹35 Cr is underway. Watch for next order tranche announcement — scale of follow-on orders will determine whether this is a ₹100 Cr or ₹400 Cr revenue stream.</div>
+      </div>
+      <div class="monitor-item">
+        <div class="monitor-num">10</div>
+        <div class="monitor-text"><strong>Bloom customer signals:</strong> Any public disclosures from Bloom Energy about capacity expansions, supply chain changes, or financial guidance should be cross-referenced with MTAR's own guidance. Bloom's AEP deal execution pace directly drives MTAR's Bloom revenue trajectory.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── WATERMARK ─── -->
+<div class="watermark">
+  MTAR Technologies Limited · Institutional Analysis · Q4 FY26 · Based on concall transcripts (Q3 & Q4 FY26), investor presentations (Jan 2026 & May 2026) · For informational purposes only · Not investment advice · May 2026
+</div>
+
+</div><!-- end main-wrap -->
+
+</body>
+</html>
